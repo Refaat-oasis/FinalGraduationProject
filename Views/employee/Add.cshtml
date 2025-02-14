@@ -1,0 +1,197 @@
+﻿@model AddEmployee;
+
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+    }
+
+
+        .form-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../wwwroot/image/background.jpeg");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.60; /* Adjust transparency */
+            z-index: -1;
+        }
+
+
+
+
+    h1 {
+        text-align: center;
+        font-size: 30px;
+        color: #050505;
+        margin-bottom: 20px;
+    }
+
+    .input-control {
+        margin-bottom: 10px;
+    }
+
+    .textlabel {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #090909;
+        font-size: 30px;
+        text-align: right;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: right;
+        direction: rtl;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center; /* Center the buttons */
+        gap: 60px; /* Reduce space between buttons */
+    }
+
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #000000;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #000000;
+        }
+
+    .btn-secondary {
+        background-color: #000000;
+        color: white;
+    }
+
+    .btn:hover {
+        background-color: #545b62;
+    }
+
+
+    .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+        text-align: right;
+        direction: rtl;
+    }
+
+</style>
+
+<div class="form-container">
+    <h1>اضافه موظف </h1>
+    <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
+        <div class="input-control">
+            <label asp-for="@Model.employeeUserName"></label>
+            <input asp-for="@Model.employeeUserName" class="place" />
+            <span asp-validation-for="@Model.employeeUserName" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.employeeName"></label>
+            <input asp-for="@Model.employeeName" class="place" />
+            <span asp-validation-for="@Model.employeeName" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.employeePassword"></label>
+            <input asp-for="@Model.employeePassword" class="place" />
+            <span asp-validation-for="@Model.employeePassword" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.jobRole"></label>
+            <select asp-for="@Model.jobRole" id="options" asp-items="@Html.GetEnumSelectList(typeof(jobRole))" class="place">
+                <option value="">--تحديد الدور الوظيفي--</option>
+                <option value="Technical">الفني</option>
+                <option value="Inventory">المخازن</option>
+                <option value="Purchase">مشتريات</option>
+                <option value="Cost">التكاليف</option>
+            </select>
+            <span asp-validation-for="@Model.jobRole" class="error"></span>
+        </div>
+        <div class="button-container">
+        <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
+        <input type="submit" value="اضافه" class="btn btn-secondary" />
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".Employee-form");
+
+        form.addEventListener("submit", function (event) {
+            let isValid = true;
+
+
+            let employeeName = document.querySelectorAll(".place")[0];
+            let employeeUserName = document.querySelectorAll(".place")[1];
+            let employeePassword = document.querySelectorAll(".place")[2];
+            let jobRole = document.querySelector("#options");
+
+
+            let nameError = document.querySelectorAll(".error")[0];
+            let userNameError = document.querySelectorAll(".error")[1];
+            let passwordError = document.querySelectorAll(".error")[2];
+            let jobRoleError = document.querySelectorAll(".error")[3];
+
+
+            nameError.innerText = "";
+            userNameError.innerText = "";
+            passwordError.innerText = "";
+            jobRoleError.innerText = "";
+
+
+            if (employeeName.value.trim() === "") {
+                nameError.innerText = "يجب عليك إدخال اسمك";
+                isValid = false;
+            }
+
+            if (employeeUserName.value.trim() === "") {
+                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                isValid = false;
+            }
+
+            if (employeePassword.value.trim() === "") {
+                passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك";
+                isValid = false;
+            }
+
+            if (jobRole.value === "") {
+                jobRoleError.innerText = "يجب عليك تحديد دور وظيفي";
+                isValid = false;
+            }
+
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>

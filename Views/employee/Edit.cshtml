@@ -1,0 +1,125 @@
+﻿@model Employee;
+
+<style>
+    
+    .form-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+    }
+
+
+        .form-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../wwwroot/image/background.jpeg");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.60; /* Adjust transparency */
+            z-index: -1;
+        }
+
+
+
+
+    h1 {
+        text-align: center;
+        font-size: 30px;
+        color: #050505;
+        margin-bottom: 20px;
+    }
+
+    .input-control {
+        margin-bottom: 10px;
+    }
+
+    .textlabel {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #090909;
+        font-size: 30px;
+        text-align: right;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: right;
+        direction: rtl;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center; /* Center the buttons */
+        gap: 60px; /* Reduce space between buttons */
+    }
+
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #000000;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #000000;
+        }
+
+    .btn-secondary {
+        background-color: #000000;
+        color: white;
+    }
+
+    .btn:hover {
+        background-color: #545b62;
+    }
+
+</style>
+
+
+<div class="form-container">
+    <h1>تعديل @Model.Employee موظف</h1>
+    <form asp-action="Edit" method="post" class="book-form">
+
+        <input asp-for="@Model.employeeID" type="hidden" />
+
+        <div class="input-control">
+            <label asp-for="@Model.employeeUserName" class="textlabel"></label>
+            <input asp-for="@Model.employeeUserName" class="place" />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.employeeName" class="textlabel"></label>
+            <input asp-for="@Model.employeeName" class="place" />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.employeePassword" class="textlabel"></label>
+            <input asp-for="@Model.employeePassword" class="place" />
+        </div>
+        <div class="button-container">
+            <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
+            <input type="submit" value="تعديل" class="btn btn-primary" />
+            
+        </div>
+    </form>
+</div>

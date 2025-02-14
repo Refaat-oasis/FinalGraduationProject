@@ -1,4 +1,4 @@
-﻿@model AddEmployee;
+﻿@model Employee;
 
 <style>
     .form-container {
@@ -108,7 +108,7 @@
 
 <div class="form-container">
     <h1>اضافه موظف </h1>
-    <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
+    <form asp-controller="#" asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
             <label asp-for="@Model.employeeUserName"></label>
             <input asp-for="@Model.employeeUserName" class="place" />
@@ -127,10 +127,10 @@
         <div class="input-control">
             <label asp-for="@Model.jobRole"></label>
             <select asp-for="@Model.jobRole" id="options" asp-items="@Html.GetEnumSelectList(typeof(jobRole))" class="place">
-                <option value="">--تحديد الدور الوظيفي--</option>
+                <option value="" disabled>--تحديد الدور الوظيفي--</option>
                 <option value="Technical">الفني</option>
                 <option value="Inventory">المخازن</option>
-                <option value="Purchase">مشتريات</option>
+                @* <option value="Purchase">مشتريات</option> *@
                 <option value="Cost">التكاليف</option>
             </select>
             <span asp-validation-for="@Model.jobRole" class="error"></span>

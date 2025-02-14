@@ -1,7 +1,7 @@
 ﻿@model Employee;
 
 <style>
-    
+
     .form-container {
         max-width: 500px;
         margin: 50px auto;
@@ -102,24 +102,24 @@
     <h1>تعديل الموظف</h1>
     <form asp-action="Edit" method="post" class="book-form">
 
-        <input asp-for="@Model.employeeID" type="hidden" />
+        <input asp-for="@Model.EmployeeId" type="hidden" />
 
         <div class="input-control">
-            <label asp-for="@Model.employeeUserName" class="textlabel"></label>
-            <input asp-for="@Model.employeeUserName" class="place" />
+            <label asp-for="@Model.EmployeeUserName" class="textlabel"></label>
+            <input asp-for="@Model.EmployeeUserName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeeName" class="textlabel"></label>
-            <input asp-for="@Model.employeeName" class="place" />
+            <label asp-for="@Model.EmployeeName" class="textlabel"></label>
+            <input asp-for="@Model.EmployeeName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeePassword" class="textlabel"></label>
-            <input asp-for="@Model.employeePassword" class="place" />
+            <label asp-for="@Model.EmployeePassword" class="textlabel"></label>
+            <input asp-for="@Model.EmployeePassword" class="place" />
         </div>
         <div class="button-container">
             <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
             <input type="submit" value="تعديل" class="btn btn-primary" />
-            
+
         </div>
     </form>
 </div>

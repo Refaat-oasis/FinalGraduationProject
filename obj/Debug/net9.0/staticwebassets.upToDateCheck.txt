@@ -62,7 +62,10 @@ C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\wwwroot\
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\image\background - Copy.jpg
 wwwroot\image\background.jpeg
+wwwroot\image\egyptian-wall-with-hieroglyphs - Copy.jpg
+wwwroot\image\eye.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

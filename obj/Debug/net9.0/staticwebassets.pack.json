@@ -13,8 +13,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background - Copy.jpg",
+      "PackagePath": "staticwebassets\\image\\background - Copy.jpg"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background.jpeg",
       "PackagePath": "staticwebassets\\image\\background.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "PackagePath": "staticwebassets\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\eye.jpg",
+      "PackagePath": "staticwebassets\\image\\eye.jpg"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\js\\site.js",

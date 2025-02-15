@@ -1,8 +1,7 @@
-﻿@model Employee;
-
+﻿
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
+    import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+    import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
 
 
 
@@ -42,7 +41,7 @@
     animation: moveRight 4s forwards; /* name and duration */
 }
 
-@keyframes moveRight {
+keyframes moveRight {
     0% {
         right: -100px;
         opacity: 0;
@@ -221,15 +220,15 @@ background:rgb(66 32 6);
         </div>
 
         <div class="inputBox">
-            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" />
+            <input type="text" name="EmployeeUserName" placeholder="اسم المستخدم" />
             <i class="bx bxs-user"></i>
-            <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
+            @* <p asp-validation-for="@Model.EmployeeUserName" class="error"></p> *@
         </div>
 
         <div class="inputBox">
-            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" />
+            <input type="password" name="EmployeePassword" placeholder="كلمه المرور" />
             <i class="bx bxs-lock-alt"></i>
-            <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
+            @* <p asp-validation-for="@Model.EmployeePassword" class="error"></p> *@
             <div class="rememberMe">
                 <label><input type="checkbox" />تذكر بياناتي</label>
             </div>

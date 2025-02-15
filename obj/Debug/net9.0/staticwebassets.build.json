@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SO79R+J66n00fkQ75W6IQy7+AD14IumUppdv6pVJRV4=",
+  "Hash": "8SRz4iPGyV2bDVt0qK+s0Izz/bUQlbgyEsvCbb8rgCY=",
   "Source": "ThothSystemVersion1",
   "BasePath": "_content/ThothSystemVersion1",
   "Mode": "Default",
@@ -1445,6 +1445,27 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background - Copy.jpg",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "image/background - Copy#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "o7hpq8ugkm",
+      "Integrity": "nIJ6e2UaVuq45i4jpFt8SQG1agxigKezv68GA1dsvXg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\background - Copy.jpg"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background.jpeg",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1464,6 +1485,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\background.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "image/egyptian-wall-with-hieroglyphs - Copy#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "imqbqmng9z",
+      "Integrity": "dsJPh/dnwMaUItDA4+xcTZRElfXTct5EGke+1syPPQ0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\eye.jpg",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "image/eye#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6v839tvefc",
+      "Integrity": "ovx25FYLsKoGJVQXTo4ocuLtbdHNw8SiCs+j5DYMraU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\eye.jpg"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\js\\site.js",
@@ -3345,6 +3408,88 @@
       ]
     },
     {
+      "Route": "image/background - Copy.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background - Copy.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "140677"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nIJ6e2UaVuq45i4jpFt8SQG1agxigKezv68GA1dsvXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nIJ6e2UaVuq45i4jpFt8SQG1agxigKezv68GA1dsvXg="
+        }
+      ]
+    },
+    {
+      "Route": "image/background - Copy.o7hpq8ugkm.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background - Copy.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "140677"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nIJ6e2UaVuq45i4jpFt8SQG1agxigKezv68GA1dsvXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o7hpq8ugkm"
+        },
+        {
+          "Name": "label",
+          "Value": "image/background - Copy.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nIJ6e2UaVuq45i4jpFt8SQG1agxigKezv68GA1dsvXg="
+        }
+      ]
+    },
+    {
       "Route": "image/background.jpeg",
       "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\background.jpeg",
       "Selectors": [],
@@ -3423,6 +3568,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-Tf3zK75WS/uk2hOQVdELRx40vgm453Dsc4yAy93qQ70="
+        }
+      ]
+    },
+    {
+      "Route": "image/egyptian-wall-with-hieroglyphs - Copy.imqbqmng9z.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3238473"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dsJPh/dnwMaUItDA4+xcTZRElfXTct5EGke+1syPPQ0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "imqbqmng9z"
+        },
+        {
+          "Name": "label",
+          "Value": "image/egyptian-wall-with-hieroglyphs - Copy.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dsJPh/dnwMaUItDA4+xcTZRElfXTct5EGke+1syPPQ0="
+        }
+      ]
+    },
+    {
+      "Route": "image/egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3238473"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dsJPh/dnwMaUItDA4+xcTZRElfXTct5EGke+1syPPQ0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dsJPh/dnwMaUItDA4+xcTZRElfXTct5EGke+1syPPQ0="
+        }
+      ]
+    },
+    {
+      "Route": "image/eye.6v839tvefc.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\eye.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "240892"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ovx25FYLsKoGJVQXTo4ocuLtbdHNw8SiCs+j5DYMraU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6v839tvefc"
+        },
+        {
+          "Name": "label",
+          "Value": "image/eye.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ovx25FYLsKoGJVQXTo4ocuLtbdHNw8SiCs+j5DYMraU="
+        }
+      ]
+    },
+    {
+      "Route": "image/eye.jpg",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\wwwroot\\image\\eye.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "240892"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ovx25FYLsKoGJVQXTo4ocuLtbdHNw8SiCs+j5DYMraU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 00:32:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ovx25FYLsKoGJVQXTo4ocuLtbdHNw8SiCs+j5DYMraU="
         }
       ]
     },

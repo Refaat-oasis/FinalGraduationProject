@@ -1,0 +1,144 @@
+﻿@model Empolee;
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
+
+
+
+    body {
+        background: url(../../wwwroot/image//background\ -\ Copy.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden; /* to disable horizontal motion*/
+    }
+
+.sidebar {
+  display: fixed;
+  position: absolute;
+  right: 10px;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.sidebar table {
+  width: 200px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.sidebar th {
+  background-color: #8B4513;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar td {
+  padding: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  color: #8B4513;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-weight: 500;
+  height: 100vh;
+  /* background-color: rgba(24, 23, 23, 0.7); */
+}
+
+.container h1{
+  font-weight: bolder;
+  color: #fff;
+  display: block;
+  margin-bottom: 10px;
+  font-size:25px;
+}
+
+.container p{
+  font-weight: bolder;
+  color: #fff;
+  display: block;
+  font-size:15px;
+}
+
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="LogIn.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+<header>
+    <div id="navbar">
+        @*<h1>THOTH</h1>*@
+        <h1 class="hieroglyph">𓅝𓏏𓎛</h1>
+        <img src="./photos/eye.jpg" alt="logo">
+    </div>
+
+</header>
+
+<div class="sidebar">
+    <table>
+        <tr>
+            <th>الصفحات</th>
+        </tr>
+        <tr>
+            <td><a href="home.cshtml">الصفحة الرئيسية</a></td>
+        </tr>
+        <tr>
+            <td><a href="viewEmp.cshtml">عرض جميع الموظفين</a></td>
+        </tr>
+        <tr>
+            <td><a href="Add.cshtml">إضافة موظف جديد</a></td>
+        </tr>
+        <tr>
+            <td><a href="Edit.cshtml">تعديل قائمه الموظفين</a></td>
+        </tr>
+        <tr>
+            <td><a href="viewJobOrder.cshtml">عرض جميع الطلبيات</a></td>
+        </tr>
+        @*<tr>
+                <td><a href="services.cshtml">إضافه طلبيه جديده</a></td>
+            </tr>
+            <tr>
+                <td><a href="services.html">تعديل قائمه الطلبيات</a></td>
+            </tr>*@
+    </table>
+</div>
+
+
+<div class="container">
+    <h1>تحوت يتمني لك يوم سعيد</h1>
+    <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p>
+    <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
+</div>
+

@@ -1,7 +1,7 @@
 ﻿@model Employee;
 
 <style>
-
+    
     .form-container {
         max-width: 500px;
         margin: 50px auto;
@@ -95,31 +95,96 @@
         background-color: #545b62;
     }
 
+    .error {
+        color: red;
+        font-size: 20px;
+        margin-top: 5px;
+        display: block;
+        text-align: right;
+        direction: rtl;
+    }
+
 </style>
 
 
 <div class="form-container">
-    <h1>تعديل الموظف</h1>
-    <form asp-action="Edit" method="post" class="book-form">
+    <h1>تعديل @Model.Employee موظف</h1>
+    <form asp-action="Edit" method="post" class="Employee-form">
 
-        <input asp-for="@Model.EmployeeId" type="hidden" />
+        <input asp-for="@Model.employeeID" type="hidden" />
 
         <div class="input-control">
-            <label asp-for="@Model.EmployeeUserName" class="textlabel"></label>
-            <input asp-for="@Model.EmployeeUserName" class="place" />
+            <label asp-for="@Model.employeeUserName" class="textlabel"></label>
+            <input asp-for="@Model.employeeUserName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeeName" class="textlabel"></label>
-            <input asp-for="@Model.EmployeeName" class="place" />
+            <label asp-for="@Model.employeeName" class="textlabel"></label>
+            <input asp-for="@Model.employeeName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeePassword" class="textlabel"></label>
-            <input asp-for="@Model.EmployeePassword" class="place" />
+            <label asp-for="@Model.employeePassword" class="textlabel"></label>
+            <input asp-for="@Model.employeePassword" class="place" />
         </div>
         <div class="button-container">
             <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
             <input type="submit" value="تعديل" class="btn btn-primary" />
-
+            
         </div>
     </form>
 </div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".Employee-form");
+
+        form.addEventListener("submit", function (event) {
+            let isValid = true;
+
+            let employeeName = document.querySelectorAll(".place")[0];
+            let employeeUserName = document.querySelectorAll(".place")[1];
+            let employeePassword = document.querySelectorAll(".place")[2];
+
+            let nameError = document.querySelectorAll(".error")[0];
+            let userNameError = document.querySelectorAll(".error")[1];
+            let passwordError = document.querySelectorAll(".error")[2];
+
+
+            nameError.style.display = "none";
+            userNameError.style.display = "none";
+            passwordError.style.display = "none";
+
+
+            if (employeeName.value.trim() === "") {
+                nameError.innerText = "يجب عليك إدخال اسمك";
+                nameError.style.display = "block";
+                isValid = false;
+            }
+
+
+            if (employeeUserName.value.trim() === "") {
+                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                userNameError.style.display = "block";
+                isValid = false;
+            }
+
+
+            if (employeePassword.value.trim() === "") {
+                passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك";
+                passwordError.style.display = "block";
+                isValid = false;
+            } else if (employeePassword.value.length < 6) {
+                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
+                passwordError.style.display = "block";
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+
+</script>
+
+

@@ -231,3 +231,15 @@ C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debu
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.dll
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersion1.dll
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.AssemblyReference.cache
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.AssemblyInfoInputs.cache
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.AssemblyInfo.cs
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.CoreCompileInputs.cache
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cache
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cs
+C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.sourcelink.json

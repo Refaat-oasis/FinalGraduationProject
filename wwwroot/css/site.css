@@ -1,6 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
+@keyframes moveRight {
+    0% {
+        right: -100px;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        right: 6%;
+        opacity: 1;
+        transform: translateX(-50%);
+    }
+}
+
 
 @media (min-width: 768px) {
   html {

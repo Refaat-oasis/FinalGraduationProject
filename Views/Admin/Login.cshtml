@@ -1,0 +1,303 @@
+﻿@model Employee;
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
+
+
+
+    body {
+        background: url(../../wwwroot/image//egyptian-wall-with-hieroglyphs\ -\ Copy.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden; /* to disable horizontal motion*/
+    }
+
+#navbar{
+    display: flex;
+    display: flex;
+    justify-content: flex-end; /*  to make element in the right of the page  */
+    align-items: center;
+    padding: 10px;
+}
+
+
+.hieroglyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 32px;
+    color: #fff
+}
+
+#navbar h1 {
+    position: absolute;
+    right: -100px; /* make the element out of the page */
+    opacity: 0;  /* make it hidden */
+    font-size: 20px;
+    font-weight: bold;
+    animation: moveRight 4s forwards; /* name and duration */
+}
+
+@keyframes moveRight {
+    0% {
+        right: -100px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        right: 6%;
+        opacity: 1;
+        transform: translateX(-50%);
+    }}
+
+
+#navbar img{
+    width: 80px;
+}
+
+.text{
+    color: #fff;
+}
+
+.registeration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+.registeration h1 {
+    font-weight: bolder;
+    color: #fff;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size:25px
+}
+
+
+.registeration .password {
+    text-align: center;
+    font-weight: 500;
+}
+
+.registeration .inputBox {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    margin: 10px;
+}
+
+.registeration #userName {
+    border: none;
+   border : 2px solid white;
+   border-radius: 40px;
+   outline: none;
+   background: transparent;
+   font-size: 16px;
+   padding: 4px;
+   width: 600px;
+   height: 40px;
+   color: #fff;
+}
+
+.registeration #Password {
+   border: none;
+   border : 2px solid white;
+   border-radius: 40px;
+   outline: none;
+   background: transparent;
+   font-size: 16px;
+   padding: 4px;
+   width: 600px;
+   height: 40px;
+   color: #fff;
+}
+
+.inputBox input::placeholder {
+    color: #ffffff;
+}
+
+.inputBox i {
+    position: absolute;
+    color: #fff;
+    right: 40px;
+    top: 35%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.inputBox .bxs-lock-alt{
+    top: 30%
+}
+
+.rememberMe {
+    display: block;
+    color: #fff;
+    text-align: left;
+    font-size: 17px;
+}
+
+
+  .inputBox.error {
+    color: red;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: right;
+    display: block;
+    margin-right: 8px;
+  }
+
+
+input.btnLog {
+    color: #fff;
+    background-color: #5D3A1A;
+    margin: 10px;
+    font-size: small;
+    font-weight: bolder;
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: large;
+
+}
+
+
+input.btnLog:hover {
+    background:rgb(66 32 6);
+}
+
+
+input.btnReset{
+    color: #fff;
+    background-color: #5D3A1A;
+    margin: 10px;
+    font-size: small;
+    font-weight: bolder;
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: large;
+}
+
+input.btnReset:hover {
+background:rgb(66 32 6);
+}
+
+
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+
+<div class="registeration">
+    <form asp-controller="#" asp-action="Login" id="myform" enctype="multipart/form-data" method="post">
+        <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
+        <br />
+
+        <div class="text">
+            <h1>TH<span>&#x1F441;</span>TH</h1>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" />
+            <i class="bx bxs-user"></i>
+            <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" />
+            <i class="bx bxs-lock-alt"></i>
+            <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
+            <div class="rememberMe">
+                <label><input type="checkbox" />تذكر بياناتي</label>
+            </div>
+        </div>
+
+
+        <div class="LogIn">
+            <input type="submit" value="تسجيل الدخول" class="btnLog" />
+        </div>
+
+        <div class="reset">
+            <input type="reset" value="إعادة إدخال" class="btnReset" />
+        </div>
+    </form>
+</div>
+
+<script>
+    const myform = document.getElementById("myform");
+    const userName = document.getElementById("userName");
+    const Password = document.getElementById("Password");
+
+    myform.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (validate()) {
+            window.location.href = "Home.html";
+        }
+    });
+
+    myform.addEventListener("reset", () => {
+        window.location.reload();
+    });
+
+    const setError = (input, errorMsg) => {
+        const inputBox = input.parentElement;
+        const errorParagraph = inputBox.querySelector(".error");
+        errorParagraph.innerText = errorMsg;
+        inputBox.classList.remove("success");
+        inputBox.classList.add("error");
+    };
+
+    const setSuccess = (input) => {
+        const inputBox = input.parentElement;
+        const errorParagraph = inputBox.querySelector(".error");
+        errorParagraph.innerText = "";
+        inputBox.classList.remove("error");
+        inputBox.classList.add("success");
+    };
+
+    const validate = () => {
+        let valid = true;
+
+        // validate name
+        if (userName.value.trim() === "") {
+            setError(userName, "برجاء إدخال الاسم");
+            valid = false;
+        } else {
+            setSuccess(userName);
+        }
+
+        // validate password
+        if (Password.value.trim() === "") {
+            setError(Password, "برجاء إدخال كلمه المرور");
+            valid = false;
+        } else {
+            setSuccess(Password);
+        }
+
+        return valid;
+    };
+
+</script>

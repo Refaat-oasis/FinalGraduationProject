@@ -5,14 +5,14 @@ using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.Database;
 
-public partial class Context : DbContext
+public partial class ThothContext : DbContext
 {
-    public Context()
+    public ThothContext()
     {
 
     }
 
-    public Context(DbContextOptions<DbContext> options)
+    public ThothContext(DbContextOptions<DbContext> options)
         : base(options)
     {
     }

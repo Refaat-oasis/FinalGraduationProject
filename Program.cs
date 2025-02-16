@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using ThothSystemVersion1.BusinessLogicLayers;
+using ThothSystemVersion1.Database;
+
 namespace ThothSystemVersion1
 {
     public class Program
@@ -8,6 +12,10 @@ namespace ThothSystemVersion1
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<EmployeeBusinessLogicL>();
+            builder.Services.AddDbContext<ThothContext>(options =>
+   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ThothSystemVersion1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d553e1c8cc2ffed7fb497db8f1d24d69ca23f687")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce1e1ca8f1704eab9716dbe497aede225e3e5972")]
 [assembly: System.Reflection.AssemblyProductAttribute("ThothSystemVersion1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ThothSystemVersion1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,11 +4,11 @@ using ThothSystemVersion1.Models;
 using ThothSystemVersion1.Database;
     namespace ThothSystemVersion1.BusinessLogicLayers
 { 
-     public class EmployeeBusinessLogicL
+     public class AdminBusinessLogicLayer
     {
         private readonly ThothContext _context;
 
-        public EmployeeBusinessLogicL(ThothContext context)
+        public AdminBusinessLogicLayer(ThothContext context)
         {
             _context = context;
         }

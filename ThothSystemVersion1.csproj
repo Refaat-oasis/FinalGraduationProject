@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="BusinessLogicLayer\" />
+    <Folder Include="BusinessLogicLayer\" />
   </ItemGroup>
 
 </Project>

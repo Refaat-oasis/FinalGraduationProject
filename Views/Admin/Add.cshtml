@@ -110,30 +110,30 @@
     <h1>اضافه موظف </h1>
     <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
-            <label asp-for="@Model.employeeUserName"></label>
-            <input asp-for="@Model.employeeUserName" class="place" />
-            <span asp-validation-for="@Model.employeeUserName" class="error"></span>
+            <label asp-for="@Model.EmployeeUserName"></label>
+            <input asp-for="@Model.EmployeeUserName" class="place" />
+            <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeeName"></label>
-            <input asp-for="@Model.employeeName" class="place" />
-            <span asp-validation-for="@Model.employeeName" class="error"></span>
+            <label asp-for="@Model.EmployeeName"></label>
+            <input asp-for="@Model.EmployeeName" class="place" />
+            <span asp-validation-for="@Model.EmployeeName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeePassword"></label>
-            <input asp-for="@Model.employeePassword" class="place" />
-            <span asp-validation-for="@Model.employeePassword" class="error"></span>
+            <label asp-for="@Model.EmployeePassword"></label>
+            <input asp-for="@Model.EmployeePassword" class="place" />
+            <span asp-validation-for="@Model.EmployeePassword" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.jobRole"></label>
-            <select asp-for="@Model.jobRole" id="options" asp-items="@Html.GetEnumSelectList(typeof(jobRole))" class="place">
+            <label asp-for="@Model.JobRole"></label>
+            <select asp-for="@Model.JobRole" id="options" asp-items="@Html.GetEnumSelectList(typeof(JobRole))" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
                 <option value="Technical">الفني</option>
                 <option value="Inventory">المخازن</option>
                  
                 <option value="Cost">التكاليف</option>
             </select>
-            <span asp-validation-for="@Model.jobRole" class="error"></span>
+            <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>
         <div class="button-container">
         <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />

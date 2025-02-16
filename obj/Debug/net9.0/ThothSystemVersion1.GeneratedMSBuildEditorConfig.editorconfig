@@ -17,65 +17,65 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThothSystemVersion1
 build_property.RootNamespace = ThothSystemVersion1
-build_property.ProjectDir = C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\
+build_property.ProjectDir = C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject
+build_property.MSBuildProjectDirectory = C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/Add.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Admin/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/Edit.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Admin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/Home.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Admin/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSG9tZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/viewEmp.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Admin/viewEmp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cdmlld0VtcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Admin/viewJobOrder.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Admin/viewJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cdmlld0pvYk9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Home/Index.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Home/Privacy.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Shared/Error.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/SharedViews/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/_ViewImports.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/_ViewStart.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/last versionnnnn/FinalGraduationProject/Views/Shared/_Layout.cshtml]
+[C:/Users/THE KNOWER/Desktop/thoth system/TheProject/ThothSystemVersion1/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5oyuxz08q4

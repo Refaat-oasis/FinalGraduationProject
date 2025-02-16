@@ -108,22 +108,22 @@
 
 
 <div class="form-container">
-    <h1>تعديل @Model.Employee موظف</h1>
+    <h1> @Model.EmployeeName : تعديل بيانات الموظف</h1>
     <form asp-action="Edit" method="post" class="Employee-form">
 
-        <input asp-for="@Model.employeeID" type="hidden" />
+        <input asp-for="@Model.EmployeeId" type="hidden" />
 
         <div class="input-control">
-            <label asp-for="@Model.employeeUserName" class="textlabel"></label>
-            <input asp-for="@Model.employeeUserName" class="place" />
+            <label asp-for="@Model.EmployeeUserName" class="textlabel"></label>
+            <input asp-for="@Model.EmployeeUserName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeeName" class="textlabel"></label>
-            <input asp-for="@Model.employeeName" class="place" />
+            <label asp-for="@Model.EmployeeName" class="textlabel"></label>
+            <input asp-for="@Model.EmployeeName" class="place" />
         </div>
         <div class="input-control">
-            <label asp-for="@Model.employeePassword" class="textlabel"></label>
-            <input asp-for="@Model.employeePassword" class="place" />
+            <label asp-for="@Model.EmployeePassword" class="textlabel"></label>
+            <input asp-for="@Model.EmployeePassword" class="place" />
         </div>
         <div class="button-container">
             <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />

@@ -151,7 +151,6 @@ C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\bin\Debu
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\scopedcss\bundle\ThothSystemVersion1.styles.css
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\scopedcss\projectbundle\ThothSystemVersion1.bundle.scp.css
-C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\compressed\qlnfbyme79-b9sayid5wm.gz
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\compressed\o68d87sn82-61n19gt1b8.gz
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\compressed\lotj806v81-xtxxf3hu2r.gz
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\compressed\5vtbu13dbo-bqjiyaj88i.gz
@@ -243,3 +242,4 @@ C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cache
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cs
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.sourcelink.json
+C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\compressed\qlnfbyme79-mjguehp5e9.gz

@@ -1,4 +1,4 @@
-﻿@model Employee;
+﻿@model List<Employee>;
 
 <style>
     body {
@@ -75,8 +75,8 @@
                         foreach (Employee emp in Model)
                         {
                 <tr>
-                    <td>@Model.EmployeeName</td>
-                    <td>@Model.JobRole</td>
+                    <td>@emp.EmployeeName</td>
+                    <td>@emp.JobRole</td>
 
                 </tr>
                         }

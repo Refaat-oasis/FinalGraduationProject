@@ -110,23 +110,23 @@
     <h1>اضافه موظف </h1>
     <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
-            <label asp-for="@Model.EmployeeUserName"></label>
+            <label asp-for="@Model.EmployeeUserName">اسم المستخدم</label>
             <input asp-for="@Model.EmployeeUserName" class="place" />
             <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeeName"></label>
+            <label asp-for="@Model.EmployeeName">الاسم بالكامل</label>
             <input asp-for="@Model.EmployeeName" class="place" />
             <span asp-validation-for="@Model.EmployeeName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeePassword"></label>
+            <label asp-for="@Model.EmployeePassword">كلمة المرور</label>
             <input asp-for="@Model.EmployeePassword" class="place" />
             <span asp-validation-for="@Model.EmployeePassword" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.JobRole"></label>
-            <select asp-for="@Model.JobRole" id="options" asp-items="@Html.GetEnumSelectList(typeof(JobRole))" class="place">
+            <label asp-for="@Model.JobRole">الدور الوظيفي</label>
+            <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
                 <option value="Technical">الفني</option>
                 <option value="Inventory">المخازن</option>
@@ -137,7 +137,7 @@
         </div>
         <div class="button-container">
         <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
-        <input type="submit" value="اضافه" class="btn btn-secondary" />
+            <input type="submit" value="اضافه" class="btn btn-secondary" asp-action="AddEmployee" />
         </div>
     </form>
 </div>
@@ -169,12 +169,12 @@
 
 
             if (employeeName.value.trim() === "") {
-                nameError.innerText = "يجب عليك إدخال اسمك";
+                nameError.innerText = "يجب عليك إدخال اسم المستخدم";
                 isValid = false;
             }
 
             if (employeeUserName.value.trim() === "") {
-                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                userNameError.innerText = "يجب عليك إدخال اسمك";
                 isValid = false;
             }
 

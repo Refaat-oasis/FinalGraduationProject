@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace ThothSystemVersion1.Models;
 public enum JobRole { 
@@ -7,6 +9,7 @@ public enum JobRole {
 }
 public partial class Employee
 {
+  
     public string EmployeeId { get; set; } = null!;
 
     public string EmployeeUserName { get; set; } = null!;

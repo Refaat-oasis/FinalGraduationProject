@@ -13,7 +13,7 @@ namespace ThothSystemVersion1
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<EmployeeBusinessLogicLayer>();
+            builder.Services.AddScoped<AdminBusinessLogicLayer>();
             builder.Services.AddDbContext<ThothContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

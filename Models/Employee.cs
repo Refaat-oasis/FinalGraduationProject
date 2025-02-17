@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ThothSystemVersion1.Models;
 public enum JobRole { 
-    Technical, Inventory,Cost
+    Admin,Inventory, Technical, Cost
 }
 public partial class Employee
 {

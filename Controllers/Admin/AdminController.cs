@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ThothSystemVersion1.BusinessLogicLayers;
+using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.Controllers.Admin
@@ -7,6 +8,8 @@ namespace ThothSystemVersion1.Controllers.Admin
     public class AdminController : Controller
     {
         private readonly AdminBusinessLogicLayer _businessLogicL;
+
+        ThothContext Context= new ThothContext();   
 
         public AdminController(AdminBusinessLogicLayer businessLogicL)
         {
@@ -27,6 +30,12 @@ namespace ThothSystemVersion1.Controllers.Admin
             }
             await _businessLogicL.AddEmployee(employee);
             return View("~/Views/Admin/ViewAllEmployee.cshtml");
+
+        }
+        public IActionResult ViewAllEmployee() { 
+
+            List<Employee> employees = Context.Employees.ToList();
+            return View("~/Views/Admin/ViewAllEmployee.cshtml", employees);
 
         }
     }

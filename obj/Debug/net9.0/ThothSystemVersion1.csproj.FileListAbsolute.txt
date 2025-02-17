@@ -229,7 +229,6 @@ C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debu
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
-C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.dll
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersion1.dll
 C:\Users\ECC\OneDrive\Desktop\last versionnnnn\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
@@ -465,3 +464,4 @@ D:\Grad Project\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersio
 D:\Grad Project\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 D:\Grad Project\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 D:\Grad Project\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\THE KNOWER\Desktop\thoth system\TheProject\ThothSystemVersion1\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

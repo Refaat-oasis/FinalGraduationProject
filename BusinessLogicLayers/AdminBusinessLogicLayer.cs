@@ -13,13 +13,13 @@ using ThothSystemVersion1.Database;
             _context = context;
         }
 
-        public async Task AddEmployee(Employee employee)
+        public void AddEmployee(Employee employee)
         {
             if(employee == null)
             {
                 throw new ArgumentNullException(nameof(employee));
             }
-            await _context.Employees.AddAsync(employee);
+             _context.Employees.Add(employee);
             _context.SaveChanges();
         }
     }

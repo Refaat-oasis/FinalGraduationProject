@@ -22,13 +22,13 @@ namespace ThothSystemVersion1.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEmployee(Employee employee)
+        public IActionResult AddEmployee(Employee employee)
         {
             if (employee == null)
             {
                 return BadRequest("Employee Data is required");
             }
-            await _businessLogicL.AddEmployee(employee);
+             _businessLogicL.AddEmployee(employee);
             return View("~/Views/Admin/ViewAllEmployee.cshtml");
 
         }

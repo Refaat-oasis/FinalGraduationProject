@@ -81,5 +81,14 @@ namespace ThothSystemVersion1.Controllers.Admin
                 return StatusCode(500, ex.Message); // Internal server error
             }
         }
+        public IActionResult DeleteEmployee(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest("Invalid employee ID.");
+            }
+            _businessLogicL.DeleteEmployee(id);
+            return RedirectToAction("ViewAllEmployee", "Admin");
+        }
     }
 }

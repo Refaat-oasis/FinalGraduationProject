@@ -67,6 +67,17 @@ using ThothSystemVersion1.Database;
                 throw new ApplicationException("An error occurred while updating the employee.", ex);
             }
         }
+        public void DeleteEmployee(string id)
+        {
+            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == id);
+            if (employee == null)
+            {
+                throw new ArgumentNullException("Employee not found");
+            }
+            _context.Remove(employee);
+            _context.SaveChanges();
+
+        }
     }
 }
 

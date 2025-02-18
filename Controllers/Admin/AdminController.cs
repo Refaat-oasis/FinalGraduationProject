@@ -29,7 +29,8 @@ namespace ThothSystemVersion1.Controllers.Admin
                 return BadRequest("Employee Data is required");
             }
              _businessLogicL.AddEmployee(employee);
-            return View("~/Views/Admin/ViewAllEmployee.cshtml");
+           
+           return RedirectToAction("ViewAllEmployee" , "admin");
 
         }
         public IActionResult ViewAllEmployee() { 

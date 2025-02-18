@@ -1,12 +1,5 @@
-﻿
+﻿@model Employee
 <style>
-
-
-
-
-
-
-
 
     body {
         background: url("/image/egyptian-wall-with-hieroglyphs - Copy.jpg");
@@ -187,23 +180,9 @@ background:rgb(66 32 6);
 
 </style>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Home.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <title>ThoTh</title>
-</head>
-
 
 <div class="registeration">
-    <form asp-controller="#" asp-action="Login" id="myform" enctype="multipart/form-data" method="post">
+    <form action="/Employee/EmployeeLogin" id="myform" enctype="multipart/form-data" method="post">
         <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
         <br />
 
@@ -212,15 +191,15 @@ background:rgb(66 32 6);
         </div>
 
         <div class="inputBox">
-            <input type="text" name="EmployeeUserName" placeholder="اسم المستخدم" />
+            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" />
             <i class="bx bxs-user"></i>
-            @* <p asp-validation-for="@Model.EmployeeUserName" class="error"></p> *@
+            <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <input type="password" name="EmployeePassword" placeholder="كلمه المرور" />
+            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" />
             <i class="bx bxs-lock-alt"></i>
-            @* <p asp-validation-for="@Model.EmployeePassword" class="error"></p> *@
+            <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
             <div class="rememberMe">
                 <label><input type="checkbox" />تذكر بياناتي</label>
             </div>
@@ -236,6 +215,23 @@ background:rgb(66 32 6);
         </div>
     </form>
 </div>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>ThoTh</title>
+</head>
+
+
 
 <script>
     const myform = document.getElementById("myform");

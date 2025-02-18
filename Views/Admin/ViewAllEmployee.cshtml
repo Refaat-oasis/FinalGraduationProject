@@ -90,37 +90,37 @@
         </div>
     </div>
 
-    <script>document.addEventListener("DOMContentLoaded", function () {
-        const tableBody = document.getElementById("employeeTable");
+    @* <script>document.addEventListener("DOMContentLoaded", function () { *@
+    @*     const tableBody = document.getElementById("employeeTable"); *@
 
-        let employees = [];
+    @*     let employees = []; *@
 
-        function loadEmployees() {
-            employees = JSON.parse(localStorage.getItem("employees")) || [];
-            displayEmployees();
-        }
+    @*     function loadEmployees() { *@
+    @*         employees = JSON.parse(localStorage.getItem("employees")) || []; *@
+    @*         displayEmployees(); *@
+    @*     } *@
 
-        function displayEmployees() {
-            tableBody.innerHTML = `
-                <tr>
-                    <th>User Name</th>
-                    <th>Name</th>
-                    <th>Role</th>
-                </tr>
-            `;
+    @*     function displayEmployees() { *@
+    @*         tableBody.innerHTML = ` *@
+    @*             <tr> *@
+    @*                 <th>User Name</th> *@
+    @*                 <th>Name</th> *@
+    @*                 <th>Role</th> *@
+    @*             </tr> *@
+    @*         `; *@
 
-            employees.forEach(emp => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${emp.employeeUserName}</td>
-                    <td>${emp.employeeName}</td>
-                    <td>${emp.jobRole}</td>
-                `;
-                row.addEventListener("click", () => selectEmployee(row, emp));
-                tableBody.appendChild(row);
-            });
-        }
+    @*         employees.forEach(emp => { *@
+    @*             const row = document.createElement("tr"); *@
+    @*             row.innerHTML = ` *@
+    @*                 <td>${emp.employeeUserName}</td> *@
+    @*                 <td>${emp.employeeName}</td> *@
+    @*                 <td>${emp.jobRole}</td> *@
+    @*             `; *@
+    @*             row.addEventListener("click", () => selectEmployee(row, emp)); *@
+    @*             tableBody.appendChild(row); *@
+    @*         }); *@
+    @*     } *@
 
-        let selectedEmployee = null;
-        loadEmployees();
-    });</script>
+    @*     let selectedEmployee = null; *@
+    @*     loadEmployees(); *@
+    @* });</script> *@

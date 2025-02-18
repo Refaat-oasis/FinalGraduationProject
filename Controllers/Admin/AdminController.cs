@@ -39,5 +39,47 @@ namespace ThothSystemVersion1.Controllers.Admin
             return View("~/Views/Admin/ViewAllEmployee.cshtml", employees);
 
         }
+
+        
+
+        [HttpGet]
+        public IActionResult EditEmployee(string id)
+        {
+            try
+            {
+                var employee = _businessLogicL.GetEmployeeById(id); // Fetch the employee by ID
+                return View("~/Views/Admin/EditEmployee.cshtml", employee);
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, ex.Message); // Internal server error
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message); // Employee not found
+            }
+        }
+        [HttpPost]
+        public IActionResult EditEmployee(string id, Employee updatedEmployee)
+        {
+            if (updatedEmployee == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            try
+            {
+                Employee result = _businessLogicL.EditEmployee(id, updatedEmployee); // Update the employee
+                return RedirectToAction("ViewAllEmployee"); // Redirect to the list of employees
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message); // Employee not found
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); // Internal server error
+            }
+        }
     }
 }

@@ -1,6 +1,11 @@
 ﻿@model Employee;
 
 <style>
+    /* body{ */
+    /*     background-image: url("/image/background.jpeg"); */
+    /*     opacity: 0.60; /* Adjust transparency */ */
+    /*     z-index: -1; */
+    /* } */
     .form-container {
         max-width: 500px;
         margin: 50px auto;
@@ -8,22 +13,28 @@
         border-radius: 8px;
         position: relative;
         overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-size: cover;
     }
 
 
-        .form-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("../../wwwroot/image/background.jpeg");
-            background-size: cover;
-            background-position: center;
-            opacity: 0.60; /* Adjust transparency */
-            z-index: -1;
-        }
+    .form-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-size: cover;
+        background-image: url("/image/background.jpeg");
+        opacity: 0.60;
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+    }
 
 
 
@@ -36,15 +47,17 @@
     }
 
     .input-control {
-        margin-bottom: 10px;
+        margin-left: 25%;
+        position: center;
+        width: 50%;
     }
 
     .textlabel {
         display: block;
-        font-weight: bold;
+        font-weight: 15px;
         margin-bottom: 5px;
         color: #090909;
-        font-size: 30px;
+        font-size: 25px;
         text-align: right;
     }
 
@@ -56,6 +69,7 @@
         font-size: 20px;
         text-align: right;
         direction: rtl;
+        position: center;
     }
 
     .button-container {
@@ -110,39 +124,33 @@
     <h1>اضافه موظف </h1>
     <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
-            <label asp-for="@Model.EmployeeId">الرقم القومي </label>
-            <input asp-for="@Model.EmployeeId" class="place" />
-            <span asp-validation-for="@Model.EmployeeId" class="error"></span>
-        </div>
-        <div class="input-control">
-            <label asp-for="@Model.EmployeeUserName">اسم المستخدم</label>
+            <label asp-for="@Model.EmployeeUserName" class="textlabel">اسم المستخدم</label>
             <input asp-for="@Model.EmployeeUserName" class="place" />
             <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeeName">الاسم بالكامل</label>
+            <label asp-for="@Model.EmployeeName" class="textlabel">الاسم</label>
             <input asp-for="@Model.EmployeeName" class="place" />
             <span asp-validation-for="@Model.EmployeeName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeePassword">كلمة المرور</label>
+            <label asp-for="@Model.EmployeePassword" class="textlabel">كلمه المرور </label>
             <input asp-for="@Model.EmployeePassword" class="place" />
             <span asp-validation-for="@Model.EmployeePassword" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.JobRole">الدور الوظيفي</label>
+            <label asp-for="@Model.JobRole" class="textlabel">دور الوظيفي</label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
-                <option value="Technical">الفني</option>
-                <option value="Inventory">المخازن</option>
-                 
-                <option value="Cost">التكاليف</option>
+                <option>الفني</option>
+                <option>المخازن</option>
+                <option>التكاليف</option>
             </select>
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>
         <div class="button-container">
-        <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
-            <input type="submit" value="اضافه" class="btn btn-secondary" asp-action="AddEmployee" />
+            <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
+            <input type="submit" value="اضافه" class="btn btn-secondary" />
         </div>
     </form>
 </div>
@@ -155,31 +163,32 @@
             let isValid = true;
 
 
-            let employeeName = document.querySelectorAll(".place")[0];
-            let employeeUserName = document.querySelectorAll(".place")[1];
+            let employeeUserName = document.querySelectorAll(".place")[0];
+            let  employeeName = document.querySelectorAll(".place")[1];
             let employeePassword = document.querySelectorAll(".place")[2];
             let jobRole = document.querySelector("#options");
 
 
-            let nameError = document.querySelectorAll(".error")[0];
-            let userNameError = document.querySelectorAll(".error")[1];
+            let userNameError  = document.querySelectorAll(".error")[0];
+            let nameError = document.querySelectorAll(".error")[1];
             let passwordError = document.querySelectorAll(".error")[2];
             let jobRoleError = document.querySelectorAll(".error")[3];
 
 
-            nameError.innerText = "";
+
             userNameError.innerText = "";
+            nameError.innerText = "";
             passwordError.innerText = "";
             jobRoleError.innerText = "";
 
 
             if (employeeName.value.trim() === "") {
-                nameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                nameError.innerText = "يجب عليك إدخال اسمك";
                 isValid = false;
             }
 
             if (employeeUserName.value.trim() === "") {
-                userNameError.innerText = "يجب عليك إدخال اسمك";
+                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
                 isValid = false;
             }
 

@@ -110,6 +110,11 @@
     <h1>اضافه موظف </h1>
     <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
+            <label asp-for="@Model.EmployeeId">الرقم القومي </label>
+            <input asp-for="@Model.EmployeeId" class="place" />
+            <span asp-validation-for="@Model.EmployeeId" class="error"></span>
+        </div>
+        <div class="input-control">
             <label asp-for="@Model.EmployeeUserName">اسم المستخدم</label>
             <input asp-for="@Model.EmployeeUserName" class="place" />
             <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>

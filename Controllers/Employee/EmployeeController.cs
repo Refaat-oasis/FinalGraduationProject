@@ -8,13 +8,43 @@ namespace ThothSystemVersion1.Controllers
 {
     public class EmployeeController : Controller
     {
-        public IActionResult Index()
+
+        ThothContext context = new ThothContext();
+        public IActionResult LoginPage()
         {
-            return View("~/Views/SharedViews/login.cshtml");
+            return View("~/Views/SharedViews/login.cshtml", new Employee());
         }
-       
 
+        public IActionResult EmployeeLogin(string EmployeeUserName, string EmployeePassword)
+        {
+            // Find the employee with the provided username and password
+            Employee logedEmployee = context.Employees.FirstOrDefault(e =>
+                e.EmployeeUserName == EmployeeUserName && e.EmployeePassword == EmployeePassword);
 
+            if (logedEmployee == null)
+            {
+                // If no employee is found, redirect to the login page
+                return RedirectToAction("LoginPage", "Employee");
+            }
+            else
+            {
+                // Redirect based on the employee's job role
+                switch (logedEmployee.JobRole)
+                {
+                    case JobRole.Admin: // Admin
+                        return View("~/Views/Admin/AdminHome.cshtml");
+                    case JobRole.Inventory: // Inventory
+                        return RedirectToAction("LoginPage", "Employee");
+                    case JobRole.Technical: // Technical
+                        return RedirectToAction("LoginPage", "Employee");
+                    case JobRole.Cost: // Cost
+                        return RedirectToAction("LoginPage", "Employee");
+                    default:
+                        // Handle unexpected roles
+                        return RedirectToAction("LoginPage", "Employee");
+                }
+            }
+        }
 
 
     }

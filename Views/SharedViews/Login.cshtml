@@ -1,11 +1,5 @@
-﻿
+﻿@model Employee
 <style>
-
-
-
-
-
-
 
 
     body {
@@ -203,7 +197,7 @@ background:rgb(66 32 6);
 
 
 <div class="registeration">
-    <form asp-controller="#" asp-action="Login" id="myform" enctype="multipart/form-data" method="post">
+    <form action="/Employee/EmployeeLogin" id="myform" enctype="multipart/form-data" method="post">
         <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
         <br />
 
@@ -212,15 +206,15 @@ background:rgb(66 32 6);
         </div>
 
         <div class="inputBox">
-            <input type="text" name="EmployeeUserName" placeholder="اسم المستخدم" />
+            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" />
             <i class="bx bxs-user"></i>
-            @* <p asp-validation-for="@Model.EmployeeUserName" class="error"></p> *@
+            <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <input type="password" name="EmployeePassword" placeholder="كلمه المرور" />
+            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" />
             <i class="bx bxs-lock-alt"></i>
-            @* <p asp-validation-for="@Model.EmployeePassword" class="error"></p> *@
+            <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
             <div class="rememberMe">
                 <label><input type="checkbox" />تذكر بياناتي</label>
             </div>

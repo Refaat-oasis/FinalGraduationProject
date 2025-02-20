@@ -90,40 +90,40 @@
         <button>تعديل</button>
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const tableBody = document.getElementById("jobOrderTable");
-        let jobOrders = [];
+@* <script> *@
+@*     document.addEventListener("DOMContentLoaded", function () { *@
+@*         const tableBody = document.getElementById("jobOrderTable"); *@
+@*         let jobOrders = []; *@
 
-        function loadJobOrders() {
-            jobOrders = JSON.parse(localStorage.getItem("jobOrders")) || [];
-            displayJobOrders();
-        }
+@*         function loadJobOrders() { *@
+@*             jobOrders = JSON.parse(localStorage.getItem("jobOrders")) || []; *@
+@*             displayJobOrders(); *@
+@*         } *@
 
-        function displayJobOrders() {
-            tableBody.innerHTML = `
-                <tr>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Progress</th>
-                    <th>Customer</th>
-                </tr>
-            `;
+@*         function displayJobOrders() { *@
+@*             tableBody.innerHTML = ` *@
+@*                 <tr> *@
+@*                     <th>Start Date</th> *@
+@*                     <th>End Date</th> *@
+@*                     <th>Progress</th> *@
+@*                     <th>Customer</th> *@
+@*                 </tr> *@
+@*             `; *@
 
-            jobOrders.forEach((job, index) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${job.startDate}</td>
-                    <td>${job.endDate}</td>
-                    <td>${job.orderProgress}</td>
-                    <td>${job.customerID}</td>
-                `;
-                row.addEventListener("click", () => selectJobOrder(row, index));
-                tableBody.appendChild(row);
-            });
-        }
+@*             jobOrders.forEach((job, index) => { *@
+@*                 const row = document.createElement("tr"); *@
+@*                 row.innerHTML = ` *@
+@*                     <td>${job.startDate}</td> *@
+@*                     <td>${job.endDate}</td> *@
+@*                     <td>${job.orderProgress}</td> *@
+@*                     <td>${job.customerID}</td> *@
+@*                 `; *@
+@*                 row.addEventListener("click", () => selectJobOrder(row, index)); *@
+@*                 tableBody.appendChild(row); *@
+@*             }); *@
+@*         } *@
 
-        let selectedJobIndex = null;
-        loadJobOrders();
-    });
-</script>
+@*         let selectedJobIndex = null; *@
+@*         loadJobOrders(); *@
+@*     }); *@
+@* </script> *@

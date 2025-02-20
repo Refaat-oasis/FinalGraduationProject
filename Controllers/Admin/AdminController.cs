@@ -39,6 +39,13 @@ namespace ThothSystemVersion1.Controllers.Admin
             return View("~/Views/Admin/ViewAllEmployee.cshtml", employees);
 
         }
+        public IActionResult ViewAllJobOrder() {
+        
+            List<JobOrder>jobOrders = Context.JobOrders.ToList();
+            return View("~/Views/Admin/ViewAlljobOrder.cshtml", jobOrders);
+
+
+        }
 
         
 

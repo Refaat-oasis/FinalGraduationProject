@@ -2,30 +2,34 @@
 
 <style>
 
+
     .form-container {
-        max-width: 500px;
+        max-width: 100%;
         margin: 50px auto;
         padding: 20px;
         border-radius: 8px;
         position: relative;
         overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-size: cover;
     }
 
 
         .form-container::before {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: url("/image/background.jpeg");
-            opacity: 0.60; /* Adjust transparency */
+            opacity: 0.60;
             z-index: -1;
             background-size: cover;
             background-position: center;
         }
-
 
 
 
@@ -44,10 +48,10 @@
 
     .textlabel {
         display: block;
-        font-weight: bold;
+        font-weight: 15px;
         margin-bottom: 5px;
         color: #090909;
-        font-size: 30px;
+        font-size: 25px;
         text-align: right;
     }
 
@@ -105,13 +109,12 @@
         text-align: right;
         direction: rtl;
     }
-
 </style>
 
 
 <div class="form-container">
     <h1> @Model.EmployeeName : تعديل بيانات الموظف</h1>
-    <form asp-action="Edit" method="post" class="Employee-form">
+    <form asp-action="EditEmployee" method="post" class="Employee-form">
 
         <input asp-for="@Model.EmployeeId" type="hidden" />
 

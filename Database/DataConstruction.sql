@@ -1,9 +1,25 @@
--- Create the database and switch to it
 CREATE DATABASE ThothSystem;
 GO
 
 USE ThothSystem;
 GO
+
+
+
+ALTER DATABASE ThothSystem 
+  SET SINGLE_USER 
+  WITH ROLLBACK IMMEDIATE;
+
+  ALTER DATABASE ThothSystem 
+  COLLATE Arabic_100_CS_AI;
+
+
+ALTER DATABASE ThothSystem 
+  SET MULTI_USER;
+
+
+-- Create the database and switch to it'
+
 
 ---------------------------------
 -- Tables Creation
@@ -12,39 +28,39 @@ GO
 -- 1. Customer Table
 CREATE TABLE Customer (
     customerID INT IDENTITY(1,1) PRIMARY KEY,
-    customerName VARCHAR(255) NOT NULL,
-    customerAddress VARCHAR(500) NULL,
-    customerEmail VARCHAR(250) NULL UNIQUE,
-    customerNotes VARCHAR(2500) NULL,
-    customerPhone VARCHAR(15) NOT NULL UNIQUE
+    customerName NVARCHAR(255) NOT NULL,
+    customerAddress NVARCHAR(500) NULL,
+    customerEmail NVARCHAR(250) NULL UNIQUE,
+    customerNotes NVARCHAR(2500) NULL,
+    customerPhone NVARCHAR(15) NOT NULL UNIQUE
 );
 GO
 
 -- 2. Vendor Table
 CREATE TABLE Vendor (
     vendorID INT IDENTITY(1,1) PRIMARY KEY,
-    vendorName VARCHAR(255) NOT NULL,
-    vendorAddress VARCHAR(500) NULL,
-    vendorEmail VARCHAR(250) NULL UNIQUE,
-    vendorNotes VARCHAR(2500) NULL,
-    vendorPhone VARCHAR(15) NOT NULL UNIQUE
+    vendorName NVARCHAR(255) NOT NULL,
+    vendorAddress NVARCHAR(500) NULL,
+    vendorEmail NVARCHAR(250) NULL UNIQUE,
+    vendorNotes NVARCHAR(2500) NULL,
+    vendorPhone NVARCHAR(15) NOT NULL UNIQUE
 );
 GO
 
 -- 3. Employee Table
 CREATE TABLE Employee (
-    employeeID VARCHAR(30) NOT NULL PRIMARY KEY,
-    employeeUserName VARCHAR(255) NOT NULL UNIQUE,
-    employeePassword VARCHAR(255) NOT NULL,
-    employeeName VARCHAR(255) NOT NULL,
-    jobRole VARCHAR(25) NOT NULL
+    employeeID NVARCHAR(30) NOT NULL PRIMARY KEY,
+    employeeUserName NVARCHAR(255) NOT NULL UNIQUE,
+    employeePassword NVARCHAR(255) NOT NULL,
+    employeeName NVARCHAR(255) NOT NULL,
+    jobRole INT NOT NULL
 );
 GO
 
 -- 4. Labour Table
 CREATE TABLE Labour (
     labourID INT IDENTITY(1,1) PRIMARY KEY,
-    labourProcessName VARCHAR(255) NOT NULL,
+    labourProcessName NVARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL CHECK (price > 0.0)
 );
 GO
@@ -54,14 +70,14 @@ CREATE TABLE JobOrder (
     jobOrderID INT IDENTITY(1,1) PRIMARY KEY,
     remainingAmount DECIMAL(10,2) DEFAULT 0 CHECK (remainingAmount >= 0),
     unearnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (unearnedRevenue >= 0),
-    jobOrdernotes VARCHAR(100) DEFAULT '',
+    jobOrdernotes NVARCHAR(100) DEFAULT '',
     earnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (earnedRevenue >= 0),
-    orderProgress VARCHAR(20) DEFAULT 'Pending' 
+    orderProgress NVARCHAR(20) DEFAULT 'Pending' 
          CHECK (orderProgress IN ('Pending', 'In Progress', 'Completed')),
     customerID INT,
     startDate DATE DEFAULT GETDATE(),
     endDate DATE NOT NULL,
-    employeeID VARCHAR(30),
+    employeeID NVARCHAR(30),
     FOREIGN KEY (customerID) REFERENCES Customer(customerID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
     CHECK (startDate < endDate)
@@ -71,7 +87,7 @@ GO
 -- 6. Machine Table
 CREATE TABLE Machine (
     machineID INT IDENTITY(1,1) PRIMARY KEY,
-    machineProcessName VARCHAR(100) NOT NULL UNIQUE,
+    machineProcessName NVARCHAR(100) NOT NULL UNIQUE,
     price DECIMAL(10,2) NOT NULL CHECK (price > 0)
 );
 GO
@@ -84,7 +100,7 @@ CREATE TABLE ProcessBridge (
     totalMachinePrice DECIMAL(10,2) NOT NULL CHECK (totalMachinePrice >= 0),
     totalLabourPrice DECIMAL(10,2) NOT NULL CHECK (totalLabourPrice >= 0),
     numberOfHours DECIMAL(10,2) NOT NULL CHECK (numberOfHours >= 0),
-    employeeID VARCHAR(30),
+    employeeID NVARCHAR(30),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (machineID) REFERENCES Machine(machineID),
     FOREIGN KEY (labourID) REFERENCES Labour(labourID),
@@ -95,7 +111,7 @@ GO
 -- 8. MiscellaneousExpenses Table
 CREATE TABLE MiscellaneousExpenses (
     jobOrderID INT,
-    employeeID VARCHAR(30),
+    employeeID NVARCHAR(30),
     materialProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (materialProcessingExpense >= 0),
     filmsProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (filmsProcessingExpense >= 0),
     materialsTotal DECIMAL(10,2) DEFAULT 0 CHECK (materialsTotal >= 0),
@@ -118,8 +134,8 @@ CREATE TABLE ReturnsOrder (
     returnID INT IDENTITY(1,1) PRIMARY KEY,
     returnDate DATE DEFAULT GETDATE(),
     jobOrderID INT NOT NULL,
-    employeeID VARCHAR(30) NOT NULL,
-    returnsNotes VARCHAR(2500) NULL,
+    employeeID NVARCHAR(30) NOT NULL,
+    returnsNotes NVARCHAR(2500) NULL,
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
@@ -129,9 +145,9 @@ GO
 CREATE TABLE RequisiteOrder (
     requisiteID INT IDENTITY(1,1) PRIMARY KEY,
     requisiteDate DATE DEFAULT GETDATE(),
-    employeeID VARCHAR(30) NOT NULL,
+    employeeID NVARCHAR(30) NOT NULL,
     jobOrderID INT NOT NULL,
-    requisiteNotes VARCHAR(2500) NULL,
+    requisiteNotes NVARCHAR(2500) NULL,
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID)
 );
@@ -140,11 +156,11 @@ GO
 -- 11. Paper Table
 CREATE TABLE Paper (
     paperID INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    type VARCHAR(25) NULL,
+    name NVARCHAR(30) NOT NULL,
+    type NVARCHAR(25) NULL,
     weight DECIMAL(10,2) NULL,
     totalBalance DECIMAL(10,2) DEFAULT 0.0,
-    colored VARCHAR(10) NOT NULL,
+    colored NVARCHAR(10) NOT NULL,
     quantity INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     reorderPoint DECIMAL(10,2) DEFAULT 0.0,
@@ -155,9 +171,9 @@ GO
 -- 12. Ink Table
 CREATE TABLE Ink (
     inkID INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(30) NOT NULL UNIQUE,
+    name NVARCHAR(30) NOT NULL UNIQUE,
     totalBalance DECIMAL(10,2) DEFAULT 0.00,
-    colored VARCHAR(10) NOT NULL,
+    colored NVARCHAR(10) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     expireDate DATE NOT NULL,
     quantity INT NOT NULL,
@@ -169,7 +185,7 @@ GO
 -- 13. Supplies Table
 CREATE TABLE Supplies (
     suppliesID INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(30) NOT NULL UNIQUE,
+    name NVARCHAR(30) NOT NULL UNIQUE,
     totalBalance DECIMAL(10,2) DEFAULT 0.0,
     price DECIMAL(10,2) NOT NULL,
     quantity INT NOT NULL,
@@ -182,9 +198,9 @@ GO
 CREATE TABLE PurchaseOrder (
     purchaseID INT IDENTITY(1,1) PRIMARY KEY,
     purchaseDate DATE DEFAULT GETDATE(),
-    employeeID VARCHAR(30) NOT NULL,
+    employeeID NVARCHAR(30) NOT NULL,
     vendorID INT NOT NULL,
-    purchaseNotes VARCHAR(2500) NULL,
+    purchaseNotes NVARCHAR(2500) NULL,
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
     FOREIGN KEY (vendorID) REFERENCES Vendor(vendorID)
 );
@@ -193,9 +209,9 @@ GO
 -- 15. PhysicalCountOrder Table
 CREATE TABLE PhysicalCountOrder (
     physicalCountID INT IDENTITY(1,1) PRIMARY KEY,
-    employeeID VARCHAR(30),
+    employeeID NVARCHAR(30),
     physicalCountDate DATE DEFAULT GETDATE(),
-    physicalCountNotes VARCHAR(30),
+    physicalCountNotes NVARCHAR(30),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
 GO

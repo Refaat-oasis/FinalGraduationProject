@@ -9,15 +9,15 @@ public enum JobRole {
 }
 public partial class Employee
 {
-  
+    [Display(Name = "الرقم القومي للموظف")]
     public string EmployeeId { get; set; } = null!;
-
+    [Display(Name = "اسم المستخدم")]
     public string EmployeeUserName { get; set; } = null!;
-
+    [Display(Name = "كلمة السر الخاصة")]
     public string EmployeePassword { get; set; } = null!;
-
+    [Display(Name = "اسم الموظف")]
     public string EmployeeName { get; set; } = null!;
-
+    [Display(Name = "الدور الوظيفي")]
     public JobRole JobRole { get; set; } 
 
     public virtual ICollection<JobOrder> JobOrders { get; set; } = new List<JobOrder>();

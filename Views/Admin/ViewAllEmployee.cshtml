@@ -1,27 +1,50 @@
-﻿@model List<Employee>;
+﻿@{
+    Layout = null;
+}
+
+@model List<Employee>
 
 <style>
     body {
         text-align: center;
-        background: url("/image/background - Copy.jpg");
         justify-content: center;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
+        flex-direction: column;
+        overflow: auto;
         display: flex;
     }
 
     .container {
-        position: fixed;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        overflow: auto;
         width: 100%;
-        height: 100%;
-        /* backdrop-filter: blur(5px); */
-        background: rgba(255, 255, 255, 0.2);
-        background-color: transparent;
+        min-height: 100vh;
+        background-size: contain;
         background-size: cover;
     }
 
+        .container::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-size: cover;
+            background-image: url("/image/background.jpeg");
+            opacity: 0.60;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+        }
+
     h1 {
-        color: white;
+        color: #050505;
         margin: 20px;
         font-weight: 900;
         font-size: 50px;
@@ -31,13 +54,20 @@
         display: flex;
         justify-content: center;
         margin: 20px;
+        overflow: auto;
     }
 
     table {
-        width: 80% auto;
+        width: 60%;
         margin: 20px;
         border-collapse: collapse;
-        background-color: white;
+        background-color: rgb(255,255,240);
+        overflow: auto;
+    }
+
+    td {
+        font-size: 20px;
+        text-align: center;
     }
 
     th, td {
@@ -46,7 +76,7 @@
     }
 
     th {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .btn {
@@ -54,12 +84,34 @@
     }
 
     button {
-        background-color: black;
+        padding: 15px 20px;
+        font-size: 35px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #000000;
         color: white;
-        border-radius: 10px;
-        font-size: 20px;
-        width: 100px;
-        height: 40px;
+    }
+
+    .editBtn {
+        padding: 10px 15px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #000000;
+        color: white;
+        margin-left: 20px;
+    }
+
+    .deleteBtn {
+        padding: 10px 15px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #000000;
+        color: white;
     }
 </style>
 
@@ -67,60 +119,53 @@
     <h1>قائمة الموظفين</h1>
     <div class="tableContainer">
         <table id="employeeTable">
-
-            <tr>
-                <th>الاسم</th>
-                <th>الدور الوظيفي</th>
-                @{
-                        foreach (Employee emp in Model)
-                        {
+            <thead>
                 <tr>
-                    <td>@emp.EmployeeName</td>
-                    <td>@emp.JobRole</td>
-
+                    <th>الإجراءات</th>
+                    <th>الدور الوظيفي</th>
+                    <th>الاسم </th>
+                    <th>الرقم القومي</th>
                 </tr>
-                        }
+            </thead>
+            <tbody>
+                @foreach (var emp in Model)
+                {
+                    <tr id="row-@emp.EmployeeId">
+                        <td>
+                            @* <button class="deleteBtn" onclick="deleteEmployee('@emp.EmployeeId')">حذف</button> *@
+
+                            <a asp-controller="Admin" asp-action="EditEmployee" asp-route-id="@emp.EmployeeId" class="editBtn">تعديل</a>
+                            <a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-id="@emp.EmployeeId" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')" class="editBtn">حذف</a>
+
+                            @* <a href="/Admin/DeleteEmployee/@emp.EmployeeId" class="deleteBtn" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')">حذف</a> *@
+
+
+                        </td>
+                        <td>@emp.JobRole</td>
+                        <td>@emp.EmployeeName</td>
+                        <td>@emp.EmployeeId</td>
+
+
+
+                    </tr>
                 }
-            </table>
-        </div>
-
-        <div class="btn">
-            <button asp-action="Add">اضافة</button>
-            <button asp-action="Edit">تعديل</button>
-        </div>
+            </tbody>
+        </table>
     </div>
+    <div class="btn">
+        <a asp-controller="Admin" asp-action="AddEmployee" class="editBtn">اضافة</a>
+    </div>
+</div>
 
-    @* <script>document.addEventListener("DOMContentLoaded", function () { *@
-    @*     const tableBody = document.getElementById("employeeTable"); *@
+@* <script> *@
 
-    @*     let employees = []; *@
 
-    @*     function loadEmployees() { *@
-    @*         employees = JSON.parse(localStorage.getItem("employees")) || []; *@
-    @*         displayEmployees(); *@
-    @*     } *@
+@*     function deleteEmployee(employeeId) { *@
+@*         if (confirm("هل أنت متأكد أنك تريد حذف هذا الموظف؟")) { *@
+@*             document.getElementById("row-" + employeeId).remove(); *@
+@*             alert("تم حذف الموظف بنجاح!"); *@
+@*         } *@
+@*     } *@
 
-    @*     function displayEmployees() { *@
-    @*         tableBody.innerHTML = ` *@
-    @*             <tr> *@
-    @*                 <th>User Name</th> *@
-    @*                 <th>Name</th> *@
-    @*                 <th>Role</th> *@
-    @*             </tr> *@
-    @*         `; *@
 
-    @*         employees.forEach(emp => { *@
-    @*             const row = document.createElement("tr"); *@
-    @*             row.innerHTML = ` *@
-    @*                 <td>${emp.employeeUserName}</td> *@
-    @*                 <td>${emp.employeeName}</td> *@
-    @*                 <td>${emp.jobRole}</td> *@
-    @*             `; *@
-    @*             row.addEventListener("click", () => selectEmployee(row, emp)); *@
-    @*             tableBody.appendChild(row); *@
-    @*         }); *@
-    @*     } *@
-
-    @*     let selectedEmployee = null; *@
-    @*     loadEmployees(); *@
-    @* });</script> *@
+@* </script> *@

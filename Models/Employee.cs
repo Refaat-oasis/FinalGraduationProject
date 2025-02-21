@@ -5,7 +5,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ThothSystemVersion1.Models;
 public enum JobRole { 
-    Admin,Inventory, Technical, Cost
+
+    [Display(Name="المدير")]Admin,
+    [Display(Name="موظف المخازن")]Inventory,
+    [Display(Name="الموظف الفني")]Technical,
+    [Display(Name="موظف التكاليف")]Cost
 }
 public partial class Employee
 {

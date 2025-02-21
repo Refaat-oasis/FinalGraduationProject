@@ -1,4 +1,8 @@
-﻿@model Employee;
+﻿@{
+    Layout = null;
+}
+
+@model Employee;
 
 <style>
 
@@ -114,7 +118,7 @@
 
 <div class="form-container">
     <h1> @Model.EmployeeName : تعديل بيانات الموظف</h1>
-    <form asp-controller="admin" asp-action="EditEmployee" method="post" class="Employee-form">
+    <form asp-action="EditEmployee" method="post" class="Employee-form">
 
         <input asp-for="@Model.EmployeeId" type="hidden" />
 
@@ -138,57 +142,57 @@
     </form>
 </div>
 
-@* <script> *@
+<script>
 
-@*     document.addEventListener("DOMContentLoaded", function () { *@
-@*         const form = document.querySelector(".Employee-form"); *@
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".Employee-form");
 
-@*         form.addEventListener("submit", function (event) { *@
-@*             let isValid = true; *@
+        form.addEventListener("submit", function (event) {
+            let isValid = true;
 
-@*             let employeeUserName  = document.querySelectorAll(".place")[0]; *@
-@*             let employeeName = document.querySelectorAll(".place")[1]; *@
-@*             let employeePassword = document.querySelectorAll(".place")[2]; *@
+            let employeeUserName  = document.querySelectorAll(".place")[0];
+            let employeeName = document.querySelectorAll(".place")[1];
+            let employeePassword = document.querySelectorAll(".place")[2];
 
-@*             let userNameError  = document.querySelectorAll(".error")[0]; *@
-@*             let nameError = document.querySelectorAll(".error")[1]; *@
-@*             let passwordError = document.querySelectorAll(".error")[2]; *@
+            let userNameError  = document.querySelectorAll(".error")[0];
+            let nameError = document.querySelectorAll(".error")[1];
+            let passwordError = document.querySelectorAll(".error")[2];
 
-@*             userNameError.style.display = "none"; *@
-@*             nameError.style.display = "none"; *@
-@*             passwordError.style.display = "none"; *@
-
-
+            userNameError.style.display = "none";
+            nameError.style.display = "none";
+            passwordError.style.display = "none";
 
 
 
-@*             if (employeeUserName.value.trim() === "") { *@
-@*                 userNameError.innerText = "يجب عليك إدخال اسم المستخدم"; *@
-@*                 userNameError.style.display = "block"; *@
-@*                 isValid = false; *@
-@*             } *@
-
-@*              if (employeeName.value.trim() === "") { *@
-@*                 nameError.innerText = "يجب عليك إدخال اسمك"; *@
-@*                 nameError.style.display = "block"; *@
-@*                 isValid = false; *@
-@*             } *@
 
 
-@*             if (employeePassword.value.trim() === "") { *@
-@*                 passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك"; *@
-@*                 passwordError.style.display = "block"; *@
-@*                 isValid = false; *@
-@*             } else if (employeePassword.value.length < 6) { *@
-@*                 passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل"; *@
-@*                 passwordError.style.display = "block"; *@
-@*                 isValid = false; *@
-@*             } *@
+            if (employeeUserName.value.trim() === "") {
+                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                userNameError.style.display = "block";
+                isValid = false;
+            }
 
-@*             if (!isValid) { *@
-@*                 event.preventDefault(); *@
-@*             } *@
-@*         }); *@
-@*     }); *@
+             if (employeeName.value.trim() === "") {
+                nameError.innerText = "يجب عليك إدخال اسمك";
+                nameError.style.display = "block";
+                isValid = false;
+            }
 
-@* </script> *@
+
+            if (employeePassword.value.trim() === "") {
+                passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك";
+                passwordError.style.display = "block";
+                isValid = false;
+            } else if (employeePassword.value.length < 6) {
+                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
+                passwordError.style.display = "block";
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+
+</script>

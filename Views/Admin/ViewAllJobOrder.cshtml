@@ -1,26 +1,50 @@
-﻿@model List<JobOrder>;
+﻿@{
+    Layout = null;
+}
+
+@model List<JobOrder>;
+
 <style>
     body {
         text-align: center;
-        background: url("/image/background - Copy.jpg");
         justify-content: center;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
+        flex-direction: column;
+        overflow: auto;
         display: flex;
     }
 
     .container {
-        position: fixed;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        overflow: auto;
         width: 100%;
-        height: 100%;
-        /* backdrop-filter: blur(5px); */
-        background: rgba(255, 255, 255, 0.2);
-        background-color: transparent;
+        min-height: 100vh;
+        background-size: contain;
         background-size: cover;
     }
 
+        .container::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-size: cover;
+            background-image: url("/image/background.jpeg");
+            opacity: 0.60;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+        }
+
     h1 {
-        color: white;
+        color: #050505;
         margin: 20px;
         font-weight: 900;
         font-size: 50px;
@@ -30,13 +54,20 @@
         display: flex;
         justify-content: center;
         margin: 20px;
+        overflow: auto;
     }
 
     table {
-        width: 80% auto;
+        width: 60%;
         margin: 20px;
         border-collapse: collapse;
-        background-color: white;
+        background-color: #f8f9fa;
+        overflow: auto;
+    }
+
+    td {
+        font-size: 20px;
+        text-align: center;
     }
 
     th, td {
@@ -45,7 +76,7 @@
     }
 
     th {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .btn {
@@ -66,64 +97,34 @@
     <div class="tableContainer">
         <table id="jobOrderTable">
             <tr>
-                <th>تاريخ البدء</th>
-                <th>تاريخ الانتهاء</th>
-                <th>حالة الطلب</th>
+                <th>الإجراءات</th>
                 <th>العميل</th>
+                <th>حالة الطلب</th>
+                <th>تاريخ الانتهاء</th>
+                <th>تاريخ البدء</th>
             </tr>
             @{
-                    foreach (JobOrder job in Model)
-                    {
-                <tr>
-                    <td>@job.StartDate</td>
-                    <td>@job.EndDate</td>
-                    <td>@job.OrderProgress</td>
-                    <td>@job.CustomerId</td>
+                foreach (JobOrder job in Model)
+                {
+                    <tr>
+                        <td>
+                            <button class="deleteBtn" onclick="deleteJobOrder('@job.JobOrderId')">حذف</button>
+                            <button class="editBtn" id="edijob" onclick="editJobOrder('@job.JobOrderId')">تعديل</button>
 
-                </tr>
-                    }
+                        </td>
+                        <td>@job.CustomerId</td>
+                        <td>@job.OrderProgress</td>
+                        <td>@job.EndDate</td>
+                        <td>@job.StartDate</td>
+
+
+
+                    </tr>
+                }
             }
         </table>
     </div>
     <div class="btn">
         <button>اضافة</button>
-        <button>تعديل</button>
     </div>
 </div>
-@* <script> *@
-@*     document.addEventListener("DOMContentLoaded", function () { *@
-@*         const tableBody = document.getElementById("jobOrderTable"); *@
-@*         let jobOrders = []; *@
-
-@*         function loadJobOrders() { *@
-@*             jobOrders = JSON.parse(localStorage.getItem("jobOrders")) || []; *@
-@*             displayJobOrders(); *@
-@*         } *@
-
-@*         function displayJobOrders() { *@
-@*             tableBody.innerHTML = ` *@
-@*                 <tr> *@
-@*                     <th>Start Date</th> *@
-@*                     <th>End Date</th> *@
-@*                     <th>Progress</th> *@
-@*                     <th>Customer</th> *@
-@*                 </tr> *@
-@*             `; *@
-
-@*             jobOrders.forEach((job, index) => { *@
-@*                 const row = document.createElement("tr"); *@
-@*                 row.innerHTML = ` *@
-@*                     <td>${job.startDate}</td> *@
-@*                     <td>${job.endDate}</td> *@
-@*                     <td>${job.orderProgress}</td> *@
-@*                     <td>${job.customerID}</td> *@
-@*                 `; *@
-@*                 row.addEventListener("click", () => selectJobOrder(row, index)); *@
-@*                 tableBody.appendChild(row); *@
-@*             }); *@
-@*         } *@
-
-@*         let selectedJobIndex = null; *@
-@*         loadJobOrders(); *@
-@*     }); *@
-@* </script> *@

@@ -2,6 +2,9 @@
     Layout = null;
 }
 
+@using ThothSystemVersion1.Utilities
+
+
 @model List<Employee>
 
 <style>
@@ -128,7 +131,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var emp in Model)
+                @foreach (Employee emp in Model)
                 {
                     <tr id="row-@emp.EmployeeId">
                         <td>
@@ -141,7 +144,7 @@
 
 
                         </td>
-                        <td>@emp.JobRole</td>
+                        <td>@emp.JobRole.GetDisplayName()</td>
                         <td>@emp.EmployeeName</td>
                         <td>@emp.EmployeeId</td>
 

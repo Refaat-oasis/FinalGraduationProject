@@ -135,22 +135,27 @@
     <h1>اضافه موظف </h1>
     <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
-            <label asp-for="@Model.EmployeeUserName" class="textlabel">اسم المستخدم</label>
+            <label asp-for="@Model.EmployeeId" class="textlabel"></label>
+            <input asp-for="@Model.EmployeeId" class="place" />
+            <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.EmployeeUserName" class="textlabel"> </label>
             <input asp-for="@Model.EmployeeUserName" class="place" />
             <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeeName" class="textlabel">الاسم</label>
+            <label asp-for="@Model.EmployeeName" class="textlabel"></label>
             <input asp-for="@Model.EmployeeName" class="place" />
             <span asp-validation-for="@Model.EmployeeName" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.EmployeePassword" class="textlabel">كلمه المرور </label>
+            <label asp-for="@Model.EmployeePassword" class="textlabel">  </label>
             <input asp-for="@Model.EmployeePassword" class="place" />
             <span asp-validation-for="@Model.EmployeePassword" class="error"></span>
         </div>
         <div class="input-control">
-            <label asp-for="@Model.JobRole" class="textlabel">دور الوظيفي</label>
+            <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
                 <option>الفني</option>

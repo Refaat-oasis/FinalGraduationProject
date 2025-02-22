@@ -133,7 +133,7 @@
 
 <div class="form-container">
     <h1>اضافه موظف </h1>
-    <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
+    <form asp-controller="admin" asp-action="Addemployee" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
         <div class="input-control">
             <label asp-for="@Model.EmployeeId" class="textlabel"></label>
             <input asp-for="@Model.EmployeeId" class="place" />

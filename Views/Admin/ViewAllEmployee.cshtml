@@ -40,14 +40,14 @@
             background-size: contain;
             background-size: cover;
             background-image: url("/image/background.jpeg");
-            opacity: 0.60;
+            opacity: 0.75;
             z-index: -1;
             background-size: cover;
             background-position: center;
         }
 
     h1 {
-        color: #050505;
+        color: black;
         margin: 20px;
         font-weight: 900;
         font-size: 50px;
@@ -64,7 +64,7 @@
         width: 60%;
         margin: 20px;
         border-collapse: collapse;
-        background-color: rgb(255,255,240);
+        background-color: #FAF3E0;
         overflow: auto;
     }
 
@@ -76,36 +76,55 @@
     th, td {
         padding: 10px;
         border: 2px solid #333;
+        color: black;
     }
 
     th {
         font-size: 30px;
     }
 
+    table tr:hover {
+        background-color: wheat; 
+        transition: background-color 0.3s ease-in-out;
+    }
+
+
     .btn {
         margin: 20px;
     }
 
-    button {
-        padding: 15px 20px;
+    .back {
+        padding: 5px;
         font-size: 35px;
         border: none;
-        border-radius: 5px;
+        border-radius: 52px;
         cursor: pointer;
-        background-color: #000000;
-        color: white;
+        background-color: black;
+        margin-left: 2px;
+        margin-top: 5px;
     }
 
     .editBtn {
-        padding: 10px 15px;
+        padding: 5px 20px;
         font-size: 25px;
         border: none;
-        border-radius: 5px;
+        border-radius: 25px;
         cursor: pointer;
-        background-color: #000000;
+        background-color: #4F3217;
         color: white;
         margin-left: 20px;
+        text-decoration: none;
     }
+
+
+        .editBtn:hover {
+            background-color: #444;
+            color: #fff; 
+            transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+        }
+
 
     .deleteBtn {
         padding: 10px 15px;
@@ -115,11 +134,68 @@
         cursor: pointer;
         background-color: #000000;
         color: white;
+        text-decoration: none;
     }
+
+    .arrow {
+        display: flex;
+        /* align-items: left; */
+        justify-content: left;
+        padding: 10px;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 30%;
+        margin: 20px auto;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        color: #333;
+    }
+
+    #searchInput {
+        width: 100%;
+        padding: 10px 40px;
+        font-size: 18px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        text-align: right;
+    }
+
 </style>
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
 
 <div class="container">
+    <div class="arrow">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
     <h1>قائمة الموظفين</h1>
+    <div class="btn">
+        <a asp-controller="Admin" asp-action="AddEmployee" class="editBtn">اضافة</a>
+    </div>
+
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchEmployees()" placeholder="ابحث عن موظف...">
+    </div>
+
+
     <div class="tableContainer">
         <table id="employeeTable">
             <thead>
@@ -138,7 +214,7 @@
                             @* <button class="deleteBtn" onclick="deleteEmployee('@emp.EmployeeId')">حذف</button> *@
 
                             <a asp-controller="Admin" asp-action="EditEmployee" asp-route-id="@emp.EmployeeId" class="editBtn">تعديل</a>
-                            <a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-id="@emp.EmployeeId" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')" class="editBtn">حذف</a>
+                            @* <a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-id="@emp.EmployeeId" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')" class="editBtn">حذف</a> *@
 
                             @* <a href="/Admin/DeleteEmployee/@emp.EmployeeId" class="deleteBtn" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')">حذف</a> *@
 
@@ -155,9 +231,7 @@
             </tbody>
         </table>
     </div>
-    <div class="btn">
-        <a asp-controller="Admin" asp-action="AddEmployee" class="editBtn">اضافة</a>
-    </div>
+
 </div>
 
 @* <script> *@
@@ -172,3 +246,24 @@
 
 
 @* </script> *@
+<script>
+    function searchEmployees() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("employeeTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) { 
+            td = tr[i].getElementsByTagName("td")[2]; 
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

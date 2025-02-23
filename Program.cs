@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
+using ThothSystemVersion1.MappingProfiles;
 
 namespace ThothSystemVersion1
 {
@@ -15,6 +16,7 @@ namespace ThothSystemVersion1
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<AdminBusinessLogicLayer>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             builder.Services.AddDbContext<ThothContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddSession(options =>

@@ -22,7 +22,10 @@ public partial class Employee
     [Display(Name = "اسم الموظف")]
     public string EmployeeName { get; set; } = null!;
     [Display(Name = "الدور الوظيفي")]
-    public JobRole JobRole { get; set; } 
+    public JobRole JobRole { get; set; }
+    [Display(Name = "حالة الحساب للموظف")]
+    public bool Activated { get; set; }
+
 
     public virtual ICollection<JobOrder> JobOrders { get; set; } = new List<JobOrder>();
 

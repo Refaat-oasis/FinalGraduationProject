@@ -924,7 +924,6 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.ThothSystemVersion1.props
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.ThothSystemVersion1.props
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.dll
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersion1.dll
@@ -1630,3 +1629,4 @@ C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\refint\T
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

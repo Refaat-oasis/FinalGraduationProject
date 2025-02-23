@@ -13,15 +13,32 @@ using ThothSystemVersion1.Database;
             _context = context;
         }
 
+        //public void AddEmployee(Employee employee)
+        //{
+        //    if(employee == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(employee));
+        //    }
+        //     _context.Employees.Add(employee);
+        //    _context.SaveChanges();
+        //}
         public void AddEmployee(Employee employee)
         {
-            if(employee == null)
+            if (employee == null)
             {
                 throw new ArgumentNullException(nameof(employee));
             }
-             _context.Employees.Add(employee);
+
+            // Check if an employee with the same ID already exists.
+            if (_context.Employees.Any(e => e.EmployeeId == employee.EmployeeId))
+            {
+                throw new Exception("An employee with this ID already exists.");
+            }
+
+            _context.Employees.Add(employee);
             _context.SaveChanges();
         }
+
 
         public Employee GetEmployeeById(string id)
         {

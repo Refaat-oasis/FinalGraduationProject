@@ -1,8 +1,9 @@
 ﻿@{
     Layout = null;
 }
+@using ThothSystemVersion1.ViewModels
 
-@model List<JobOrder>;
+@model List<JobOrderCustEmpVM>
 
 <style>
     body {
@@ -104,7 +105,7 @@
                 <th>تاريخ البدء</th>
             </tr>
             @{
-                foreach (JobOrder job in Model)
+                foreach (JobOrderCustEmpVM job in Model)
                 {
                     <tr>
                         <td>
@@ -112,13 +113,10 @@
                             <button class="editBtn" id="edijob" onclick="editJobOrder('@job.JobOrderId')">تعديل</button>
 
                         </td>
-                        <td>@job.CustomerId</td>
+                        <td>@job.CustomerName</td>
                         <td>@job.OrderProgress</td>
                         <td>@job.EndDate</td>
                         <td>@job.StartDate</td>
-
-
-
                     </tr>
                 }
             }

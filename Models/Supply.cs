@@ -16,6 +16,6 @@ public partial class Supply
     public decimal Price { get; set; }
     [Display(Name = "الكمية")]
     public int Quantity { get; set; }
-
+    [Display(Name = "نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 }

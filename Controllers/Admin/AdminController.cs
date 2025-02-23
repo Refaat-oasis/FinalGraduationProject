@@ -2,6 +2,7 @@
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.Controllers.Admin
 {
@@ -9,7 +10,7 @@ namespace ThothSystemVersion1.Controllers.Admin
     {
         private readonly AdminBusinessLogicLayer _businessLogicL;
 
-        ThothContext Context= new ThothContext();   
+        ThothContext Context = new ThothContext();
 
         public AdminController(AdminBusinessLogicLayer businessLogicL)
         {
@@ -28,26 +29,69 @@ namespace ThothSystemVersion1.Controllers.Admin
             {
                 return BadRequest("Employee Data is required");
             }
-             _businessLogicL.AddEmployee(employee);
-           
-           return RedirectToAction("ViewAllEmployee" , "admin");
+            _businessLogicL.AddEmployee(employee);
+
+            return RedirectToAction("ViewAllEmployee", "admin");
 
         }
-        public IActionResult ViewAllEmployee() { 
+        public IActionResult ViewAllEmployee()
+        {
 
-            List<Employee> employees = Context.Employees.ToList();
-            return View("~/Views/Admin/ViewAllEmployee.cshtml", employees);
-
-        }
-        public IActionResult ViewAllJobOrder() {
-        
-            List<JobOrder>jobOrders = Context.JobOrders.ToList();
-            return View("~/Views/Admin/ViewAlljobOrder.cshtml", jobOrders);
-
+            List<Employee> employeesList = Context.Employees.ToList();
+            return View("~/Views/Admin/ViewAllEmployee.cshtml", employeesList);
 
         }
+        public IActionResult ViewAllJobOrder()
+        {
 
-        
+            List<JobOrder> jobOrdersList = Context.JobOrders.ToList();
+            List<Customer> customersList = Context.Customers.ToList();
+            List<Employee> employeeList = Context.Employees.ToList();
+            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = new List<JobOrderCustEmpVM>();
+
+            foreach (JobOrder jobOrder in jobOrdersList)
+            {
+
+                Customer customer = customersList.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
+                Employee employee = employeeList.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
+
+                if (customer != null & employee != null)
+                {
+
+                    JobOrderCustEmpVM jobToView = new JobOrderCustEmpVM();
+
+                    // first add the customer data
+                    jobToView.CustomerId = customer.CustomerId;
+                    jobToView.CustomerAddress = customer.CustomerAddress;
+                    jobToView.CustomerPhone = customer.CustomerPhone;
+                    jobToView.CustomerName = customer.CustomerName;
+                    jobToView.CustomerEmail = customer.CustomerEmail;
+                    
+                    // second add the job order data
+                    jobToView.JobOrderId = jobOrder.JobOrderId;
+                    jobToView.OrderProgress = jobOrder.OrderProgress;
+                    jobToView.RemainingAmount = jobOrder.RemainingAmount;
+                    jobToView.EarnedRevenue = jobOrder.EarnedRevenue;
+                    jobToView.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                    jobToView.StartDate = jobOrder.StartDate;
+                    jobToView.EndDate = jobOrder.EndDate;
+                    jobToView.JobOrdernotes = jobOrder.JobOrdernotes;
+                    jobToView.CustomerId = customer.CustomerId;
+                    
+                    //third add the employee data
+                    jobToView.EmployeeId = jobOrder.EmployeeId;
+                    jobToView.EmployeeName = employee.EmployeeName;
+
+                    jobOrderCustomerViewModelsList.Add(jobToView);
+
+                }
+
+            }
+            return View("~/Views/Admin/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+
+        }
+
+
 
         [HttpGet]
         public IActionResult EditEmployee(string id)

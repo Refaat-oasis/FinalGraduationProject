@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
+    "D:\\Grad Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
   },
   "projects": {
-    "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
+    "D:\\Grad Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "projectUniqueName": "D:\\Grad Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
         "projectName": "ThothSystemVersion1",
-        "projectPath": "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "projectPath": "D:\\Grad Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
         "packagesPath": "C:\\Users\\mariam\\.nuget\\packages\\",
         "outputPath": "D:\\Grad Project\\FinalGraduationProject\\obj\\",
         "projectStyle": "PackageReference",
@@ -50,6 +50,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[14.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",

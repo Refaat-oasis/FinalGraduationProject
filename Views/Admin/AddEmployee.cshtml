@@ -1,9 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
-@model Employee;
-
+@model Employee
 <style>
     /* body{ */
     /*     background-image: url("/image/background.jpeg"); */
@@ -137,7 +135,7 @@
         <div class="input-control">
             <label asp-for="@Model.EmployeeId" class="textlabel"></label>
             <input asp-for="@Model.EmployeeId" class="place" />
-            <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
+            <span asp-validation-for="@Model.EmployeeId" class="error"></span>
         </div>
         <div class="input-control">
             <label asp-for="@Model.EmployeeUserName" class="textlabel"> </label>
@@ -158,9 +156,9 @@
             <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
-                <option>الفني</option>
-                <option>المخازن</option>
-                <option>التكاليف</option>
+                <option value="Technical">الفني</option>
+                <option value="Inventory">المخازن</option>
+                <option value="Cost">التكاليف</option>
             </select>
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>

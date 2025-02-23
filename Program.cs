@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
 
@@ -15,7 +16,14 @@ namespace ThothSystemVersion1
 
             builder.Services.AddScoped<AdminBusinessLogicLayer>();
             builder.Services.AddDbContext<ThothContext>(options =>
-   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(10); 
+                options.Cookie.HttpOnly = true; 
+                options.Cookie.IsEssential = true; 
+            });
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 
@@ -24,8 +32,9 @@ namespace ThothSystemVersion1
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+           
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapStaticAssets();

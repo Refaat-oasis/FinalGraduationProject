@@ -1630,3 +1630,4 @@ C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ThothSys
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\Grad Project\FinalGraduationProject\bin\Debug\net9.0\AutoMapper.dll

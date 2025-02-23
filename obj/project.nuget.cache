@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "G6mCn2B0BZ0=",
+  "dgSpecHash": "EfFe800xlSg=",
   "success": true,
   "projectFilePath": "D:\\Grad Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mariam\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\mariam\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\mariam\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\mariam\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

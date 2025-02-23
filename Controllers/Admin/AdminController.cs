@@ -1,22 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
+
 
 namespace ThothSystemVersion1.Controllers.Admin
 {
     public class AdminController : Controller
     {
         private readonly AdminBusinessLogicLayer _businessLogicL;
+        private readonly IMapper _mapper;
 
         ThothContext Context = new ThothContext();
 
-        public AdminController(AdminBusinessLogicLayer businessLogicL)
+        public AdminController(IMapper mapper, AdminBusinessLogicLayer businessLogicL)
         {
+            _mapper = mapper;
             _businessLogicL = businessLogicL;
         }
-
         public IActionResult AdminHome()
         {
             return View("~/Views/Admin/AdminHome.cshtml");
@@ -30,7 +34,32 @@ namespace ThothSystemVersion1.Controllers.Admin
             return View("~/Views/Admin/AddEmployee.cshtml");
         }
 
+
+
+        //[HttpPost("add-employee")]
+        //public IActionResult AddEmployee([FromBody] EmployeeDTO employeeDTO)
+        //{
+        //    if (employeeDTO == null)
+        //    {
+        //        return BadRequest("Employee data is required.");
+        //    }
+
+        //    // Validate the DTO
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    // Use AutoMapper to convert DTO to Entity
+        //    var employee = _mapper.Map<Employee>(employeeDTO);
+
+        //    // Pass the Entity to the business logic layer
+        //    _businessLogicL.AddEmployee(employee);
+
+        //    return RedirectToAction("ViewAllEmployee", "admin");
+        //}
         [HttpPost]
+
         public IActionResult AddEmployee(Employee employee)
         {
             if (employee == null)

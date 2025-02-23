@@ -1,7 +1,7 @@
 ﻿@model Employee;
 
 <style>
-   
+
 
 
 
@@ -14,72 +14,80 @@
         padding: 0;
         width: 100%;
         height: 100vh;
-        overflow-x: hidden; /* to disable horizontal motion*/
+        overflow: hidden; /* to disable horizontal motion*/
     }
 
-.sidebar {
-  display: fixed;
-  position: absolute;
-  right: 10px;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 15px;
-  border-radius: 10px;
-}
+    header {
+        display: none;
+    }
 
-.sidebar table {
-  width: 200px;
-  border-collapse: collapse;
-  text-align: center;
-}
+    footer {
+        display: none;
+    }
 
-.sidebar th {
-  background-color: #8B4513;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-}
+    .sidebar {
+        display: fixed;
+        position: absolute;
+        right: 10px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 10px;
+    }
 
-.sidebar td {
-  padding: 10px;
-}
+        .sidebar table {
+            width: 200px;
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-.sidebar a {
-  text-decoration: none;
-  color: white;
-  display: block;
-  font-weight: bold;
-}
+        .sidebar th {
+            background-color: #8B4513;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
 
-.sidebar a:hover {
-  color: #8B4513;
-}
+        .sidebar td {
+            padding: 10px;
+        }
 
-.container{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  font-weight: 500;
-  height: 100vh;
-  /* background-color: rgba(24, 23, 23, 0.7); */
-}
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            font-weight: bold;
+        }
 
-.container h1{
-  font-weight: bolder;
-  color: #fff;
-  display: block;
-  margin-bottom: 10px;
-  font-size:25px;
-}
+            .sidebar a:hover {
+                color: #8B4513;
+            }
 
-.container p{
-  font-weight: bolder;
-  color: #fff;
-  display: block;
-  font-size:15px;
-}
+    .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-weight: 500;
+        height: 100vh;
+        /* background-color: rgba(24, 23, 23, 0.7); */
+    }
+
+        .container h1 {
+            font-weight: bolder;
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .container p {
+            font-weight: bolder;
+            color: #fff;
+            display: block;
+            font-size: 15px;
+        }
 
 </style>
 
@@ -96,14 +104,14 @@
     <title>ThoTh</title>
 </head>
 
-<header>
-    <div id="navbar">
-        @*<h1>THOTH</h1>*@
-        <h1 class="hieroglyph">𓅝𓏏𓎛</h1>
-        <img src="./photos/eye.jpg" alt="logo">
-    </div>
+@* <header> *@
+@*     <div id="navbar"> *@
+@*         @*<h1>THOTH</h1>*@ 
+@*         <h1 class="hieroglyph">𓅝𓏏𓎛</h1> *@
+@*         <img src="./photos/eye.jpg" alt="logo"> *@
+@*     </div> *@
 
-</header>
+@* </header> *@
 
 <div class="sidebar">
     <table>
@@ -111,28 +119,48 @@
             <th>الصفحات</th>
         </tr>
         <tr>
-            <td><a href="home.cshtml">الصفحة الرئيسية</a></td>
+            <td><a asp-controller="Admin" asp-action="AdminHome">الصفحة الرئيسية</a></td>
         </tr>
         <tr>
-            <td><a href="viewEmp.cshtml">عرض جميع الموظفين</a></td>
+            <td><a asp-controller="Admin" asp-action="ViewAllEmployee">عرض جميع الموظفين</a></td>
         </tr>
         <tr>
-            <td><a href="Add.cshtml">إضافة موظف جديد</a></td>
+            <td><a asp-controller="Admin" asp-action="AddEmployee">إضافة موظف جديد</a></td>
         </tr>
+        @* <tr> *@
+        @*     <td><a asp-controller="Admin" asp-action="ViewAllEmployee">تعديل قائمه الموظفين</a></td> *@
+        @* </tr> *@
         <tr>
-            <td><a href="Edit.cshtml">تعديل قائمه الموظفين</a></td>
+            <td><a asp-controller="Admin" asp-action="ViewAllJobOrder">عرض جميع الطلبيات</a></td>
         </tr>
-        <tr>
-            <td><a href="viewJobOrder.cshtml">عرض جميع الطلبيات</a></td>
-        </tr>
-        @*<tr>
-                <td><a href="services.cshtml">إضافه طلبيه جديده</a></td>
-            </tr>
-            <tr>
-                <td><a href="services.html">تعديل قائمه الطلبيات</a></td>
-            </tr>*@
     </table>
 </div>
+
+
+
+
+@* <div class="sidebar"> *@
+@*     <table> *@
+@*         <tr> *@
+@*             <th>الصفحات</th> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><a href="/Admin/AdminHome">الصفحة الرئيسية</a></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><a href="/Admin/ViewAllEmployee">عرض جميع الموظفين</a></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><a href="/Admin/AddEmployee">إضافة موظف جديد</a></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><a href="/Admin/EditEmployee">تعديل قائمه الموظفين</a></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><a href="/Admin/ViewAllJobOrder">عرض جميع الطلبيات</a></td> *@
+@*         </tr> *@
+@*     </table> *@
+@* </div> *@
 
 
 <div class="container">

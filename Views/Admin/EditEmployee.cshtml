@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             background-image: url("/image/background.jpeg");
-            opacity: 0.60;
+            opacity: 0.75;
             z-index: -1;
             background-size: cover;
             background-position: center;
@@ -55,7 +55,7 @@
         font-weight: 15px;
         margin-bottom: 5px;
         color: #090909;
-        font-size: 25px;
+        font-size: 30px;
         text-align: right;
     }
 
@@ -117,7 +117,7 @@
 
 
 <div class="form-container">
-    <h1> @Model.EmployeeName : تعديل بيانات الموظف</h1>
+    <h1>  تعديل بيانات الموظف : @Model.EmployeeName </h1>
     <form asp-action="EditEmployee" method="post" class="Employee-form">
 
         <input asp-for="@Model.EmployeeId" type="hidden" />
@@ -135,7 +135,7 @@
             <input asp-for="@Model.EmployeePassword" class="place" />
         </div>
         <div class="button-container">
-            <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
+            <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
             <input type="submit" value="تعديل" class="btn btn-primary" />
 
         </div>
@@ -167,24 +167,24 @@
 
 
             if (employeeUserName.value.trim() === "") {
-                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                userNameError.innerText = "الرجاء إدخال اسم المستخدم";
                 userNameError.style.display = "block";
                 isValid = false;
             }
 
              if (employeeName.value.trim() === "") {
-                nameError.innerText = "يجب عليك إدخال اسمك";
+                nameError.innerText = "يجب عليك إدخال اسمك";
                 nameError.style.display = "block";
                 isValid = false;
             }
 
 
             if (employeePassword.value.trim() === "") {
-                passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك";
+                passwordError.innerText = "الرجاء إدخال كلمة المرور الخاصة بك";
                 passwordError.style.display = "block";
                 isValid = false;
             } else if (employeePassword.value.length < 6) {
-                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
+                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
                 passwordError.style.display = "block";
                 isValid = false;
             }

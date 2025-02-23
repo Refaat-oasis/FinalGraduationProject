@@ -1,36 +1,38 @@
 ﻿@{
     Layout = null;
 }
-@model Employee
+
+@model Employee;
+
 <style>
-    /* body{ */
-    /*     background-image: url("/image/background.jpeg"); */
-    /*     opacity: 0.60; /* Adjust transparency */ */
-    /*     z-index: -1; */
+
+
+    /* html, body { */
+    /*     width: 100%; */
+    /*     min-height: 100%; */
+    /*     overflow-x: hidden; */
+    /*     overflow-y: auto; */
+    /*     margin: 0; */
+    /*     padding: 0; */
     /* } */
-    body {
-        text-align: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    }
 
     .form-container {
-        /* max-width: 500px; */
-        margin: 100px auto;
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 50px auto;
         padding: 20px;
         border-radius: 8px;
-        position: fixed;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background-size: contain;
         background-size: cover;
+        background-position: center;
+        display: block;
+        overflow: auto;
     }
 
 
         .form-container::before {
             content: "";
+            position: absolute;
             position: fixed;
             top: 0;
             left: 0;
@@ -39,7 +41,7 @@
             background-size: contain;
             background-size: cover;
             background-image: url("/image/background.jpeg");
-            opacity: 0.60;
+            opacity: 0.75;
             z-index: -1;
             background-size: cover;
             background-position: center;
@@ -61,12 +63,14 @@
         width: 50%;
     }
 
+
+
     .textlabel {
         display: block;
         font-weight: 15px;
         margin-bottom: 5px;
         color: #090909;
-        font-size: 25px;
+        font-size: 35px;
         text-align: right;
     }
 
@@ -78,18 +82,18 @@
         font-size: 20px;
         text-align: right;
         direction: rtl;
-        position: center;
     }
+
+
 
     .button-container {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
         display: flex;
-        justify-content: center; /* Center the buttons */
-        gap: 60px; /* Reduce space between buttons */
+        justify-content: center;
+        gap: 60px;
     }
-
 
     .btn {
         padding: 10px 15px;
@@ -98,6 +102,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
 
     .btn-primary {
         background-color: #000000;
@@ -126,7 +131,6 @@
         text-align: right;
         direction: rtl;
     }
-
 </style>
 
 <div class="form-container">
@@ -135,7 +139,7 @@
         <div class="input-control">
             <label asp-for="@Model.EmployeeId" class="textlabel"></label>
             <input asp-for="@Model.EmployeeId" class="place" />
-            <span asp-validation-for="@Model.EmployeeId" class="error"></span>
+            <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
         </div>
         <div class="input-control">
             <label asp-for="@Model.EmployeeUserName" class="textlabel"> </label>
@@ -156,14 +160,14 @@
             <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
-                <option value="Technical">الفني</option>
-                <option value="Inventory">المخازن</option>
-                <option value="Cost">التكاليف</option>
+                <option>الفني</option>
+                <option>المخازن</option>
+                <option>التكاليف</option>
             </select>
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>
         <div class="button-container">
-            <input type="button" value="الغاء" onclick="history.back()" class="btn btn-secondary" />
+            <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
             <input type="submit" value="اضافه" class="btn btn-secondary" />
         </div>
     </form>
@@ -197,27 +201,27 @@
 
 
             if (employeeName.value.trim() === "") {
-                nameError.innerText = "يجب عليك إدخال اسمك";
+                nameError.innerText = "رجاء إدخال اسمك";
                 isValid = false;
             }
 
             if (employeeUserName.value.trim() === "") {
-                userNameError.innerText = "يجب عليك إدخال اسم المستخدم";
+                userNameError.innerText = " رجاءإدخال اسم المستخدم";
                 isValid = false;
             }
 
             if (employeePassword.value.trim() === "") {
-                passwordError.innerText = "يجب عليك إدخال كلمة المرور الخاصة بك";
+                passwordError.innerText = "رجاء إدخال كلمة المرور الخاصة بك";
                 passwordError.style.display = "block";
                 isValid = false;
             } else if (employeePassword.value.length < 6) {
-                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
+                passwordError.innerText = "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
                 passwordError.style.display = "block";
                 isValid = false;
             }
 
             if (jobRole.value === "") {
-                jobRoleError.innerText = "يجب عليك تحديد دور وظيفي";
+                jobRoleError.innerText = "رجاء تحديد دور وظيفي";
                 isValid = false;
             }
 

@@ -16,6 +16,14 @@ namespace ThothSystemVersion1.Controllers.Admin
             _businessLogicL = businessLogicL;
         }
         [HttpGet]
+
+
+        public IActionResult AdminHome()
+        {
+            return View("~/Views/Admin/AdminHome.cshtml");
+        }
+
+
         public IActionResult AddEmployee()
         {
             return View("~/Views/Admin/AddEmployee.cshtml");

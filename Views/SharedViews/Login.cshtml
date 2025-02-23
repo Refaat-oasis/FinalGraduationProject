@@ -9,175 +9,155 @@
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100vh;
-        overflow-x: hidden; /* to disable horizontal motion*/
+        height: 100%;
+        overflow: hidden; /* to hide the footer*/
     }
 
-#navbar{
-    display: flex;
-    display: flex;
-    justify-content: flex-end; /*  to make element in the right of the page  */
-    align-items: center;
-    padding: 10px;
+header{
+    display:none
 }
 
+    .text {
+        color: #fff;
+    }
+    
 
-.hieroglyph {
-    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
-    font-size: 32px;
-    color: #fff
-}
-
-#navbar h1 {
-    position: absolute;
-    right: -100px; /* make the element out of the page */
-    opacity: 0;  /* make it hidden */
-    font-size: 20px;
-    font-weight: bold;
-    animation: moveRight 4s forwards; /* name and duration */
-}
+    #navbar {
+        display: flex;
+        display: flex;
+        justify-content: flex-end; /*  to make element in the right of the page  */
+        align-items: center;
+        padding: 10px;
+    }
 
 
+    /* .hieroglyph { */
+    /*     font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; */
+    /*     font-size: 32px; */
+    /*     color: #fff */
+    /* } */
+
+    #navbar h1 {
+        position: absolute;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .registeration {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        font-weight: 500;
+    }
+
+        .registeration h1 {
+            font-weight: bolder;
+            color: #fff;
+            margin-top: 15px;
+            margin-left: 10px;
+            font-size: 25px;
+        }
 
 
-#navbar img{
-    width: 80px;
-}
+        .registeration .inputBox {
+            background: transparent !important;
+            position: relative;
+            text-align: left;
+            width: 100%;
+            height: 45px;
+            margin: 10px;
+            border: 2px solid white;
+            border-radius: 40px;
+            outline: none;
+            font-size: 16px;
+            padding: 4px;
+            caret-color: white;
+            display:flex;
+            flex-direction:column;
+        }
 
-.text{
-    color: #fff;
-}
+    .inputBox input {
+        background: transparent;
+        color: white;
+    }
 
-.registeration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    font-weight: 500;
+        .inputBox input::placeholder {
+            color: #ffffff;
+            text-align: left;
+        }
 
-}
+    .inputBox i {
+        position: absolute;
+        color: #fff;
+        right: 40px;
+        top: 35%;
+        transform: translateY(-50%);
+        font-size: 20px;
+    }
 
-.registeration h1 {
-    font-weight: bolder;
-    color: #fff;
-    margin-top: 15px;
-    margin-left: 10px;
-    font-size:25px
-}
-
-
-.registeration .password {
-    text-align: center;
-    font-weight: 500;
-}
-
-.registeration .inputBox {
-    position: relative;
-    width: 100%;
-    height: 50%;
-    margin: 10px;
-}
-
-.registeration #userName {
-    border: none;
-   border : 2px solid white;
-   border-radius: 40px;
-   outline: none;
-   background: transparent;
-   font-size: 16px;
-   padding: 4px;
-   width: 600px;
-   height: 40px;
-   color: #fff;
-}
-
-.registeration #Password {
-   border: none;
-   border : 2px solid white;
-   border-radius: 40px;
-   outline: none;
-   background: transparent;
-   font-size: 16px;
-   padding: 4px;
-   width: 600px;
-   height: 40px;
-   color: #fff;
-}
-
-.inputBox input::placeholder {
-    color: #ffffff;
-}
-
-.inputBox i {
-    position: absolute;
-    color: #fff;
-    right: 40px;
-    top: 35%;
-    transform: translateY(-50%);
-    font-size: 20px;
-}
-
-.inputBox .bxs-lock-alt{
-    top: 30%
-}
-
-.rememberMe {
-    display: block;
-    color: #fff;
-    text-align: left;
-    font-size: 17px;
-}
+    .inputBox .bxs-lock-alt {
+        top: 30%
+    }
 
 
-  .inputBox.error {
-    color: red;
-    font-size: 15px;
-    font-weight: bolder;
-    text-align: right;
-    display: block;
-    margin-right: 8px;
-  }
+    /* .rememberMe { */
+    /*     display: flex; */
+    /*     align-items: center; */
+    /*     gap: 8px; */
+    /*     margin-top: 10px; */
+    /*     font-size: 16px; */
+    /*     color: white; */
+    /* } */
 
 
-input.btnLog {
-    color: #fff;
-    background-color: #5D3A1A;
-    margin: 10px;
-    font-size: small;
-    font-weight: bolder;
-    display: inline-block;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 15px;
-    font-size: large;
-
-}
+    .inputBox.error {
+        color: red;
+        font-size: 15px;
+        font-weight: bolder;
+        text-align: right;
+        display: flex;
+        margin-right: 8px;
+        margin-top: 10px;
+    }
 
 
-input.btnLog:hover {
-    background:rgb(66 32 6);
-}
+    input.btnLog {
+        color: #fff;
+        background-color: #5D3A1A;
+        margin: 10px;
+        font-size: small;
+        font-weight: bolder;
+        display: inline-block;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 15px;
+        font-size: large;
+    }
 
 
-input.btnReset{
-    color: #fff;
-    background-color: #5D3A1A;
-    margin: 10px;
-    font-size: small;
-    font-weight: bolder;
-    display: inline-block;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 15px;
-    font-size: large;
-}
-
-input.btnReset:hover {
-background:rgb(66 32 6);
-}
+        input.btnLog:hover {
+            background: rgb(66 32 6);
+        }
 
 
+    input.btnReset {
+        color: #fff;
+        background-color: #5D3A1A;
+        margin: 10px;
+        font-size: small;
+        font-weight: bolder;
+        display: inline-block;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 15px;
+        font-size: large;
+    }
+
+        input.btnReset:hover {
+            background: rgb(66 32 6);
+        }
 </style>
 
 
@@ -187,23 +167,24 @@ background:rgb(66 32 6);
         <br />
 
         <div class="text">
-            <h1>TH<span>&#x1F441;</span>TH</h1>
+            <h1>TH<span>&#x13080;</span>TH</h1>
         </div>
 
         <div class="inputBox">
-            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" />
+            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" id="userName" />
             <i class="bx bxs-user"></i>
             <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" />
+            <input type="password" asp-for="@Model.EmployeePassword" placeholder=" كلمه المرور" id="Password" />
             <i class="bx bxs-lock-alt"></i>
             <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
-            <div class="rememberMe">
-                <label><input type="checkbox" />تذكر بياناتي</label>
-            </div>
         </div>
+
+        @* <div class="rememberMe"> *@
+        @*     <label><input type="checkbox" />تذكر بياناتي</label> *@
+        @* </div> *@
 
 
         <div class="LogIn">
@@ -215,14 +196,16 @@ background:rgb(66 32 6);
         </div>
     </form>
 </div>
+@* <script src="~/js/Login.js" asp-append-version="true"></script> *@
+
 
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -231,60 +214,67 @@ background:rgb(66 32 6);
     <title>ThoTh</title>
 </head>
 
+ @* <header>  *@
+ @*    <div id="navbar">  *@
+ @*         <h1>THOTH</h1>   *@
+ @*          <h1 class="hieroglyph">𓅝𓏏𓎛</h1>   *@
+ @*        <img src="./image/eye.jpg" alt="logo">  *@
+ @*     </div>  *@
+
+ @* </header>  *@
 
 
-@* <script> *@
-@*     const myform = document.getElementById("myform"); *@
-@*     const userName = document.getElementById("userName"); *@
-@*     const Password = document.getElementById("Password"); *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const myform = document.getElementById("myform");
+    const userName = document.getElementById("userName");
+    const Password = document.getElementById("Password");
 
-@*     myform.addEventListener("submit", (e) => { *@
-@*         e.preventDefault(); *@
-@*         if (validate()) { *@
-@*             window.location.href = "Home.html"; *@
-@*         } *@
-@*     }); *@
+        myform.addEventListener("submit", function (e) {
+            if (!validate()) {
+                e.preventDefault(); 
+            }
+        });
 
-@*     myform.addEventListener("reset", () => { *@
-@*         window.location.reload(); *@
-@*     }); *@
+        function validate() {
+            let valid = true;
 
-@*     const setError = (input, errorMsg) => { *@
-@*         const inputBox = input.parentElement; *@
-@*         const errorParagraph = inputBox.querySelector(".error"); *@
-@*         errorParagraph.innerText = errorMsg; *@
-@*         inputBox.classList.remove("success"); *@
-@*         inputBox.classList.add("error"); *@
-@*     }; *@
+            if (userName.value.trim() === "") {
+                setError(userName, "برجاء إدخال اسم المستخدم");
+                valid = false;
+            } else {
+                setSuccess(userName);
+            }
 
-@*     const setSuccess = (input) => { *@
-@*         const inputBox = input.parentElement; *@
-@*         const errorParagraph = inputBox.querySelector(".error"); *@
-@*         errorParagraph.innerText = ""; *@
-@*         inputBox.classList.remove("error"); *@
-@*         inputBox.classList.add("success"); *@
-@*     }; *@
+            if (Password.value.trim() === "") {
+                setError(Password, "برجاء إدخال كلمة المرور");
+                valid = false;
+            } else {
+                setSuccess(Password);
+            }
 
-@*     const validate = () => { *@
-@*         let valid = true; *@
+            return valid;
+        }
 
-@*         // validate name *@
-@*         if (userName.value.trim() === "") { *@
-@*             setError(userName, "برجاء إدخال الاسم"); *@
-@*             valid = false; *@
-@*         } else { *@
-@*             setSuccess(userName); *@
-@*         } *@
+        const setError = (input, errorMsg) => {
+        const inputBox = input.parentElement;
+        const errorParagraph = inputBox.querySelector(".error");
+              errorParagraph.innerText = errorMsg;
+              inputBox.classList.remove("success");
+              inputBox.classList.add("error");
+    };
 
-@*         // validate password *@
-@*         if (Password.value.trim() === "") { *@
-@*             setError(Password, "برجاء إدخال كلمه المرور"); *@
-@*             valid = false; *@
-@*         } else { *@
-@*             setSuccess(Password); *@
-@*         } *@
+        const setSuccess = (input) => {
+        const inputBox = input.parentElement;
+        const errorParagraph = inputBox.querySelector(".error");
+              errorParagraph.innerText = "";
+              inputBox.classList.remove("error");
+              inputBox.classList.add("success");
+    };
+    });
 
-@*         return valid; *@
-@*     }; *@
+</script>
 
-@* </script> *@
+
+
+

@@ -201,6 +201,7 @@
             <thead>
                 <tr>
                     <th>الإجراءات</th>
+                    <th>حالة الحساب</th>
                     <th>الدور الوظيفي</th>
                     <th>الاسم </th>
                     <th>الرقم القومي</th>
@@ -220,6 +221,7 @@
 
 
                         </td>
+                        <td>@(emp.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@emp.JobRole.GetDisplayName()</td>
                         <td>@emp.EmployeeName</td>
                         <td>@emp.EmployeeId</td>

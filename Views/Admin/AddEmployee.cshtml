@@ -160,9 +160,9 @@
             <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
-                <option>الفني</option>
-                <option>المخازن</option>
-                <option>التكاليف</option>
+                <option option="2">الفني</option>
+                <option option="1">المخازن</option>
+                <option option="3">التكاليف</option>
             </select>
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>

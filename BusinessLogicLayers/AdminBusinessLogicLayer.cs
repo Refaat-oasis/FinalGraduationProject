@@ -56,7 +56,7 @@ using ThothSystemVersion1.Database;
                 existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
                 existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
                 existingEmployee.EmployeePassword = updatedEmployee.EmployeePassword;
-
+                existingEmployee.Activated = updatedEmployee.Activated;
                 _context.Employees.Update(existingEmployee); // Mark the entity as modified
                 _context.SaveChanges(); // Save changes to the database
                 return existingEmployee; // Success

@@ -17,31 +17,38 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult EmployeeLogin(string EmployeeUserName, string EmployeePassword)
         {
             
-            Employee logedEmployee = context.Employees.FirstOrDefault(
+            Employee loggedEmployee = context.Employees.FirstOrDefault(
                 e =>e.EmployeeUserName == EmployeeUserName && e.EmployeePassword == EmployeePassword);
 
-            if (logedEmployee != null)
+            if (loggedEmployee.Activated)
             {
-                HttpContext.Session.SetString("EmployeeID", logedEmployee.EmployeeId.ToString());
-                HttpContext.Session.SetString("EmployeeName", logedEmployee.EmployeeName.ToString());
-                HttpContext.Session.SetString("EmployeeUserName", logedEmployee.EmployeeUserName.ToString());
-
-                switch (logedEmployee.JobRole)
+                if (loggedEmployee != null)
                 {
-                    case JobRole.Admin: // Admin
-                        return RedirectToAction("AdminHome", "Admin");
-                    case JobRole.Inventory: // Inventory
-                        return RedirectToAction("InventoryHome", "Inventory");
-                    case JobRole.Technical: // Technical
-                        return RedirectToAction("TechnicalHome", "Technical");
-                    case JobRole.Cost: // Cost
-                        return RedirectToAction("CostHome", "Cost");
-                    default:
-                        return RedirectToAction("LoginPage", "Employee");
+                    HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
+                    HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName.ToString());
+                    HttpContext.Session.SetString("EmployeeUserName", loggedEmployee.EmployeeUserName.ToString());
+
+                    switch (loggedEmployee.JobRole)
+                    {
+                        case JobRole.Admin: // Admin
+                            return RedirectToAction("AdminHome", "Admin");
+                        case JobRole.Inventory: // Inventory
+                            return RedirectToAction("InventoryHome", "Inventory");
+                        case JobRole.Technical: // Technical
+                            return RedirectToAction("TechnicalHome", "Technical");
+                        case JobRole.Cost: // Cost
+                            return RedirectToAction("CostHome", "Cost");
+                        default:
+                            return RedirectToAction("LoginPage", "Employee");
+                    }
                 }
+                else
+                {
+                    return RedirectToAction("LoginPage", "Employee");
+                }
+
             }
-            else
-            {
+            else {
                 return RedirectToAction("LoginPage", "Employee");
             }
         }

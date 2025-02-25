@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.Database;
-    namespace ThothSystemVersion1.BusinessLogicLayers
+using ThothSystemVersion1.InterfaceServices;
+using ThothSystemVersion1.ViewModels;
+namespace ThothSystemVersion1.BusinessLogicLayers
 { 
-     public class AdminBusinessLogicLayer
+     public class AdminBusinessLogicLayer : AdminService
     {
         private readonly ThothContext _context;
 
@@ -13,14 +15,103 @@ using ThothSystemVersion1.Database;
             _context = context;
         }
 
-        public void AddEmployee(Employee employee)
+        public List<Employee> ViewAllEmployee() {
+
+            List<Employee> employeesList = _context.Employees.ToList();
+            //return View("~/Views/Admin/ViewAllEmployee.cshtml", employeesList);
+            return employeesList;
+
+        }
+
+        public List<JobOrderCustEmpVM> ViewAllJobOrder()
         {
-            if(employee == null)
+
+            List<JobOrder> jobOrdersList = _context.JobOrders.ToList();
+            List<Customer> customersList = _context.Customers.ToList();
+            List<Employee> employeeList = _context.Employees.ToList();
+            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = new List<JobOrderCustEmpVM>();
+
+            foreach (JobOrder jobOrder in jobOrdersList)
+            {
+
+                Customer customer = customersList.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
+                Employee employee = employeeList.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
+
+                if (customer != null & employee != null)
+                {
+
+                    JobOrderCustEmpVM jobToView = new JobOrderCustEmpVM();
+
+                    // first add the customer data
+                    jobToView.CustomerId = customer.CustomerId;
+                    jobToView.CustomerAddress = customer.CustomerAddress;
+                    jobToView.CustomerPhone = customer.CustomerPhone;
+                    jobToView.CustomerName = customer.CustomerName;
+                    jobToView.CustomerEmail = customer.CustomerEmail;
+
+                    // second add the job order data
+                    jobToView.JobOrderId = jobOrder.JobOrderId;
+                    jobToView.OrderProgress = jobOrder.OrderProgress;
+                    jobToView.RemainingAmount = jobOrder.RemainingAmount;
+                    jobToView.EarnedRevenue = jobOrder.EarnedRevenue;
+                    jobToView.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                    jobToView.StartDate = jobOrder.StartDate;
+                    jobToView.EndDate = jobOrder.EndDate;
+                    jobToView.JobOrdernotes = jobOrder.JobOrdernotes;
+                    jobToView.CustomerId = customer.CustomerId;
+
+                    //third add the employee data
+                    jobToView.EmployeeId = jobOrder.EmployeeId;
+                    jobToView.EmployeeName = employee.EmployeeName;
+
+                    jobOrderCustomerViewModelsList.Add(jobToView);
+
+                }
+
+            }
+            return jobOrderCustomerViewModelsList;
+        }
+
+        //public void AddEmployee(Employee employee)
+        //{
+        //   Employee foundEmployee = _context.Employees.Find(employee.EmployeeId );
+        //    Employee foundEmployee2 = _context.Employees.Find(employee.EmployeeUserName);
+        //    if (foundEmployee == null & foundEmployee2 == null)
+        //    {
+
+        //        if (employee == null)
+        //        {
+        //            throw new ArgumentNullException(nameof(employee));
+        //        }
+        //        _context.Employees.Add(employee);
+        //        _context.SaveChanges();
+
+        //    }
+        //    else { 
+
+        //    }
+
+        //}
+        public bool AddEmployee(Employee employee)
+        {
+            Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
+            Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
+
+            if (foundEmployeeById != null || foundEmployeeByUsername != null)
+            {
+                // Employee with the same ID or username already exists
+                return false;
+            }
+
+            if (employee == null)
             {
                 throw new ArgumentNullException(nameof(employee));
             }
-             _context.Employees.Add(employee);
+
+            _context.Employees.Add(employee);
             _context.SaveChanges();
+
+            return true;
         }
 
         public Employee GetEmployeeById(string id)
@@ -41,15 +132,19 @@ using ThothSystemVersion1.Database;
             }
         }
 
-        // Update Employee (Synchronous)
-        public Employee EditEmployee(string id, Employee updatedEmployee)
+        public bool EditEmployee(string id, Employee updatedEmployee)
         {
             try
             {
                 Employee existingEmployee = _context.Employees.Find(id); // Find the employee by ID
+                Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
                 if (existingEmployee == null)
                 {
                     throw new ArgumentException("Employee not found."); // Employee not found
+                }
+                if (existingEmployeeUserName != null) {
+
+                    return false;
                 }
 
                 // Update properties
@@ -59,7 +154,7 @@ using ThothSystemVersion1.Database;
                 existingEmployee.Activated = updatedEmployee.Activated;
                 _context.Employees.Update(existingEmployee); // Mark the entity as modified
                 _context.SaveChanges(); // Save changes to the database
-                return existingEmployee; // Success
+                return true; // Success
             }
             catch (Exception ex)
             {
@@ -67,17 +162,7 @@ using ThothSystemVersion1.Database;
                 throw new ApplicationException("An error occurred while updating the employee.", ex);
             }
         }
-        public void DeleteEmployee(string id)
-        {
-            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == id);
-            if (employee == null)
-            {
-                throw new ArgumentNullException("Employee not found");
-            }
-            _context.Remove(employee);
-            _context.SaveChanges();
-
-        }
+        
     }
 }
 

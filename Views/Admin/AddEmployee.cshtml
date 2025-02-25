@@ -133,13 +133,16 @@
     }
 </style>
 
+
 <div class="form-container">
     <h1>اضافه موظف </h1>
     <form asp-controller="admin" asp-action="Addemployee" name="form1" method="post" enctype="multipart/form-data" class="Employee-form">
+        <div asp-validation-summary="ModelOnly" class="error"></div> <!-- Add this line to display model-level errors -->
+
         <div class="input-control">
             <label asp-for="@Model.EmployeeId" class="textlabel"></label>
             <input asp-for="@Model.EmployeeId" class="place" />
-            <span asp-validation-for="@Model.EmployeeUserName" class="error"></span>
+            <span asp-validation-for="@Model.EmployeeId" class="error"></span>
         </div>
         <div class="input-control">
             <label asp-for="@Model.EmployeeUserName" class="textlabel"> </label>
@@ -160,9 +163,9 @@
             <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
                 <option value="">--تحديد الدور الوظيفي--</option>
-                <option option="2">الفني</option>
-                <option option="1">المخازن</option>
-                <option option="3">التكاليف</option>
+                <option value="2">الفني</option>
+                <option value="1">المخازن</option>
+                <option value="3">التكاليف</option>
             </select>
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>
@@ -172,6 +175,7 @@
         </div>
     </form>
 </div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

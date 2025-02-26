@@ -14,7 +14,7 @@ namespace ThothSystemVersion1.Controllers
         private readonly AdminBusinessLogicLayer _businessLogicL;
         private readonly IMapper _mapper;
 
-        ThothContext Context = new ThothContext();
+        //ThothContext Context = new ThothContext();
 
         public AdminController(IMapper mapper, AdminBusinessLogicLayer businessLogicL)
         {
@@ -37,19 +37,6 @@ namespace ThothSystemVersion1.Controllers
         }
 
 
-        //[HttpPost]
-        //public IActionResult AddEmployee(Employee employee)
-        //{
-        //    if (employee == null)
-        //    {
-        //        //return BadRequest("Employee Data is required");
-        //        return RedirectToAction("addemployee", "admin", employee);
-        //    }
-        //    _businessLogicL.AddEmployee(employee);
-
-        //    return RedirectToAction("ViewAllEmployee", "admin");
-
-        //}
         [HttpPost]
         public IActionResult AddEmployee(Employee employee)
         {
@@ -74,15 +61,6 @@ namespace ThothSystemVersion1.Controllers
         {
             List<Employee> employeeList = _businessLogicL.ViewAllEmployee();
             return View("~/Views/Admin/ViewAllEmployee.cshtml", employeeList);
-
-        }
-
-
-        [HttpGet]
-        public IActionResult ViewAllJobOrder()
-        {
-            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _businessLogicL.ViewAllJobOrder();
-            return View("~/Views/Admin/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
 
         }
 

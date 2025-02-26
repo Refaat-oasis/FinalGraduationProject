@@ -15,16 +15,23 @@ namespace ThothSystemVersion1
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // add the business logic layer services
             builder.Services.AddScoped<AdminBusinessLogicLayer>();
+            builder.Services.AddScoped<InventoryBussinesLogicLayer>();
+            builder.Services.AddScoped<TechnicalBusinessLogicLayer>();
+
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             builder.Services.AddDbContext<ThothContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+         
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(10); 
                 options.Cookie.HttpOnly = true; 
                 options.Cookie.IsEssential = true; 
             });
+            
             builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();

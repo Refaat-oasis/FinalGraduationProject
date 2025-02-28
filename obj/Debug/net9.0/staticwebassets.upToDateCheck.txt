@@ -7,6 +7,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\loginEmployee.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
@@ -68,6 +69,7 @@ wwwroot\image\background - Copy.jpg
 wwwroot\image\background.jpeg
 wwwroot\image\egyptian-wall-with-hieroglyphs - Copy.jpg
 wwwroot\image\eye.jpg
+wwwroot\js\loginEmployee.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

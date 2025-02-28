@@ -341,7 +341,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         },
         {
           "Name": "Vary",
@@ -382,7 +382,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         }
       ],
       "EndpointProperties": [
@@ -423,7 +423,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         },
         {
           "Name": "Vary",
@@ -478,7 +478,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         },
         {
           "Name": "Vary",
@@ -527,7 +527,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         }
       ],
       "EndpointProperties": [
@@ -576,7 +576,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:34 GMT"
         },
         {
           "Name": "Vary",
@@ -1523,6 +1523,304 @@
       ]
     },
     {
+      "Route": "js/loginEmployee.js",
+      "AssetFile": "js/loginEmployee.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001953125000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4="
+        }
+      ]
+    },
+    {
+      "Route": "js/loginEmployee.js",
+      "AssetFile": "js/loginEmployee.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1497"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4="
+        }
+      ]
+    },
+    {
+      "Route": "js/loginEmployee.js.gz",
+      "AssetFile": "js/loginEmployee.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E="
+        }
+      ]
+    },
+    {
+      "Route": "js/loginEmployee.tslnh0mh01.js",
+      "AssetFile": "js/loginEmployee.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001953125000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tslnh0mh01"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4="
+        },
+        {
+          "Name": "label",
+          "Value": "js/loginEmployee.js"
+        }
+      ]
+    },
+    {
+      "Route": "js/loginEmployee.tslnh0mh01.js",
+      "AssetFile": "js/loginEmployee.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1497"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tslnh0mh01"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HR/G+N0FV+poZd96BXF7ZDkkCnE4Xsnm0jvYQIeDRP4="
+        },
+        {
+          "Name": "label",
+          "Value": "js/loginEmployee.js"
+        }
+      ]
+    },
+    {
+      "Route": "js/loginEmployee.tslnh0mh01.js.gz",
+      "AssetFile": "js/loginEmployee.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 22:27:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tslnh0mh01"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uydHTptWwORGOsX1hBGgnrMBmZ2NQtxgsTE+pnxr01E="
+        },
+        {
+          "Name": "label",
+          "Value": "js/loginEmployee.js.gz"
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "js/site.js.gz",
       "Selectors": [
@@ -1563,7 +1861,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         },
         {
           "Name": "Vary",
@@ -1604,7 +1902,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1645,7 +1943,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         },
         {
           "Name": "Vary",
@@ -1700,7 +1998,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         },
         {
           "Name": "Vary",
@@ -1749,7 +2047,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1798,7 +2096,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 07:42:34 GMT"
+          "Value": "Fri, 28 Feb 2025 22:06:38 GMT"
         },
         {
           "Name": "Vary",

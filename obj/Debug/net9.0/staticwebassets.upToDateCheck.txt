@@ -28,6 +28,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\addEmployee.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
@@ -60,6 +61,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\css\addEmployee.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\image\background - Copy.jpg

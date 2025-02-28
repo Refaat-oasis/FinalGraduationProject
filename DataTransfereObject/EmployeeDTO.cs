@@ -31,7 +31,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الدور الوظيفي")]
         public JobRole JobRole { get; set; }
 
-        [Required (ErrorMessage ="يجب عليك اختيار حالة الحساب للموظف")]
         [Display(Name = "حالة الحساب للموظف")]
         public bool Activated { get; set; }
 

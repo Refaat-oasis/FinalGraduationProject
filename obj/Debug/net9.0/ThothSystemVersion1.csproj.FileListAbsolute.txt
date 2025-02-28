@@ -1866,3 +1866,4 @@ C:\Users\shahd\Desktop\project 10\FinalGraduationProject\obj\Debug\net9.0\refint
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\htwdie053j-o6nai0d57f.gz

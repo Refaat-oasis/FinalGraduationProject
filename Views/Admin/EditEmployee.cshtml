@@ -118,23 +118,27 @@
 
 <div class="form-container">
     <h1>  تعديل بيانات الموظف : @Model.EmployeeName </h1>
-    <form asp-action="EditEmployee" method="post" class="Employee-form">
+
+    <form asp-controller="admin" asp-action="EditEmployee" method="post" class="Employee-form">
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
         <input asp-for="@Model.EmployeeId" type="hidden" />
 
-        <div class="input-control">
-            <label asp-for="@Model.EmployeeUserName" class="textlabel"></label>
-            <input asp-for="@Model.EmployeeUserName" class="place" />
-        </div>
+        @* <div class="input-control"> *@
+        @*     <label asp-for="@Model.EmployeeUserName" class="textlabel"></label> *@
+        @*     <input asp-for="@Model.EmployeeUserName" class="place" /> *@
+        @* </div> *@
+
         <div class="input-control">
             <label asp-for="@Model.EmployeeName" class="textlabel"></label>
             <input asp-for="@Model.EmployeeName" class="place" />
         </div>
+        
         <div class="input-control">
             <label asp-for="@Model.EmployeePassword" class="textlabel"> </label>
             <input asp-for="@Model.EmployeePassword" class="place" />
         </div>
+        
         <div class="input-control">
             <label asp-for="@Model.Activated" class="textlabel"> </label>
             <select asp-for="@Model.Activated" id="options" class="place">
@@ -149,10 +153,10 @@
                     }
                  }
             </select>
+        
         <div class="button-container">
             <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
             <input type="submit" value="تعديل" class="btn btn-primary" />
-
         </div>
     </form>
 </div>

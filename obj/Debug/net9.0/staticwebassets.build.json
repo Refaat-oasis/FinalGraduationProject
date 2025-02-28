@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9Bz7u5W08QWxaUT1iPYB7dtdSs2f7DkDCbeAK2SpkuM=",
+  "Hash": "paQdQ+rWDwBodL2BbHgNZE8//xn3z0lZ3mY6J1Jeds4=",
   "Source": "ThothSystemVersion1",
   "BasePath": "_content/ThothSystemVersion1",
   "Mode": "Default",
@@ -687,6 +687,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\htwdie053j-o6nai0d57f.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/addEmployee#[.{fingerprint=o6nai0d57f}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "ds785rnlp8",
+      "Integrity": "kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i695otb27d-c2jlpeoesf.gz",
@@ -1401,6 +1422,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ThothSystemVersion1.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/addEmployee#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "o6nai0d57f",
+      "Integrity": "4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\addEmployee.css"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\site.css",
@@ -2811,6 +2853,304 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/addEmployee.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\htwdie053j-o6nai0d57f.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001385041551"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU="
+        }
+      ]
+    },
+    {
+      "Route": "css/addEmployee.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2436"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU="
+        }
+      ]
+    },
+    {
+      "Route": "css/addEmployee.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\htwdie053j-o6nai0d57f.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0="
+        }
+      ]
+    },
+    {
+      "Route": "css/addEmployee.o6nai0d57f.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\htwdie053j-o6nai0d57f.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001385041551"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o6nai0d57f"
+        },
+        {
+          "Name": "label",
+          "Value": "css/addEmployee.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU="
+        }
+      ]
+    },
+    {
+      "Route": "css/addEmployee.o6nai0d57f.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2436"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o6nai0d57f"
+        },
+        {
+          "Name": "label",
+          "Value": "css/addEmployee.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4PViAdWtBIsW9QBieo7xLahfHjSt6zRAkgTYhbetnjU="
+        }
+      ]
+    },
+    {
+      "Route": "css/addEmployee.o6nai0d57f.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\htwdie053j-o6nai0d57f.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 20:50:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o6nai0d57f"
+        },
+        {
+          "Name": "label",
+          "Value": "css/addEmployee.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kwWMefOCFP7st/dFCu5B2NS3w/m5oShU108MalP2yT0="
+        }
+      ]
+    },
     {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\qlnfbyme79-mjguehp5e9.gz",

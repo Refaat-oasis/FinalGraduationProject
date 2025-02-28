@@ -22,8 +22,23 @@ namespace ThothSystemVersion1.Controllers
         }
         [HttpPost]
         public IActionResult NewPaper(Paper newPaper) {
-            _businessLogicL.addPaper(newPaper);
-            return RedirectToAction("","");
+            try {
+
+                if (!ModelState.IsValid)
+                {
+                    return View("");
+
+                }
+                else {
+
+                    _businessLogicL.addPaper(newPaper);
+                    return RedirectToAction("", "");
+                }
+            
+            } catch (Exception ex) {
+                return BadRequest(ex);
+            }
+            
         }
         
         [HttpGet]
@@ -32,8 +47,22 @@ namespace ThothSystemVersion1.Controllers
         }
         [HttpPost]
         public IActionResult NewInk(Ink newInk) {
-            _businessLogicL.addInk(newInk);
-            return RedirectToAction("","");
+            try
+            {
+
+                if (!ModelState.IsValid)
+                {
+                    _businessLogicL.addInk(newInk);
+                    return RedirectToAction("", "");
+                }
+                else { 
+                    return View() ;
+                }
+
+            } catch (Exception ex) {
+
+                return BadRequest(ex);
+            }
         }
 
         [HttpGet]
@@ -41,10 +70,28 @@ namespace ThothSystemVersion1.Controllers
              return View();
         }
         [HttpPost]
-        public IActionResult NewSupply(Supply NewSupply) { 
-            _businessLogicL.addSupply(NewSupply);
-            return RedirectToAction("","");
-        
+        public IActionResult NewSupply(Supply newSupply) {
+
+            try
+            {
+
+                if (!ModelState.IsValid)
+                {
+                    _businessLogicL.addSupply(newSupply);
+                    return RedirectToAction("", "");
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+
         }
 
 

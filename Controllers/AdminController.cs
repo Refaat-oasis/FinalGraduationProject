@@ -38,11 +38,12 @@ namespace ThothSystemVersion1.Controllers
 
 
         [HttpPost]
-        public IActionResult AddEmployee(Employee employee)
+        public IActionResult AddEmployee(EmployeeDTO employee)
         {
-            if (employee == null)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("addemployee", "admin", employee);
+                // return RedirectToAction("addemployee", "admin", employee);
+                return View("~/Views/Admin/AddEmployee.cshtml");
             }
 
             bool isEmployeeAdded = _businessLogicL.AddEmployee(employee);

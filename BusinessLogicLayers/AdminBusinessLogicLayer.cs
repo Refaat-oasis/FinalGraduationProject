@@ -4,6 +4,7 @@ using ThothSystemVersion1.Models;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.ViewModels;
+using ThothSystemVersion1.DataTransfereObject;
 namespace ThothSystemVersion1.BusinessLogicLayers
 { 
      public class AdminBusinessLogicLayer : AdminService
@@ -23,7 +24,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
        
-        public bool AddEmployee(Employee employee)
+        public bool AddEmployee(EmployeeDTO employee)
         {
             Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
             Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
@@ -39,7 +40,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ArgumentNullException(nameof(employee));
             }
 
-            _context.Employees.Add(employee);
+            Employee addedOne = new Employee();
+            addedOne.EmployeeName= employee.EmployeeName;
+            addedOne.EmployeeUserName= employee.EmployeeUserName;
+            addedOne.EmployeePassword = employee.EmployeePassword;
+            addedOne.EmployeeId= employee.EmployeeId;
+            addedOne.Activated = true;
+
+            _context.Employees.Add(addedOne);
             _context.SaveChanges();
 
             return true;
@@ -68,15 +76,15 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 Employee existingEmployee = _context.Employees.Find(id); // Find the employee by ID
-                Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
                 if (existingEmployee == null)
                 {
                     throw new ArgumentException("Employee not found."); // Employee not found
                 }
-                if (existingEmployeeUserName != null) {
+                //if (existingEmployeeUserName != null) {
 
-                    return false;
-                }
+                //    return false;
+                //}
 
                 // Update properties
                 existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;

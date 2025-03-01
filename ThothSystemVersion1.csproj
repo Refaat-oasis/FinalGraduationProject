@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Views\Inventory\" />
+    <Folder Include="wwwroot\css\Inventory\" />
+    <Folder Include="wwwroot\js\Inventory\" />
   </ItemGroup>
 
 </Project>

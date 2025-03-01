@@ -169,6 +169,7 @@
 </style>
 <head>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
 </head>
 <div class="container">
     <div class="arrow">
@@ -210,27 +211,5 @@
         </table>
     </div>
 </div>
-<script>
-    function searchJobOrder() {
-        var input, filter, table, tr, td, i, j, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("jobOrderTable");
-        tr = table.getElementsByTagName("tr");
-
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = "none"; // Hide the row by default
-            td = tr[i].getElementsByTagName("td");
-
-            for (j = 0; j < td.length; j++) {
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Show the row if a match is found
-                        break; // Exit the inner loop if a match is found
-                    }
-                }
-            }
-        }
-    }
+<script src="~/js/Technical/viewAllJobOrder.js">
 </script>

@@ -5,8 +5,28 @@
       "PackagePath": "staticwebassets\\ThothSystemVersion1.ly5dltxemw.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\addEmployee.css",
-      "PackagePath": "staticwebassets\\css\\addEmployee.css"
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Admin\\addEmployee.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\addEmployee.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Admin\\adminHome.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\adminHome.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Admin\\editEmployee.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\editEmployee.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Admin\\viewAllEmployee.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\viewAllEmployee.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
+      "PackagePath": "staticwebassets\\css\\SharedViews\\login.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Technical\\viewAllJobOrder.css",
+      "PackagePath": "staticwebassets\\css\\Technical\\viewAllJobOrder.css"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\site.css",
@@ -33,8 +53,24 @@
       "PackagePath": "staticwebassets\\image\\eye.jpg"
     },
     {
-      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\loginEmployee.js",
-      "PackagePath": "staticwebassets\\js\\loginEmployee.js"
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\addEmployee.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\addEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\editEmployee.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\editEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\viewAllEmployee.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\viewAllEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",
+      "PackagePath": "staticwebassets\\js\\SharedViews\\loginEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Technical\\viewAllJobOrder.js",
+      "PackagePath": "staticwebassets\\js\\Technical\\viewAllJobOrder.js"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\site.js",

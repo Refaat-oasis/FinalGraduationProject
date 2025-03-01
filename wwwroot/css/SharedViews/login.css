@@ -1,0 +1,158 @@
+﻿
+body {
+    background: url("/image/egyptian-wall-with-hieroglyphs - Copy.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* to hide the footer*/
+}
+
+header {
+    display: none
+}
+
+.text {
+    color: #fff;
+}
+
+
+#navbar {
+    display: flex;
+    display: flex;
+    justify-content: flex-end; /*  to make element in the right of the page  */
+    align-items: center;
+    padding: 10px;
+}
+
+
+    /* .hieroglyph { */
+    /*     font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; */
+    /*     font-size: 32px; */
+    /*     color: #fff */
+    /* } */
+
+    #navbar h1 {
+        position: absolute;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+.registeration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    font-weight: 500;
+}
+
+    .registeration h1 {
+        font-weight: bolder;
+        color: #fff;
+        margin-top: 15px;
+        margin-left: 10px;
+        font-size: 25px;
+    }
+
+
+    .registeration .inputBox {
+        background: transparent !important;
+        position: relative;
+        text-align: left;
+        width: 100%;
+        height: 45px;
+        margin: 10px;
+        border: 2px solid white;
+        border-radius: 40px;
+        outline: none;
+        font-size: 16px;
+        padding: 4px;
+        caret-color: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+.inputBox input {
+    background: transparent;
+    color: white;
+}
+
+    .inputBox input::placeholder {
+        color: #ffffff;
+        text-align: left;
+    }
+
+.inputBox i {
+    position: absolute;
+    color: #fff;
+    right: 40px;
+    top: 35%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.inputBox .bxs-lock-alt {
+    top: 30%
+}
+
+
+/* .rememberMe { */
+/*     display: flex; */
+/*     align-items: center; */
+/*     gap: 8px; */
+/*     margin-top: 10px; */
+/*     font-size: 16px; */
+/*     color: white; */
+/* } */
+
+
+.inputBox.error {
+    color: red;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: right;
+    display: flex;
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+
+input.btnLog {
+    color: #fff;
+    background-color: #5D3A1A;
+    margin: 10px;
+    font-size: small;
+    font-weight: bolder;
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: large;
+}
+
+
+    input.btnLog:hover {
+        background: rgb(66 32 6);
+    }
+
+
+input.btnReset {
+    color: #fff;
+    background-color: #5D3A1A;
+    margin: 10px;
+    font-size: small;
+    font-weight: bolder;
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: large;
+}
+
+    input.btnReset:hover {
+        background: rgb(66 32 6);
+    }

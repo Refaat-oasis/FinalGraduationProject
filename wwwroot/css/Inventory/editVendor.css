@@ -1,0 +1,115 @@
+﻿ .form-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-size: cover;
+        background-position: center;
+        display: block;
+        overflow: auto;
+    }
+
+
+        .form-container::before {
+            content: "";
+            position: absolute;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-size: cover;
+            background-image: url("/image/background.jpeg");
+            opacity: 0.75;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+        }
+
+
+
+
+    h1 {
+        text-align: center;
+        font-size: 30px;
+        color: #050505;
+        margin-bottom: 20px;
+    }
+
+    .input-control {
+        margin-left: 25%;
+        position: center;
+        width: 50%;
+    }
+
+
+
+    .textlabel {
+        display: block;
+        font-weight: 15px;
+        margin-bottom: 5px;
+        color: #090909;
+        font-size: 35px;
+        text-align: right;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: right;
+        direction: rtl;
+    }
+
+
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    .btn-primary {
+        background-color: #000000;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #000000;
+        }
+
+    .btn-secondary {
+        background-color: #000000;
+        color: white;
+    }
+
+    .btn:hover {
+        background-color: #545b62;
+    }
+
+
+    .error {
+        color: red;
+        font-size: 20px;
+        margin-top: 5px;
+        display: block;
+        text-align: right;
+        direction: rtl;
+    }

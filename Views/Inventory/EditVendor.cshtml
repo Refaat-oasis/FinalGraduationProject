@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+@model Vendor;
+
+<head>
+    <link href="~/css/Inventory/editVendor.css" rel="stylesheet" />
+
+</head>
+
+<div class="form-container">
+    <h1>تعديل المورد :: @Model.VendorName </h1>
+    <form asp-controller="vendor" asp-action="Editvendor" name="form1" method="post" enctype="multipart/form-data" class="Vendor-form">
+
+        <div class="input-control">
+            <label asp-for="@Model.VendorName" class="textlabel"> </label>
+            <input asp-for="@Model.VendorName" class="place" />
+            <span asp-validation-for="@Model.VendorName" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.VendorPhone" class="textlabel"></label>
+            <input asp-for="@Model.VendorPhone" class="place" />
+            <span asp-validation-for="@Model.VendorPhone" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.VendorAddress" class="textlabel">  </label>
+            <input asp-for="@Model.VendorAddress" class="place" />
+            <span asp-validation-for="@Model.VendorAddress" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.VendorEmail" class="textlabel"> </label>
+            <input asp-for="@Model.VendorEmail" class="place">
+            <span asp-validation-for="@Model.VendorEmail" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.VendorNotes" class="textlabel"> </label>
+            <input asp-for="@Model.VendorNotes" class="place">
+            <span asp-validation-for="@Model.VendorNotes" class="error"></span>
+        </div>
+
+        <div class="button-container">
+            <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
+            <input type="submit" value="اضافه" class="btn btn-secondary" />
+        </div>
+    </form>
+</div>
+
+        <script src="~/js/Inventory/editVendor.js"></script>

@@ -120,7 +120,12 @@ namespace ThothSystemVersion1.Controllers
 
 
         // Sandra section
-
+        [HttpGet]
+        public IActionResult ViewAllVendor()
+        {
+            List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
+            return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
+        }
 
     }
 }

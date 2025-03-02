@@ -99,7 +99,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public List<Vendor> ViewAllVendor()
         {
-            throw new NotImplementedException();
+            List<Vendor> vendorsList = _context.Vendors.ToList();
+            return vendorsList;
         }
     }
 }

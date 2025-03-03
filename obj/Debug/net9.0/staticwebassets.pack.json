@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\css\\Admin\\viewAllEmployee.css"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\addVendor.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\editVendor.css"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
       "PackagePath": "staticwebassets\\css\\SharedViews\\login.css"
     },
@@ -63,6 +71,14 @@
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\viewAllEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\viewAllEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\addVendor.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\editVendor.js"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dTdg6dRmHw5hS5Fz8JjBj5OlthZULvQbv77kGRr2MTY=",
+  "Hash": "ZXUNwHDrjAtL9a3jOIRPLl7CL8bkB7AKwteVRQX40g0=",
   "Source": "ThothSystemVersion1",
   "BasePath": "_content/ThothSystemVersion1",
   "Mode": "Default",
@@ -437,6 +437,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\b6wwng7kjp-wijrfi4bq4.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/editVendor#[.{fingerprint=wijrfi4bq4}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "jezdly9ui3",
+      "Integrity": "ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\bd4urntxde-356vix0kms.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -498,6 +519,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dkqxwr3hwq-t5ytkc9jz9.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/addVendor#[.{fingerprint=t5ytkc9jz9}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "sqvx5am3m6",
+      "Integrity": "DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dsobszn2yn-mrlpezrjn3.gz",
@@ -983,6 +1025,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ofkl3npbhb-pmqynhzuty.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/addVendor#[.{fingerprint=pmqynhzuty}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "8g694vpken",
+      "Integrity": "6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\p2s5b0dzs4-22vffe00uq.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1107,6 +1170,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q86prgy7jv-pmqynhzuty.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/editVendor#[.{fingerprint=pmqynhzuty}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "8g694vpken",
+      "Integrity": "6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\qbsxc6zff3-tslnh0mh01.gz",
@@ -1718,6 +1802,48 @@
       "OriginalItemSpec": "wwwroot\\css\\Admin\\viewAllEmployee.css"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/addVendor#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "t5ytkc9jz9",
+      "Integrity": "MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Inventory\\addVendor.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/editVendor#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wijrfi4bq4",
+      "Integrity": "mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Inventory\\editVendor.css"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1947,6 +2073,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Admin\\viewAllEmployee.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/addVendor#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "pmqynhzuty",
+      "Integrity": "UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\addVendor.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/editVendor#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "pmqynhzuty",
+      "Integrity": "UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\editVendor.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",
@@ -4466,6 +4634,602 @@
       ]
     },
     {
+      "Route": "css/Inventory/addVendor.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dkqxwr3hwq-t5ytkc9jz9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001650165017"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "605"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/addVendor.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/addVendor.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dkqxwr3hwq-t5ytkc9jz9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "605"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/addVendor.t5ytkc9jz9.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dkqxwr3hwq-t5ytkc9jz9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001650165017"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "605"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "t5ytkc9jz9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/addVendor.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/addVendor.t5ytkc9jz9.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "t5ytkc9jz9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/addVendor.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MeYC/oOlmoFkkWuGB8j+NJFxth2Yw4RhqZ/pOG0Fm3c="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/addVendor.t5ytkc9jz9.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\dkqxwr3hwq-t5ytkc9jz9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "605"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "t5ytkc9jz9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/addVendor.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DDRZwD9hriyxxvKNQl/QLFpr4kIJ5MXmmkuwmhKSdUI="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\b6wwng7kjp-wijrfi4bq4.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001587301587"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "629"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2324"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\b6wwng7kjp-wijrfi4bq4.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "629"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.wijrfi4bq4.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\b6wwng7kjp-wijrfi4bq4.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001587301587"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "629"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wijrfi4bq4"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/editVendor.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.wijrfi4bq4.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2324"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wijrfi4bq4"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/editVendor.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mJKmxkCpdPdnYv9qrcB2fnWQKIO8rpj1m27K77x2yKE="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/editVendor.wijrfi4bq4.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\b6wwng7kjp-wijrfi4bq4.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "629"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wijrfi4bq4"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/editVendor.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ewFPUdjb964Hx8vb737nfYjcRuc7wib11sSJNk5RegQ="
+        }
+      ]
+    },
+    {
       "Route": "css/SharedViews/login.css",
       "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q0t8rm8ipr-v8y9x1b963.gz",
       "Selectors": [
@@ -6876,6 +7640,602 @@
         {
           "Name": "integrity",
           "Value": "sha256-3ymeTnGEdF27bAY0FjxqXWOFUvis6kLOiR34dNFr42s="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ofkl3npbhb-pmqynhzuty.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001915708812"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1949"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ofkl3npbhb-pmqynhzuty.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.pmqynhzuty.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ofkl3npbhb-pmqynhzuty.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001915708812"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/addVendor.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.pmqynhzuty.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1949"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/addVendor.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/addVendor.pmqynhzuty.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ofkl3npbhb-pmqynhzuty.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/addVendor.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q86prgy7jv-pmqynhzuty.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001915708812"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1949"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q86prgy7jv-pmqynhzuty.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.pmqynhzuty.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q86prgy7jv-pmqynhzuty.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001915708812"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/editVendor.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.pmqynhzuty.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1949"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/editVendor.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6+0uPX0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/editVendor.pmqynhzuty.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\q86prgy7jv-pmqynhzuty.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 11:49:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pmqynhzuty"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/editVendor.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6HiGBnwmaO0wIVPTxDgHz9vZNlq4MXXkhYa4sDF6jEA="
         }
       ]
     },

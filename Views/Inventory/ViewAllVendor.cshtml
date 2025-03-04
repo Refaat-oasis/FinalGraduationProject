@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+
+@model List<Vendor>
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/ViewAllVendor.css" rel="stylesheet" />
+</head>
+
+<div class="container">
+    <div class="arrow">
+        <a class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
+    <h1>قائمة الموردين</h1>
+    <div class="btn">
+        <a   class="editBtn">اضافة</a>
+    </div>
+
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchVendors()" placeholder="ابحث عن مورد...">
+    </div>
+
+
+    <div class="tableContainer">
+        <table id="vendorTable">
+            @* <thead> *@
+            @*     <tr> *@
+            @*         <th>الإجراءات</th> *@
+            @*         <th>العنوان</th> *@
+            @*         <th>االبريد الالكتروني</th> *@
+            @*         <th>رقم الهاتف </th> *@
+            @*         <th>اسم المورد</th> *@
+            @*     </tr> *@
+            @* </thead> *@
+            <thead>
+                <tr>
+                    <th>الإجراءات</th>
+                    <th>@Html.DisplayNameFor(model => model[0].VendorAddress)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].VendorEmail)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].VendorPhone)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].VendorName)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Vendor vend in Model)
+                {
+                    <tr id="row-@vend.VendorId">
+                        <td>
+
+                            <a asp-controller="Inventory" asp-action="EditVendor" asp-route-vendorID="@vend.VendorId" class="editBtn">تعديل</a>
+
+                        </td>
+                        <td>@vend.VendorAddress</td>
+                        <td>@vend.VendorEmail </td>
+                        <td>@vend.VendorPhone </td>
+                        <td>@vend.VendorName</td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="~/js/Inventory/ViewAllVendor.js">
+
+</script>

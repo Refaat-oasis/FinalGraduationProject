@@ -51,7 +51,7 @@ h1 {
 }
 
 table {
-    width: 60%;
+    width: 70%;
     margin: 20px;
     border-collapse: separate; 
     overflow: hidden;
@@ -134,16 +134,6 @@ table tr:hover {
     }
 
 
-.deleteBtn {
-    padding: 10px 15px;
-    font-size: 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-    text-decoration: none;
-}
 
 .arrow {
     display: flex;

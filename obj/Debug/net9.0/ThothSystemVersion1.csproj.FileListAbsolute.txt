@@ -1870,3 +1870,6 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b6wwng7kjp-wijrfi4bq4.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-pmqynhzuty.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-pmqynhzuty.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\bin\Debug\net9.0\libman.json
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\k7r9zl70qn-49hvrsqvxt.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\rny79bhu3j-m3i9f6419i.gz

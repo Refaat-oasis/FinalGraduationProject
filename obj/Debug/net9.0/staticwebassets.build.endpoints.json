@@ -23655,6 +23655,602 @@
           "Value": "sha256-2u2XFgZyC96dP/elrO5ny/maD/llVl8JsX3pBm2SWT0="
         }
       ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.49hvrsqvxt.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000032331070"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30929"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "49hvrsqvxt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.js"
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.49hvrsqvxt.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160402"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "49hvrsqvxt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.js"
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.49hvrsqvxt.js.gz",
+      "AssetFile": "lib/microsoft-signalr/signalr.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30929"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "49hvrsqvxt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.js.gz"
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000032331070"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30929"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160402"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6EuF7ZQ7IraO4mAyblsT5rUzaDbApiFXRumXSTfKTGQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.js.gz",
+      "AssetFile": "lib/microsoft-signalr/signalr.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30929"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 08:54:24 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xtkOVQE0CYQi3SPdhU0kS/HrN2IgG7vQyROJxmI+7v4="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000072406053"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "47647"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.js.gz",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA="
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.m3i9f6419i.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000072406053"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m3i9f6419i"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.min.js"
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.m3i9f6419i.js",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "47647"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m3i9f6419i"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4opyCjWbN8sBV1jVQ/kIcw7Vu+R42wlQa7aIfxgxNTg="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.min.js"
+        }
+      ]
+    },
+    {
+      "Route": "lib/microsoft-signalr/signalr.min.m3i9f6419i.js.gz",
+      "AssetFile": "lib/microsoft-signalr/signalr.min.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Mar 2025 00:06:20 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m3i9f6419i"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DRAgon3n8l+sLuMUDe4PLOcCepm0zn0T6PQBgXUs7xA="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/microsoft-signalr/signalr.min.js.gz"
+        }
+      ]
     }
   ]
 }

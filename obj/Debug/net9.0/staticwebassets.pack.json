@@ -333,6 +333,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.js",
+      "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.min.js",
+      "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.min.js"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ThothSystemVersion1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

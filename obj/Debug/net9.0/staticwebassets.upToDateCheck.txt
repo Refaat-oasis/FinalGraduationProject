@@ -39,6 +39,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Technical\viewAllJobOrder.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\site.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
@@ -59,6 +60,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Technical\viewAllJobOrder.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
@@ -157,3 +159,5 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\microsoft-signalr\signalr.js
+wwwroot\lib\microsoft-signalr\signalr.min.js

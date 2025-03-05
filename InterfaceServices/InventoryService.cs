@@ -7,7 +7,7 @@ namespace ThothSystemVersion1.InterfaceServices
         // vendor section
         public List<Vendor> ViewAllVendor();
         public void AddVendor(Vendor newVendor);
-        public void EditVendor(int vendorID ,Vendor newVendor);
+        public bool EditVendor(int vendorID ,Vendor newVendor);
 
         // inventory ink section
         public void addInk(Ink newInk);

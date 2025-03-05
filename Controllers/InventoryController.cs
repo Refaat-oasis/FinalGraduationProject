@@ -112,14 +112,34 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditVendor(int vendorID, Vendor vendor) {
-            if (vendor == null) {
-                return BadRequest("invalid data was added");
-                
+        public IActionResult EditVendor(int vendorID, Vendor newvendor) {
+
+            if (newvendor == null)
+            {
+                return BadRequest("Invalid data.");
             }
-            _businessLogicL.EditVendor(vendorID, vendor);
-            return RedirectToAction("ViewAllVendor","Inventory");
-        
+
+            try
+            {
+                bool isEditSuccess = _businessLogicL.EditVendor(vendorID, newvendor); 
+
+
+                if (!isEditSuccess)
+                {
+                    ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف  تم استخدامه من قبل");
+                    return View(newvendor);
+                }
+                return RedirectToAction("ViewAllVendor"); 
+
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);     
+            }
         }
 
 

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ThothSystemVersion1.Models.Paper>
+
+@{
+    ViewData["Title"] = "ViewAllinventory";
+}
+
+<h1>ViewAllinventory</h1>
+
+<!-- Display reorder messages here -->
+<div id="reorderMessages" class="alert alert-warning" style="display:none;"></div>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
+            <th>@Html.DisplayNameFor(model => model.Weight)</th>
+            <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
+            <th>@Html.DisplayNameFor(model => model.Colored)</th>
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
+                <td>@Html.DisplayFor(modelItem => item.Colored)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PaperId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.PaperId" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.PaperId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js" integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+              var hub = new signalR.HubConnectionBuilder()
+            .withUrl("/InventoryReorderPoint")
+            .build();
+
+        hub.start()
+            .then(function () {
+                console.log("SignalR connection established.");
+            })
+            .catch(function (err) {
+                console.error("SignalR connection error: ", err.toString());
+            });
+
+        // Listen for reorder messages
+        hub.on("ReceiveReorderMessage", function (message) {
+            console.log("Received reorder message: ", message);
+            var messageDiv = document.getElementById("reorderMessages");
+            messageDiv.style.display = "block";
+            messageDiv.innerText = message;
+        });
+    </script>
+}

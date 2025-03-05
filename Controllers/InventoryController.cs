@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.BusinessLogicLayers;
+using ThothSystemVersion1.Database;
+using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.Controllers
@@ -9,10 +13,13 @@ namespace ThothSystemVersion1.Controllers
     {
 
         private readonly InventoryBussinesLogicLayer _businessLogicL;
-
-        public InventoryController(InventoryBussinesLogicLayer businessLogicL)
+        private readonly ThothContext _context;
+        private readonly IHubContext<ProductHub> _hubContext;
+        public InventoryController(InventoryBussinesLogicLayer businessLogicL, ThothContext context, IHubContext<ProductHub> hubContext)
         {
             _businessLogicL = businessLogicL;
+            _context = context;
+            _hubContext = hubContext;
         }
 
         // refaat section
@@ -126,6 +133,16 @@ namespace ThothSystemVersion1.Controllers
             List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
             return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
         }
+
+        //trying signal r
+        public async Task<IActionResult> ViewAllinventory()
+        {
+            List<Paper> papersList = _context.Papers.ToList();
+            Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
+            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+            return View(papersList);
+        }
+
 
     }
 }

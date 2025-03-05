@@ -159,7 +159,9 @@ namespace ThothSystemVersion1.Controllers
         {
             List<Paper> papersList = _context.Papers.ToList();
             Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
-            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+            //await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+            await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+
             return View(papersList);
         }
 

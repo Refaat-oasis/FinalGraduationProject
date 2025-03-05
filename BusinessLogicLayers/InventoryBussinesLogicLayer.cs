@@ -71,20 +71,30 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             throw new NotImplementedException();
         }
 
-        public void EditVendor(int vendorID, Vendor newVendor)
+        public bool EditVendor(int vendorID, Vendor newVendor)
         {
-            Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
-            if (foundVendor == null) {
+            try
+            {
 
-                throw new ArgumentException("Vendor not found.");
+                Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
+                if (foundVendor == null)
+                {
+
+                    throw new ArgumentException("Vendor not found.");
+                }
+                foundVendor.VendorName = newVendor.VendorName;
+                foundVendor.VendorEmail = newVendor.VendorEmail;
+                foundVendor.VendorPhone = newVendor.VendorPhone;
+                foundVendor.VendorAddress = newVendor.VendorAddress;
+                foundVendor.VendorNotes = newVendor.VendorNotes;
+                _context.Vendors.Update(foundVendor);
+                _context.SaveChanges();
+                return true;
             }
-            foundVendor.VendorName = newVendor.VendorName;
-            foundVendor.VendorEmail = newVendor.VendorEmail; 
-            foundVendor.VendorPhone = newVendor.VendorPhone;
-            foundVendor.VendorAddress = newVendor.VendorAddress;
-            foundVendor.VendorNotes = newVendor.VendorNotes;
-            _context.Vendors.Update(foundVendor);
-            _context.SaveChanges();
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while updating the vendor.", ex);
+            }
         }
 
         public Vendor GetVendorByID (int vendorID)

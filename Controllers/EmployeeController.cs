@@ -20,9 +20,9 @@ namespace ThothSystemVersion1.Controllers
             Employee loggedEmployee = context.Employees.FirstOrDefault(
                 e =>e.EmployeeUserName == EmployeeUserName && e.EmployeePassword == EmployeePassword);
 
-            if (loggedEmployee != null)
+            if (loggedEmployee.Activated)
             {
-                if (loggedEmployee.Activated)
+                if (loggedEmployee != null)
                 {
                     HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
                     HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName.ToString());

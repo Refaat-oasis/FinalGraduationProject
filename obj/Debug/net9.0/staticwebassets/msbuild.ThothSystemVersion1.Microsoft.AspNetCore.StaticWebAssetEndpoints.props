@@ -228,18 +228,6 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"pmqynhzuty"},{"Name":"integrity","Value":"sha256-UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6\u002B0uPX0="},{"Name":"label","Value":"_content/ThothSystemVersion1/js/Inventory/editVendor.js"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1949"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022UcaqUp59rtR8erHgO8tUeDj0spXYGyBTWaDO6\u002B0uPX0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 02 Mar 2025 11:49:40 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/ViewALLInventory.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\ViewALLInventory.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-f\u002Bwn6vw12Z4k/1R03S9Q/sIor\u002BpBAA/PqLa243gMcJA="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1880"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022f\u002Bwn6vw12Z4k/1R03S9Q/sIor\u002BpBAA/PqLa243gMcJA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 00:52:35 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/ViewALLInventory.z3rty339ap.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\ViewALLInventory.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"z3rty339ap"},{"Name":"integrity","Value":"sha256-f\u002Bwn6vw12Z4k/1R03S9Q/sIor\u002BpBAA/PqLa243gMcJA="},{"Name":"label","Value":"_content/ThothSystemVersion1/js/Inventory/ViewALLInventory.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1880"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022f\u002Bwn6vw12Z4k/1R03S9Q/sIor\u002BpBAA/PqLa243gMcJA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 00:52:35 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/SharedViews/loginEmployee.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\SharedViews\loginEmployee.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

@@ -73,6 +73,10 @@
       "PackagePath": "staticwebassets\\js\\Admin\\viewAllEmployee.js"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewALLInventory.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\ViewALLInventory.js"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\addVendor.js"
     },

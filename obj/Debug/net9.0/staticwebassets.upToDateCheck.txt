@@ -14,6 +14,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewALLInventory.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -96,6 +97,7 @@ wwwroot\js\Admin\editEmployee.js
 wwwroot\js\Admin\viewAllEmployee.js
 wwwroot\js\Inventory\addVendor.js
 wwwroot\js\Inventory\editVendor.js
+wwwroot\js\Inventory\ViewALLInventory.js
 wwwroot\js\SharedViews\loginEmployee.js
 wwwroot\js\site.js
 wwwroot\js\Technical\viewAllJobOrder.js

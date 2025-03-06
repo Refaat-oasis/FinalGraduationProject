@@ -159,7 +159,54 @@ namespace ThothSystemVersion1.Controllers
 
 
         // Sherwet section
+        [HttpGet]
+        public IActionResult AddVendor()
+        {
+            try
+            {
+                VendorDTO empty = new VendorDTO();
+                return View("~/Views/Inventory/AddVendor.cshtml", empty);
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, ex.Message); // Internal server error
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
+
+        [HttpPost]
+        public IActionResult AddVendor(VendorDTO vendor)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/AddVendor.cshtml");
+                }
+
+                bool isVendorAdded = _businessLogicL.AddVendor(vendor);
+
+                if (!isVendorAdded)
+                {
+                    ModelState.AddModelError("", "الايميل او رقم الهاتف تم استخدامه من قبل");
+                    return View(vendor);
+                }
+
+                return RedirectToAction("ViewAllVendor", "inventory");
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); // Internal server error
+            }
+        }
 
         // Sandra section
         [HttpGet]

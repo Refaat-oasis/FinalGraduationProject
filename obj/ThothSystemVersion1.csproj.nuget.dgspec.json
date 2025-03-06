@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
+    "C:\\Users\\Compu Market\\Desktop\\Graduation Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
   },
   "projects": {
-    "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
+    "C:\\Users\\Compu Market\\Desktop\\Graduation Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "projectUniqueName": "C:\\Users\\Compu Market\\Desktop\\Graduation Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
         "projectName": "ThothSystemVersion1",
-        "projectPath": "D:\\GRAD PROJECT\\FinalGraduationProject\\ThothSystemVersion1.csproj",
-        "packagesPath": "C:\\Users\\mariam\\.nuget\\packages\\",
-        "outputPath": "D:\\GRAD PROJECT\\FinalGraduationProject\\obj\\",
+        "projectPath": "C:\\Users\\Compu Market\\Desktop\\Graduation Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "packagesPath": "C:\\Users\\Compu Market\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Compu Market\\Desktop\\Graduation Project\\FinalGraduationProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\mariam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Compu Market\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,10 +50,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[14.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",

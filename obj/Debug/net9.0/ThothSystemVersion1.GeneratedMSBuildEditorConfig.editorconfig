@@ -60,8 +60,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GRAD PROJECT/FinalGraduationProject/Views/Inventory/ViewAllinventory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxpbnZlbnRvcnkuY3NodG1s
+[D:/GRAD PROJECT/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxJbmsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GRAD PROJECT/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxQYXBlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GRAD PROJECT/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GRAD PROJECT/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Hubs;
-using ThothSystemVersion1.MappingProfiles;
 
 namespace ThothSystemVersion1
 {
@@ -21,7 +20,6 @@ namespace ThothSystemVersion1
             builder.Services.AddScoped<InventoryBussinesLogicLayer>();
             builder.Services.AddScoped<TechnicalBusinessLogicLayer>();
 
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             builder.Services.AddDbContext<ThothContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

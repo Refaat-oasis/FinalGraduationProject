@@ -150,10 +150,5 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint");
             return supplyList;
         }
-
-        public bool EditVendor(int vendorID, Vendor newVendor)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

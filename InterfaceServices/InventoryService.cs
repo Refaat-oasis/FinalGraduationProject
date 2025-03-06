@@ -1,4 +1,5 @@
-﻿using ThothSystemVersion1.Models;
+﻿using ThothSystemVersion1.DataTransfereObject;
+using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.InterfaceServices
 {
@@ -6,8 +7,11 @@ namespace ThothSystemVersion1.InterfaceServices
     {
         // vendor section
         public List<Vendor> ViewAllVendor();
+         public Task <List<Paper>> ViewAllPaper();
+         public Task <List<Ink>> ViewAllInk();
+         public Task<List<Supply>> ViewAllSupply();
         public void AddVendor(Vendor newVendor);
-        public bool EditVendor(int vendorID ,Vendor newVendor);
+        public bool EditVendor(int vendorID ,VendorDTO newVendor);
 
         // inventory ink section
         public void addInk(Ink newInk);

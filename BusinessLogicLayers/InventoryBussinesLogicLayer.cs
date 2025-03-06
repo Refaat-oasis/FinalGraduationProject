@@ -1,4 +1,7 @@
-﻿using ThothSystemVersion1.Database;
+﻿using Microsoft.AspNetCore.SignalR;
+using ThothSystemVersion1.Database;
+using ThothSystemVersion1.DataTransfereObject;
+using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
 
@@ -7,10 +10,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
     public class InventoryBussinesLogicLayer : InventoryService
     {
         private readonly ThothContext _context;
+        private readonly IHubContext<ProductHub> _hubContext;
 
-        public InventoryBussinesLogicLayer(ThothContext context)
+
+        public InventoryBussinesLogicLayer(ThothContext context, IHubContext<ProductHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
+
         }
 
         public void addInk(Ink newInk)
@@ -71,12 +78,19 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             throw new NotImplementedException();
         }
 
-        public bool EditVendor(int vendorID, Vendor newVendor)
+        public bool EditVendor(int vendorID, VendorDTO newVendor)
         {
             try
             {
 
                 Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
+                Vendor foundVandorEmail = _context.Vendors.Find(foundVendor.VendorEmail);
+                Vendor foundVendorPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
+
+                if (foundVandorEmail != null & foundVendorPhone != null)
+                {
+                    return false;
+                }
                 if (foundVendor == null)
                 {
 
@@ -111,6 +125,30 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             List<Vendor> vendorsList = _context.Vendors.ToList();
             return vendorsList;
+        }
+
+        public async Task<List<Ink>> ViewAllInk()
+        {
+            List<Ink> inkList = _context.Inks.ToList();
+            Console.WriteLine("Calling CheckInkReorderPoint on the hub...");
+           await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint");
+            return inkList;
+        }
+
+        public async Task<List<Paper>> ViewAllPaper()
+        {
+            List<Paper> papersList = _context.Papers.ToList();
+            Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
+            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+            return papersList;
+        }
+
+       public async Task<List<Supply>> ViewAllSupply()
+        {
+            List<Supply> supplyList = _context.Supplies.ToList();
+            Console.WriteLine("Calling ChecksupplyReorderPoint on the hub...");
+            await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint");
+            return supplyList;
         }
     }
 }

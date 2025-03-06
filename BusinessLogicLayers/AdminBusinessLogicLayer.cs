@@ -29,12 +29,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
             Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
 
-            if (foundEmployeeById != null || foundEmployeeByUsername != null)
+            if (foundEmployeeById != null & foundEmployeeByUsername != null)
             {
                 // Employee with the same ID or username already exists
                 return false;
             }
-
             if (employee == null)
             {
                 throw new ArgumentNullException(nameof(employee));

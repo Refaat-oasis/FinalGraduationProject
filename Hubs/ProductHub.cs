@@ -36,6 +36,7 @@ namespace ThothSystemVersion1.Hubs
                 if (ink.Quantity < ink.ReorderPoint)
                 {
                     await Clients.All.SendAsync("ReceiveReorderMessage", $"Reorder point reached for ink: {ink.Name}");
+
                 }
             }
         }

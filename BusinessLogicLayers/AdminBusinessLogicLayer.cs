@@ -71,12 +71,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool EditEmployee(string id, Employee updatedEmployee)
+        public bool EditEmployee(string id, EmployeeDTO updatedEmployee)
         {
             try
             {
                 Employee existingEmployee = _context.Employees.Find(id); // Find the employee by ID
-                //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                                                                         //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
                 if (existingEmployee == null)
                 {
                     throw new ArgumentException("Employee not found."); // Employee not found
@@ -87,7 +87,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 //}
 
                 // Update properties
-                existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                //existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
                 existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
                 existingEmployee.EmployeePassword = updatedEmployee.EmployeePassword;
                 existingEmployee.Activated = updatedEmployee.Activated;
@@ -101,7 +101,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException("An error occurred while updating the employee.", ex);
             }
         }
-        
+
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
@@ -12,13 +12,13 @@ namespace ThothSystemVersion1.Controllers
     public class AdminController : Controller
     {
         private readonly AdminBusinessLogicLayer _businessLogicL;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
 
         //ThothContext Context = new ThothContext();
 
-        public AdminController(IMapper mapper, AdminBusinessLogicLayer businessLogicL)
+        public AdminController( AdminBusinessLogicLayer businessLogicL)
         {
-            _mapper = mapper;
+            //_mapper = mapper;
             _businessLogicL = businessLogicL;
         }
 
@@ -84,7 +84,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditEmployee(string id, Employee updatedEmployee)
+        public IActionResult EditEmployee(string id, EmployeeDTO updatedEmployee)
         {
             if (updatedEmployee == null)
             {
@@ -94,9 +94,10 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 bool isEditSuccess = _businessLogicL.EditEmployee(id, updatedEmployee); // Update the employee
-               
 
-                if (!isEditSuccess) {
+
+                if (!isEditSuccess)
+                {
                     ModelState.AddModelError("", "اسم المستخدم او الرقم القومي تم استخدامه من قبل");
                     return View(updatedEmployee);
                 }
@@ -112,6 +113,6 @@ namespace ThothSystemVersion1.Controllers
                 return StatusCode(500, ex.Message); // Internal server error
             }
         }
-       
+
     }
 }

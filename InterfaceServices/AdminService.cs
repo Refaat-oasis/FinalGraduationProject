@@ -10,7 +10,7 @@ namespace ThothSystemVersion1.InterfaceServices
         public bool AddEmployee(EmployeeDTO emp);
         public Employee GetEmployeeById(string id);
         public List<Employee> ViewAllEmployee();
-        public bool EditEmployee(String id,Employee emp);
+        public bool EditEmployee(String id,EmployeeDTO emp);
 
     }
 }

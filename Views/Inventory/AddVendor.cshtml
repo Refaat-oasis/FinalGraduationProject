@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@model Vendor;
+@model ThothSystemVersion1.DataTransfereObject.VendorDTO;
 
 <head>
 
@@ -12,7 +12,9 @@
 
 <div class="form-container">
     <h1>تعديل المورد :: @Model.VendorName </h1>
-    <form asp-controller="vendor" asp-action="Editvendor" name="form1" method="post" enctype="multipart/form-data" class="Vendor-form">
+    <form asp-controller="inventory" asp-action="addvendor" name="form1" method="post" enctype="multipart/form-data" class="Vendor-form">
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
 
         <div class="input-control">
             <label asp-for="@Model.VendorName" class="textlabel"> </label>

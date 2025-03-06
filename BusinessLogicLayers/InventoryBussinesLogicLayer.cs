@@ -58,9 +58,43 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public void AddVendor(Vendor newVendor)
+        public bool AddVendor(VendorDTO newVendor)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Vendor foundVendorByPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
+                //Vendor foundVendorByName = _context.Vendors.FirstOrDefault(v => v.VendorName == newVendor.VendorName);
+                Vendor foundVendorByEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
+                if (foundVendorByEmail != null || foundVendorByPhone != null)
+                {
+
+                    return false;
+                }
+
+                if (newVendor == null)
+                {
+                    throw new ArgumentNullException(nameof(newVendor));
+                }
+
+                Vendor addedVendor = new Vendor();
+
+                addedVendor.VendorName = newVendor.VendorName;
+                addedVendor.VendorEmail = newVendor.VendorEmail;
+                addedVendor.VendorPhone = newVendor.VendorPhone;
+                addedVendor.VendorNotes = newVendor.VendorNotes;
+                addedVendor.VendorAddress = newVendor.VendorAddress;
+
+
+                _context.Vendors.Add(addedVendor);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while adding the vendor.", ex);
+            }
         }
 
         public void EditInk(int inkID, Ink newInk)

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.Models;
 
@@ -13,13 +14,13 @@ namespace ThothSystemVersion1.Controllers
     {
 
         private readonly InventoryBussinesLogicLayer _businessLogicL;
-        private readonly ThothContext _context;
-        private readonly IHubContext<ProductHub> _hubContext;
-        public InventoryController(InventoryBussinesLogicLayer businessLogicL, ThothContext context, IHubContext<ProductHub> hubContext)
+        //private readonly ThothContext _context;
+        //private readonly IHubContext<ProductHub> _hubContext;
+        public InventoryController(InventoryBussinesLogicLayer businessLogicL)
         {
             _businessLogicL = businessLogicL;
-            _context = context;
-            _hubContext = hubContext;
+            //_context = context;
+            //_hubContext = hubContext;
         }
 
         // refaat section
@@ -112,34 +113,48 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditVendor(int vendorID, Vendor newvendor) {
-
-            if (newvendor == null)
+        public IActionResult EditVendor(int vendorID, VendorDTO newvendor) {
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid data.");
+                return View("~/Views/Inventory/EditVendor.cshtml");
             }
 
-            try
+            bool isVendorEdited = _businessLogicL.EditVendor(vendorID, newvendor);
+
+            if (!isVendorEdited)
             {
-                bool isEditSuccess = _businessLogicL.EditVendor(vendorID, newvendor); 
+                ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
+                return View(newvendor);
+            }
+
+            return RedirectToAction("ViewAllVendor", "Inventory");
+
+            //if (newvendor == null)
+            //{
+            //    return BadRequest("Invalid data.");
+            //}
+
+            //try
+            //{
+            //    bool isEditSuccess = _businessLogicL.EditVendor(vendorID, newvendor); 
 
 
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف  تم استخدامه من قبل");
-                    return View(newvendor);
-                }
-                return RedirectToAction("ViewAllVendor"); 
+            //    if (!isEditSuccess)
+            //    {
+            //        ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف  تم استخدامه من قبل");
+            //        return View(newvendor);
+            //    }
+            //    return RedirectToAction("ViewAllVendor"); 
 
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message); 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);     
-            }
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    return NotFound(ex.Message); 
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, ex.Message);     
+            //}
         }
 
 
@@ -155,14 +170,32 @@ namespace ThothSystemVersion1.Controllers
         }
 
         //trying signal r
-        public async Task<IActionResult> ViewAllinventory()
-        {
-            List<Paper> papersList = _context.Papers.ToList();
-            Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
-            //await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
-            await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+        //public async Task<IActionResult> ViewAllinventory()
+        //{
+        //    List<Paper> papersList = _context.Papers.ToList();
+        //    Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
+        //    await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+        //    return View(papersList);
+        //}
 
-            return View(papersList);
+        public async Task <IActionResult> ViewAllInk()
+        {
+            List<Ink> inkList = await _businessLogicL.ViewAllInk();
+  
+            return View(inkList);
+        }
+        public async Task<IActionResult> ViewAllPaper()
+        {
+            List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+
+            return View(paperList);
+        }
+
+        public async Task<IActionResult> ViewAllSupply()
+        {
+            List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
+
+            return View(suppplyList);
         }
 
 

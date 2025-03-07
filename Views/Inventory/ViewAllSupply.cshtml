@@ -41,29 +41,29 @@
     </tbody>
 </table>
 
+
+
 @section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js" integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+            integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
     <script>
-              var hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint")
+        var hub = new signalR.HubConnectionBuilder()
+            .withUrl("/InventoryReorderPoint") // Match the hub endpoint
             .build();
 
         hub.start()
-            .then(function () {
-                console.log("SignalR connection established.");
-            })
-            .catch(function (err) {
-                console.error("SignalR connection error: ", err.toString());
-            });
+            .then(() => console.log("SignalR connection established."))
+            .catch(err => console.error("SignalR error: ", err));
 
         // Listen for reorder messages
-                      hub.on("CheckInkReorderPoint", function (message) {
-            console.log("Received reorder message: ", message);
-            var messageDiv = document.getElementById("reorderMessages");
+        hub.on("ReceiveReorderMessageSupply", (message) => {
+            console.log("Received message: ", message);
+            const messageDiv = document.getElementById("reorderMessages");
             messageDiv.style.display = "block";
-            messageDiv.innerText = message;
+            messageDiv.innerHTML += `<div>${message}</div>`;
         });
-
-
     </script>
 }

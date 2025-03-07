@@ -14,13 +14,12 @@ namespace ThothSystemVersion1.Controllers
     {
 
         private readonly InventoryBussinesLogicLayer _businessLogicL;
-        //private readonly ThothContext _context;
-        //private readonly IHubContext<ProductHub> _hubContext;
-        public InventoryController(InventoryBussinesLogicLayer businessLogicL)
+  
+        private readonly IHubContext<ProductHub> _hubContext;
+        public InventoryController(InventoryBussinesLogicLayer businessLogicL , IHubContext<ProductHub> hubContext)
         {
             _businessLogicL = businessLogicL;
-            //_context = context;
-            //_hubContext = hubContext;
+            _hubContext = hubContext;
         }
 
         // refaat section
@@ -216,32 +215,24 @@ namespace ThothSystemVersion1.Controllers
             return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
         }
 
-        //trying signal r
-        //public async Task<IActionResult> ViewAllinventory()
-        //{
-        //    List<Paper> papersList = _context.Papers.ToList();
-        //    Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
-        //    await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
-        //    return View(papersList);
-        //}
 
         public async Task <IActionResult> ViewAllInk()
         {
             List<Ink> inkList = await _businessLogicL.ViewAllInk();
-  
+            await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint");
             return View(inkList);
         }
         public async Task<IActionResult> ViewAllPaper()
         {
             List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-
+            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
             return View(paperList);
         }
 
         public async Task<IActionResult> ViewAllSupply()
         {
             List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
-
+            await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint");
             return View(suppplyList);
         }
 

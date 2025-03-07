@@ -13,8 +13,15 @@ namespace ThothSystemVersion1.Hubs
         {
             _context = context;
         }
+        public override async Task OnConnectedAsync()
+        {
+            // Check reorder points when a client connects
+            await CheckPaperReorderPoint();
+            await CheckInkReorderPoint();
+            await CheckSupplyReorderPoint();
+            await base.OnConnectedAsync();
+        }
 
-        // Method to check reorder point for Paper
         public async Task CheckPaperReorderPoint()
         {
             var papers = _context.Papers.ToList();
@@ -22,10 +29,14 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (paper.Quantity < paper.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessage", $"Reorder point reached for paper: {paper.Name}");
+                    await Clients.All.SendAsync(
+                        "ReceiveReorderMessagePaper",
+                        $"Reorder point reached for paper: {paper.Name}"
+                    );
                 }
             }
         }
+
 
         // Method to check reorder point for Ink
         public async Task CheckInkReorderPoint()
@@ -35,7 +46,7 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (ink.Quantity < ink.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessage", $"Reorder point reached for ink: {ink.Name}");
+                    await Clients.All.SendAsync("CheckInkReorderPointInk", $"Reorder point reached for ink: {ink.Name}");
                 }
             }
         }
@@ -48,7 +59,7 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (supply.Quantity < supply.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessage", $"Reorder point reached for supply: {supply.Name}");
+                    await Clients.All.SendAsync("ReceiveReorderMessageSupply", $"Reorder point reached for supply: {supply.Name}");
                 }
             }
         }

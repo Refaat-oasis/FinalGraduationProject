@@ -1,4 +1,5 @@
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\adminHome.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
@@ -6,6 +7,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newInk.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
@@ -18,16 +20,20 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\editVendor.css
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newInk.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewAllVendor.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newsupply.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\addVendor.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\ViewAllVendor.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newPaper.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\editEmployee.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
@@ -51,6 +57,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newPaper.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\SharedViews\login.css
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\addEmployee.js
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
@@ -85,6 +92,9 @@ wwwroot\css\Admin\editEmployee.css
 wwwroot\css\Admin\viewAllEmployee.css
 wwwroot\css\Inventory\addVendor.css
 wwwroot\css\Inventory\editVendor.css
+wwwroot\css\Inventory\newInk.css
+wwwroot\css\Inventory\newPaper.css
+wwwroot\css\Inventory\newSupply.css
 wwwroot\css\Inventory\ViewAllVendor.css
 wwwroot\css\SharedViews\login.css
 wwwroot\css\site.css
@@ -95,10 +105,14 @@ wwwroot\image\background.jpeg
 wwwroot\image\egyptian-wall-with-hieroglyphs - Copy.jpg
 wwwroot\image\eye.jpg
 wwwroot\js\Admin\addEmployee.js
+wwwroot\js\Admin\adminHome.js
 wwwroot\js\Admin\editEmployee.js
 wwwroot\js\Admin\viewAllEmployee.js
 wwwroot\js\Inventory\addVendor.js
 wwwroot\js\Inventory\editVendor.js
+wwwroot\js\Inventory\newInk.js
+wwwroot\js\Inventory\newPaper.js
+wwwroot\js\Inventory\newsupply.js
 wwwroot\js\Inventory\ViewAllVendor.js
 wwwroot\js\SharedViews\loginEmployee.js
 wwwroot\js\site.js

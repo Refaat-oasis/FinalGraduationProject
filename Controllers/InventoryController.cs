@@ -25,7 +25,7 @@ namespace ThothSystemVersion1.Controllers
         // refaat section
         [HttpGet]
         public IActionResult NewPaper() { 
-            return View();
+            return View( new Paper());
         }
         [HttpPost]
         public IActionResult NewPaper(Paper newPaper) {
@@ -33,7 +33,7 @@ namespace ThothSystemVersion1.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return View("");
+                    return View("newpaper",NewPaper());
 
                 }
                 else {
@@ -50,8 +50,9 @@ namespace ThothSystemVersion1.Controllers
         
         [HttpGet]
         public IActionResult NewInk() { 
-            return View();
+            return View(new Ink());
         }
+
         [HttpPost]
         public IActionResult NewInk(Ink newInk) {
             try
@@ -74,8 +75,9 @@ namespace ThothSystemVersion1.Controllers
 
         [HttpGet]
         public IActionResult NewSupply() {
-             return View();
+             return View(new Supply());
         }
+
         [HttpPost]
         public IActionResult NewSupply(Supply newSupply) {
 

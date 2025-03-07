@@ -1,4 +1,6 @@
-﻿
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
+
 body {
     background: url("/image/egyptian-wall-with-hieroglyphs - Copy.jpg");
     background-repeat: no-repeat;
@@ -8,11 +10,16 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* to hide the footer*/
+    overflow: hidden;
 }
 
 header {
-    display: none
+    display: none;
+}
+
+
+footer {
+    display: none;
 }
 
 .text {
@@ -29,17 +36,47 @@ header {
 }
 
 
-    /* .hieroglyph { */
-    /*     font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; */
-    /*     font-size: 32px; */
-    /*     color: #fff */
-    /* } */
+.hieroglyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: bolder;
+}
 
-    #navbar h1 {
-        position: absolute;
-        font-size: 20px;
-        font-weight: bold;
+#navbar .hieroglyph {
+    position: absolute;
+    right: -100px; /* make the element out of the page */
+    opacity: 0; /* make it hidden */
+    /*    font-size: 20px;*/
+    /*    font-weight: bold;*/
+    animation: moveRight 4s forwards; /* name and duration */
+}
+
+@keyframes moveRight {
+    0% {
+        right: -100px;
+        opacity: 0;
     }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        right: 6%;
+        opacity: 1;
+        transform: translateX(-50%);
+    }
+}
+
+
+#navbar img {
+    width: 80px;
+}
+
+.text {
+    color: #fff;
+}
 
 .registeration {
     display: flex;
@@ -66,7 +103,7 @@ header {
         width: 100%;
         height: 45px;
         margin: 10px;
-        border: 2px solid white;
+        border: 2px solid white !important;
         border-radius: 40px;
         outline: none;
         font-size: 16px;
@@ -77,9 +114,19 @@ header {
     }
 
 .inputBox input {
-    background: transparent;
+    background-color: transparent !important;
     color: white;
 }
+
+    .inputBox input:-webkit-autofill,
+    .inputBox input:-webkit-autofill:hover,
+    .inputBox input:-webkit-autofill:focus,
+    .inputBox input:-webkit-autofill:active {
+        background-color: transparent !important;
+        -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+        -webkit-text-fill-color: white !important;
+        transition: background-color 5000s ease-in-out 0s !important;
+    }
 
     .inputBox input::placeholder {
         color: #ffffff;

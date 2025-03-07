@@ -1,4 +1,4 @@
-﻿@model Employee;
+@model Employee;
 
 <style>
 
@@ -19,60 +19,54 @@
     <link href="~/css/Admin/adminHome.css" rel="stylesheet" />
 </head>
 
-@* <header> *@
-@*     <div id="navbar"> *@
-@*         @*<h1>THOTH</h1>*@ 
-@*         <h1 class="hieroglyph">𓅝𓏏𓎛</h1> *@
-@*         <img src="./photos/eye.jpg" alt="logo"> *@
-@*     </div> *@
-
-@* </header> *@
-
 <div class="sidebar">
-    <table>
-        <tr>
-            <th>الصفحات</th>
-        </tr>
-        <tr>
-            <td><a asp-controller="Admin" asp-action="AdminHome">الصفحة الرئيسية</a></td>
-        </tr>
-        <tr>
-            <td><a asp-controller="Admin" asp-action="ViewAllEmployee">عرض جميع الموظفين</a></td>
-        </tr>
-        <tr>
-            <td><a asp-controller="Admin" asp-action="AddEmployee">إضافة موظف جديد</a></td>
-        </tr>
-        <tr>
-            <td><a asp-controller="Technical" asp-action="ViewAllJobOrder">عرض جميع الطلبيات</a></td>
-        </tr>
-    </table>
+    <ul class="dropdown">
+        <li onclick="toggleDropdown(this)">
+            إدارة المطبعة
+            <ul>
+                <li><a asp-controller="Admin" asp-action="AdminHome">الصفحة الرئيسية</a></li>
+                <li><a asp-controller="Admin" asp-action="ViewAllEmployee">عرض جميع الموظفين</a></li>
+                <li><a asp-controller="Admin" asp-action="AddEmployee">إضافة موظف جديد</a></li>
+                <li><a asp-controller="Technical" asp-action="ViewAllJobOrder">عرض جميع الطلبيات</a></li>
+            </ul>
+        </li>
+
+        <li onclick="toggleDropdown(this)">
+            المخازن
+            <ul>
+               
+                <li><a asp-controller="Inventory" asp-action="NewPaper">إضافة صنف ورق جديد</a></li>
+                <li><a asp-controller="Inventory" asp-action="NewInk">إضافة حبر جديد</a></li>
+                <li><a asp-controller="Inventory" asp-action="NewSupply">إضافة مستلزمات جديده</a></li>
+
+                <li><a asp-controller="Inventory" asp-action="ViewAllInventory">عرض جميع المخزون</a></li>
+                <li><a asp-controller="Inventory" asp-action="EditInventory">تعديل المخزون </a></li>
+
+                <li><a asp-controller="Inventory" asp-action="ViewAllVendor">عرض جميع الموردين</a></li>
+                <li><a asp-controller="Inventory" asp-action="AddVendor">إضافة مورد جديد</a></li>
+
+                <li><a asp-controller="Inventory" asp-action="PurchasePaper">شراء صنف ورق</a></li>
+                <li><a asp-controller="Inventory" asp-action="PurchaseInk">شراء حبر</a></li>
+                <li><a asp-controller="Inventory" asp-action="PurchaseSuuply">شراء مستلزمات </a></li>
+
+                <li><a asp-controller="Inventory" asp-action="Reorder"> المرتجعات </a></li>
+            </ul>
+        </li>
+
+        <li onclick="toggleDropdown(this)">
+            التكاليف
+            <ul>
+                <li><a asp-controller="Cost" asp-action="CalculateJobCost">حساب تكلفة طلب</a></li>
+                <li><a asp-controller="Cost" asp-action="ViewReports">عرض التقارير المالية</a></li>
+                <li><a asp-controller="Cost" asp-action="ExpenseTracking">متابعة المصروفات</a></li>
+            </ul>
+        </li>               
+    </ul>
+
+    <div class="button">
+        <a asp-controller="Employee" asp-action="LoginPage" class="btnBack">رجوع</a>
+    </div>
 </div>
-
-
-
-
-@* <div class="sidebar"> *@
-@*     <table> *@
-@*         <tr> *@
-@*             <th>الصفحات</th> *@
-@*         </tr> *@
-@*         <tr> *@
-@*             <td><a href="/Admin/AdminHome">الصفحة الرئيسية</a></td> *@
-@*         </tr> *@
-@*         <tr> *@
-@*             <td><a href="/Admin/ViewAllEmployee">عرض جميع الموظفين</a></td> *@
-@*         </tr> *@
-@*         <tr> *@
-@*             <td><a href="/Admin/AddEmployee">إضافة موظف جديد</a></td> *@
-@*         </tr> *@
-@*         <tr> *@
-@*             <td><a href="/Admin/EditEmployee">تعديل قائمه الموظفين</a></td> *@
-@*         </tr> *@
-@*         <tr> *@
-@*             <td><a href="/Admin/ViewAllJobOrder">عرض جميع الطلبيات</a></td> *@
-@*         </tr> *@
-@*     </table> *@
-@* </div> *@
 
 
 <div class="container">
@@ -81,3 +75,4 @@
     <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
 </div>
 
+<script src="~/js/Admin/adminHome.js"></script>

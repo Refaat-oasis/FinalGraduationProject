@@ -33,6 +33,18 @@
       "PackagePath": "staticwebassets\\css\\Inventory\\editVendor.css"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newInk.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\newInk.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newPaper.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\newPaper.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newSupply.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\newSupply.css"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
       "PackagePath": "staticwebassets\\css\\SharedViews\\login.css"
     },
@@ -69,6 +81,10 @@
       "PackagePath": "staticwebassets\\js\\Admin\\addEmployee.js"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\adminHome.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\adminHome.js"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\editEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\editEmployee.js"
     },
@@ -87,6 +103,18 @@
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\editVendor.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newInk.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\newInk.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newPaper.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\newPaper.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newsupply.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\newsupply.js"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",

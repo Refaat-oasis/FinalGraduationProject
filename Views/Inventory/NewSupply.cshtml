@@ -1,0 +1,66 @@
+@{
+    Layout = null;
+}
+
+
+@model Supply;
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Inventory/newSupply.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+
+<div class="container">
+    <div class="arrow">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
+    <form asp-action="NewSupply" id="myform" enctype="multipart/form-data" method="post">
+        <div class="text">
+            <h1>إضافة مستلزمات جديده</h1>
+        </div>
+
+        <div class="inputBox">
+            <label for="supplyName">اسم المستلزم</label>
+            <input type="text" asp-for="@Model.Name" id="supplyName" />
+            <p asp-validation-for="@Model.Name" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Quantity">كميه المستلزم</label>
+            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <p asp-validation-for="@Model.Quantity" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Price">سعر المستلزم</label>
+            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <p asp-validation-for="@Model.Price" class="error"></p>
+        </div>
+
+        <div class="buttons">
+            <div class="Add">
+                <input type="submit" value="تأكيد الإضافة " class="Add" />
+            </div>
+
+            <div class="reset">
+                <input type="reset" value="إعادة إدخال" class="btnReset" />
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="~/js/Inventory/newsupply.js"></script>

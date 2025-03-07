@@ -1,4 +1,4 @@
-﻿//using AutoMapper;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
@@ -12,13 +12,10 @@ namespace ThothSystemVersion1.Controllers
     public class AdminController : Controller
     {
         private readonly AdminBusinessLogicLayer _businessLogicL;
-        //private readonly IMapper _mapper;
-
-        //ThothContext Context = new ThothContext();
 
         public AdminController( AdminBusinessLogicLayer businessLogicL)
         {
-            //_mapper = mapper;
+
             _businessLogicL = businessLogicL;
         }
 
@@ -42,7 +39,6 @@ namespace ThothSystemVersion1.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // return RedirectToAction("addemployee", "admin", employee);
                 return View("~/Views/Admin/AddEmployee.cshtml");
             }
 

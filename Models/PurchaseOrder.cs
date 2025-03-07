@@ -8,12 +8,16 @@ public partial class PurchaseOrder
 {
     [Display(Name = "الرقم التعريفي لامر الشراء")]
     public int PurchaseId { get; set; }
+    
     [Display(Name = "تاريخ الشراء")]
     public DateOnly? PurchaseDate { get; set; }
+    
     [Display(Name = "الرقم القومي للموظف")]
     public string EmployeeId { get; set; } = null!;
+    
     [Display(Name = "الرقم التعريفي للتاجر")]
     public int VendorId { get; set; }
+    
     [Display(Name = "ملاحظات عن شراء البضاعة")]
     public string? PurchaseNotes { get; set; }
 

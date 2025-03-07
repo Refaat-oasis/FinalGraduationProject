@@ -1620,7 +1620,6 @@ C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ThothSys
 C:\Users\shahd\Desktop\project5\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Grad Project\FinalGraduationProject\bin\Debug\net9.0\AutoMapper.dll
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\bin\Debug\net9.0\appsettings.json
 C:\Users\shahd\Desktop\project 10\FinalGraduationProject\bin\Debug\net9.0\ThothSystemVersion1.staticwebassets.runtime.json

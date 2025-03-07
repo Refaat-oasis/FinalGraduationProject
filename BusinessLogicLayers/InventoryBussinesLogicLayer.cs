@@ -164,24 +164,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         public async Task<List<Ink>> ViewAllInk()
         {
             List<Ink> inkList = _context.Inks.ToList();
-            Console.WriteLine("Calling CheckInkReorderPoint on the hub...");
-           await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint");
+
             return inkList;
         }
+
+
 
         public async Task<List<Paper>> ViewAllPaper()
         {
             List<Paper> papersList = _context.Papers.ToList();
-            Console.WriteLine("Calling CheckPaperReorderPoint on the hub...");
-            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+
             return papersList;
         }
 
-       public async Task<List<Supply>> ViewAllSupply()
+        public async Task<List<Supply>> ViewAllSupply()
         {
             List<Supply> supplyList = _context.Supplies.ToList();
-            Console.WriteLine("Calling ChecksupplyReorderPoint on the hub...");
-            await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint");
+           
             return supplyList;
         }
     }

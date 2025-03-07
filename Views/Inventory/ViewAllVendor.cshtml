@@ -19,7 +19,7 @@
 
     <h1>قائمة الموردين</h1>
     <div class="btn">
-        <a   class="editBtn">اضافة</a>
+        <a asp-controller="inventory" asp-action="Addvendor" class="editBtn">اضافة</a>
     </div>
 
     <div class="search-container">
@@ -30,15 +30,7 @@
 
     <div class="tableContainer">
         <table id="vendorTable">
-            @* <thead> *@
-            @*     <tr> *@
-            @*         <th>الإجراءات</th> *@
-            @*         <th>العنوان</th> *@
-            @*         <th>االبريد الالكتروني</th> *@
-            @*         <th>رقم الهاتف </th> *@
-            @*         <th>اسم المورد</th> *@
-            @*     </tr> *@
-            @* </thead> *@
+
             <thead>
                 <tr>
                     <th>الإجراءات</th>

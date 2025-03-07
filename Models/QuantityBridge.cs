@@ -8,20 +8,28 @@ public partial class QuantityBridge
 {
     [Display(Name = "السعر")]
     public decimal Price { get; set; }
+    
     [Display(Name = "الرقم التعريفي لاذن المردودات")]
     public int? ReturnId { get; set; }
+    
     [Display(Name = "الرقم التعريفي لامر الشراء")]
     public int? PurchaseId { get; set; }
+    
     [Display(Name = "الكمية")]
     public int Quantity { get; set; }
+    
     [Display(Name = "اذن الصرف")]
     public int? RequisiteId { get; set; }
+    
     [Display(Name = "الرقم التعريفي للورق")]
     public int? PaperId { get; set; }
+    
     [Display(Name = "الرقم التريفي للحبر")]
     public int? InkId { get; set; }
+    
     [Display(Name = "الرقم التعريفي للمستلزمات")]
     public int? SuppliesId { get; set; }
+    
     [Display(Name = "الرقم التعريفي للجرد")]
     public int? PhysicalCountId { get; set; }
 

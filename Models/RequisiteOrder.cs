@@ -8,12 +8,16 @@ public partial class RequisiteOrder
 {
     [Display(Name = "الرقم التعريفي لازن الصرف")]
     public int RequisiteId { get; set; }
+    
     [Display(Name = "تاريخ اذن الصرف")]
     public DateOnly? RequisiteDate { get; set; }
+    
     [Display(Name = "الرقم القومي للموظف")]
     public string EmployeeId { get; set; } = null!;
+    
     [Display(Name = "الرقم التعريفي للتشغيلة")]
     public int JobOrderId { get; set; }
+    
     [Display(Name = "ملاحظات عن اذن الصرف")]
     public string? RequisiteNotes { get; set; }
 

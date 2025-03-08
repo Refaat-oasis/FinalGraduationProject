@@ -1,4 +1,4 @@
-CREATE DATABASE ThothSystem;
+﻿CREATE DATABASE ThothSystem;
 GO
 
 USE ThothSystem;
@@ -32,7 +32,8 @@ CREATE TABLE Customer (
     customerAddress NVARCHAR(500) NULL,
     customerEmail NVARCHAR(250) NULL UNIQUE,
     customerNotes NVARCHAR(2500) NULL,
-    customerPhone NVARCHAR(15) NOT NULL UNIQUE
+    customerPhone NVARCHAR(15) NOT NULL UNIQUE,
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -43,7 +44,8 @@ CREATE TABLE Vendor (
     vendorAddress NVARCHAR(500) NULL,
     vendorEmail NVARCHAR(250) NULL UNIQUE,
     vendorNotes NVARCHAR(2500) NULL,
-    vendorPhone NVARCHAR(15) NOT NULL UNIQUE
+    vendorPhone NVARCHAR(15) NOT NULL UNIQUE,
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -53,7 +55,8 @@ CREATE TABLE Employee (
     employeeUserName NVARCHAR(255) NOT NULL UNIQUE,
     employeePassword NVARCHAR(255) NOT NULL,
     employeeName NVARCHAR(255) NOT NULL,
-    jobRole INT NOT NULL
+    jobRole INT NOT NULL,
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -61,7 +64,8 @@ GO
 CREATE TABLE Labour (
     labourID INT IDENTITY(1,1) PRIMARY KEY,
     labourProcessName NVARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL CHECK (price > 0.0)
+    price DECIMAL(10,2) NOT NULL CHECK (price > 0.0),
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -72,8 +76,7 @@ CREATE TABLE JobOrder (
     unearnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (unearnedRevenue >= 0),
     jobOrdernotes NVARCHAR(100) DEFAULT '',
     earnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (earnedRevenue >= 0),
-    orderProgress NVARCHAR(20) DEFAULT 'Pending' 
-         CHECK (orderProgress IN ('Pending', 'In Progress', 'Completed')),
+    orderProgress NVARCHAR(20) DEFAULT 'قيد الانتظار' ,
     customerID INT,
     startDate DATE DEFAULT GETDATE(),
     endDate DATE NOT NULL,
@@ -88,7 +91,8 @@ GO
 CREATE TABLE Machine (
     machineID INT IDENTITY(1,1) PRIMARY KEY,
     machineProcessName NVARCHAR(100) NOT NULL UNIQUE,
-    price DECIMAL(10,2) NOT NULL CHECK (price > 0)
+    price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -129,14 +133,28 @@ CREATE TABLE MiscellaneousExpenses (
 );
 GO
 
+-- 14. PurchaseOrder Table
+CREATE TABLE PurchaseOrder (
+    purchaseID INT IDENTITY(1,1) PRIMARY KEY,
+    purchaseDate DATE DEFAULT GETDATE(),
+    employeeID NVARCHAR(30) NOT NULL,
+    vendorID INT NOT NULL,
+    purchaseNotes NVARCHAR(2500) NULL,
+    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
+    FOREIGN KEY (vendorID) REFERENCES Vendor(vendorID)
+);
+GO
+
 -- 9. ReturnsOrder Table
 CREATE TABLE ReturnsOrder (
     returnID INT IDENTITY(1,1) PRIMARY KEY,
     returnDate DATE DEFAULT GETDATE(),
-    jobOrderID INT NOT NULL,
+    jobOrderID INT  NULL,
+	purchaseID INT NULL,
     employeeID NVARCHAR(30) NOT NULL,
     returnsNotes NVARCHAR(2500) NULL,
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
+	FOREIGN KEY (purchaseID) REFERENCES PurchaseOrder(purchaseID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
 GO
@@ -164,7 +182,8 @@ CREATE TABLE Paper (
     quantity INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     reorderPoint DECIMAL(10,2) DEFAULT 0.0,
-    CHECK (weight >= 0.0 AND price > 0.0 AND quantity >= 0)
+    CHECK (weight >= 0.0 AND price > 0.0 AND quantity >= 0),
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -175,10 +194,10 @@ CREATE TABLE Ink (
     totalBalance DECIMAL(10,2) DEFAULT 0.00,
     colored NVARCHAR(10) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    expireDate DATE NOT NULL,
     quantity INT NOT NULL,
     reorderPoint DECIMAL(10,2) DEFAULT 0.0,
-    CHECK (price > 0.0 AND quantity >= 0)
+    CHECK (price > 0.0 AND quantity >= 0),
+	Activated BIT DEFAULT 1
 );
 GO
 
@@ -190,19 +209,8 @@ CREATE TABLE Supplies (
     price DECIMAL(10,2) NOT NULL,
     quantity INT NOT NULL,
     reorderPoint DECIMAL(10,2) DEFAULT 0.0,
-    CHECK (quantity > 0 AND price > 0.0)
-);
-GO
-
--- 14. PurchaseOrder Table
-CREATE TABLE PurchaseOrder (
-    purchaseID INT IDENTITY(1,1) PRIMARY KEY,
-    purchaseDate DATE DEFAULT GETDATE(),
-    employeeID NVARCHAR(30) NOT NULL,
-    vendorID INT NOT NULL,
-    purchaseNotes NVARCHAR(2500) NULL,
-    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
-    FOREIGN KEY (vendorID) REFERENCES Vendor(vendorID)
+    CHECK (quantity > 0 AND price > 0.0),
+	Activated BIT DEFAULT 1
 );
 GO
 

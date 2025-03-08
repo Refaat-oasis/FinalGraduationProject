@@ -63,7 +63,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 Vendor foundVendorByPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
-                //Vendor foundVendorByName = _context.Vendors.FirstOrDefault(v => v.VendorName == newVendor.VendorName);
                 Vendor foundVendorByEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
                 if (foundVendorByEmail != null || foundVendorByPhone != null)
                 {
@@ -118,7 +117,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
 
                 Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
-                Vendor foundVandorEmail = _context.Vendors.Find(foundVendor.VendorEmail);
+                Vendor foundVandorEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
                 Vendor foundVendorPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
 
                 if (foundVandorEmail != null & foundVendorPhone != null)

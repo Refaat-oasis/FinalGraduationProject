@@ -24,5 +24,8 @@ public partial class Vendor
     [Display(Name = "الرقم الهاتف الخاص بالتاجر")]
     public string VendorPhone { get; set; } = null!;
 
+    [Display(Name = "حالة الحساب للتاجر")]
+    public bool Activated { get; set; }
+
     public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; } = new List<PurchaseOrder>();
 }

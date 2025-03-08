@@ -137,7 +137,6 @@ public partial class ThothContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("colored");
-            entity.Property(e => e.ExpireDate).HasColumnName("expireDate");
             entity.Property(e => e.Name)
                 .HasMaxLength(30)
                 .IsUnicode(false)

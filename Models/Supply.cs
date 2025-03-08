@@ -23,4 +23,7 @@ public partial class Supply
     
     [Display(Name = "نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
+
+    [Display(Name = "حالة الاستخدام")]
+    public bool Activated { get; set; }
 }

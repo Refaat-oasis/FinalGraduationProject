@@ -304,13 +304,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\newPaper.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8nth7wl0tg"},{"Name":"integrity","Value":"sha256-VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY="},{"Name":"label","Value":"_content/ThothSystemVersion1/js/Inventory/newPaper.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2919"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 20:12:43 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2919"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 08 Mar 2025 00:24:10 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/newPaper.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\newPaper.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2919"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 20:12:43 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2919"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022VOedslYbiNZl1vT2mIYXZScchkGzvgYUC5727fRxzwY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 08 Mar 2025 00:24:10 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/newsupply.05n7f8ioy0.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\newsupply.js'))</AssetFile>

@@ -114,7 +114,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditVendor(int vendorID, VendorDTO newvendor) {
+        public IActionResult EditVendor(int vendorID, VendorEditDTO newvendor) {
             if (!ModelState.IsValid)
             {
                 return View("~/Views/Inventory/EditVendor.cshtml");
@@ -165,7 +165,7 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                VendorDTO empty = new VendorDTO();
+                VendorEditDTO empty = new VendorEditDTO();
                 return View("~/Views/Inventory/AddVendor.cshtml", empty);
             }
             catch (ApplicationException ex)
@@ -180,7 +180,7 @@ namespace ThothSystemVersion1.Controllers
 
 
         [HttpPost]
-        public IActionResult AddVendor(VendorDTO vendor)
+        public IActionResult AddVendor(VendorEditDTO vendor)
         {
             try
             {

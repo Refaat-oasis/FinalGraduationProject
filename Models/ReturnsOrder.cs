@@ -21,6 +21,8 @@ public partial class ReturnsOrder
     [Display(Name = "ملاحظات عن اذن المردودات")]
     public string? ReturnsNotes { get; set; }
 
+    public virtual PurchaseOrder PurchaseOrder { get; set; } = null!;
+
     public virtual Employee Employee { get; set; } = null!;
 
     public virtual JobOrder JobOrder { get; set; } = null!;

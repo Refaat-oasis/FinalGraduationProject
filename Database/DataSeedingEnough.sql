@@ -1,189 +1,223 @@
 use ThothSystem;
-----------------------------------------------------------
--- 1. Insert 30 records into Customer
-----------------------------------------------------------
+
+------------------------------------------------------------
+-- 1. Insert 30 Customers
+------------------------------------------------------------
 DECLARE @i INT = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Customer (customerName, customerAddress, customerEmail, customerNotes, customerPhone)
     VALUES (
-        'Customer' + CAST(@i AS VARCHAR(10)),
-        'Address' + CAST(@i AS VARCHAR(10)),
-        'customer' + CAST(@i AS VARCHAR(10)) + '@example.com',
-        'Notes' + CAST(@i AS VARCHAR(10)),
-        CAST(1111111110 + @i AS VARCHAR(10))
+        N'عميل ' + CAST(@i AS NVARCHAR(10)),
+        N'عنوان العميل ' + CAST(@i AS NVARCHAR(10)),
+        'customer' + CAST(@i AS NVARCHAR(10)) + '@example.com',
+        N'ملاحظات العميل ' + CAST(@i AS NVARCHAR(10)),
+        '01000000' + RIGHT('00' + CAST(@i AS VARCHAR(2)),2)
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 2. Insert 30 records into Vendor
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 2. Insert 30 Vendors
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Vendor (vendorName, vendorAddress, vendorEmail, vendorNotes, vendorPhone)
     VALUES (
-        'Vendor' + CAST(@i AS VARCHAR(10)),
-        'Address' + CAST(@i AS VARCHAR(10)),
-        'vendor' + CAST(@i AS VARCHAR(10)) + '@example.com',
-        'Notes' + CAST(@i AS VARCHAR(10)),
-        CAST(2222222220 + @i AS VARCHAR(10))
+        N'مورد ' + CAST(@i AS NVARCHAR(10)),
+        N'عنوان المورد ' + CAST(@i AS NVARCHAR(10)),
+        'vendor' + CAST(@i AS NVARCHAR(10)) + '@example.com',
+        N'ملاحظات المورد ' + CAST(@i AS NVARCHAR(10)),
+        '01100000' + RIGHT('00' + CAST(@i AS VARCHAR(2)),2)
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 3. Insert 30 records into Employee
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 3. Insert 30 Employees
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Employee (employeeID, employeeUserName, employeePassword, employeeName, jobRole)
     VALUES (
-        'E' + CAST(@i AS VARCHAR(10)),
-        'user' + CAST(@i AS VARCHAR(10)),
-        'pass' + CAST(@i AS VARCHAR(10)),
-        'Employee' + CAST(@i AS VARCHAR(10)),
-        'Role' + CAST(@i AS VARCHAR(10))
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+        N'مستخدم ' + CAST(@i AS NVARCHAR(10)),
+        N'كلمةالسر' + CAST(@i AS NVARCHAR(10)),
+        N'الموظف ' + CAST(@i AS NVARCHAR(10)),
+        ((@i - 1) % 3) + 1  -- cycles through job roles 1,2,3
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 4. Insert 30 records into Labour
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 4. Insert 30 Labour Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Labour (labourProcessName, price)
     VALUES (
-        'LabourProcess' + CAST(@i AS VARCHAR(10)),
-        @i * 10.00
+        N'عملية ' + CAST(@i AS NVARCHAR(10)),
+        50.00 + (@i * 10)   -- price > 0.0
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 5. Insert 30 records into Machine
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 5. Insert 30 Machine Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Machine (machineProcessName, price)
     VALUES (
-        'Machine' + CAST(@i AS VARCHAR(10)),
-        @i * 100.00
+        N'آلة ' + CAST(@i AS NVARCHAR(10)),
+        200.00 + (@i * 20)  -- price > 0
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 6. Insert 30 records into Paper
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 6. Insert 30 Paper Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Paper (name, type, weight, totalBalance, colored, quantity, price, reorderPoint)
     VALUES (
-        'Paper' + CAST(@i AS VARCHAR(10)),
-        'Type' + CAST(@i AS VARCHAR(10)),
-        50.00,
-        100.00,
-        'Yes',
-        100,
-        5.00,
-        10.00
+        N'ورقة ' + CAST(@i AS NVARCHAR(10)),
+        N'A4',
+        80.00,                -- weight (>= 0)
+        100.00 + @i,          -- totalBalance
+        N'أبيض',
+        100 + @i,             -- quantity (>= 0)
+        1.50,                 -- price (> 0)
+        50.00                 -- reorderPoint
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 7. Insert 30 records into Ink
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 7. Insert 30 Ink Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
-    INSERT INTO Ink (name, totalBalance, colored, price, expireDate, quantity, reorderPoint)
+    INSERT INTO Ink (name, totalBalance, colored, price, quantity, reorderPoint)
     VALUES (
-        'Ink' + CAST(@i AS VARCHAR(10)),
-        100.00,
-        'No',
-        10.00,
-        '2025-12-31',
-        50,
-        5.00
+        N'حبر ' + CAST(@i AS NVARCHAR(10)),
+        100.00 + @i,
+        N'أسود',
+        2.50,                 -- price (> 0)
+        200 + @i,             -- quantity (>= 0)
+        50.00                 -- reorderPoint
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 8. Insert 30 records into Supplies
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 8. Insert 30 Supplies Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO Supplies (name, totalBalance, price, quantity, reorderPoint)
     VALUES (
-        'Supplies' + CAST(@i AS VARCHAR(10)),
-        200.00,
-        15.00,
-        30,
-        5.00
+        N'مستلزمات ' + CAST(@i AS NVARCHAR(10)),
+        0.0,
+        5.00,                 -- price (> 0)
+        30 + @i,              -- quantity (> 0)
+        20.00                 -- reorderPoint
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 9. Insert 30 records into JobOrder
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 9. Insert 30 JobOrder Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
-    DECLARE @progress VARCHAR(20);
-    SET @progress = CASE 
-                      WHEN (@i % 3) = 1 THEN 'Pending'
-                      WHEN (@i % 3) = 2 THEN 'In Progress'
-                      ELSE 'Completed'
-                    END;
-    INSERT INTO JobOrder (remainingAmount, unearnedRevenue, jobOrdernotes, earnedRevenue, orderProgress, customerID, startDate, endDate, employeeID)
+    INSERT INTO JobOrder (remainingAmount, unearnedRevenue, jobOrdernotes, earnedRevenue, orderProgress, customerID, endDate, employeeID)
     VALUES (
-        @i * 5.00,
-        @i * 2.00,
-        'JobOrder' + CAST(@i AS VARCHAR(10)),
-        @i * 3.00,
-        @progress,
-        @i,                             -- References CustomerID (assumed 1–30)
-        '2025-01-01',
-        DATEADD(DAY, 1, '2025-01-01'),   -- Ensures startDate < endDate
-        'E' + CAST(@i AS VARCHAR(10))    -- References EmployeeID (E1–E30)
+        0.00, 
+        0.00, 
+        N'ملاحظات الطلب ' + CAST(@i AS NVARCHAR(10)),
+        100.00 + @i, 
+        N'قيد الانتظار', 
+        @i,  -- customerID (must exist)
+        DATEADD(day, 10, GETDATE()),  -- endDate (startDate < endDate)
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3)  -- employeeID (must exist)
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 10. Insert 30 records into ProcessBridge
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 10. Insert 30 PurchaseOrder Records
+------------------------------------------------------------
+dECLARE @i int = 1;
+WHILE @i <= 30
+BEGIN
+    INSERT INTO PurchaseOrder (employeeID, vendorID, purchaseNotes)
+    VALUES (
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3), -- employeeID exists
+        @i,                                              -- vendorID exists
+        N'ملاحظات طلب الشراء ' + CAST(@i AS NVARCHAR(10))
+    );
+    SET @i = @i + 1;
+END;
+GO
+
+------------------------------------------------------------
+-- 11. Insert 30 PhysicalCountOrder Records
+------------------------------------------------------------
+dECLARE @i int = 1;
+WHILE @i <= 30
+BEGIN
+    INSERT INTO PhysicalCountOrder (employeeID, physicalCountNotes)
+    VALUES (
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+        N'الجرد الفعلي ' + CAST(@i AS NVARCHAR(10))
+    );
+    SET @i = @i + 1;
+END;
+GO
+
+------------------------------------------------------------
+-- 12. Insert 30 ProcessBridge Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO ProcessBridge (jobOrderID, machineID, labourID, totalMachinePrice, totalLabourPrice, numberOfHours, employeeID)
     VALUES (
-        @i,                             -- JobOrderID (1–30)
-        @i,                             -- MachineID (1–30)
-        @i,                             -- LabourID (1–30)
-        100.00,
-        50.00,
-        2.5,
-        'E' + CAST(@i AS VARCHAR(10))
+        @i,  -- jobOrderID exists
+        @i,  -- machineID exists
+        @i,  -- labourID exists
+        200.00 + (@i * 20),  -- totalMachinePrice (>= 0)
+        50.00 + (@i * 10),   -- totalLabourPrice (>= 0)
+        2.5,                 -- numberOfHours (>= 0)
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3)  -- employeeID exists
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 11. Insert 30 records into MiscellaneousExpenses
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 13. Insert 30 MiscellaneousExpenses Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO MiscellaneousExpenses (
@@ -193,104 +227,92 @@ BEGIN
         valueAddedTax, finalTotal
     )
     VALUES (
-        @i,
-        'E' + CAST(@i AS VARCHAR(10)),
-        10.00,
-        5.00,
-        15.00,
-        15.00,
-        2.00,
-        17.00,
-        5.00,
-        12.00,
-        3.00,
-        1.00,
-        0.50,
-        12.50
+        @i,  -- jobOrderID exists
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+        10.00 + @i,   -- materialProcessingExpense (>= 0)
+        5.00,         -- filmsProcessingExpense (>= 0)
+        20.00 + @i,   -- materialsTotal (>= 0)
+        30.00 + @i,   -- totalAfterMaterials (>= 0)
+        2.00,         -- adminstrativeExpense (>= 0)
+        32.00 + @i,   -- totalExpenses (>= 0)
+        5.00,         -- percentage (>= 0)
+        37.00 + @i,   -- totalAfterPercentage (>= 0)
+        10.00,        -- ministryOfFinance
+        5.00,         -- employeeImprovmentBox
+        2.00,         -- valueAddedTax
+        44.00 + @i    -- finalTotal (>= 0)
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 12. Insert 30 records into ReturnsOrder
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 14. Insert 30 ReturnsOrder Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
-    INSERT INTO ReturnsOrder (returnDate, jobOrderID, employeeID, returnsNotes)
-    VALUES (
-        '2025-01-01',
-        @i,
-        'E' + CAST(@i AS VARCHAR(10)),
-        'Return Order' + CAST(@i AS VARCHAR(10))
-    );
+    -- Alternate: even rows use jobOrderID; odd rows use purchaseID.
+    IF (@i % 2 = 0)
+    BEGIN
+        INSERT INTO ReturnsOrder (returnDate, jobOrderID, purchaseID, employeeID, returnsNotes)
+        VALUES (
+            GETDATE(),
+            @i,      -- jobOrderID exists
+            NULL,
+            'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+            N'ملاحظات مرتجع الطلب ' + CAST(@i AS NVARCHAR(10))
+        );
+    END
+    ELSE
+    BEGIN
+        INSERT INTO ReturnsOrder (returnDate, jobOrderID, purchaseID, employeeID, returnsNotes)
+        VALUES (
+            GETDATE(),
+            NULL,
+            @i,      -- purchaseID exists
+            'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+            N'ملاحظات مرتجع الطلب ' + CAST(@i AS NVARCHAR(10))
+        );
+    END
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 13. Insert 30 records into RequisiteOrder
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 15. Insert 30 RequisiteOrder Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO RequisiteOrder (requisiteDate, employeeID, jobOrderID, requisiteNotes)
     VALUES (
-        '2025-01-01',
-        'E' + CAST(@i AS VARCHAR(10)),
-        @i,
-        'Requisite Order' + CAST(@i AS VARCHAR(10))
+        GETDATE(),
+        'EMP' + RIGHT('000' + CAST(@i AS VARCHAR(3)),3),
+        @i,  -- jobOrderID exists
+        N'ملاحظات طلب المستلزمات ' + CAST(@i AS NVARCHAR(10))
     );
     SET @i = @i + 1;
 END;
 GO
-----------------------------------------------------------
--- 14. Insert 30 records into PurchaseOrder
-----------------------------------------------------------
-DECLARE @i INT = 1;
-WHILE @i <= 30
-BEGIN
-    INSERT INTO PurchaseOrder (purchaseDate, employeeID, vendorID, purchaseNotes)
-    VALUES (
-        '2025-01-01',
-        'E' + CAST(@i AS VARCHAR(10)),
-        @i,                             -- References VendorID (1–30)
-        'Purchase Order' + CAST(@i AS VARCHAR(10))
-    );
-    SET @i = @i + 1;
-END;
-GO
-----------------------------------------------------------
--- 15. Insert 30 records into PhysicalCountOrder
-----------------------------------------------------------
-DECLARE @i INT = 1;
-WHILE @i <= 30
-BEGIN
-    INSERT INTO PhysicalCountOrder (employeeID, physicalCountDate, physicalCountNotes)
-    VALUES (
-        'E' + CAST(@i AS VARCHAR(10)),
-        '2025-01-01',
-        'Physical Count Order' + CAST(@i AS VARCHAR(10))
-    );
-    SET @i = @i + 1;
-END;
-GO
-----------------------------------------------------------
--- 16. Insert 30 records into QuantityBridge
-----------------------------------------------------------
-DECLARE @i INT = 1;
+
+------------------------------------------------------------
+-- 16. Insert 30 QuantityBridge Records
+------------------------------------------------------------
+dECLARE @i int = 1;
 WHILE @i <= 30
 BEGIN
     INSERT INTO QuantityBridge (price, returnID, purchaseID, quantity, requisiteID, paperID, inkID, suppliesID, physicalCountID)
     VALUES (
-        20.00,
-        @i,   -- returnID from ReturnsOrder (1–30)
-        @i,   -- purchaseID from PurchaseOrder (1–30)
-        5,
-        @i,   -- requisiteID from RequisiteOrder (1–30)
-        @i,   -- paperID from Paper (1–30)
-        @i,   -- inkID from Ink (1–30)
-        @i,   -- suppliesID from Supplies (1–30)
-        @i    -- physicalCountID from PhysicalCountOrder (1–30)
+        10.00, 
+        @i,       -- returnID (from ReturnsOrder)
+        @i,       -- purchaseID (from PurchaseOrder)
+        5 + @i,   -- quantity (> 0)
+        @i,       -- requisiteID (from RequisiteOrder)
+        @i,       -- paperID (from Paper)
+        @i,       -- inkID (from Ink)
+        @i,       -- suppliesID (from Supplies)
+        @i        -- physicalCountID (from PhysicalCountOrder)
     );
     SET @i = @i + 1;
 END;

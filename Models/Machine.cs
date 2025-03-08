@@ -14,4 +14,7 @@ public partial class Machine
     
     [Display(Name = "سعر ساعة العمل للالة")]
     public decimal Price { get; set; }
+
+    [Display(Name = "حالة الاستخدام")]
+    public bool Activated { get; set; }
 }

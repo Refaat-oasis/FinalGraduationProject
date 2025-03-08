@@ -58,7 +58,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool AddVendor(VendorDTO newVendor)
+        public bool AddVendor(VendorEditDTO newVendor)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             throw new NotImplementedException();
         }
 
-        public bool EditVendor(int vendorID, VendorDTO newVendor)
+        public bool EditVendor(int vendorID, VendorEditDTO newVendor)
         {
             try
             {

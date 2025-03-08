@@ -14,4 +14,7 @@ public partial class Labour
     
     [Display(Name = "سعر ساعة العمل للعامل")]
     public decimal Price { get; set; }
+
+    [Display(Name = "حالة الاستخدام")]
+    public bool Activated { get; set; }
 }

@@ -24,5 +24,8 @@ public partial class Customer
     [Display(Name = "رقم الهاتف الخاص بالعميل")]
     public string CustomerPhone { get; set; } = null!;
 
+    [Display(Name = "حالة الحساب للعميل")]
+    public bool Activated { get; set; }
+
     public virtual ICollection<JobOrder> JobOrders { get; set; } = new List<JobOrder>();
 }

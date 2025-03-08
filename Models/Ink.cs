@@ -21,12 +21,12 @@ public partial class Ink
     [Display(Name = "السعر")]
     public decimal Price { get; set; }
     
-    [Display(Name = "تاريخ انتهاء الصلاحية")]
-    public DateOnly ExpireDate { get; set; }
-    
     [Display(Name = "الكمية")]
     public int Quantity { get; set; }
     
     [Display(Name = "نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
+
+    [Display(Name = "حالة الاستخدام")]
+    public bool Activated { get; set; }
 }

@@ -4,8 +4,7 @@ namespace ThothSystemVersion1.DataTransfereObject
 {
     public class VendorEditDTO
     {
-        [Display(Name = "الرقم التعريفي للتاجر")]
-        public int VendorId { get; set; }
+      
         
         [Display(Name = "اسم التاجر")]
         [Required(ErrorMessage = "يجد عليك ادخال اسم المورد")]

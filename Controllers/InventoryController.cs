@@ -107,17 +107,31 @@ namespace ThothSystemVersion1.Controllers
 
         // Mariam section
         [HttpGet]
-        public IActionResult EditVendor(int vendorID) {   
+        public IActionResult EditVendor(int vendorID) {
+
+
+
+
             Vendor foundVendor = _businessLogicL.GetVendorByID(vendorID);
-            return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);      
-        
+            return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
+
+
+
         }
 
+
+
+
+ 
+
         [HttpPost]
-        public IActionResult EditVendor(int vendorID, VendorEditDTO newvendor) {
+        public IActionResult EditVendor(int vendorID, Vendor newvendor)
+        {
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Inventory/EditVendor.cshtml");
+                // Pass newvendor back to the view so that the user
+                // does not lose the entered data
+                return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
             }
 
             bool isVendorEdited = _businessLogicL.EditVendor(vendorID, newvendor);
@@ -125,38 +139,14 @@ namespace ThothSystemVersion1.Controllers
             if (!isVendorEdited)
             {
                 ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
-                return View(newvendor);
+                // Also pass newvendor back here
+                return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
             }
 
             return RedirectToAction("ViewAllVendor", "Inventory");
-
-            //if (newvendor == null)
-            //{
-            //    return BadRequest("Invalid data.");
-            //}
-
-            //try
-            //{
-            //    bool isEditSuccess = _businessLogicL.EditVendor(vendorID, newvendor); 
-
-
-            //    if (!isEditSuccess)
-            //    {
-            //        ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف  تم استخدامه من قبل");
-            //        return View(newvendor);
-            //    }
-            //    return RedirectToAction("ViewAllVendor"); 
-
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    return NotFound(ex.Message); 
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, ex.Message);     
-            //}
         }
+
+
 
 
         // Sherwet section

@@ -150,12 +150,13 @@ namespace ThothSystemVersion1.Controllers
 
 
         // Sherwet section
+
         [HttpGet]
         public IActionResult AddVendor()
         {
             try
             {
-                VendorEditDTO empty = new VendorEditDTO();
+                VendorAddDTO empty = new VendorAddDTO();
                 return View("~/Views/Inventory/AddVendor.cshtml", empty);
             }
             catch (ApplicationException ex)
@@ -170,7 +171,7 @@ namespace ThothSystemVersion1.Controllers
 
 
         [HttpPost]
-        public IActionResult AddVendor(VendorEditDTO vendor)
+        public IActionResult AddVendor(VendorAddDTO vendor)
         {
             try
             {

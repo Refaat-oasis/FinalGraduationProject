@@ -58,11 +58,49 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool AddVendor(VendorEditDTO newVendor)
+        //public bool AddVendor(VendorEditDTO newVendor)
+        //{
+        //    try
+        //    {
+        //        Vendor foundVendorByPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
+        //        Vendor foundVendorByEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
+        //        if (foundVendorByEmail != null || foundVendorByPhone != null)
+        //        {
+
+        //            return false;
+        //        }
+
+        //        if (newVendor == null)
+        //        {
+        //            throw new ArgumentNullException(nameof(newVendor));
+        //        }
+
+        //        Vendor addedVendor = new Vendor();
+
+        //        addedVendor.VendorName = newVendor.VendorName;
+        //        addedVendor.VendorEmail = newVendor.VendorEmail;
+        //        addedVendor.VendorPhone = newVendor.VendorPhone;
+        //        addedVendor.VendorNotes = newVendor.VendorNotes;
+        //        addedVendor.VendorAddress = newVendor.VendorAddress;
+
+
+        //        _context.Vendors.Add(addedVendor);
+        //        _context.SaveChanges();
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception (ex) here
+        //        throw new ApplicationException("An error occurred while adding the vendor.", ex);
+        //    }
+        //}
+        public bool AddVendor(VendorAddDTO newVendor)
         {
             try
             {
                 Vendor foundVendorByPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
+                //Vendor foundVendorByName = _context.Vendors.FirstOrDefault(v => v.VendorName == newVendor.VendorName);
                 Vendor foundVendorByEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
                 if (foundVendorByEmail != null || foundVendorByPhone != null)
                 {
@@ -82,6 +120,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 addedVendor.VendorPhone = newVendor.VendorPhone;
                 addedVendor.VendorNotes = newVendor.VendorNotes;
                 addedVendor.VendorAddress = newVendor.VendorAddress;
+                //addedVendor.Activated = true;
 
 
                 _context.Vendors.Add(addedVendor);

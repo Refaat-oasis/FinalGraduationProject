@@ -1,51 +1,74 @@
-﻿@model IEnumerable<ThothSystemVersion1.Models.Paper>
+﻿@{
+    Layout = null;
+}
 
+@model List<Paper>
 
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" />
+</head>
 
-<h1>ViewAllPaper</h1>
+<div class="container">
+    <div id="reorderMessages" style="display: none; background-color: yellow; padding: 10px; margin-top: 10px;"></div>
 
-<!-- Display reorder messages here -->
-<div id="reorderMessages" class="alert alert-warning" style="display:none;"></div>
+    <div class="arrow">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
+    <h1>قائمة الورق</h1>
+    <div class="btn">
+        <a asp-controller="Inventory" asp-action="NewPaper" class="editBtn">اضافة</a>
+    </div>
 
-<table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Type)</th>
-            <th>@Html.DisplayNameFor(model => model.Weight)</th>
-            <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
-            <th>@Html.DisplayNameFor(model => model.Colored)</th>
-            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-            <th>@Html.DisplayNameFor(model => model.Price)</th>
-            <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                <td>@Html.DisplayFor(modelItem => item.Weight)</td>
-                <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
-                <td>@Html.DisplayFor(modelItem => item.Colored)</td>
-                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.PaperId" class="btn btn-sm btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.PaperId" class="btn btn-sm btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.PaperId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchPaper()" placeholder="ابحث عن ورق...">
+    </div>
+
+    <div class="tableContainer">
+        <table id="paperTable">
+            <thead>
+                <tr>
+                    <th>الإجراءات</th>
+                    <th>الرصيد الكلي</th>
+                    <th>نقطة إعادة الطلب</th>
+                    <th>السعر</th>
+                    <th>ملون</th>
+                    <th>الوزن</th>
+                    <th>الكمية</th>
+                    <th>النوع</th>
+                    <th>الاسم</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Paper pap in Model)
+                {
+                    <tr id="row-@pap.PaperId">
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@pap.PaperId" class="editBtn">تعديل</a>
+                        </td>
+                        <td>@pap.TotalBalance</td>
+                        <td>@pap.ReorderPoint</td>
+                        <td>@pap.Price</td>
+                        <td>@pap.Colored</td>
+                        <td>@pap.Weight</td>
+                        <td>@pap.Quantity</td>
+                        <td>@pap.Type</td>
+                        <td>@pap.Name</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/Inventory/ViewAllPaper.js"></script>
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"

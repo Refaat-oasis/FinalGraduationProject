@@ -37,7 +37,7 @@
     }
 
 h1 {
-    color: #050505;
+    color: black;
     margin: 20px;
     font-weight: 900;
     font-size: 50px;
@@ -100,16 +100,6 @@ table tr:hover {
     margin: 20px;
 }
 
-button {
-    padding: 15px 20px;
-    font-size: 35px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-}
-
 .back {
     padding: 5px;
     font-size: 35px;
@@ -142,6 +132,8 @@ button {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
     }
 
+
+
 .arrow {
     display: flex;
     /* align-items: left; */
@@ -166,7 +158,6 @@ button {
     top: 50%;
     transform: translateY(-50%);
     font-size: 22px;
-    color: #333;
 }
 
 #searchInput {

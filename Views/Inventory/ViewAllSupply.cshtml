@@ -1,49 +1,72 @@
-﻿@model IEnumerable<ThothSystemVersion1.Models.Supply>
-
-@{
-    ViewData["Title"] = "ViewAllSupply";
+﻿@{
+    Layout = null;
 }
 
-<h1>ViewAllSupply</h1>
-<div id="reorderMessages" class="alert alert-warning" style="display:none;"></div>
+@model List<Supply>
 
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/ViewAllSupply.css" rel="stylesheet" />
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
-            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-            <th>@Html.DisplayNameFor(model => model.Price)</th>
-            <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
-                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.SuppliesId" class="btn btn-sm btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.SuppliesId" class="btn btn-sm btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.SuppliesId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div id="reorderMessages" style="display: none; background-color: yellow; padding: 10px; margin-top: 10px;"></div>
 
+    <div class="arrow">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
+    <h1>قائمة المستلزمات</h1>
+    <div class="btn">
+        <a asp-controller="Inventory" asp-action="NewSupply" class="editBtn">اضافة</a>
+    </div>
+
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchSupply()" placeholder="ابحث عن مستلزمات...">
+    </div>
+
+    <div class="tableContainer">
+        <table id="SupplyTable">
+            <thead>
+                <tr>
+                    <th>الإجراءات</th>
+                    <th>الرصيد الكلي</th>
+                    <th>نقطة إعادة الطلب</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th>الاسم</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Supply sup in Model)
+                {
+                    <tr id="row-@sup.SuppliesId">
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@sup.SuppliesId" class="editBtn">تعديل</a>
+                        </td>
+                        <td>@sup.TotalBalance</td>
+                        <td>@sup.ReorderPoint</td>
+                        <td>@sup.Price</td>
+                        <td>@sup.Quantity</td>
+                        <td>@sup.Name</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/Inventory/ViewAllSupply.js"></script>
 
 
 @section Scripts {
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
             integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
             crossorigin="anonymous"

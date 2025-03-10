@@ -23,6 +23,9 @@ namespace ThothSystemVersion1.Controllers
         }
 
         // refaat section
+
+
+        // new paper 
         [HttpGet]
         public IActionResult NewPaper() { 
             return View( new Paper());
@@ -48,6 +51,9 @@ namespace ThothSystemVersion1.Controllers
             
         }
         
+
+        // new ink
+
         [HttpGet]
         public IActionResult NewInk() { 
             return View(new Ink());
@@ -72,6 +78,8 @@ namespace ThothSystemVersion1.Controllers
                 return BadRequest(ex);
             }
         }
+
+        // new supply
 
         [HttpGet]
         public IActionResult NewSupply() {
@@ -103,8 +111,24 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
+        // paper purchase
+
+        public IActionResult paperPurchase() {
+            return View();
+        }
 
 
+
+        // ink purchase
+
+        public IActionResult inkPurchase() { return View(); }
+
+        // supply purchase
+
+        public IActionResult supplyPurchase() { return View(); }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     
         // Mariam section
         [HttpGet]
         public IActionResult EditVendor(int vendorID) {
@@ -139,6 +163,7 @@ namespace ThothSystemVersion1.Controllers
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sherwet section
 
@@ -191,6 +216,9 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // Sandra section
         [HttpGet]
         public IActionResult ViewAllVendor()
@@ -203,32 +231,21 @@ namespace ThothSystemVersion1.Controllers
         public async Task <IActionResult> ViewAllInk()
         {
             List<Ink> inkList = await _businessLogicL.ViewAllInk();
-            await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint");
+            await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint" , "Reorder point reached for Ink: [InkName]");
             return View(inkList);
         }
-        //public async Task<IActionResult> ViewAllPaper()
-        //{
-        //    List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-        //    await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint"); // Trigger reorder check
 
-        //    return View(paperList);
-        //}
         public async Task<IActionResult> ViewAllPaper()
         {
             List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-
-            // Trigger reorder check and send a message
-
             await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
-
-
             return View(paperList);
         }
 
         public async Task<IActionResult> ViewAllSupply()
         {
             List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
-            await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint");
+            await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint", "Reorder point reached for Supply: [SupplyName]");
             return View(suppplyList);
         }
 

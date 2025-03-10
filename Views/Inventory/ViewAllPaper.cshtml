@@ -1,110 +1,108 @@
-﻿@* @{ *@
-@*     Layout = null; *@
-@* } *@
+﻿@*  @{ 
+     Layout = null; 
+ } 
+ @model List<Paper> 
+ <head> 
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+     <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" /> 
+ </head> 
+ <div class="container"> 
+     <div id="reorderMessages" style="display: none; background-color: yellow; padding: 10px; margin-top: 10px;"></div> 
 
-@* @model List<Paper> *@
+     <div class="arrow"> 
+         <a asp-controller="Admin" asp-action="AdminHome" class="back"> 
+             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i> 
+         </a> 
+     </div> 
+     <h1>قائمة الورق</h1> 
+     <div class="btn"> 
+         <a asp-controller="Inventory" asp-action="NewPaper" class="editBtn">اضافة</a> 
+     </div> 
+     <div class="search-container"> 
+         <i class='bx bx-search search-icon'></i> 
+         <input type="text" id="searchInput" onkeyup="searchPaper()" placeholder="ابحث عن ورق...">
+     </div> 
+     <div class="tableContainer"> 
+         <table id="paperTable"> 
+             <thead> 
+                 <tr> 
+                     <th>الإجراءات</th> 
+                     <th>الرصيد الكلي</th> 
+                     <th>نقطة إعادة الطلب</th> 
+                     <th>السعر</th> 
+                     <th>ملون</th> 
+                     <th>الوزن</th> 
+                     <th>الكمية</th> 
+                     <th>النوع</th> 
+                     <th>الاسم</th> 
+                 </tr> 
+             </thead> 
+             <tbody> 
+                 @foreach (Paper pap in Model) 
+                 { 
+                     <tr id="row-@pap.PaperId"> 
+                         <td> 
+                             <a asp-action="Edit" asp-route-id="@pap.PaperId" class="editBtn">تعديل</a>
+                         </td> 
+                         <td>@pap.TotalBalance</td> 
+                         <td>@pap.ReorderPoint</td> 
+                         <td>@pap.Price</td> 
+                         <td>@pap.Colored</td> 
+                         <td>@pap.Weight</td> 
+                         <td>@pap.Quantity</td> 
+                         <td>@pap.Type</td> 
+                         <td>@pap.Name</td> 
+                     </tr> 
+                 } 
+             </tbody> 
+         </table> 
+     </div> 
+ </div> 
 
-@* <head> *@
-@*     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> *@
-@*     <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" /> *@
-@* </head> *@
+ <script src="~/js/Inventory/ViewAllPaper.js"></script>
 
-@* <div class="container"> *@
-@*     <div id="reorderMessages" style="display: none; background-color: yellow; padding: 10px; margin-top: 10px;"></div> *@
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+            integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script>
+        // Create the connection to the SignalR hub
+        var hub = new signalR.HubConnectionBuilder()
+            .withUrl("/InventoryReorderPoint")
+            .build();
 
-@*     <div class="arrow"> *@
-@*         <a asp-controller="Admin" asp-action="AdminHome" class="back"> *@
-@*             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i> *@
-@*         </a> *@
-@*     </div> *@
+        hub.start()
+            .then(function () {
+                console.log("SignalR connection established.");
 
-@*     <h1>قائمة الورق</h1> *@
-@*     <div class="btn"> *@
-@*         <a asp-controller="Inventory" asp-action="NewPaper" class="editBtn">اضافة</a> *@
-@*     </div> *@
+                // Invoke the server-side method to check paper reorder points.
+                hub.invoke("CheckPaperReorderPoint")
+                    .catch(function (err) {
+                        console.error("Error invoking CheckPaperReorderPoint: ", err.toString());
+                    });
+            })
+            .catch(function (err) {
+                console.error("SignalR connection error: ", err.toString());
+            });
 
-@*     <div class="search-container"> *@
-@*         <i class='bx bx-search search-icon'></i> *@
-@*         <input type="text" id="searchInput" onkeyup="searchPaper()" placeholder="ابحث عن ورق..."> *@
-@*     </div> *@
-
-@*     <div class="tableContainer"> *@
-@*         <table id="paperTable"> *@
-@*             <thead> *@
-@*                 <tr> *@
-@*                     <th>الإجراءات</th> *@
-@*                     <th>الرصيد الكلي</th> *@
-@*                     <th>نقطة إعادة الطلب</th> *@
-@*                     <th>السعر</th> *@
-@*                     <th>ملون</th> *@
-@*                     <th>الوزن</th> *@
-@*                     <th>الكمية</th> *@
-@*                     <th>النوع</th> *@
-@*                     <th>الاسم</th> *@
-@*                 </tr> *@
-@*             </thead> *@
-
-@*             <tbody> *@
-@*                 @foreach (Paper pap in Model) *@
-@*                 { *@
-@*                     <tr id="row-@pap.PaperId"> *@
-@*                         <td> *@
-@*                             <a asp-action="Edit" asp-route-id="@pap.PaperId" class="editBtn">تعديل</a> *@
-@*                         </td> *@
-@*                         <td>@pap.TotalBalance</td> *@
-@*                         <td>@pap.ReorderPoint</td> *@
-@*                         <td>@pap.Price</td> *@
-@*                         <td>@pap.Colored</td> *@
-@*                         <td>@pap.Weight</td> *@
-@*                         <td>@pap.Quantity</td> *@
-@*                         <td>@pap.Type</td> *@
-@*                         <td>@pap.Name</td> *@
-@*                     </tr> *@
-@*                 } *@
-@*             </tbody> *@
-@*         </table> *@
-@*     </div> *@
-@* </div> *@
+        // Listen for reorder messages from the hub.
+        hub.on("ReceiveReorderMessagePaper", function (message) {
+            console.log("Received reorder message: ", message);
+            var messageDiv = document.getElementById("reorderMessages");
+            // Make sure the message div is visible
+            messageDiv.style.display = "block";
+            // Append the new message rather than replacing previous ones
+            messageDiv.innerHTML += "<div>" + message + "</div>";
+        });
+    </script>
+}
+ *@
 
 
-@* @section Scripts { *@
-@*     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js" *@
-@*             integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A==" *@
-@*             crossorigin="anonymous" *@
-@*             referrerpolicy="no-referrer"></script> *@
-@*     <script> *@
-@*         // Create the connection to the SignalR hub *@
-@*         var hub = new signalR.HubConnectionBuilder() *@
-@*             .withUrl("/InventoryReorderPoint") *@
-@*             .build(); *@
 
-@*         hub.start() *@
-@*             .then(function () { *@
-@*                 console.log("SignalR connection established."); *@
 
-@*                 // Invoke the server-side method to check paper reorder points. *@
-@*                 hub.invoke("CheckPaperReorderPoint") *@
-@*                     .catch(function (err) { *@
-@*                         console.error("Error invoking CheckPaperReorderPoint: ", err.toString()); *@
-@*                     }); *@
-@*             }) *@
-@*             .catch(function (err) { *@
-@*                 console.error("SignalR connection error: ", err.toString()); *@
-@*             }); *@
-
-@*         // Listen for reorder messages from the hub. *@
-@*         hub.on("ReceiveReorderMessagePaper", function (message) { *@
-@*             console.log("Received reorder message: ", message); *@
-@*             var messageDiv = document.getElementById("reorderMessages"); *@
-@*             // Make sure the message div is visible *@
-@*             messageDiv.style.display = "block"; *@
-@*             // Append the new message rather than replacing previous ones *@
-@*             messageDiv.innerHTML += "<div>" + message + "</div>"; *@
-@*         }); *@
-@*     </script> *@
-@* } *@
-
-@model IEnumerable<ThothSystemVersion1.Models.Paper>
+ @model IEnumerable<ThothSystemVersion1.Models.Paper>
 
 @{
     ViewData["Title"] = "ViewAllinventory";
@@ -191,4 +189,5 @@
         });
     </script>
 }
-
+ 
+ 

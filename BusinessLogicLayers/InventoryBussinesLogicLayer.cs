@@ -221,5 +221,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
            
             return supplyList;
         }
+
+        public bool AddVendor(VendorEditDTO newVendor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

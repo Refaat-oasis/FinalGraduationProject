@@ -110,19 +110,10 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult EditVendor(int vendorID) {
 
 
-
-
             Vendor foundVendor = _businessLogicL.GetVendorByID(vendorID);
             return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
 
-
-
         }
-
-
-
-
- 
 
         [HttpPost]
         public IActionResult EditVendor(int vendorID, Vendor newvendor)
@@ -215,10 +206,22 @@ namespace ThothSystemVersion1.Controllers
             await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint");
             return View(inkList);
         }
+        //public async Task<IActionResult> ViewAllPaper()
+        //{
+        //    List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+        //    await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint"); // Trigger reorder check
+
+        //    return View(paperList);
+        //}
         public async Task<IActionResult> ViewAllPaper()
         {
             List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-            await _hubContext.Clients.All.SendAsync("CheckPaperReorderPoint");
+
+            // Trigger reorder check and send a message
+
+            await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+
+
             return View(paperList);
         }
 

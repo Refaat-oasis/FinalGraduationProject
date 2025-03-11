@@ -34,15 +34,13 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult NewPaper(Paper newPaper) {
             try {
 
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    return View("newpaper",NewPaper());
-
+                    _businessLogicL.addPaper(newPaper);
+                    return RedirectToAction("viewallpaper", "inventory");
                 }
                 else {
-
-                    _businessLogicL.addPaper(newPaper);
-                    return RedirectToAction("", "");
+                    return View("newpaper", newPaper);
                 }
             
             } catch (Exception ex) {
@@ -63,14 +61,15 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult NewInk(Ink newInk) {
             try
             {
+                //newInk.Activated = true;
 
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     _businessLogicL.addInk(newInk);
-                    return RedirectToAction("", "");
+                    return RedirectToAction("ViewAllInk", "inventory");
                 }
                 else { 
-                    return View() ;
+                    return View(newInk) ;
                 }
 
             } catch (Exception ex) {
@@ -92,14 +91,14 @@ namespace ThothSystemVersion1.Controllers
             try
             {
 
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     _businessLogicL.addSupply(newSupply);
-                    return RedirectToAction("", "");
+                    return RedirectToAction("viewallsupply", "inventory");
                 }
                 else
                 {
-                    return View();
+                    return View(newSupply);
                 }
 
             }
@@ -113,19 +112,37 @@ namespace ThothSystemVersion1.Controllers
 
         // paper purchase
 
-        public IActionResult paperPurchase() {
+        [HttpGet]
+        public async Task <IActionResult> paperPurchase() {
+            ViewBag.paperList = await _businessLogicL.ViewAllPaper();
             return View();
         }
+
+        //public IActionResult paperPurchase(List<QuantityBridge> purchasedPaper) { 
+        
+        
+
+        
+        
+        //}
 
 
 
         // ink purchase
 
-        public IActionResult inkPurchase() { return View(); }
+        public async Task<IActionResult> inkPurchase() {
+            ViewBag.inkList = await _businessLogicL.ViewAllInk();
+
+            return View(); 
+        }
 
         // supply purchase
 
-        public IActionResult supplyPurchase() { return View(); }
+        public async Task<IActionResult> supplyPurchase() {
+            ViewBag.supplyList = await _businessLogicL.ViewAllSupply();
+
+            return View();
+        }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      

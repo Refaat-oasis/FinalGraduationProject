@@ -28,11 +28,11 @@ ALTER DATABASE ThothSystem
 -- 1. Customer Table
 CREATE TABLE Customer (
     customerID INT IDENTITY(1,1) PRIMARY KEY,
-    customerName NVARCHAR(255) NOT NULL,
-    customerAddress NVARCHAR(500) NULL,
-    customerEmail NVARCHAR(250) NULL UNIQUE,
-    customerNotes NVARCHAR(2500) NULL,
-    customerPhone NVARCHAR(15) NOT NULL UNIQUE,
+    customerName NVARCHAR(255) NOT NULL DEFAULT '',
+    customerAddress NVARCHAR(500) NULL DEFAULT '',
+    customerEmail NVARCHAR(250) NULL UNIQUE DEFAULT '',
+    customerNotes NVARCHAR(2500) NULL DEFAULT '',
+    customerPhone NVARCHAR(15) NOT NULL UNIQUE DEFAULT '',
 	Activated BIT DEFAULT 1
 );
 GO
@@ -40,11 +40,11 @@ GO
 -- 2. Vendor Table
 CREATE TABLE Vendor (
     vendorID INT IDENTITY(1,1) PRIMARY KEY,
-    vendorName NVARCHAR(255) NOT NULL,
-    vendorAddress NVARCHAR(500) NULL,
-    vendorEmail NVARCHAR(250) NULL UNIQUE,
-    vendorNotes NVARCHAR(2500) NULL,
-    vendorPhone NVARCHAR(15) NOT NULL UNIQUE,
+    vendorName NVARCHAR(255) NOT NULL DEFAULT '',
+    vendorAddress NVARCHAR(500) NULL DEFAULT '',
+    vendorEmail NVARCHAR(250) NULL UNIQUE DEFAULT '',
+    vendorNotes NVARCHAR(2500) NULL DEFAULT '',
+    vendorPhone NVARCHAR(15) NOT NULL UNIQUE DEFAULT '',
 	Activated BIT DEFAULT 1
 );
 GO
@@ -52,10 +52,10 @@ GO
 -- 3. Employee Table
 CREATE TABLE Employee (
     employeeID NVARCHAR(30) NOT NULL PRIMARY KEY,
-    employeeUserName NVARCHAR(255) NOT NULL UNIQUE,
-    employeePassword NVARCHAR(255) NOT NULL,
-    employeeName NVARCHAR(255) NOT NULL,
-    jobRole INT NOT NULL,
+    employeeUserName NVARCHAR(255) NOT NULL UNIQUE DEFAULT '',
+    employeePassword NVARCHAR(255) NOT NULL DEFAULT '',
+    employeeName NVARCHAR(255) NOT NULL DEFAULT '',
+    jobRole INT NOT NULL DEFAULT 0,
 	Activated BIT DEFAULT 1
 );
 GO
@@ -63,8 +63,8 @@ GO
 -- 4. Labour Table
 CREATE TABLE Labour (
     labourID INT IDENTITY(1,1) PRIMARY KEY,
-    labourProcessName NVARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL CHECK (price > 0.0),
+    labourProcessName NVARCHAR(255) NOT NULL DEFAULT '',
+    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0.0),
 	Activated BIT DEFAULT 1
 );
 GO
@@ -72,14 +72,14 @@ GO
 -- 5. JobOrder Table
 CREATE TABLE JobOrder (
     jobOrderID INT IDENTITY(1,1) PRIMARY KEY,
-    remainingAmount DECIMAL(10,2) DEFAULT 0 CHECK (remainingAmount >= 0),
-    unearnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (unearnedRevenue >= 0),
+    remainingAmount DECIMAL(10,2) DEFAULT 1 CHECK (remainingAmount >= 0),
+    unearnedRevenue DECIMAL(10,2) DEFAULT 1 CHECK (unearnedRevenue >= 0),
     jobOrdernotes NVARCHAR(100) DEFAULT '',
-    earnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (earnedRevenue >= 0),
+    earnedRevenue DECIMAL(10,2) DEFAULT 1 CHECK (earnedRevenue >= 0),
     orderProgress NVARCHAR(20) DEFAULT 'قيد الانتظار' ,
     customerID INT,
     startDate DATE DEFAULT GETDATE(),
-    endDate DATE NOT NULL,
+    endDate DATE NULL,
     employeeID NVARCHAR(30),
     FOREIGN KEY (customerID) REFERENCES Customer(customerID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
@@ -90,8 +90,8 @@ GO
 -- 6. Machine Table
 CREATE TABLE Machine (
     machineID INT IDENTITY(1,1) PRIMARY KEY,
-    machineProcessName NVARCHAR(100) NOT NULL UNIQUE,
-    price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+    machineProcessName NVARCHAR(100) NOT NULL DEFAULT '',
+    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0),
 	Activated BIT DEFAULT 1
 );
 GO
@@ -101,9 +101,9 @@ CREATE TABLE ProcessBridge (
     jobOrderID INT,
     machineID INT,
     labourID INT,
-    totalMachinePrice DECIMAL(10,2) NOT NULL CHECK (totalMachinePrice >= 0),
-    totalLabourPrice DECIMAL(10,2) NOT NULL CHECK (totalLabourPrice >= 0),
-    numberOfHours DECIMAL(10,2) NOT NULL CHECK (numberOfHours >= 0),
+    totalMachinePrice DECIMAL(10,2) DEFAULT 1 NOT NULL CHECK (totalMachinePrice >= 0),
+    totalLabourPrice DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalLabourPrice >= 0),
+    numberOfHours DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (numberOfHours >= 0),
     employeeID NVARCHAR(30),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (machineID) REFERENCES Machine(machineID),
@@ -116,18 +116,18 @@ GO
 CREATE TABLE MiscellaneousExpenses (
     jobOrderID INT,
     employeeID NVARCHAR(30),
-    materialProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (materialProcessingExpense >= 0),
-    filmsProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (filmsProcessingExpense >= 0),
-    materialsTotal DECIMAL(10,2) DEFAULT 0 CHECK (materialsTotal >= 0),
-    totalAfterMaterials DECIMAL(10,2) NOT NULL CHECK (totalAfterMaterials >= 0),
-    adminstrativeExpense DECIMAL(10,2) DEFAULT 0 CHECK (adminstrativeExpense >= 0),
-    totalExpenses DECIMAL(10,2) NOT NULL CHECK (totalExpenses >= 0),
-    percentage DECIMAL(10,2) NOT NULL CHECK (percentage >= 0),
-    totalAfterPercentage DECIMAL(10,2) NOT NULL CHECK (totalAfterPercentage >= 0),
-    ministryOfFinance DECIMAL(10,2) NOT NULL,
-    employeeImprovmentBox DECIMAL(10,2) NOT NULL,
-    valueAddedTax DECIMAL(10,2) NOT NULL,
-    finalTotal DECIMAL(10,2) NOT NULL CHECK (finalTotal >= 0),
+    materialProcessingExpense DECIMAL(10,2) DEFAULT 1 CHECK (materialProcessingExpense >= 0),
+    filmsProcessingExpense DECIMAL(10,2) DEFAULT 1 CHECK (filmsProcessingExpense >= 0),
+    materialsTotal DECIMAL(10,2) DEFAULT 1 CHECK (materialsTotal >= 0),
+    totalAfterMaterials DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterMaterials >= 0),
+    adminstrativeExpense DECIMAL(10,2) DEFAULT 1 CHECK (adminstrativeExpense >= 0),
+    totalExpenses DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalExpenses >= 0),
+    percentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (percentage >= 0),
+    totalAfterPercentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterPercentage >= 0),
+    ministryOfFinance DECIMAL(10,2) NOT NULL DEFAULT 1,
+    employeeImprovmentBox DECIMAL(10,2) NOT NULL DEFAULT 1,
+    valueAddedTax DECIMAL(10,2) NOT NULL DEFAULT 1,
+    finalTotal DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (finalTotal >= 0),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
@@ -139,7 +139,7 @@ CREATE TABLE PurchaseOrder (
     purchaseDate DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) NOT NULL,
     vendorID INT NOT NULL,
-    purchaseNotes NVARCHAR(2500) NULL,
+    purchaseNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
     FOREIGN KEY (vendorID) REFERENCES Vendor(vendorID)
 );
@@ -152,7 +152,7 @@ CREATE TABLE ReturnsOrder (
     jobOrderID INT  NULL,
 	purchaseID INT NULL,
     employeeID NVARCHAR(30) NOT NULL,
-    returnsNotes NVARCHAR(2500) NULL,
+    returnsNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
 	FOREIGN KEY (purchaseID) REFERENCES PurchaseOrder(purchaseID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
@@ -165,7 +165,7 @@ CREATE TABLE RequisiteOrder (
     requisiteDate DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) NOT NULL,
     jobOrderID INT NOT NULL,
-    requisiteNotes NVARCHAR(2500) NULL,
+    requisiteNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID)
 );
@@ -174,14 +174,14 @@ GO
 -- 11. Paper Table
 CREATE TABLE Paper (
     paperID INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(30) NOT NULL,
-    type NVARCHAR(25) NULL,
-    weight DECIMAL(10,2) NULL,
-    totalBalance DECIMAL(10,2) DEFAULT 0.0,
-    colored NVARCHAR(10) NOT NULL,
-    quantity INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    reorderPoint DECIMAL(10,2) DEFAULT 0.0,
+    name NVARCHAR(30) NOT NULL DEFAULT '',
+    type NVARCHAR(25) NULL DEFAULT '',
+    weight DECIMAL(10,2) NULL DEFAULT 1,
+    totalBalance DECIMAL(10,2) DEFAULT 1,
+    colored NVARCHAR(10) NOT NULL DEFAULT '',
+    quantity INT NOT NULL DEFAULT 1,
+    price DECIMAL(10,2) NOT NULL DEFAULT 1,
+    reorderPoint DECIMAL(10,2) DEFAULT 1,
     CHECK (weight >= 0.0 AND price > 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
 );
@@ -190,12 +190,12 @@ GO
 -- 12. Ink Table
 CREATE TABLE Ink (
     inkID INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(30) NOT NULL UNIQUE,
-    totalBalance DECIMAL(10,2) DEFAULT 0.00,
-    colored NVARCHAR(10) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    quantity INT NOT NULL,
-    reorderPoint DECIMAL(10,2) DEFAULT 0.0,
+    name NVARCHAR(30) NOT NULL DEFAULT '',
+    totalBalance DECIMAL(10,2) DEFAULT 1,
+    colored NVARCHAR(20) NOT NULL DEFAULT '',
+    price DECIMAL(10,2) NOT NULL DEFAULT 1,
+    quantity INT NOT NULL DEFAULT 1,
+    reorderPoint DECIMAL(10,2) DEFAULT 1,
     CHECK (price > 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
 );
@@ -204,11 +204,11 @@ GO
 -- 13. Supplies Table
 CREATE TABLE Supplies (
     suppliesID INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(30) NOT NULL UNIQUE,
-    totalBalance DECIMAL(10,2) DEFAULT 0.0,
-    price DECIMAL(10,2) NOT NULL,
-    quantity INT NOT NULL,
-    reorderPoint DECIMAL(10,2) DEFAULT 0.0,
+    name NVARCHAR(30) NOT NULL DEFAULT '',
+    totalBalance DECIMAL(10,2) DEFAULT 1,
+    price DECIMAL(10,2) NOT NULL DEFAULT 1,
+    quantity INT NOT NULL DEFAULT 1,
+    reorderPoint DECIMAL(10,2) DEFAULT 1,
     CHECK (quantity > 0 AND price > 0.0),
 	Activated BIT DEFAULT 1
 );
@@ -219,17 +219,17 @@ CREATE TABLE PhysicalCountOrder (
     physicalCountID INT IDENTITY(1,1) PRIMARY KEY,
     employeeID NVARCHAR(30),
     physicalCountDate DATE DEFAULT GETDATE(),
-    physicalCountNotes NVARCHAR(30),
+    physicalCountNotes NVARCHAR(2500) DEFAULT '',
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
 GO
 
 -- 16. QuantityBridge Table
 CREATE TABLE QuantityBridge (
-    price DECIMAL(10,2) NOT NULL CHECK (price > 0.0),
+    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0.0),
     returnID INT NULL,
     purchaseID INT NULL,
-    quantity INT NOT NULL CHECK (quantity > 0),
+    quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),
     requisiteID INT NULL,
     paperID INT NULL,
     inkID INT NULL,

@@ -360,6 +360,30 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-5B\u002Byi68H\u002B8oWt9R60nHFzpjkugt5pN0CiO5AN2o0YHM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1914"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00225B\u002Byi68H\u002B8oWt9R60nHFzpjkugt5pN0CiO5AN2o0YHM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 19:24:52 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/paperReorderPoint.9hq70nr9j9.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\paperReorderPoint.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9hq70nr9j9"},{"Name":"integrity","Value":"sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="},{"Name":"label","Value":"_content/ThothSystemVersion1/js/Inventory/paperReorderPoint.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1585"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 16:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/paperReorderPoint.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\paperReorderPoint.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1585"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 16:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/signalRpaper.0blihldkd9.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\signalRpaper.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0blihldkd9"},{"Name":"integrity","Value":"sha256-pM6d6dcqYs2mhgIPlAVq4abL1i\u002BRH/4PyjUilybRu6Q="},{"Name":"label","Value":"_content/ThothSystemVersion1/js/Inventory/signalRpaper.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1047"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022pM6d6dcqYs2mhgIPlAVq4abL1i\u002BRH/4PyjUilybRu6Q=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 16:47:25 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/signalRpaper.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\signalRpaper.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pM6d6dcqYs2mhgIPlAVq4abL1i\u002BRH/4PyjUilybRu6Q="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1047"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022pM6d6dcqYs2mhgIPlAVq4abL1i\u002BRH/4PyjUilybRu6Q=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 16:47:25 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ThothSystemVersion1/js/Inventory/ViewAllInk.i2g030oiy2.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\ViewAllInk.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

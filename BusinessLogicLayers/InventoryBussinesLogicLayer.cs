@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
@@ -226,5 +227,70 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             throw new NotImplementedException();
         }
+
+        public void purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
+        {
+
+            List<Paper> existingPaper = _context.Papers.ToList();
+            List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+            PurchaseOrder purchaseOrder = new PurchaseOrder();
+
+            purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+            purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+            purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+
+            _context.PurchaseOrders.Add(purchaseOrder);
+            _context.SaveChanges();
+
+            int lastone = _context.PurchaseOrders
+                      .OrderByDescending(po => po.PurchaseId)
+                      .Select(po => po.PurchaseId)
+                      .FirstOrDefault();
+
+            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
+            {
+                bridge.PurchaseId = lastone;
+                bridge.QuantityBridgeID = null;
+            }
+
+            for (int i = 0; i < existingPaper.Count; i++) {
+
+                for (int j = 0; j < quantityBridgeList.Count; j++) {
+
+                    if (existingPaper[i].PaperId == quantityBridgeList[j].PaperId) {
+
+                        var existingPapers = _context.Papers.ToList();
+                        foreach (var bridge in purchaseOrdDTO.BridgeList)
+                        {
+                            var paper = existingPapers.FirstOrDefault(p => p.PaperId == bridge.PaperId);
+                            if (paper != null)
+                            {
+                                // Calculate new quantity and average price
+                                double totalQuantity = paper.Quantity + bridge.Quantity;
+                                decimal totalValue = (decimal)paper.Quantity * paper.Price
+                                                   + (decimal)bridge.Quantity * bridge.Price;
+                                decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                                // Update paper properties
+                                paper.Quantity = (int)totalQuantity;
+                                paper.Price = averagePrice;
+
+                                _context.Papers.Update(paper);
+                            }
+                        }
+
+                        // Add QuantityBridges to context and save all changes
+                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+                        _context.SaveChanges();
+                    }
+
+                }
+
+                }
+
+            }
+
+        }
+
     }
-}
+//}

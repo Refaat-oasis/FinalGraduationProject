@@ -6,6 +6,9 @@ namespace ThothSystemVersion1.Models;
 
 public partial class QuantityBridge
 {
+    //[Display(Name = "الرقم التعريفي لامر الشراء")]
+    public int? QuantityBridgeID { get; set; }
+
     [Display(Name = "السعر")]
     public decimal Price { get; set; }
     

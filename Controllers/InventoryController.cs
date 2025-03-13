@@ -113,9 +113,10 @@ namespace ThothSystemVersion1.Controllers
         // paper purchase
 
         [HttpGet]
-        public async Task <IActionResult> paperPurchase() {
+        public async Task <IActionResult> paperPurchase() 
+        {
 
-            ViewBag.paperList = await _businessLogicL.ViewAllPaper();
+            ViewBag.paperList = _businessLogicL.getAllPaper();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
             return View();
 
@@ -124,9 +125,9 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
         {
-            // store the employeeid in the dto
-            //string employeeId = HttpContext.Session.GetString("EmployeeID");
-            //purchaseDto.EmployeeId = employeeId;
+            //store the employeeid in the dto
+            string employeeId = HttpContext.Session.GetString("EmployeeID");
+            purchaseDto.EmployeeId = employeeId;
             _businessLogicL.purchaseNewPaper(purchaseDto);
             return RedirectToAction("ViewAllPaper", "inventory");
 

@@ -208,6 +208,13 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
+        public List<Paper> getAllPaper()
+        {
+
+            List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
+            return paperList;
+        }
+
 
         public async Task<List<Paper>> ViewAllPaper()
         {
@@ -274,6 +281,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 // Update paper properties
                                 paper.Quantity = (int)totalQuantity;
                                 paper.Price = averagePrice;
+                                paper.TotalBalance = (decimal)totalQuantity * averagePrice;
 
                                 _context.Papers.Update(paper);
                             }

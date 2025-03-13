@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yqRHgS1Deq6aFHcC7rt1PCOfcvtwSaV+0F1SltYIdDc=",
+  "Hash": "sE4akxIXI+te2v91CBHPDNzY4gmqiR1cW0gqtwTVMd0=",
   "Source": "ThothSystemVersion1",
   "BasePath": "_content/ThothSystemVersion1",
   "Mode": "Default",
@@ -456,6 +456,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Admin\\addEmployee.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\84uhk0pina-0blihldkd9.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/signalRpaper#[.{fingerprint=0blihldkd9}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "wo2lt9jq2a",
+      "Integrity": "4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\9cjzs1viu5-48y08845bh.gz",
@@ -1233,6 +1254,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\mhp52afk3r-9hq70nr9j9.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/paperReorderPoint#[.{fingerprint=9hq70nr9j9}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "7ekvvi2dx5",
+      "Integrity": "/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n0plua163v-8vyfqsqgz1.gz",
@@ -2703,6 +2745,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Inventory\\newsupply.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/paperReorderPoint#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9hq70nr9j9",
+      "Integrity": "M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\paperReorderPoint.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/signalRpaper#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0blihldkd9",
+      "Integrity": "pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\signalRpaper.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllInk.js",
@@ -12228,6 +12312,602 @@
         {
           "Name": "integrity",
           "Value": "sha256-PtoVTU2sXb10ma99g0t5zUPxWAYX47GRnRAHd2SC5ug="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.9hq70nr9j9.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\mhp52afk3r-9hq70nr9j9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001367989056"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "730"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9hq70nr9j9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/paperReorderPoint.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.9hq70nr9j9.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1585"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9hq70nr9j9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/paperReorderPoint.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.9hq70nr9j9.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\mhp52afk3r-9hq70nr9j9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9hq70nr9j9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/paperReorderPoint.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\mhp52afk3r-9hq70nr9j9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001367989056"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "730"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1585"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M9I3LmmmC5yVL7zerTJPV2CPRJScHosDMSqqJZqyevg="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/paperReorderPoint.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\mhp52afk3r-9hq70nr9j9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:24:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/98cHdbIUpQuWAQCMdbNhgTgGWlSQPctiHQvxNi7tvA="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.0blihldkd9.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\84uhk0pina-0blihldkd9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001945525292"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "513"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0blihldkd9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/signalRpaper.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.0blihldkd9.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1047"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0blihldkd9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/signalRpaper.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.0blihldkd9.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\84uhk0pina-0blihldkd9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "513"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0blihldkd9"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/signalRpaper.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\84uhk0pina-0blihldkd9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001945525292"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "513"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1047"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pM6d6dcqYs2mhgIPlAVq4abL1i+RH/4PyjUilybRu6Q="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/signalRpaper.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\84uhk0pina-0blihldkd9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "513"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 16:47:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LHAPOZRaSN3j/xLB3NMUBeZsDINnRi5aglCzdy2/HM="
         }
       ]
     },

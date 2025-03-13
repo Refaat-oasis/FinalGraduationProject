@@ -114,17 +114,24 @@ namespace ThothSystemVersion1.Controllers
 
         [HttpGet]
         public async Task <IActionResult> paperPurchase() {
+
             ViewBag.paperList = await _businessLogicL.ViewAllPaper();
+            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
             return View();
+
         }
 
-        //public IActionResult paperPurchase(List<QuantityBridge> purchasedPaper) { 
-        
-        
+        [HttpPost]
+        public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
+        {
+            // store the employeeid in the dto
+            //string employeeId = HttpContext.Session.GetString("EmployeeID");
+            //purchaseDto.EmployeeId = employeeId;
+            _businessLogicL.purchaseNewPaper(purchaseDto);
+            return RedirectToAction("ViewAllPaper", "inventory");
 
-        
-        
-        //}
+
+        }
 
 
 

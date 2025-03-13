@@ -141,6 +141,14 @@
       "PackagePath": "staticwebassets\\js\\Inventory\\newsupply.js"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\paperReorderPoint.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\signalRpaper.js"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",
       "PackagePath": "staticwebassets\\js\\SharedViews\\loginEmployee.js"
     },

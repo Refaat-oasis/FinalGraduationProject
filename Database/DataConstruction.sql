@@ -98,6 +98,7 @@ GO
 
 -- 7. ProcessBridge Table
 CREATE TABLE ProcessBridge (
+    ProcessBridgeID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT,
     machineID INT,
     labourID INT,
@@ -114,6 +115,7 @@ GO
 
 -- 8. MiscellaneousExpenses Table
 CREATE TABLE MiscellaneousExpenses (
+    MiscellaneousExpensesID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT,
     employeeID NVARCHAR(30),
     materialProcessingExpense DECIMAL(10,2) DEFAULT 1 CHECK (materialProcessingExpense >= 0),
@@ -226,6 +228,7 @@ GO
 
 -- 16. QuantityBridge Table
 CREATE TABLE QuantityBridge (
+    QuantityBridgeID INT IDENTITY(1,1) PRIMARY KEY,
     price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0.0),
     returnID INT NULL,
     purchaseID INT NULL,

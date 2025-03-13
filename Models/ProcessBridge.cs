@@ -6,6 +6,8 @@ namespace ThothSystemVersion1.Models;
 
 public partial class ProcessBridge
 {
+    public int? ProcessBridgeID { get; set; }
+
     [Display(Name = "الرقم التعريفي للتشغيلة")]
     public int? JobOrderId { get; set; }
     

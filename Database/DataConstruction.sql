@@ -153,6 +153,7 @@ CREATE TABLE ReturnsOrder (
     returnDate DATE DEFAULT GETDATE(),
     jobOrderID INT  NULL,
 	purchaseID INT NULL,
+    returnInOut BIT DEFAULT 1,
     employeeID NVARCHAR(30) NOT NULL,
     returnsNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),

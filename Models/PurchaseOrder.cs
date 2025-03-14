@@ -24,4 +24,6 @@ public partial class PurchaseOrder
     public virtual Employee Employee { get; set; } = null!;
 
     public virtual Vendor Vendor { get; set; } = null!;
+    public virtual ICollection<ReturnsOrder> ReturnOrders { get; set; }
+
 }

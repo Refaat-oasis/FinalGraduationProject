@@ -21,6 +21,13 @@ public partial class ReturnsOrder
     [Display(Name = "ملاحظات عن اذن المردودات")]
     public string? ReturnsNotes { get; set; }
 
+    [Display(Name ="الداخلي والخارجي")]
+    public bool ReturnInOut { get; set; }
+
+    [Display(Name = " الرقم التعريفي لطلبيه الشراء")]
+
+    public int? PurchaseId { get; set; }
+
     public virtual PurchaseOrder PurchaseOrder { get; set; } = null!;
 
     public virtual Employee Employee { get; set; } = null!;

@@ -642,7 +642,7 @@ namespace ThothSystemVersion1.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code.
-            => optionsBuilder.UseSqlServer("Server=DESKTOP-EFNEGP3;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=DESKTOP-UU5AFE4;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1130,6 +1130,9 @@ namespace ThothSystemVersion1.Database
                     .HasMaxLength(2500)
                     .IsUnicode(false)
                     .HasColumnName("returnsNotes");
+                entity.Property(e => e.ReturnInOut)
+        .HasDefaultValue(1)
+        .HasColumnName("returnInOut");
 
                 entity.HasOne(d => d.Employee).WithMany(p => p.ReturnsOrders)
                     .HasForeignKey(d => d.EmployeeId)
@@ -1140,7 +1143,13 @@ namespace ThothSystemVersion1.Database
                     .HasForeignKey(d => d.JobOrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ReturnsOr__jobOr__6EF57B66");
+                entity.HasOne(d => d.PurchaseOrder)
+     .WithMany(p => p.ReturnOrders) 
+     .HasForeignKey(d => d.PurchaseId)
+     .OnDelete(DeleteBehavior.ClientSetNull)
+     .HasConstraintName("FK_ReturnsOrder_PurchaseOrder");
             });
+
 
             modelBuilder.Entity<Supply>(entity =>
             {

@@ -126,8 +126,8 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
         {
             //store the employeeid in the dto
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            purchaseDto.EmployeeId = employeeId;
+            //string employeeId = HttpContext.Session.GetString("EmployeeID");
+            //purchaseDto.EmployeeId = employeeId;
             _businessLogicL.purchaseNewPaper(purchaseDto);
             return RedirectToAction("ViewAllPaper", "inventory");
 

@@ -116,7 +116,7 @@ namespace ThothSystemVersion1.Controllers
         public async Task <IActionResult> paperPurchase() 
         {
 
-            ViewBag.paperList = _businessLogicL.getAllPaper();
+            ViewBag.paperList = _businessLogicL.getAllActivePaper();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
             return View();
 
@@ -138,22 +138,49 @@ namespace ThothSystemVersion1.Controllers
 
         // ink purchase
 
-        public async Task<IActionResult> inkPurchase() {
-            ViewBag.inkList = await _businessLogicL.ViewAllInk();
+        public IActionResult inkPurchase() {
+            ViewBag.paperList = _businessLogicL.getAllActiveInk();
+            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View(); 
         }
 
+        [HttpPost]
+        public IActionResult inkPurchase(purchaseOrderDTO purchaseDto)
+        {
+            //store the employeeid in the dto
+            //string employeeId = HttpContext.Session.GetString("EmployeeID");
+            //purchaseDto.EmployeeId = employeeId;
+            _businessLogicL.purchaseNewInk(purchaseDto);
+            return RedirectToAction("ViewAllink", "inventory");
+
+
+        }
+
         // supply purchase
 
-        public async Task<IActionResult> supplyPurchase() {
-            ViewBag.supplyList = await _businessLogicL.ViewAllSupply();
+        public IActionResult supplypurchase()
+        {
+            ViewBag.paperList = _businessLogicL.getAllActiveSupply();
+            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View();
         }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     
+        [HttpPost]
+        public IActionResult supplyPurchase(purchaseOrderDTO purchaseDto)
+        {
+            //store the employeeid in the dto
+            //string employeeId = HttpContext.Session.GetString("EmployeeID");
+            //purchaseDto.EmployeeId = employeeId;
+            _businessLogicL.purchaseNewSupply(purchaseDto);
+            return RedirectToAction("viewallsupply", "inventory");
+
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // Mariam section
         [HttpGet]
         public IActionResult EditVendor(int vendorID) {

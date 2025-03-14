@@ -208,11 +208,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
-        public List<Paper> getAllPaper()
+        public List<Paper> getAllActivePaper()
         {
 
             List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
             return paperList;
+        }
+        public List<Ink> getAllActiveInk()
+        {
+
+            List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
+            return inkList;
+        }
+        public List<Supply> getAllActiveSupply()
+        {
+
+            List<Supply> supplyList = _context.Supplies.Where(p => p.Activated == true).ToList();
+            return supplyList;
         }
 
 
@@ -298,7 +310,137 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             }
 
+        public void purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
+        {
+
+            List<Ink> existingInk = _context.Inks.ToList();
+            List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+            PurchaseOrder purchaseOrder = new PurchaseOrder();
+
+            purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+            purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+            purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+
+            _context.PurchaseOrders.Add(purchaseOrder);
+            _context.SaveChanges();
+
+            int lastone = _context.PurchaseOrders
+                      .OrderByDescending(po => po.PurchaseId)
+                      .Select(po => po.PurchaseId)
+                      .FirstOrDefault();
+
+            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
+            {
+                bridge.PurchaseId = lastone;
+                bridge.QuantityBridgeID = null;
+            }
+
+            for (int i = 0; i < existingInk.Count; i++)
+            {
+
+                for (int j = 0; j < quantityBridgeList.Count; j++)
+                {
+
+                    if (existingInk[i].InkId == quantityBridgeList[j].InkId)
+                    {
+
+                        var existinginks = _context.Inks.ToList();
+                        foreach (var bridge in purchaseOrdDTO.BridgeList)
+                        {
+                            var ink = existinginks.FirstOrDefault(p => p.InkId == bridge.InkId);
+                            if (ink != null)
+                            {
+                                // Calculate new quantity and average price
+                                double totalQuantity = ink.Quantity + bridge.Quantity;
+                                decimal totalValue = (decimal)ink.Quantity * ink.Price
+                                                   + (decimal)bridge.Quantity * bridge.Price;
+                                decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                                // Update paper properties
+                                ink.Quantity = (int)totalQuantity;
+                                ink.Price = averagePrice;
+                                ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+                                _context.Inks.Update(ink);
+                            }
+                        }
+
+                        // Add QuantityBridges to context and save all changes
+                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+                        _context.SaveChanges();
+                    }
+
+                }
+
+            }
+
         }
+        public void purchaseNewSupply(purchaseOrderDTO purchaseOrdDTO)
+        {
+
+            List<Supply> existingSupply = _context.Supplies.ToList();
+            List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+            PurchaseOrder purchaseOrder = new PurchaseOrder();
+
+            purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+            purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+            purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+
+            _context.PurchaseOrders.Add(purchaseOrder);
+            _context.SaveChanges();
+
+            int lastone = _context.PurchaseOrders
+                      .OrderByDescending(po => po.PurchaseId)
+                      .Select(po => po.PurchaseId)
+                      .FirstOrDefault();
+
+            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
+            {
+                bridge.PurchaseId = lastone;
+                bridge.QuantityBridgeID = null;
+            }
+
+            for (int i = 0; i < existingSupply.Count; i++)
+            {
+
+                for (int j = 0; j < quantityBridgeList.Count; j++)
+                {
+
+                    if (existingSupply[i].SuppliesId == quantityBridgeList[j].SuppliesId)
+                    {
+
+                        var existingSupplies = _context.Supplies.ToList();
+                        foreach (var bridge in purchaseOrdDTO.BridgeList)
+                        {
+                            var supply = existingSupplies.FirstOrDefault(p => p.SuppliesId == bridge.SuppliesId);
+                            if (supply != null)
+                            {
+                                // Calculate new quantity and average price
+                                double totalQuantity = supply.Quantity + bridge.Quantity;
+                                decimal totalValue = (decimal)supply.Quantity * supply.Price
+                                                   + (decimal)bridge.Quantity * bridge.Price;
+                                decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                                // Update paper properties
+                                supply.Quantity = (int)totalQuantity;
+                                supply.Price = averagePrice;
+                                supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+                                _context.Supplies.Update(supply);
+                            }
+                        }
+
+                        // Add QuantityBridges to context and save all changes
+                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+                        _context.SaveChanges();
+                    }
+
+                }
+
+            }
+
+        }
+    }
 
     }
 //}

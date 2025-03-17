@@ -1,0 +1,119 @@
+﻿@model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
+@{
+    List<Paper> paperList = ViewBag.paperList as List<Paper>;
+    List<Vendor> vendorList = ViewBag.vendorList as List<Vendor>;
+}
+@{
+    ViewData["Title"] = "Create Purchase Order";
+}
+
+<h2>Create Purchase Order</h2>
+
+<form asp-controller="Inventory" asp-action="PaperPurchase" method="post">
+    @* <div class="form-group"> *@
+    @*     <label asp-for="EmployeeId" class="control-label"></label> *@
+    @*     <input asp-for="EmployeeId" class="form-control" placeholder="Enter Employee ID" /> *@
+    @* </div> *@
+
+    <div class="form-group">
+        <label asp-for="VendorId" class="control-label"></label>
+        <select asp-for="VendorId" class="form-control" required>
+            <option value="">Select Vendor</option>
+            @foreach (var vendor in vendorList)
+            {
+                <option value="@vendor.VendorId">@vendor.VendorName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PurchaseNotes" class="control-label"></label>
+        <textarea asp-for="PurchaseNotes" class="form-control" placeholder="Enter purchase notes"></textarea>
+    </div>
+
+    <h4>Purchase Items</h4>
+    <div class="form-group">
+        <label>Select Paper</label>
+        <select id="paperDropdown" class="form-control">
+            <option value="">Select Paper</option>
+            @foreach (var paper in paperList)
+            {
+                <option value="@paper.PaperId">@paper.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input id="quantityInput" class="form-control" type="number" min="1"  />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input id="priceInput" class="form-control" type="number" step="0.01" min="0"  />
+    </div>
+    <button type="button" class="btn btn-primary" onclick="addItem()">Add Item</button>
+
+    <table class="table" id="itemsTable">
+        <thead>
+            <tr>
+                <th>Paper</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<script>
+    let paperList = @Html.Raw(Json.Serialize(paperList)); // Serialize paperList for use in JavaScript
+    let vendorList = @Html.Raw(Json.Serialize(vendorList)); // Serialize vendorList for use in JavaScript
+
+    function addItem() {
+        let paperDropdown = document.getElementById("paperDropdown");
+        let quantityInput = document.getElementById("quantityInput");
+        let priceInput = document.getElementById("priceInput");
+
+        // Get selected values
+        let selectedPaperId = paperDropdown.value;
+        let selectedPaperName = paperDropdown.options[paperDropdown.selectedIndex].text;
+        let quantity = quantityInput.value;
+        let price = priceInput.value;
+
+        // Validate inputs
+        if (!selectedPaperId || !quantity || !price) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        // Add item to the table
+        let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+        let row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${selectedPaperName}</td>
+            <td>${quantity}</td>
+            <td>${price}</td>
+            <td><button type="button" class="btn btn-danger" onclick="removeItem(this)">Remove</button></td>
+        `;
+
+        // Add hidden inputs for form submission
+        row.innerHTML += `
+            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].PaperId" value="${selectedPaperId}" />
+            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].Quantity" value="${quantity}" />
+            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].Price" value="${price}" />
+        `;
+
+        // Clear input fields
+        paperDropdown.value = "";
+        quantityInput.value = "";
+        priceInput.value = "";
+    }
+
+    function removeItem(button) {
+        let row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>

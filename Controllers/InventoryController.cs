@@ -149,8 +149,8 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult inkPurchase(purchaseOrderDTO purchaseDto)
         {
             //store the employeeid in the dto
-            //string employeeId = HttpContext.Session.GetString("EmployeeID");
-            //purchaseDto.EmployeeId = employeeId;
+            string employeeId = HttpContext.Session.GetString("EmployeeID");
+            purchaseDto.EmployeeId = employeeId;
             _businessLogicL.purchaseNewInk(purchaseDto);
             return RedirectToAction("ViewAllink", "inventory");
 
@@ -171,8 +171,8 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult supplyPurchase(purchaseOrderDTO purchaseDto)
         {
             //store the employeeid in the dto
-            //string employeeId = HttpContext.Session.GetString("EmployeeID");
-            //purchaseDto.EmployeeId = employeeId;
+            string employeeId = HttpContext.Session.GetString("EmployeeID");
+            purchaseDto.EmployeeId = employeeId;
             _businessLogicL.purchaseNewSupply(purchaseDto);
             return RedirectToAction("viewallsupply", "inventory");
 

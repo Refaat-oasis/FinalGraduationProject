@@ -440,6 +440,95 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
+        // الحصول على العناصر النشطة
+        public List<Paper> GetActivePapers() => _context.Papers.Where(p => p.Activated).ToList();
+        public List<Ink> GetActiveInks() => _context.Inks.Where(i => i.Activated).ToList();
+        public List<Supply> GetActiveSupplies() => _context.Supplies.Where(s => s.Activated).ToList();
+
+        // الحصول على الكمية الحالية
+        public int GetCurrentQuantity(string itemType, int itemId)
+        {
+            return itemType switch
+            {
+                "Paper" => _context.Papers.FirstOrDefault(p => p.PaperId == itemId)?.Quantity ?? 0,
+                "Ink" => _context.Inks.FirstOrDefault(i => i.InkId == itemId)?.Quantity ?? 0,
+                "Supply" => _context.Supplies.FirstOrDefault(s => s.SuppliesId == itemId)?.Quantity ?? 0,
+                _ => 0 // Default case
+            };
+        }
+
+        // تحديث الكمية مع تخزين الجرد
+        public (bool Success, string Message) UpdateQuantity(string itemType, int itemId, int newQuantity, string notes, string employeeId)
+        {
+            try
+            {
+                int oldQuantity = 0;
+                string itemName = "";
+                QuantityBridge quantityBridge = null;
+
+                switch (itemType)
+                {
+                    case "Paper":
+                        var paper = _context.Papers.Find(itemId);
+                        if (paper == null) return (false, "الورق غير موجود");
+                        oldQuantity = paper.Quantity;
+                        itemName = paper.Name;
+                        paper.Quantity = newQuantity;
+
+                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.PaperId == itemId);
+                        break;
+
+                    case "Ink":
+                        var ink = _context.Inks.Find(itemId);
+                        if (ink == null) return (false, "الحبر غير موجود");
+                        oldQuantity = ink.Quantity;
+                        itemName = ink.Name;
+                        ink.Quantity = newQuantity;
+
+                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.InkId == itemId);
+                        break;
+
+                    case "Supply":
+                        var supply = _context.Supplies.Find(itemId);
+                        if (supply == null) return (false, "المستلزمات غير موجودة");
+                        oldQuantity = supply.Quantity;
+                        itemName = supply.Name;
+                        supply.Quantity = newQuantity;
+
+                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.SuppliesId == itemId);
+                        break;
+
+                    default:
+                        return (false, "نوع العنصر غير صحيح");
+                }
+
+                if (quantityBridge == null)
+                {
+                    return (false, "لا يوجد سجل مطابق في QuantityBridge");
+                }
+
+                // إنشاء سجل جديد في PhysicalCountOrder
+                var physicalCount = new PhysicalCountOrder
+                {
+                    EmployeeId = employeeId,
+                    PhysicalCountDate = DateOnly.FromDateTime(DateTime.Now),
+                    PhysicalCountNotes = notes
+                };
+
+                _context.PhysicalCountOrders.Add(physicalCount);
+                _context.SaveChanges();
+
+                // ربط الكمية بالجرد
+                quantityBridge.PhysicalCountId = physicalCount.PhysicalCountId;
+                _context.SaveChanges();
+
+                return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {newQuantity}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
+        }
     }
 
     }

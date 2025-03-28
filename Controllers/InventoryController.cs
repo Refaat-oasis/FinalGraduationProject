@@ -301,6 +301,36 @@ namespace ThothSystemVersion1.Controllers
             return View(suppplyList);
         }
 
+        [HttpGet]
+        public IActionResult Adjust()
+        {
+            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            ViewBag.InkList = _businessLogicL.GetActiveInks();
+            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+            return View();
+        }
 
+        public JsonResult GetCurrentQuantity(string itemType, int itemId)
+        {
+            int quantity = _businessLogicL.GetCurrentQuantity(itemType, itemId);
+            return Json(new { currentQuantity = quantity });
+        }
+
+        [HttpPost]
+        public IActionResult Adjust(string itemType, int itemId, int newQuantity, string notes, PhysicalCountOrder physicalCountOrder)
+        {
+            string employeeId = HttpContext.Session.GetString("EmployeeID");
+            physicalCountOrder.EmployeeId = employeeId;
+
+
+            var result = _businessLogicL.UpdateQuantity(itemType, itemId, newQuantity, notes, employeeId);
+
+            if (result.Success)
+                TempData["Success"] = result.Message;
+            else
+                TempData["Error"] = result.Message;
+
+            return RedirectToAction("Adjust");
+        }
     }
 }

@@ -139,7 +139,7 @@ namespace ThothSystemVersion1.Controllers
         // ink purchase
 
         public IActionResult inkPurchase() {
-            ViewBag.paperList = _businessLogicL.getAllActiveInk();
+            ViewBag.inkList = _businessLogicL.getAllActiveInk();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View(); 
@@ -161,7 +161,7 @@ namespace ThothSystemVersion1.Controllers
 
         public IActionResult supplypurchase()
         {
-            ViewBag.paperList = _businessLogicL.getAllActiveSupply();
+            ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View();

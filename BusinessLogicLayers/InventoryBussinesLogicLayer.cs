@@ -40,8 +40,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 _context.Add(newPaper);
                 _context.SaveChanges();
-             }
-            else { 
+            }
+            else {
                 throw new NotImplementedException();
             }
         }
@@ -184,7 +184,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public Vendor GetVendorByID (int vendorID)
+        public Vendor GetVendorByID(int vendorID)
         {
             Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
             if (foundVendor == null)
@@ -238,7 +238,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         public async Task<List<Supply>> ViewAllSupply()
         {
             List<Supply> supplyList = _context.Supplies.ToList();
-           
+
             return supplyList;
         }
 
@@ -249,8 +249,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public void purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
         {
-
-            List<Paper> existingPaper = _context.Papers.ToList();
             List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
             PurchaseOrder purchaseOrder = new PurchaseOrder();
 
@@ -266,54 +264,38 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                       .Select(po => po.PurchaseId)
                       .FirstOrDefault();
 
-            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
+
+            for (int i = 0; i < quantityBridgeList.Count; i++)
             {
-                bridge.PurchaseId = lastone;
-                bridge.QuantityBridgeID = null;
+
+                Paper pap = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+                if (pap != null)
+                {
+                    // Calculate new quantity and average price
+                    double totalQuantity = pap.Quantity + quantityBridgeList[i].Quantity;
+                    decimal totalValue = (decimal)pap.Quantity * pap.Price +
+                                         (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                    decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                    // Update paper properties
+                    pap.Quantity = (int)totalQuantity;
+                    pap.Price = averagePrice;
+                    pap.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+                    _context.Papers.Update(pap);
+                }
             }
 
-            for (int i = 0; i < existingPaper.Count; i++) {
+            // Add QuantityBridges to context and save all changes
+            _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+            _context.SaveChanges();
 
-                for (int j = 0; j < quantityBridgeList.Count; j++) {
 
-                    if (existingPaper[i].PaperId == quantityBridgeList[j].PaperId) {
-
-                        var existingPapers = _context.Papers.ToList();
-                        foreach (var bridge in purchaseOrdDTO.BridgeList)
-                        {
-                            var paper = existingPapers.FirstOrDefault(p => p.PaperId == bridge.PaperId);
-                            if (paper != null)
-                            {
-                                // Calculate new quantity and average price
-                                double totalQuantity = paper.Quantity + bridge.Quantity;
-                                decimal totalValue = (decimal)paper.Quantity * paper.Price
-                                                   + (decimal)bridge.Quantity * bridge.Price;
-                                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-                                // Update paper properties
-                                paper.Quantity = (int)totalQuantity;
-                                paper.Price = averagePrice;
-                                paper.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-                                _context.Papers.Update(paper);
-                            }
-                        }
-
-                        // Add QuantityBridges to context and save all changes
-                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                        _context.SaveChanges();
-                    }
-
-                }
-
-                }
-
-            }
+        }
+    
 
         public void purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
         {
-
-            List<Ink> existingInk = _context.Inks.ToList();
             List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
             PurchaseOrder purchaseOrder = new PurchaseOrder();
 
@@ -329,56 +311,37 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                       .Select(po => po.PurchaseId)
                       .FirstOrDefault();
 
-            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
-            {
-                bridge.PurchaseId = lastone;
-                bridge.QuantityBridgeID = null;
-            }
 
-            for (int i = 0; i < existingInk.Count; i++)
+            for (int i = 0; i < quantityBridgeList.Count; i++)
             {
 
-                for (int j = 0; j < quantityBridgeList.Count; j++)
+                Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+                if (ink != null)
                 {
+                    // Calculate new quantity and average price
+                    double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
+                    decimal totalValue = (decimal)ink.Quantity * ink.Price +
+                                         (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                    decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                    if (existingInk[i].InkId == quantityBridgeList[j].InkId)
-                    {
+                    // Update paper properties
+                    ink.Quantity = (int)totalQuantity;
+                    ink.Price = averagePrice;
+                    ink.TotalBalance = (decimal)totalQuantity * averagePrice;
 
-                        var existinginks = _context.Inks.ToList();
-                        foreach (var bridge in purchaseOrdDTO.BridgeList)
-                        {
-                            var ink = existinginks.FirstOrDefault(p => p.InkId == bridge.InkId);
-                            if (ink != null)
-                            {
-                                // Calculate new quantity and average price
-                                double totalQuantity = ink.Quantity + bridge.Quantity;
-                                decimal totalValue = (decimal)ink.Quantity * ink.Price
-                                                   + (decimal)bridge.Quantity * bridge.Price;
-                                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-                                // Update paper properties
-                                ink.Quantity = (int)totalQuantity;
-                                ink.Price = averagePrice;
-                                ink.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-                                _context.Inks.Update(ink);
-                            }
-                        }
-
-                        // Add QuantityBridges to context and save all changes
-                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                        _context.SaveChanges();
-                    }
-
+                    _context.Inks.Update(ink);
                 }
-
             }
+
+            // Add QuantityBridges to context and save all changes
+            _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+            _context.SaveChanges();
+
 
         }
         public void purchaseNewSupply(purchaseOrderDTO purchaseOrdDTO)
         {
 
-            List<Supply> existingSupply = _context.Supplies.ToList();
             List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
             PurchaseOrder purchaseOrder = new PurchaseOrder();
 
@@ -394,50 +357,32 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                       .Select(po => po.PurchaseId)
                       .FirstOrDefault();
 
-            foreach (QuantityBridge bridge in purchaseOrdDTO.BridgeList)
-            {
-                bridge.PurchaseId = lastone;
-                bridge.QuantityBridgeID = null;
-            }
 
-            for (int i = 0; i < existingSupply.Count; i++)
+            for (int i = 0; i < quantityBridgeList.Count; i++)
             {
 
-                for (int j = 0; j < quantityBridgeList.Count; j++)
+                Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+                if (supply != null)
                 {
+                    // Calculate new quantity and average price
+                    double totalQuantity = supply.Quantity + quantityBridgeList[i].Quantity;
+                    decimal totalValue = (decimal)supply.Quantity * supply.Price +
+                                         (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                    decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                    if (existingSupply[i].SuppliesId == quantityBridgeList[j].SuppliesId)
-                    {
+                    // Update paper properties
+                    supply.Quantity = (int)totalQuantity;
+                    supply.Price = averagePrice;
+                    supply.TotalBalance = (decimal)totalQuantity * averagePrice;
 
-                        var existingSupplies = _context.Supplies.ToList();
-                        foreach (var bridge in purchaseOrdDTO.BridgeList)
-                        {
-                            var supply = existingSupplies.FirstOrDefault(p => p.SuppliesId == bridge.SuppliesId);
-                            if (supply != null)
-                            {
-                                // Calculate new quantity and average price
-                                double totalQuantity = supply.Quantity + bridge.Quantity;
-                                decimal totalValue = (decimal)supply.Quantity * supply.Price
-                                                   + (decimal)bridge.Quantity * bridge.Price;
-                                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-                                // Update paper properties
-                                supply.Quantity = (int)totalQuantity;
-                                supply.Price = averagePrice;
-                                supply.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-                                _context.Supplies.Update(supply);
-                            }
-                        }
-
-                        // Add QuantityBridges to context and save all changes
-                        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                        _context.SaveChanges();
-                    }
-
+                    _context.Supplies.Update(supply);
                 }
-
             }
+
+            // Add QuantityBridges to context and save all changes
+            _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+            _context.SaveChanges();
+
 
         }
         // الحصول على العناصر النشطة
@@ -458,71 +403,146 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
         // تحديث الكمية مع تخزين الجرد
-        public (bool Success, string Message) UpdateQuantity(string itemType, int itemId, int newQuantity, string notes, string employeeId)
+        //public (bool Success, string Message) UpdateQuantity(string itemType, int itemId, int newQuantity, string notes, string employeeId)
+        //{
+        //    try
+        //    {
+        //        int oldQuantity = 0;
+        //        string itemName = "";
+        //        QuantityBridge quantityBridge = null;
+
+        //        switch (itemType)
+        //        {
+        //            case "Paper":
+        //                var paper = _context.Papers.Find(itemId);
+        //                if (paper == null) return (false, "الورق غير موجود");
+        //                oldQuantity = paper.Quantity;
+        //                itemName = paper.Name;
+        //                paper.Quantity = newQuantity;
+
+        //                quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.PaperId == itemId);
+        //                break;
+
+        //            case "Ink":
+        //                var ink = _context.Inks.Find(itemId);
+        //                if (ink == null) return (false, "الحبر غير موجود");
+        //                oldQuantity = ink.Quantity;
+        //                itemName = ink.Name;
+        //                ink.Quantity = newQuantity;
+
+        //                quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.InkId == itemId);
+        //                break;
+
+        //            case "Supply":
+        //                var supply = _context.Supplies.Find(itemId);
+        //                if (supply == null) return (false, "المستلزمات غير موجودة");
+        //                oldQuantity = supply.Quantity;
+        //                itemName = supply.Name;
+        //                supply.Quantity = newQuantity;
+
+        //                quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.SuppliesId == itemId);
+        //                break;
+
+        //            default:
+        //                return (false, "نوع العنصر غير صحيح");
+        //        }
+
+        //        if (quantityBridge == null)
+        //        {
+        //            return (false, "لا يوجد سجل مطابق في QuantityBridge");
+        //        }
+
+        //        // إنشاء سجل جديد في PhysicalCountOrder
+        //        var physicalCount = new PhysicalCountOrder
+        //        {
+        //            EmployeeId = employeeId,
+        //            PhysicalCountDate = DateOnly.FromDateTime(DateTime.Now),
+        //            PhysicalCountNotes = notes
+        //        };
+
+        //        _context.PhysicalCountOrders.Add(physicalCount);
+        //        _context.SaveChanges();
+
+        //        // ربط الكمية بالجرد
+        //        quantityBridge.PhysicalCountId = physicalCount.PhysicalCountId;
+        //        _context.SaveChanges();
+
+        //        return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {newQuantity}");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return (false, $"حدث خطأ: {ex.Message}");
+        //    }
+        //}
+        public (bool Success, string Message) UpdateQuantity(PhysicalCountDTO phdto)
         {
             try
             {
                 int oldQuantity = 0;
                 string itemName = "";
-                QuantityBridge quantityBridge = null;
+                QuantityBridge quantityBridge = new QuantityBridge();
 
-                switch (itemType)
+                switch (phdto.itemType)
                 {
                     case "Paper":
-                        var paper = _context.Papers.Find(itemId);
+                        var paper = _context.Papers.Find(phdto.itemId);
                         if (paper == null) return (false, "الورق غير موجود");
                         oldQuantity = paper.Quantity;
                         itemName = paper.Name;
-                        paper.Quantity = newQuantity;
+                        paper.Quantity = phdto.newQuantity;
 
-                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.PaperId == itemId);
+                        quantityBridge.PaperId = phdto.itemId;
+                        quantityBridge.Quantity = phdto.newQuantity;
                         break;
 
                     case "Ink":
-                        var ink = _context.Inks.Find(itemId);
+                        var ink = _context.Inks.Find(phdto.itemId);
                         if (ink == null) return (false, "الحبر غير موجود");
                         oldQuantity = ink.Quantity;
                         itemName = ink.Name;
-                        ink.Quantity = newQuantity;
+                        ink.Quantity = phdto.newQuantity;
 
-                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.InkId == itemId);
+                        quantityBridge.PaperId = phdto.itemId;
+                        quantityBridge.Quantity = phdto.newQuantity;
+
                         break;
 
                     case "Supply":
-                        var supply = _context.Supplies.Find(itemId);
+                        var supply = _context.Supplies.Find(phdto.itemId);
                         if (supply == null) return (false, "المستلزمات غير موجودة");
                         oldQuantity = supply.Quantity;
                         itemName = supply.Name;
-                        supply.Quantity = newQuantity;
+                        supply.Quantity = phdto.newQuantity;
 
-                        quantityBridge = _context.QuantityBridges.FirstOrDefault(q => q.SuppliesId == itemId);
+                        quantityBridge.PaperId = phdto.itemId;
+                        quantityBridge.Quantity = phdto.newQuantity;
+
                         break;
 
                     default:
                         return (false, "نوع العنصر غير صحيح");
                 }
 
-                if (quantityBridge == null)
-                {
-                    return (false, "لا يوجد سجل مطابق في QuantityBridge");
-                }
-
-                // إنشاء سجل جديد في PhysicalCountOrder
                 var physicalCount = new PhysicalCountOrder
                 {
-                    EmployeeId = employeeId,
-                    PhysicalCountDate = DateOnly.FromDateTime(DateTime.Now),
-                    PhysicalCountNotes = notes
+                    EmployeeId = phdto.employeeId,
+                    PhysicalCountNotes = phdto.notes
                 };
 
                 _context.PhysicalCountOrders.Add(physicalCount);
                 _context.SaveChanges();
 
-                // ربط الكمية بالجرد
-                quantityBridge.PhysicalCountId = physicalCount.PhysicalCountId;
+                int lastone = _context.PhysicalCountOrders
+          .OrderByDescending(po => po.PhysicalCountId)
+          .Select(po => po.PhysicalCountId)
+          .FirstOrDefault();
+
+                quantityBridge.PhysicalCountId = lastone;
+                _context.QuantityBridges.Add(quantityBridge);
                 _context.SaveChanges();
 
-                return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {newQuantity}");
+
+                return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {phdto.newQuantity}");
             }
             catch (Exception ex)
             {

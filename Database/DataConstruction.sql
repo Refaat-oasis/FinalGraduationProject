@@ -230,7 +230,7 @@ GO
 -- 16. QuantityBridge Table
 CREATE TABLE QuantityBridge (
     QuantityBridgeID INT IDENTITY(1,1) PRIMARY KEY,
-    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0.0),
+    price DECIMAL(10,2) NULL ,
     returnID INT NULL,
     purchaseID INT NULL,
     quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),

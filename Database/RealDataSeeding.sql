@@ -80,12 +80,12 @@ GO
 ---------------------------------
 INSERT INTO Employee (employeeID, employeeUserName, employeePassword, employeeName, jobRole)
 VALUES
-('EMP001', 'ali_ahmed', 'password123', 'علي أحمد', 1),
-('EMP002', 'fatima_mohamed', 'password123', 'فاطمة محمد', 2),
-('EMP003', 'khaled_saeed', 'password123', 'خالد سعيد', 3),
-('EMP004', 'layla_abdullah', 'password123', 'ليلى عبدالله', 1),
-('EMP005', 'mohamed_hassan', 'password123', 'محمد حسن', 2),
-('EMP006', 'noura_khaled', 'password123', 'نورة خالد', 3),
+('EMP001', 'ali_ahmed', 'password123', 'علي أحمد', 0),
+('EMP002', 'fatima_mohamed', 'password123', 'فاطمة محمد', 0),
+('EMP003', 'khaled_saeed', 'password123', 'خالد سعيد', 0),
+('EMP004', 'layla_abdullah', 'password123', 'ليلى عبدالله', 0),
+('EMP005', 'mohamed_hassan', 'password123', 'محمد حسن', 0),
+('EMP006', 'noura_khaled', 'password123', 'نورة خالد', 0),
 ('EMP007', 'saeed_ali', 'password123', 'سعيد علي', 1),
 ('EMP008', 'ahmed_mahmoud', 'password123', 'أحمد محمود', 2),
 ('EMP009', 'mona_abdelrahman', 'password123', 'منى عبدالرحمن', 3),

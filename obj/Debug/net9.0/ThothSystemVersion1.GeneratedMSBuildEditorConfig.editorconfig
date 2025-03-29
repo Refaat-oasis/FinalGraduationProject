@@ -56,10 +56,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkZFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/Adjust.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkanVzdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -82,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/paperPurchase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHBhcGVyUHVyY2hhc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/PhysicalCount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFBoeXNpY2FsQ291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/purchaseInk.cshtml]

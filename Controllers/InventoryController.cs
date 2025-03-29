@@ -302,7 +302,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Adjust()
+        public IActionResult PhysicalCount()
         {
             ViewBag.PaperList = _businessLogicL.GetActivePapers();
             ViewBag.InkList = _businessLogicL.GetActiveInks();
@@ -317,20 +317,21 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Adjust(string itemType, int itemId, int newQuantity, string notes, PhysicalCountOrder physicalCountOrder)
+        public IActionResult PhysicalCount(PhysicalCountDTO phcountDto)
         {
             string employeeId = HttpContext.Session.GetString("EmployeeID");
-            physicalCountOrder.EmployeeId = employeeId;
+            phcountDto.employeeId = employeeId;
 
 
-            var result = _businessLogicL.UpdateQuantity(itemType, itemId, newQuantity, notes, employeeId);
+
+            var result = _businessLogicL.UpdateQuantity(phcountDto);
 
             if (result.Success)
                 TempData["Success"] = result.Message;
             else
                 TempData["Error"] = result.Message;
 
-            return RedirectToAction("Adjust");
+            return RedirectToAction("PhysicalCount");
         }
     }
 }

@@ -16,7 +16,7 @@
             <div class="alert alert-danger">@TempData["Error"]</div>
         }
 
-        <form method="post" asp-action="Adjust">
+        <form method="post" asp-action="physicalCount">
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label class="form-label">نوع العنصر</label>
@@ -64,7 +64,6 @@
         </form>
     </div>
 </div>
-
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -73,7 +72,7 @@
                 var itemSelect = $('#itemId');
 
                 itemSelect.empty().prop('disabled', !selectedType);
-                $('#currentQuantity').val('');
+                $('#currentQuantity').val('0');
 
                 if (!selectedType) {
                     itemSelect.append('<option value="">-- اختر نوع العنصر أولا --</option>');
@@ -86,10 +85,12 @@
                     Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
                     Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
                 };
-                items[selectedType].forEach(item => {
+
+                // Corrected the template literal syntax
+                items[selectedType].forEach(function(item) {
                     var id = item.paperId || item.inkId || item.suppliesId;
                     var name = item.name;
-                    itemSelect.append(<option value="${id}">${name}</option>);
+                    itemSelect.append($('<option></option>').val(id).text(name));
                 });
             });
 
@@ -108,11 +109,11 @@
                         },
                         error: function () {
                             console.log("فشل في جلب البيانات");
-                            $('#currentQuantity').val(0);
+                            $('#currentQuantity').val('0');
                         }
                     });
                 } else {
-                    $('#currentQuantity').val(0);
+                    $('#currentQuantity').val('0');
                 }
             });
         });

@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "تعديل المخزون";
+}
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4>نموذج تعديل المخزون</h4>
+    </div>
+    <div class="card-body">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+
+        <form method="post" asp-action="Adjust">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">نوع العنصر</label>
+                    <select id="inventoryType" name="itemType" class="form-select" required>
+                        <option value="">-- اختر نوع العنصر --</option>
+                        <option value="Paper">ورق</option>
+                        <option value="Ink">حبر</option>
+                        <option value="Supply">مستلزمات</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">العنصر</label>
+                    <select id="itemId" name="itemId" class="form-select" required disabled>
+                        <option value="">-- اختر نوع العنصر أولا --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">الكمية الحالية</label>
+                    <input type="text" id="currentQuantity" class="form-control" readonly value="0" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">الكمية الجديدة</label>
+                    <input type="number" name="newQuantity" class="form-control" min="0" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">تاريخ الجرد</label>
+                    <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">ملاحظات الجرد</label>
+                <textarea name="notes" class="form-control" rows="3" placeholder="أدخل أي ملاحظات هنا..."></textarea>
+            </div>
+
+            <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+
+            <button type="submit" class="btn btn-primary">حفظ التعديل</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#inventoryType').change(function () {
+                var selectedType = $(this).val();
+                var itemSelect = $('#itemId');
+
+                itemSelect.empty().prop('disabled', !selectedType);
+                $('#currentQuantity').val('');
+
+                if (!selectedType) {
+                    itemSelect.append('<option value="">-- اختر نوع العنصر أولا --</option>');
+                    return;
+                }
+
+                itemSelect.append('<option value="">-- اختر --</option>');
+                var items = {
+                    Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                    Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                    Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+                };
+                items[selectedType].forEach(item => {
+                    var id = item.paperId || item.inkId || item.suppliesId;
+                    var name = item.name;
+                    itemSelect.append(<option value="${id}">${name}</option>);
+                });
+            });
+
+            $('#itemId').change(function () {
+                var itemId = $(this).val();
+                var itemType = $('#inventoryType').val();
+
+                if (itemId && itemType) {
+                    $.ajax({
+                        url: '/Inventory/GetCurrentQuantity',
+                        type: 'GET',
+                        data: { itemType: itemType, itemId: itemId },
+                        success: function (data) {
+                            console.log("الكمية المسترجعة: ", data.currentQuantity);
+                            $('#currentQuantity').val(data.currentQuantity);
+                        },
+                        error: function () {
+                            console.log("فشل في جلب البيانات");
+                            $('#currentQuantity').val(0);
+                        }
+                    });
+                } else {
+                    $('#currentQuantity').val(0);
+                }
+            });
+        });
+    </script>
+}

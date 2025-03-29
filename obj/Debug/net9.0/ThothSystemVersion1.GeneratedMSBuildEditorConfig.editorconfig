@@ -17,113 +17,121 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThothSystemVersion1
 build_property.RootNamespace = ThothSystemVersion1
-build_property.ProjectDir = C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\
+build_property.ProjectDir = C:\Users\Mira\Desktop\GP1\FinalGraduationProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject
+build_property.MSBuildProjectDirectory = C:\Users\Mira\Desktop\GP1\FinalGraduationProject
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0FsbEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Home/Index.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Home/Privacy.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkZFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/inkPurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XGlua1B1cmNoYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld0luay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld3BhcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld1N1cHBseS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/purchaseInk.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/paperPurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHBhcGVyUHVyY2hhc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/purchaseInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlSW5rLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/purchasePaper.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlUGFwZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/purchaseSupply.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/purchaseSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlU3VwcGx5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/supplyPurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHN1cHBseVB1cmNoYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxJbmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxQYXBlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/SharedViews/Login.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/SharedViews/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Shared/Error.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFZpZXdBbGxKb2JPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/_ViewImports.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/_ViewStart.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Shared/_Layout.cshtml]
+[C:/Users/Mira/Desktop/GP1/FinalGraduationProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5oyuxz08q4

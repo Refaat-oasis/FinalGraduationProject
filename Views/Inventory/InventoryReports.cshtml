@@ -71,7 +71,7 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
                                     <tr>
-                                        <td>@order.PurchaseId</td>
+                                        <td></td>
                                         <td>@order.PurchaseDate</td>
                                         <td>@bridgeItems.Sum(q => q.Quantity)</td>
                                         <td>
@@ -116,7 +116,7 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.RequisiteId == order.RequisiteId).ToList();
                                     <tr>
-                                        <td>@order.RequisiteId</td>
+                                        <td></td>
                                         <td>@order.RequisiteDate</td>
                                         <td>@bridgeItems.Sum(q => q.Quantity)</td>
                                         <td>
@@ -162,7 +162,7 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList();
                                     <tr>
-                                        <td>@order.ReturnId</td>
+                                        <td></td>
                                         <td>@order.ReturnDate</td>
                                         <td>@{
                                                 string message = order.ReturnInOut == true ? "مرتجع داخلي" : "مرتجع خارجي";

@@ -7,6 +7,7 @@ using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.Controllers
 {
@@ -190,14 +191,14 @@ namespace ThothSystemVersion1.Controllers
 
             return View();
         }
-        //[HttpPost]
-        //public IActionResult inventoryReports(string itemType ,int itemId ,DateTime beginingDate, DateTime endDate)
-        //{
-        //    _businessLogicL.invetoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate);
+        [HttpPost]
+        public IActionResult inventoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate)
+        {
+            InventoryReportViewModel invViewModel= _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endDate);
+           
+            return View(invViewModel);
 
-        //    return View();
-        
-        //}
+        }
 
 
 

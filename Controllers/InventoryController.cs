@@ -179,6 +179,28 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
+        // paper Reports
+
+        [HttpGet]
+        public IActionResult inventoryReports()
+        {
+            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            ViewBag.InkList = _businessLogicL.GetActiveInks();
+            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+
+            return View();
+        }
+        //[HttpPost]
+        //public IActionResult inventoryReports(string itemType ,int itemId ,DateTime beginingDate, DateTime endDate)
+        //{
+        //    _businessLogicL.invetoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate);
+
+        //    return View();
+        
+        //}
+
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section
@@ -268,153 +290,8 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-        //edit ink
-        [HttpGet]
-        public IActionResult EditInk(int inkId)
-        {
-            try
-            {
-                Ink ink = _businessLogicL.GetInkByID(inkId);
-                return View("~/Views/Inventory/EditInk.cshtml", ink);
-            }
 
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-        [HttpPost]
-        public IActionResult EditInk(int inkId, Ink updatedInk)
-        {
-            try
-            {
-                if (updatedInk == null)
-                {
-                    return BadRequest("Invalid data.");
-                }
-                bool isEditSuccess = _businessLogicL.editInk(inkId, updatedInk);
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
-                    return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
-
-                }
-                return RedirectToAction("ViewAllInk", "Inventory");
-            }
-
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-        }
-
-        //edit paper
-        [HttpGet]
-        public IActionResult EditPaper(int paperId)
-        {
-            try
-            {
-                Paper paper = _businessLogicL.GetPaperByID(paperId);
-                return View("~/Views/Inventory/EditPaper.cshtml", paper);
-            }
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-
-        [HttpPost]
-        public IActionResult EditPaper(int paperId, Paper updatedPaper)
-        {
-            try
-            {
-                if (updatedPaper == null)
-                {
-                    return BadRequest("Invalid data.");
-                }
-
-
-                bool isEditSuccess = _businessLogicL.editPaper(paperId, updatedPaper);
-
-
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
-                    return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
-                }
-                return RedirectToAction("ViewAllPaper", "Inventory");
-
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        //edit supply
-        [HttpGet]
-        public IActionResult EditSupply(int suppliesID)
-        {
-            try
-            {
-                Supply supply = _businessLogicL.GetSupplyByID(suppliesID);
-                return View("~/Views/Inventory/EditSupply.cshtml", supply);
-            }
-
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message); // Employee not found
-            }
-        }
-        [HttpPost]
-        public IActionResult EditSupply(int suppliesID, Supply updatedSupply)
-        {
-            try
-            {
-                if (updatedSupply == null)
-                {
-                    return BadRequest("Invalid data.");
-                }
-                bool isEditSuccess = _businessLogicL.editSupply(suppliesID, updatedSupply);
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
-                    return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
-
-                }
-                return RedirectToAction("ViewAllSupply", "Inventory");
-            }
-
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-        }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sandra section
         [HttpGet]

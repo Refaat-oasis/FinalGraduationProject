@@ -136,19 +136,146 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public void EditInk(int inkID, Ink newInk)
+
+        public Ink GetInkByID(int inkID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Ink ink = _context.Inks.FirstOrDefault(i => i.InkId == inkID);
+                if (ink == null)
+                {
+                    throw new ArgumentException("Ink not found.");
+                }
+                return ink;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the ink.", ex);
+            }
+
+        }
+        public bool EditInk(int inkID, Ink newInk)
+        {
+            try
+            {
+                Ink foundInk = _context.Inks.FirstOrDefault(i => i.InkId == inkID);
+                if (newInk.ReorderPoint < 0)
+                {
+                    return false;
+                }
+                if (foundInk == null)
+                {
+
+                    throw new ArgumentException("Ink not found.");
+                }
+
+                foundInk.Name = newInk.Name;
+                foundInk.Colored = newInk.Colored;
+                foundInk.Activated = newInk.Activated;
+                foundInk.ReorderPoint = newInk.ReorderPoint;
+                _context.Inks.Update(foundInk);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while updating the ink.", ex);
+            }
         }
 
-        public void editPaper(int paperID, Paper newPaper)
+        public Paper GetPaperByID(int paperID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Paper foundPaper = _context.Papers.FirstOrDefault(p => p.PaperId == paperID);
+                if (foundPaper == null)
+                {
+                    throw new ArgumentException("Paper not found.");
+                }
+                return foundPaper;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the paper.", ex);
+            }
+        }
+        public bool editPaper(int paperID, Paper newPaper)
+        {
+            try
+            {
+                Paper foundPaper = _context.Papers.FirstOrDefault(p => p.PaperId == paperID);
+
+                if (newPaper.ReorderPoint < 0)
+                {
+                    return false;
+                }
+                if (foundPaper == null)
+                {
+
+                    throw new ArgumentException("Paper not found.");
+                }
+                foundPaper.Name = newPaper.Name;
+                foundPaper.Type = newPaper.Type;
+                foundPaper.Weight = newPaper.Weight;
+                foundPaper.Colored = newPaper.Colored;
+                foundPaper.Activated = newPaper.Activated;
+                foundPaper.ReorderPoint = newPaper.ReorderPoint;
+                _context.Papers.Update(foundPaper);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while updating the ink.", ex);
+            }
         }
 
-        public void editSupply(int supplyID, Supply newSupply)
+        public Supply GetSupplyByID(int suppliesId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Supply supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == suppliesId);
+                if (supply == null)
+                {
+                    throw new ArgumentException("Supply not found.");
+                }
+                return supply;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the supply.", ex);
+            }
+
+        }
+
+        public bool editSupply(int suppliesId, Supply newSupply)
+        {
+            try
+            {
+                Supply foundSupply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == suppliesId);
+                if (newSupply.ReorderPoint < 0)
+                {
+                    return false;
+                }
+                if (foundSupply == null)
+                {
+
+                    throw new ArgumentException("Supply not found.");
+                }
+                foundSupply.Name = newSupply.Name;
+                foundSupply.Activated = newSupply.Activated;
+                foundSupply.ReorderPoint = newSupply.ReorderPoint;
+                _context.Supplies.Update(foundSupply);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"An error occurred while updating the supply", ex);
+            }
         }
 
         public bool EditVendor(int vendorID, Vendor newVendor)

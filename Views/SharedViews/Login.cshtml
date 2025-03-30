@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="~/css/SharedViews/login.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
@@ -44,10 +45,11 @@
         </div>
 
         <div class="inputBox">
-            <input type="password" asp-for="@Model.EmployeePassword" placeholder=" كلمه المرور" id="Password" />
-            <i class="bx bxs-lock-alt"></i>
+            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" id="Password" />
+            <i class="fa-solid fa-eye" id="togglePassword"></i>
             <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
         </div>
+
 
         @* <div class="rememberMe"> *@
         @*     <label><input type="checkbox" />تذكر بياناتي</label> *@

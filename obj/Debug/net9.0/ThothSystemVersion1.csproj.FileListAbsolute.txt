@@ -3641,3 +3641,18 @@ C:\Users\Mira\Desktop\GP1\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSy
 C:\Users\Mira\Desktop\GP1\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\Mira\Desktop\GP1\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\Mira\Desktop\GP1\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.AssemblyReference.cache
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.AssemblyInfoInputs.cache
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.AssemblyInfo.cs
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.CoreCompileInputs.cache
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cache
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.RazorAssemblyInfo.cs
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.sourcelink.json
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\scopedcss\bundle\ThothSystemVersion1.styles.css
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\scopedcss\projectbundle\ThothSystemVersion1.bundle.scp.css
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.dll
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersion1.dll
+C:\Users\ECC\OneDrive\Desktop\new version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb

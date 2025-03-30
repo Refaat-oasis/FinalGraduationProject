@@ -1,0 +1,91 @@
+﻿@model ThothSystemVersion1.Models.Ink
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Inventory/EditInk.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+@{
+    ViewData["Title"] = "تعديل بيانات الحبر";
+}
+
+
+<div class="container">
+    <div class="arrow">
+        <a asp-controller="Inventory" asp-action="ViewAllInk" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
+
+    <h2>تعديل بيانات الحبر</h2>
+    <form asp-controller="Inventory" asp-action="EditInk" id="myform" method="post">
+        <input type="hidden" asp-for="InkId" />
+
+
+        <table class="edit-table">
+            <thead>
+                <tr>
+
+                    <th>         </th>
+                    <th>حالة الاستخدام</th>
+                    <th>نقطة إعادة الطلب</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th> القيمة المتوفرة</th>
+                    <th>لون الحبر</th>
+                    <th>اسم الحبر</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+
+                    <td style="display: flex; justify-content: center; align-items: center; gap: 10px; padding: 10px;">
+                        <button type="submit" class="editBtn" style="padding: 5px 15px; font-size: 16px;">حفظ</button>
+                        <a asp-action="ViewAllInk" class="editBtn" style="padding: 5px 15px; font-size: 16px;">إلغاء</a>
+                    </td>
+                    <td><input type="checkbox" asp-for="Activated" /></td>
+
+                    <td>
+                        <input asp-for="ReorderPoint" id="ReorderPoint" />
+                        <span class="error"></span>
+                    </td>
+
+                    <td><input asp-for="Price" readonly disabled /></td>
+                    <td><input asp-for="Quantity" readonly disabled /></td>
+                    <td><input asp-for="TotalBalance" readonly disabled /></td>
+
+                    <td>
+                        <input asp-for="Colored" id="Colored" />
+                        <span class="error"></span>
+                    </td>
+
+
+                    <td>
+                        <input asp-for="Name" id="Name" />
+                        <span class="error"></span>
+                    </td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<script src="~/js/Inventory/EditInk.js"></script>
+
+
+
+
+
+
+
+

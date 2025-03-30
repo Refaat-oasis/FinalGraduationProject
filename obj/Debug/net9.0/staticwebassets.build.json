@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4rdlkLqUT4aOdbQLwqyvvx2DMeDEvv5UZolEbTlct1A=",
+  "Hash": "Eo3Kw9IFwC7FYFC9uoPSJ83tPKmEA3wu0fg5aZ8g74k=",
   "Source": "ThothSystemVersion1",
   "BasePath": "_content/ThothSystemVersion1",
   "Mode": "Default",
@@ -498,6 +498,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\a6vpowe2k3-otfb12g70q.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditInk#[.{fingerprint=otfb12g70q}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "cg7522bf5r",
+      "Integrity": "BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ad6nkmxnp2-rxsg74s51o.gz",
@@ -1109,6 +1130,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i4t4n4wmqv-slhtl2i1rn.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditInk#[.{fingerprint=slhtl2i1rn}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "qbmgrji75o",
+      "Integrity": "BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i695otb27d-c2jlpeoesf.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1235,6 +1277,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Technical\\viewAllJobOrder.js"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lbg0v9001x-slhtl2i1rn.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditSupply#[.{fingerprint=slhtl2i1rn}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "qbmgrji75o",
+      "Integrity": "BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lotj806v81-xtxxf3hu2r.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1277,6 +1340,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\msov3vdtfd-cigd3gqz2l.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditSupply#[.{fingerprint=cigd3gqz2l}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "vtq1jy10z2",
+      "Integrity": "7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n0plua163v-8vyfqsqgz1.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -1296,6 +1380,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n4sj2esx5n-bibbbee2w0.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditPaper#[.{fingerprint=bibbbee2w0}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "c5ckxf02f8",
+      "Integrity": "gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\o68d87sn82-61n19gt1b8.gz",
@@ -2033,6 +2138,27 @@
       "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ywkd8ikajd-7wdxsqviep.gz",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditPaper#[.{fingerprint=7wdxsqviep}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "y060n1qcnq",
+      "Integrity": "gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css"
+    },
+    {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\zbjg1dc9lu-d6nrnj6jjx.gz",
       "SourceId": "ThothSystemVersion1",
       "SourceType": "Discovered",
@@ -2220,6 +2346,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Inventory\\addVendor.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditInk#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "slhtl2i1rn",
+      "Integrity": "YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Inventory\\EditInk.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditPaper#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7wdxsqviep",
+      "Integrity": "aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Inventory\\EditPaper.css"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "css/Inventory/EditSupply#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "slhtl2i1rn",
+      "Integrity": "YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Inventory\\EditSupply.css"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
@@ -2661,6 +2850,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Inventory\\addVendor.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditInk#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "otfb12g70q",
+      "Integrity": "3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\EditInk.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditPaper#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bibbbee2w0",
+      "Integrity": "/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\EditPaper.js"
+    },
+    {
+      "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "SourceId": "ThothSystemVersion1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\",
+      "BasePath": "_content/ThothSystemVersion1",
+      "RelativePath": "js/Inventory/EditSupply#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cigd3gqz2l",
+      "Integrity": "1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Inventory\\EditSupply.js"
     },
     {
       "Identity": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
@@ -5726,6 +5978,900 @@
         {
           "Name": "integrity",
           "Value": "sha256-ueuAPwcdZQbex3Ko4P7o55TvCgbmniWit9lMPXRYrV0="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i4t4n4wmqv-slhtl2i1rn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001184834123"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2617"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i4t4n4wmqv-slhtl2i1rn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.slhtl2i1rn.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i4t4n4wmqv-slhtl2i1rn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001184834123"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditInk.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.slhtl2i1rn.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2617"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditInk.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditInk.slhtl2i1rn.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\i4t4n4wmqv-slhtl2i1rn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditInk.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.7wdxsqviep.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ywkd8ikajd-7wdxsqviep.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001157407407"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7wdxsqviep"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditPaper.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.7wdxsqviep.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2611"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7wdxsqviep"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditPaper.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.7wdxsqviep.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ywkd8ikajd-7wdxsqviep.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7wdxsqviep"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditPaper.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ywkd8ikajd-7wdxsqviep.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001157407407"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2611"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditPaper.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\ywkd8ikajd-7wdxsqviep.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gtmZBjreFhV+otBBpV0ejBToDe9+nnTgGwsqOxhws7M="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lbg0v9001x-slhtl2i1rn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001184834123"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2617"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lbg0v9001x-slhtl2i1rn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.slhtl2i1rn.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lbg0v9001x-slhtl2i1rn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001184834123"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditSupply.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.slhtl2i1rn.css",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2617"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditSupply.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44="
+        }
+      ]
+    },
+    {
+      "Route": "css/Inventory/EditSupply.slhtl2i1rn.css.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\lbg0v9001x-slhtl2i1rn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "843"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "slhtl2i1rn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Inventory/EditSupply.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BtyRkc50sgg06H9m4373ncCTIRaBBdlMQG5gjlKEs7w="
         }
       ]
     },
@@ -11120,6 +12266,900 @@
         {
           "Name": "integrity",
           "Value": "sha256-rx5E5pDu9P1T6uzTqPOSwXrQMNhz45LJdj7f0J2QTaw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\a6vpowe2k3-otfb12g70q.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001400560224"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\a6vpowe2k3-otfb12g70q.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.otfb12g70q.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\a6vpowe2k3-otfb12g70q.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001400560224"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "otfb12g70q"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditInk.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.otfb12g70q.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "otfb12g70q"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditInk.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditInk.otfb12g70q.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\a6vpowe2k3-otfb12g70q.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "otfb12g70q"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditInk.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BFHnddFCu0ToJeDpBV/54FJVyOPh7l85cKyi+EdIOG0="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.bibbbee2w0.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n4sj2esx5n-bibbbee2w0.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001261034048"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bibbbee2w0"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditPaper.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.bibbbee2w0.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2390"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bibbbee2w0"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditPaper.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.bibbbee2w0.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n4sj2esx5n-bibbbee2w0.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bibbbee2w0"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditPaper.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n4sj2esx5n-bibbbee2w0.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001261034048"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2390"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditPaper.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\n4sj2esx5n-bibbbee2w0.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gKgIXKeRPRL5UiPyw7W0Qfu8lq0TIKSDi4TKv0Paj2g="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.cigd3gqz2l.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\msov3vdtfd-cigd3gqz2l.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001574803150"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "634"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cigd3gqz2l"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditSupply.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.cigd3gqz2l.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1624"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cigd3gqz2l"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditSupply.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.cigd3gqz2l.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\msov3vdtfd-cigd3gqz2l.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "634"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cigd3gqz2l"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Inventory/EditSupply.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\msov3vdtfd-cigd3gqz2l.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001574803150"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "634"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.js",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1624"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk="
+        }
+      ]
+    },
+    {
+      "Route": "js/Inventory/EditSupply.js.gz",
+      "AssetFile": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\obj\\Debug\\net9.0\\compressed\\msov3vdtfd-cigd3gqz2l.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "634"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 07:58:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7fbTDV+mRbmYOo+z9FlIouEKZ/i70eJTeZ45t95DIvw="
         }
       ]
     },

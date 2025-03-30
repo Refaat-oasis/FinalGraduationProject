@@ -267,7 +267,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             for (int i = 0; i < quantityBridgeList.Count; i++)
             {
-
+                quantityBridgeList[i].PurchaseId = lastone;
                 Paper pap = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
                 if (pap != null)
                 {
@@ -292,7 +292,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
         }
-    
+
 
         public void purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
         {
@@ -314,7 +314,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             for (int i = 0; i < quantityBridgeList.Count; i++)
             {
-
+                quantityBridgeList[i].PurchaseId = lastone;
                 Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
                 if (ink != null)
                 {
@@ -360,7 +360,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             for (int i = 0; i < quantityBridgeList.Count; i++)
             {
-
+                quantityBridgeList[i].PurchaseId = lastone;
                 Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
                 if (supply != null)
                 {
@@ -549,6 +549,40 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.Message}");
             }
         }
+
+        //public (List<QuantityBridge>, List<PurchaseOrder>, List<RequisiteOrder>, List<ReturnsOrder>) invetoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate)
+        //{
+        //    List<QuantityBridge> quantityBridgeList = new List<QuantityBridge>();
+        //    List<PurchaseOrder> purchaseOrderList = new List<PurchaseOrder>();
+        //    List<RequisiteOrder> requisiteOrderList = new List<RequisiteOrder>();
+        //    List<ReturnsOrder> returnOrderList = new List<ReturnsOrder>();
+        //    switch (itemType)
+        //    {
+        //        case "Paper":
+        //            quantityBridgeList = _context.QuantityBridges.Where(q => q.PaperId == itemId).ToList();
+        //            purchaseOrderList = _context.PurchaseOrders.Where(p => p.PurchaseDate >= beginingDate && p.PurchaseDate <= endDate).ToList();
+        //            requisiteOrderList = _context.RequisiteOrders.Where(r => r.requisiteDate >= beginingDate && r.RequisiteDate <= endDate).ToList();
+        //            returnOrderList = _context.ReturnsOrders.Where(r => r.returnDate >= beginingDate && r.ReturnDate <= endDate).ToList();
+        //            break;
+        //        case "Ink":
+        //            quantityBridgeList = _context.QuantityBridges.Where(q => q.InkId == itemId).ToList();
+        //            purchaseOrderList = _context.PurchaseOrders.Where(p => p.PurchaseDate >= beginingDate && p.PurchaseDate <= endDate).ToList();
+        //            requisiteOrderList = _context.RequisiteOrders.Where(r => r.RequisiteDate >= beginingDate && r.RequisiteDate <= endDate).ToList();
+        //            returnOrderList = _context.ReturnsOrders.Where(r => r.ReturnDate >= beginingDate && r.ReturnDate <= endDate).ToList();
+        //            break;
+        //        case "Supply":
+        //            quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
+        //            purchaseOrderList = _context.PurchaseOrders.Where(p => p.PurchaseDate >= beginingDate && p.PurchaseDate <= endDate).ToList();
+        //            requisiteOrderList = _context.RequisiteOrders.Where(r => r.RequisiteDate >= beginingDate && r.RequisiteDate <= endDate).ToList();
+        //            returnOrderList = _context.ReturnsOrders.Where(r => r.ReturnDate >= beginingDate && r.ReturnDate <= endDate).ToList();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    return (quantityBridgeList, purchaseOrderList, requisiteOrderList, returnOrderList);
+
+        //}
+
     }
 
     }

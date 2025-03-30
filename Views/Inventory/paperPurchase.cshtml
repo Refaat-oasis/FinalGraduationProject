@@ -1,5 +1,8 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
+﻿@{
+    Layout = null;
+}
 
+@model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
 @{
     List<Paper> paperList = ViewBag.paperList as List<Paper>;
     List<Vendor> vendorList = ViewBag.vendorList as List<Vendor>;
@@ -8,18 +11,179 @@
     ViewData["Title"] = "Create Purchase Order";
 }
 
-<h2>Create Purchase Order</h2>
+<style>
+
+    body {
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    }
+
+
+
+    .center-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .tableContainer {
+        width: 60%;
+        margin: auto;
+    }
+
+
+    table {
+        align-content: center;
+        width: 60%;
+        margin: 20px;
+        border-collapse: separate;
+        overflow: hidden;
+        border-radius: 15px;
+        border: solid black 2px;
+        border-spacing: 0;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+
+    td {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 10px;
+        /* border: 2px solid #333; */
+        color: black;
+        border: none;
+    }
+
+    th {
+        font-size: 30px;
+        background-color: #FDF5E6;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #E6B980;
+    }
+
+
+
+
+    tr:nth-child(even) {
+        background-color: #FDF5E6;
+    }
+
+    table tr:hover {
+        background-color: #F8E1C4;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .btn-primary, .btn-success {
+        padding: 10px 25px;
+        font-size: 20px;
+        border-radius: 25px;
+        background-color: seagreen;
+        color: white;
+        cursor: pointer;
+    }
+
+    .deleteBtn {
+        padding: 10px 15px;
+        font-size: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: red;
+        color: white;
+        text-decoration: none;
+    }
+
+    .editBtn {
+        padding: 10px 15px;
+        font-size: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: blue;
+        color: white;
+        text-decoration: none;
+    }
+
+
+
+    .btn-primary:hover {
+        background-color: #444;
+        color: #fff;
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+    }
+
+    .input-control {
+        margin-left: 25%;
+        position: center;
+        width: 50%;
+    }
+
+    .textlabel {
+        display: block;
+        font-weight: 15px;
+        margin-bottom: 5px;
+        color: #090909;
+        font-size: 35px;
+        text-align: right;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: right;
+        direction: rtl;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #050505;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: 30px;
+        color: #050505;
+        margin-bottom: 20px;
+    }
+
+
+
+    .btn-success:hover {
+        background-color: #444;
+        color: #fff;
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+    }
+
+    }</style>
+
+<h2>إنشاء أمر الشراء </h2>
 
 <form asp-controller="Inventory" asp-action="PaperPurchase" method="post">
-    @* <div class="form-group"> *@
-    @*     <label asp-for="EmployeeId" class="control-label"></label> *@
-    @*     <input asp-for="EmployeeId" class="form-control" placeholder="Enter Employee ID" /> *@
-    @* </div> *@
-
-    <div class="form-group">
-        <label asp-for="VendorId" class="control-label"></label>
-        <select asp-for="VendorId" class="form-control" required>
-            <option value="">Select Vendor</option>
+    <div class="input-control">
+        <label asp-for="VendorId" class="textlabel"></label>
+        <select asp-for="VendorId" class="place" required>
+            <option value="">أختر التاجر</option>
             @foreach (var vendor in vendorList)
             {
                 <option value="@vendor.VendorId">@vendor.VendorName</option>
@@ -27,85 +191,128 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label asp-for="PurchaseNotes" class="control-label"></label>
-        <textarea asp-for="PurchaseNotes" class="form-control" placeholder="Enter purchase notes"></textarea>
+    <div class="input-control">
+        <label asp-for="PurchaseNotes" class="textlabel"></label>
+        <textarea asp-for="PurchaseNotes" class="place"></textarea>
     </div>
 
-    <h4>Purchase Items</h4>
-    <div class="form-group">
-        <label>Select Paper</label>
-        <select id="paperDropdown" class="form-control">
-            <option value="">Select Paper</option>
+    <h4>عنصر الشراء</h4>
+    <div class="input-control">
+        <label class="textlabel">أختر الورق</label>
+        <select id="paperDropdown" class="place">
+            <option value="">اختر الورق</option>
             @foreach (var paper in paperList)
             {
-                <option value="@paper.PaperId">@paper.Name</option>
+                <option value="@paper.PaperId">@paper.Name , الوزن @paper.Weight ,اللون @paper.Colored</option>
             }
         </select>
     </div>
-    <div class="form-group">
-        <label>Quantity</label>
-        <input id="quantityInput" class="form-control" type="number" min="1"  />
+    <div class="input-control">
+        <label class="textlabel">الكميه</label>
+        <input id="quantityInput" class="place" type="number" min="1" />
     </div>
-    <div class="form-group">
-        <label>Price</label>
-        <input id="priceInput" class="form-control" type="number" step="0.01" min="0"  />
+    <div class="input-control">
+        <label class="textlabel">السعر</label>
+        <input id="priceInput" class="place" type="number" step="0.01" min="0" />
     </div>
-    <button type="button" class="btn btn-primary" onclick="addItem()">Add Item</button>
 
-    <table class="table" id="itemsTable">
-        <thead>
-            <tr>
-                <th>Paper</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="center-container">
+        <table class="tableContainer" id="itemsTable">
+            <thead>
+                <tr>
+                    <th>الإجراءات</th>
+                    <th>الكمية</th>
+                    <th>السعر</th>
+                    <th>الورق</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items will be added here dynamically -->
+            </tbody>
+        </table>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+        <div class="buttons-container">
+            <button type="button" class="btn btn-primary" onclick="addItem()">إضافة عنصر</button>
+            <button type="submit" class="btn btn-success">حفظ</button>
+        </div>
+    </div>
 </form>
 
 <script>
-    let paperList = @Html.Raw(Json.Serialize(paperList)); // Serialize paperList for use in JavaScript
-    let vendorList = @Html.Raw(Json.Serialize(vendorList)); // Serialize vendorList for use in JavaScript
+        let itemCounter = 0; // Counter for array index
+    let editRowIndex = null; // Track the row being edited
 
     function addItem() {
         let paperDropdown = document.getElementById("paperDropdown");
         let quantityInput = document.getElementById("quantityInput");
         let priceInput = document.getElementById("priceInput");
 
-        // Get selected values
         let selectedPaperId = paperDropdown.value;
         let selectedPaperName = paperDropdown.options[paperDropdown.selectedIndex].text;
         let quantity = quantityInput.value;
         let price = priceInput.value;
 
-        // Validate inputs
+        let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+
+        // Validation
         if (!selectedPaperId || !quantity || !price) {
-            alert("Please fill out all fields.");
+            alert("يجب ملء جميع الحقول");
+            return;
+        }
+        if (quantity <= 0 || price <= 0) {
+            alert("يجب إدخال القيم موجبة");
             return;
         }
 
-        // Add item to the table
-        let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
-        let row = tbody.insertRow();
-        row.innerHTML = `
-            <td>${selectedPaperName}</td>
-            <td>${quantity}</td>
-            <td>${price}</td>
-            <td><button type="button" class="btn btn-danger" onclick="removeItem(this)">Remove</button></td>
-        `;
+        if (editRowIndex !== null) {
+            // Update existing row
+            let row = tbody.rows[editRowIndex];
+            row.cells[1].textContent = quantity;
+            row.cells[2].textContent = price;
 
-        // Add hidden inputs for form submission
-        row.innerHTML += `
-            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].PaperId" value="${selectedPaperId}" />
-            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].Quantity" value="${quantity}" />
-            <input type="hidden" name="BridgeList[${tbody.rows.length - 1}].Price" value="${price}" />
-        `;
+            // Update hidden inputs
+            row.querySelector("input.paperId").value = selectedPaperId;
+            row.querySelector("input.quantity").value = quantity;
+            row.querySelector("input.price").value = price;
+
+            editRowIndex = null; // Reset edit mode
+        } else {
+            // Add new row
+            let row = tbody.insertRow();
+            row.innerHTML = `
+                <td>
+                    <button type="button" class="editBtn" onclick="editItem(this)">تعديل</button>
+                    <button type="button" class="deleteBtn" onclick="removeItem(this)">حذف</button>
+                </td>
+                <td>${quantity}</td>
+                <td>${price}</td>
+                <td>${selectedPaperName}</td>
+            `;
+
+            // Add hidden inputs
+            let paperIdInput = document.createElement('input');
+            paperIdInput.type = 'hidden';
+            paperIdInput.name = `BridgeList[${itemCounter}].PaperId`;
+            paperIdInput.className = 'paperId';
+            paperIdInput.value = selectedPaperId;
+            row.appendChild(paperIdInput);
+
+            let quantityInput = document.createElement('input');
+            quantityInput.type = 'hidden';
+            quantityInput.name = `BridgeList[${itemCounter}].Quantity`;
+            quantityInput.className = 'quantity';
+            quantityInput.value = quantity;
+            row.appendChild(quantityInput);
+
+            let priceInput = document.createElement('input');
+            priceInput.type = 'hidden';
+            priceInput.name = `BridgeList[${itemCounter}].Price`;
+            priceInput.className = 'price';
+            priceInput.value = price;
+            row.appendChild(priceInput);
+
+            itemCounter++;
+        }
 
         // Clear input fields
         paperDropdown.value = "";
@@ -113,8 +320,58 @@
         priceInput.value = "";
     }
 
-    function removeItem(button) {
-        let row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+    function editItem(button) {
+        let row = button.closest('tr');
+        let paperDropdown = document.getElementById("paperDropdown");
+        let quantityInput = document.getElementById("quantityInput");
+        let priceInput = document.getElementById("priceInput");
+
+        // Get values from the row
+        let paperId = row.querySelector("input.paperId").value;
+        let quantity = row.querySelector("input.quantity").value;
+        let price = row.querySelector("input.price").value;
+
+        // Populate input fields
+        paperDropdown.value = paperId;
+        quantityInput.value = quantity;
+        priceInput.value = price;
+
+        // Track row index
+        editRowIndex = row.rowIndex - 1;
     }
+
+    function removeItem(button) {
+        if (confirm("هل أنت متأكد من حذف هذا العنصر؟")) {
+            let row = button.closest('tr');
+            row.remove();
+
+            // Reset edit mode if deleting the row being edited
+            if (editRowIndex !== null && editRowIndex === row.rowIndex - 1) {
+                editRowIndex = null;
+            }
+
+            // Re-index all remaining rows
+            let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+            let rows = tbody.rows;
+            itemCounter = 0;
+
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].querySelector("input.paperId").name = `BridgeList[${i}].PaperId`;
+                rows[i].querySelector("input.quantity").name = `BridgeList[${i}].Quantity`;
+                rows[i].querySelector("input.price").name = `BridgeList[${i}].Price`;
+                itemCounter++;
+            }
+        }
+    }
+
+    // Add form submission validation
+    document.querySelector('form').addEventListener('submit', function(e) {
+        let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+
+        // Check if there are any items in the table
+        if (tbody.rows.length === 0) {
+            e.preventDefault(); // Prevent form submission
+            alert("يجب إضافة عنصر واحد على الأقل قبل الحفظ");
+        }
+    });
 </script>

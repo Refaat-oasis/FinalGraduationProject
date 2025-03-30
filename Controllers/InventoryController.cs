@@ -179,6 +179,28 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
+        // paper Reports
+
+        [HttpGet]
+        public IActionResult inventoryReports()
+        {
+            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            ViewBag.InkList = _businessLogicL.GetActiveInks();
+            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+
+            return View();
+        }
+        //[HttpPost]
+        //public IActionResult inventoryReports(string itemType ,int itemId ,DateTime beginingDate, DateTime endDate)
+        //{
+        //    _businessLogicL.invetoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate);
+
+        //    return View();
+        
+        //}
+
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section

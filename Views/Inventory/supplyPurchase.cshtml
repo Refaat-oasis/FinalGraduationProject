@@ -163,7 +163,7 @@
 
 <h2>إنشاء أمر الشراء </h2>
 
-<form asp-controller="Inventory" asp-action="SupplyPurchase" method="post">
+<form asp-controller="Inventory" asp-action="supplyPurchase" method="post">
 
     <div class="input-control">
         <label asp-for="VendorId" class="textlabel"></label>
@@ -223,9 +223,7 @@
 </form>
 
 <script>
-    let supplyList = @Html.Raw(Json.Serialize(supplyList));
-    let vendorList = @Html.Raw(Json.Serialize(vendorList));
-
+    let itemCounter = 0;
     let editRowIndex = null; // Track the row being edited
 
     function addItem() {
@@ -258,7 +256,7 @@
             row.cells[3].textContent = selectedSupplyName;
 
             // Update hidden inputs
-            row.querySelector(".supplyId").value = selectedSupplyId;
+            row.querySelector(".suppliesID").value = selectedSupplyId;
             row.querySelector(".quantity").value = quantity;
             row.querySelector(".price").value = price;
 
@@ -274,10 +272,11 @@
                 <td>${quantity}</td>
                 <td>${price}</td>
                 <td>${selectedSupplyName}</td>
-                <input type="hidden" class="supplyId" name="BridgeList[${tbody.rows.length}].SupplyId" value="${selectedSupplyId}" />
-                <input type="hidden" class="quantity" name="BridgeList[${tbody.rows.length}].Quantity" value="${quantity}" />
-                <input type="hidden" class="price" name="BridgeList[${tbody.rows.length}].Price" value="${price}" />
+                <input type="hidden" name="BridgeList[${itemCounter}].SuppliesId" class="suppliesID" value="${selectedSupplyId}" />
+                <input type="hidden" name="BridgeList[${itemCounter}].Quantity" class="quantity" value="${quantity}" />
+                <input type="hidden" name="BridgeList[${itemCounter}].Price" class="price" value="${price}" />
             `;
+            itemCounter++;
         }
 
         // Clear input fields
@@ -287,16 +286,15 @@
     }
 
     function editItem(button) {
-        let row = button.parentNode.parentNode;
+        let row = button.closest("tr");
         let supplyDropdown = document.getElementById("supplyDropdown");
         let quantityInput = document.getElementById("quantityInput");
         let priceInput = document.getElementById("priceInput");
 
         // Get values from the row
-        let selectedSupplyName = row.cells[3].textContent;
-        let selectedQuantity = row.cells[1].textContent;
-        let selectedPrice = row.cells[2].textContent;
-        let selectedSupplyId = row.querySelector(".supplyId").value;
+        let selectedSupplyId = row.querySelector(".suppliesID").value;
+        let selectedQuantity = row.querySelector(".quantity").value;
+        let selectedPrice = row.querySelector(".price").value;
 
         // Populate input fields
         supplyDropdown.value = selectedSupplyId;
@@ -308,8 +306,18 @@
     }
 
     function removeItem(button) {
-        let row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+        let row = button.closest("tr");
+        row.remove();
+
+        // Reindex remaining rows
+        let tbody = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+        let rows = tbody.rows;
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].querySelector(".suppliesID").name = `BridgeList[${i}].SupplyId`;
+            rows[i].querySelector(".quantity").name = `BridgeList[${i}].Quantity`;
+            rows[i].querySelector(".price").name = `BridgeList[${i}].Price`;
+        }
+
         editRowIndex = null;
     }
 
@@ -323,4 +331,5 @@
             alert("يجب إضافة عنصر واحد على الأقل قبل الحفظ");
         }
     });
+
 </script>

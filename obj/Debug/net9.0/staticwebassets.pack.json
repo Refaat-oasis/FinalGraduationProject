@@ -21,6 +21,18 @@
       "PackagePath": "staticwebassets\\css\\Admin\\viewAllEmployee.css"
     },
     {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\EditInk.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\EditPaper.css"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "PackagePath": "staticwebassets\\css\\Inventory\\EditSupply.css"
+    },
+    {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllInk.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ViewAllInk.css"
     },
@@ -103,6 +115,18 @@
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Admin\\viewAllEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\viewAllEmployee.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\EditInk.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\EditPaper.js"
+    },
+    {
+      "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "PackagePath": "staticwebassets\\js\\Inventory\\EditSupply.js"
     },
     {
       "Id": "C:\\Users\\THE KNOWER\\Desktop\\GraduationProjectThothSystem\\FinalGraduationProject\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllInk.js",

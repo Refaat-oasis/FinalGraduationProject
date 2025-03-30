@@ -15,15 +15,15 @@ namespace ThothSystemVersion1.InterfaceServices
 
         // inventory ink section
         public void addInk(Ink newInk);
-        public void EditInk(int inkID, Ink newInk);
+        public bool editInk(int inkID, Ink newInk);
         
         // inventory paper section
         public void addPaper (Paper newPaper);
-        public void editPaper(int paperID , Paper newPaper);
+        public bool editPaper(int paperID , Paper newPaper);
         
         // inventory supply section
         public void addSupply(Supply newSupply);
-        public void editSupply(int supplyID , Supply newSupply);
+        public bool editSupply(int suppliesID , Supply newSupply);
 
 
 

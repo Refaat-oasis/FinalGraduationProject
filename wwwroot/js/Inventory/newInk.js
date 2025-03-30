@@ -6,14 +6,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const Colored = document.getElementById("Colored");
     const ExpireDate = document.getElementById("ExpireDate");
 
+    const setError = (input, errorMsg) => {
+        const inputBox = input.parentElement;
+        let errorParagraph = inputBox.querySelector(".error");
 
-
-
-    myform.addEventListener("submit", function (e) {
-        if (!validate()) {
-            e.preventDefault();
+        if (!errorParagraph) {
+            errorParagraph = document.createElement("p");
+            errorParagraph.classList.add("error");
+            inputBox.appendChild(errorParagraph);
         }
-    });
+
+        errorParagraph.innerText = errorMsg;
+        inputBox.classList.remove("success");
+        inputBox.classList.add("error");
+    };
+
+    const setSuccess = (input) => {
+        const inputBox = input.parentElement;
+        let errorParagraph = inputBox.querySelector(".error");
+
+        if (errorParagraph) {
+            errorParagraph.innerText = "";
+        }
+
+        inputBox.classList.remove("error");
+        inputBox.classList.add("success");
+    };
 
     function validate() {
         let valid = true;
@@ -25,15 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(InkName);
         }
 
-        if (Quantity.value.trim() === "" || isNaN(Quantity.value) || Quantity.value <= 0) {
-            setError(Quantity, "برجاء إدخال كمية الحبر  ");
+        if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
+            setError(Quantity, "برجاء إدخال كمية الحبر");
             valid = false;
         } else {
             setSuccess(Quantity);
         }
 
-        if (Price.value.trim() === "" || isNaN(Price.value) || Price.value <= 0) {
-            setError(Price, "برجاء إدخال سعر الحبر ");
+        if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
+            setError(Price, "برجاء إدخال سعر الحبر");
             valid = false;
         } else {
             setSuccess(Price);
@@ -47,27 +65,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (ExpireDate.value.trim() === "") {
-            setError(ExpireDate, "برجاء إدخال تاريخ انتهاء صلاحيه الحبر");
+            setError(ExpireDate, "برجاء إدخال تاريخ انتهاء صلاحية الحبر");
             valid = false;
         } else {
             setSuccess(ExpireDate);
         }
+
         return valid;
     }
 
-    const setError = (input, errorMsg) => {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        errorParagraph.innerText = errorMsg;
-        inputBox.classList.remove("success");
-        inputBox.classList.add("error");
-    };
+    myform.addEventListener("submit", function (e) {
+        e.preventDefault(); 
 
-    const setSuccess = (input) => {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        errorParagraph.innerText = "";
-        inputBox.classList.remove("error");
-        inputBox.classList.add("success");
-    };
+        if (!validate()) {
+            return false; 
+        } else {
+            this.submit(); 
+        }
+    });
 });

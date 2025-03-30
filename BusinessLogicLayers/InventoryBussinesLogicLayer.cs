@@ -550,6 +550,21 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
+        public bool editInk(int inkID, Ink newInk)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool InventoryService.editPaper(int paperID, Paper newPaper)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool InventoryService.editSupply(int suppliesID, Supply newSupply)
+        {
+            throw new NotImplementedException();
+        }
+
         //public (List<QuantityBridge>, List<PurchaseOrder>, List<RequisiteOrder>, List<ReturnsOrder>) invetoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate)
         //{
         //    List<QuantityBridge> quantityBridgeList = new List<QuantityBridge>();

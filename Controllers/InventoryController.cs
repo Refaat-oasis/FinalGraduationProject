@@ -192,9 +192,9 @@ namespace ThothSystemVersion1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult inventoryReports(string itemType, int itemId, DateTime beginingDate, DateTime endDate)
+        public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
-            InventoryReportViewModel invViewModel= _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endDate);
+            InventoryReportViewModel invViewModel= _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
            
             return View(invViewModel);
 

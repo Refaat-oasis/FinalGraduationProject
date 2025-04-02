@@ -1145,7 +1145,7 @@ namespace ThothSystemVersion1.Database
                     .HasConstraintName("FK__ReturnsOr__jobOr__6EF57B66");
                 entity.HasOne(d => d.PurchaseOrder)
      .WithMany(p => p.ReturnOrders) 
-     .HasForeignKey(d => d.PurchaseId)
+     .HasForeignKey(d => d.purchaseID)
      .OnDelete(DeleteBehavior.ClientSetNull)
      .HasConstraintName("FK_ReturnsOrder_PurchaseOrder");
             });

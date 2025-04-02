@@ -26,7 +26,7 @@ public partial class ReturnsOrder
 
     [Display(Name = " الرقم التعريفي لطلبيه الشراء")]
 
-    public int? PurchaseId { get; set; }
+    public int? purchaseID { get; set; }
 
     public virtual PurchaseOrder PurchaseOrder { get; set; } = null!;
 

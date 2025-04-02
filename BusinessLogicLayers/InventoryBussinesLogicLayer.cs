@@ -710,87 +710,114 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     {
                         List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
                                     p.PurchaseId == qb.PurchaseId
-                                    &&
-                                    p.PurchaseDate >= beginingDate &&
-                                    p.PurchaseDate <= endingDate
+                                    && p.PurchaseDate >= beginingDate
+                                    && p.PurchaseDate <= endingDate
                                     )
                         .ToList();
                         
                         List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
-                                   p.PhysicalCountId == qb.PhysicalCountId).ToList();
+                                   p.PhysicalCountId == qb.PhysicalCountId
+                                   && p.PhysicalCountDate >= beginingDate
+                                    && p.PhysicalCountDate <= endingDate
+                                    ).ToList();
                         
                         List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
-                                   req.RequisiteId == qb.RequisiteId).ToList();
+                                   req.RequisiteId == qb.RequisiteId
+                                   && req.RequisiteDate >= beginingDate
+                                    && req.RequisiteDate <= endingDate
+                                   ).ToList();
 
-                        //List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
-                        //           ret.ReturnId == qb.ReturnId).ToList();
+                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                   ret.ReturnId == qb.ReturnId
+                                   && ret.ReturnDate >= beginingDate
+                                    && ret.ReturnDate <= endingDate
+                                   ).ToList();
 
 
                         purchaseOrderList.AddRange(purorders);
                         physicalCountList.AddRange(phyOrders);
-                        //returnOrderList.AddRange(retOrders);
+                        returnOrderList.AddRange(retOrders);
                         requisiteOrderList.AddRange(reqOrders);
                     }
                     break;
 
+                case "Ink":
+                    quantityBridgeList = _context.QuantityBridges.Where(q => q.InkId == itemId).ToList();
+                    foreach (QuantityBridge qb in quantityBridgeList)
+                    {
+                        List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                    p.PurchaseId == qb.PurchaseId
+                                    && p.PurchaseDate >= beginingDate
+                                    && p.PurchaseDate <= endingDate
+                                    )
+                        .ToList();
 
-                    //purchaseOrderList = _context.PurchaseOrders
-                    //    .Where(p => p.PurchaseId == qua
-                    //                p.PurchaseDate.HasValue &&
-                    //                p.PurchaseDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                    //                p.PurchaseDate.Value <= DateOnly.FromDateTime(endDate))
-                    //    .ToList();
+                        List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                   p.PhysicalCountId == qb.PhysicalCountId
+                                   && p.PhysicalCountDate >= beginingDate
+                                    && p.PhysicalCountDate <= endingDate
+                                    ).ToList();
 
-                    //requisiteOrderList = _context.RequisiteOrders
-                    //    .Where(r => r.RequisiteDate.HasValue &&
-                    //                r.RequisiteDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                    //                r.RequisiteDate.Value <= DateOnly.FromDateTime(endDate))
-                    //    .ToList();
+                        List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                   req.RequisiteId == qb.RequisiteId
+                                   && req.RequisiteDate >= beginingDate
+                                    && req.RequisiteDate <= endingDate
+                                   ).ToList();
 
-                    //returnOrderList = _context.ReturnsOrders
-                    //    .Where(r => r.ReturnDate.HasValue &&
-                    //                r.ReturnDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                    //                r.ReturnDate.Value <= DateOnly.FromDateTime(endDate))
-                    //    .ToList();
+                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                   ret.ReturnId == qb.ReturnId
+                                   && ret.ReturnDate >= beginingDate
+                                    && ret.ReturnDate <= endingDate
+                                   ).ToList();
+
+
+                        purchaseOrderList.AddRange(purorders);
+                        physicalCountList.AddRange(phyOrders);
+                        returnOrderList.AddRange(retOrders);
+                        requisiteOrderList.AddRange(reqOrders);
+                    }
                     break;
 
-                //case "Ink":
-                //    quantityBridgeList = _context.QuantityBridges.Where(q => q.InkId == itemId).ToList();
-                //    purchaseOrderList = _context.PurchaseOrders
-                //        .Where(p => p.PurchaseDate.HasValue &&
-                //                    p.PurchaseDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    p.PurchaseDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    requisiteOrderList = _context.RequisiteOrders
-                //        .Where(r => r.RequisiteDate.HasValue &&
-                //                    r.RequisiteDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    r.RequisiteDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    returnOrderList = _context.ReturnsOrders
-                //        .Where(r => r.ReturnDate.HasValue &&
-                //                    r.ReturnDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    r.ReturnDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    break;
+                    case "Supply":
 
-                //case "Supply":
-                //    quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
-                //    purchaseOrderList = _context.PurchaseOrders
-                //        .Where(p => p.PurchaseDate.HasValue &&
-                //                    p.PurchaseDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    p.PurchaseDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    requisiteOrderList = _context.RequisiteOrders
-                //        .Where(r => r.RequisiteDate.HasValue &&
-                //                    r.RequisiteDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    r.RequisiteDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    returnOrderList = _context.ReturnsOrders
-                //        .Where(r => r.ReturnDate.HasValue &&
-                //                    r.ReturnDate.Value >= DateOnly.FromDateTime(beginingDate) &&
-                //                    r.ReturnDate.Value <= DateOnly.FromDateTime(endDate))
-                //        .ToList();
-                //    break;
+                    quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
+                    foreach (QuantityBridge qb in quantityBridgeList)
+                    {
+                        List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                    p.PurchaseId == qb.PurchaseId
+                                    && p.PurchaseDate >= beginingDate
+                                    && p.PurchaseDate <= endingDate
+                                    )
+                        .ToList();
+
+                        List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                   p.PhysicalCountId == qb.PhysicalCountId
+                                   && p.PhysicalCountDate >= beginingDate
+                                    && p.PhysicalCountDate <= endingDate
+                                    ).ToList();
+
+                        List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                   req.RequisiteId == qb.RequisiteId
+                                   && req.RequisiteDate >= beginingDate
+                                    && req.RequisiteDate <= endingDate
+                                   ).ToList();
+
+                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                   ret.ReturnId == qb.ReturnId
+                                   && ret.ReturnDate >= beginingDate
+                                    && ret.ReturnDate <= endingDate
+                                   ).ToList();
+
+
+                        purchaseOrderList.AddRange(purorders);
+                        physicalCountList.AddRange(phyOrders);
+                        returnOrderList.AddRange(retOrders);
+                        requisiteOrderList.AddRange(reqOrders);
+                    }
+
+
+                    break;
+
 
                 default:
                     break;
@@ -801,6 +828,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             invViewModel.requisiteOrderList = requisiteOrderList;
             invViewModel.quantityBridgeList = quantityBridgeList;
             invViewModel.returnOrderList = returnOrderList;
+            invViewModel.physicalCountlist = physicalCountList;
 
             return (invViewModel);
 

@@ -36,6 +36,17 @@ public partial class QuantityBridge
     [Display(Name = "الرقم التعريفي للجرد")]
     public int? PhysicalCountId { get; set; }
 
+    [Display(Name ="الكمية القديمة")]
+    public int? OldQuantity { get; set; }
+
+    [Display(Name = "السعر القديم")]
+    public decimal? OldPrice { get; set; }
+
+    [Display(Name = "القيمة القديمة")]
+    public decimal? OldTotalBalance { get; set; }
+
+
+
     public virtual Ink? Ink { get; set; }
 
     public virtual Paper? Paper { get; set; }

@@ -434,21 +434,20 @@ namespace ThothSystemVersion1.Database
                 entity.ToTable("QuantityBridge");
 
                 entity.Property(e => e.InkId).HasColumnName("inkID");
-                // Configure the oldQuantity column with a default value of 1
                 entity.Property(e => e.OldQuantity)
                       .HasColumnName("oldQuantity");
-                      //.HasDefaultValue(1);
 
-                // Configure the oldPrice column with the decimal type and precision
                 entity.Property(e => e.OldPrice)
                       .HasColumnType("decimal(10,2)")
                       .HasColumnName("oldPrice");
 
-                // Configure the oldTotalBalance column with a default value of 1 and decimal type
                 entity.Property(e => e.OldTotalBalance)
                       .HasColumnType("decimal(10,2)")
                       .HasColumnName("oldTotalBalance");
-                      //.HasDefaultValue(1);
+                
+                entity.Property(e => e.TotalBalance)
+                .HasColumnType("decimal(10,2)")
+                .HasColumnName("totalBalance");
 
                 entity.Property(e => e.PaperId).HasColumnName("paperID");
                 entity.Property(e => e.PhysicalCountId).HasColumnName("physicalCountID");

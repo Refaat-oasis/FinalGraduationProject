@@ -45,6 +45,8 @@ public partial class QuantityBridge
     [Display(Name = "القيمة القديمة")]
     public decimal? OldTotalBalance { get; set; }
 
+    [Display(Name = "القيمة الحالية")]
+    public decimal? TotalBalance { get; set; }
 
 
     public virtual Ink? Ink { get; set; }

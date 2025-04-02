@@ -43,7 +43,6 @@
         </form>
     </div>
 
-
 @if (Model != null)
 {
     <div class="card mt-4">
@@ -141,6 +140,49 @@
                 </div>
             }
 
+            <!-- physicalCount Orders Section -->
+            @if (Model.physicalCountlist != null && Model.physicalCountlist.Any())
+            {
+                <div class="mb-4">
+                    <h5>أوامر الجرد</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>رقم الأمر</th>
+                                    <th>التاريخ</th>
+                                    <th>الكمية</th>
+                                    <th>التفاصيل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.physicalCountlist)
+                                {
+                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
+                                    <tr>
+                                        <td></td>
+                                        <td>@order.PhysicalCountDate</td>
+                                        <td>@bridgeItems.Sum(q => q.Quantity)</td>
+                                        <td>
+                                            @if (bridgeItems.Any())
+                                            {
+                                                <ul>
+                                                    @foreach (var item in bridgeItems)
+                                                    {
+                                                        <li>
+                                                            الكمية: @item.Quantity 
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
             <!-- Return Orders Section -->
             @if (Model.returnOrderList != null && Model.returnOrderList.Any())
             {
@@ -192,7 +234,7 @@
             }
         </div>
     </div>
-}
+} 
 
 @section Scripts {
     <script>

@@ -12,9 +12,12 @@ namespace ThothSystemVersion1.ViewModels
 
         public List<ReturnsOrder>  returnOrderList { get; set;}
 
+        public List<PhysicalCountOrder> physicalCountlist { get; set; }
+
         // list of the items in the quantity bridge table
 
         public List<QuantityBridge> quantityBridgeList {get; set;}
+
 
         // every item in the purchase order must have one elemt in the quantity bridge that look similar
         // to the item in the purchase order

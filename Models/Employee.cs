@@ -7,18 +7,21 @@ namespace ThothSystemVersion1.Models;
 public enum JobRole { 
     // 0 big man
     [Display(Name="المدير")]Admin,
+    
     // 1 edit and view and add
-    [Display(Name = "موظف المخازن")] InventoryManager,
+    [Display(Name = "مدير المخازن")] InventoryManager,
     // 2 add and view
-    [Display(Name="موظف المخازن")]Inventory,
+    [Display(Name="موظف المخازن")]InventoryClerk,
+
     // 3 view and add and edit
-    [Display(Name = "الموظف الفني")] TechnicalManager,
+    [Display(Name = "مدير الفني")] TechnicalManager,
     // 4 view and add   
-    [Display(Name = "الموظف الفني")] Technical,
+    [Display(Name = "الموظف الفني")] TechnicalClerk,
+    
     // 5 view and add and edit
-    [Display(Name = "موظف التكاليف")] CostManager,
+    [Display(Name = "مدير التكاليف")] CostManager,
     // 6 view and add
-    [Display(Name = "موظف التكاليف")] Cost
+    [Display(Name = "موظف التكاليف")] CostClerk
 }
 public partial class Employee
 {

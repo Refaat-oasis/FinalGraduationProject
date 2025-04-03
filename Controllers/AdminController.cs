@@ -22,7 +22,17 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AdminHome()
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 )
+            {
+
             return View("~/Views/Admin/AdminHome.cshtml");
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
 
         }
 
@@ -30,7 +40,17 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddEmployee()
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0)
+            {
+
             return View("~/Views/Admin/AddEmployee.cshtml");
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
 
@@ -56,14 +76,27 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllEmployee()
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0)
+            {
+
             List<Employee> employeeList = _businessLogicL.ViewAllEmployee();
             return View("~/Views/Admin/ViewAllEmployee.cshtml", employeeList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
 
         }
 
         [HttpGet]
         public IActionResult EditEmployee(string id)
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0)
+            {
             try
             {
                 var employee = _businessLogicL.GetEmployeeById(id); // Fetch the employee by ID
@@ -77,6 +110,13 @@ namespace ThothSystemVersion1.Controllers
             {
                 return NotFound(ex.Message); // Employee not found
             }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
         }
 
         [HttpPost]

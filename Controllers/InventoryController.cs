@@ -28,8 +28,19 @@ namespace ThothSystemVersion1.Controllers
 
         // new paper 
         [HttpGet]
-        public IActionResult NewPaper() { 
-            return View( new Paper());
+        public IActionResult NewPaper()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole ==1 || jobRole ==2 )
+            {
+                return View(new Paper());
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
         }
         [HttpPost]
         public IActionResult NewPaper(Paper newPaper) {
@@ -54,8 +65,19 @@ namespace ThothSystemVersion1.Controllers
         // new ink
 
         [HttpGet]
-        public IActionResult NewInk() { 
-            return View(new Ink());
+        public IActionResult NewInk() {
+           
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                return View(new Ink());
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
         }
 
         [HttpPost]
@@ -83,7 +105,18 @@ namespace ThothSystemVersion1.Controllers
 
         [HttpGet]
         public IActionResult NewSupply() {
-             return View(new Supply());
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                return View(new Supply());
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            
+
         }
 
         [HttpPost]
@@ -117,9 +150,20 @@ namespace ThothSystemVersion1.Controllers
         public async Task <IActionResult> paperPurchase() 
         {
 
-            ViewBag.paperList = _businessLogicL.getAllActivePaper();
-            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-            return View();
+            
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                ViewBag.paperList = _businessLogicL.getAllActivePaper();
+                ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+                return View();
+
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
 
         }
 
@@ -138,12 +182,22 @@ namespace ThothSystemVersion1.Controllers
 
 
         // ink purchase
-
+        [HttpGet]
         public IActionResult inkPurchase() {
+            
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
             ViewBag.inkList = _businessLogicL.getAllActiveInk();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
-            return View(); 
+            return View();
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpPost]
@@ -159,13 +213,24 @@ namespace ThothSystemVersion1.Controllers
         }
 
         // supply purchase
-
+        [HttpGet]
         public IActionResult supplypurchase()
         {
-            ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
+            
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View();
+
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpPost]
@@ -185,11 +250,22 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult inventoryReports()
         {
-            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 )
+            {
+                ViewBag.PaperList = _businessLogicL.GetActivePapers();
             ViewBag.InkList = _businessLogicL.GetActiveInks();
             ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
 
             return View();
+
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
@@ -205,13 +281,23 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult purchaseall()
         {
-
-            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+ ViewBag.PaperList = _businessLogicL.GetActivePapers();
             ViewBag.InkList = _businessLogicL.GetActiveInks();
             ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
             ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View();
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+           
         }
         [HttpPost]
         public IActionResult purchaseall(purchaseOrderDTO dto)
@@ -236,12 +322,12 @@ namespace ThothSystemVersion1.Controllers
 
         // Mariam section
 
-        [HttpGet]
-        public IActionResult VendorReport()
-        {
+        //[HttpGet]
+        //public IActionResult VendorReport()
+        //{
 
-            return View(new InventoryReportViewModel());
-        }
+        //    return View(new InventoryReportViewModel());
+        //}
 
         [HttpPost]
         public IActionResult VendorReport(DateOnly beginingDate, DateOnly endingDate)
@@ -254,9 +340,18 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditVendor(int vendorID) {
 
-
-            Vendor foundVendor = _businessLogicL.GetVendorByID(vendorID);
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1)
+            {
+ Vendor foundVendor = _businessLogicL.GetVendorByID(vendorID);
             return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+           
 
         }
 
@@ -291,7 +386,10 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddVendor()
         {
-            try
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+try
             {
                 VendorAddDTO empty = new VendorAddDTO();
                 return View("~/Views/Inventory/AddVendor.cshtml", empty);
@@ -304,6 +402,13 @@ namespace ThothSystemVersion1.Controllers
             {
                 return NotFound(ex.Message);
             }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            
         }
 
 
@@ -340,7 +445,10 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditInk(int inkId)
         {
-            try
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+try
             {
                 Ink ink = _businessLogicL.GetInkByID(inkId);
                 return View("~/Views/Inventory/EditInk.cshtml", ink);
@@ -354,6 +462,13 @@ namespace ThothSystemVersion1.Controllers
             {
                 return NotFound(ex.Message);
             }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            
         }
         [HttpPost]
         public IActionResult EditInk(int inkId, Ink updatedInk)
@@ -388,7 +503,9 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditPaper(int paperId)
         {
-            try
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {try
             {
                 Paper paper = _businessLogicL.GetPaperByID(paperId);
                 return View("~/Views/Inventory/EditPaper.cshtml", paper);
@@ -401,6 +518,14 @@ namespace ThothSystemVersion1.Controllers
             {
                 return NotFound(ex.Message);
             }
+
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            
         }
 
         [HttpPost]
@@ -439,7 +564,10 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditSupply(int suppliesId)
         {
-            try
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+try
             {
                 Supply supply = _businessLogicL.GetSupplyByID(suppliesId);
                 return View("~/Views/Inventory/EditSupply.cshtml", supply);
@@ -453,6 +581,13 @@ namespace ThothSystemVersion1.Controllers
             {
                 return NotFound(ex.Message); // Employee not found
             }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            
         }
         [HttpPost]
         public IActionResult EditSupply(int suppliesId, Supply updatedSupply)
@@ -489,39 +624,92 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllVendor()
         {
-            List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+ List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
             return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+           
         }
 
-
+        [HttpGet]
         public async Task <IActionResult> ViewAllInk()
         {
-            List<Ink> inkList = await _businessLogicL.ViewAllInk();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+ List<Ink> inkList = await _businessLogicL.ViewAllInk();
             await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint" , "Reorder point reached for Ink: [InkName]");
             return View(inkList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+           
         }
 
+        [HttpGet]
         public async Task<IActionResult> ViewAllPaper()
         {
-            List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+ List<Paper> paperList = await _businessLogicL.ViewAllPaper();
             await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
             return View(paperList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+           
         }
 
+        [HttpGet]
         public async Task<IActionResult> ViewAllSupply()
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+
             List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
             await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint", "Reorder point reached for Supply: [SupplyName]");
             return View(suppplyList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpGet]
         public IActionResult PhysicalCount()
         {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+
             ViewBag.PaperList = _businessLogicL.GetActivePapers();
             ViewBag.InkList = _businessLogicL.GetActiveInks();
             ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
             return View();
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         public JsonResult GetCurrentQuantity(string itemType, int itemId)
@@ -535,8 +723,6 @@ namespace ThothSystemVersion1.Controllers
         {
             string employeeId = HttpContext.Session.GetString("EmployeeID");
             phcountDto.employeeId = employeeId;
-
-
 
             var result = _businessLogicL.UpdateQuantity(phcountDto);
 

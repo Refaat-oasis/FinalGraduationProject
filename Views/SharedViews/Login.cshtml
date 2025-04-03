@@ -27,6 +27,21 @@
     <img src="./image/eye.jpg" alt="logo">
 </div>
 
+<div class="card-body">
+    @* Success and Error Messages *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="bx bx-check-circle"></i> @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="bx bx-error-circle"></i> @TempData["Error"]
+        </div>
+    }
+    </div>
 
 
 <div class="registeration">

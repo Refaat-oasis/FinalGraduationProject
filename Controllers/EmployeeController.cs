@@ -27,17 +27,28 @@ namespace ThothSystemVersion1.Controllers
                     HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
                     HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName.ToString());
                     HttpContext.Session.SetString("EmployeeUserName", loggedEmployee.EmployeeUserName.ToString());
+                    HttpContext.Session.SetInt32("JobRole", (int)loggedEmployee.JobRole);
 
                     switch (loggedEmployee.JobRole)
                     {
                         case JobRole.Admin: // Admin
                             return RedirectToAction("AdminHome", "Admin");
-                        case JobRole.Inventory: // Inventory
+
+                        case JobRole.InventoryClerk: // Inventory
                             return RedirectToAction("InventoryHome", "Inventory");
-                        case JobRole.Technical: // Technical
+                        case JobRole.InventoryManager: // Inventory Manager
+                            return RedirectToAction("InventoryManagerHome", "Inventory");
+
+                        case JobRole.TechnicalClerk: // Technical
                             return RedirectToAction("TechnicalHome", "Technical");
-                        case JobRole.Cost: // Cost
+                        case JobRole.TechnicalManager: // Technical Manager
+                            return RedirectToAction("TechnicalManagerHome", "Technical");
+
+                        case JobRole.CostClerk: // Cost
                             return RedirectToAction("CostHome", "Cost");
+                        case JobRole.CostManager:
+                            return RedirectToAction("CostManagerHome", "Cost");
+
                         default:
                             return RedirectToAction("LoginPage", "Employee");
                     }
@@ -49,10 +60,20 @@ namespace ThothSystemVersion1.Controllers
 
             }
             else {
+
+             
+                    
+                string message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+                TempData["Error"] = message;
                 return RedirectToAction("LoginPage", "Employee");
             }
         }
 
+        public IActionResult UnauthorizedAccess()
+        {
+            return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+        }
 
     }
 }

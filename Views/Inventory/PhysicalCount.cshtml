@@ -1,24 +1,56 @@
 ﻿@{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
     ViewData["Title"] = "تعديل المخزون";
 }
 
-<div class="card">
-    <div class="card-header bg-primary text-white">
-        <h4>نموذج تعديل المخزون</h4>
-    </div>
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/PhysicalCount.css" rel="stylesheet" />
+
+</head>
+
+<div class="arrow">
+    <a asp-controller="Admin" asp-action="AdminHome" class="back">
+        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+    </a>
+</div>
+
+<div class="container">
+
+
+
+    <h1> تعديل المخزون</h1>
+
     <div class="card-body">
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">@TempData["Success"]</div>
+            <div class="success-message">
+                <i class="bx bx-check-circle"></i> @TempData["Success"]
+            </div>
         }
         @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">@TempData["Error"]</div>
+            <div class="error-message">
+                <i class="bx bx-error-circle"></i> @TempData["Error"]
+            </div>
         }
 
+
         <form method="post" asp-action="physicalCount">
-            <div class="row mb-3">
-                <div class="col-md-4">
+            <div class="rowCont">
+                <div class="colCont">
+                    <label class="form-label">الكمية الحالية</label>
+                    <input type="text" id="currentQuantity" class="form-control" readonly value="0" />
+                    <span class="error-message" id="currentQuantityError" style="color: red; display: none;">يرجى اختيار العنصر أولاً</span>
+                </div>
+                <div class="colCont">
+                    <label class="form-label">العنصر</label>
+                    <select id="itemId" name="itemId" class="form-select" required disabled>
+                        <option value="">-- اختر نوع العنصر أولا --</option>
+                    </select>
+                    <span class="error-message" id="itemIdError" style="color: red; display: none;">يرجى اختيار العنصر</span>
+                </div>
+                <div class="colCont">
                     <label class="form-label">نوع العنصر</label>
                     <select id="inventoryType" name="itemType" class="form-select" required>
                         <option value="">-- اختر نوع العنصر --</option>
@@ -26,47 +58,95 @@
                         <option value="Ink">حبر</option>
                         <option value="Supply">مستلزمات</option>
                     </select>
+                    <span class="error-message" id="inventoryTypeError" style="color: red; display: none;">يرجى اختيار نوع العنصر</span>
                 </div>
 
-                <div class="col-md-4">
-                    <label class="form-label">العنصر</label>
-                    <select id="itemId" name="itemId" class="form-select" required disabled>
-                        <option value="">-- اختر نوع العنصر أولا --</option>
-                    </select>
-                </div>
 
-                <div class="col-md-4">
-                    <label class="form-label">الكمية الحالية</label>
-                    <input type="text" id="currentQuantity" class="form-control" readonly value="0" />
-                </div>
+
+
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label class="form-label">الكمية الجديدة</label>
-                    <input type="number" name="newQuantity" class="form-control" min="0" required />
-                </div>
-
-                <div class="col-md-6">
+            <div class="rowCont">
+                <div class="colCont">
                     <label class="form-label">تاريخ الجرد</label>
                     <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                    <span class="error-message" id="physicalCountDateError" style="color: red; display: none;">يرجى اختيار تاريخ الجرد</span>
                 </div>
+
+                <div class="colCont">
+                    <label class="form-label">الكمية الجديدة</label>
+                    <input type="number" name="newQuantity" class="form-control" min="0" required />
+                    <span class="error-message" id="newQuantityError" style="color: red; display: none;">يرجى إدخال الكمية الجديدة</span>
+                </div>
+
+
             </div>
 
-            <div class="mb-3">
+            <div class="notes">
                 <label class="form-label">ملاحظات الجرد</label>
-                <textarea name="notes" class="form-control" rows="3" placeholder="أدخل أي ملاحظات هنا..."></textarea>
+                <textarea name="notes" class="form-control" rows="4" cols="80" placeholder="أدخل أي ملاحظات هنا..."></textarea>
             </div>
 
             <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
 
-            <button type="submit" class="btn btn-primary">حفظ التعديل</button>
+            <button type="submit" class="btn">حفظ التعديل</button>
         </form>
     </div>
 </div>
 @section Scripts {
     <script>
+               document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const inventoryType = document.getElementById("inventoryType");
+            const itemId = document.getElementById("itemId");
+            const newQuantity = document.querySelector("input[name='newQuantity']");
+            const physicalCountDate = document.querySelector("input[name='physicalCountDate']");
+
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+
+                function showError(elementId) {
+                    document.getElementById(elementId).style.display = "block";
+                    isValid = false;
+                }
+
+                function hideError(elementId) {
+                    document.getElementById(elementId).style.display = "none";
+                }
+
+                if (!inventoryType.value) {
+                    showError("inventoryTypeError");
+                } else {
+                    hideError("inventoryTypeError");
+                }
+
+                if (!itemId.value) {
+                    showError("itemIdError");
+                } else {
+                    hideError("itemIdError");
+                }
+
+                if (!newQuantity.value || newQuantity.value < 0) {
+                    showError("newQuantityError");
+                } else {
+                    hideError("newQuantityError");
+                }
+
+                if (!physicalCountDate.value) {
+                    showError("physicalCountDateError");
+                } else {
+                    hideError("physicalCountDateError");
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+
         $(document).ready(function () {
+
             $('#inventoryType').change(function () {
                 var selectedType = $(this).val();
                 var itemSelect = $('#itemId');

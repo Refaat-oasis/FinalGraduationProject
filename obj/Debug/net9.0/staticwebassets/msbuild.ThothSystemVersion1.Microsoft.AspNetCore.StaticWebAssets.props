@@ -216,6 +216,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\newSupply.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\PhysicalCount.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ThothSystemVersion1</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ThothSystemVersion1</BasePath>
+      <RelativePath>css/Inventory/PhysicalCount.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>x3nxltznx1</Fingerprint>
+      <Integrity>Pawiwb/Pmuxp2Zg9MELfo5M4d+YMdrgQLpkN4GDqNR0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\PhysicalCount.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\ViewAllInk.css'))">
       <SourceType>Package</SourceType>
       <SourceId>ThothSystemVersion1</SourceId>
@@ -228,8 +246,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o861ulv7rq</Fingerprint>
-      <Integrity>KCilC52xoe/TCcB4i+ZtQ8gT+j7wZMg3JPCpzqFlrA4=</Integrity>
+      <Fingerprint>8ndp3k6nob</Fingerprint>
+      <Integrity>VOR5QFx7Xdgf033m3zzxRXk3vTRzrd2V+TuM8Tk+5nY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\ViewAllInk.css'))</OriginalItemSpec>
@@ -246,8 +264,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o861ulv7rq</Fingerprint>
-      <Integrity>KCilC52xoe/TCcB4i+ZtQ8gT+j7wZMg3JPCpzqFlrA4=</Integrity>
+      <Fingerprint>8ndp3k6nob</Fingerprint>
+      <Integrity>VOR5QFx7Xdgf033m3zzxRXk3vTRzrd2V+TuM8Tk+5nY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\ViewAllPaper.css'))</OriginalItemSpec>
@@ -264,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o861ulv7rq</Fingerprint>
-      <Integrity>KCilC52xoe/TCcB4i+ZtQ8gT+j7wZMg3JPCpzqFlrA4=</Integrity>
+      <Fingerprint>8ndp3k6nob</Fingerprint>
+      <Integrity>VOR5QFx7Xdgf033m3zzxRXk3vTRzrd2V+TuM8Tk+5nY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\ViewAllSupply.css'))</OriginalItemSpec>

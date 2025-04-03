@@ -36,7 +36,9 @@
                         <tr>
                             <td>@item.Vendor.VendorName</td> 
                             <td>@item.PurchaseCount</td>
-                            <td>@item.TotalOldBalance.ToString("C")</td>
+                    <td>@item.TotalOldBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
+
+                            @* <td>@item.TotalOldBalance.ToString("C")</td> *@
                         </tr>
                     }
                 }

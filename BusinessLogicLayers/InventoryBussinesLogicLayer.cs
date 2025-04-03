@@ -849,7 +849,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                    {
                                        VendorId = g.Key,
                                        PurchaseCount = g.Select(q => q.PurchaseId).Distinct().Count(),
-                                       TotalOldBalance = g.Sum(q => (q.OldPrice ?? 0) * (q.OldQuantity ?? 0)) 
+                                       TotalOldBalance = g.Sum(q => (q.Price) * (q.Quantity)) 
+                                       //TotalOldBalance = g.Sum(q => (q.OldPrice ?? 0) * (q.OldQuantity ?? 0)) 
                                    })
                          .ToList();
 

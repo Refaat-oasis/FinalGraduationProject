@@ -72,18 +72,18 @@
 
 
 
-                        @* <td> *@
-                        @*     @Html.DisplayFor(modelItem => item.Price) *@
-                        @* </td> *@
-                        @* <td> *@
-                        @*     @Html.DisplayFor(modelItem => item.Quantity) *@
-                        @* </td> *@
-                        @* <td> *@
-                        @*     @Html.DisplayFor(modelItem => item.ReorderPoint) *@
-                        @* </td> *@
-                        @* <td> *@
-                        @*     @Html.DisplayFor(modelItem => item.Activated) *@
-                        @* </td> *@
+                         <td> 
+                             @Html.DisplayFor(modelItem => item.Price) 
+                         </td> 
+                         <td> 
+                             @Html.DisplayFor(modelItem => item.Quantity) 
+                         </td> 
+                         <td> 
+                             @Html.DisplayFor(modelItem => item.ReorderPoint)
+                         </td>
+                         <td> 
+                             @Html.DisplayFor(modelItem => item.Activated) 
+                         </td> 
 
                         <td>
                             <a asp-controller="inventory" asp-action="EditInk" asp-route-id="@item.InkId" class="editBtn">تعديل</a>
@@ -104,3 +104,65 @@
         </table>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+            integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+    <script>
+                       function searchInk() {
+                   var input, filter, table, tr, td, i, j, txtValue;
+                   input = document.getElementById("searchInput");
+                   filter = input.value.toUpperCase();
+                   table = document.getElementById("InkTable");
+                   tr = table.getElementsByTagName("tr");
+
+                   // Loop through all table rows (skip the header row)
+                   for (i = 1; i < tr.length; i++) {
+                       tr[i].style.display = "none"; // Hide the row by default
+                       td = tr[i].getElementsByTagName("td");
+
+                       // Loop through all columns in the current row
+                       for (j = 0; j < td.length; j++) {
+                           if (td[j]) {
+                               txtValue = td[j].textContent || td[j].innerText;
+                               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                   tr[i].style.display = ""; // Show the row if a match is found
+                                   break; // Exit the inner loop if a match is found
+                               }
+                           }
+                       }
+                   }
+               }
+
+        // Create the connection to the SignalR hub
+               var hub = new signalR.HubConnectionBuilder()
+                   .withUrl("/InventoryReorderPoint")
+                   .build();
+
+               hub.start()
+                   .then(function () {
+                       console.log("SignalR connection established.");
+
+                       // Invoke the server-side method to check paper reorder points.
+                       hub.invoke("CheckInkReorderPoint")
+                           .catch(function (err) {
+                               console.error("Error invoking CheckInkReorderPoint: ", err.toString());
+                           });
+                   })
+                   .catch(function (err) {
+                       console.error("SignalR connection error: ", err.toString());
+                   });
+
+               // Listen for reorder messages from the hub.
+               hub.on("ReceiveReorderMessageInk", function (message) {
+                           console.log("Received reorder message: ", message);
+                   var messageDiv = document.getElementById("reorderMessages");
+                   // Make sure the message div is visible
+                   messageDiv.style.display = "block";
+                   // Append the new message rather than replacing previous ones
+                   messageDiv.innerHTML += "<div>" + message + "</div>";
+               });
+    </script>
+}

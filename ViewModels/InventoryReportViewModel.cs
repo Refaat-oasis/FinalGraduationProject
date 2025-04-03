@@ -18,6 +18,9 @@ namespace ThothSystemVersion1.ViewModels
 
         public List<QuantityBridge> quantityBridgeList {get; set;}
 
+        public List<(Vendor Vendor, int PurchaseCount, decimal TotalOldBalance)> VendorReport { get; set; }
+
+
 
         // every item in the purchase order must have one elemt in the quantity bridge that look similar
         // to the item in the purchase order

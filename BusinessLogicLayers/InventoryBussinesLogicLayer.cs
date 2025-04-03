@@ -834,6 +834,49 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+        public InventoryReportViewModel VendorReportRanking(DateOnly beginningDate, DateOnly endDate)
+        {
+            // Retrieve purchase orders within the specified date range
+            var purchaseOrdersInRange = _context.PurchaseOrders
+                .Where(po => po.PurchaseDate >= beginningDate && po.PurchaseDate <= endDate)
+                .ToList();
+
+           
+            var vendorPurchases = (from po in purchaseOrdersInRange
+                                   join qb in _context.QuantityBridges on po.PurchaseId equals qb.PurchaseId
+                                   group qb by po.VendorId into g
+                                   select new
+                                   {
+                                       VendorId = g.Key,
+                                       PurchaseCount = g.Select(q => q.PurchaseId).Distinct().Count(),
+                                       TotalOldBalance = g.Sum(q => (q.OldPrice ?? 0) * (q.OldQuantity ?? 0)) 
+                                   })
+                         .ToList();
+
+            // Join with vendor details and apply ranking based on both criteria
+            var vendorReport = (from vp in vendorPurchases
+                                join vendor in _context.Vendors on vp.VendorId equals vendor.VendorId
+                                orderby vp.PurchaseCount descending, vp.TotalOldBalance descending
+                                select new
+                                {
+                                    Vendor = vendor,
+                                    PurchaseCount = vp.PurchaseCount,
+                                    TotalOldBalance = vp.TotalOldBalance
+                                })
+                     .ToList();
+
+           
+            InventoryReportViewModel invModel = new InventoryReportViewModel
+            {
+                VendorReport = vendorReport.Select(v => (v.Vendor, v.PurchaseCount, v.TotalOldBalance)).ToList()  
+            };
+
+            return invModel;
+
+
+        }
+
+
     }
 
 }

@@ -205,6 +205,22 @@ namespace ThothSystemVersion1.Controllers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section
+
+        [HttpGet]
+        public IActionResult VendorReport()
+        {
+
+            return View(new InventoryReportViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult VendorReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+
+            InventoryReportViewModel invViewModel = _businessLogicL.VendorReportRanking(beginingDate, endingDate);
+
+            return View(invViewModel);
+        }
         [HttpGet]
         public IActionResult EditVendor(int vendorID) {
 

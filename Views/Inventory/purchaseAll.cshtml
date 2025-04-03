@@ -118,15 +118,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var items = []; // Array to store added items
-            var editIndex = -1; // -1 means not editing any row
+            var items = [];
+            var editIndex = -1;
 
-            // Populate the "العنصر" dropdown based on selected "نوع العنصر"
             $('#itemType').change(function () {
                 var selectedType = $(this).val();
                 var itemSelect = $('#itemId');
-                itemSelect.empty();
-                itemSelect.prop('disabled', !selectedType);
+                itemSelect.empty().prop('disabled', !selectedType);
 
                 if (!selectedType) {
                     itemSelect.append('<option value="">-- اختر العنصر --</option>');
@@ -142,13 +140,11 @@
                 };
 
                 itemsData[selectedType]?.forEach(item => {
-                    // Use the appropriate id property (paperId, inkId, or suppliesId)
                     var id = item.paperId || item.inkId || item.suppliesId;
                     itemSelect.append(`<option value="${id}">${item.name}</option>`);
                 });
             });
 
-            // Render the items table and hidden inputs for model binding
             function renderItems() {
                 var tableBody = $('#itemsTableBody');
                 var hiddenContainer = $('#hiddenItemsContainer');
@@ -156,7 +152,6 @@
                 hiddenContainer.empty();
 
                 items.forEach((item, index) => {
-                    // Create table row with edit and delete buttons
                     tableBody.append(`
                         <tr data-index="${index}">
                             <td>${item.itemName}</td>
@@ -169,7 +164,6 @@
                         </tr>
                     `);
 
-                    // Generate hidden inputs based on item type for proper binding
                     var hiddenInputs = '';
                     if (item.itemType === "Paper") {
                         hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
@@ -185,7 +179,6 @@
                 });
             }
 
-            // Handle add/update item button click
             $('#addItem').click(function () {
                 var itemType = $('#itemType').val();
                 var itemId = $('#itemId').val();
@@ -208,7 +201,6 @@
                     $('#addItem').text('أضف العنصر');
                 }
 
-                // Clear selection fields
                 $('#itemType').val('');
                 $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
                 $('#itemQuantity').val('');
@@ -217,24 +209,29 @@
                 renderItems();
             });
 
-            // Edit item event: populate the fields for editing
             $('#itemsTableBody').on('click', '.editItem', function () {
                 editIndex = $(this).closest('tr').data('index');
                 var item = items[editIndex];
 
                 $('#itemType').val(item.itemType).trigger('change');
-                // Delay to ensure the dropdown is repopulated before setting the item value
                 setTimeout(() => $('#itemId').val(item.itemId), 100);
                 $('#itemQuantity').val(item.quantity);
                 $('#itemPrice').val(item.price);
                 $('#addItem').text('تحديث العنصر');
             });
 
-            // Delete item event: remove the row and update hidden inputs
             $('#itemsTableBody').on('click', '.deleteItem', function () {
                 items.splice($(this).closest('tr').data('index'), 1);
                 renderItems();
             });
+
+            $('form').submit(function (e) {
+                if ($('#itemsTableBody tr').length === 0) {
+                    alert("يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.");
+                    e.preventDefault();
+                }
+            });
         });
     </script>
+
 }

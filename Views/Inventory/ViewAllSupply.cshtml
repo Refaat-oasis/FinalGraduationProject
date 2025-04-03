@@ -1,17 +1,16 @@
-﻿@{
-    Layout = null;
+﻿@model IEnumerable<ThothSystemVersion1.Models.Supply>
+
+@{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+
+    ViewData["Title"] = "قائمة المستلزمات";
 }
-
-@model List<Supply>
-
 <head>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ViewAllSupply.css" rel="stylesheet" />
+
 </head>
-
 <div class="container">
-    <div id="reorderMessages" style="display: none; background-color: yellow; padding: 10px; margin-top: 10px;"></div>
-
     <div class="arrow">
         <a asp-controller="Admin" asp-action="AdminHome" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
@@ -19,42 +18,75 @@
     </div>
 
     <h1>قائمة المستلزمات</h1>
-    <div class="btn">
-        <a asp-controller="Inventory" asp-action="NewSupply" class="editBtn">اضافة</a>
-    </div>
 
+    <div id="reorderMessages" class="reorderMsg" style="display:none;"></div>
+
+    <p>
+        <a asp-controller="inventory" asp-action="NewSupply" class="editBtn">اضافة</a>
+    </p>
     <div class="search-container">
         <i class='bx bx-search search-icon'></i>
-        <input type="text" id="searchInput" onkeyup="searchSupply()" placeholder="ابحث عن مستلزمات...">
+        <input type="text" id="searchInput" onkeyup="searchSupply()" placeholder="...ابحث عن مستلزمات">
     </div>
 
     <div class="tableContainer">
         <table id="SupplyTable">
             <thead>
                 <tr>
-                    <th>الإجراءات</th>
-                    <th>الرصيد الكلي</th>
-                    <th>نقطة إعادة الطلب</th>
-                    <th>السعر</th>
-                    <th>الكمية</th>
-                    <th>الاسم</th>
 
+
+                    @* <th> *@
+                    @*     @Html.DisplayNameFor(model => model.Price) *@
+                    @* </th> *@
+                    @* <th> *@
+                    @*     @Html.DisplayNameFor(model => model.Quantity) *@
+                    @* </th> *@
+                    @* <th> *@
+                    @*     @Html.DisplayNameFor(model => model.ReorderPoint) *@
+                    @* </th> *@
+                    @* <th> *@
+                    @*     @Html.DisplayNameFor(model => model.Activated) *@
+                    @* </th> *@
+
+                    <th>الإجراءات</th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalBalance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
                 </tr>
             </thead>
-
             <tbody>
-                @foreach (Supply sup in Model)
+                @foreach (var item in Model)
                 {
-                    <tr id="row-@sup.SuppliesId">
-                        <td>
-                            <a asp-action="EditSupply" asp-route-suppliesId="@sup.SuppliesId" class="editBtn">تعديل</a>
-                        </td>
-                        <td>@sup.TotalBalance</td>
-                        <td>@sup.ReorderPoint</td>
-                        <td>@sup.Price</td>
-                        <td>@sup.Quantity</td>
-                        <td>@sup.Name</td>
+                    <tr>
 
+
+                        @* <td> *@
+                        @*     @Html.DisplayFor(modelItem => item.Price) *@
+                        @* </td> *@
+                        @* <td> *@
+                        @*     @Html.DisplayFor(modelItem => item.Quantity) *@
+                        @* </td> *@
+                        @* <td> *@
+                        @*     @Html.DisplayFor(modelItem => item.ReorderPoint) *@
+                        @* </td> *@
+                        @* <td> *@
+                        @*     @Html.DisplayFor(modelItem => item.Activated) *@
+                        @* </td> *@
+                        <td>
+                            <a asp-controller="inventory" asp-action="EditSupply" asp-route-id="@item.SuppliesId" class="editBtn">تعديل</a>
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalBalance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -62,31 +94,65 @@
     </div>
 </div>
 
-<script src="~/js/Inventory/ViewAllSupply.js"></script>
-
-
 @section Scripts {
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
             integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"></script>
 
     <script>
-        var hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint") // Match the hub endpoint
-            .build();
+                       function searchSupply() {
+                   var input, filter, table, tr, td, i, j, txtValue;
+                   input = document.getElementById("searchInput");
+                   filter = input.value.toUpperCase();
+                   table = document.getElementById("SupplyTable");
+                   tr = table.getElementsByTagName("tr");
 
-        hub.start()
-            .then(() => console.log("SignalR connection established."))
-            .catch(err => console.error("SignalR error: ", err));
+                   // Loop through all table rows (skip the header row)
+                   for (i = 1; i < tr.length; i++) {
+                       tr[i].style.display = "none"; // Hide the row by default
+                       td = tr[i].getElementsByTagName("td");
 
-        // Listen for reorder messages
-        hub.on("ReceiveReorderMessageSupply", (message) => {
-            console.log("Received message: ", message);
-            const messageDiv = document.getElementById("reorderMessages");
-            messageDiv.style.display = "block";
-            messageDiv.innerHTML += `<div>${message}</div>`;
-        });
+                       // Loop through all columns in the current row
+                       for (j = 0; j < td.length; j++) {
+                           if (td[j]) {
+                               txtValue = td[j].textContent || td[j].innerText;
+                               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                   tr[i].style.display = ""; // Show the row if a match is found
+                                   break; // Exit the inner loop if a match is found
+                               }
+                           }
+                       }
+                   }
+               }
+
+        // Create the connection to the SignalR hub
+               var hub = new signalR.HubConnectionBuilder()
+                   .withUrl("/InventoryReorderPoint")
+                   .build();
+
+               hub.start()
+                   .then(function () {
+                       console.log("SignalR connection established.");
+
+                       // Invoke the server-side method to check paper reorder points.
+                       hub.invoke("CheckSupplyReorderPoint")
+                           .catch(function (err) {
+                               console.error("Error invoking CheckSupplyReorderPoint: ", err.toString());
+                           });
+                   })
+                   .catch(function (err) {
+                       console.error("SignalR connection error: ", err.toString());
+                   });
+
+               // Listen for reorder messages from the hub.
+               hub.on("ReceiveReorderMessageSupply", function (message) {
+                           console.log("Received reorder message: ", message);
+                   var messageDiv = document.getElementById("reorderMessages");
+                   // Make sure the message div is visible
+                   messageDiv.style.display = "block";
+                   // Append the new message rather than replacing previous ones
+                   messageDiv.innerHTML += "<div>" + message + "</div>";
+               });
     </script>
 }

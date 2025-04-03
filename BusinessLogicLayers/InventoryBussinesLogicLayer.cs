@@ -878,6 +878,130 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+        public (bool success, string message) PurchaseAll(purchaseOrderDTO purchaseDTO)
+        {
+
+            try
+            {
+
+                List<QuantityBridge> quantityBridgeList = purchaseDTO.BridgeList;
+
+                PurchaseOrder purchaseOrder = new PurchaseOrder();
+                purchaseOrder.EmployeeId = purchaseDTO.EmployeeId;
+                purchaseOrder.VendorId = purchaseDTO.VendorId;
+                purchaseOrder.PurchaseNotes = purchaseDTO.PurchaseNotes;
+                _context.PurchaseOrders.Add(purchaseOrder);
+                _context.SaveChanges();
+
+                int purchaseOrderNumber = _context.PurchaseOrders
+                          .OrderByDescending(po => po.PurchaseId)
+                          .Select(po => po.PurchaseId)
+                          .FirstOrDefault();
+
+                for (int i = 0; i < quantityBridgeList.Count; i++)
+                {
+                    quantityBridgeList[i].PurchaseId = purchaseOrderNumber;
+                    quantityBridgeList[i].QuantityBridgeID = null;
+
+                    if (quantityBridgeList[i].InkId != null)
+                    {
+                        Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+
+                        // Calculate new quantity and average price
+                        double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)ink.Quantity * ink.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = ink.Price;
+                        quantityBridgeList[i].OldQuantity = ink.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+
+                        // Update paper properties
+                        ink.Quantity = (int)totalQuantity;
+                        ink.Price = averagePrice;
+                        ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+                        _context.Inks.Update(ink);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].PaperId != null)
+                    {
+                        Paper paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+
+                        // Calculate new quantity and average price
+                        double totalQuantity = paper.Quantity + quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)paper.Quantity * paper.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = paper.Price;
+                        quantityBridgeList[i].OldQuantity = paper.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+
+                        // Update paper properties
+                        paper.Quantity = (int)totalQuantity;
+                        paper.Price = averagePrice;
+                        paper.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        _context.Papers.Update(paper);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].SuppliesId != null)
+                    {
+                        Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+
+                        // Calculate new quantity and average price
+                        double totalQuantity = supply.Quantity + quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)supply.Quantity * supply.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = supply.Price;
+                        quantityBridgeList[i].OldQuantity = supply.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+
+                        // Update paper properties
+                        supply.Quantity = (int)totalQuantity;
+                        supply.Price = averagePrice;
+                        supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        _context.Supplies.Update(supply);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+
+                }
+                return (true, "تمت عملية الشراء بنجاح");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
+
+
+
+        }
+
+
 
     }
 

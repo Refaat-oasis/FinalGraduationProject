@@ -202,6 +202,36 @@ namespace ThothSystemVersion1.Controllers
 
 
 
+        [HttpGet]
+        public IActionResult purchaseall()
+        {
+
+            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            ViewBag.InkList = _businessLogicL.GetActiveInks();
+            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult purchaseall(purchaseOrderDTO dto)
+        {
+
+
+            dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+            var result = _businessLogicL.PurchaseAll(dto);
+
+            if (result.success)
+                TempData["Success"] = result.message;
+            else
+                TempData["Error"] = result.message;
+
+            return RedirectToAction("purchaseall");
+        }
+
+
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section

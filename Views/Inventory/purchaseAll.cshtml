@@ -1,0 +1,55 @@
+﻿            }
+
+            // Handle add/update item button click
+            $('#addItem').click(function () {
+                var itemType = $('#itemType').val();
+                var itemId = $('#itemId').val();
+                var itemName = $('#itemId option:selected').text();
+                var quantity = $('#itemQuantity').val();
+                var price = $('#itemPrice').val();
+
+                if (!itemType || !itemId || !quantity || quantity < 0 || !price || price < 0) {
+                    alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+                    return;
+                }
+
+                var newItem = { itemType, itemId, itemName, quantity, price };
+
+                if (editIndex === -1) {
+                    items.push(newItem);
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                    $('#addItem').text('أضف العنصر');
+                }
+
+                // Clear selection fields
+                $('#itemType').val('');
+                $('#itemId').empty().append('
+<option value="">-- اختر العنصر --</option>').prop('disabled', true);
+                $('#itemQuantity').val('');
+                $('#itemPrice').val('');
+
+                renderItems();
+            });
+
+            // Edit item event: populate the fields for editing
+            $('#itemsTableBody').on('click', '.editItem', function () {
+                editIndex = $(this).closest('tr').data('index');
+                var item = items[editIndex];
+
+                $('#itemType').val(item.itemType).trigger('change');
+                // Delay to ensure the dropdown is repopulated before setting the item value
+                setTimeout(() => $('#itemId').val(item.itemId), 100);
+                $('#itemQuantity').val(item.quantity);
+                $('#itemPrice').val(item.price);
+                $('#addItem').text('تحديث العنصر');
+            });
+
+            // Delete item event: remove the row and update hidden inputs
+            $('#itemsTableBody').on('click', '.deleteItem', function () {
+                items.splice($(this).closest('tr').data('index'), 1);
+                renderItems();
+            });
+        });
+    </script>

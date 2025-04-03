@@ -19,6 +19,8 @@ namespace ThothSystemVersion1.Controllers
             _businessLogicL = businessLogicL;
         }
 
+        // sherwet section
+
         [HttpGet]
         public IActionResult AdminHome()
         {
@@ -35,8 +37,26 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+  
+        [HttpGet]
+        public IActionResult ViewAllEmployee()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0)
+            {
 
+            List<Employee> employeeList = _businessLogicL.ViewAllEmployee();
+            return View("~/Views/Admin/ViewAllEmployee.cshtml", employeeList);
+            }
+            else
+            {
 
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+        // mariam section
         [HttpGet]
         public IActionResult AddEmployee()
         {
@@ -52,7 +72,6 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
-
 
         [HttpPost]
         public IActionResult AddEmployee(EmployeeDTO employee)
@@ -73,24 +92,7 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("ViewAllEmployee", "admin");
         }
 
-        [HttpGet]
-        public IActionResult ViewAllEmployee()
-        {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0)
-            {
-
-            List<Employee> employeeList = _businessLogicL.ViewAllEmployee();
-            return View("~/Views/Admin/ViewAllEmployee.cshtml", employeeList);
-            }
-            else
-            {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-
-        }
-
+        // sandra section 
         [HttpGet]
         public IActionResult EditEmployee(string id)
         {

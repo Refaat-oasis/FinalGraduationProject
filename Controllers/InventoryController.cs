@@ -25,8 +25,6 @@ namespace ThothSystemVersion1.Controllers
 
         // refaat section
 
-
-        // new paper 
         [HttpGet]
         public IActionResult NewPaper()
         {
@@ -42,14 +40,28 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+       
         [HttpPost]
         public IActionResult NewPaper(Paper newPaper) {
             try {
 
                 if (ModelState.IsValid)
                 {
-                    _businessLogicL.addPaper(newPaper);
-                    return RedirectToAction("viewallpaper", "inventory");
+                    bool result = _businessLogicL.addPaper(newPaper);
+                    string messageSuccess = "تم اضافة الورق الجديد";
+                    string messageError = "هناك خظأ في اضافة الورق الجديد";
+                    
+                    if (result) { 
+                    TempData["Success"] = messageSuccess;
+                    return View("newpaper", newPaper);
+                    }else {
+                        TempData["Error"] = messageError;
+                        return View("newpaper", newPaper);
+
+                    }
+                    
+
+                    //return RedirectToAction("viewallpaper", "inventory");
                 }
                 else {
                     return View("newpaper", newPaper);
@@ -61,9 +73,6 @@ namespace ThothSystemVersion1.Controllers
             
         }
         
-
-        // new ink
-
         [HttpGet]
         public IActionResult NewInk() {
            
@@ -88,8 +97,24 @@ namespace ThothSystemVersion1.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    _businessLogicL.addInk(newInk);
-                    return RedirectToAction("ViewAllInk", "inventory");
+                   bool result = _businessLogicL.addInk(newInk);
+                    string messageSuccess = "تم اضافة الحبر الجديد";
+                    string messageError = "هناك خظأ في اضافة الحبر الجديد";
+
+                    if (result)
+                    {
+                        TempData["Success"] = messageSuccess;
+                        return View( newInk);
+                    }
+                    else
+                    {
+                        TempData["Error"] = messageError;
+                        return View(newInk);
+
+                    }
+
+
+                    //return RedirectToAction("ViewAllInk", "inventory");
                 }
                 else { 
                     return View(newInk) ;
@@ -100,8 +125,6 @@ namespace ThothSystemVersion1.Controllers
                 return BadRequest(ex);
             }
         }
-
-        // new supply
 
         [HttpGet]
         public IActionResult NewSupply() {
@@ -127,8 +150,23 @@ namespace ThothSystemVersion1.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    _businessLogicL.addSupply(newSupply);
-                    return RedirectToAction("viewallsupply", "inventory");
+                   bool result = _businessLogicL.addSupply(newSupply);
+
+                    string messageSuccess = "تم اضافة الورق الجديد";
+                    string messageError = "هناك خظأ في اضافة الورق الجديد";
+
+                    if (result)
+                    {
+                        TempData["Success"] = messageSuccess;
+                        return View(newSupply);
+                    }
+                    else
+                    {
+                        TempData["Error"] = messageError;
+                        return View(newSupply);
+
+                    }
+                    //return RedirectToAction("viewallsupply", "inventory");
                 }
                 else
                 {
@@ -143,8 +181,6 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
-
-        // paper purchase
 
         [HttpGet]
         public async Task <IActionResult> paperPurchase() 
@@ -173,15 +209,22 @@ namespace ThothSystemVersion1.Controllers
             //store the employeeid in the dto
             string employeeId = HttpContext.Session.GetString("EmployeeID");
             purchaseDto.EmployeeId = employeeId;
-            _businessLogicL.purchaseNewPaper(purchaseDto);
-            return RedirectToAction("ViewAllPaper", "inventory");
-
+            bool result =_businessLogicL.purchaseNewPaper(purchaseDto);
+            //return RedirectToAction("ViewAllPaper", "inventory");
+            string messageSuccess = "تم سراء الورق الجديد";
+            string messageError = "هناك خظأ في شراء الورق الجديد";
+            if (result)
+            {
+                TempData["Success"] = messageSuccess;
+                return View("paperPurchase", purchaseDto);
+            }
+            else {
+                TempData["Error"] = messageError;
+                return View("paperPurchase", purchaseDto);
+            }
 
         }
 
-
-
-        // ink purchase
         [HttpGet]
         public IActionResult inkPurchase() {
             
@@ -206,13 +249,26 @@ namespace ThothSystemVersion1.Controllers
             //store the employeeid in the dto
             string employeeId = HttpContext.Session.GetString("EmployeeID");
             purchaseDto.EmployeeId = employeeId;
-            _businessLogicL.purchaseNewInk(purchaseDto);
-            return RedirectToAction("ViewAllink", "inventory");
+            bool result =_businessLogicL.purchaseNewInk(purchaseDto);
+            string messageSuccess = "تم سراء الحبر الجديد";
+            string messageError = "هناك خظأ في شراء الحبر الجديد";
+
+            if (result)
+            {
+                TempData["Success"] = messageSuccess;
+                return View("inkPurchase", purchaseDto);
+            }
+            else
+            {
+                TempData["Error"] = messageError;
+                return View("inkPurchase", purchaseDto);
+
+            }
+                //return RedirectToAction("ViewAllink", "inventory");
 
 
         }
 
-        // supply purchase
         [HttpGet]
         public IActionResult supplypurchase()
         {
@@ -239,13 +295,23 @@ namespace ThothSystemVersion1.Controllers
             //store the employeeid in the dto
             string employeeId = HttpContext.Session.GetString("EmployeeID");
             purchaseDto.EmployeeId = employeeId;
-            _businessLogicL.purchaseNewSupply(purchaseDto);
-            return RedirectToAction("viewallsupply", "inventory");
+            bool result =_businessLogicL.purchaseNewSupply(purchaseDto);
+            //return RedirectToAction("viewallsupply", "inventory");
+            string messageSuccess = "تم سراء المستلزمات الجديدة";
+            string messageError = "هناك خظأ في شراء المستلزمات الجديدة";
+            if (result)
+            {
+                TempData["Success"] = messageSuccess;
+                return View("supplyPurchase", purchaseDto);
+            }
+            else
+            {
+                TempData["Error"] = messageError;
+                return View("supplyPurchase", purchaseDto);
+            }
 
 
         }
-
-        // paper Reports
 
         [HttpGet]
         public IActionResult inventoryReports()
@@ -267,6 +333,7 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+        
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
@@ -275,8 +342,6 @@ namespace ThothSystemVersion1.Controllers
             return View(invViewModel);
 
         }
-
-
 
         [HttpGet]
         public IActionResult purchaseall()
@@ -299,6 +364,7 @@ namespace ThothSystemVersion1.Controllers
 
            
         }
+       
         [HttpPost]
         public IActionResult purchaseall(purchaseOrderDTO dto)
         {

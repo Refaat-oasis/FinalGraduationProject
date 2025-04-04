@@ -86,7 +86,9 @@
                          </td> 
 
                         <td>
-                            <a asp-controller="inventory" asp-action="EditInk" asp-route-id="@item.InkId" class="editBtn">تعديل</a>
+                            @* <a asp-controller="inventory" asp-action="EditInk" asp-route-id="@item.InkId" class="editBtn">تعديل</a> *@
+                            <a asp-action="EditInk" asp-route-inkId="@item.InkId" class="editBtn">تعديل</a>
+
                         </td>
 
                         <td>

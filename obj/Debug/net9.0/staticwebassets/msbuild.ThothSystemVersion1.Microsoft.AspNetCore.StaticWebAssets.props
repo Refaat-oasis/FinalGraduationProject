@@ -102,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>slhtl2i1rn</Fingerprint>
-      <Integrity>YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=</Integrity>
+      <Fingerprint>1cupxd3fsp</Fingerprint>
+      <Integrity>0WotltoWzF1D7Inov7M5FXJ/KFOlTRtuy/n0f07dgcM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\EditInk.css'))</OriginalItemSpec>
@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7wdxsqviep</Fingerprint>
-      <Integrity>aYew6+SvI+D9KND/woEreBR+cqwPfes5G7lZ3kV0vSo=</Integrity>
+      <Fingerprint>ughpko3jwm</Fingerprint>
+      <Integrity>rghGhGg9VEwdsYpc+8eXSMRod+serngTzgRDTyQhcY4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\EditPaper.css'))</OriginalItemSpec>
@@ -138,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>slhtl2i1rn</Fingerprint>
-      <Integrity>YNvY2NPznGogn7jnrMNeQBKyfU61/Gt8F8eUqs2gK44=</Integrity>
+      <Fingerprint>ughpko3jwm</Fingerprint>
+      <Integrity>rghGhGg9VEwdsYpc+8eXSMRod+serngTzgRDTyQhcY4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\EditSupply.css'))</OriginalItemSpec>
@@ -341,6 +341,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Technical\Create.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ThothSystemVersion1</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ThothSystemVersion1</BasePath>
+      <RelativePath>css/Technical/Create.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>qliq7sclkp</Fingerprint>
+      <Integrity>rjcYnM7f7ZIFi6gq2NjrAXJvDSqyluzDHAU2kw5n37o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Technical\Create.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Technical\viewAllJobOrder.css'))">
       <SourceType>Package</SourceType>
@@ -552,8 +570,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>otfb12g70q</Fingerprint>
-      <Integrity>3M1z8CKpIatkXZTCjh0R9JYYl0K9W/7rnucdTDOKeIc=</Integrity>
+      <Fingerprint>lkdcvtw8qt</Fingerprint>
+      <Integrity>teIZqyDoPtYYgrvm3il923JcsCPwDANfw8gWCyd0YEw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\EditInk.js'))</OriginalItemSpec>
@@ -570,8 +588,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bibbbee2w0</Fingerprint>
-      <Integrity>/a15Yg3gKF/OdrWXIs0Tst99bQxsLnrdLirjoUO/Cqw=</Integrity>
+      <Fingerprint>6ungs7s1h3</Fingerprint>
+      <Integrity>rvRENGeAO+tNbXh4hrWPVJ3gGYH19laBpDFzjORTkmg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\EditPaper.js'))</OriginalItemSpec>
@@ -588,8 +606,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>cigd3gqz2l</Fingerprint>
-      <Integrity>1BdBavwbEyMv0SyR5cO+ZmU9oRMkQufBFJa3Nkhfigk=</Integrity>
+      <Fingerprint>6s4dbp22c8</Fingerprint>
+      <Integrity>ihesWVf8TneiLj8/CBJ75XfK1iavr9hTHbL3fSpN0pY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\EditSupply.js'))</OriginalItemSpec>
@@ -809,6 +827,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Technical\Create.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ThothSystemVersion1</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ThothSystemVersion1</BasePath>
+      <RelativePath>js/Technical/Create.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gkrvv3rs1h</Fingerprint>
+      <Integrity>ULib8xD43nkWA2tTGgTIZFkmNPj0IyKGf2a/ZruACxE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Technical\Create.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Technical\viewAllJobOrder.js'))">
       <SourceType>Package</SourceType>

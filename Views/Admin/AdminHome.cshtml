@@ -1,37 +1,8 @@
 @model Employee;
 
 <style>
-    #reorderMessages {
-        position: fixed;
-        top: 10%;
-        left: 0;
-        background-color: #ffcc00;
-        color: black;
-        padding: 10px;
-        width: 250px;
-        max-height: 90%;
-        overflow-y: auto;
-        z-index: 9999;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        display: none;
-    }
 
-        /* Close button style */
-        #reorderMessages .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: transparent;
-            border: none;
-            color: black;
-            font-size: 18px;
-            cursor: pointer;
-        }
 
-            #reorderMessages .close-btn:hover {
-                color: red;
-            }
 </style>
 
 <head>
@@ -45,60 +16,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>ThoTh</title>
-    <link href="@Url.Content("~/css/Admin/adminHome.css")" rel="stylesheet" />
+    <link href="~/css/Admin/adminHome.css" rel="stylesheet" />
 </head>
-<div id="reorderMessages" class="reorderMsg">
-    <button class="close-btn" onclick="closeReorderMessages()">×</button>
-    <!-- The reorder messages will be dynamically added here -->
-</div>
 
 <div class="sidebar">
     <ul class="dropdown">
         <li onclick="toggleDropdown(this)">
             إدارة المطبعة
             <ul>
-                <li>@Html.ActionLink("الصفحة الرئيسية", "AdminHome", "Admin")</li>
-                <li>@Html.ActionLink("عرض جميع الموظفين", "ViewAllEmployee", "Admin")</li>
-                <li>@Html.ActionLink("إضافة موظف جديد", "AddEmployee", "Admin")</li>
-                <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
+                <li><a asp-controller="Admin" asp-action="AdminHome">الصفحة الرئيسية</a></li>
+                <li><a asp-controller="Admin" asp-action="ViewAllEmployee">عرض جميع الموظفين</a></li>
+                <li><a asp-controller="Admin" asp-action="AddEmployee">إضافة موظف جديد</a></li>
+                <li><a asp-controller="Technical" asp-action="ViewAllJobOrder">عرض جميع الطلبيات</a></li>
             </ul>
         </li>
 
         <li onclick="toggleDropdown(this)">
             المخازن
             <ul>
-                <li>@Html.ActionLink("إضافة صنف ورق جديد", "NewPaper", "Inventory")</li>
-                <li>@Html.ActionLink("إضافة حبر جديد", "NewInk", "Inventory")</li>
-                <li>@Html.ActionLink("إضافة مستلزمات جديده", "NewSupply", "Inventory")</li>
-                <li>@Html.ActionLink("عرض مخزون الورق", "viewallpaper", "Inventory")</li>
-                <li>@Html.ActionLink("عرض مخزون الحبر", "ViewAllInk", "Inventory")</li>
-                <li>@Html.ActionLink("عرض مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
-                <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
-                <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
-                <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
-                <li>@Html.ActionLink("شراء صنف ورق", "paperPurchase", "Inventory")</li>
-                <li>@Html.ActionLink("شراء حبر", "inkPurchase", "Inventory")</li>
-                <li>@Html.ActionLink("شراء مستلزمات", "supplyPurchase", "Inventory")</li>
-                <li>@Html.ActionLink("المرتجعات", "Reorder", "Inventory")</li>
-                <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
-                <li>@Html.ActionLink("test of all purchase", "purchaseAll", "Inventory")</li>
+
+                <li><a asp-controller="Inventory" asp-action="NewPaper">إضافة صنف ورق جديد</a></li>
+                <li><a asp-controller="Inventory" asp-action="NewInk">إضافة حبر جديد</a></li>
+                <li><a asp-controller="Inventory" asp-action="NewSupply">إضافة مستلزمات جديده</a></li>
+
+                <li><a asp-controller="Inventory" asp-action="viewallpaper">عرض مخزون الورق</a></li>
+                <li><a asp-controller="Inventory" asp-action="ViewAllInk">عرض مخزون الحبر</a></li>
+                <li><a asp-controller="Inventory" asp-action="ViewAllsupply">عرض مخزون المستلزمات</a></li>
+
+                <li><a asp-controller="Inventory" asp-action="physicalCount">جرد المخزون </a></li>
+
+                <li><a asp-controller="Inventory" asp-action="ViewAllVendor">عرض جميع الموردين</a></li>
+                <li><a asp-controller="Inventory" asp-action="AddVendor">إضافة مورد جديد</a></li>
+
+                <li><a asp-controller="Inventory" asp-action="paperPurchase">شراء صنف ورق</a></li>
+                <li><a asp-controller="Inventory" asp-action="inkPurchase">شراء حبر</a></li>
+                <li><a asp-controller="Inventory" asp-action="supplyPurchase">شراء مستلزمات </a></li>
+
+                <li><a asp-controller="Inventory" asp-action="Reorder"> المرتجعات </a></li>
+
+                <li><a asp-controller="Inventory" asp-action="inventoryReports"> تقارير المخازن </a></li>
+
             </ul>
         </li>
 
         <li onclick="toggleDropdown(this)">
+            الفني
+            <ul>
+                <li><a asp-controller="Technical" asp-action="ViewAllJobOrder">اوامر التصنيع</a></li>
+                <li><a asp-controller="Technical" asp-action="Create">اذونات الصرف</a></li>
+                <li><a asp-controller="Technical" asp-action="AddCustomer">إضافة عميل</a></li>
+            </ul>
+        </li>
+
+
+        <li onclick="toggleDropdown(this)">
             التكاليف
             <ul>
-                <li>@Html.ActionLink("حساب تكلفة طلب", "CalculateJobCost", "Cost")</li>
-                <li>@Html.ActionLink("عرض التقارير المالية", "ViewReports", "Cost")</li>
-                <li>@Html.ActionLink("متابعة المصروفات", "ExpenseTracking", "Cost")</li>
+                <li><a asp-controller="Cost" asp-action="CalculateJobCost">حساب تكلفة طلب</a></li>
+                <li><a asp-controller="Cost" asp-action="ViewReports">عرض التقارير المالية</a></li>
+                <li><a asp-controller="Cost" asp-action="ExpenseTracking">متابعة المصروفات</a></li>
             </ul>
         </li>
     </ul>
 
     <div class="button">
-        @Html.ActionLink("تسجيل الخروج", "LoginPage", "Employee", null, new { @class = "btnBack" })
+        <a asp-controller="Employee" asp-action="LoginPage" class="btnBack">تسجيل الخروج</a>
     </div>
 </div>
+
 
 <div class="container">
     <h1>تحوت يتمني لك يوم سعيد</h1>
@@ -106,79 +91,4 @@
     <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
 </div>
 
-<script src="@Url.Content("~/js/Admin/adminHome.js")"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
-        integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    // Close the reorder messages div
-    function closeReorderMessages() {
-        var messageDiv = document.getElementById("reorderMessages");
-        messageDiv.style.display = "none";
-    }
-
-    // Generic search function for any table
-    function searchInventory(tableId) {
-        var input, filter, table, tr, td, i, j, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById(tableId);
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows (skip the header row)
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = "none"; // Hide the row by default
-            td = tr[i].getElementsByTagName("td");
-
-            // Loop through all columns in the current row
-            for (j = 0; j < td.length; j++) {
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Show the row if a match is found
-                        break; // Exit the inner loop if a match is found
-                    }
-                }
-            }
-        }
-    }
-
-    // Generic SignalR connection setup
-    function setupSignalR(inventoryType, methodName, messageEventName) {
-        // Create the connection to the SignalR hub
-        var hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint")
-            .build();
-
-        hub.start()
-            .then(function () {
-                console.log(`${inventoryType} SignalR connection established.`);
-
-                // Invoke the server-side method to check reorder points.
-                hub.invoke(methodName)
-                    .catch(function (err) {
-                        console.error(`Error invoking ${methodName}: `, err.toString());
-                    });
-            })
-            .catch(function (err) {
-                console.error(`SignalR connection error: `, err.toString());
-            });
-
-        // Listen for reorder messages from the hub.
-        hub.on(messageEventName, function (message) {
-            console.log(`Received reorder message for ${inventoryType}: `, message);
-            var messageDiv = document.getElementById("reorderMessages");
-            // Make sure the message div is visible
-            messageDiv.style.display = "block";
-            // Append the new message rather than replacing previous ones
-            messageDiv.innerHTML += "<div>" + message + "</div>";
-        });
-    }
-
-    // Setup SignalR for Paper, Ink, and Supply
-    setupSignalR("Paper", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
-    setupSignalR("Ink", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
-    setupSignalR("Supply", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
-</script>
+<script src="~/js/Admin/adminHome.js"></script>

@@ -1,15 +1,15 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const myform = document.getElementById("myform");
     const Name = document.getElementById("Name");
+    const Type = document.getElementById("Type");
     const Weight = document.getElementById("Weight");
-    const Colored = document.getElementById("Colored");
-    const ReorderPoint = document.getElementById("ReorderPoint"); // تأكد من جلب العنصر
+    const ReorderPoint = document.getElementById("ReorderPoint");
 
     const setError = (input, errorMsg) => {
         const parent = input.parentElement;
         const errorSpan = parent.querySelector(".error");
         errorSpan.innerText = errorMsg;
-        errorSpan.style.color = "red"; // تحديد لون الخطأ
+        errorSpan.style.color = "red";
         input.classList.add("error");
     };
 
@@ -39,13 +39,6 @@
             setSuccess(Weight);
         }
 
-        let nonEnglishRegex = /^[^A-Za-z]+$/;
-        if (!nonEnglishRegex.test(Colored.value.trim())) {
-            setError(Colored, "لا يجب أن يحتوي اللون على أحرف إنجليزية");
-            valid = false;
-        } else {
-            setSuccess(Colored);
-        }
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
             setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");
@@ -59,7 +52,7 @@
 
     myform.addEventListener("submit", function (e) {
         if (!validate()) {
-            e.preventDefault(); 
+            e.preventDefault();
         }
     });
 });

@@ -1,7 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const myform = document.getElementById("myform");
     const Name = document.getElementById("Name");
-    const Colored = document.getElementById("Colored");
     const ReorderPoint = document.getElementById("ReorderPoint"); 
 
     const setError = (input, errorMsg) => {
@@ -29,14 +28,6 @@
             valid = false;
         } else {
             setSuccess(Name);
-        }
-
-        let nonEnglishRegex = /^[^A-Za-z]+$/;
-        if (!nonEnglishRegex.test(Colored.value.trim())) {
-            setError(Colored, "لا يجب أن يحتوي اللون على أحرف إنجليزية");
-            valid = false;
-        } else {
-            setSuccess(Colored);
         }
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {

@@ -13,79 +13,72 @@
     ViewData["Title"] = "تعديل بيانات الحبر";
 }
 
+<div class="form-container">
+    <h1> تعديل بيانات الحبر  : @Model.Name </h1>
 
-<div class="container">
-    <div class="arrow">
-        <a asp-controller="Inventory" asp-action="ViewAllInk" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
-    </div>
+    <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform">
+        <div asp-validation-summary="ModelOnly" class="error"></div>
 
-
-    <h2>تعديل بيانات الحبر</h2>
-    <form asp-controller="Inventory" asp-action="EditInk" id="myform" method="post">
         <input type="hidden" asp-for="InkId" />
 
+        <div class="inputBox">
+            <label asp-for="Name" class="textlabel"></label>
+            <input asp-for="Name" id="Name" class="place" />
+            <span class="error"></span>
+        </div>
 
-        <table class="edit-table">
-            <thead>
-                <tr>
+        <div class="inputBox">
+            <label asp-for="Colored" class="textlabel"></label>
+            <select asp-for="Colored" id="Colored" class="place">
+                <option value="blue">أزرق</option>
+                <option value="black">أسود</option>
+            </select>
+        </div>
 
-                    <th>         </th>
-                    <th>حالة الاستخدام</th>
-                    <th>نقطة إعادة الطلب</th>
-                    <th>السعر</th>
-                    <th>الكمية</th>
-                    <th> القيمة المتوفرة</th>
-                    <th>لون الحبر</th>
-                    <th>اسم الحبر</th>
+        <div class="inputBox">
+            <label asp-for="TotalBalance" class="textlabel"></label>
+            <input asp-for="TotalBalance" id="TotalBalance" class="place" readonly disabled />
+        </div>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+        <div class="inputBox">
+            <label asp-for="Quantity" class="textlabel"></label>
+            <input asp-for="Quantity" id="Quantity" class="place" readonly disabled />
+        </div>
 
+        <div class="inputBox">
+            <label asp-for="Price" class="textlabel"></label>
+            <input asp-for="Price" id="Price" class="place" readonly disabled />
+        </div>
 
-                    <td style="display: flex; justify-content: center; align-items: center; gap: 10px; padding: 10px;">
-                        <button type="submit" class="editBtn" style="padding: 5px 15px; font-size: 16px;">حفظ</button>
-                        <a asp-action="ViewAllInk" class="editBtn" style="padding: 5px 15px; font-size: 16px;">إلغاء</a>
-                    </td>
-                    <td><input type="checkbox" asp-for="Activated" /></td>
+        <div class="inputBox">
+            <label asp-for="ReorderPoint" class="textlabel"></label>
+            <input asp-for="ReorderPoint" id="ReorderPoint" class="place" />
+            <span class="error"></span>
+        </div>
 
-                    <td>
-                        <input asp-for="ReorderPoint" id="ReorderPoint" />
-                        <span class="error"></span>
-                    </td>
+        <div class="inputBox">
+            <label asp-for="@Model.Activated" class="textlabel"> </label>
+            <select asp-for="@Model.Activated" id="options" class="place">
+                @{
+                    if (Model.Activated)
+                    {
+                                <option value="true" selected>مفعل</option>
+                                <option value="false">غير مفعل</option>
+                    }
+                    else
+                    {
+                                <option value="false" selected>غير مفعل</option>
+                                <option value="true">مفعل</option>
+                    }
+                }
+            </select>
 
-                    <td><input asp-for="Price" readonly disabled /></td>
-                    <td><input asp-for="Quantity" readonly disabled /></td>
-                    <td><input asp-for="TotalBalance" readonly disabled /></td>
-
-                    <td>
-                        <input asp-for="Colored" id="Colored" />
-                        <span class="error"></span>
-                    </td>
-
-
-                    <td>
-                        <input asp-for="Name" id="Name" />
-                        <span class="error"></span>
-                    </td>
-
-
-
-                </tr>
-            </tbody>
-        </table>
+            <div class="button-container">
+                <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
+                <input type="submit" value="تعديل" class="btn btn-primary" />
+            </div>
     </form>
 </div>
 
 <script src="~/js/Inventory/EditInk.js"></script>
-
-
-
-
-
-
-
 

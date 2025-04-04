@@ -1,0 +1,263 @@
+﻿@model ThothSystemVersion1.ViewModels.RequisitionCreateVM
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="LogIn.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>ThoTh</title>
+    <link href="~/css/Technical/Create.css" rel="stylesheet" />
+</head>
+
+
+<form asp-action="Create" id="myform" class="form-container">
+    <h1>إنشاء أمر صرف جديد</h1>
+
+    <div class="arrow">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+
+    <div class="inputBox">
+        <label asp-for="RequisiteOrderDTO.EmployeeId" class="textlabel">الرقم القومي للموظف</label>
+        <input asp-for="RequisiteOrderDTO.EmployeeId" class="place" />
+        <span asp-validation-for="RequisiteOrderDTO.EmployeeId" class="text-danger"></span>
+        <span class="error"></span>
+    </div>
+
+    <div class="inputBox">
+        <label asp-for="RequisiteOrderDTO.JobOrderId" class="textlabel">اختر الطلبيّة</label>
+        <select asp-for="RequisiteOrderDTO.JobOrderId" class="place">
+            <option value=""></option>
+            @foreach (var job in Model.JobOrders)
+            {
+                <option value="@job.JobOrderId">@job.JobOrderId</option>
+            }
+        </select>
+        <span asp-validation-for="RequisiteOrderDTO.JobOrderId" class="text-danger"></span>
+        <span class="error"></span>
+    </div>
+
+    <div class="inputBox">
+        <label asp-for="RequisiteOrderDTO.RequisiteNotes" class="textlabel">إضافة ملاحظات</label>
+        <textarea asp-for="RequisiteOrderDTO.RequisiteNotes" class="place"></textarea>
+        <span class="error"></span>
+    </div>
+
+    <h2>الأصناف المطلوبة</h2>
+    <div id="itemsContainer">
+        <!-- سيتم إضافة الأصناف هنا عبر JavaScript -->
+    </div>
+
+    <div class="button-container">
+        <button type="button" id="addItemBtn" class="btn btn-primary">إضافة صنف</button>
+        <button type="submit" class="btn btn-secondary">حفظ الطلب</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // إضافة صنف جديد
+            $('#addItemBtn').click(function() {
+                var index = $('#itemsContainer .item-row').length;
+                var html = `
+                    <div class="item-row border p-3 mb-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="itemType_${index}" class="textlabel">اختر النوع</label>
+                                <select name="RequisiteOrderDTO.Items[${index}].Type" class="form-control item-type">
+                                    <option value="">اختر النوع</option>
+                                    <option value="Paper">ورق</option>
+                                    <option value="Ink">حبر</option>
+                                    <option value="Supply">مستلزمات</option>
+                                </select>
+                                 <span class="error"></span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="itemType_${index}" class="textlabel"> اختر الصنف</label>
+                                <select name="RequisiteOrderDTO.Items[${index}].ItemId" class="form-control item-id">
+                                    <option value="">اختر الصنف </option>
+                                </select>
+                                 <span class="error"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                            <label class="textlabel">الكمية</label>
+                                <input type="number" name="RequisiteOrderDTO.Items[${index}].Quantity" class="form-control" min="1" />
+                                 <span class="error"></span>
+                            </div>
+
+
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-secondary remove-item">إلغاء</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $('#itemsContainer').append(html);
+            });
+
+            // حذف صنف
+            $(document).on('click', '.remove-item', function() {
+                $(this).closest('.item-row').remove();
+            });
+
+            // تحديث الأصناف عند تغيير النوع
+            $(document).on('change', '.item-type', function() {
+                var type = $(this).val();
+                var itemSelect = $(this).closest('.item-row').find('.item-id');
+
+                itemSelect.empty().append('<option value="">-- اختر الصنف --</option>');
+
+                if (type === "Paper") {
+        @foreach (var paper in Model.AvailablePapers)
+        {
+            <text>
+                                    itemSelect.append('<option value="@paper.PaperId">@paper.Name</option>');
+            </text>
+        }
+                }
+                else if (type === "Ink") {
+        @foreach (var ink in Model.AvailableInks)
+        {
+            <text>
+                                    itemSelect.append('<option value="@ink.InkId">@ink.Name</option>');
+            </text>
+        }
+                }
+                else if (type === "Supply") {
+        @foreach (var supply in Model.AvailableSupplies)
+        {
+            <text>
+                                    itemSelect.append('<option value="@supply.SuppliesId">@supply.Name</option>');
+            </text>
+        }
+                }
+            });
+        });
+
+
+        const setError = (input, errorMsg) => {
+            const parent = input.parentElement;
+            let errorSpan = parent.querySelector(".error");
+
+            if (!errorSpan) {
+                errorSpan = document.createElement("span");
+                errorSpan.classList.add("error");
+                parent.appendChild(errorSpan);
+            }
+
+            errorSpan.innerText = errorMsg;
+            errorSpan.style.color = "red";
+            input.classList.add("error");
+        };
+
+        const setSuccess = (input) => {
+            const parent = input.parentElement;
+            let errorSpan = parent.querySelector(".error");
+
+            if (errorSpan) {
+                errorSpan.innerText = "";
+            }
+
+            input.classList.remove("error");
+            input.classList.add("success");
+        };
+
+        function validateForm() {
+            let isValid = true;
+
+            // التحقق من إدخال الرقم القومي للموظف
+            let employeeIdInput = document.querySelector('input[name="RequisiteOrderDTO.EmployeeId"]');
+            if (employeeIdInput.value.trim() === "") {
+                setError(employeeIdInput, "برجاء إدخال الرقم القومي للموظف");
+                isValid = false;
+            } else {
+                setSuccess(employeeIdInput);
+            }
+
+            // التحقق من اختيار الطلبيّة
+            let jobOrderSelect = document.querySelector('select[name="RequisiteOrderDTO.JobOrderId"]');
+            if (!jobOrderSelect.value) {
+                setError(jobOrderSelect, "برجاء اختيار الطلبيّة");
+                isValid = false;
+            } else {
+                setSuccess(jobOrderSelect);
+            }
+
+            // التحقق من إدخال الأصناف بشكل صحيح
+            document.querySelectorAll('.item-row').forEach((row) => {
+                let itemTypeSelect = row.querySelector('.item-type');
+                let itemIdSelect = row.querySelector('.item-id');
+                let quantityInput = row.querySelector('input[type="number"]');
+
+                if (!itemTypeSelect.value) {
+                    setError(itemTypeSelect, "برجاء اختيار النوع");
+                    isValid = false;
+                } else {
+                    setSuccess(itemTypeSelect);
+                }
+
+                if (!itemIdSelect.value) {
+                    setError(itemIdSelect, "برجاء اختيار الصنف");
+                    isValid = false;
+                } else {
+                    setSuccess(itemIdSelect);
+                }
+
+                if (!quantityInput.value || quantityInput.value <= 0) {
+                    setError(quantityInput, "يجب أن تكون الكمية أكبر من الصفر");
+                    isValid = false;
+                } else {
+                    setSuccess(quantityInput);
+                }
+            });
+
+            return isValid;
+        }
+
+        document.getElementById("myform").addEventListener("submit", function (e) {
+            if (!validateForm()) {
+                e.preventDefault(); // منع الإرسال إذا لم تكن القيم صحيحة
+            }
+        });
+    </script>
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

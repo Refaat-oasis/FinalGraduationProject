@@ -89,6 +89,35 @@
                 </div>
             </div>
 
+            <!-- Customer Report -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="customerHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customerCollapse" aria-expanded="false" aria-controls="customerCollapse">
+                        تقرير العملاء
+                    </button>
+                </h2>
+                <div id="customerCollapse" class="accordion-collapse collapse" aria-labelledby="customerHeading">
+                    <div class="accordion-body">
+                        <form asp-controller="Inventory" asp-action="CustomerReport" method="post">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">من تاريخ</label>
+                                    <input type="date" name="beginingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">إلى تاريخ</label>
+                                    <input type="date" name="endingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-primary">عرض العملاء</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- Results Section -->
             @if (Model != null)
             {
@@ -97,7 +126,7 @@
                         <h4>نتيجة التقرير</h4>
                     </div>
                     <div class="card-body">
-                       
+
                         <!-- Purchase Orders Section -->
                         @if (Model.purchaseOrderList != null && Model.purchaseOrderList.Any())
                         {
@@ -302,6 +331,35 @@
                                                     <td>@item.Vendor.VendorName</td>
                                                     <td>@item.PurchaseCount</td>
                                                     <td>@item.TotalOldBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Customer Report Section -->
+                        @if (Model.CustomerReport != null && Model.CustomerReport.Any())
+                        {
+                            <div class="mb-4">
+                                <h5>تقرير العملاء</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>اسم العميل</th>
+                                                <th>عدد الطلبات</th>
+                                                <th>الرصيد الإجمالي</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.CustomerReport)
+                                            {
+                                                <tr>
+                                                    <td>@item.Customer.CustomerName</td>
+                                                    <td>@item.OrderCount</td>
+                                                    <td>@item.TotalBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
                                                 </tr>
                                             }
                                         </tbody>

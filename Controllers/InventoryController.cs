@@ -396,12 +396,21 @@ namespace ThothSystemVersion1.Controllers
         //}
 
         [HttpPost]
+        public IActionResult CustomerReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+
+            InventoryReportViewModel invViewModel = _businessLogicL.GetCustomerRanking(beginingDate, endingDate);
+
+            return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
+        }
+
+        [HttpPost]
         public IActionResult VendorReport(DateOnly beginingDate, DateOnly endingDate)
         {
 
             InventoryReportViewModel invViewModel = _businessLogicL.VendorReportRanking(beginingDate, endingDate);
 
-            return View(invViewModel);
+            return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
         }
         [HttpGet]
         public IActionResult EditVendor(int vendorID) {

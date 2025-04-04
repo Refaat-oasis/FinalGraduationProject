@@ -23,9 +23,16 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllJobOrder()
         {
-            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _businessLogicLayer.ViewAllJobOrder();
-            return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
-
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            {
+                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _businessLogicLayer.ViewAllJobOrder();
+                return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpGet]

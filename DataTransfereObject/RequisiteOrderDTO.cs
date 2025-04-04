@@ -1,40 +1,33 @@
-﻿// DataTransfereObject/RequisiteOrderDTO.cs
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.DataTransfereObject
 {
     public class RequisiteOrderDTO
     {
-        [Required(ErrorMessage = "Employee ID is required")]
-        public string EmployeeId { get; set; }
+        [Display(Name = "الرقم القومي للموظف")]
+        public string EmployeeId { get; set; } = null!;
 
-        [Required(ErrorMessage = "Job order is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Invalid job order")]
+        [Display(Name = "الرقم التعريفي للتشغيلة")]
         public int JobOrderId { get; set; }
 
+        [Display(Name = "الرقم المميز للعميل")]
+        public int? CustomerId { get; set; }
+
+        [Display(Name = "ملاحظات عن اذن الصرف")]
         public string? RequisiteNotes { get; set; }
 
-        [Required(ErrorMessage = "At least one item is required")]
-        [MinLength(1, ErrorMessage = "Add at least one item")]
-        public List<RequisitionItem> Items { get; set; } = new List<RequisitionItem>();
+        //[Display(Name = "تاريخ البدأ في التشغيلة")]
+        //public DateOnly? StartDate { get; set; }
 
-        public class RequisitionItem
-        {
-            [Required(ErrorMessage = "Item type is required")]
-            public string Type { get; set; } // "Paper", "Ink", "Supply"
 
-            [Required(ErrorMessage = "Item is required")]
-            [Range(1, int.MaxValue, ErrorMessage = "Invalid item")]
-            public int ItemId { get; set; }
 
-            [Required(ErrorMessage = "Quantity is required")]
-            [Range(1, int.MaxValue, ErrorMessage = "Quantity must be positive")]
-            public int Quantity { get; set; }
-        }
+        //public string itemType { get; set; }
+
+        //public int itemId { get; set; }
+
+        //public int Quantity { get; set; }
+
+        public List<QuantityBridge>? BridgeList { get; set; }
     }
 }
-
-
-
-
-

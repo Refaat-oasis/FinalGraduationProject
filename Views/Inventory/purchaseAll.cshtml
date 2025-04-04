@@ -1,6 +1,10 @@
 ﻿@model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
 @{
     ViewBag.Title = "طلب شراء";
+    var vendors = ViewBag.vendorList as List<Vendor>;
+    var papers = ViewBag.PaperList;
+    var inks = ViewBag.InkList;
+    var supplies = ViewBag.SupplyList;
 }
 
 <div class="container mt-4">
@@ -9,6 +13,7 @@
             <h4>إضافة طلب شراء</h4>
         </div>
         <div class="card-body">
+
             @* Success and Error Messages *@
             @if (TempData["Success"] != null)
             {
@@ -23,28 +28,23 @@
                 </div>
             }
 
-            <form method="post" asp-action="purchaseall">
+            @using (Html.BeginForm("purchaseall", "Inventory", FormMethod.Post))
+            {
                 <div class="row">
-                    <!-- Vendor Selection -->
                     <div class="col-md-6">
-                        <label for="VendorId" class="form-label fw-bold">التاجر</label>
-                        <select name="VendorId" class="form-select" required>
-                            <option value="">-- اختر التاجر --</option>
-                            @foreach (Vendor vendor in ViewBag.vendorList)
-                            {
-                                <option value="@vendor.VendorId">@vendor.VendorName</option>
-                            }
-                        </select>
+                        @Html.LabelFor(m => m.VendorId, "التاجر", htmlAttributes: new { @class = "form-label fw-bold" })
+                        @Html.DropDownList("VendorId",
+                                 new SelectList(vendors, "VendorId", "VendorName"),
+                                 "-- اختر التاجر --",
+                                 htmlAttributes: new { @class = "form-select", required = "required" })
                     </div>
 
-                    <!-- Purchase Notes -->
                     <div class="col-md-6">
-                        <label for="PurchaseNotes" class="form-label fw-bold">ملاحظات عن الشراء</label>
-                        <textarea name="PurchaseNotes" class="form-control" rows="2" placeholder="أدخل أي ملاحظات هنا..."></textarea>
+                        @Html.LabelFor(m => m.PurchaseNotes, "ملاحظات عن الشراء", htmlAttributes: new { @class = "form-label fw-bold" })
+                        @Html.TextAreaFor(m => m.PurchaseNotes, new { @class = "form-control", rows = "2", placeholder = "أدخل أي ملاحظات هنا..." })
                     </div>
                 </div>
 
-                <!-- Item Selection -->
                 <div class="card mt-4 border-primary shadow-sm">
                     <div class="card-header bg-light">
                         <h5 class="mb-0">إضافة عنصر</h5>
@@ -53,7 +53,7 @@
                         <div class="row g-3">
                             <div class="col-md-3">
                                 <label class="form-label fw-bold">نوع العنصر</label>
-                                <select id="itemType" class="form-select" >
+                                <select id="itemType" class="form-select">
                                     <option value="">-- اختر نوع العنصر --</option>
                                     <option value="Paper">ورق</option>
                                     <option value="Ink">حبر</option>
@@ -85,7 +85,6 @@
                     </div>
                 </div>
 
-                <!-- Items Table -->
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered table-hover text-center">
                         <thead class="table-primary">
@@ -97,20 +96,18 @@
                             </tr>
                         </thead>
                         <tbody id="itemsTableBody">
-                            <!-- Dynamic rows will be injected here -->
+                            <!-- Dynamic rows -->
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Hidden inputs to store selected items for BridgeList -->
                 <div id="hiddenItemsContainer"></div>
-
-                <input type="hidden" name="EmployeeId" value="@ViewBag.EmployeeId" />
+                @* @Html.Hidden("EmployeeId", ViewBag.EmployeeId) *@
 
                 <div class="d-grid mt-3">
                     <button type="submit" class="btn btn-success btn-lg">إرسال الطلب</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
@@ -121,38 +118,34 @@
             var items = [];
             var editIndex = -1;
 
+            const dataSources = {
+                Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+            };
+
             $('#itemType').change(function () {
                 var selectedType = $(this).val();
-                var itemSelect = $('#itemId');
-                itemSelect.empty().prop('disabled', !selectedType);
+                var $itemSelect = $('#itemId');
+                $itemSelect.empty().prop('disabled', !selectedType);
 
-                if (!selectedType) {
-                    itemSelect.append('<option value="">-- اختر العنصر --</option>');
-                    return;
-                }
+                $itemSelect.append('<option value="">-- اختر --</option>');
+                if (!selectedType) return;
 
-                itemSelect.append('<option value="">-- اختر --</option>');
-
-                var itemsData = {
-                    Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
-                    Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
-                    Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
-                };
-
-                itemsData[selectedType]?.forEach(item => {
-                    var id = item.paperId || item.inkId || item.suppliesId;
-                    itemSelect.append(`<option value="${id}">${item.name}</option>`);
+                dataSources[selectedType]?.forEach(item => {
+                    const id = item.paperId || item.inkId || item.suppliesId;
+                    $itemSelect.append(`<option value="${id}">${item.name}</option>`);
                 });
             });
 
             function renderItems() {
-                var tableBody = $('#itemsTableBody');
-                var hiddenContainer = $('#hiddenItemsContainer');
-                tableBody.empty();
-                hiddenContainer.empty();
+                var $tableBody = $('#itemsTableBody');
+                var $hiddenContainer = $('#hiddenItemsContainer');
+                $tableBody.empty();
+                $hiddenContainer.empty();
 
                 items.forEach((item, index) => {
-                    tableBody.append(`
+                    $tableBody.append(`
                         <tr data-index="${index}">
                             <td>${item.itemName}</td>
                             <td>${item.quantity}</td>
@@ -164,18 +157,18 @@
                         </tr>
                     `);
 
-                    var hiddenInputs = '';
-                    if (item.itemType === "Paper") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
-                    } else if (item.itemType === "Ink") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
-                    } else if (item.itemType === "Supply") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
-                    }
-                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
-                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
+                    let hidden = "";
+                    if (item.itemType === "Paper")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                    else if (item.itemType === "Ink")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                    else if (item.itemType === "Supply")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
 
-                    hiddenContainer.append(hiddenInputs);
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
+
+                    $hiddenContainer.append(hidden);
                 });
             }
 
@@ -231,7 +224,16 @@
                     e.preventDefault();
                 }
             });
+
+            // ✅ Auto redirect if TempData["Success"]
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                        setTimeout(function () {
+                                window.location.href = '@Url.Action("adminHome", "AdminHome")';
+                        }, 5000);
+            </text>
+        }
         });
     </script>
-
 }

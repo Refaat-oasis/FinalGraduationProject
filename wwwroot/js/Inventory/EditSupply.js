@@ -1,13 +1,13 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const myform = document.getElementById("myform");
     const Name = document.getElementById("Name");
-    const ReorderPoint = document.getElementById("ReorderPoint"); 
+    const ReorderPoint = document.getElementById("ReorderPoint");
 
     const setError = (input, errorMsg) => {
         const parent = input.parentElement;
         const errorSpan = parent.querySelector(".error");
         errorSpan.innerText = errorMsg;
-        errorSpan.style.color = "red"; 
+        errorSpan.style.color = "red";
         input.classList.add("error");
     };
 
@@ -29,7 +29,6 @@
         } else {
             setSuccess(Name);
         }
-
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
             setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");

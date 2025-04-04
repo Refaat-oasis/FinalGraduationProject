@@ -77,7 +77,9 @@
                              @Html.DisplayFor(modelItem => item.Activated) 
                          </td> 
                         <td>
-                            <a asp-controller="inventory" asp-action="EditSupply" asp-route-id="@item.SuppliesId" class="editBtn">تعديل</a>
+                            @* <a asp-controller="inventory" asp-action="EditSupply" asp-route-id="@item.SuppliesId" class="editBtn">تعديل</a> *@
+                            <a asp-action="EditSupply" asp-route-suppliesId="@item.SuppliesId" class="editBtn">تعديل</a>
+
                         </td>
 
 

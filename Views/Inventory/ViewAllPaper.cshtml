@@ -54,7 +54,9 @@
                  <td>@Html.DisplayFor(modelItem => item.Price)</td> 
                  <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
                 <td>
-                    <a  asp-controller="inventory" asp-action="EditPaper" asp-route-id="@item.PaperId" class="editBtn">تعديل</a>
+                    @* <a  asp-controller="inventory" asp-action="EditPaper" asp-route-id="@item.PaperId" class="editBtn">تعديل</a> *@
+                            <a asp-controller="Inventory" asp-action="EditPaper" asp-route-paperId="@item.PaperId" class="editBtn">تعديل</a>
+
                 </td>
                         <td>@Html.DisplayFor(modelItem => item.Colored)</td>
                         <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>

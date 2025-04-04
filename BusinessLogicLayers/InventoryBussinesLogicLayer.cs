@@ -1032,6 +1032,47 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+        public InventoryReportViewModel GetCustomerRanking(DateOnly beginningDate, DateOnly endDate)
+        {
+            // Retrieve JobOrders within the specified date range
+            var jobOrdersInRange = _context.JobOrders
+                .Where(jo => jo.StartDate >= beginningDate && jo.EndDate <= endDate)
+                .ToList();
+
+
+            var customerRankings = (from jo in jobOrdersInRange
+                                    where jo.CustomerId != null  // ensure we only include valid customers
+                                    group jo by jo.CustomerId into g
+                                    select new
+                                    {
+                                        CustomerId = g.Key,
+                                        OrderCount = g.Count(),
+                                        TotalBalance = g.Sum(x => x.EarnedRevenue ?? 0)
+                                    }).ToList();
+
+            // Join the aggregated data with Customers to get full customer details
+            var rankedCustomers = (from cr in customerRankings
+                                   join c in _context.Customers on cr.CustomerId equals c.CustomerId
+                                   orderby cr.OrderCount descending, cr.TotalBalance descending
+                                   select new
+                                   {
+                                       Customer = c,
+                                       OrderCount = cr.OrderCount,
+                                       TotalBalance = cr.TotalBalance
+                                   }).ToList();
+
+            // Prepare and return the view model
+            InventoryReportViewModel rankingModel = new InventoryReportViewModel
+            {
+                CustomerReport = rankedCustomers
+                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance))
+                    .ToList()
+            };
+
+            return rankingModel;
+        }
+
+
 
 
     }

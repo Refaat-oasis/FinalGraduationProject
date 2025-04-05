@@ -40,35 +40,47 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult CreateRequisite()
         {
-            ViewBag.PaperList = _inventoryBusinessLogicLayer.GetActivePapers();
-            ViewBag.InkList = _inventoryBusinessLogicLayer.GetActiveInks();
-            ViewBag.SupplyList = _inventoryBusinessLogicLayer.GetActiveSupplies();
-            ViewBag.JobOrderList = _technicalBusinessLogicLayer.GetLast10JobOrders();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            {
+                ViewBag.PaperList = _inventoryBusinessLogicLayer.GetActivePapers();
+                ViewBag.InkList = _inventoryBusinessLogicLayer.GetActiveInks();
+                ViewBag.SupplyList = _inventoryBusinessLogicLayer.GetActiveSupplies();
+                ViewBag.JobOrderList = _technicalBusinessLogicLayer.GetLast10JobOrders();
 
-            return View();
-           
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
+
+        public JsonResult GetCurrentQuantity(string itemType, int itemId)
+        {
+            int quantity = _inventoryBusinessLogicLayer.GetCurrentQuantity(itemType, itemId);
+            return Json(new { currentQuantity = quantity });
+        }
         [HttpPost]
         public IActionResult CreateRequisite(RequisiteOrderDTO dto)
         {
             //if (ModelState.IsValid)
             //{
-                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-                var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
+            dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+            var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
             if (result.success)
             {
                 TempData["SuccessMessage"] = result.message;
                 return RedirectToAction("CreateRequisite");
             }
             TempData["ErrorMessage"] = result.message;
-        //}
+            //}
 
-           
+
 
             return RedirectToAction("CreateRequisite");
         }
-
     }
     //[HttpPost]
     //public IActionResult Create(RequisiteOrderDTO dto)

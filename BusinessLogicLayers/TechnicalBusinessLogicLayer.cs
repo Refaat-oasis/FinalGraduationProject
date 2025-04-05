@@ -90,14 +90,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             return _context.Supplies.Where(s => s.Activated).ToList();
         }
-        public List<JobOrder> GetJobOrdersWithCustomers()
-        {
-            return _context.JobOrders
-                   .Include(j => j.Customer)
-                    .OrderByDescending(j => j.StartDate)
-                   .Take(10)
-                   .ToList();
-        }
+        //public List<JobOrder> GetJobOrdersWithCustomers()
+        //{
+        //    return _context.JobOrders
+        //           .Include(j => j.Customer)
+        //            .OrderByDescending(j => j.StartDate)
+        //           .Take(10)
+        //           .ToList();
+        //}
 
         public (bool success, string message) CreateRequisite(RequisiteOrderDTO requisiteDTO)
         {
@@ -131,7 +131,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         // Calculate new quantity and average price
                         double newQuantity = ink.Quantity - quantityBridgeList[i].Quantity;
                         decimal totalValue = (decimal)newQuantity * ink.Price;
-                                             //(decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        //(decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
                         //decimal averagePrice = totalValue / (decimal)totalQuantity;
 
                         //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
@@ -157,14 +157,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         Paper paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
 
                         // Calculate new quantity and average price
-                        double totalQuantity = paper.Quantity - quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)paper.Quantity * paper.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+                        double newQuantity = paper.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)newQuantity * paper.Price;
 
-                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
 
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = paper.Price;
@@ -172,9 +172,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
 
                         // Update paper properties
-                        paper.Quantity = (int)totalQuantity;
-                        paper.Price = averagePrice;
-                        paper.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        paper.Quantity = (int)newQuantity;
+                        //paper.Price = averagePrice;
+                        paper.TotalBalance = totalValue;
                         _context.Papers.Update(paper);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
                         _context.SaveChanges();
@@ -185,15 +185,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
 
                         // Calculate new quantity and average price
-                        double totalQuantity = supply.Quantity - quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)supply.Quantity * supply.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+                        double newQuantity = supply.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)newQuantity * supply.Price;
+                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
 
 
-                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
-                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
 
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = supply.Price;
@@ -201,9 +200,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
 
                         // Update paper properties
-                        supply.Quantity = (int)totalQuantity;
-                        supply.Price = averagePrice;
-                        supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        supply.Quantity = (int)newQuantity;
+                        //supply.Price = averagePrice;
+                        supply.TotalBalance = (decimal)totalValue;
                         _context.Supplies.Update(supply);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
                         _context.SaveChanges();

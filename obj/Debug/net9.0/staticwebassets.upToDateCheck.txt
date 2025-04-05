@@ -1,108 +1,108 @@
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\adminHome.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPaper.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewAllInk.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newInk.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\ViewAllInk.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\signalRpaper.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\EditInk.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\ViewAllSupply.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\editVendor.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newInk.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewAllVendor.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newsupply.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\addVendor.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\ViewAllVendor.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\newPaper.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\editEmployee.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\PhysicalCount.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\EditInk.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Technical\Create.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Technical\viewAllJobOrder.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\EditSupply.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\site.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\paperReorderPoint.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\EditSupply.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\EditPaper.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\favicon.ico
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewAllPaper.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\addVendor.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Technical\Create.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\newPaper.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\SharedViews\login.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\addEmployee.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\editVendor.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\SharedViews\loginEmployee.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\site.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Technical\viewAllJobOrder.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Inventory\ViewAllSupply.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\js\Admin\viewAllEmployee.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\css\Inventory\EditPaper.css
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.js
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Admin\adminHome.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPaper.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\ViewAllInk.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\newInk.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\ViewAllInk.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\signalRpaper.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\EditInk.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\ViewAllSupply.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\editVendor.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\newInk.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\ViewAllVendor.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\newsupply.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\addVendor.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\ViewAllVendor.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\newPaper.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Admin\editEmployee.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\PhysicalCount.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\EditInk.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Technical\Create.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Technical\viewAllJobOrder.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\EditSupply.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\site.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\paperReorderPoint.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\EditSupply.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\EditPaper.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\favicon.ico
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\ViewAllPaper.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\addVendor.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Technical\Create.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\newPaper.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\SharedViews\login.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Admin\addEmployee.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\editVendor.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\SharedViews\loginEmployee.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\site.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Technical\viewAllJobOrder.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Inventory\ViewAllSupply.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\js\Admin\viewAllEmployee.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\css\Inventory\EditPaper.css
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.js
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
 wwwroot\css\Admin\addEmployee.css
 wwwroot\css\Admin\adminHome.css
 wwwroot\css\Admin\editEmployee.css

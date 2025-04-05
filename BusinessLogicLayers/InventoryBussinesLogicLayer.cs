@@ -342,27 +342,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return inkList;
         }
 
-
-        public List<Paper> getAllActivePaper()
-        {
-
-            List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
-            return paperList;
-        }
-        public List<Ink> getAllActiveInk()
-        {
-
-            List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
-            return inkList;
-        }
-        public List<Supply> getAllActiveSupply()
-        {
-
-            List<Supply> supplyList = _context.Supplies.Where(p => p.Activated == true).ToList();
-            return supplyList;
-        }
-
-
         public async Task<List<Paper>> ViewAllPaper()
         {
             List<Paper> papersList = _context.Papers.ToList();
@@ -545,11 +524,53 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             
             }
         }
-        // الحصول على العناصر النشطة
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // view bags lists
+       
         public List<Paper> GetActivePapers() => _context.Papers.Where(p => p.Activated).ToList();
+       
         public List<Ink> GetActiveInks() => _context.Inks.Where(i => i.Activated).ToList();
+        
         public List<Supply> GetActiveSupplies() => _context.Supplies.Where(s => s.Activated).ToList();
 
+        public List<RequisiteOrder> getLast15RequisiteORder() => _context.RequisiteOrders
+            .OrderByDescending(r => r.RequisiteDate)
+            .Take(15)
+            .ToList();
+
+        public List<PurchaseOrder> getLast15PurchaseOrder() => _context.PurchaseOrders
+            .OrderByDescending(p => p.PurchaseDate)
+            .Take(15)
+            .ToList();
+
+        public List<JobOrder> getLast15JObOrder() => _context.JobOrders
+            .OrderByDescending(p => p.StartDate)
+            .Take(15)
+            .ToList();
+
+        public List<Paper> getAllActivePaper()
+        {
+
+            List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
+            return paperList;
+        }
+      
+        public List<Ink> getAllActiveInk()
+        {
+
+            List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
+            return inkList;
+        }
+        
+        public List<Supply> getAllActiveSupply()
+        {
+
+            List<Supply> supplyList = _context.Supplies.Where(p => p.Activated == true).ToList();
+            return supplyList;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // الحصول على الكمية الحالية
         public int GetCurrentQuantity(string itemType, int itemId)
         {

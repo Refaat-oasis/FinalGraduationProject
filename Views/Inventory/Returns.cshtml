@@ -1,0 +1,239 @@
+﻿@model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
+@{
+    ViewBag.Title = "طلب شراء";
+    var vendors = ViewBag.vendorList as List<Vendor>;
+    var papers = ViewBag.PaperList;
+    var inks = ViewBag.InkList;
+    var supplies = ViewBag.SupplyList;
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>إضافة طلب شراء</h4>
+        </div>
+        <div class="card-body">
+
+            @* Success and Error Messages *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    <i class="bx bx-check-circle"></i> @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="bx bx-error-circle"></i> @TempData["Error"]
+                </div>
+            }
+
+            @using (Html.BeginForm("purchaseall", "Inventory", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.VendorId, "التاجر", htmlAttributes: new { @class = "form-label fw-bold" })
+                        @Html.DropDownList("VendorId",
+                                 new SelectList(vendors, "VendorId", "VendorName"),
+                                 "-- اختر التاجر --",
+                                 htmlAttributes: new { @class = "form-select", required = "required" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.PurchaseNotes, "ملاحظات عن الشراء", htmlAttributes: new { @class = "form-label fw-bold" })
+                        @Html.TextAreaFor(m => m.PurchaseNotes, new { @class = "form-control", rows = "2", placeholder = "أدخل أي ملاحظات هنا..." })
+                    </div>
+                </div>
+
+                <div class="card mt-4 border-primary shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">إضافة عنصر</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">نوع العنصر</label>
+                                <select id="itemType" class="form-select">
+                                    <option value="">-- اختر نوع العنصر --</option>
+                                    <option value="Paper">ورق</option>
+                                    <option value="Ink">حبر</option>
+                                    <option value="Supply">مستلزمات</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">العنصر</label>
+                                <select id="itemId" class="form-select" disabled>
+                                    <option value="">-- اختر العنصر --</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold">الكمية</label>
+                                <input type="number" id="itemQuantity" class="form-control" min="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold">السعر</label>
+                                <input type="number" id="itemPrice" class="form-control" min="0" step="0.01" />
+                            </div>
+
+                            <div class="col-md-2 d-grid">
+                                <button type="button" id="addItem" class="btn btn-primary mt-4">أضف العنصر</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered table-hover text-center">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>العنصر</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody">
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="hiddenItemsContainer"></div>
+                @* @Html.Hidden("EmployeeId", ViewBag.EmployeeId) *@
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-success btn-lg">إرسال الطلب</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var items = [];
+            var editIndex = -1;
+
+            const dataSources = {
+                Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+            };
+
+            $('#itemType').change(function () {
+                var selectedType = $(this).val();
+                var $itemSelect = $('#itemId');
+                $itemSelect.empty().prop('disabled', !selectedType);
+
+                $itemSelect.append('<option value="">-- اختر --</option>');
+                if (!selectedType) return;
+
+                dataSources[selectedType]?.forEach(item => {
+                    const id = item.paperId || item.inkId || item.suppliesId;
+                    $itemSelect.append(`<option value="${id}">${item.name}</option>`);
+                });
+            });
+
+            function renderItems() {
+                var $tableBody = $('#itemsTableBody');
+                var $hiddenContainer = $('#hiddenItemsContainer');
+                $tableBody.empty();
+                $hiddenContainer.empty();
+
+                items.forEach((item, index) => {
+                    $tableBody.append(`
+                        <tr data-index="${index}">
+                            <td>${item.itemName}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.price}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm editItem">تعديل</button>
+                                <button type="button" class="btn btn-danger btn-sm deleteItem">حذف</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    let hidden = "";
+                    if (item.itemType === "Paper")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                    else if (item.itemType === "Ink")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                    else if (item.itemType === "Supply")
+                        hidden += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
+
+                    $hiddenContainer.append(hidden);
+                });
+            }
+
+            $('#addItem').click(function () {
+                var itemType = $('#itemType').val();
+                var itemId = $('#itemId').val();
+                var itemName = $('#itemId option:selected').text();
+                var quantity = $('#itemQuantity').val();
+                var price = $('#itemPrice').val();
+
+                if (!itemType || !itemId || !quantity || quantity < 0 || !price || price < 0) {
+                    alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+                    return;
+                }
+
+                var newItem = { itemType, itemId, itemName, quantity, price };
+
+                if (editIndex === -1) {
+                    items.push(newItem);
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                    $('#addItem').text('أضف العنصر');
+                }
+
+                $('#itemType').val('');
+                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
+                $('#itemQuantity').val('');
+                $('#itemPrice').val('');
+
+                renderItems();
+            });
+
+            $('#itemsTableBody').on('click', '.editItem', function () {
+                editIndex = $(this).closest('tr').data('index');
+                var item = items[editIndex];
+
+                $('#itemType').val(item.itemType).trigger('change');
+                setTimeout(() => $('#itemId').val(item.itemId), 100);
+                $('#itemQuantity').val(item.quantity);
+                $('#itemPrice').val(item.price);
+                $('#addItem').text('تحديث العنصر');
+            });
+
+            $('#itemsTableBody').on('click', '.deleteItem', function () {
+                items.splice($(this).closest('tr').data('index'), 1);
+                renderItems();
+            });
+
+            $('form').submit(function (e) {
+                if ($('#itemsTableBody tr').length === 0) {
+                    alert("يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.");
+                    e.preventDefault();
+                }
+            });
+
+            // ✅ Auto redirect if TempData["Success"]
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                            setTimeout(function () {
+                                    window.location.href = '@Url.Action("adminHome", "AdminHome")';
+                            }, 5000);
+            </text>
+        }
+        });
+    </script>
+}

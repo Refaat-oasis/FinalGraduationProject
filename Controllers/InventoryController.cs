@@ -382,7 +382,29 @@ namespace ThothSystemVersion1.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult returns()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                ViewBag.PaperList = _businessLogicL.GetActivePapers();
+                ViewBag.InkList = _businessLogicL.GetActiveInks();
+                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                ViewBag.purchaseList = _businessLogicL.getLast15PurchaseOrder();
+                ViewBag.jobOrderList = _businessLogicL.getLast15JObOrder();
+                ViewBag.requisiteList = _businessLogicL.getLast15RequisiteORder();
 
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

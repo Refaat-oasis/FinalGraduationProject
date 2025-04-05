@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
@@ -381,30 +382,68 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("purchaseall");
         }
 
-
         [HttpGet]
         public IActionResult returns()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {
-                ViewBag.PaperList = _businessLogicL.GetActivePapers();
-                ViewBag.InkList = _businessLogicL.GetActiveInks();
-                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
-                ViewBag.purchaseList = _businessLogicL.getLast15PurchaseOrder();
-                ViewBag.jobOrderList = _businessLogicL.getLast15JObOrder();
-                ViewBag.requisiteList = _businessLogicL.getLast15RequisiteORder();
+            // Retrieve the ReturnOrderDTO from TempData if it exists
+            ReturnOrderDTO returndto = null;
 
-                return View();
+            if (TempData["ReturnOrderDTO"] != null)
+            {
+                // Deserialize the data stored in TempData back to the object
+                returndto = JsonConvert.DeserializeObject<ReturnOrderDTO>(TempData["ReturnOrderDTO"].ToString());
             }
+
+            // Check if the requisitedOrPurchasedList is null, initialize it as an empty list
+            if (returndto == null)
+            {
+                returndto = new ReturnOrderDTO();
+            }
+
+            // Populate the ViewBag with necessary data
+            ViewBag.PaperList = _businessLogicL.GetActivePapers();
+            ViewBag.InkList = _businessLogicL.GetActiveInks();
+            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+            ViewBag.purchaseList = _businessLogicL.getLast15PurchaseOrder();
+            ViewBag.jobOrderList = _businessLogicL.getLast15JObOrder();
+            ViewBag.requisiteList = _businessLogicL.getLast15RequisiteORder();
+
+            return View(returndto);
+        }
+
+
+        [HttpPost]
+        public IActionResult processSelection(ReturnOrderDTO returnDto)
+        {
+            // internal
+            if (returnDto.ReturnInOut == true)
+            {
+                returnDto.purchaseID = null;
+            }
+            // external
             else
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                returnDto.JobOrderId = null;
             }
 
+            // Process the selection logic
+            returnDto = _businessLogicL.processSelection(returnDto);
+
+            // Store the processed DTO in TempData so it persists during the redirection
+            TempData["ReturnOrderDTO"] = JsonConvert.SerializeObject(returnDto); // Serialize to store as a string
+
+            // Redirect to the 'returns' action
+            return RedirectToAction("returns");
+        }
+
+        [HttpPost]
+        public IActionResult returns(ReturnOrderDTO returnDto) {
+
+            return RedirectToAction("returns");
 
         }
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

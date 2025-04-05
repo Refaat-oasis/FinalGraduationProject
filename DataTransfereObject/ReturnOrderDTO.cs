@@ -9,15 +9,20 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الرقم القومي للموظف")]
         public string EmployeeId { get; set; } = null!;
 
-        [Display(Name = "الرقم التعريفي للتاجر")]
-        public int VendorId { get; set; }
+        [Display(Name = "ملاحظات عن اذن المردودات")]
+        public string? ReturnsNotes { get; set; }
 
-        [Display(Name = "ملاحظات عن شراء البضاعة")]
-        public string? PurchaseNotes { get; set; }
+        [Display(Name = "الداخلي والخارجي")]
+        public bool ReturnInOut { get; set; }
 
-        public List<QuantityBridge> requisitedList { get; set; }
+        [Display(Name = " الرقم التعريفي لطلبيه الشراء")]
+        public int? purchaseID { get; set; }
+        [Display(Name = "الرقم التعريفي للتشغيلة ")]
+        public int? JobOrderId { get; set; }
+
+        public List<QuantityBridge> requisitedOrPurchasedList { get; set; }
         
-        public List<QuantityBridge>? returnedList { get; set; }
+        public List<QuantityBridge>? BridgeList { get; set; }
 
 
     }

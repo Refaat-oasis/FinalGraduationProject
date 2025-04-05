@@ -7,6 +7,7 @@ using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ThothSystemVersion1.BusinessLogicLayers
 {
@@ -1094,6 +1095,28 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
+        public ReturnOrderDTO processSelection(ReturnOrderDTO returnDto) {
+            if (returnDto.purchaseID != null)
+            {
+                List<QuantityBridge> purchasedItems = _context.QuantityBridges
+                    //.Include(q => q.PurchaseId)
+                    .Where(q => q.PurchaseId == returnDto.purchaseID)
+                    .ToList();
+                returnDto.requisitedOrPurchasedList = purchasedItems;
+            }
+            else if (returnDto.JobOrderId != null) { 
+            
+                List<QuantityBridge> requisitedItems = _context.QuantityBridges
+                    //.Include(q => q.RequisiteId)
+                    .Where(q => q.RequisiteId == returnDto.JobOrderId)
+                    .ToList();
+                returnDto.requisitedOrPurchasedList = requisitedItems;
+            }
+            return returnDto;
+
+
+
+        }
 
 
     }

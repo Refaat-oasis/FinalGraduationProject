@@ -13,7 +13,7 @@ public partial class ReturnsOrder
     public DateOnly? ReturnDate { get; set; }
     
     [Display(Name = "الرقم التعريفي للتشغيلة ")]
-    public int JobOrderId { get; set; }
+    public int? JobOrderId { get; set; }
     
     [Display(Name = "الرقم القومي للموظف")]
     public string EmployeeId { get; set; } = null!;

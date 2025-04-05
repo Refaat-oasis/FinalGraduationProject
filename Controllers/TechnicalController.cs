@@ -36,31 +36,41 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateRequisite()
         {
-            var vm = new RequisitionCreateVM
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
             {
-                JobOrders = _businessLogicLayer.GetLast10JobOrders(),
-                AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-                AvailableInks = _businessLogicLayer.GetAvailableInks(),
-                AvailableSupplies = _businessLogicLayer.GetAvailableSupplies()
-            };
+                var vm = new RequisitionCreateVM
+                {
+                    JobOrders = _businessLogicLayer.GetJobOrdersWithCustomers(),
+                    AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
+                    AvailableInks = _businessLogicLayer.GetAvailableInks(),
+                    AvailableSupplies = _businessLogicLayer.GetAvailableSupplies()
+                };
 
-            return View(vm);
+                return View(vm);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(RequisiteOrderDTO dto)
+        public IActionResult CreateRequisite(RequisiteOrderDTO dto)
         {
             if (ModelState.IsValid)
             {
-                var result = _businessLogicLayer.CreateRequisition(dto);
-                if (result.Success)
+                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                var result = _businessLogicLayer.CreateRequisite(dto);
+                if (result.success)
                 {
-                    TempData["SuccessMessage"] = result.Message;
-                    return RedirectToAction("Details", new { id = result.RequisiteId });
+                    TempData["SuccessMessage"] = result.message;
+                    return RedirectToAction("CreateRequisite");
                 }
-                TempData["ErrorMessage"] = result.Message;
+                TempData["ErrorMessage"] = result.message;
             }
 
             // إعادة تحميل البيانات في حالة وجود خطأ

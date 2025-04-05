@@ -17,17 +17,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "ملاحظات عن اذن الصرف")]
         public string? RequisiteNotes { get; set; }
 
-        //[Display(Name = "تاريخ البدأ في التشغيلة")]
-        //public DateOnly? StartDate { get; set; }
-
-
-
-        //public string itemType { get; set; }
-
-        //public int itemId { get; set; }
-
-        //public int Quantity { get; set; }
-
         public List<QuantityBridge>? BridgeList { get; set; }
     }
 }

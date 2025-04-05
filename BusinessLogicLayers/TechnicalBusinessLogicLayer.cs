@@ -70,6 +70,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         public List<JobOrder> GetLast10JobOrders()
         {
             return _context.JobOrders
+                 .Include(j => j.Customer)
                 .OrderByDescending(j => j.StartDate)
                 .Take(10)
                 .ToList();
@@ -89,177 +90,135 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             return _context.Supplies.Where(s => s.Activated).ToList();
         }
-        //public (bool Success, string Message, int RequisiteId) CreateRequisition(RequisiteOrderDTO dto)
-        //{
-        //    try
-        //    {
-        //        // 1. إنشاء أذن الصرف الأساسي
-        //        var order = new RequisiteOrder
-        //        {
-        //            EmployeeId = dto.EmployeeId,
-        //            JobOrderId = dto.JobOrderId,
-        //            RequisiteDate = DateOnly.FromDateTime(DateTime.Now),
-        //            RequisiteNotes = dto.RequisiteNotes
-        //        };
-
-        //        _context.RequisiteOrders.Add(order);
-        //        _context.SaveChanges(); // حفظ أولي للحصول على ID
-
-        //        // 2. معالجة الأصناف المطلوبة
-        //        foreach (var item in dto.Items)
-        //        {
-        //            // تحديث المخزون
-        //            switch (item.Type)
-        //            {
-        //                case "Paper":
-        //                    var paper = _context.Papers.Find(item.ItemId);
-        //                    if (paper == null) return (false, "الورق غير موجود", 0);
-        //                    if (paper.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-        //                    paper.Quantity -= item.Quantity;
-        //                    _context.SaveChanges();
-        //                    break;
-
-        //                case "Ink":
-        //                    var ink = _context.Inks.Find(item.ItemId);
-        //                    if (ink == null) return (false, "الحبر غير موجود", 0);
-        //                    if (ink.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-        //                    ink.Quantity -= item.Quantity;
-        //                    _context.SaveChanges();
-        //                    break;
-
-        //                case "Supply":
-        //                    var supply = _context.Supplies.Find(item.ItemId);
-        //                    if (supply == null) return (false, "المستلزمات غير موجودة", 0);
-        //                    if (supply.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-        //                    supply.Quantity -= item.Quantity;
-        //                    _context.SaveChanges();
-        //                    break;
-
-        //                default:
-        //                    return (false, "نوع الصنف غير صحيح", 0);
-        //            }
-
-        //            // إنشاء سجل الجسر
-        //            var quantityBridge = new QuantityBridge
-        //            {
-        //                RequisiteId = order.RequisiteId,
-        //                Quantity = item.Quantity,
-        //                Price = GetItemPrice(item.Type, item.ItemId),
-        //                PaperId = item.Type == "Paper" ? item.ItemId : null,
-        //                InkId = item.Type == "Ink" ? item.ItemId : null,
-        //                SuppliesId = item.Type == "Supply" ? item.ItemId : null
-        //            };
-
-        //            _context.QuantityBridges.Add(quantityBridge);
-        //            _context.SaveChanges();
-        //        }
-
-        //        _context.SaveChanges(); // حفظ نهائي لجميع التغييرات
-
-        //        return (true, "تم إنشاء أمر الصرف بنجاح", order.RequisiteId);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return (false, $"حدث خطأ: {ex.Message}", 0);
-        //    }
-        //}
-        public (bool Success, string Message, int RequisiteId) CreateRequisition(RequisiteOrderDTO dto)
+        public List<JobOrder> GetJobOrdersWithCustomers()
         {
+            return _context.JobOrders
+                   .Include(j => j.Customer)
+                    .OrderByDescending(j => j.StartDate)
+                   .Take(10)
+                   .ToList();
+        }
+
+        public (bool success, string message) CreateRequisite(RequisiteOrderDTO requisiteDTO)
+        {
+
             try
             {
-                // 1. إنشاء أذن الصرف الأساسي
-                RequisiteOrder order = new RequisiteOrder
-                {
-                    EmployeeId = dto.EmployeeId,
-                    JobOrderId = dto.JobOrderId,
-                    RequisiteDate = DateOnly.FromDateTime(DateTime.Now),
-                    RequisiteNotes = dto.RequisiteNotes
-                };
 
-                _context.RequisiteOrders.Add(order);
-                _context.SaveChanges(); // حفظ أولي للحصول على ID
+                List<QuantityBridge> quantityBridgeList = requisiteDTO.BridgeList;
 
-                // 2. معالجة الأصناف المطلوبة
-                foreach (var item in dto.Items)
+                RequisiteOrder requisiteOrder = new RequisiteOrder();
+                requisiteOrder.EmployeeId = requisiteDTO.EmployeeId;
+                requisiteOrder.JobOrderId = requisiteDTO.JobOrderId;
+                requisiteOrder.RequisiteNotes = requisiteDTO.RequisiteNotes;
+                _context.RequisiteOrders.Add(requisiteOrder);
+                _context.SaveChanges();
+
+                int requisiteOrderNumber = _context.RequisiteOrders
+                          .OrderByDescending(po => po.RequisiteId)
+                          .Select(po => po.RequisiteId)
+                          .FirstOrDefault();
+
+                for (int i = 0; i < quantityBridgeList.Count; i++)
                 {
-                    // تحديث المخزون
-                    switch (item.Type)
+                    quantityBridgeList[i].RequisiteId = requisiteOrderNumber;
+                    quantityBridgeList[i].QuantityBridgeID = null;
+
+                    if (quantityBridgeList[i].InkId != null)
                     {
-                        case "Paper":
-                            var paper = _context.Papers.Find(item.ItemId);
-                            if (paper == null) return (false, "الورق غير موجود", 0);
-                            if (paper.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-                            paper.Quantity -= item.Quantity;
-                            _context.Papers.Update(paper);
-                            break;
+                        Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
 
-                        case "Ink":
-                            var ink = _context.Inks.Find(item.ItemId);
-                            if (ink == null) return (false, "الحبر غير موجود", 0);
-                            if (ink.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-                            ink.Quantity -= item.Quantity;
-                            _context.Inks.Update(ink);
-                            break;
+                        // Calculate new quantity and average price
+                        double totalQuantity = ink.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)ink.Quantity * ink.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                        case "Supply":
-                            var supply = _context.Supplies.Find(item.ItemId);
-                            if (supply == null) return (false, "المستلزمات غير موجودة", 0);
-                            if (supply.Quantity < item.Quantity) return (false, "الكمية غير متوفرة في المخزون", 0);
-                            supply.Quantity -= item.Quantity;
-                            _context.Supplies.Update(supply);
-                            break;
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
-                        default:
-                            return (false, "نوع الصنف غير صحيح", 0);
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = ink.Price;
+                        quantityBridgeList[i].OldQuantity = ink.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+
+                        // Update paper properties
+                        ink.Quantity = (int)totalQuantity;
+                        ink.Price = averagePrice;
+                        ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+                        _context.Inks.Update(ink);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].PaperId != null)
+                    {
+                        Paper paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+
+                        // Calculate new quantity and average price
+                        double totalQuantity = paper.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)paper.Quantity * paper.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = paper.Price;
+                        quantityBridgeList[i].OldQuantity = paper.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+
+                        // Update paper properties
+                        paper.Quantity = (int)totalQuantity;
+                        paper.Price = averagePrice;
+                        paper.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        _context.Papers.Update(paper);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].SuppliesId != null)
+                    {
+                        Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+
+                        // Calculate new quantity and average price
+                        double totalQuantity = supply.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)supply.Quantity * supply.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = supply.Price;
+                        quantityBridgeList[i].OldQuantity = supply.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+
+                        // Update paper properties
+                        supply.Quantity = (int)totalQuantity;
+                        supply.Price = averagePrice;
+                        supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        _context.Supplies.Update(supply);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
                     }
 
-                    // إنشاء سجل الجسر
-                    var quantityBridge = new QuantityBridge
-                    {
-                        RequisiteId = order.RequisiteId,
-                        Quantity = item.Quantity,
-                        Price = GetItemPrice(item.Type, item.ItemId),
-                        PaperId = item.Type == "Paper" ? item.ItemId : null,
-                        InkId = item.Type == "Ink" ? item.ItemId : null,
-                        SuppliesId = item.Type == "Supply" ? item.ItemId : null
-                    };
-
-                    _context.QuantityBridges.Add(quantityBridge);
                 }
-
-                _context.SaveChanges(); // حفظ نهائي لجميع التغييرات
-
-                return (true, "تم إنشاء أمر الصرف بنجاح", order.RequisiteId);
+                return (true, "تمت انشاء اذن الصرف بنجاح");
             }
             catch (Exception ex)
             {
-                // تنظيف أي تغييرات معلقة
-                _context.ChangeTracker.Clear();
-                return (false, $"حدث خطأ: {ex.Message}", 0);
+                return (false, $"حدث خطأ: {ex.Message}");
             }
+
         }
-
-
-
-
-        private decimal GetItemPrice(string itemType, int itemId)
-        {
-            switch (itemType)
-            {
-                case "Paper":
-                    var paper = _context.Papers.Find(itemId);
-                    return paper?.Price ?? 0m;
-                case "Ink":
-                    var ink = _context.Inks.Find(itemId);
-                    return ink?.Price ?? 0m;
-                case "Supply":
-                    var supply = _context.Supplies.Find(itemId);
-                    return supply?.Price ?? 0m;
-                default:
-                    return 0m;
-            }
-        }
-
     }
 }
 

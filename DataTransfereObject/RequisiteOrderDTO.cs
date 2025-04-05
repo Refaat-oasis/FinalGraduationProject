@@ -11,12 +11,11 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الرقم التعريفي للتشغيلة")]
         public int JobOrderId { get; set; }
 
-        [Display(Name = "الرقم المميز للعميل")]
-        public int? CustomerId { get; set; }
 
         [Display(Name = "ملاحظات عن اذن الصرف")]
         public string? RequisiteNotes { get; set; }
 
         public List<QuantityBridge>? BridgeList { get; set; }
+
     }
 }

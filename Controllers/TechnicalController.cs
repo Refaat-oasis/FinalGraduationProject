@@ -11,13 +11,15 @@ namespace ThothSystemVersion1.Controllers
     public class TechnicalController : Controller
     {
 
-        private readonly TechnicalBusinessLogicLayer _businessLogicLayer;
+        private readonly TechnicalBusinessLogicLayer _technicalBusinessLogicLayer;
+        private readonly InventoryBussinesLogicLayer _inventoryBusinessLogicLayer;
 
-        public TechnicalController(TechnicalBusinessLogicLayer _technicalBussinessLogicLayer)
+        public TechnicalController(
+            TechnicalBusinessLogicLayer technicalBusinessLogicLayer,
+            InventoryBussinesLogicLayer inventoryBusinessLogicLayer)
         {
-
-            _businessLogicLayer = _technicalBussinessLogicLayer;
-
+            _technicalBusinessLogicLayer = technicalBusinessLogicLayer;
+            _inventoryBusinessLogicLayer = inventoryBusinessLogicLayer;
         }
 
         [HttpGet]
@@ -26,7 +28,7 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 3 || jobRole == 4)
             {
-                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _businessLogicLayer.ViewAllJobOrder();
+                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
                 return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
             }
             else
@@ -38,52 +40,33 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult CreateRequisite()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
-            {
-                var vm = new RequisitionCreateVM
-                {
-                    JobOrders = _businessLogicLayer.GetJobOrdersWithCustomers(),
-                    AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-                    AvailableInks = _businessLogicLayer.GetAvailableInks(),
-                    AvailableSupplies = _businessLogicLayer.GetAvailableSupplies()
-                };
+            ViewBag.PaperList = _inventoryBusinessLogicLayer.GetActivePapers();
+            ViewBag.InkList = _inventoryBusinessLogicLayer.GetActiveInks();
+            ViewBag.SupplyList = _inventoryBusinessLogicLayer.GetActiveSupplies();
+            ViewBag.JobOrderList = _technicalBusinessLogicLayer.GetLast10JobOrders();
 
-                return View(vm);
-            }
-            else
-            {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+            return View();
+           
         }
 
         [HttpPost]
         public IActionResult CreateRequisite(RequisiteOrderDTO dto)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-                var result = _businessLogicLayer.CreateRequisite(dto);
-                if (result.success)
-                {
-                    TempData["SuccessMessage"] = result.message;
-                    return RedirectToAction("CreateRequisite");
-                }
-                TempData["ErrorMessage"] = result.message;
-            }
-
-            // إعادة تحميل البيانات في حالة وجود خطأ
-            var vm = new RequisitionCreateVM
+                var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
+            if (result.success)
             {
-                JobOrders = _businessLogicLayer.GetLast10JobOrders(),
-                AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-                AvailableInks = _businessLogicLayer.GetAvailableInks(),
-                AvailableSupplies = _businessLogicLayer.GetAvailableSupplies(),
-                RequisiteOrderDTO = dto
-            };
+                TempData["SuccessMessage"] = result.message;
+                return RedirectToAction("CreateRequisite");
+            }
+            TempData["ErrorMessage"] = result.message;
+        //}
 
-            return View(vm);
+           
+
+            return RedirectToAction("CreateRequisite");
         }
 
     }

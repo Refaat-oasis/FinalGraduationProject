@@ -129,23 +129,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
 
                         // Calculate new quantity and average price
-                        double totalQuantity = ink.Quantity - quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)ink.Quantity * ink.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+                        double newQuantity = ink.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)newQuantity * ink.Price;
+                                             //(decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
-                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
                         // Update paper properties
-                        ink.Quantity = (int)totalQuantity;
-                        ink.Price = averagePrice;
-                        ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        ink.Quantity = (int)newQuantity;
+                        //ink.Price = averagePrice;
+                        ink.TotalBalance = totalValue;
 
                         _context.Inks.Update(ink);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);

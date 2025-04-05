@@ -3,9 +3,9 @@
     overflow: hidden;
 }
 
-.form-container {
+.container {
     max-width: 100%;
-    margin: 50px auto;
+/*    margin: 50px auto;*/
     padding: 20px;
     border-radius: 8px;
     position: relative;
@@ -16,7 +16,7 @@
     background-size: cover;
 }
 
-    .form-container::before {
+    .container::before {
         content: "";
         position: fixed;
         top: 0;
@@ -29,6 +29,20 @@
         background-size: cover;
         background-position: center;
     }
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
 
 h1, h2 {
     text-align: center;
@@ -45,7 +59,7 @@ h1, h2 {
 
 .textlabel {
     display: block;
-    font-size: 27px;
+    font-size: 22px;
     font-weight: 510;
     margin-bottom: 5px;
     color: #090909;
@@ -62,12 +76,6 @@ h1, h2 {
     direction: rtl;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-top: 20px;
-}
 
 .btn {
     padding: 10px 15px;
@@ -80,6 +88,8 @@ h1, h2 {
 .btn-primary {
     background-color: #000000;
     color: white;
+    align-content:center;
+
 }
 
     .btn-primary:hover {
@@ -89,11 +99,20 @@ h1, h2 {
 .btn-secondary {
     background-color: #000000;
     color: white;
+    padding: 0.25rem 0.5rem; 
+    font-size: 0.875rem; 
+    line-height: 1.5; 
+    border-radius: 0.2rem; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: background-color 0.3s ease;
 }
 
     .btn-secondary:hover {
         background-color: #545b62;
     }
+
 
 .error {
     color: red;
@@ -126,4 +145,38 @@ h1, h2 {
     margin: 10px 0;
     position: fixed;
     text-decoration: none;
+}
+
+
+.is-invalid {
+    border-color: transparent;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.card {
+    background-color: transparent !important;
+    border: none !important; 
+}
+
+.card-header {
+    background-color: transparent !important;
+    color: #000 !important; 
+    border-bottom: 1px solid #ddd !important; 
+}
+
+.card-body {
+    background-color: transparent !important;
+}
+
+.shadow {
+    box-shadow: none !important;
 }

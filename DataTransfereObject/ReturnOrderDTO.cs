@@ -21,6 +21,7 @@ namespace ThothSystemVersion1.DataTransfereObject
         public int? JobOrderId { get; set; }
 
         public List<QuantityBridge>? BridgeList { get; set; }
+        public List<QuantityBridge>? ListOfordered { get; set; }
 
 
     }

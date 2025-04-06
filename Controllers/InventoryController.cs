@@ -730,6 +730,46 @@ try
                 return RedirectToAction("ReturnOrder");
             }
         }
+        [HttpGet]
+
+        public IActionResult ReturnOrder2()
+        {
+            ReturnOrderDTO rto = new ReturnOrderDTO();
+
+            if (TempData["ReturnOrder"] != null)
+            {
+                rto = System.Text.Json.JsonSerializer.Deserialize<ReturnOrderDTO>(TempData["ReturnOrder"].ToString());
+            }
+
+            ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+            ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+
+            ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+            ViewBag.InkList = _businessLogicL.getAllActiveInk();
+            ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+
+            return View(rto);
+        }
+
+        [HttpPost]
+        public IActionResult getOrderItems(ReturnOrderDTO retDTO)
+        {
+            retDTO = _businessLogicL.processSelection(retDTO);
+
+            TempData["ReturnOrder"] = System.Text.Json.JsonSerializer.Serialize(retDTO);
+
+            return RedirectToAction("ReturnOrder2");
+        }
+
+        [HttpPost]
+        public IActionResult ReturnOrder2(ReturnOrderDTO returnOrder) {
+
+            return View();
+        
+        
+        }
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

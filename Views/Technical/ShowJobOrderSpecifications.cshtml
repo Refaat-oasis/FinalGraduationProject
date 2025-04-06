@@ -1,0 +1,195 @@
+﻿@model ThothSystemVersion1.ViewModels.JobOrderSpecificationsViewModel
+
+@{
+    ViewData["Title"] = "تفاصيل التشغيلة";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <dl class="row">
+            <!-- JobOrder -->
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrderId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.JobOrderId)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RemainingAmount)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.RemainingAmount)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.UnearnedRevenue)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.UnearnedRevenue)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrdernotes)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.JobOrdernotes)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EarnedRevenue)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.EarnedRevenue)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.OrderProgress)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.OrderProgress)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CustomerId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.CustomerId)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.StartDate)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.StartDate)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EndDate)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.EndDate)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EmployeeId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.EmployeeId)</dd>
+
+            <hr class="col-12" />
+
+            <!-- MiscellaneousExpense -->
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MiscellaneousExpensesID)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MiscellaneousExpensesID)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MaterialProcessingExpense)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MaterialProcessingExpense)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.FilmsProcessingExpense)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.FilmsProcessingExpense)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MaterialsTotal)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MaterialsTotal)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalAfterMaterials)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalAfterMaterials)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.AdminstrativeExpense)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.AdminstrativeExpense)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalExpenses)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalExpenses)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Percentage)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Percentage)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalAfterPercentage)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalAfterPercentage)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MinistryOfFinance)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MinistryOfFinance)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EmployeeImprovmentBox)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.EmployeeImprovmentBox)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ValueAddedTax)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.ValueAddedTax)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.FinalTotal)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.FinalTotal)</dd>
+
+            <hr class="col-12" />
+
+            <!-- Latest RequisiteOrder -->
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteId)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteDate)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteDate)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteNotes)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteNotes)</dd>
+
+            <hr class="col-12" />
+
+            <!-- Latest ReturnsOrder -->
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnId)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnDate)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnDate)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnsNotes)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnsNotes)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnInOut)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnInOut)</dd>
+        </dl>
+    </div>
+</div>
+
+@if (Model.QuantityBridges?.Any() == true && Model.RequisiteId != null)
+{
+    <h2>الكميات المسحوبة</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>معرف الكمية</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <!-- إضافة أعمدة أخرى حسب الحاجة -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var qb in Model.QuantityBridges)
+            {
+                <tr>
+                    <td>@qb.QuantityBridgeID</td>
+                    <td>@qb.Quantity</td>
+                    <td>@qb.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.QuantityBridges?.Any() == true && Model.ReturnId != null)
+{
+    <h2>الكميات المرتجعة</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>معرف الكمية</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <!-- إضافة أعمدة أخرى حسب الحاجة -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var qb in Model.QuantityBridges)
+            {
+                <tr>
+                    <td>@qb.QuantityBridgeID</td>
+                    <td>@qb.Quantity</td>
+                    <td>@qb.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.ProcessBridges?.Any() == true)
+{
+    <h2>العمليات المرتبطة</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>معرف العملية</th>
+                <th>ساعات العمل</th>
+                <th>تكلفة الآلة</th>
+                <th>تكلفة العمالة</th>
+                <!-- إضافة أعمدة أخرى حسب الحاجة -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pb in Model.ProcessBridges)
+            {
+                <tr>
+                    <td>@pb.ProcessBridgeID</td>
+                    <td>@pb.NumberOfHours</td>
+                    <td>@pb.TotalMachinePrice</td>
+                    <td>@pb.TotalLabourPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">عودة للقائمة</a>
+    <a asp-action="Edit" asp-route-id="@Model.JobOrderId" class="btn btn-primary">تعديل</a>
+</div>

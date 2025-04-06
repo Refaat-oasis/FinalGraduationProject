@@ -139,10 +139,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
                                 @foreach (var order in Model.purchaseOrderList)
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
-                                            @if (bridgeItems.Any())
+                                    <tr>       
+                                    @if (bridgeItems.Any())
                                             {
                                                 
                                                     @foreach (var item in bridgeItems)
@@ -384,7 +386,9 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    <th>الرصيد الإجمالي</th>
+                                    <th>الرصيد المتبقي </th>
+                                    <th>الرصيد غير مستحق</th>
+                                    <th>الرصيد المستحق</th>
                                     <th>عدد الطلبات</th>
                                     <th>اسم العميل</th>
 
@@ -394,6 +398,8 @@
                                 @foreach (var item in Model.CustomerReport)
                                 {
                                     <tr>
+                                        <td>@item.RemainingBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
+                                        <td>@item.unearnedBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
                                         <td>@item.TotalBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td>
                                         <td>@item.OrderCount</td>
                                         <td>@item.Customer.CustomerName</td>

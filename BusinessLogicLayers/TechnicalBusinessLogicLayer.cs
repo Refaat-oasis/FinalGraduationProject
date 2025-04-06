@@ -218,6 +218,66 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
+
+        public List<Customer> ViewAllCustomer()
+        {
+            List<Customer> customerList = _context.Customers.ToList();
+
+            return customerList;
+        }
+
+        public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
+        {
+
+            JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
+            MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
+            RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+            ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+            List<QuantityBridge> quantityBridges = _context.QuantityBridges.Where(
+                q => q.RequisiteId == requisiteOrder.RequisiteId || q.ReturnId == returnOrder.ReturnId)
+            .ToList();
+            List<ProcessBridge> processBridges = _context.ProcessBridges.Where(
+                p => p.JobOrderId == jobOrderId)
+                .ToList();
+
+            JobOrderSpecificationsViewModel joborderSpecifics = new JobOrderSpecificationsViewModel();
+            joborderSpecifics.JobOrderId = jobOrder.JobOrderId;
+            joborderSpecifics.RemainingAmount = jobOrder.RemainingAmount;
+            joborderSpecifics.UnearnedRevenue = jobOrder.UnearnedRevenue;
+            joborderSpecifics.JobOrdernotes = jobOrder.JobOrdernotes;
+            joborderSpecifics.EarnedRevenue = jobOrder.EarnedRevenue;
+            joborderSpecifics.OrderProgress = jobOrder.OrderProgress;
+            joborderSpecifics.CustomerId = jobOrder.CustomerId;
+            joborderSpecifics.StartDate = jobOrder.StartDate;
+            joborderSpecifics.EndDate = jobOrder.EndDate;
+            joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
+            joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesID;
+            joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
+            joborderSpecifics.FilmsProcessingExpense = miscellaneousExpense.FilmsProcessingExpense;
+            joborderSpecifics.MaterialsTotal = miscellaneousExpense.MaterialsTotal;
+            joborderSpecifics.TotalAfterMaterials = miscellaneousExpense.TotalAfterMaterials;
+            joborderSpecifics.AdminstrativeExpense = miscellaneousExpense.AdminstrativeExpense;
+            joborderSpecifics.TotalExpenses = miscellaneousExpense.TotalExpenses;
+            joborderSpecifics.Percentage = miscellaneousExpense.Percentage;
+            joborderSpecifics.TotalAfterPercentage = miscellaneousExpense.TotalAfterPercentage;
+            joborderSpecifics.MinistryOfFinance = miscellaneousExpense.MinistryOfFinance;
+            joborderSpecifics.EmployeeImprovmentBox = miscellaneousExpense.EmployeeImprovmentBox;
+            joborderSpecifics.ValueAddedTax = miscellaneousExpense.ValueAddedTax;
+            joborderSpecifics.FinalTotal = miscellaneousExpense.FinalTotal;
+            joborderSpecifics.RequisiteId = requisiteOrder.RequisiteId;
+            joborderSpecifics.RequisiteDate = requisiteOrder.RequisiteDate;
+            joborderSpecifics.RequisiteNotes = requisiteOrder.RequisiteNotes;
+            joborderSpecifics.ReturnId = returnOrder.ReturnId;
+            joborderSpecifics.ReturnDate = returnOrder.ReturnDate;
+            joborderSpecifics.ReturnsNotes = returnOrder.ReturnsNotes;
+            joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
+            joborderSpecifics.QuantityBridges = quantityBridges;
+            joborderSpecifics.ProcessBridges = processBridges;
+            return joborderSpecifics;
+
+            
+        }
+
     }
 }
 

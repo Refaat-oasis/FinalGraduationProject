@@ -17,165 +17,165 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThothSystemVersion1
 build_property.RootNamespace = ThothSystemVersion1
-build_property.ProjectDir = C:\Users\ECC\OneDrive\Desktop\sandra\FinalGraduationProject\
+build_property.ProjectDir = D:\Graduation Project\FinalGraduationProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ECC\OneDrive\Desktop\sandra\FinalGraduationProject
+build_property.MSBuildProjectDirectory = D:\Graduation Project\FinalGraduationProject
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0FsbEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Home/Index.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Home/Privacy.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkZFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/EditInk.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/EditInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRJbmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/EditPaper.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/EditPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRQYXBlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/EditSupply.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/EditSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/inkPurchase.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/inkPurchase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XGlua1B1cmNoYXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/InventoryReports.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/InventoryReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEludmVudG9yeVJlcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld0luay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld3BhcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld1N1cHBseS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/paperPurchase.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/paperPurchase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHBhcGVyUHVyY2hhc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/PhysicalCount.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/PhysicalCount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFBoeXNpY2FsQ291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/purchaseAll.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/purchaseAll.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlQWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/purchaseInk.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/purchaseInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlSW5rLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/purchaseSupply.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/purchaseSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlU3VwcGx5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/Returns.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/Returns.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFJldHVybnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/supplyPurchase.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/supplyPurchase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHN1cHBseVB1cmNoYXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/VendorReport.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/VendorReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZlbmRvclJlcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxJbmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxQYXBlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/SharedViews/Login.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/SharedViews/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/SharedViews/UnAutorizedAccess.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/SharedViews/UnAutorizedAccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcVW5BdXRvcml6ZWRBY2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Shared/Error.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Shared/MinimalLayout.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Shared/MinimalLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1pbmltYWxMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Technical/CreateRequisite.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Technical/CreateRequisite.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXENyZWF0ZVJlcXVpc2l0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFZpZXdBbGxKb2JPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/_ViewImports.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/_ViewStart.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ECC/OneDrive/Desktop/sandra/FinalGraduationProject/Views/Shared/_Layout.cshtml]
+[D:/Graduation Project/FinalGraduationProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5oyuxz08q4

@@ -494,28 +494,36 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult EditVendor(int vendorID, Vendor newvendor)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                // Pass newvendor back to the view so that the user
-                // does not lose the entered data
-                return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
+                if (!ModelState.IsValid)
+                {
+                    // Pass newvendor back to the view so that the user
+                    // does not lose the entered data
+                    return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
+                }
+
+                bool isVendorEdited = _businessLogicL.EditVendor(vendorID, newvendor);
+
+                if (!isVendorEdited)
+                {
+                    TempData["Error"] = ("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
+                    // Also pass newvendor back here
+                    return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
+                }
+                TempData["Success"] = "تم تعديل بيانات المورد";
+                return RedirectToAction("ViewAllVendor", "Inventory");
             }
-
-            bool isVendorEdited = _businessLogicL.EditVendor(vendorID, newvendor);
-
-            if (!isVendorEdited)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
-                // Also pass newvendor back here
-                return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات المورد";
+                return View(newvendor);
             }
-
-            return RedirectToAction("ViewAllVendor", "Inventory");
         }
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sherwet section
 

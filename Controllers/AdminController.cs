@@ -76,21 +76,34 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult AddEmployee(EmployeeDTO employee)
         {
+
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Admin/AddEmployee.cshtml");
+                //return View("~/Views/Admin/AddEmployee.cshtml");
+                return View(employee);
             }
 
-            bool isEmployeeAdded = _businessLogicL.AddEmployee(employee);
-
-            if (!isEmployeeAdded)
+            try
             {
-                ModelState.AddModelError("", "اسم المستخدم او الرقم القومي تم استخدامه من قبل");
-                return View(employee); // Return the view with the error message
-            }
 
-            return RedirectToAction("ViewAllEmployee", "admin");
+                bool isEmployeeAdded = _businessLogicL.AddEmployee(employee);
+
+                if (!isEmployeeAdded)
+                {
+                    TempData["Error"]= ("", "اسم المستخدم او الرقم القومي تم استخدامه من قبل");
+                    return View(employee); 
+                }
+                TempData["Success"] = "تم اضافة موظف بنجاح";
+                return RedirectToAction("ViewAllEmployee", "admin");
+            }
+            catch(Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء إضافة الموظف";
+                return View(employee); 
+
+            }
         }
+
 
         // sandra section 
         [HttpGet]

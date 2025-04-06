@@ -16,12 +16,20 @@ namespace ThothSystemVersion1.Controllers
     {
 
         private readonly InventoryBussinesLogicLayer _businessLogicL;
-  
+        private readonly AdminBusinessLogicLayer _adminBusinessLogicL;
+        private readonly TechnicalBusinessLogicLayer _technicalBusinessLogicL;
+
+
         private readonly IHubContext<ProductHub> _hubContext;
-        public InventoryController(InventoryBussinesLogicLayer businessLogicL , IHubContext<ProductHub> hubContext)
+        public InventoryController(InventoryBussinesLogicLayer businessLogicL ,
+            IHubContext<ProductHub> hubContext, 
+            AdminBusinessLogicLayer businessLogiclayer
+            , TechnicalBusinessLogicLayer technicalBusinessLogicLayer)
         {
             _businessLogicL = businessLogicL;
             _hubContext = hubContext;
+            _adminBusinessLogicL = businessLogiclayer;
+            _technicalBusinessLogicL = technicalBusinessLogicLayer;
         }
 
         // refaat section
@@ -183,136 +191,6 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task <IActionResult> paperPurchase() 
-        //{
-
-            
-        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
-        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-        //    {
-        //        ViewBag.paperList = _businessLogicL.getAllActivePaper();
-        //        ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-        //        return View();
-
-        //    }
-        //    else
-        //    {
-
-        //        return RedirectToAction("UnauthorizedAccess", "employee");
-        //    }
-
-        //}
-
-        //[HttpPost]
-        //public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
-        //{
-        //    //store the employeeid in the dto
-        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
-        //    purchaseDto.EmployeeId = employeeId;
-        //    bool result =_businessLogicL.purchaseNewPaper(purchaseDto);
-        //    //return RedirectToAction("ViewAllPaper", "inventory");
-        //    string messageSuccess = "تم سراء الورق الجديد";
-        //    string messageError = "هناك خظأ في شراء الورق الجديد";
-        //    if (result)
-        //    {
-        //        TempData["Success"] = messageSuccess;
-        //        return View("paperPurchase", purchaseDto);
-        //    }
-        //    else {
-        //        TempData["Error"] = messageError;
-        //        return View("paperPurchase", purchaseDto);
-        //    }
-
-        //}
-
-        //[HttpGet]
-        //public IActionResult inkPurchase() {
-            
-        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
-        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-        //    {
-        //    ViewBag.inkList = _businessLogicL.getAllActiveInk();
-        //    ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-
-        //    return View();
-        //    }
-        //    else
-        //    {
-
-        //        return RedirectToAction("UnauthorizedAccess", "employee");
-        //    }
-        //}
-
-        //[HttpPost]
-        //public IActionResult inkPurchase(purchaseOrderDTO purchaseDto)
-        //{
-        //    //store the employeeid in the dto
-        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
-        //    purchaseDto.EmployeeId = employeeId;
-        //    bool result =_businessLogicL.purchaseNewInk(purchaseDto);
-        //    string messageSuccess = "تم سراء الحبر الجديد";
-        //    string messageError = "هناك خظأ في شراء الحبر الجديد";
-
-        //    if (result)
-        //    {
-        //        TempData["Success"] = messageSuccess;
-        //        return View("inkPurchase", purchaseDto);
-        //    }
-        //    else
-        //    {
-        //        TempData["Error"] = messageError;
-        //        return View("inkPurchase", purchaseDto);
-
-        //    }
-        //        //return RedirectToAction("ViewAllink", "inventory");
-
-
-        //}
-
-        //[HttpGet]
-        //public IActionResult supplypurchase()
-        //{
-            
-        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
-        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-        //    {
-        //        ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
-        //    ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-
-        //    return View();
-
-        //    }
-        //    else
-        //    {
-
-        //        return RedirectToAction("UnauthorizedAccess", "employee");
-        //    }
-        //}
-
-        //[HttpPost]
-        //public IActionResult supplyPurchase(purchaseOrderDTO purchaseDto)
-        //{
-        //    //store the employeeid in the dto
-        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
-        //    purchaseDto.EmployeeId = employeeId;
-        //    bool result =_businessLogicL.purchaseNewSupply(purchaseDto);
-        //    //return RedirectToAction("viewallsupply", "inventory");
-        //    string messageSuccess = "تم سراء المستلزمات الجديدة";
-        //    string messageError = "هناك خظأ في شراء المستلزمات الجديدة";
-        //    if (result)
-        //    {
-        //        TempData["Success"] = messageSuccess;
-        //        return View("supplyPurchase", purchaseDto);
-        //    }
-        //    else
-        //    {
-        //        TempData["Error"] = messageError;
-        //        return View("supplyPurchase", purchaseDto);
-        //    }
-
-
-        //}
 
         [HttpGet]
         public IActionResult inventoryReports()
@@ -327,16 +205,20 @@ namespace ThothSystemVersion1.Controllers
 
              return View();
 
-            }else
+        }else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+    }
 }
         
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
+            ViewBag.VendorList = _businessLogicL.ViewAllVendor();
+            ViewBag.EmployeeList = _adminBusinessLogicL.ViewAllEmployee();
+            ViewBag.JobOrderList = _technicalBusinessLogicL.ViewAllJobOrder();
+
 
             InventoryReportViewModel invViewModel= _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
            

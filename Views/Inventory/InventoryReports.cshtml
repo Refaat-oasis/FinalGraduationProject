@@ -1,416 +1,15 @@
-﻿@* @{ *@
-@*     ViewData["Title"] = "تقارير المخزون"; *@
-@* } *@
-
-@* @model ThothSystemVersion1.ViewModels.InventoryReportViewModel *@
-
-@* <div class="container mt-4"> *@
-@*     <div class="card"> *@
-@*         <div class="card-header bg-primary text-white"> *@
-@*             <h4>تقارير المخازن</h4> *@
-@*         </div> *@
-@*         <div class="card-body"> *@
-@*             <!-- Inventory Reports Accordion --> *@
-@*             <div class="accordion mb-4" id="reportsAccordion"> *@
-@*                 <!-- Inventory Movement Report --> *@
-@*                 <div class="accordion-item"> *@
-@*                     <h2 class="accordion-header" id="inventoryHeading"> *@
-@*                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" aria-expanded="false" aria-controls="inventoryCollapse"> *@
-@*                             حركة المخزون *@
-@*                         </button> *@
-@*                     </h2> *@
-@*                     <div id="inventoryCollapse" class="accordion-collapse collapse" aria-labelledby="inventoryHeading"> *@
-@*                         <div class="accordion-body"> *@
-@*                             <form method="post" asp-action="inventoryReports"> *@
-@*                                 <div class="row g-3"> *@
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">نوع العنصر</label> *@
-@*                                         <select id="inventoryType" name="itemType" class="form-select" required> *@
-@*                                             <option value="">-- اختر نوع العنصر --</option> *@
-@*                                             <option value="Paper">ورق</option> *@
-@*                                             <option value="Ink">حبر</option> *@
-@*                                             <option value="Supply">مستلزمات</option> *@
-@*                                         </select> *@
-@*                                     </div> *@
-
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">العنصر</label> *@
-@*                                         <select id="itemId" name="itemId" class="form-select" required disabled> *@
-@*                                             <option value="">-- اختر نوع العنصر أولا --</option> *@
-@*                                         </select> *@
-@*                                     </div> *@
-
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">من تاريخ</label> *@
-@*                                         <input type="date" name="beginingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                     </div> *@
-
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">إلى تاريخ</label> *@
-@*                                         <input type="date" name="endingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                     </div> *@
-@*                                 </div> *@
-
-@*                                 <div class="mt-3"> *@
-@*                                     <button type="submit" class="btn btn-primary">عرض حركة المخزون</button> *@
-@*                                 </div> *@
-@*                             </form> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                 </div> *@
-
-@*                 <!-- Vendor Report --> *@
-@*                 <div class="accordion-item"> *@
-@*                     <h2 class="accordion-header" id="vendorHeading"> *@
-@*                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vendorCollapse" aria-expanded="false" aria-controls="vendorCollapse"> *@
-@*                             تقرير الموردين *@
-@*                         </button> *@
-@*                     </h2> *@
-@*                     <div id="vendorCollapse" class="accordion-collapse collapse" aria-labelledby="vendorHeading"> *@
-@*                         <div class="accordion-body"> *@
-@*                             <form asp-controller="Inventory" asp-action="VendorReport" method="post"> *@
-@*                                 <div class="row g-3"> *@
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">من تاريخ</label> *@
-@*                                         <input type="date" name="beginingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                     </div> *@
-
-@*                                     <div class="col-md-4"> *@
-@*                                         <label class="form-label">إلى تاريخ</label> *@
-@*                                         <input type="date" name="endingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                     </div> *@
-@*                                 </div> *@
-@*                                 <div class="mt-3"> *@
-@*                                     <button type="submit" class="btn btn-primary">عرض الموردين</button> *@
-@*                                 </div> *@
-@*                             </form> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                 </div> *@
-@*             </div> *@
-
-@*             <!-- Customer Report --> *@
-@*             <div class="accordion-item"> *@
-@*                 <h2 class="accordion-header" id="customerHeading"> *@
-@*                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customerCollapse" aria-expanded="false" aria-controls="customerCollapse"> *@
-@*                         تقرير العملاء *@
-@*                     </button> *@
-@*                 </h2> *@
-@*                 <div id="customerCollapse" class="accordion-collapse collapse" aria-labelledby="customerHeading"> *@
-@*                     <div class="accordion-body"> *@
-@*                         <form asp-controller="Inventory" asp-action="CustomerReport" method="post"> *@
-@*                             <div class="row g-3"> *@
-@*                                 <div class="col-md-4"> *@
-@*                                     <label class="form-label">من تاريخ</label> *@
-@*                                     <input type="date" name="beginingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                 </div> *@
-
-@*                                 <div class="col-md-4"> *@
-@*                                     <label class="form-label">إلى تاريخ</label> *@
-@*                                     <input type="date" name="endingDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                             <div class="mt-3"> *@
-@*                                 <button type="submit" class="btn btn-primary">عرض العملاء</button> *@
-@*                             </div> *@
-@*                         </form> *@
-@*                     </div> *@
-@*                 </div> *@
-@*             </div> *@
-
-@*             <!-- Results Section --> *@
-@*             @if (Model != null) *@
-@*             { *@
-@*                 <div class="card mt-4"> *@
-@*                     <div class="card-header bg-info text-white"> *@
-@*                         <h4>نتيجة التقرير</h4> *@
-@*                     </div> *@
-@*                     <div class="card-body"> *@
-
-@*                         <!-- Purchase Orders Section --> *@
-@*                         @if (Model.purchaseOrderList != null && Model.purchaseOrderList.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>أوامر الشراء</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>رقم الأمر</th> *@
-@*                                                 <th>التاريخ</th> *@
-@*                                                 <th>الكمية</th> *@
-@*                                                 <th>التفاصيل</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var order in Model.purchaseOrderList) *@
-@*                                             { *@
-@*                                                 var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList(); *@
-@*                                                 <tr> *@
-@*                                                     <td></td> *@
-@*                                                     <td>@order.PurchaseDate</td> *@
-@*                                                     <td>@bridgeItems.Sum(q => q.Quantity)</td> *@
-@*                                                     <td> *@
-@*                                                         @if (bridgeItems.Any()) *@
-@*                                                         { *@
-@*                                                             <ul class="mb-0"> *@
-@*                                                                 @foreach (var item in bridgeItems) *@
-@*                                                                 { *@
-@*                                                                     <li> *@
-@*                                                                         الكمية: @item.Quantity - السعر: @item.Price - *@
-@*                                                                     </li> *@
-@*                                                                 } *@
-@*                                                             </ul> *@
-@*                                                         } *@
-@*                                                     </td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-
-@*                         <!-- Requisite Orders Section --> *@
-@*                         @if (Model.requisiteOrderList != null && Model.requisiteOrderList.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>أوامر الصرف</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>رقم الأمر</th> *@
-@*                                                 <th>التاريخ</th> *@
-@*                                                 <th>الكمية</th> *@
-@*                                                 <th>التفاصيل</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var order in Model.requisiteOrderList) *@
-@*                                             { *@
-@*                                                 var bridgeItems = Model.quantityBridgeList.Where(q => q.RequisiteId == order.RequisiteId).ToList(); *@
-@*                                                 <tr> *@
-@*                                                     <td></td> *@
-@*                                                     <td>@order.RequisiteDate</td> *@
-@*                                                     <td>@bridgeItems.Sum(q => q.Quantity)</td> *@
-@*                                                     <td> *@
-@*                                                         @if (bridgeItems.Any()) *@
-@*                                                         { *@
-@*                                                             <ul class="mb-0"> *@
-@*                                                                 @foreach (var item in bridgeItems) *@
-@*                                                                 { *@
-@*                                                                     <li> *@
-@*                                                                         الكمية: @item.Quantity - السعر: @item.Price - *@
-@*                                                                     </li> *@
-@*                                                                 } *@
-@*                                                             </ul> *@
-@*                                                         } *@
-@*                                                     </td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-
-@*                         <!-- Physical Count Orders Section --> *@
-@*                         @if (Model.physicalCountlist != null && Model.physicalCountlist.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>أوامر الجرد</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>رقم الأمر</th> *@
-@*                                                 <th>التاريخ</th> *@
-@*                                                 <th>الكمية</th> *@
-@*                                                 <th>التفاصيل</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var order in Model.physicalCountlist) *@
-@*                                             { *@
-@*                                                 var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList(); *@
-@*                                                 <tr> *@
-@*                                                     <td></td> *@
-@*                                                     <td>@order.PhysicalCountDate</td> *@
-@*                                                     <td>@bridgeItems.Sum(q => q.Quantity)</td> *@
-@*                                                     <td> *@
-@*                                                         @if (bridgeItems.Any()) *@
-@*                                                         { *@
-@*                                                             <ul class="mb-0"> *@
-@*                                                                 @foreach (var item in bridgeItems) *@
-@*                                                                 { *@
-@*                                                                     <li> *@
-@*                                                                         الكمية: @item.Quantity *@
-@*                                                                     </li> *@
-@*                                                                 } *@
-@*                                                             </ul> *@
-@*                                                         } *@
-@*                                                     </td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-
-@*                         <!-- Return Orders Section --> *@
-@*                         @if (Model.returnOrderList != null && Model.returnOrderList.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>أوامر المرتجعات</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>رقم الأمر</th> *@
-@*                                                 <th>التاريخ</th> *@
-@*                                                 <th>داخل أم خارج</th> *@
-@*                                                 <th>الكمية</th> *@
-@*                                                 <th>التفاصيل</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var order in Model.returnOrderList) *@
-@*                                             { *@
-@*                                                 var bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList(); *@
-@*                                                 <tr> *@
-@*                                                     <td></td> *@
-@*                                                     <td>@order.ReturnDate</td> *@
-@*                                                     <td> *@
-@*                                                         @{ *@
-@*                                                             string message = order.ReturnInOut == true ? "مرتجع داخلي" : "مرتجع خارجي"; *@
-@*                                                         } *@
-@*                                                         @message *@
-@*                                                     </td> *@
-@*                                                     <td>@bridgeItems.Sum(q => q.Quantity)</td> *@
-@*                                                     <td> *@
-@*                                                         @if (bridgeItems.Any()) *@
-@*                                                         { *@
-@*                                                             <ul class="mb-0"> *@
-@*                                                                 @foreach (var item in bridgeItems) *@
-@*                                                                 { *@
-@*                                                                     <li> *@
-@*                                                                         الكمية: @item.Quantity - السعر: @item.Price - *@
-@*                                                                     </li> *@
-@*                                                                 } *@
-@*                                                             </ul> *@
-@*                                                         } *@
-@*                                                     </td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-
-@*                         <!-- Vendor Report Section --> *@
-@*                         @if (Model.VendorReport != null && Model.VendorReport.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>تقرير الموردين</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>اسم المورد</th> *@
-@*                                                 <th>عدد المشتريات</th> *@
-@*                                                 <th>الرصيد القديم الإجمالي</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var item in Model.VendorReport) *@
-@*                                             { *@
-@*                                                 <tr> *@
-@*                                                     <td>@item.Vendor.VendorName</td> *@
-@*                                                     <td>@item.PurchaseCount</td> *@
-@*                                                     <td>@item.TotalOldBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-
-@*                         <!-- Customer Report Section --> *@
-@*                         @if (Model.CustomerReport != null && Model.CustomerReport.Any()) *@
-@*                         { *@
-@*                             <div class="mb-4"> *@
-@*                                 <h5>تقرير العملاء</h5> *@
-@*                                 <div class="table-responsive"> *@
-@*                                     <table class="table table-bordered table-striped"> *@
-@*                                         <thead class="table-dark"> *@
-@*                                             <tr> *@
-@*                                                 <th>اسم العميل</th> *@
-@*                                                 <th>عدد الطلبات</th> *@
-@*                                                 <th>الرصيد الإجمالي</th> *@
-@*                                             </tr> *@
-@*                                         </thead> *@
-@*                                         <tbody> *@
-@*                                             @foreach (var item in Model.CustomerReport) *@
-@*                                             { *@
-@*                                                 <tr> *@
-@*                                                     <td>@item.Customer.CustomerName</td> *@
-@*                                                     <td>@item.OrderCount</td> *@
-@*                                                     <td>@item.TotalBalance.ToString("C", new System.Globalization.CultureInfo("ar-EG"))</td> *@
-@*                                                 </tr> *@
-@*                                             } *@
-@*                                         </tbody> *@
-@*                                     </table> *@
-@*                                 </div> *@
-@*                             </div> *@
-@*                         } *@
-@*                     </div> *@
-@*                 </div> *@
-@*             } *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
-
-@* @section Scripts { *@
-@*     <script> *@
-@*         $(document).ready(function () { *@
-@*             $('#inventoryType').change(function () { *@
-@*                 var selectedType = $(this).val(); *@
-@*                 var itemSelect = $('#itemId'); *@
-
-@*                 itemSelect.empty().prop('disabled', !selectedType); *@
-
-@*                 if (!selectedType) { *@
-@*                     itemSelect.append('<option value="">-- اختر نوع العنصر أولا --</option>'); *@
-@*                     return; *@
-@*                 } *@
-
-@*                 itemSelect.append('<option value="">-- اختر --</option>'); *@
-@*                 var items = { *@
-@*                     Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)), *@
-@*                     Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)), *@
-@*                     Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList)) *@
-@*                 }; *@
-
-@*                 items[selectedType].forEach(function(item) { *@
-@*                     var id = item.paperId || item.inkId || item.suppliesId; *@
-@*                     var name = item.name; *@
-@*                     itemSelect.append($('<option></option>').val(id).text(name)); *@
-@*                 }); *@
-@*             }); *@
-@*         }); *@
-@*     </script> *@
-@* } *@
-
+﻿
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
     ViewData["Title"] = "تقارير المخزون";
 }
 
+@{
+    var vendorsList = ViewBag.VendorList as List<Vendor>;
+    List<Employee> employeeList = ViewBag.EmployeeList as List<Employee>;
+    // List<JobOrder> jobOrderList = ViewBag.JobOrderList as List<JobOrder>;
+}
 @model ThothSystemVersion1.ViewModels.InventoryReportViewModel
 
 <head>
@@ -533,10 +132,9 @@
                             <thead>
                                 <tr>
                                     <th>التفاصيل</th>
-                                    <th>الكمية</th>
+                                    <th>قيمة الدفع</th>
                                     <th>التاريخ</th>
-
-                                    <th>رقم الأمر</th>
+                                    <th>المورد الخاص لامر الشراء</th>
 
                                 </tr>
                             </thead>
@@ -544,23 +142,31 @@
                                 @foreach (var order in Model.purchaseOrderList)
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
-                                    <tr>
-                                        <td>
                                             @if (bridgeItems.Any())
                                             {
-                                                <ul>
+                                                
                                                     @foreach (var item in bridgeItems)
                                                     {
-                                                        <li>الكمية: @item.Quantity - السعر: @item.Price -</li>
+                                                        <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
                                                     }
-                                                </ul>
                                             }
-                                        </td>
-                                        <td>@bridgeItems.Sum(q => q.Quantity)</td>
+                                        <td>@bridgeItems.Sum(q => q.TotalBalance)</td>
 
                                         <td>@order.PurchaseDate</td>
 
-                                        <td></td>
+                                        <td>
+                                            @{
+                                                for (int i =0 ; i <= vendorsList.Count;i++)
+                                                {
+
+                                                    if (order.VendorId == vendorsList[i].VendorId)
+                                                    {
+                                                        <span>@vendorsList[i].VendorName</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </td>
 
                                     </tr>
                                 }
@@ -577,10 +183,11 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
+                                    @* <th>الطلبية المخصوصة</th> *@
                                     <th>التفاصيل</th>
-                                    <th>الكمية</th>
+                                    @* <th>الكمية</th> *@
                                     <th>التاريخ</th>
-                                    <th>رقم الأمر</th>
+                                    <th>الموطف القائم بالامر</th>
 
                                 </tr>
                             </thead>
@@ -588,23 +195,32 @@
                                 @foreach (var order in Model.requisiteOrderList)
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.RequisiteId == order.RequisiteId).ToList();
+
+
                                     <tr>
-                                        <td>
                                             @if (bridgeItems.Any())
                                             {
-                                                <ul>
-                                                    @foreach (var item in bridgeItems)
+                                                    @foreach (QuantityBridge item in bridgeItems)
                                                     {
-                                                        <li>الكمية: @item.Quantity - السعر: @item.Price -</li>
+                                                        <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
                                                     }
-                                                </ul>
                                             }
-                                        </td>
-                                        <td>@bridgeItems.Sum(q => q.Quantity)</td>
 
                                         <td>@order.RequisiteDate</td>
 
-                                        <td></td>
+                                        <td>
+                                            @{
+                                                for (int i = 0; i <= employeeList.Count; i++)
+                                                {
+
+                                                    if (order.EmployeeId == employeeList[i].EmployeeId)
+                                                    {
+                                                        <span>@employeeList[i].EmployeeName</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </td>
 
                                     </tr>
                                 }
@@ -621,12 +237,10 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    <th>التفاصيل</th>
-                                    <th>الكمية</th>
-
+                                    <th>الكمية الجديدة</th>
+                                    <th>الكمية القديمة</th>
                                     <th>التاريخ</th>
-
-                                    <th>رقم الأمر</th>
+                                     <th>الموطف القائم بالامر</th>
 
                                 </tr>
                             </thead>
@@ -635,22 +249,43 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
                                     <tr>
-                                        <td>
+                                        
                                             @if (bridgeItems.Any())
                                             {
-                                                <ul>
-                                                    @foreach (var item in bridgeItems)
+                                             
+                                                    @foreach (QuantityBridge item in bridgeItems)
                                                     {
-                                                        <li>الكمية: @item.Quantity</li>
+                                                        <td> @item.Quantity</td>
                                                     }
-                                                </ul>
+                                              
                                             }
-                                        </td>
-                                        <td>@bridgeItems.Sum(q => q.Quantity)</td>
+                                        
+                                            @if (bridgeItems.Any())
+                                            {
+
+                                                @foreach (QuantityBridge item in bridgeItems)
+                                                {
+                                                <td> @item.OldQuantity</td>
+                                                }
+
+                                            }
+                                   
 
                                         <td>@order.PhysicalCountDate</td>
 
-                                        <td></td>
+                                        <td>
+                                            @{
+                                                for (int i = 0; i <= employeeList.Count; i++)
+                                                {
+
+                                                    if (order.EmployeeId == employeeList[i].EmployeeId)
+                                                    {
+                                                        <span>@employeeList[i].EmployeeName</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </td>
 
                                     </tr>
                                 }
@@ -667,11 +302,10 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    <th>التفاصيل</th>
+                                    <th>الكمية</th>
                                     <th>التاريخ</th>
                                     <th>داخل أم خارج</th>
-                                    <th>الكمية</th>
-                                    <th>رقم الأمر</th>
+                                    <th>الموطف القائم بالامر</th>
 
                                 </tr>
                             </thead>
@@ -680,24 +314,31 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList();
                                     <tr>
-                                        <td>
                                             @if (bridgeItems.Any())
                                             {
-                                                <ul>
                                                     @foreach (var item in bridgeItems)
                                                     {
-                                                        <li>الكمية: @item.Quantity - السعر: @item.Price -</li>
+                                                        <td> @item.Quantity</td>
                                                     }
-                                                </ul>
                                             }
-                                        </td>
                                         <td>@order.ReturnDate</td>
 
                                         <td>@(order.ReturnInOut == true ? "مرتجع داخلي" : "مرتجع خارجي")</td>
 
-                                        <td>@bridgeItems.Sum(q => q.Quantity)</td>
 
-                                        <td></td>
+                                        <td>
+                                            @{
+                                                for (int i = 0; i <= employeeList.Count; i++)
+                                                {
+
+                                                    if (order.EmployeeId == employeeList[i].EmployeeId)
+                                                    {
+                                                        <span>@employeeList[i].EmployeeName</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </td>
 
                                     </tr>
                                 }

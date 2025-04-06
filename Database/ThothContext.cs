@@ -231,8 +231,8 @@ namespace ThothSystemVersion1.Database
             modelBuilder.Entity<MiscellaneousExpense>(entity =>
             {
                 // Updated to include auto-increment primary key
-                entity.HasKey(e => e.MiscellaneousExpenseID);
-                entity.Property(e => e.MiscellaneousExpenseID)
+                entity.HasKey(e => e.MiscellaneousExpensesID);
+                entity.Property(e => e.MiscellaneousExpensesID)
                       .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.AdminstrativeExpense)

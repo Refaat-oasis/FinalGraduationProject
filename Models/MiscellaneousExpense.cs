@@ -6,7 +6,7 @@ namespace ThothSystemVersion1.Models;
 
 public partial class MiscellaneousExpense
 {
-    public int? MiscellaneousExpenseID { get; set; }
+    public int? MiscellaneousExpensesID { get; set; }
 
     [Display(Name = "الرقم التعريفي الخاص بالتشغيلة")]
     public int? JobOrderId { get; set; }

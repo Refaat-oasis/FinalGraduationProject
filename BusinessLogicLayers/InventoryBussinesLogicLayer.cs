@@ -303,7 +303,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (foundVendor == null)
                 {
 
-                    throw new ArgumentException("Vendor not found.");
+                    //throw new ArgumentException("Vendor not found.");
+                    return false;
                 }
                 foundVendor.VendorName = newVendor.VendorName;
                 foundVendor.VendorEmail = newVendor.VendorEmail;
@@ -314,9 +315,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new ApplicationException("An error occurred while updating the vendor.", ex);
+                //throw new ApplicationException("An error occurred while updating the vendor.", ex);
+                return false;
             }
         }
 

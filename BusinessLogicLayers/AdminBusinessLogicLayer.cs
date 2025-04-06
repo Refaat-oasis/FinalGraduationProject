@@ -23,7 +23,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return employeesList;
 
         }
-       
+
         public bool AddEmployee(EmployeeDTO employee)
         {
             Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
@@ -41,16 +41,18 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
             Employee addedOne = new Employee();
-            addedOne.EmployeeName= employee.EmployeeName;
-            addedOne.EmployeeUserName= employee.EmployeeUserName;
+            addedOne.EmployeeName = employee.EmployeeName;
+            addedOne.EmployeeUserName = employee.EmployeeUserName;
             addedOne.EmployeePassword = employee.EmployeePassword;
-            addedOne.EmployeeId= employee.EmployeeId;
+            addedOne.EmployeeId = employee.EmployeeId;
+            addedOne.JobRole = employee.JobRole;
             addedOne.Activated = true;
 
             _context.Employees.Add(addedOne);
             _context.SaveChanges();
 
             return true;
+
         }
 
         public Employee GetEmployeeById(string id)

@@ -183,157 +183,156 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
-        [HttpGet]
-        public async Task <IActionResult> paperPurchase() 
-        {
+        //[HttpGet]
+        //public async Task <IActionResult> paperPurchase() 
+        //{
 
             
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {
-                ViewBag.paperList = _businessLogicL.getAllActivePaper();
-                ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-                return View();
+        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
+        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+        //    {
+        //        ViewBag.paperList = _businessLogicL.getAllActivePaper();
+        //        ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+        //        return View();
 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+        //        return RedirectToAction("UnauthorizedAccess", "employee");
+        //    }
 
-        }
+        //}
 
-        [HttpPost]
-        public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
-        {
-            //store the employeeid in the dto
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            purchaseDto.EmployeeId = employeeId;
-            bool result =_businessLogicL.purchaseNewPaper(purchaseDto);
-            //return RedirectToAction("ViewAllPaper", "inventory");
-            string messageSuccess = "تم سراء الورق الجديد";
-            string messageError = "هناك خظأ في شراء الورق الجديد";
-            if (result)
-            {
-                TempData["Success"] = messageSuccess;
-                return View("paperPurchase", purchaseDto);
-            }
-            else {
-                TempData["Error"] = messageError;
-                return View("paperPurchase", purchaseDto);
-            }
+        //[HttpPost]
+        //public IActionResult paperPurchase(purchaseOrderDTO purchaseDto)
+        //{
+        //    //store the employeeid in the dto
+        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
+        //    purchaseDto.EmployeeId = employeeId;
+        //    bool result =_businessLogicL.purchaseNewPaper(purchaseDto);
+        //    //return RedirectToAction("ViewAllPaper", "inventory");
+        //    string messageSuccess = "تم سراء الورق الجديد";
+        //    string messageError = "هناك خظأ في شراء الورق الجديد";
+        //    if (result)
+        //    {
+        //        TempData["Success"] = messageSuccess;
+        //        return View("paperPurchase", purchaseDto);
+        //    }
+        //    else {
+        //        TempData["Error"] = messageError;
+        //        return View("paperPurchase", purchaseDto);
+        //    }
 
-        }
+        //}
 
-        [HttpGet]
-        public IActionResult inkPurchase() {
+        //[HttpGet]
+        //public IActionResult inkPurchase() {
             
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {
-            ViewBag.inkList = _businessLogicL.getAllActiveInk();
-            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
+        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+        //    {
+        //    ViewBag.inkList = _businessLogicL.getAllActiveInk();
+        //    ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
-            return View();
-            }
-            else
-            {
+        //    return View();
+        //    }
+        //    else
+        //    {
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-        }
+        //        return RedirectToAction("UnauthorizedAccess", "employee");
+        //    }
+        //}
 
-        [HttpPost]
-        public IActionResult inkPurchase(purchaseOrderDTO purchaseDto)
-        {
-            //store the employeeid in the dto
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            purchaseDto.EmployeeId = employeeId;
-            bool result =_businessLogicL.purchaseNewInk(purchaseDto);
-            string messageSuccess = "تم سراء الحبر الجديد";
-            string messageError = "هناك خظأ في شراء الحبر الجديد";
+        //[HttpPost]
+        //public IActionResult inkPurchase(purchaseOrderDTO purchaseDto)
+        //{
+        //    //store the employeeid in the dto
+        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
+        //    purchaseDto.EmployeeId = employeeId;
+        //    bool result =_businessLogicL.purchaseNewInk(purchaseDto);
+        //    string messageSuccess = "تم سراء الحبر الجديد";
+        //    string messageError = "هناك خظأ في شراء الحبر الجديد";
 
-            if (result)
-            {
-                TempData["Success"] = messageSuccess;
-                return View("inkPurchase", purchaseDto);
-            }
-            else
-            {
-                TempData["Error"] = messageError;
-                return View("inkPurchase", purchaseDto);
+        //    if (result)
+        //    {
+        //        TempData["Success"] = messageSuccess;
+        //        return View("inkPurchase", purchaseDto);
+        //    }
+        //    else
+        //    {
+        //        TempData["Error"] = messageError;
+        //        return View("inkPurchase", purchaseDto);
 
-            }
-                //return RedirectToAction("ViewAllink", "inventory");
+        //    }
+        //        //return RedirectToAction("ViewAllink", "inventory");
 
 
-        }
+        //}
 
-        [HttpGet]
-        public IActionResult supplypurchase()
-        {
+        //[HttpGet]
+        //public IActionResult supplypurchase()
+        //{
             
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {
-                ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
-            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+        //    int? jobRole = HttpContext.Session.GetInt32("JobRole");
+        //    if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+        //    {
+        //        ViewBag.supplyList = _businessLogicL.getAllActiveSupply();
+        //    ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
-            return View();
+        //    return View();
 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-        }
+        //        return RedirectToAction("UnauthorizedAccess", "employee");
+        //    }
+        //}
 
-        [HttpPost]
-        public IActionResult supplyPurchase(purchaseOrderDTO purchaseDto)
-        {
-            //store the employeeid in the dto
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            purchaseDto.EmployeeId = employeeId;
-            bool result =_businessLogicL.purchaseNewSupply(purchaseDto);
-            //return RedirectToAction("viewallsupply", "inventory");
-            string messageSuccess = "تم سراء المستلزمات الجديدة";
-            string messageError = "هناك خظأ في شراء المستلزمات الجديدة";
-            if (result)
-            {
-                TempData["Success"] = messageSuccess;
-                return View("supplyPurchase", purchaseDto);
-            }
-            else
-            {
-                TempData["Error"] = messageError;
-                return View("supplyPurchase", purchaseDto);
-            }
+        //[HttpPost]
+        //public IActionResult supplyPurchase(purchaseOrderDTO purchaseDto)
+        //{
+        //    //store the employeeid in the dto
+        //    string employeeId = HttpContext.Session.GetString("EmployeeID");
+        //    purchaseDto.EmployeeId = employeeId;
+        //    bool result =_businessLogicL.purchaseNewSupply(purchaseDto);
+        //    //return RedirectToAction("viewallsupply", "inventory");
+        //    string messageSuccess = "تم سراء المستلزمات الجديدة";
+        //    string messageError = "هناك خظأ في شراء المستلزمات الجديدة";
+        //    if (result)
+        //    {
+        //        TempData["Success"] = messageSuccess;
+        //        return View("supplyPurchase", purchaseDto);
+        //    }
+        //    else
+        //    {
+        //        TempData["Error"] = messageError;
+        //        return View("supplyPurchase", purchaseDto);
+        //    }
 
 
-        }
+        //}
 
         [HttpGet]
         public IActionResult inventoryReports()
         {
-            
-            //int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            //if (jobRole == 0 || jobRole == 1 )
-            //{
+
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1)
+            {
                 ViewBag.PaperList = _businessLogicL.GetActivePapers();
-            ViewBag.InkList = _businessLogicL.GetActiveInks();
-            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                ViewBag.InkList = _businessLogicL.GetActiveInks();
+                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
 
-            return View();
+             return View();
 
-            //}
-            //else
-            //{
+            }else
+            {
 
-            //    return RedirectToAction("UnauthorizedAccess", "employee");
-            //}
-        }
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+}
         
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
@@ -383,67 +382,67 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("purchaseall");
         }
 
-        [HttpGet]
-        public IActionResult returns()
-        {
-            // Retrieve the ReturnOrderDTO from TempData if it exists
-            ReturnOrderDTO returndto = null;
+        //[HttpGet]
+        //public IActionResult returns()
+        //{
+        //    // Retrieve the ReturnOrderDTO from TempData if it exists
+        //    ReturnOrderDTO returndto = null;
 
-            if (TempData["ReturnOrderDTO"] != null)
-            {
-                // Deserialize the data stored in TempData back to the object
-                returndto = JsonConvert.DeserializeObject<ReturnOrderDTO>(TempData["ReturnOrderDTO"].ToString());
-            }
+        //    if (TempData["ReturnOrderDTO"] != null)
+        //    {
+        //        // Deserialize the data stored in TempData back to the object
+        //        returndto = JsonConvert.DeserializeObject<ReturnOrderDTO>(TempData["ReturnOrderDTO"].ToString());
+        //    }
 
-            // Check if the requisitedOrPurchasedList is null, initialize it as an empty list
-            if (returndto == null)
-            {
-                returndto = new ReturnOrderDTO();
-            }
+        //    // Check if the requisitedOrPurchasedList is null, initialize it as an empty list
+        //    if (returndto == null)
+        //    {
+        //        returndto = new ReturnOrderDTO();
+        //    }
 
-            // Populate the ViewBag with necessary data
-            ViewBag.PaperList = _businessLogicL.GetActivePapers();
-            ViewBag.InkList = _businessLogicL.GetActiveInks();
-            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
-            ViewBag.purchaseList = _businessLogicL.getLast15PurchaseOrder();
-            ViewBag.jobOrderList = _businessLogicL.getLast15JObOrder();
-            ViewBag.requisiteList = _businessLogicL.getLast15RequisiteORder();
+        //    // Populate the ViewBag with necessary data
+        //    ViewBag.PaperList = _businessLogicL.GetActivePapers();
+        //    ViewBag.InkList = _businessLogicL.GetActiveInks();
+        //    ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+        //    ViewBag.purchaseList = _businessLogicL.getLast15PurchaseOrder();
+        //    ViewBag.jobOrderList = _businessLogicL.getLast15JObOrder();
+        //    ViewBag.requisiteList = _businessLogicL.getLast15RequisiteORder();
 
-            return View(returndto);
-        }
+        //    return View(returndto);
+        //}
 
 
-        [HttpPost]
-        public IActionResult processSelection(ReturnOrderDTO returnDto)
-        {
-            // internal
-            if (returnDto.ReturnInOut == true)
-            {
-                returnDto.purchaseID = null;
-            }
-            // external
-            else
-            {
-                returnDto.JobOrderId = null;
-            }
+        //[HttpPost]
+        //public IActionResult processSelection(ReturnOrderDTO returnDto)
+        //{
+        //    // internal
+        //    if (returnDto.ReturnInOut == true)
+        //    {
+        //        returnDto.purchaseID = null;
+        //    }
+        //    // external
+        //    else
+        //    {
+        //        returnDto.JobOrderId = null;
+        //    }
 
-            // Process the selection logic
-            returnDto = _businessLogicL.processSelection(returnDto);
+        //    // Process the selection logic
+        //    returnDto = _businessLogicL.processSelection(returnDto);
 
-            // Store the processed DTO in TempData so it persists during the redirection
-            TempData["ReturnOrderDTO"] = JsonConvert.SerializeObject(returnDto); // Serialize to store as a string
+        //    // Store the processed DTO in TempData so it persists during the redirection
+        //    TempData["ReturnOrderDTO"] = JsonConvert.SerializeObject(returnDto); // Serialize to store as a string
 
-            // Redirect to the 'returns' action
-            return RedirectToAction("returns");
-        }
+        //    // Redirect to the 'returns' action
+        //    return RedirectToAction("returns");
+        //}
 
-        [HttpPost]
-        public IActionResult returns(ReturnOrderDTO returnDto)
-        {
+        //[HttpPost]
+        //public IActionResult returns(ReturnOrderDTO returnDto)
+        //{
 
-            return RedirectToAction("returns");
+        //    return RedirectToAction("returns");
 
-        }
+        //}
 
 
 
@@ -818,18 +817,15 @@ try
         [HttpPost]
         public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
         {
+            string employeeID = HttpContext.Session.GetString("EmployeeID");
+            returnDTO.EmployeeId = employeeID;
+
             try
             {
                 if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
                 {
                     TempData["ErrorMessage"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
                     return RedirectToAction("ReturnOrder");
-                }
-
-
-                if (string.IsNullOrEmpty(returnDTO.EmployeeId))
-                {
-                    returnDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
                 }
 
 

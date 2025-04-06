@@ -5547,7 +5547,6 @@ C:\Users\ECC\OneDrive\Desktop\last version\FinalGraduationProject\obj\Debug\net9
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\i4t4n4wmqv-1cupxd3fsp.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ywkd8ikajd-ughpko3jwm.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\lbg0v9001x-ughpko3jwm.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\j93923l5gv-qliq7sclkp.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-lkdcvtw8qt.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-6ungs7s1h3.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-6s4dbp22c8.gz
@@ -6721,3 +6720,5 @@ C:\Users\Compu Market\Desktop\GP19\FinalGraduationProject\obj\Debug\net9.0\stati
 C:\Users\Compu Market\Desktop\GP19\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 C:\Users\Compu Market\Desktop\GP19\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\Compu Market\Desktop\GP19\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\8v0nayaic8-ke93cz75mv.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-5sfgumsm97.gz

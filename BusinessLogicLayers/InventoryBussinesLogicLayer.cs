@@ -1097,30 +1097,29 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
-        public ReturnOrderDTO processSelection(ReturnOrderDTO returnDto)
-        {
-            if (returnDto.purchaseID != null)
-            {
-                List<QuantityBridge> purchasedItems = _context.QuantityBridges
-                    //.Include(q => q.PurchaseId)
-                    .Where(q => q.PurchaseId == returnDto.purchaseID)
-                    .ToList();
-                returnDto.requisitedOrPurchasedList = purchasedItems;
-            }
-            else if (returnDto.JobOrderId != null)
-            {
+        //public ReturnOrderDTO processSelection(ReturnOrderDTO returnDto)
+        //{
+        //    if (returnDto.purchaseID != null)
+        //    {
+        //        List<QuantityBridge> purchasedItems = _context.QuantityBridges
+        //            //.Include(q => q.PurchaseId)
+        //            .Where(q => q.PurchaseId == returnDto.purchaseID)
+        //            .ToList();
+        //        returnDto.requisitedOrPurchasedList = purchasedItems;
+        //    }
+        //    else if (returnDto.JobOrderId != null)
+        //    {
 
-                List<QuantityBridge> requisitedItems = _context.QuantityBridges
-                    //.Include(q => q.RequisiteId)
-                    .Where(q => q.RequisiteId == returnDto.JobOrderId)
-                    .ToList();
-                returnDto.requisitedOrPurchasedList = requisitedItems;
-            }
-            return returnDto;
+        //        List<QuantityBridge> requisitedItems = _context.QuantityBridges
+        //            //.Include(q => q.RequisiteId)
+        //            .Where(q => q.RequisiteId == returnDto.JobOrderId)
+        //            .ToList();
+        //        returnDto.requisitedOrPurchasedList = requisitedItems;
+        //    }
+        //    return returnDto;
 
+        //}
 
-
-        }
         public List<JobOrder> GetRecentJobOrdersWithCustomers()
         {
 
@@ -1279,7 +1278,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     quantityBridgeList[i].QuantityBridgeID = null;
 
 
-                    if (returnOrder.ReturnInOut && returnOrder.JobOrderId != null)
+                    if (returnOrder.ReturnInOut == true  && returnOrder.JobOrderId != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {
@@ -1340,7 +1339,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
 
 
-                    else if (!returnOrder.ReturnInOut && returnOrder.purchaseID != null)
+                    else if (!returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {

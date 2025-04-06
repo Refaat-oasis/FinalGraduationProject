@@ -111,33 +111,36 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     <script>
         $(document).ready(function () {
             var items = [];
             var editIndex = -1;
 
+            // Data sources loaded from the server
             const dataSources = {
                 Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
                 Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
                 Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
             };
 
+            // When the item type is changed, populate the item dropdown accordingly
             $('#itemType').change(function () {
                 var selectedType = $(this).val();
                 var $itemSelect = $('#itemId');
                 $itemSelect.empty().prop('disabled', !selectedType);
-
                 $itemSelect.append('<option value="">-- اختر --</option>');
                 if (!selectedType) return;
 
+                // Loop through the matching list and add each option with the proper id.
                 dataSources[selectedType]?.forEach(item => {
                     const id = item.paperId || item.inkId || item.suppliesId;
-                    $itemSelect.append(`<option value="${id}">${item.name}</option>`);
+                    const name = item.name;
+                    $itemSelect.append(`<option value="${id}">${name}</option>`);
                 });
             });
 
+            // Render the items table and hidden inputs for submission
             function renderItems() {
                 var $tableBody = $('#itemsTableBody');
                 var $hiddenContainer = $('#hiddenItemsContainer');
@@ -145,6 +148,7 @@
                 $hiddenContainer.empty();
 
                 items.forEach((item, index) => {
+                    // Display the item details in the table
                     $tableBody.append(`
                         <tr data-index="${index}">
                             <td>${item.itemName}</td>
@@ -157,29 +161,31 @@
                         </tr>
                     `);
 
-                    let hidden = "";
-                    if (item.itemType === "Paper")
-                        hidden += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
-                    else if (item.itemType === "Ink")
-                        hidden += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
-                    else if (item.itemType === "Supply")
-                        hidden += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+                    // Create hidden inputs for the type-specific id, quantity, and price.
+                    let hiddenInputs = "";
+                    if (item.itemType === "Paper") {
+                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                    } else if (item.itemType === "Ink") {
+                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                    } else if (item.itemType === "Supply") {
+                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+                    }
+                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
 
-                    hidden += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
-                    hidden += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
-
-                    $hiddenContainer.append(hidden);
+                    $hiddenContainer.append(hiddenInputs);
                 });
             }
 
+            // Add or update an item in the list
             $('#addItem').click(function () {
                 var itemType = $('#itemType').val();
                 var itemId = $('#itemId').val();
                 var itemName = $('#itemId option:selected').text();
-                var quantity = $('#itemQuantity').val();
-                var price = $('#itemPrice').val();
+                var quantity = parseInt($('#itemQuantity').val());
+                var price = parseFloat($('#itemPrice').val());
 
-                if (!itemType || !itemId || !quantity || quantity < 0 || !price || price < 0) {
+                if (!itemType || !itemId || isNaN(quantity) || quantity < 0 || isNaN(price) || price < 0) {
                     alert("يرجى تعبئة جميع الحقول بشكل صحيح");
                     return;
                 }
@@ -194,30 +200,36 @@
                     $('#addItem').text('أضف العنصر');
                 }
 
+                // Reset form fields after adding/updating
                 $('#itemType').val('');
                 $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
                 $('#itemQuantity').val('');
                 $('#itemPrice').val('');
-
                 renderItems();
             });
 
+            // Edit an existing item
             $('#itemsTableBody').on('click', '.editItem', function () {
                 editIndex = $(this).closest('tr').data('index');
                 var item = items[editIndex];
-
                 $('#itemType').val(item.itemType).trigger('change');
-                setTimeout(() => $('#itemId').val(item.itemId), 100);
+                // Wait a moment for the dropdown to be populated before setting its value.
+                setTimeout(() => {
+                    $('#itemId').val(item.itemId);
+                }, 100);
                 $('#itemQuantity').val(item.quantity);
                 $('#itemPrice').val(item.price);
                 $('#addItem').text('تحديث العنصر');
             });
 
+            // Delete an item from the list
             $('#itemsTableBody').on('click', '.deleteItem', function () {
-                items.splice($(this).closest('tr').data('index'), 1);
+                var index = $(this).closest('tr').data('index');
+                items.splice(index, 1);
                 renderItems();
             });
 
+            // Prevent form submission if no items have been added
             $('form').submit(function (e) {
                 if ($('#itemsTableBody tr').length === 0) {
                     alert("يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.");
@@ -225,12 +237,12 @@
                 }
             });
 
-            // ✅ Auto redirect if TempData["Success"]
+            // Auto-redirect if TempData["Success"] is set (optional)
         @if (TempData["Success"] != null)
         {
             <text>
                         setTimeout(function () {
-                                window.location.href = '@Url.Action("adminHome", "AdminHome")';
+                            window.location.href = '@Url.Action("adminHome", "AdminHome")';
                         }, 5000);
             </text>
         }

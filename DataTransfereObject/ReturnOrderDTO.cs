@@ -20,8 +20,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الرقم التعريفي للتشغيلة ")]
         public int? JobOrderId { get; set; }
 
-        public List<QuantityBridge> requisitedOrPurchasedList { get; set; }
-
         public List<QuantityBridge>? BridgeList { get; set; }
 
 

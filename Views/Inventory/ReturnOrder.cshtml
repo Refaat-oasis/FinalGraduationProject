@@ -1,0 +1,722 @@
+﻿@model ThothSystemVersion1.DataTransfereObject.ReturnOrderDTO
+
+<style>
+    /* Main Container Styles */
+    .container.mt-4 {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Card Styles */
+    .card.shadow {
+        border-radius: 8px;
+        border: none;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header.bg-primary {
+        padding: 15px 20px;
+        background-color: #2c3e50 !important;
+    }
+
+    .card-header h4 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 25px;
+        background-color: #f8f9fa;
+    }
+
+    /* Alert Styles */
+    .alert {
+        padding: 12px 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        color: #856404;
+    }
+
+    .bx {
+        font-size: 1.2rem;
+        margin-left: 8px;
+    }
+
+    /* Form Container */
+    .form-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Back Arrow */
+    .arrow .back {
+        color: #2c3e50;
+        font-size: 28px;
+        transition: all 0.3s;
+    }
+
+        .arrow .back:hover {
+            color: #1a252f;
+            transform: translateX(-5px);
+        }
+
+    /* Form Elements */
+    .form-label.fw-bold {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #2c3e50;
+    }
+
+    .form-select, .form-control {
+        border-radius: 5px;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+        transition: all 0.3s;
+    }
+
+        .form-select:focus, .form-control:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+    /* Checkbox Styles */
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-top: 0.3em;
+    }
+
+    .form-check-label {
+        margin-right: 8px;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    /* Manual Addition Section */
+    #manualAdditionSection.card {
+        border: 1px solid #3498db;
+    }
+
+    #manualAdditionSection .card-header {
+        background-color: #f8f9fa !important;
+        border-bottom: 1px solid #dee2e6;
+        padding: 12px 15px;
+    }
+
+        #manualAdditionSection .card-header h5 {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+    /* Items Table Section */
+    .card.border-info {
+        border: 1px solid #17a2b8;
+    }
+
+    .card-header.bg-info {
+        background-color: #17a2b8 !important;
+        padding: 12px 15px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table.table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table thead.table-info {
+        background-color: #d1ecf1;
+    }
+
+    .table th {
+        font-weight: 600;
+        color: #0c5460;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+        padding: 12px 8px;
+    }
+
+    /* Button Styles */
+    .btn {
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: all 0.3s;
+        margin: 2px;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+        border-color: #3498db;
+    }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        color: #212529;
+    }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+
+    /* Quantity Info */
+    .text-muted {
+        font-size: 0.85rem;
+        color: #6c757d !important;
+    }
+
+    {
+        .card-body
+
+    {
+        padding: 15px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .row {
+        margin-bottom: 15px;
+    }
+
+    .col-md-6, .col-md-4, .col-md-3 {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    }
+
+    /* Textarea Styles */
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    /* Hidden Container */
+    #hiddenItemsContainer {
+        display: none;
+    }
+
+    /* Validation Messages */
+    .text-danger {
+        font-size: 0.875rem;
+        color: #dc3545;
+        margin-top: 5px;
+    }
+
+    /* Submit Button Container */
+    .d-grid {
+        margin-top: 25px;
+    }
+</style>
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>مرتجعات</h4>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    <i class="bx bx-check-circle"></i> @TempData["SuccessMessage"]
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="bx bx-error-circle"></i> @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <form asp-action="ReturnOrder" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
+                <div class="arrow mb-3">
+                    <a asp-controller="Admin" asp-action="AdminHome" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: #0d6efd;"></i>
+                    </a>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="EmployeeId" class="form-label fw-bold">الموظف المسؤول</label>
+                        <select asp-for="EmployeeId" class="form-select" required>
+                            <option value="">-- اختر الموظف --</option>
+                            @foreach (var emp in ViewBag.EmployeeList)
+                            {
+                                <option value="@emp.EmployeeId">@emp.EmployeeName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">نوع الإرجاع</label>
+                        <select id="returnType" class="form-select" required>
+                            <option value="">-- اختر نوع الإرجاع --</option>
+                            <option value="job">إرجاع من أمر تشغيل (إضافة للمخزون)</option>
+                            <option value="purchase">إرجاع إلى المورد (خصم من المخزون)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
+                            <label class="form-check-label" for="returnInOut">
+                                إضافة للمخزون
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3" id="jobOrderSection" style="display:none;">
+                    <div class="col-md-6">
+                        <label asp-for="JobOrderId" class="form-label fw-bold">اختر أمر التشغيل</label>
+                        <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
+                            <option value="">-- اختر أمر التشغيل --</option>
+                            @if (ViewBag.JobOrderList != null)
+                            {
+                                foreach (var job in ViewBag.JobOrderList)
+                                {
+                                    <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="JobOrderId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3" id="purchaseOrderSection" style="display:none;">
+                    <div class="col-md-6">
+                        <label asp-for="purchaseID" class="form-label fw-bold">اختر أمر الشراء</label>
+                        <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
+                            <option value="">-- اختر أمر الشراء --</option>
+                            @if (ViewBag.PurchaseOrderList != null)
+                            {
+                                foreach (var purchase in ViewBag.PurchaseOrderList)
+                                {
+                                    <option value="@purchase.PurchaseId">@purchase.PurchaseId - @(purchase.Vendor?.VendorName ?? "بدون مورد")</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="purchaseID" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label asp-for="ReturnsNotes" class="form-label fw-bold">ملاحظات الإرجاع</label>
+                        <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <!-- Manual item addition section -->
+                <div class="card mt-4 border-primary shadow-sm" id="manualAdditionSection" style="display:none;">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">إضافة الأصناف المرتجعة يدوياً</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">نوع الصنف</label>
+                                <select id="itemType" class="form-select">
+                                    <option value="">-- اختر النوع --</option>
+                                    <option value="Paper">ورق</option>
+                                    <option value="Ink">حبر</option>
+                                    <option value="Supply">مستلزمات</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">الصنف</label>
+                                <select id="itemId" class="form-select" disabled>
+                                    <option value="">-- اختر الصنف --</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">كمية الإرجاع</label>
+                                <input type="number" id="itemQuantity" class="form-control" min="1" />
+                                <small id="originalQuantityInfo" class="text-muted" style="display:none;">
+                                    الكمية الأصلية: <span id="originalQuantityValue">0</span>
+                                </small>
+                            </div>
+
+                            <div class="col-md-1 d-grid">
+                                <button type="button" id="addItem" class="btn btn-primary mt-4">إضافة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected items for return -->
+                <div class="card mt-4 border-info shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="table-info">
+                                    <tr>
+                                        <th>نوع الصنف</th>
+                                        <th>الصنف</th>
+                                        <th>الكمية الأصلية</th>
+                                        <th>كمية الإرجاع</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
+                            لم يتم تحديد أي أصناف للإرجاع بعد
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hiddenItemsContainer"></div>
+
+                <div class="d-grid mt-3">
+                    <button type="submit" id="submitBtn" class="btn btn-success btn-lg">حفظ أمر الإرجاع</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Toggle between job order and purchase order sections
+            $('#returnType').change(function () {
+                var selectedType = $(this).val();
+                $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
+                $('#jobOrderSelect, #purchaseOrderSelect').val('');
+
+                if (selectedType === 'job') {
+                    $('#jobOrderSection').show();
+                    $('#returnInOut').prop('checked', true);
+                } else if (selectedType === 'purchase') {
+                    $('#purchaseOrderSection').show();
+                    $('#returnInOut').prop('checked', false);
+                }
+            });
+
+            let items = [];
+            let editIndex = -1;
+            let orderItems = []; // سيحتوي على أصناف الطلب المحدد
+
+            // عند اختيار أمر تشغيل
+            $('#jobOrderSelect').change(function() {
+                const jobOrderId = $(this).val();
+                if (!jobOrderId) {
+                    $('#manualAdditionSection').hide();
+                    orderItems = [];
+                    return;
+                }
+
+                // جلب أصناف أمر التشغيل
+                $.ajax({
+                    url: '/Inventory/GetJobOrderItems',
+                    type: 'GET',
+                    data: { jobOrderId: jobOrderId },
+                    success: function(data) {
+                        orderItems = data;
+                        $('#manualAdditionSection').show();
+                        populateItemTypes();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('حدث خطأ أثناء جلب بيانات أمر التشغيل: ' + error);
+                    }
+                });
+            });
+
+            // عند اختيار أمر شراء
+            $('#purchaseOrderSelect').change(function() {
+                const purchaseId = $(this).val();
+                if (!purchaseId) {
+                    $('#manualAdditionSection').hide();
+                    orderItems = [];
+                    return;
+                }
+
+                // جلب أصناف أمر الشراء
+                $.ajax({
+                    url: '/Inventory/GetPurchaseOrderItems',
+                    type: 'GET',
+                    data: { purchaseId: purchaseId },
+                    success: function(data) {
+                        orderItems = data;
+                        $('#manualAdditionSection').show();
+                        populateItemTypes();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('حدث خطأ أثناء جلب بيانات أمر الشراء: ' + error);
+                    }
+                });
+            });
+
+            // تعبئة أنواع الأصناف المتاحة في الطلب المحدد
+            function populateItemTypes() {
+                const $itemType = $('#itemType');
+                $itemType.empty().append('<option value="">-- اختر النوع --</option>');
+
+                // جمع الأنواع الفريدة من الأصناف
+                const uniqueTypes = [...new Set(orderItems.map(item => item.itemType))];
+
+                uniqueTypes.forEach(type => {
+                    $itemType.append(`<option value="${type}">${type}</option>`);
+                });
+            }
+
+            // عند تغيير نوع الصنف
+            $('#itemType').change(function () {
+                let selectedType = $(this).val();
+                let $itemSelect = $('#itemId');
+                $itemSelect.empty().prop('disabled', !selectedType);
+                $itemSelect.append('<option value="">-- اختر الصنف --</option>');
+
+                if (!selectedType) return;
+
+                // تصفية الأصناف حسب النوع المختار
+                const filteredItems = orderItems.filter(item => item.itemType === selectedType);
+
+                filteredItems.forEach(item => {
+                    const id = item.paperId || item.inkId || item.suppliesId || item.itemId;
+                    const name = item.name;
+                    const quantity = item.quantity || 0;
+                    $itemSelect.append(`<option value="${id}" data-quantity="${quantity}">${name} (الكمية: ${quantity})</option>`);
+                });
+            });
+
+            // عند اختيار صنف معين
+            $('#itemId').change(function () {
+                const selectedOption = $(this).find('option:selected');
+                const originalQuantity = selectedOption.data('quantity') || 0;
+                $('#originalQuantityValue').text(originalQuantity);
+                $('#originalQuantityInfo').show();
+                $('#itemQuantity').attr('max', originalQuantity).val('');
+            });
+
+            // إضافة صنف إلى القائمة
+            $('#addItem').click(function () {
+                let itemType = $('#itemType').val();
+                let itemId = $('#itemId').val();
+                let itemName = $('#itemId option:selected').text().split(' (الكمية:')[0];
+                let originalQuantity = parseInt($('#originalQuantityValue').text());
+                let quantity = parseInt($('#itemQuantity').val());
+
+                if (!itemType || !itemId || !quantity || quantity <= 0) {
+                    alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+                    return;
+                }
+
+                if (quantity > originalQuantity) {
+                    alert(`كمية الإرجاع (${quantity}) أكبر من الكمية الأصلية (${originalQuantity})`);
+                    return;
+                }
+
+                let newItem = {
+                    itemType,
+                    itemId,
+                    itemName,
+                    originalQuantity,
+                    quantity
+                };
+
+                if (editIndex === -1) {
+                    // التحقق من عدم وجود الصنف مسبقاً في القائمة
+                    const existingItemIndex = items.findIndex(item =>
+                        item.itemType === itemType && item.itemId == itemId);
+
+                    if (existingItemIndex !== -1) {
+                        items[existingItemIndex].quantity += quantity;
+                    } else {
+                        items.push(newItem);
+                    }
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                }
+
+                renderItems();
+                resetItemForm();
+            });
+
+            // عرض الأصناف المحددة
+            function renderItems() {
+                let $tableBody = $('#itemsTableBody');
+                let $hiddenContainer = $('#hiddenItemsContainer');
+                $tableBody.empty();
+                $hiddenContainer.empty();
+
+                items.forEach((item, index) => {
+                    $tableBody.append(`
+                        <tr data-index="${index}">
+                            <td>${item.itemType}</td>
+                            <td>${item.itemName}</td>
+                            <td>${item.originalQuantity}</td>
+                            <td>${item.quantity}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm editItem">تعديل</button>
+                                <button type="button" class="btn btn-danger btn-sm deleteItem">حذف</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    // إضافة حقول مخفية للإرسال
+                    let hidden = "";
+                    if (item.itemType === "Paper") {
+                        hidden += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                    } else if (item.itemType === "Ink") {
+                        hidden += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                    } else if (item.itemType === "Supply") {
+                        hidden += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+                    }
+
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+                    hidden += `<input type="hidden" name="BridgeList[${index}].Price" value="0" />`;
+
+                    $hiddenContainer.append(hidden);
+                });
+
+                updateNoSelectedItemsMessage();
+            }
+
+            // تحديث رسالة عدم وجود أصناف
+            function updateNoSelectedItemsMessage() {
+                if (items.length === 0) {
+                    $('#noSelectedItemsMessage').show();
+                } else {
+                    $('#noSelectedItemsMessage').hide();
+                }
+            }
+
+            // إعادة تعيين حقول إضافة الصنف
+            function resetItemForm() {
+                $('#itemType').val('');
+                $('#itemId').empty().append('<option value="">-- اختر الصنف --</option>').prop('disabled', true);
+                $('#itemQuantity').val('');
+                $('#originalQuantityInfo').hide();
+            }
+
+            // حذف صنف من القائمة
+            $('#itemsTableBody').on('click', '.deleteItem', function () {
+                const index = $(this).closest('tr').data('index');
+                items.splice(index, 1);
+                renderItems();
+            });
+
+            // تعديل صنف في القائمة
+            $('#itemsTableBody').on('click', '.editItem', function () {
+                const index = $(this).closest('tr').data('index');
+                const item = items[index];
+
+                $('#itemType').val(item.itemType).trigger('change');
+
+                // انتظار تعبئة القائمة
+                setTimeout(() => {
+                    $('#itemId').val(item.itemId);
+                    $('#originalQuantityValue').text(item.originalQuantity);
+                    $('#originalQuantityInfo').show();
+                    $('#itemQuantity').val(item.quantity);
+                    editIndex = index;
+                }, 300);
+            });
+
+            // التحقق قبل الإرسال
+            $('#returnOrderForm').submit(function(e) {
+                if (items.length === 0) {
+                    e.preventDefault();
+                    alert("يجب إضافة صنف واحد على الأقل");
+                    return false;
+                }
+
+                const returnType = $('#returnType').val();
+                if (returnType === 'job' && !$('#jobOrderSelect').val()) {
+                    e.preventDefault();
+                    alert("يرجى اختيار أمر التشغيل");
+                    return false;
+                }
+
+                if (returnType === 'purchase' && !$('#purchaseOrderSelect').val()) {
+                    e.preventDefault();
+                    alert("يرجى اختيار أمر الشراء");
+                    return false;
+                }
+
+                return true;
+            });
+        });
+    </script>
+}

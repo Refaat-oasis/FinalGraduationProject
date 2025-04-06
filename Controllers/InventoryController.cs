@@ -438,7 +438,8 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult returns(ReturnOrderDTO returnDto) {
+        public IActionResult returns(ReturnOrderDTO returnDto)
+        {
 
             return RedirectToAction("returns");
 
@@ -760,6 +761,95 @@ try
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message); // Internal server error
+            }
+        }
+        //return
+        [HttpGet]
+        public IActionResult GetJobOrderItems(int jobOrderId)
+        {
+            try
+            {
+
+                var items = _businessLogicL.GetJobOrderItems(jobOrderId);
+                return Json(items);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetPurchaseOrderItems(int purchaseId)
+        {
+            try
+            {
+                var items = _businessLogicL.GetPurchaseOrderItems(purchaseId);
+                return Json(items);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ReturnOrder()
+        {
+            try
+            {
+
+                ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
+                ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+                ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+                ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+                ViewBag.InkList = _businessLogicL.getAllActiveInk();
+                ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+
+                return View(new ReturnOrderDTO());
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
+                return RedirectToAction("AdminHome", "Admin");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
+        {
+            try
+            {
+                if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
+                {
+                    TempData["ErrorMessage"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
+                    return RedirectToAction("ReturnOrder");
+                }
+
+
+                if (string.IsNullOrEmpty(returnDTO.EmployeeId))
+                {
+                    returnDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                }
+
+
+                var result = _businessLogicL.ReturnOrder(returnDTO);
+
+                if (result.success)
+                {
+                    TempData["SuccessMessage"] = result.message;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = result.message;
+                }
+
+                return RedirectToAction("ReturnOrder");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
+                return RedirectToAction("ReturnOrder");
             }
         }
 

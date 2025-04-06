@@ -188,7 +188,7 @@
     <div class="tableContainer">
         <table id="jobOrderTable">
             <tr>
-                <th>الإجراءات</th>
+                <th colspan="2">الإجراءات</th>
                 <th>العميل</th>
                 <th>حالة الطلب</th>
                 <th>تاريخ الانتهاء</th>
@@ -200,6 +200,12 @@
                     <tr>
                         <td>
                             <button class="editBtn" id="edijob" onclick="editJobOrder('@job.JobOrderId')">تعديل</button>
+                        </td>
+
+                        <td>
+                             @* <button class="editBtn" id="edijob" asp-action="showJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId">اظهار التفاصيل</button> *@
+                            <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
+
                         </td>
                         <td>@job.CustomerName</td>
                         <td>@job.OrderProgress</td>

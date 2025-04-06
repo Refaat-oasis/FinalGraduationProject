@@ -20,7 +20,7 @@ namespace ThothSystemVersion1.ViewModels
 
         public List<(Vendor Vendor, int PurchaseCount, decimal TotalOldBalance)> VendorReport { get; set; }
 
-        public List<(Customer Customer, int OrderCount, decimal TotalBalance)> CustomerReport { get; set; } = new();
+        public List<(Customer Customer, int OrderCount, decimal TotalBalance , decimal unearnedBalance , decimal RemainingBalance)> CustomerReport { get; set; } = new();
 
 
 

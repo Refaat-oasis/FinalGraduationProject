@@ -1071,7 +1071,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                     {
                                         CustomerId = g.Key,
                                         OrderCount = g.Count(),
-                                        TotalBalance = g.Sum(x => x.EarnedRevenue ?? 0)
+                                        TotalBalance = g.Sum(x => x.EarnedRevenue ?? 0),
+                                        unearnedBalance = g.Sum(x => x.UnearnedRevenue ?? 0),
+                                        RemainingBalance = g.Sum(x => x.RemainingAmount ?? 0),
                                     }).ToList();
 
             // Join the aggregated data with Customers to get full customer details
@@ -1082,14 +1084,16 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                    {
                                        Customer = c,
                                        OrderCount = cr.OrderCount,
-                                       TotalBalance = cr.TotalBalance
+                                       TotalBalance = cr.TotalBalance,
+                                       unearnedBalance = cr.unearnedBalance,
+                                       RemainingBalance = cr.RemainingBalance
                                    }).ToList();
 
             // Prepare and return the view model
             InventoryReportViewModel rankingModel = new InventoryReportViewModel
             {
                 CustomerReport = rankedCustomers
-                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance))
+                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance , x.unearnedBalance,x.RemainingBalance))
                     .ToList()
             };
 

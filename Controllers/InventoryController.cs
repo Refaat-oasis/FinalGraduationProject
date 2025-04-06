@@ -318,26 +318,27 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult inventoryReports()
         {
             
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 )
-            {
+            //int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            //if (jobRole == 0 || jobRole == 1 )
+            //{
                 ViewBag.PaperList = _businessLogicL.GetActivePapers();
             ViewBag.InkList = _businessLogicL.GetActiveInks();
             ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
 
             return View();
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+            //    return RedirectToAction("UnauthorizedAccess", "employee");
+            //}
         }
         
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
+
             InventoryReportViewModel invViewModel= _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
            
             return View(invViewModel);

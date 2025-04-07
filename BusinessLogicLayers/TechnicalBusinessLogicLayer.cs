@@ -277,7 +277,89 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             
         }
+        public List<Employee> GetAvailableEmployees()
+        {
 
+            List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
+            return employeelist;
+        }
+        public List<Customer> GetAvailableCustomerss()
+        {
+
+            List<Customer> customerList = _context.Customers.Where(c => c.Activated).ToList();
+            return customerList;
+        }
+
+        public (bool success, string message) AddJobOrder(JobOrderDTO jobOrder)
+        {
+
+            try
+            {
+
+                if (jobOrder.StartDate > jobOrder.EndDate)
+                    return (false, "تاريخ البداية يجب أن يكون قبل تاريخ النهاية");
+
+                JobOrder addNewOne = new JobOrder();
+                addNewOne.RemainingAmount = jobOrder.RemainingAmount;
+                addNewOne.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                addNewOne.EarnedRevenue = jobOrder.EarnedRevenue;
+                addNewOne.JobOrdernotes = jobOrder.JobOrdernotes;
+                addNewOne.OrderProgress = jobOrder.OrderProgress;
+                addNewOne.CustomerId = jobOrder.CustomerId.Value;
+                addNewOne.StartDate = jobOrder.StartDate.Value;
+                addNewOne.EndDate = jobOrder.EndDate;
+                addNewOne.EmployeeId = jobOrder.EmployeeId;
+
+                _context.JobOrders.Add(addNewOne);
+                _context.SaveChanges();
+                return (true, "تمت انشاء امر العمل بنجاح");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
+        }
+
+        public (bool success, string message) EditJobOrder(int jobOrderID, JobOrderDTO jobOrder)
+        {
+
+            try
+            {
+                JobOrder existingJobOrder = _context.JobOrders
+            .Include(j => j.Customer)
+            .Include(j => j.Employee)
+            .FirstOrDefault(j => j.JobOrderId == jobOrderID);
+                if (existingJobOrder == null)
+                {
+                    return (false, "امر العمل غير موجود");
+                }
+                if (jobOrder.EndDate < existingJobOrder.StartDate)
+                    return (false, "تاريخ الانتهاء يجب أن يكون بعد تاريخ البداية");
+
+                existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
+                existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
+                existingJobOrder.JobOrdernotes = jobOrder.JobOrdernotes;
+                existingJobOrder.OrderProgress = jobOrder.OrderProgress;
+                existingJobOrder.EndDate = jobOrder.EndDate;
+                _context.JobOrders.Update(existingJobOrder); // Mark the entity as modified
+                _context.SaveChanges();
+                return (true, "تمت تعديل امر العمل بنجاح");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
+        }
+        public JobOrder GetJobOrderByID(int jobOrderID)
+        {
+            JobOrder existingJobOrder = _context.JobOrders
+                .Include(j => j.Customer)
+                .Include(j => j.Employee)
+                .FirstOrDefault(v => v.JobOrderId == jobOrderID);
+
+            return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
+        }
     }
 }
 

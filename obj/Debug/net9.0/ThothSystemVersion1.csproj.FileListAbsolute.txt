@@ -5559,7 +5559,6 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\1b7590srk4-8ndp3k6nob.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ammhkwhug5-8ndp3k6nob.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-b6xly5aep0.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\j93923l5gv-qliq7sclkp.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-lkdcvtw8qt.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-6ungs7s1h3.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-6s4dbp22c8.gz
@@ -7097,3 +7096,5 @@ D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\staticwebassets
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\8v0nayaic8-ke93cz75mv.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-5sfgumsm97.gz

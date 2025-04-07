@@ -8,7 +8,7 @@ body {
     /*    overflow: auto;*/
     display: flex;
     /*    background-color: #4F3217;*/
-    background: linear-gradient(to left, #4F3217, #A67C52, #D2B48C);
+    background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
 }
 
 .container {

@@ -29,7 +29,7 @@
         height: 100%;
         background-size: contain;
         background-size: cover;
-        background-image: url("/image/background.jpeg");
+        background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
         opacity: 0.75;
         z-index: -1;
         background-size: cover;
@@ -80,7 +80,7 @@ th {
 }
 
 tr:nth-child(odd) {
-    background-color: #E6B980; 
+    background-color: #F8E1C4;
 }
 
 
@@ -90,11 +90,11 @@ tr:nth-child(even) {
     background-color: #FDF5E6; 
 }
 
-table tr:hover {
+/*table tr:hover {
     background-color: #F8E1C4; 
 
     transition: background-color 0.3s ease-in-out;
-}
+}*/
 
 
 .btn {
@@ -118,7 +118,7 @@ table tr:hover {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #4F3217;
+    background-color: black;
     color: white;
     margin-left: 20px;
     text-decoration: none;

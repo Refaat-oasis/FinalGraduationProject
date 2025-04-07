@@ -23,7 +23,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("/image/background.jpeg");
+        background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
         opacity: 0.75;
         z-index: -1;
         background-size: cover;
@@ -115,19 +115,23 @@ input.btnReset {
 
 .arrow {
     display: flex;
-    justify-content: left;
-    padding: 10px;
-    cursor: pointer;
-    position: fixed;
+    justify-content: flex-start;
+    margin: 20px;
 }
 
 .back {
-    padding: 5px;
-    font-size: 35px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
     border: none;
-    border-radius: 52px;
+    border-radius: 50%;
     cursor: pointer;
     background-color: black;
-    margin-left: 2px;
-    margin-top: 5px;
+    color: white;
+    margin: 10px 0;
+    position: fixed;
+    text-decoration: none;
 }

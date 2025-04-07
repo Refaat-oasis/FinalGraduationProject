@@ -36,7 +36,7 @@ namespace ThothSystemVersion1.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code.
-            => optionsBuilder.UseSqlServer("Server=DESKTOP-PALEDH3;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=DESKTOP-2K9M8PS;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -22,10 +22,12 @@
 
 <div class="container py-3" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start;">
      <div class="arrow mb-3">
-        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
         </a>
     </div>
+    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
+
 
     <div class="card shadow" style="max-width: 600px; margin: 0 auto; border: none;">
         <div class="card-header text-center py-3" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
@@ -137,7 +139,7 @@
                 <!-- زر الحفظ -->
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary px-4 py-2 me-2">حفظ الطلب</button>
-                    <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button>
+                    @* <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button> *@
                 </div>
             </form>
         </div>
@@ -384,6 +386,12 @@
                     }
                 }
             });
+                        if (tempDataSuccess && tempDataSuccess.value === "true") {
+                setTimeout(function () {
+                    window.location.href = " / TechnicalManager / TechnicalHome ";
+                }, 3000); // 3 ثواني
+            }
+        });
         });
     </script>
 }

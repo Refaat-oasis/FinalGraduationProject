@@ -16,6 +16,10 @@
     <form asp-controller="admin" asp-action="EditEmployee" method="post" class="Employee-form">
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+
         <input asp-for="@Model.EmployeeId" type="hidden" />
 
         @* <div class="input-control"> *@
@@ -49,7 +53,7 @@
             </select>
         
         <div class="button-container">
-            <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" />
+            @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
             <input type="submit" value="تعديل" class="btn btn-primary" />
         </div>
     </form>

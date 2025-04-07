@@ -41,4 +41,10 @@
             event.preventDefault();
         }
     });
-}); 
+
+    if (tempDataSuccess && tempDataSuccess.value === "true") {
+        setTimeout(function () {
+            window.location.href = " / Admin / ViewAllEmployee ";
+        }, 3000); // 3 ثواني
+    }
+});

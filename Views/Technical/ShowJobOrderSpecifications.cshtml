@@ -6,6 +6,12 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<div class="arrow mb-3">
+    <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
+        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+    </a>
+</div>
+
 <div class="card mb-4">
     <div class="card-body">
         <dl class="row">
@@ -190,6 +196,6 @@
 }
 
 <div class="mt-3">
-    <a asp-action="Index" class="btn btn-secondary">عودة للقائمة</a>
+    @* <a asp-action="Index" class="btn btn-secondary">عودة للقائمة</a> *@
     <a asp-action="Edit" asp-route-id="@Model.JobOrderId" class="btn btn-primary">تعديل</a>
 </div>

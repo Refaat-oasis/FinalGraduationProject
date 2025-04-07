@@ -45,4 +45,12 @@
             e.preventDefault();
         }
     });
+
+    // ✅ التحقق من TempData والقيام بعملية إعادة التوجيه
+    if (tempDataSuccess && tempDataSuccess.value === "true") {
+        setTimeout(function () {
+            window.location.href = " / Inventory / ViewAllInk ";
+        }, 3000); // 3 ثواني
+    }
 });
+

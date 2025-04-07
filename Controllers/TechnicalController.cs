@@ -113,6 +113,99 @@ namespace ThothSystemVersion1.Controllers
 
             return RedirectToAction("CreateRequisite");
         }
+        [HttpGet]
+        public IActionResult CreateNewJobOrder()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            {
+                ViewBag.employeeList = _technicalBusinessLogicLayer.GetAvailableEmployees();
+                ViewBag.customerList = _technicalBusinessLogicLayer.GetAvailableCustomerss();
+
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewJobOrder(JobOrderDTO jobOrder)
+        {
+            var result = _technicalBusinessLogicLayer.AddJobOrder(jobOrder);
+            if (result.success)
+            {
+                TempData["SuccessMessage"] = result.message;
+                return RedirectToAction("CreateRequisite");
+            }
+            TempData["ErrorMessage"] = result.message;
+
+
+            return RedirectToAction("CreateNewJobOrder");
+        }
+        [HttpGet]
+        public IActionResult EditJobOrder(int jobOrderid)
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3)
+            {
+                try
+                {
+                    JobOrder existingJobOrder = _technicalBusinessLogicLayer.GetJobOrderByID(jobOrderid);
+                    ViewBag.EmployeeList = _technicalBusinessLogicLayer.GetAvailableEmployees();
+                    ViewBag.CustomerList = _technicalBusinessLogicLayer.GetAvailableCustomerss();
+
+
+                    if (existingJobOrder.StartDate == default)
+                    {
+                        existingJobOrder.StartDate = DateOnly.FromDateTime(DateTime.Today);
+                    }
+
+
+                    return View("~/Views/Technical/EditJobOrder.cshtml", existingJobOrder);
+                }
+                catch (ArgumentException ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                    return RedirectToAction("ViewAllJobOrder"); // Redirect to list with error
+                }
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditJobOrder(int jobOrderid, JobOrderDTO jobOrder)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+
+                    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
+                }
+
+                var result = _technicalBusinessLogicLayer.EditJobOrder(jobOrderid, jobOrder);
+
+                if (result.success)
+                {
+                    TempData["SuccessMessage"] = result.message;
+                    return RedirectToAction("CreateRequisite");
+                }
+                TempData["ErrorMessage"] = result.message;
+
+                return RedirectToAction("ViewAllJobOrder", "Technical");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
+                return View(jobOrder);
+            }
+        }
     }
     //[HttpPost]
     //public IActionResult Create(RequisiteOrderDTO dto)

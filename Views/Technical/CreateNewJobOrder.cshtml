@@ -1,0 +1,176 @@
+﻿@model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
+@{
+    ViewData["Title"] = "إنشاء أمر عمل جديد";
+
+    // Initialize dates safely
+    var startDate = Model?.StartDate ?? DateOnly.FromDateTime(DateTime.Today);
+    var minEndDate = startDate.AddDays(1).ToString("yyyy-MM-dd");
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="card-title">إنشاء أمر عمل جديد</h3>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <form asp-action="CreateNewJobOrder" method="post" class="needs-validation" novalidate>
+                <input type="hidden" asp-for="StartDate" value="@startDate.ToString("yyyy-MM-dd")" />
+
+                <div class="row">
+                    <!-- Customer Section -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CustomerId" class="form-label">العميل</label>
+                        <select asp-for="CustomerId" class="form-select" required>
+                            <option value="">-- اختر العميل --</option>
+                            @if (ViewBag.customerList != null)
+                            {
+                                @foreach (var customer in ViewBag.customerList as List<Customer>)
+                                {
+                                    <option value="@customer.CustomerId">@customer.CustomerName</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Employee Section -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="EmployeeId" class="form-label">المسؤول</label>
+                        <select asp-for="EmployeeId" class="form-select" required>
+                            <option value="">-- اختر الموظف --</option>
+                            @if (ViewBag.employeeList != null)
+                            {
+                                @foreach (var employee in ViewBag.employeeList as List<Employee>)
+                                {
+                                    <option value="@employee.EmployeeId">@employee.EmployeeName</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Start Date -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">تاريخ البدأ في التشغيلة</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="fas fa-calendar-day"></i>
+                            </span>
+                            <input type="date"
+                                   class="form-control bg-light"
+                                   value="@startDate.ToString("yyyy-MM-dd")"
+                                   readonly />
+                        </div>
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="EndDate" class="form-label">تاريخ الانتهاء</label>
+                        <input asp-for="EndDate"
+                               type="date"
+                               class="form-control"
+                               min="@minEndDate"
+                               required />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Financial Fields -->
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="RemainingAmount" class="form-label">المبلغ المتبقي</label>
+                        <div class="input-group">
+                            <input asp-for="RemainingAmount" type="number" class="form-control" />
+                            <span class="input-group-text">ج.م</span>
+                        </div>
+                        <span asp-validation-for="RemainingAmount" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="EarnedRevenue" class="form-label">الإيراد المكتسب</label>
+                        <div class="input-group">
+                            <input asp-for="EarnedRevenue" type="number" class="form-control" />
+                            <span class="input-group-text">ج.م</span>
+                        </div>
+                        <span asp-validation-for="EarnedRevenue" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="UnearnedRevenue" class="form-label">الإيراد غير المكتسب</label>
+                        <div class="input-group">
+                            <input asp-for="UnearnedRevenue" type="number" class="form-control" />
+                            <span class="input-group-text">ج.م</span>
+                        </div>
+                        <span asp-validation-for="UnearnedRevenue" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Order Progress -->
+                <select asp-for="@Model.OrderProgress" class="form-select">
+                    <option>-- اختر الحالة --</option>
+                    <option>قيد الانتظار</option>
+                    <option>قيد التشغيل</option>
+                    <option>تم الاستلام</option>
+                </select>
+
+                <!-- Notes -->
+                <div class="mb-3">
+                    <label asp-for="JobOrdernotes" class="form-label">ملاحظات</label>
+                    <textarea asp-for="JobOrdernotes" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="JobOrdernotes" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* @{ *@
+    @*     await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+    @* } *@
+
+    <script>
+
+
+            // Date validation
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const startDate = new Date('@startDate.ToString("yyyy-MM-dd")');
+                    const endDateInput = document.getElementById('EndDate');
+
+                    if (endDateInput && endDateInput.value) {
+                        const endDate = new Date(endDateInput.value);
+                        if (endDate < startDate) {
+                            e.preventDefault();
+                            alert('تاريخ الانتهاء يجب أن يكون بعد تاريخ البدأ');
+                            endDateInput.focus();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+}

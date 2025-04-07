@@ -10,7 +10,7 @@
 </head>
 
 <div class="arrow">
-    <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
+    <a asp-controller="Admin" asp-action="AdminHome" class="back">
         <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
     </a>
 </div>
@@ -67,11 +67,11 @@
             </div>
 
             <div class="rowCont">
-                <div class="colCont">
-                    <label class="form-label">تاريخ الجرد</label>
-                    <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
-                    <span class="error-message" id="physicalCountDateError" style="color: red; display: none;">يرجى اختيار تاريخ الجرد</span>
-                </div>
+                @* <div class="colCont"> *@
+                @*     <label class="form-label">تاريخ الجرد</label> *@
+                @*     <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
+                @*     <span class="error-message" id="physicalCountDateError" style="color: red; display: none;">يرجى اختيار تاريخ الجرد</span> *@
+                @* </div> *@
 
                 <div class="colCont">
                     <label class="form-label">الكمية الجديدة</label>

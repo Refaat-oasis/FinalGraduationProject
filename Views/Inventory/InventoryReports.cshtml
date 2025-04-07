@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
     ViewData["Title"] = "تقارير المخزون";
@@ -21,17 +20,17 @@
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
         </a>
     </div>
     <div class="mainBox">
         <h1>تقارير المخازن</h1>
-
-        <!-- زر حركة المخزون -->
-        <button class="toggle-btn" onclick="toggleForm()">حركة المخزون</button>
-
-        <!-- الفورم اللي بيظهر ويختفي -->
+        <div class="toggle-btn" onclick="toggleForm()">
+            <!-- زر حركة المخزون -->
+            <span>حركة المخزون <i class='bx bx-chevrons-down'></i></span>
+        </div>
+        <!-- الفورم اللي بيظهر  -->
         <div id="formSection" class="hiddenBox">
             <form method="post" asp-action="inventoryReports">
                 <div class="rowCont">
@@ -67,8 +66,9 @@
     </div>
     <!-- Vendor Report -->
     <div class="mainBox">
-        <button class="toggle-btn" onclick="toggleVendors()">تقرير الموردين</button>
-
+        <div class="toggle-btn" onclick="toggleVendors()">
+            <span>تقرير الموردين <i class='bx bx-chevrons-down'></i></span>
+        </div>
         <div id="vendorFormSection" class="hiddenBox">
             <form asp-controller="Inventory" asp-action="VendorReport" method="post">
                 <div class="rowCont">
@@ -91,8 +91,9 @@
 
     <!-- Customer Report -->
     <div class="mainBox">
-        <button class="toggle-btn" onclick="toggleCustomers()">تقرير العملاء</button>
-
+        <div class="toggle-btn" onclick="toggleCustomers()">
+            <span>تقرير العملاء <i class='bx bx-chevrons-down'></i></span>
+        </div>
         <div id="customerFormSection" class="hiddenBox">
             <form asp-controller="Inventory" asp-action="CustomerReport" method="post">
                 <div class="rowCont">
@@ -139,26 +140,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 @foreach (var order in Model.purchaseOrderList)
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
-                                    <tr>       
-                                    @if (bridgeItems.Any())
+                                    <tr>
+                                        @if (bridgeItems.Any())
+                                        {
+
+                                            @foreach (var item in bridgeItems)
                                             {
-                                                
-                                                    @foreach (var item in bridgeItems)
-                                                    {
-                                                        <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
-                                                    }
+                                                <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
                                             }
+                                        }
                                         <td>@bridgeItems.Sum(q => q.TotalBalance)</td>
 
                                         <td>@order.PurchaseDate</td>
 
                                         <td>
                                             @{
-                                                for (int i =0 ; i <= vendorsList.Count;i++)
+                                                for (int i = 0; i <= vendorsList.Count; i++)
                                                 {
 
                                                     if (order.VendorId == vendorsList[i].VendorId)
@@ -200,13 +201,13 @@
 
 
                                     <tr>
-                                            @if (bridgeItems.Any())
+                                        @if (bridgeItems.Any())
+                                        {
+                                            @foreach (QuantityBridge item in bridgeItems)
                                             {
-                                                    @foreach (QuantityBridge item in bridgeItems)
-                                                    {
-                                                        <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
-                                                    }
+                                                <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
                                             }
+                                        }
 
                                         <td>@order.RequisiteDate</td>
 
@@ -242,7 +243,7 @@
                                     <th>الكمية الجديدة</th>
                                     <th>الكمية القديمة</th>
                                     <th>التاريخ</th>
-                                     <th>الموطف القائم بالامر</th>
+                                    <th>الموطف القائم بالامر</th>
 
                                 </tr>
                             </thead>
@@ -251,27 +252,27 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
                                     <tr>
-                                        
-                                            @if (bridgeItems.Any())
-                                            {
-                                             
-                                                    @foreach (QuantityBridge item in bridgeItems)
-                                                    {
-                                                        <td> @item.Quantity</td>
-                                                    }
-                                              
-                                            }
-                                        
-                                            @if (bridgeItems.Any())
-                                            {
 
-                                                @foreach (QuantityBridge item in bridgeItems)
-                                                {
+                                        @if (bridgeItems.Any())
+                                        {
+
+                                            @foreach (QuantityBridge item in bridgeItems)
+                                            {
+                                                <td> @item.Quantity</td>
+                                            }
+
+                                        }
+
+                                        @if (bridgeItems.Any())
+                                        {
+
+                                            @foreach (QuantityBridge item in bridgeItems)
+                                            {
                                                 <td> @item.OldQuantity</td>
-                                                }
-
                                             }
-                                   
+
+                                        }
+
 
                                         <td>@order.PhysicalCountDate</td>
 
@@ -316,13 +317,13 @@
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList();
                                     <tr>
-                                            @if (bridgeItems.Any())
+                                        @if (bridgeItems.Any())
+                                        {
+                                            @foreach (var item in bridgeItems)
                                             {
-                                                    @foreach (var item in bridgeItems)
-                                                    {
-                                                        <td> @item.Quantity</td>
-                                                    }
+                                                <td> @item.Quantity</td>
                                             }
+                                        }
                                         <td>@order.ReturnDate</td>
 
                                         <td>@(order.ReturnInOut == true ? "مرتجع داخلي" : "مرتجع خارجي")</td>

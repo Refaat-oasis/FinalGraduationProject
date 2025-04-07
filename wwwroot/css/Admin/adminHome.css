@@ -38,8 +38,9 @@ footer {
 }
 
     .dropdown > li {
-        background: #8B4513;
-        color: white;
+        /*        background: #8B4513;*/
+                background-color: #E6C3A3;
+                color:white;
         padding: 10px;
         margin-bottom: 5px;
         cursor: pointer;
@@ -48,7 +49,7 @@ footer {
     }
 
         .dropdown > li:hover {
-            background: #8B4513;
+            background: #444;
         }
 
         .dropdown > li ul {
@@ -81,14 +82,15 @@ footer {
                     }
 
 .btnBack {
-    background: #8B4513;
+    background-color: #E6C3A3;
+    /*    background: #8B4513;*/
     color: white;
     padding: 10px 15px;
     margin-top: 5px;
     cursor: pointer;
     border-radius: 5px;
     position: relative;
-    display:block;
+    display: block;
 }
 
     .btnBack:hover {

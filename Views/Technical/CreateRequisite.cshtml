@@ -1,5 +1,4 @@
-﻿
-@model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO
+﻿@model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO
 
 <head>
     <meta charset="UTF-8" />
@@ -18,10 +17,10 @@
 
 
 
-   
+
 
 <div class="container py-3" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start;">
-     <div class="arrow mb-3">
+    <div class="arrow mb-3">
         <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
         </a>
@@ -386,12 +385,12 @@
                     }
                 }
             });
-                        if (tempDataSuccess && tempDataSuccess.value === "true") {
-                setTimeout(function () {
-                    window.location.href = " / TechnicalManager / TechnicalHome ";
-                }, 3000); // 3 ثواني
-            }
         });
-        });
+                // ✅ التحقق من TempData والقيام بعملية إعادة التوجيه
+        if (tempDataSuccess && tempDataSuccess.value === "true") {
+            setTimeout(function () {
+                window.location.href = " / Inventory / ViewAllInk ";
+            }, 3000); // 3 ثواني
+        }
     </script>
 }

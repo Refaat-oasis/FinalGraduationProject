@@ -1,180 +1,4 @@
-﻿@* @model JobOrder *@
-@* @{ *@
-@*     ViewData["Title"] = "تعديل أمر عمل"; *@
-@* } *@
-
-@* <div class="container mt-4"> *@
-@*     <!-- Error Message Display --> *@
-@*     @if (TempData["ErrorMessage"] != null) *@
-@*     { *@
-@*         <div class="alert alert-danger alert-dismissible fade show"> *@
-@*             <strong>خطأ!</strong> @TempData["ErrorMessage"] *@
-@*             <button type="button" class="btn-close" data-bs-dismiss="alert"></button> *@
-@*         </div> *@
-@*     } *@
-
-@*     <div class="card shadow-lg"> *@
-@*         <div class="card-header bg-primary text-white"> *@
-@*             <div class="d-flex justify-content-between align-items-center"> *@
-@*                 <h3 class="mb-0">تعديل أمر العمل #@Model.JobOrderId</h3> *@
-@*                 <a href="@Url.Action("ViewAllJobOrder", "Technical")" class="btn btn-light"> *@
-@*                     <i class="fas fa-arrow-left"></i> رجوع *@
-@*                 </a> *@
-@*             </div> *@
-@*         </div> *@
-
-@*         <div class="card-body"> *@
-@*             <form asp-action="EditJobOrder" method="post" class="needs-validation" novalidate> *@
-@*                 <input type="hidden" asp-for="JobOrderId" /> *@
-
-@*                 <div class="row g-3"> *@
-@*                     <!-- Customer Section (Read-only) --> *@
-@*                     <div class="col-md-6"> *@
-@*                         <label class="form-label">العميل</label> *@
-@*                         <div class="input-group"> *@
-@*                             <span class="input-group-text bg-light"> *@
-@*                                 <i class="fas fa-user-tie"></i> *@
-@*                             </span> *@
-@*                             @{ *@
-@*                                 var customer = ViewBag.CustomerList?.FirstOrDefault(c => c.CustomerId == Model.CustomerId); *@
-@*                             } *@
-@*                             <input type="text" class="form-control bg-light" *@
-@*                                    value="@customer?.CustomerName" readonly> *@
-@*                         </div> *@
-@*                         <input type="hidden" asp-for="CustomerId" /> *@
-@*                     </div> *@
-
-@*                     <!-- Employee Section (Read-only) --> *@
-@*                     <div class="col-md-6"> *@
-@*                         <label class="form-label">المسؤول</label> *@
-@*                         <div class="input-group"> *@
-@*                             <span class="input-group-text bg-light"> *@
-@*                                 <i class="fas fa-user-cog"></i> *@
-@*                             </span> *@
-@*                             @{ *@
-@*                                 var employee = ViewBag.EmployeeList?.FirstOrDefault(e => e.EmployeeId == Model.EmployeeId); *@
-@*                             } *@
-@*                             <input type="text" class="form-control bg-light" *@
-@*                                    value="@employee?.EmployeeName" readonly> *@
-@*                         </div> *@
-@*                         <input type="hidden" asp-for="EmployeeId" /> *@
-@*                     </div> *@
-
-@*                     <!-- Dates Section --> *@
-@*                     <div class="col-md-6"> *@
-@*                         <label asp-for="StartDate" class="form-label">تاريخ البداية</label> *@
-@*                         <input asp-for="StartDate" type="date" class="form-control" readonly /> *@
-@*                     </div> *@
-
-@*                     <div class="col-md-6"> *@
-@*                         <label asp-for="EndDate" class="form-label">تاريخ النهاية</label> *@
-@*                         <input asp-for="EndDate" type="date" class="form-control" required /> *@
-@*                         <span asp-validation-for="EndDate" class="text-danger"></span> *@
-@*                     </div> *@
-
-@*                     <!-- Financial Section --> *@
-@*                     <div class="row mt-2"> *@
-@*                         <div class="col-md-4"> *@
-@*                             <label asp-for="RemainingAmount" class="form-label">المبلغ المتبقي</label> *@
-@*                             <div class="input-group"> *@
-@*                                 <input asp-for="RemainingAmount" type="number" step="0.01" class="form-control" /> *@
-@*                                 <span class="input-group-text">ج.م</span> *@
-@*                             </div> *@
-@*                         </div> *@
-
-@*                         <div class="col-md-4"> *@
-@*                             <label asp-for="EarnedRevenue" class="form-label">الإيراد المكتسب</label> *@
-@*                             <div class="input-group"> *@
-@*                                 <input asp-for="EarnedRevenue" type="number" step="0.01" class="form-control" /> *@
-@*                                 <span class="input-group-text">ج.م</span> *@
-@*                             </div> *@
-@*                         </div> *@
-
-@*                         <div class="col-md-4"> *@
-@*                             <label asp-for="UnearnedRevenue" class="form-label">الإيراد غير المكتسب</label> *@
-@*                             <div class="input-group"> *@
-@*                                 <input asp-for="UnearnedRevenue" type="number" step="0.01" class="form-control" /> *@
-@*                                 <span class="input-group-text">ج.م</span> *@
-@*                             </div> *@
-@*                         </div> *@
-@*                     </div> *@
-
-@*                     <!-- Order Progress --> *@
-@*                     <div class="col-12 mt-3"> *@
-@*                         <label asp-for="OrderProgress" class="form-label">حالة العمل</label> *@
-@*                         <select asp-for="OrderProgress" class="form-select" required> *@
-@*                             <option value="قيد الانتظار" selected='@(Model.OrderProgress == "قيد الانتظار")'>قيد الانتظار</option> *@
-@*                             <option value="قيد التشغيل" selected='@(Model.OrderProgress == "قيد التشغيل")'>قيد التشغيل</option> *@
-@*                             <option value="تم التسليم" selected='@(Model.OrderProgress == "تم التسليم")'>تم التسليم</option> *@
-@*                             <option value="ملغي" selected='@(Model.OrderProgress == "ملغي")'>ملغي</option> *@
-@*                         </select> *@
-@*                     </div> *@
-
-@*                     <!-- Notes --> *@
-@*                     <div class="col-12 mt-3"> *@
-@*                         <label asp-for="JobOrdernotes" class="form-label">ملاحظات</label> *@
-@*                         <textarea asp-for="JobOrdernotes" class="form-control" rows="3">@Model.JobOrdernotes</textarea> *@
-@*                     </div> *@
-
-@*                     <!-- Form Buttons --> *@
-@*                     <div class="col-12 mt-4"> *@
-@*                         <div class="d-flex justify-content-between"> *@
-@*                             <button type="submit" class="btn btn-primary px-4"> *@
-@*                                 <i class="fas fa-save me-2"></i> حفظ التعديلات *@
-@*                             </button> *@
-@*                             <button type="reset" class="btn btn-outline-secondary"> *@
-@*                                 <i class="fas fa-undo me-2"></i> إعادة تعيين *@
-@*                             </button> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                 </div> *@
-@*             </form> *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
-
-@* @section Scripts { *@
-@*     <!-- Client-side Validation --> *@
-@*     @{ *@
-@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
-@*     } *@
-
-@*     <!-- Bootstrap 5 Validation --> *@
-@*     <script> *@
-@*         (function () { *@
-@*             'use strict' *@
-
-@*             var forms = document.querySelectorAll('.needs-validation') *@
-
-@*             Array.prototype.slice.call(forms) *@
-@*                 .forEach(function (form) { *@
-@*                     form.addEventListener('submit', function (event) { *@
-@*                         if (!form.checkValidity()) { *@
-@*                             event.preventDefault() *@
-@*                             event.stopPropagation() *@
-@*                         } *@
-
-@*                         form.classList.add('was-validated') *@
-@*                     }, false) *@
-@*                 }) *@
-@*         })() *@
-
-@*         // Date validation *@
-@*         document.querySelector('form').addEventListener('submit', function(e) { *@
-@*             const startDate = new Date(document.getElementById('StartDate').value); *@
-@*             const endDate = new Date(document.getElementById('EndDate').value); *@
-
-@*             if (startDate > endDate) { *@
-@*                 e.preventDefault(); *@
-@*                 alert('تاريخ النهاية يجب أن يكون بعد تاريخ البداية'); *@
-@*                 document.getElementById('EndDate').focus(); *@
-@*             } *@
-@*         }); *@
-@*     </script> *@
-
-@*     <!-- Font Awesome for Icons --> *@
-@*     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /> *@
-@* } *@
+﻿
 @model JobOrder
 
 @{
@@ -190,8 +14,6 @@
         : DateOnly.FromDateTime(DateTime.Today.AddDays(1)).ToString("yyyy-MM-dd");
 }
 
-
-
 <div class="container mt-4">
     @if (TempData["SuccessMessage"] != null)
     {
@@ -205,12 +27,6 @@
             @TempData["ErrorMessage"]
         </div>
     }
-
-    <div class="arrow mb-3">
-        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
-    </div>
 
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
@@ -305,7 +121,7 @@
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-success">حفظ التعديلات</button>
-                    @* <a href="@Url.Action("ViewAllJobOrder", "Technical")" class="btn btn-secondary">رجوع</a> *@
+                    <a href="@Url.Action("ViewAllJobOrder", "Technical")" class="btn btn-secondary">رجوع</a>
                 </div>
             </form>
         </div>
@@ -350,8 +166,8 @@
             });
         });
     </script>
-       
-  
+        
+    </script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 }

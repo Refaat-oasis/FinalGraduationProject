@@ -226,19 +226,71 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return customerList;
         }
 
-        public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
+         public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
         {
 
             JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
             MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
             RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
             ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+            Customer cust = _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
+            Employee empJob = _context.Employees.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
+            Employee empRequisite = _context.Employees.FirstOrDefault(e => e.EmployeeId == requisiteOrder.EmployeeId);
+            Employee empReturn = _context.Employees.FirstOrDefault(e => e.EmployeeId == returnOrder.EmployeeId);
+            Employee empMiscellen = _context.Employees.FirstOrDefault(e => e.EmployeeId == miscellaneousExpense.EmployeeId);
             List<QuantityBridge> quantityBridges = _context.QuantityBridges.Where(
                 q => q.RequisiteId == requisiteOrder.RequisiteId || q.ReturnId == returnOrder.ReturnId)
             .ToList();
             List<ProcessBridge> processBridges = _context.ProcessBridges.Where(
                 p => p.JobOrderId == jobOrderId)
                 .ToList();
+            List<Paper> papers = new List<Paper>();
+            List<Ink> inks = new List<Ink>();
+            List<Supply> supplies = new List<Supply>();
+            List<Employee> employees = new List<Employee>();
+            List<Labour> labours = new List<Labour>();
+            List<Machine> machines = new List<Machine>();
+            employees.Add(empJob);
+            employees.Add(empRequisite);
+            employees.Add(empReturn);
+            employees.Add(empMiscellen);
+
+            foreach (ProcessBridge pb in processBridges)
+            {
+                if (pb.LabourId != null)
+                {
+                    Labour lab = _context.Labours.FirstOrDefault(e => e.LabourId == pb.LabourId);
+                    labours.Add(lab);
+                }
+                if (pb.MachineId != null)
+                {
+                    Machine mach = _context.Machines.FirstOrDefault(i => i.MachineId == pb.MachineId);
+                    machines.Add(mach);
+                }
+            }
+
+            foreach (QuantityBridge QB in quantityBridges)
+            {
+
+                if (QB.InkId != null)
+                {
+                    Ink ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
+                    inks.Add(ink);
+                }
+                else if (QB.PaperId != null)
+                {
+                    Paper paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
+                    papers.Add(paper);
+                }
+                else if (QB.SuppliesId != null)
+                {
+                    Supply supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
+                    supplies.Add(supply);
+                }
+
+
+            }
+
 
             JobOrderSpecificationsViewModel joborderSpecifics = new JobOrderSpecificationsViewModel();
             joborderSpecifics.JobOrderId = jobOrder.JobOrderId;
@@ -273,10 +325,17 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
             joborderSpecifics.QuantityBridges = quantityBridges;
             joborderSpecifics.ProcessBridges = processBridges;
+            joborderSpecifics.CustomerName = cust.CustomerName;
+            joborderSpecifics.Papers = papers;
+            joborderSpecifics.Inks = inks;
+            joborderSpecifics.Supplies = supplies;
+            joborderSpecifics.Labours = labours;
+            joborderSpecifics.Machines = machines;
+            joborderSpecifics.Employees = employees;
             return joborderSpecifics;
-
-            
         }
+
+
         public List<Employee> GetAvailableEmployees()
         {
 

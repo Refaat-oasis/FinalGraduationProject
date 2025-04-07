@@ -6,142 +6,294 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="arrow mb-3">
-    <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-    </a>
+<!-- Job Order Details -->
+<div class="card p-3 mb-4">
+    <h3>بيانات التشغيلة</h3>
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrderId)</dt>
+        <dd class="col-sm-9">@Model.JobOrderId</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RemainingAmount)</dt>
+        <dd class="col-sm-9">@Model.RemainingAmount</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.UnearnedRevenue)</dt>
+        <dd class="col-sm-9">@Model.UnearnedRevenue</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrdernotes)</dt>
+        <dd class="col-sm-9">@Model.JobOrdernotes</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.OrderProgress)</dt>
+        <dd class="col-sm-9">@Model.OrderProgress</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CustomerName)</dt>
+        <dd class="col-sm-9">@Model.CustomerName</dd>
+
+        <!-- You can add additional fields as needed -->
+    </dl>
 </div>
 
-<div class="card mb-4">
-    <div class="card-body">
-        <dl class="row">
-            <!-- JobOrder -->
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrderId)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.JobOrderId)</dd>
+@* <!-- Inks Table --> *@
+@* <div class="card p-3 mb-4"> *@
+@*     <h3>الأحبار</h3> *@
+@*     <table class="table table-bordered"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>اسم الحبر</th> *@
+@*                 <th>الكمية</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @if (Model.Inks != null && Model.Inks.Any()) *@
+@*             { *@
+@*                 foreach (var ink in Model.Inks) *@
+@*                 { *@
+@*                     <tr> *@
+@*                         <td>@ink.Name</td> *@
+@*                         <td>@ink.Quantity</td> *@
+@*                     </tr> *@
+@*                 } *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td colspan="2">لا توجد بيانات</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RemainingAmount)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.RemainingAmount)</dd>
+@* <!-- Papers Table --> *@
+@* <div class="card p-3 mb-4"> *@
+@*     <h3>الأوراق</h3> *@
+@*     <table class="table table-bordered"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>اسم الورق</th> *@
+@*                 <th>الكمية</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @if (Model.Papers != null && Model.Papers.Any()) *@
+@*             { *@
+@*                 foreach (var paper in Model.Papers) *@
+@*                 { *@
+@*                     <tr> *@
+@*                         <td>@paper.Name</td> *@
+@*                         <td>@paper.Quantity</td> *@
+@*                     </tr> *@
+@*                 } *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td colspan="2">لا توجد بيانات</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.UnearnedRevenue)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.UnearnedRevenue)</dd>
+@* <!-- Supplies Table --> *@
+@* <div class="card p-3 mb-4"> *@
+@*     <h3>المستلزمات</h3> *@
+@*     <table class="table table-bordered"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>اسم المستلزمات</th> *@
+@*                 <th>الكمية</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @if (Model.Supplies != null && Model.Supplies.Any()) *@
+@*             { *@
+@*                 foreach (var supply in Model.Supplies) *@
+@*                 { *@
+@*                     <tr> *@
+@*                         <td>@supply.Name</td> *@
+@*                         <td>@supply.Quantity</td> *@
+@*                     </tr> *@
+@*                 } *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td colspan="2">لا توجد بيانات</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.JobOrdernotes)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.JobOrdernotes)</dd>
+<!-- Employees Table -->
+<div class="card p-3 mb-4">
+    <h3>الموظفون</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>اسم الموظف</th>
+                <th>الدور الوظيفي</th>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EarnedRevenue)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.EarnedRevenue)</dd>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Employees != null && Model.Employees.Any())
+            {
+                foreach (var employee in Model.Employees)
+                {
+                    <tr>
+                        <td>@employee.EmployeeName</td>
+                        <td>@employee.JobRole</td>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.OrderProgress)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.OrderProgress)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CustomerId)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.CustomerId)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.StartDate)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.StartDate)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EndDate)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.EndDate)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EmployeeId)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.EmployeeId)</dd>
-
-            <hr class="col-12" />
-
-            <!-- MiscellaneousExpense -->
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MiscellaneousExpensesID)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.MiscellaneousExpensesID)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MaterialProcessingExpense)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.MaterialProcessingExpense)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.FilmsProcessingExpense)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.FilmsProcessingExpense)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MaterialsTotal)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.MaterialsTotal)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalAfterMaterials)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalAfterMaterials)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.AdminstrativeExpense)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.AdminstrativeExpense)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalExpenses)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalExpenses)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Percentage)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.Percentage)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.TotalAfterPercentage)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.TotalAfterPercentage)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MinistryOfFinance)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.MinistryOfFinance)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.EmployeeImprovmentBox)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.EmployeeImprovmentBox)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ValueAddedTax)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.ValueAddedTax)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.FinalTotal)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.FinalTotal)</dd>
-
-            <hr class="col-12" />
-
-            <!-- Latest RequisiteOrder -->
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteId)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteId)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteDate)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteDate)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.RequisiteNotes)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.RequisiteNotes)</dd>
-
-            <hr class="col-12" />
-
-            <!-- Latest ReturnsOrder -->
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnId)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnId)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnDate)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnDate)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnsNotes)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnsNotes)</dd>
-
-            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReturnInOut)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(m => m.ReturnInOut)</dd>
-        </dl>
-    </div>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>لا توجد بيانات</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
+<!-- Labours Table -->
+<div class="card p-3 mb-4">
+    <h3>العمليات</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>اسم العمليه</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Labours != null && Model.Labours.Any())
+            {
+                foreach (var labour in Model.Labours)
+                {
+                    <tr>
+                        <td>@labour.LabourProcessName</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>لا توجد بيانات</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Machines Table -->
+<div class="card p-3 mb-4">
+    <h3>الآلات</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>اسم الآلة</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Machines != null && Model.Machines.Any())
+            {
+                foreach (var machine in Model.Machines)
+                {
+                    <tr>
+                        <td>@machine.MachineProcessName</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>لا توجد بيانات</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @if (Model.QuantityBridges?.Any() == true && Model.RequisiteId != null)
 {
     <h2>الكميات المسحوبة</h2>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>معرف الكمية</th>
+                <th>الصنف </th>
                 <th>الكمية</th>
                 <th>السعر</th>
                 <!-- إضافة أعمدة أخرى حسب الحاجة -->
             </tr>
         </thead>
         <tbody>
-            @foreach (var qb in Model.QuantityBridges)
+
+            @foreach (QuantityBridge paper in Model.QuantityBridges)
             {
                 <tr>
-                    <td>@qb.QuantityBridgeID</td>
-                    <td>@qb.Quantity</td>
-                    <td>@qb.Price</td>
+
+
+                    @{
+                        for (int i = 0; i < Model.Papers.Count; i++)
+
+                        {
+                            if (paper.PaperId == Model.Papers[i].PaperId)
+                            {
+                                <td>@Model.Papers[i].Name</td>
+                                <td>@paper.Quantity</td>
+                                <td>@paper.Price</td>
+                            }
+                        }
+                    }
+
+                </tr>
+            }
+            @foreach (QuantityBridge ink in Model.QuantityBridges)
+            {
+                <tr>
+
+
+                    @{
+                        for (int i = 0; i < Model.Inks.Count; i++)
+
+                        {
+                            if (ink.InkId == Model.Inks[i].InkId)
+                            {
+                                <td>@Model.Inks[i].Name</td>
+                                <td>@ink.Quantity</td>
+                                <td>@ink.Price</td>
+                            }
+                        }
+                    }
+
+                </tr>
+            }
+
+            @foreach (QuantityBridge s in Model.QuantityBridges)
+            {
+                <tr>
+
+
+                    @{
+                        for (int i = 0; i < Model.Supplies.Count; i++)
+
+                        {
+                            if (s.SuppliesId == Model.Supplies[i].SuppliesId)
+                            {
+                                <td>@Model.Supplies[i].Name</td>
+                                <td>@s.Quantity</td>
+                                <td>@s.Price</td>
+                            }
+                        }
+                    }
+
                 </tr>
             }
         </tbody>
     </table>
 }
+
 
 @if (Model.QuantityBridges?.Any() == true && Model.ReturnId != null)
 {
@@ -149,19 +301,73 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>معرف الكمية</th>
+                <th> الصنف</th>
                 <th>الكمية</th>
                 <th>السعر</th>
                 <!-- إضافة أعمدة أخرى حسب الحاجة -->
             </tr>
         </thead>
         <tbody>
-            @foreach (var qb in Model.QuantityBridges)
+            @foreach (QuantityBridge paper in Model.QuantityBridges)
             {
                 <tr>
-                    <td>@qb.QuantityBridgeID</td>
-                    <td>@qb.Quantity</td>
-                    <td>@qb.Price</td>
+
+
+                    @{
+                        for (int i = 0; i < Model.Papers.Count; i++)
+
+                        {
+                            if (paper.PaperId == Model.Papers[i].PaperId)
+                            {
+                                <td>@Model.Papers[i].Name</td>
+
+                                <td>@paper.Quantity</td>
+                                <td>@paper.Price</td>
+                            }
+                        }
+                    }
+
+                </tr>
+            }
+            @foreach (QuantityBridge ink in Model.QuantityBridges)
+            {
+                <tr>
+
+
+                    @{
+                        for (int i = 0; i < Model.Inks.Count; i++)
+
+                        {
+                            if (ink.InkId == Model.Inks[i].InkId)
+                            {
+                                <td>@Model.Inks[i].Name</td>
+                                <td>@ink.Quantity</td>
+                                <td>@ink.Price</td>
+                            }
+                        }
+                    }
+
+                </tr>
+            }
+
+            @foreach (QuantityBridge s in Model.QuantityBridges)
+            {
+                <tr>
+
+
+                    @{
+                        for (int i = 0; i < Model.Supplies.Count; i++)
+
+                        {
+                            if (s.SuppliesId == Model.Supplies[i].SuppliesId)
+                            {
+                                <td>@Model.Supplies[i].Name</td>
+                                <td>@s.Quantity</td>
+                                <td>@s.Price</td>
+                            }
+                        }
+                    }
+
                 </tr>
             }
         </tbody>
@@ -194,8 +400,3 @@
         </tbody>
     </table>
 }
-
-<div class="mt-3">
-    @* <a asp-action="Index" class="btn btn-secondary">عودة للقائمة</a> *@
-    <a asp-action="Edit" asp-route-id="@Model.JobOrderId" class="btn btn-primary">تعديل</a>
-</div>

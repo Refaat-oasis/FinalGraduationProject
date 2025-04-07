@@ -138,7 +138,7 @@ namespace ThothSystemVersion1.Controllers
             if (result.success)
             {
                 TempData["SuccessMessage"] = result.message;
-                return RedirectToAction("CreateRequisite");
+                return RedirectToAction("CreateNewJobOrder");
             }
             TempData["ErrorMessage"] = result.message;
 
@@ -194,7 +194,7 @@ namespace ThothSystemVersion1.Controllers
                 if (result.success)
                 {
                     TempData["SuccessMessage"] = result.message;
-                    return RedirectToAction("CreateRequisite");
+                    return RedirectToAction("ViewAllJobOrder");
                 }
                 TempData["ErrorMessage"] = result.message;
 

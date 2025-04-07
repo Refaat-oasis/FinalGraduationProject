@@ -98,8 +98,15 @@ namespace ThothSystemVersion1.ViewModels
 
         [Display(Name = "الداخلي والخارجي")]
         public bool ReturnInOut { get; set; }
+        [Display(Name = "اسم العميل")]
+        public string CustomerName { get; set; }
 
-
+        public List<Ink> Inks { get; set; }
+        public List<Paper> Papers { get; set; }
+        public List<Supply> Supplies { get; set; }
+        public List<Labour> Labours { get; set; }
+        public List<Machine> Machines { get; set; }
+        public List<Employee> Employees { get; set; }
 
         public List<QuantityBridge> QuantityBridges { get; set; }
         public List<ProcessBridge> ProcessBridges { get; set; }

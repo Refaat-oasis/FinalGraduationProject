@@ -1,4 +1,5 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
+﻿
+@model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
 @{
     ViewData["Title"] = "إنشاء أمر عمل جديد";
 
@@ -6,12 +7,6 @@
     var startDate = Model?.StartDate ?? DateOnly.FromDateTime(DateTime.Today);
     var minEndDate = startDate.AddDays(1).ToString("yyyy-MM-dd");
 }
-
-<div class="arrow">
-    <a asp-controller="Technical" asp-action="ViewAllJobOrder" class="back">
-        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-    </a>
-</div>
 
 <div class="container mt-5">
     <div class="card shadow">
@@ -97,11 +92,11 @@
                 </div>
 
                 <div class="row">
-                    <!-- Financial Fields -->
+                    <!-- Financial Fields - Now with required validation -->
                     <div class="col-md-4 mb-3">
                         <label asp-for="RemainingAmount" class="form-label">المبلغ المتبقي</label>
                         <div class="input-group">
-                            <input asp-for="RemainingAmount" type="number" class="form-control" />
+                            <input asp-for="RemainingAmount" type="number" class="form-control" min="0" required />
                             <span class="input-group-text">ج.م</span>
                         </div>
                         <span asp-validation-for="RemainingAmount" class="text-danger"></span>
@@ -110,7 +105,7 @@
                     <div class="col-md-4 mb-3">
                         <label asp-for="EarnedRevenue" class="form-label">الإيراد المكتسب</label>
                         <div class="input-group">
-                            <input asp-for="EarnedRevenue" type="number" class="form-control" />
+                            <input asp-for="EarnedRevenue" type="number" class="form-control" min="0" required />
                             <span class="input-group-text">ج.م</span>
                         </div>
                         <span asp-validation-for="EarnedRevenue" class="text-danger"></span>
@@ -119,22 +114,26 @@
                     <div class="col-md-4 mb-3">
                         <label asp-for="UnearnedRevenue" class="form-label">الإيراد غير المكتسب</label>
                         <div class="input-group">
-                            <input asp-for="UnearnedRevenue" type="number" class="form-control" />
+                            <input asp-for="UnearnedRevenue" type="number" class="form-control" min="0" required />
                             <span class="input-group-text">ج.م</span>
                         </div>
                         <span asp-validation-for="UnearnedRevenue" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Order Progress -->
-                <select asp-for="@Model.OrderProgress" class="form-select">
-                    <option>-- اختر الحالة --</option>
-                    <option>قيد الانتظار</option>
-                    <option>قيد التشغيل</option>
-                    <option>تم الاستلام</option>
-                </select>
+                <!-- Order Progress - Now with required validation -->
+                <div class="mb-3">
+                    <label asp-for="OrderProgress" class="form-label">حالة الأمر</label>
+                    <select asp-for="OrderProgress" class="form-select" required>
+                        <option value="">-- اختر الحالة --</option>
+                        <option value="قيد الانتظار">قيد الانتظار</option>
+                        <option value="قيد التشغيل">قيد التشغيل</option>
+                        <option value="تم الاستلام">تم الاستلام</option>
+                    </select>
+                    <span asp-validation-for="OrderProgress" class="text-danger"></span>
+                </div>
 
-                <!-- Notes -->
+                <!-- Notes - Not required -->
                 <div class="mb-3">
                     <label asp-for="JobOrdernotes" class="form-label">ملاحظات</label>
                     <textarea asp-for="JobOrdernotes" class="form-control" rows="3"></textarea>
@@ -149,39 +148,113 @@
     </div>
 </div>
 
-@section Scripts {
-    @* @{ *@
-    @*     await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
-    @* } *@
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form.needs-validation');
 
-
-            // Date validation
-            const form = document.querySelector('form');
             if (form) {
+                // Add validation on form submission
                 form.addEventListener('submit', function(e) {
-                    const startDate = new Date('@startDate.ToString("yyyy-MM-dd")');
-                    const endDateInput = document.getElementById('EndDate');
+                    // Check all required fields except notes
+                    const requiredFields = form.querySelectorAll(`
+                        [required]:not([name="JobOrdernotes"]),
+                        select[name="OrderProgress"],
+                        input[name="RemainingAmount"],
+                        input[name="EarnedRevenue"],
+                        input[name="UnearnedRevenue"]
+                    `);
 
-                    if (endDateInput && endDateInput.value) {
-                        const endDate = new Date(endDateInput.value);
-                        if (endDate < startDate) {
-                            e.preventDefault();
-                            alert('تاريخ الانتهاء يجب أن يكون بعد تاريخ البدأ');
-                            endDateInput.focus();
+                    let isValid = true;
+
+                    requiredFields.forEach(field => {
+                        field.classList.remove('is-invalid');
+
+                        // التحقق من الحقول النصية والأرقام
+                        if ((field.type === 'text' || field.type === 'number' || field.type === 'date') && !field.value.trim()) {
+                            isValid = false;
+                            showError(field, 'هذا الحقل مطلوب');
                         }
+                        // التحقق من حقول التحديد
+                        else if (field.tagName === 'SELECT' && !field.value) {
+                            isValid = false;
+                            showError(field, 'هذا الحقل مطلوب');
+                        }
+                        // التحقق من أن القيم الرقمية ليست سالبة
+                        else if (field.type === 'number' && parseFloat(field.value) < 0) {
+                            isValid = false;
+                            showError(field, 'يجب أن تكون القيمة موجبة');
+                        }
+                        // التحقق من تاريخ الانتهاء
+                        else if (field.name === 'EndDate') {
+                            const startDate = new Date('@startDate.ToString("yyyy-MM-dd")');
+                            const endDate = new Date(field.value);
+                            if (endDate <= startDate) {
+                                isValid = false;
+                                showError(field, 'تاريخ الانتهاء يجب أن يكون بعد تاريخ البدأ');
+                            }
+                        }
+                    });
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Scroll to first invalid field
+                        const firstInvalid = form.querySelector('.is-invalid');
+                        if (firstInvalid) {
+                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+
+                        alert('يوجد حقول مطلوبة غير مملوءة أو بها أخطاء. الرجاء مراجعة النموذج.');
                     }
+
+                    form.classList.add('was-validated');
                 });
-            }
-                        if (tempDataSuccess && tempDataSuccess.value === "true") {
-                setTimeout(function () {
-                    window.location.href = " / Inventory / ViewAllJobOrder ";
-                }, 3000); // 3 ثواني
+
+                // Helper function to show errors
+                function showError(field, message) {
+                    field.classList.add('is-invalid');
+
+                    if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('invalid-feedback')) {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'invalid-feedback';
+                        errorDiv.textContent = message;
+                        field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                    } else {
+                        field.nextElementSibling.textContent = message;
+                    }
+                }
+
+                // Add real-time validation on field blur
+                form.querySelectorAll('[required]:not([name="JobOrdernotes"])').forEach(field => {
+                    field.addEventListener('blur', function() {
+                        if ((this.type === 'text' || this.type === 'number' || this.type === 'date') && !this.value.trim()) {
+                            showError(this, 'هذا الحقل مطلوب');
+                        } else if (this.tagName === 'SELECT' && !this.value) {
+                            showError(this, 'هذا الحقل مطلوب');
+                        } else if (this.type === 'number' && parseFloat(this.value) < 0) {
+                            showError(this, 'يجب أن تكون القيمة موجبة');
+                        } else {
+                            this.classList.remove('is-invalid');
+                        }
+                    });
+                });
+
+                // Date field specific validation
+                const endDateInput = document.getElementById('EndDate');
+                if (endDateInput) {
+                    endDateInput.addEventListener('change', function() {
+                        const startDate = new Date('@startDate.ToString("yyyy-MM-dd")');
+                        const endDate = new Date(this.value);
+
+                        if (endDate <= startDate) {
+                            showError(this, 'تاريخ الانتهاء يجب أن يكون بعد تاريخ البدأ');
+                        } else {
+                            this.classList.remove('is-invalid');
+                        }
+                    });
+                }
             }
         });
     </script>
-
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-}

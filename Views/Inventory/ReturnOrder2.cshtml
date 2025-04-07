@@ -3,26 +3,31 @@
     List<Paper> papers = ViewBag.PaperList;
     List<Ink> inks = ViewBag.InkList;
     List<Supply> supplies = ViewBag.SupplyList;
-
-
 }
+
 <form asp-action="getOrderItems" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
     <div class="arrow mb-3">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        <a asp-controller="Admin" asp-action="AdminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: #0d6efd;"></i>
         </a>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-check mt-4">
-            <label asp-for="ReturnInOut"></label>
-            <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
+    <!-- Hidden field to store the actual boolean value -->
+    <input type="hidden" asp-for="ReturnInOut" id="returnInOutValue" />
 
+    <div class="col-md-6">
+        <div class="form-group mt-4">
+            <label class="form-label fw-bold">نوع المرتجعات</label>
+            <select id="returnTypeSelect" class="form-select">
+                <option value="">-- اختر نوع المرتجعات --</option>
+                <option value="in">مرتجع مورد (أمر شراء)</option>
+                <option value="out">مرتجع عميل (أمر تشغيل)</option>
+            </select>
+            <span class="text-danger" id="returnTypeValidation"></span>
         </div>
     </div>
-    </div>
 
-    <div class="row mb-3" id="jobOrderSection">
+    <div class="row mb-3" id="jobOrderSection" style="display: none;">
         <div class="col-md-6">
             <label asp-for="JobOrderId" class="form-label fw-bold">اختر أمر التشغيل</label>
             <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
@@ -39,7 +44,7 @@
         </div>
     </div>
 
-    <div class="row mb-3" id="purchaseOrderSection">
+    <div class="row mb-3" id="purchaseOrderSection" style="display: none;">
         <div class="col-md-6">
             <label asp-for="purchaseID" class="form-label fw-bold">اختر أمر الشراء</label>
             <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
@@ -58,8 +63,6 @@
 
     <button type="submit" id="submitBtn" class="btn btn-success btn-lg">الامر المنوط بيه الرجوع</button>
 </form>
-
-
 
 @if (Model.ListOfordered != null && Model.ListOfordered.Any())
 {
@@ -80,19 +83,17 @@
                     <td>
                         @if (item.InkId != null)
                         {
-                            @* <span>حبر - @item.InkId</span> *@
-                            foreach (Ink ik in inks){
+                            foreach (Ink ik in inks)
+                            {
                                 if (ik.InkId == item.InkId)
                                 {
                                     <span> @ik.Name</span>
                                     break;
                                 }
-                                
                             }
                         }
                         else if (item.PaperId != null)
                         {
-                            @* <span>ورق - @item.PaperId</span> *@
                             foreach (Paper pap in papers)
                             {
                                 if (pap.PaperId == item.PaperId)
@@ -100,12 +101,10 @@
                                     <span> @pap.Name</span>
                                     break;
                                 }
-
                             }
                         }
                         else if (item.SuppliesId != null)
                         {
-                            @* <span>مستلزمات - @item.SuppliesId</span> *@
                             foreach (Supply supp in supplies)
                             {
                                 if (supp.SuppliesId == item.SuppliesId)
@@ -113,7 +112,6 @@
                                     <span> @supp.Name</span>
                                     break;
                                 }
-
                             }
                         }
                         else
@@ -138,8 +136,6 @@ else if (ViewBag.Message != null)
 
 
 
-
-
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-primary text-white text-center">
@@ -160,17 +156,14 @@ else if (ViewBag.Message != null)
                     <i class="bx bx-error-circle"></i> @TempData["Error"]
                 </div>
             }
-
-            @using (Html.BeginForm("ReturnOrder2", "Inventory", FormMethod.Post))
+            @using (Html.BeginForm("ReturnOrder2", "Inventory", FormMethod.Post, new { id = "returnOrderForm" }))
             {
-
-                  <div class="col-md-6">
-        <div class="form-check mt-4">
-            <label asp-for="ReturnInOut"></label>
-            <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
-
-        </div>
-    </div>
+                <div class="col-md-6">
+                    <div class="form-check mt-4">
+                        <label asp-for="ReturnInOut"></label>
+                        <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
+                    </div>
+                </div>
 
                 <div class="row mb-3" id="purchaseOrderSection">
                     <div class="col-md-6">
@@ -189,33 +182,29 @@ else if (ViewBag.Message != null)
                     </div>
                 </div>
 
+                <div class="row mb-3" id="jobOrderSection">
+                    <div class="col-md-6">
+                        <label asp-for="JobOrderId" class="form-label fw-bold">اختر أمر التشغيل</label>
+                        <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
+                            <option value="">-- اختر أمر التشغيل --</option>
+                            @if (ViewBag.JobOrderList != null)
+                            {
+                                foreach (JobOrder job in ViewBag.JobOrderList)
+                                {
+                                    <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="JobOrderId" class="text-danger"></span>
+                    </div>
+                </div>
 
-    <div class="row mb-3" id="jobOrderSection">
-        <div class="col-md-6">
-            <label asp-for="JobOrderId" class="form-label fw-bold">اختر أمر التشغيل</label>
-            <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
-                <option value="">-- اختر أمر التشغيل --</option>
-                @if (ViewBag.JobOrderList != null)
-                {
-                    foreach (JobOrder job in ViewBag.JobOrderList)
-                    {
-                        <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
-                    }
-                }
-            </select>
-            <span asp-validation-for="JobOrderId" class="text-danger"></span>
-        </div>
-    </div>
-
-  
-    <div class="row mb-3">
-        <div class="col-12">
-            <label asp-for="ReturnsNotes" class="form-label fw-bold">ملاحظات الإرجاع</label>
-            <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
-        </div>
-    </div>
-
- 
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label asp-for="ReturnsNotes" class="form-label fw-bold">ملاحظات الإرجاع</label>
+                        <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
 
                 <div class="card mt-4 border-primary shadow-sm">
                     <div class="card-header bg-light">
@@ -223,7 +212,7 @@ else if (ViewBag.Message != null)
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label fw-bold">نوع العنصر</label>
                                 <select id="itemType" class="form-select">
                                     <option value="">-- اختر نوع العنصر --</option>
@@ -233,7 +222,7 @@ else if (ViewBag.Message != null)
                                 </select>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label fw-bold">العنصر</label>
                                 <select id="itemId" class="form-select" disabled>
                                     <option value="">-- اختر العنصر --</option>
@@ -242,12 +231,7 @@ else if (ViewBag.Message != null)
 
                             <div class="col-md-2">
                                 <label class="form-label fw-bold">الكمية</label>
-                                <input type="number" id="itemQuantity" class="form-control" min="0" />
-                            </div>
-
-                            <div class="col-md-2">
-                                <label class="form-label fw-bold">السعر</label>
-                                <input type="number" id="itemPrice" class="form-control" min="0" step="0.01" />
+                                <input type="number" id="itemQuantity" class="form-control" min="1" />
                             </div>
 
                             <div class="col-md-2 d-grid">
@@ -263,7 +247,6 @@ else if (ViewBag.Message != null)
                             <tr>
                                 <th>العنصر</th>
                                 <th>الكمية</th>
-                                <th>السعر</th>
                                 <th>الإجراءات</th>
                             </tr>
                         </thead>
@@ -274,150 +257,212 @@ else if (ViewBag.Message != null)
                 </div>
 
                 <div id="hiddenItemsContainer"></div>
-                @* @Html.Hidden("EmployeeId", ViewBag.EmployeeId) *@
 
                 <div class="d-grid mt-3">
                     <button type="submit" class="btn btn-success btn-lg">إرسال الطلب</button>
                 </div>
             }
-        </div>
-    </div>
-</div>
 @section Scripts {
+    @* form 1 *@
     <script>
-        $(document).ready(function () {
-            var items = [];
-            var editIndex = -1;
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnTypeSelect = document.getElementById('returnTypeSelect');
+            const jobOrderSection = document.getElementById('jobOrderSection');
+            const purchaseOrderSection = document.getElementById('purchaseOrderSection');
+            const jobOrderSelect = document.getElementById('jobOrderSelect');
+            const purchaseOrderSelect = document.getElementById('purchaseOrderSelect');
+            const returnInOutValue = document.getElementById('returnInOutValue');
+            const returnTypeValidation = document.getElementById('returnTypeValidation');
 
-            // Data sources loaded from the server
-            const dataSources = {
-                Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
-                Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
-                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
-            };
+            returnTypeSelect.addEventListener('change', function() {
+                const selectedValue = this.value;
 
-            // When the item type is changed, populate the item dropdown accordingly
-            $('#itemType').change(function () {
-                var selectedType = $(this).val();
-                var $itemSelect = $('#itemId');
-                $itemSelect.empty().prop('disabled', !selectedType);
-                $itemSelect.append('<option value="">-- اختر --</option>');
-                if (!selectedType) return;
+                // Hide both sections first
+                jobOrderSection.style.display = 'none';
+                purchaseOrderSection.style.display = 'none';
 
-                // Loop through the matching list and add each option with the proper id.
-                dataSources[selectedType]?.forEach(item => {
-                    const id = item.paperId || item.inkId || item.suppliesId;
-                    const name = item.name;
-                    $itemSelect.append(`<option value="${id}">${name}</option>`);
-                });
+                // Clear selections
+                jobOrderSelect.value = '';
+                purchaseOrderSelect.value = '';
+                returnTypeValidation.textContent = '';
+
+                // Show the appropriate section based on selection
+                if (selectedValue === 'out') {
+                    jobOrderSection.style.display = 'block';
+                    returnInOutValue.value = 'true'; // Set to false for job orders
+                } else if (selectedValue === 'in') {
+                    purchaseOrderSection.style.display = 'block';
+                    returnInOutValue.value = 'false'; // Set to true for purchase orders
+                } else {
+                    returnInOutValue.value = ''; // Clear if no selection
+                }
             });
 
-            // Render the items table and hidden inputs for submission
-            function renderItems() {
-                var $tableBody = $('#itemsTableBody');
-                var $hiddenContainer = $('#hiddenItemsContainer');
-                $tableBody.empty();
-                $hiddenContainer.empty();
-
-                items.forEach((item, index) => {
-                    // Display the item details in the table
-                    $tableBody.append(`
-                        <tr data-index="${index}">
-                            <td>${item.itemName}</td>
-                            <td>${item.quantity}</td>
-                            <td>${item.price}</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm editItem">تعديل</button>
-                                <button type="button" class="btn btn-danger btn-sm deleteItem">حذف</button>
-                            </td>
-                        </tr>
-                    `);
-
-                    // Create hidden inputs for the type-specific id, quantity, and price.
-                    let hiddenInputs = "";
-                    if (item.itemType === "Paper") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
-                    } else if (item.itemType === "Ink") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
-                    } else if (item.itemType === "Supply") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
-                    }
-                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
-                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Price" value="${item.price}" />`;
-
-                    $hiddenContainer.append(hiddenInputs);
-                });
-            }
-
-            // Add or update an item in the list
-            $('#addItem').click(function () {
-                var itemType = $('#itemType').val();
-                var itemId = $('#itemId').val();
-                var itemName = $('#itemId option:selected').text();
-                var quantity = parseInt($('#itemQuantity').val());
-                var price = parseFloat($('#itemPrice').val());
-
-                if (!itemType || !itemId || isNaN(quantity) || quantity < 0 || isNaN(price) || price < 0) {
-                    alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+            // Form submission validation
+            document.getElementById('returnOrderForm').addEventListener('submit', function(e) {
+                if (returnTypeSelect.value === '') {
+                    e.preventDefault();
+                    returnTypeValidation.textContent = 'الرجاء اختيار نوع المرتجعات';
                     return;
                 }
 
-                var newItem = { itemType, itemId, itemName, quantity, price };
-
-                if (editIndex === -1) {
-                    items.push(newItem);
-                } else {
-                    items[editIndex] = newItem;
-                    editIndex = -1;
-                    $('#addItem').text('أضف العنصر');
-                }
-
-                // Reset form fields after adding/updating
-                $('#itemType').val('');
-                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
-                $('#itemQuantity').val('');
-                $('#itemPrice').val('');
-                renderItems();
-            });
-
-            // Edit an existing item
-            $('#itemsTableBody').on('click', '.editItem', function () {
-                editIndex = $(this).closest('tr').data('index');
-                var item = items[editIndex];
-                $('#itemType').val(item.itemType).trigger('change');
-                // Wait a moment for the dropdown to be populated before setting its value.
-                setTimeout(() => {
-                    $('#itemId').val(item.itemId);
-                }, 100);
-                $('#itemQuantity').val(item.quantity);
-                $('#itemPrice').val(item.price);
-                $('#addItem').text('تحديث العنصر');
-            });
-
-            // Delete an item from the list
-            $('#itemsTableBody').on('click', '.deleteItem', function () {
-                var index = $(this).closest('tr').data('index');
-                items.splice(index, 1);
-                renderItems();
-            });
-
-            // Prevent form submission if no items have been added
-            $('form').submit(function (e) {
-                if ($('#itemsTableBody tr').length === 0) {
-                    alert("يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.");
+                if (returnTypeSelect.value === 'out' && jobOrderSelect.value === '') {
                     e.preventDefault();
+                    alert('الرجاء اختيار أمر التشغيل');
+                    return;
+                }
+
+                if (returnTypeSelect.value === 'in' && purchaseOrderSelect.value === '') {
+                    e.preventDefault();
+                    alert('الرجاء اختيار أمر الشراء');
+                    return;
                 }
             });
-
-            // Auto-redirect if TempData["Success"] is set (optional)
-        @if (TempData["Success"] != null)
-        {
-            <text>
-                            setTimeout(function () {
-                                window.location.href = '@Url.Action("adminHome", "AdminHome")';
-                            }, 5000);
-            </text>
-        }
         });
     </script>
+    @*  form 2 *@
+
+                <script>
+                    $(document).ready(function () {
+                        var items = [];
+                        var editIndex = -1;
+
+                        // Data sources loaded from the server
+                        const dataSources = {
+                            Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                            Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                            Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+                        };
+
+                        // When the item type is changed, populate the item dropdown accordingly
+                        $('#itemType').change(function () {
+                            var selectedType = $(this).val();
+                            var $itemSelect = $('#itemId');
+                            $itemSelect.empty().prop('disabled', !selectedType);
+                            $itemSelect.append('<option value="">-- اختر --</option>');
+                            if (!selectedType) return;
+
+                            // Loop through the matching list and add each option with the proper id.
+                            dataSources[selectedType]?.forEach(item => {
+                                const id = item.paperId || item.inkId || item.suppliesId;
+                                const name = item.name;
+                                $itemSelect.append(`<option value="${id}">${name}</option>`);
+                            });
+                        });
+
+                        // Render the items table and hidden inputs for submission
+                        function renderItems() {
+                            var $tableBody = $('#itemsTableBody');
+                            var $hiddenContainer = $('#hiddenItemsContainer');
+                            $tableBody.empty();
+                            $hiddenContainer.empty();
+
+                            items.forEach((item, index) => {
+                                // Display the item details in the table
+                                $tableBody.append(`
+                                    <tr data-index="${index}">
+                                        <td>${item.itemName}</td>
+                                        <td>${item.quantity}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-sm editItem">تعديل</button>
+                                            <button type="button" class="btn btn-danger btn-sm deleteItem">حذف</button>
+                                        </td>
+                                    </tr>
+                                `);
+
+                                // Create hidden inputs for the type-specific id and quantity
+                                let hiddenInputs = "";
+                                if (item.itemType === "Paper") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                                } else if (item.itemType === "Ink") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                                } else if (item.itemType === "Supply") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+                                }
+                                hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+
+                                $hiddenContainer.append(hiddenInputs);
+                            });
+                        }
+
+                        // Add or update an item in the list
+                        $('#addItem').click(function () {
+                            var itemType = $('#itemType').val();
+                            var itemId = $('#itemId').val();
+                            var itemName = $('#itemId option:selected').text();
+                            var quantity = parseInt($('#itemQuantity').val());
+
+                            if (!itemType || !itemId || isNaN(quantity) || quantity < 1) {
+                                alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+                                return;
+                            }
+
+                            var newItem = { itemType, itemId, itemName, quantity };
+
+                            if (editIndex === -1) {
+                                items.push(newItem);
+                            } else {
+                                items[editIndex] = newItem;
+                                editIndex = -1;
+                                $('#addItem').text('أضف العنصر');
+                            }
+
+                            // Reset form fields after adding/updating
+                            $('#itemType').val('');
+                            $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
+                            $('#itemQuantity').val('');
+                            renderItems();
+                        });
+
+                        // Edit an existing item
+                        $('#itemsTableBody').on('click', '.editItem', function () {
+                            editIndex = $(this).closest('tr').data('index');
+                            var item = items[editIndex];
+                            $('#itemType').val(item.itemType).trigger('change');
+                            // Wait a moment for the dropdown to be populated before setting its value.
+                            setTimeout(() => {
+                                $('#itemId').val(item.itemId);
+                            }, 100);
+                            $('#itemQuantity').val(item.quantity);
+                            $('#addItem').text('تحديث العنصر');
+                        });
+
+                        // Delete an item from the list
+                        $('#itemsTableBody').on('click', '.deleteItem', function () {
+                            var index = $(this).closest('tr').data('index');
+                            items.splice(index, 1);
+                            renderItems();
+                        });
+
+                        // Prevent form submission if no items have been added
+                        $('#returnOrderForm').submit(function (e) {
+                            if ($('#itemsTableBody tr').length === 0) {
+                                alert("يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.");
+                                e.preventDefault();
+                            }
+                        });
+
+                        // Toggle between purchase and job order sections based on checkbox
+                        $('#returnInOut').change(function() {
+                            if ($(this).is(':checked')) {
+                                $('#purchaseOrderSection').show();
+                                $('#jobOrderSection').hide();
+                                $('#jobOrderSelect').val('');
+                            } else {
+                                $('#purchaseOrderSection').hide();
+                                $('#jobOrderSection').show();
+                                $('#purchaseOrderSelect').val('');
+                            }
+                        });
+
+                        // Initialize visibility based on checkbox state
+                        if ($('#returnInOut').is(':checked')) {
+                            $('#purchaseOrderSection').show();
+                            $('#jobOrderSection').hide();
+                        } else {
+                            $('#purchaseOrderSection').hide();
+                            $('#jobOrderSection').show();
+                        }
+                    });
+                </script>
 }

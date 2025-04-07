@@ -1032,7 +1032,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         public ReturnOrderDTO processSelection(ReturnOrderDTO returnDto)
         {
             // purchase order
-            if (returnDto.ReturnInOut == true)
+            if (returnDto.ReturnInOut == false)
             {
                 List<QuantityBridge> purchasedItems = _context.QuantityBridges
                     //.Include(q => q.PurchaseId)
@@ -1040,7 +1040,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     .ToList();
                 returnDto.ListOfordered = purchasedItems;
             }
-            else if (returnDto.ReturnInOut == false)
+            else if (returnDto.ReturnInOut == true)
             {
                 // job order
                 List<QuantityBridge> requisitedItems = _context.QuantityBridges
@@ -1341,6 +1341,164 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
+        public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
+        {
+            try
+            {
+                List<QuantityBridge> quantityBridgeList = returnDTO.BridgeList;
+                ReturnsOrder returnOrder = new ReturnsOrder
+                {
+                    EmployeeId = returnDTO.EmployeeId,
+                    purchaseID = returnDTO.purchaseID,
+                    JobOrderId = returnDTO.JobOrderId,
+                    ReturnsNotes = returnDTO.ReturnsNotes,
+                    ReturnInOut = returnDTO.ReturnInOut,
+                };
+
+                _context.ReturnsOrders.Add(returnOrder);
+                _context.SaveChanges();
+
+                int returnOrderNumber = _context.ReturnsOrders
+                        .OrderByDescending(po => po.ReturnId)
+                        .Select(po => po.ReturnId)
+                        .FirstOrDefault();
+
+                for (int i = 0; i < quantityBridgeList.Count; i++)
+                {
+                    quantityBridgeList[i].ReturnId = returnOrderNumber;
+                    quantityBridgeList[i].QuantityBridgeID = null;
+
+
+                    if (returnOrder.ReturnInOut == true && returnOrder.JobOrderId != null)
+                    {
+                        if (quantityBridgeList[i].InkId != null)
+                        {
+                            var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+                            if (ink != null)
+                            {
+
+                                quantityBridgeList[i].OldPrice = ink.Price;
+                                quantityBridgeList[i].OldQuantity = ink.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+
+                                // Now update the quantity
+                                ink.Quantity += quantityBridgeList[i].Quantity;
+
+
+                                _context.Inks.Update(ink);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                        else if (quantityBridgeList[i].PaperId != null)
+                        {
+                            var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+                            if (paper != null)
+                            {
+                                // Store old values BEFORE making any changes
+                                quantityBridgeList[i].OldPrice = paper.Price;
+                                quantityBridgeList[i].OldQuantity = paper.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+
+
+                                paper.Quantity += quantityBridgeList[i].Quantity;
+
+
+                                _context.Papers.Update(paper);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                        else if (quantityBridgeList[i].SuppliesId != null)
+                        {
+                            var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+                            if (supply != null)
+                            {
+
+                                quantityBridgeList[i].OldPrice = supply.Price;
+                                quantityBridgeList[i].OldQuantity = supply.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+
+
+                                supply.Quantity += quantityBridgeList[i].Quantity;
+
+                                _context.Supplies.Update(supply);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                    }
+
+
+                    else if (!returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
+                    {
+                        if (quantityBridgeList[i].InkId != null)
+                        {
+                            var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+                            if (ink != null)
+                            {
+
+                                quantityBridgeList[i].OldPrice = ink.Price;
+                                quantityBridgeList[i].OldQuantity = ink.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+
+
+                                ink.Quantity -= quantityBridgeList[i].Quantity;
+
+                                _context.Inks.Update(ink);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                        else if (quantityBridgeList[i].PaperId != null)
+                        {
+                            var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+                            if (paper != null)
+                            {
+
+                                quantityBridgeList[i].OldPrice = paper.Price;
+                                quantityBridgeList[i].OldQuantity = paper.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+
+
+                                paper.Quantity -= quantityBridgeList[i].Quantity;
+
+                                _context.Papers.Update(paper);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                        else if (quantityBridgeList[i].SuppliesId != null)
+                        {
+                            var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+                            if (supply != null)
+                            {
+
+                                quantityBridgeList[i].OldPrice = supply.Price;
+                                quantityBridgeList[i].OldQuantity = supply.Quantity;
+                                quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+
+
+                                supply.Quantity -= quantityBridgeList[i].Quantity;
+
+
+                                _context.Supplies.Update(supply);
+                                _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                _context.SaveChanges();
+                            }
+                        }
+                    }
+                }
+
+                return (true, "تم المرتجع بنجاح");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
+        }
+
     }
+
 
 }

@@ -327,6 +327,75 @@ namespace ThothSystemVersion1.Controllers
         //}
 
 
+        [HttpGet]
+
+        public IActionResult ReturnOrder2()
+        {
+            ReturnOrderDTO rto = new ReturnOrderDTO();
+
+            if (TempData["ReturnOrder"] != null)
+            {
+                rto = System.Text.Json.JsonSerializer.Deserialize<ReturnOrderDTO>(TempData["ReturnOrder"].ToString());
+            }
+
+            ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+            ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+
+            ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+            ViewBag.InkList = _businessLogicL.getAllActiveInk();
+            ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+
+            return View(rto);
+        }
+
+        [HttpPost]
+        public IActionResult getOrderItems(ReturnOrderDTO retDTO)
+        {
+            retDTO = _businessLogicL.processSelection(retDTO);
+
+            TempData["ReturnOrder"] = System.Text.Json.JsonSerializer.Serialize(retDTO);
+
+            return RedirectToAction("ReturnOrder2");
+        }
+
+        [HttpPost]
+        public IActionResult ReturnOrder2(ReturnOrderDTO returnOrder)
+        {
+            string employeeID = HttpContext.Session.GetString("EmployeeID");
+            returnOrder.EmployeeId = employeeID;
+
+            try
+            {
+                if (returnOrder.BridgeList == null || !returnOrder.BridgeList.Any())
+                {
+                    TempData["ErrorMessage"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
+                    return RedirectToAction("ReturnOrder");
+                }
+
+
+                var result = _businessLogicL.ReturnOrder2(returnOrder);
+
+                if (result.success)
+                {
+                    TempData["SuccessMessage"] = result.message;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = result.message;
+                }
+
+                return RedirectToAction("ReturnOrder2");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
+                return RedirectToAction("ReturnOrder");
+            }
+
+
+
+        }
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -730,44 +799,44 @@ try
                 return RedirectToAction("ReturnOrder");
             }
         }
-        [HttpGet]
+        //[HttpGet]
 
-        public IActionResult ReturnOrder2()
-        {
-            ReturnOrderDTO rto = new ReturnOrderDTO();
+        //public IActionResult ReturnOrder2()
+        //{
+        //    ReturnOrderDTO rto = new ReturnOrderDTO();
 
-            if (TempData["ReturnOrder"] != null)
-            {
-                rto = System.Text.Json.JsonSerializer.Deserialize<ReturnOrderDTO>(TempData["ReturnOrder"].ToString());
-            }
+        //    if (TempData["ReturnOrder"] != null)
+        //    {
+        //        rto = System.Text.Json.JsonSerializer.Deserialize<ReturnOrderDTO>(TempData["ReturnOrder"].ToString());
+        //    }
 
-            ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
-            ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+        //    ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+        //    ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
 
-            ViewBag.PaperList = _businessLogicL.getAllActivePaper();
-            ViewBag.InkList = _businessLogicL.getAllActiveInk();
-            ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+        //    ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+        //    ViewBag.InkList = _businessLogicL.getAllActiveInk();
+        //    ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
 
-            return View(rto);
-        }
+        //    return View(rto);
+        //}
 
-        [HttpPost]
-        public IActionResult getOrderItems(ReturnOrderDTO retDTO)
-        {
-            retDTO = _businessLogicL.processSelection(retDTO);
+        //[HttpPost]
+        //public IActionResult getOrderItems(ReturnOrderDTO retDTO)
+        //{
+        //    retDTO = _businessLogicL.processSelection(retDTO);
 
-            TempData["ReturnOrder"] = System.Text.Json.JsonSerializer.Serialize(retDTO);
+        //    TempData["ReturnOrder"] = System.Text.Json.JsonSerializer.Serialize(retDTO);
 
-            return RedirectToAction("ReturnOrder2");
-        }
+        //    return RedirectToAction("ReturnOrder2");
+        //}
 
-        [HttpPost]
-        public IActionResult ReturnOrder2(ReturnOrderDTO returnOrder) {
+        //[HttpPost]
+        //public IActionResult ReturnOrder2(ReturnOrderDTO returnOrder) {
 
-            return View();
+        //    return View();
         
         
-        }
+        //}
 
 
 

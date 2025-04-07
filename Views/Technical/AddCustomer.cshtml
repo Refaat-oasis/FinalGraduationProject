@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+
+
+@model Customer;
+
+
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Technical/AddCustomer.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+
+<div class="container">
+    <div class="arrow">
+        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
+
+    <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+        <div class="text">
+            <h1>إضافة عميل جديد</h1>
+        </div>
+
+        <div class="inputBox">
+            <label for="CustomerName">اسم العميل</label>
+            <input type="text" asp-for="@Model.CustomerName" id="CustomerName" />
+            <p asp-validation-for="@Model.CustomerName" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Address">عنوان العميل</label>
+            <input type="text" asp-for="@Model.CustomerAddress" id="Address" />
+            <p asp-validation-for="@Model.CustomerAddress" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Email">الإيميل الإلكتروني</label>
+            <input type="text" asp-for="@Model.CustomerEmail" id="Email" />
+            <p asp-validation-for="@Model.CustomerEmail" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Phone">رقم الهاتف</label>
+            <input type="text" asp-for="@Model.CustomerPhone" id="Phone" />
+            <p asp-validation-for="@Model.CustomerPhone" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Notes">ملاحظات عن العميل</label>
+            <input type="text" asp-for="@Model.CustomerNotes" id="Notes" />
+            <p asp-validation-for="@Model.CustomerNotes" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="@Model.Activated" class="textlabel"> </label>
+            <select asp-for="@Model.Activated" id="options">
+                @{
+                    if (Model.Activated)
+                    {
+                        <option value="true" selected>مفعل</option>
+                        <option value="false">غير مفعل</option>
+                    }
+                    else
+                    {
+                        <option value="false" selected>غير مفعل</option>
+                        <option value="true">مفعل</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="buttons">
+            <div class="Add">
+                <input type="submit" value="إضافه" class="Add" />
+            </div>
+
+            <div class="reset">
+                @* <input type="reset" value="إعادة إدخال" class="btnReset" /> *@
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="~/js/Technical/AddCustomer.js"></script>

@@ -7,6 +7,12 @@
     var minEndDate = startDate.AddDays(1).ToString("yyyy-MM-dd");
 }
 
+<div class="arrow">
+    <a asp-controller="Technical" asp-action="ViewAllJobOrder" class="back">
+        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+    </a>
+</div>
+
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
@@ -167,6 +173,11 @@
                         }
                     }
                 });
+            }
+                        if (tempDataSuccess && tempDataSuccess.value === "true") {
+                setTimeout(function () {
+                    window.location.href = " / Inventory / ViewAllJobOrder ";
+                }, 3000); // 3 ثواني
             }
         });
     </script>

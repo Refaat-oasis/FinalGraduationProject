@@ -82,4 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
             this.submit();
         }
     });
+
+    if (tempDataSuccess && tempDataSuccess.value === "true") {
+        setTimeout(function () {
+            window.location.href = " / Inventory / ViewAllPaper ";
+        }, 3000); // 3 ثواني
+    }
 });

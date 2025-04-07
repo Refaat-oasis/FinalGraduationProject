@@ -57,4 +57,10 @@
             event.preventDefault();
         }
     });
+
+    if (tempDataSuccess && tempDataSuccess.value === "true") {
+        setTimeout(function () {
+            window.location.href = " / Inventory / ViewAllVendor ";
+        }, 3000); // 3 ثواني
+    }
 });

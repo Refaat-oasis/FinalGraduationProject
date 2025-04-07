@@ -23,7 +23,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("/image/background.jpeg");
+        background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
         opacity: 0.75;
         z-index: -1;
         background-size: cover;

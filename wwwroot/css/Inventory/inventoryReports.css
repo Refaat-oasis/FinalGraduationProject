@@ -7,7 +7,7 @@
     overflow: auto;
     display: flex;
     /*    background-color: #E6B980;*/
-    background: linear-gradient(to left, #4F3217, #A67C52, #D2B48C);
+    background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
 }
 
 .container {
@@ -204,4 +204,28 @@ tr:nth-child(even) {
 table tr:hover {
     background-color: #F8E1C4;
     transition: background-color 0.3s ease-in-out;
+}
+
+
+.arrow {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.back {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    margin: 10px 0;
+    position: fixed;
+    text-decoration: none;
 }

@@ -80,21 +80,18 @@ th {
 }
 
 tr:nth-child(odd) {
-    background-color: #E6B980; 
+    background-color: #F8E1C4;
 }
-
-
-
 
 tr:nth-child(even) {
-    background-color: #FDF5E6; 
+    background-color: #FDF5E6;
 }
 
-table tr:hover {
+/*table tr:hover {
     background-color: #F8E1C4; 
 
     transition: background-color 0.3s ease-in-out;
-}
+}*/
 
 
 .btn {
@@ -118,7 +115,7 @@ table tr:hover {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #4F3217;
+    background-color: black;
     color: white;
     margin-left: 20px;
     text-decoration: none;
@@ -126,7 +123,7 @@ table tr:hover {
 
 
     .editBtn:hover {
-        background-color: #444;
+        background-color: #545b62;
         color: #fff;
         transform: scale(1.05);
         transition: all 0.3s ease-in-out;

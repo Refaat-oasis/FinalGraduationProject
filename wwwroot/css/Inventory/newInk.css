@@ -82,7 +82,7 @@ input.btnReset {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #4F3217;
+    background-color: black;
     color: white;
     margin: 0 10px;
     text-decoration: none;
@@ -90,7 +90,7 @@ input.btnReset {
 
     input.Add:hover,
     input.btnReset:hover {
-        background-color: #444;
+        background-color: #545b62;
         transform: scale(1.05);
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);

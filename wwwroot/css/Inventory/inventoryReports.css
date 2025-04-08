@@ -11,7 +11,7 @@
 }
 
 .container {
-/*    padding: 20px;*/
+    /*    padding: 20px;*/
     position: relative;
     overflow: auto;
     width: 100%;
@@ -29,32 +29,43 @@
 }
 
 .toggle-btn {
+    width: 95%;
+    height: 70px;
     padding: 5px 20px;
     font-size: 25px;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: #4F3217;
+    background-color: black;
     color: white;
     margin-left: 20px;
     text-decoration: none;
 }
 
-    .toggle-btn:hover {
-        background-color: #444;
-        color: #fff;
-        transform: scale(1.05);
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
-    }
+span {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+    font-size: 40px;
+}
+
+.toggle-btn:hover {
+    background-color: #444;
+    color: #fff;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+}
 
 .hiddenBox {
     margin-top: 20px;
     display: none;
-    background-color: #E6B980;
+    background-color: transparent;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border: none;
+   
 }
 
 .rowCont {
@@ -123,7 +134,7 @@
 }
 
     .btn:hover {
-        background-color: #444;
+        background-color: #545b62;
         color: #fff;
         transform: scale(1.05);
         transition: all 0.3s ease-in-out;
@@ -155,8 +166,8 @@
 h1 {
     color: black;
     margin: 20px;
-    font-weight: 1000;
-    font-size: 50px;
+    font-weight: 1100;
+    font-size: 55px;
 }
 
 h2 {
@@ -169,7 +180,7 @@ h2 {
 table {
     width: 75%;
     margin: 20px;
-    margin-left:170px;
+    margin-left: 170px;
     border-collapse: separate;
     overflow: hidden;
     border-radius: 15px;
@@ -194,38 +205,14 @@ th {
 }
 
 tr:nth-child(odd) {
-    background-color: #E6B980;
+    background-color: #F8E1C4;
 }
 
 tr:nth-child(even) {
     background-color: #FDF5E6;
 }
 
-table tr:hover {
+/*table tr:hover {
     background-color: #F8E1C4;
     transition: background-color 0.3s ease-in-out;
-}
-
-
-.arrow {
-    display: flex;
-    justify-content: flex-start;
-    margin: 20px;
-}
-
-.back {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    margin: 10px 0;
-    position: fixed;
-    text-decoration: none;
-}
+}*/

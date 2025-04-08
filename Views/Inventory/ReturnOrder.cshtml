@@ -439,259 +439,257 @@
     </div>
 </form>
 
+            @section Scripts {
+                <script>
+                    $(document).ready(function () {
+                        // Toggle between job order and purchase order sections
+                        $('#returnType').change(function () {
+                            const selectedType = $(this).val();
+                            $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
+                            $('#jobOrderSelect, #purchaseOrderSelect').val('');
+                            items = []; // Clear existing items
+                            renderItems();
 
+                            if (selectedType === 'job') {
+                                $('#jobOrderSection').show();
+                                $('#returnInOut').prop('checked', true);
+                            } else if (selectedType === 'purchase') {
+                                $('#purchaseOrderSection').show();
+                                $('#returnInOut').prop('checked', false);
+                            }
+                        });
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            // Toggle between job order and purchase order sections
-            $('#returnType').change(function () {
-                const selectedType = $(this).val();
-                $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
-                $('#jobOrderSelect, #purchaseOrderSelect').val('');
-                items = []; // Clear existing items
-                renderItems();
+                        let items = [];
+                        let editIndex = -1;
+                        let orderItems = [];
 
-                if (selectedType === 'job') {
-                    $('#jobOrderSection').show();
-                    $('#returnInOut').prop('checked', true);
-                } else if (selectedType === 'purchase') {
-                    $('#purchaseOrderSection').show();
-                    $('#returnInOut').prop('checked', false);
-                }
-            });
+                        // Handle job order selection
+                        $('#jobOrderSelect').change(function() {
+                            const jobOrderId = $(this).val();
+                            if (!jobOrderId) {
+                                $('#manualAdditionSection').hide();
+                                orderItems = [];
+                                return;
+                            }
 
-            let items = [];
-            let editIndex = -1;
-            let orderItems = [];
+                            $.ajax({
+                                url: '/Inventory/GetJobOrderItems',
+                                type: 'GET',
+                                data: { jobOrderId: jobOrderId },
+                                success: function(data) {
+                                    orderItems = data;
+                                    $('#manualAdditionSection').show();
+                                    populateItemTypes();
+                                },
+                                error: function(xhr) {
+                                    alert('Error loading job order items: ' + xhr.responseText);
+                                }
+                            });
+                        });
 
-            // Handle job order selection
-            $('#jobOrderSelect').change(function() {
-                const jobOrderId = $(this).val();
-                if (!jobOrderId) {
-                    $('#manualAdditionSection').hide();
-                    orderItems = [];
-                    return;
-                }
+                        // Handle purchase order selection
+                        $('#purchaseOrderSelect').change(function() {
+                            const purchaseId = $(this).val();
+                            if (!purchaseId) {
+                                $('#manualAdditionSection').hide();
+                                orderItems = [];
+                                return;
+                            }
 
-                $.ajax({
-                    url: '/Inventory/GetJobOrderItems',
-                    type: 'GET',
-                    data: { jobOrderId: jobOrderId },
-                    success: function(data) {
-                        orderItems = data;
-                        $('#manualAdditionSection').show();
-                        populateItemTypes();
-                    },
-                    error: function(xhr) {
-                        alert('Error loading job order items: ' + xhr.responseText);
-                    }
-                });
-            });
+                            $.ajax({
+                                url: '/Inventory/GetPurchaseOrderItems',
+                                type: 'GET',
+                                data: { purchaseId: purchaseId },
+                                success: function(data) {
+                                    orderItems = data;
+                                    $('#manualAdditionSection').show();
+                                    populateItemTypes();
+                                },
+                                error: function(xhr) {
+                                    alert('Error loading purchase order items: ' + xhr.responseText);
+                                }
+                            });
+                        });
 
-            // Handle purchase order selection
-            $('#purchaseOrderSelect').change(function() {
-                const purchaseId = $(this).val();
-                if (!purchaseId) {
-                    $('#manualAdditionSection').hide();
-                    orderItems = [];
-                    return;
-                }
+                        // Populate item types based on order items
+                        function populateItemTypes() {
+                            const $itemType = $('#itemType');
+                            $itemType.empty().append('<option value="">-- اختر النوع --</option>');
+                            const uniqueTypes = [...new Set(orderItems.map(item => item.itemType))];
+                            uniqueTypes.forEach(type => {
+                                $itemType.append(`<option value="${type}">${type}</option>`);
+                            });
+                        }
 
-                $.ajax({
-                    url: '/Inventory/GetPurchaseOrderItems',
-                    type: 'GET',
-                    data: { purchaseId: purchaseId },
-                    success: function(data) {
-                        orderItems = data;
-                        $('#manualAdditionSection').show();
-                        populateItemTypes();
-                    },
-                    error: function(xhr) {
-                        alert('Error loading purchase order items: ' + xhr.responseText);
-                    }
-                });
-            });
+                        // Handle item type selection
+                        $('#itemType').change(function () {
+                            const selectedType = $(this).val();
+                            const $itemSelect = $('#itemId');
+                            $itemSelect.empty().prop('disabled', !selectedType);
+                            $itemSelect.append('<option value="">-- اختر الصنف --</option>');
 
-            // Populate item types based on order items
-            function populateItemTypes() {
-                const $itemType = $('#itemType');
-                $itemType.empty().append('<option value="">-- اختر النوع --</option>');
-                const uniqueTypes = [...new Set(orderItems.map(item => item.itemType))];
-                uniqueTypes.forEach(type => {
-                    $itemType.append(`<option value="${type}">${type}</option>`);
-                });
+                            if (!selectedType) return;
+
+                            const filteredItems = orderItems.filter(item => item.itemType === selectedType);
+                            filteredItems.forEach(item => {
+                                const id = item.paperId || item.inkId || item.suppliesId;
+                                const name = item.name;
+                                const quantity = item.quantity || 0;
+                                // Updated line to show ID and name
+                                $itemSelect.append(
+                                    `<option value="${id}" data-quantity="${quantity}">${name} (ID: ${id}) - الكمية: ${quantity}</option>`
+                                );
+                            });
+                        });
+
+                        // Handle item selection
+                        $('#itemId').change(function () {
+                            const selectedOption = $(this).find('option:selected');
+                            const originalQuantity = parseInt(selectedOption.data('quantity')) || 0;
+                            $('#originalQuantityValue').text(originalQuantity);
+                            $('#originalQuantityInfo').show();
+                            $('#itemQuantity').attr('max', originalQuantity).val('');
+                        });
+
+                        // Add item to list
+                        $('#addItem').click(function () {
+                            const itemType = $('#itemType').val();
+                            const itemId = $('#itemId').val();
+                            const itemName = $('#itemId option:selected').text().split(' (ID:')[0].trim();
+                            const originalQuantity = parseInt($('#originalQuantityValue').text());
+                            const quantity = parseInt($('#itemQuantity').val());
+
+                            if (!itemType || !itemId || !quantity || quantity <= 0) {
+                                alert("Please fill all fields correctly");
+                                return;
+                            }
+
+                            if (quantity > originalQuantity) {
+                                alert(`Return quantity (${quantity}) exceeds original quantity (${originalQuantity})`);
+                                return;
+                            }
+
+                            const newItem = {
+                                itemType,
+                                itemId,
+                                itemName,
+                                originalQuantity,
+                                quantity
+                            };
+
+                            if (editIndex === -1) {
+                                const existingIndex = items.findIndex(item =>
+                                    item.itemType === itemType && item.itemId === itemId);
+                                if (existingIndex !== -1) {
+                                    items[existingIndex].quantity += quantity;
+                                } else {
+                                    items.push(newItem);
+                                }
+                            } else {
+                                items[editIndex] = newItem;
+                                editIndex = -1;
+                            }
+
+                            renderItems();
+                            resetItemForm();
+                        });
+
+                        // Render items table
+                        function renderItems() {
+                            const $tableBody = $('#itemsTableBody');
+                            const $hiddenContainer = $('#hiddenItemsContainer');
+                            $tableBody.empty();
+                            $hiddenContainer.empty();
+
+                            items.forEach((item, index) => {
+                                // Add to visible table
+                                $tableBody.append(`
+                                    <tr data-index="${index}">
+                                        <td>${item.itemType}</td>
+                                        <td>${item.itemName}</td>
+                                        <td>${item.originalQuantity}</td>
+                                        <td>${item.quantity}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-sm editItem">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm deleteItem">Delete</button>
+                                        </td>
+                                    </tr>
+                                `);
+
+                                // Add hidden inputs for form submission based on type
+                                let hiddenInputs = '';
+                                if(item.itemType === "Paper") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
+                                } else if(item.itemType === "Ink") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
+                                } else if(item.itemType === "Supply") {
+                                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
+                                }
+                                hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
+
+                                $hiddenContainer.append(hiddenInputs);
+                            });
+
+                            updateNoSelectedItemsMessage();
+                        }
+
+                        // Update empty state message
+                        function updateNoSelectedItemsMessage() {
+                            $('#noSelectedItemsMessage').toggle(items.length === 0);
+                        }
+
+                        // Reset item form
+                        function resetItemForm() {
+                            $('#itemType').val('');
+                            $('#itemId').empty().prop('disabled', true);
+                            $('#itemQuantity').val('');
+                            $('#originalQuantityInfo').hide();
+                        }
+
+                        // Delete item
+                        $('#itemsTableBody').on('click', '.deleteItem', function () {
+                            const index = $(this).closest('tr').data('index');
+                            items.splice(index, 1);
+                            renderItems();
+                        });
+
+                        // Edit item
+                        $('#itemsTableBody').on('click', '.editItem', function () {
+                            const index = $(this).closest('tr').data('index');
+                            const item = items[index];
+
+                            $('#itemType').val(item.itemType).trigger('change');
+                            setTimeout(() => {
+                                $('#itemId').val(item.itemId);
+                                $('#originalQuantityValue').text(item.originalQuantity);
+                                $('#itemQuantity').val(item.quantity);
+                                editIndex = index;
+                            }, 300);
+                        });
+
+                        // Form validation
+                        $('#returnOrderForm').submit(function(e) {
+                            if (items.length === 0) {
+                                e.preventDefault();
+                                alert("Please add at least one item");
+                                return false;
+                            }
+
+                            const returnType = $('#returnType').val();
+                            if (returnType === 'job' && !$('#jobOrderSelect').val()) {
+                                e.preventDefault();
+                                alert("Please select a job order");
+                                return false;
+                            }
+
+                            if (returnType === 'purchase' && !$('#purchaseOrderSelect').val()) {
+                                e.preventDefault();
+                                alert("Please select a purchase order");
+                                return false;
+                            }
+
+                            return true;
+                        });
+                    });
+                </script>
             }
-
-            // Handle item type selection
-            $('#itemType').change(function () {
-                const selectedType = $(this).val();
-                const $itemSelect = $('#itemId');
-                $itemSelect.empty().prop('disabled', !selectedType);
-                $itemSelect.append('<option value="">-- اختر الصنف --</option>');
-
-                if (!selectedType) return;
-
-                const filteredItems = orderItems.filter(item => item.itemType === selectedType);
-                filteredItems.forEach(item => {
-                    // Use the appropriate id from the order item for the dropdown value
-                    const id = item.paperId || item.inkId || item.suppliesId;
-                    const name = item.name;
-                    const quantity = item.quantity || 0;
-                    $itemSelect.append(`<option value="${id}" data-quantity="${quantity}">${name} (الكمية: ${quantity})</option>`);
-                });
-            });
-
-            // Handle item selection
-            $('#itemId').change(function () {
-                const selectedOption = $(this).find('option:selected');
-                const originalQuantity = parseInt(selectedOption.data('quantity')) || 0;
-                $('#originalQuantityValue').text(originalQuantity);
-                $('#originalQuantityInfo').show();
-                $('#itemQuantity').attr('max', originalQuantity).val('');
-            });
-
-            // Add item to list
-            $('#addItem').click(function () {
-                const itemType = $('#itemType').val();
-                const itemId = $('#itemId').val();
-                const itemName = $('#itemId option:selected').text().split(' (الكمية:')[0];
-                const originalQuantity = parseInt($('#originalQuantityValue').text());
-                const quantity = parseInt($('#itemQuantity').val());
-
-                if (!itemType || !itemId || !quantity || quantity <= 0) {
-                    alert("Please fill all fields correctly");
-                    return;
-                }
-
-                if (quantity > originalQuantity) {
-                    alert(`Return quantity (${quantity}) exceeds original quantity (${originalQuantity})`);
-                    return;
-                }
-
-                const newItem = {
-                    itemType,
-                    itemId,
-                    itemName,
-                    originalQuantity,
-                    quantity
-                };
-
-                if (editIndex === -1) {
-                    const existingIndex = items.findIndex(item =>
-                        item.itemType === itemType && item.itemId === itemId);
-                    if (existingIndex !== -1) {
-                        items[existingIndex].quantity += quantity;
-                    } else {
-                        items.push(newItem);
-                    }
-                } else {
-                    items[editIndex] = newItem;
-                    editIndex = -1;
-                }
-
-                renderItems();
-                resetItemForm();
-            });
-
-            // Render items table
-            function renderItems() {
-                const $tableBody = $('#itemsTableBody');
-                const $hiddenContainer = $('#hiddenItemsContainer');
-                $tableBody.empty();
-                $hiddenContainer.empty();
-
-                items.forEach((item, index) => {
-                    // Add to visible table
-                    $tableBody.append(`
-                        <tr data-index="${index}">
-                            <td>${item.itemType}</td>
-                            <td>${item.itemName}</td>
-                            <td>${item.originalQuantity}</td>
-                            <td>${item.quantity}</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm editItem">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm deleteItem">Delete</button>
-                            </td>
-                        </tr>
-                    `);
-
-                    // Add hidden inputs for form submission based on type
-                    let hiddenInputs = '';
-                    if(item.itemType === "Paper") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].PaperId" value="${item.itemId}" />`;
-                    } else if(item.itemType === "Ink") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].InkId" value="${item.itemId}" />`;
-                    } else if(item.itemType === "Supply") {
-                        hiddenInputs += `<input type="hidden" name="BridgeList[${index}].SuppliesId" value="${item.itemId}" />`;
-                    }
-                    hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Quantity" value="${item.quantity}" />`;
-                    // Optionally, add other hidden inputs such as Price if needed:
-                    // hiddenInputs += `<input type="hidden" name="BridgeList[${index}].Price" value="0" />`;
-
-                    $hiddenContainer.append(hiddenInputs);
-                });
-
-                updateNoSelectedItemsMessage();
-            }
-
-            // Update empty state message
-            function updateNoSelectedItemsMessage() {
-                $('#noSelectedItemsMessage').toggle(items.length === 0);
-            }
-
-            // Reset item form
-            function resetItemForm() {
-                $('#itemType').val('');
-                $('#itemId').empty().prop('disabled', true);
-                $('#itemQuantity').val('');
-                $('#originalQuantityInfo').hide();
-            }
-
-            // Delete item
-            $('#itemsTableBody').on('click', '.deleteItem', function () {
-                const index = $(this).closest('tr').data('index');
-                items.splice(index, 1);
-                renderItems();
-            });
-
-            // Edit item
-            $('#itemsTableBody').on('click', '.editItem', function () {
-                const index = $(this).closest('tr').data('index');
-                const item = items[index];
-
-                $('#itemType').val(item.itemType).trigger('change');
-                setTimeout(() => {
-                    $('#itemId').val(item.itemId);
-                    $('#originalQuantityValue').text(item.originalQuantity);
-                    $('#itemQuantity').val(item.quantity);
-                    editIndex = index;
-                }, 300);
-            });
-
-            // Form validation
-            $('#returnOrderForm').submit(function(e) {
-                if (items.length === 0) {
-                    e.preventDefault();
-                    alert("Please add at least one item");
-                    return false;
-                }
-
-                const returnType = $('#returnType').val();
-                if (returnType === 'job' && !$('#jobOrderSelect').val()) {
-                    e.preventDefault();
-                    alert("Please select a job order");
-                    return false;
-                }
-
-                if (returnType === 'purchase' && !$('#purchaseOrderSelect').val()) {
-                    e.preventDefault();
-                    alert("Please select a purchase order");
-                    return false;
-                }
-
-                return true;
-            });
-        });
-    </script>
-}

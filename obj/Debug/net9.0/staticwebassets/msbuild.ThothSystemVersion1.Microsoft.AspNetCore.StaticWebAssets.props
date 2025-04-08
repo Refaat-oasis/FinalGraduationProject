@@ -282,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5l79vgk9ry</Fingerprint>
-      <Integrity>qc3bsZCawegMatqSsb13ZmB/hg4X63FlftPk2HlECuY=</Integrity>
+      <Fingerprint>wbs835b4po</Fingerprint>
+      <Integrity>bAjwtj2J1OtzIzNib1oh0OWj+D9vanBJ57fr+ig/qiM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\purchaseAll.css'))</OriginalItemSpec>

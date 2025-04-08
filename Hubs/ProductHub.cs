@@ -22,7 +22,7 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (paper.Quantity < paper.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessagePaper", $"Reorder point reached for paper: {paper.Name}");
+                    await Clients.All.SendAsync("ReceiveReorderMessagePaper", $"تم الوصول للحد الادني من : {paper.Name} , \n بكمية :{paper.Quantity}");
                 }
             }
         }
@@ -35,7 +35,7 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (ink.Quantity < ink.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessageInk", $"Reorder point reached for ink: {ink.Name}");
+                    await Clients.All.SendAsync("ReceiveReorderMessageInk", $"تم الوصول للحد الادني من : {ink.Name} ,\n بكمية :{ink.Quantity}");
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace ThothSystemVersion1.Hubs
             {
                 if (supply.Quantity < supply.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessageSupply", $"Reorder point reached for supply: {supply.Name}");
+                    await Clients.All.SendAsync("ReceiveReorderMessageSupply", $"تم الوصول للحد الادني من : {supply.Name} ,\n بكمية : {supply.Quantity}");
                 }
             }
         }

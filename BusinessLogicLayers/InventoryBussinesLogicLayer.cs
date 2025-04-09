@@ -1142,6 +1142,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         (qb, paper) => new
                         {
                             itemType = "الورق",
+                            itemId = paper.PaperId,
                             name = paper.Name,
                             quantity = paper.Quantity
                         })
@@ -1153,6 +1154,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         (qb, ink) => new
                         {
                             itemType = "الحبر",
+                            itemId = ink.InkId,
                             name = ink.Name,
                             quantity = ink.Quantity
                         })
@@ -1164,6 +1166,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         (qb, supply) => new
                         {
                             itemType = "المستلزمات",
+                            itemId = supply.SuppliesId,
                             name = supply.Name,
                             quantity = supply.Quantity
                         })

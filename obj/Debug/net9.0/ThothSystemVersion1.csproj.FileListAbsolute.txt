@@ -3212,25 +3212,8 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\7vdkt1swif-o6nai0d57f.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\fzius0n1xk-0m5jkw0p5q.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\gj6jwyaagd-33ubz7etsd.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\2qjhsgmgeb-g83fz15yag.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\dkqxwr3hwq-e4q6g26m26.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\b6wwng7kjp-wijrfi4bq4.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\b96qb1uoig-fq7aidin13.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-xy5xkx7zvb.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-fq7aidin13.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\e70hfup3nb-hz6do9foin.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\rglp7i10ke-t7dvkerxrn.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q100uh0nll-k665hedvh1.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\0stwxwbv7u-thqkd4mdde.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\fk4qjgm0u7-zfwv51azf1.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\t32potioop-0j984p5nr8.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-b7dts0i0jz.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-b7dts0i0jz.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-8nth7wl0tg.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\d8xlm8olav-05n7f8ioy0.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\mhp52afk3r-9hq70nr9j9.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\84uhk0pina-0blihldkd9.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\369zcvjyhg-i2g030oiy2.gz
@@ -5523,18 +5506,7 @@ C:\Users\ECC\OneDrive\Desktop\last version\FinalGraduationProject\obj\Debug\net9
 C:\Users\ECC\OneDrive\Desktop\last version\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\ECC\OneDrive\Desktop\last version\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ohkweqhj2q-gkrvv3rs1h.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\i4t4n4wmqv-1cupxd3fsp.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ywkd8ikajd-ughpko3jwm.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\lbg0v9001x-ughpko3jwm.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-x3nxltznx1.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\5pg52vl7u3-8ndp3k6nob.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\1b7590srk4-8ndp3k6nob.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ammhkwhug5-8ndp3k6nob.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-b6xly5aep0.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-lkdcvtw8qt.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-6ungs7s1h3.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-6s4dbp22c8.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-grc9eykgi7.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\qbsxc6zff3-51w47f31vy.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ohkweqhj2q-gkrvv3rs1h.gz
 C:\Users\ECC\OneDrive\Desktop\sandra\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.AssemblyReference.cache
@@ -7066,8 +7038,6 @@ D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\staticwebassets
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 D:\GRADUATIONNN pROJECTT\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\8v0nayaic8-ke93cz75mv.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-5sfgumsm97.gz
 C:\Users\ECC\OneDrive\Desktop\final version\FinalGraduationProject\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\ECC\OneDrive\Desktop\final version\FinalGraduationProject\bin\Debug\net9.0\appsettings.json
 C:\Users\ECC\OneDrive\Desktop\final version\FinalGraduationProject\bin\Debug\net9.0\libman.json
@@ -8312,3 +8282,50 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\2ynxzqyove-n84d57btw5.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-vt7o25hp9d.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-wbs835b4po.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\7vdkt1swif-z8te0maozm.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\fzius0n1xk-t44uu6507b.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\gj6jwyaagd-t4554qkbbt.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\2qjhsgmgeb-2kbu5hl1ky.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\xcwc7fpbpc-nmipbt2wja.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\0oqtgut1p7-oye4kzb6le.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\lumojjvrku-oye4kzb6le.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\brhlif5rdi-oye4kzb6le.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\dkqxwr3hwq-g65klmjd36.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\i4t4n4wmqv-8031m1onkg.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ywkd8ikajd-0d3v1c45yk.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\lbg0v9001x-0d3v1c45yk.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\b6wwng7kjp-tl8z16xk7l.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\jxbomy881g-nmipbt2wja.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\8v0nayaic8-zch5cio7fm.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\b96qb1uoig-zgxxurw31h.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-t6cbo1u9ln.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-zgxxurw31h.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-bm7q0cmya9.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-wbs835b4po.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\5pg52vl7u3-i9cz0rc1wf.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\1b7590srk4-i9cz0rc1wf.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ammhkwhug5-i9cz0rc1wf.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\e70hfup3nb-akolmkrhej.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\1l5jzb9n0a-gijowyzy9x.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\sdqy9s2ps2-nmipbt2wja.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\sldk2hcltg-tmafzvopq4.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-0p1kzeadt6.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-n3mk9p5a5d.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\lwmp6zqse4-ughpko3jwm.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\upbjjn82of-nmipbt2wja.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\rglp7i10ke-tmafzvopq4.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q100uh0nll-2p8v584kqb.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\3ubkw9895f-9ubra5kno8.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-54tc397k2k.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-5nzrxlzqme.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-6vrn0jfesx.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-74378pzupw.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-ri9h0o0vjt.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\kj10orhuvu-9ubra5kno8.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-844oxz6i2x.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-995gj1cydr.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\d8xlm8olav-bb9cz68nqq.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\vmhns9fjru-3t18g42i7c.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\2ynxzqyove-n84d57btw5.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-vt7o25hp9d.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance Final Project\FinalGraduationProject\obj\Debug\net9.0\compressed\fk4qjgm0u7-6o5cm1cp95.gz

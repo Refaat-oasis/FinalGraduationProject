@@ -54,4 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = " / Admin / ViewAllEmployee ";
         }, 3000); // 3 ثواني
     }
+    //if (tempDataSuccess && tempDataSuccess.value === "true") {
+    //    setTimeout(function () {
+    //        window.location.href = " / Admin / EditEmployee ";
+    //    }, 3000); // 3 ثواني
+    //}
 });

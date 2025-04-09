@@ -768,8 +768,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nnkaks4gqt</Fingerprint>
-      <Integrity>E0uQG6B3Q/tPIpCtUxqEmdbsm8llmbAFQMrqnXg+9r8=</Integrity>
+      <Fingerprint>6o5cm1cp95</Fingerprint>
+      <Integrity>St5Comc2BBvGn5Ax9APvW2cUDKwY9Q7RkkUiT6s87WU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Admin\editEmployee.js'))</OriginalItemSpec>

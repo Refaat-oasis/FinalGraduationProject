@@ -139,30 +139,42 @@ namespace ThothSystemVersion1.Controllers
         {
             if (updatedEmployee == null)
             {
-                return BadRequest("Invalid data.");
+                return BadRequest("بيانات الموظف غير صالحة.");
             }
 
             try
             {
-                bool isEditSuccess = _businessLogicL.EditEmployee(id, updatedEmployee); // Update the employee
-
-
-                if (!isEditSuccess)
+                var result = _businessLogicL.EditEmployee(id, updatedEmployee); // Update the employee
+                if (result.Success)
                 {
-                    ModelState.AddModelError("", "اسم المستخدم او الرقم القومي تم استخدامه من قبل");
-                    return View(updatedEmployee);
+                    TempData["Success"] = result.Message;
+                    //return View("~/Views/Admin/EditEmployee.cshtml", id);
+                    return RedirectToAction("EditEmployee", "admin", id);
                 }
-                return RedirectToAction("ViewAllEmployee"); // Redirect to the list of employees
+                else
+                {
+                    //if (result.Message.Contains("اسم المستخدم"))
+                    //{
+                    //    TempData["Error"] = result.Message;
+                    //    return RedirectToAction("EditEmployee", new { id = id });
+                    //}
+                    TempData["Error"] = result.Message;
+                    return RedirectToAction("EditEmployee", "admin", id);
+                }
+
+                //return RedirectToAction("ViewAllEmployee");
 
             }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message); // Employee not found
-            }
+
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message); // Internal server error
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                return View(updatedEmployee);
             }
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, ex.Message); // Internal server error
+            //}
         }
 
     }

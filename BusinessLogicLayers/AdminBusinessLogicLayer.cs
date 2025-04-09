@@ -73,15 +73,19 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool EditEmployee(string id, EmployeeDTO updatedEmployee)
+        public (bool Success, string Message) EditEmployee(string id, EmployeeDTO updatedEmployee)
         {
             try
             {
+                if (updatedEmployee == null)
+                {
+                    return (false, "بيانات الموظف المطلوبة غير متوفرة.");
+                }
                 Employee existingEmployee = _context.Employees.Find(id); // Find the employee by ID
                                                                          //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
                 if (existingEmployee == null)
                 {
-                    throw new ArgumentException("Employee not found."); // Employee not found
+                    return (false, "الموظف غير موجود.");
                 }
                 //if (existingEmployeeUserName != null) {
 
@@ -95,12 +99,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 existingEmployee.Activated = updatedEmployee.Activated;
                 _context.Employees.Update(existingEmployee); // Mark the entity as modified
                 _context.SaveChanges(); // Save changes to the database
-                return true; // Success
+                return (true, $"تم تعديل الموظف {updatedEmployee.EmployeeName}"); // Success
             }
             catch (Exception ex)
             {
                 // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while updating the employee.", ex);
+                return (false, $"حدث خطأ: {ex.Message}");
             }
         }
 

@@ -13,6 +13,19 @@
 <div class="form-container">
     <h1>  تعديل بيانات الموظف : @Model.EmployeeName </h1>
 
+    @if (TempData["Success"] != null)
+    {
+        <div class="success-message">
+            <i class="bx bx-check-circle"></i> @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="error-message">
+            <i class="bx bx-error-circle"></i> @TempData["Error"]
+        </div>
+    }
+
     <form asp-controller="admin" asp-action="EditEmployee" method="post" class="Employee-form">
         <div asp-validation-summary="ModelOnly" class="error"></div>
 

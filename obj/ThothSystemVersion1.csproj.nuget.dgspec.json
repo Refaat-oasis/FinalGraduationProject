@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sandra\\OneDrive\\Desktop\\Last Dance Final Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
+    "C:\\Users\\sandra\\OneDrive\\Desktop\\GPLast\\FinalGraduationProject\\ThothSystemVersion1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sandra\\OneDrive\\Desktop\\Last Dance Final Project\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
+    "C:\\Users\\sandra\\OneDrive\\Desktop\\GPLast\\FinalGraduationProject\\ThothSystemVersion1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sandra\\OneDrive\\Desktop\\Last Dance Final Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "projectUniqueName": "C:\\Users\\sandra\\OneDrive\\Desktop\\GPLast\\FinalGraduationProject\\ThothSystemVersion1.csproj",
         "projectName": "ThothSystemVersion1",
-        "projectPath": "C:\\Users\\sandra\\OneDrive\\Desktop\\Last Dance Final Project\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+        "projectPath": "C:\\Users\\sandra\\OneDrive\\Desktop\\GPLast\\FinalGraduationProject\\ThothSystemVersion1.csproj",
         "packagesPath": "C:\\Users\\sandra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sandra\\OneDrive\\Desktop\\Last Dance Final Project\\FinalGraduationProject\\obj\\",
+        "outputPath": "C:\\Users\\sandra\\OneDrive\\Desktop\\GPLast\\FinalGraduationProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\TechnicalClerk\createNewJobOrder.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\TechnicalClerk\createNewJobOrder.css" />
+    <None Include="wwwroot\css\Technical\createNewJobOrder.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

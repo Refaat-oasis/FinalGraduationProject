@@ -13,7 +13,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         private readonly ThothContext _context;
         public TechnicalBusinessLogicLayer(ThothContext context)
         {
-            //ThothContext _context = new ThothContext();
+
             _context = context;
         }
 
@@ -122,7 +122,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 for (int i = 0; i < quantityBridgeList.Count; i++)
                 {
                     quantityBridgeList[i].RequisiteId = requisiteOrderNumber;
-                    quantityBridgeList[i].QuantityBridgeID = null;
+                    quantityBridgeList[i].QuantityBridgeId = null;
 
                     if (quantityBridgeList[i].InkId != null)
                     {
@@ -303,7 +303,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             joborderSpecifics.StartDate = jobOrder.StartDate;
             joborderSpecifics.EndDate = jobOrder.EndDate;
             joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
-            joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesID;
+            joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesId;
             joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
             joborderSpecifics.FilmsProcessingExpense = miscellaneousExpense.FilmsProcessingExpense;
             joborderSpecifics.MaterialsTotal = miscellaneousExpense.MaterialsTotal;

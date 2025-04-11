@@ -6,19 +6,22 @@ namespace ThothSystemVersion1.Models;
 
 public partial class MiscellaneousExpense
 {
-    public int? MiscellaneousExpensesID { get; set; }
+    [Display(Name = "رقم التعريفي")]
+    public int MiscellaneousExpensesId { get; set; }
 
-    [Display(Name = "الرقم التعريفي الخاص بالتشغيلة")]
+    [Display(Name = "رقم امر التشغيل")]
     public int? JobOrderId { get; set; }
 
-    [Display(Name = "الرقم التعرفي الخاص بالعميل")]
+    [Display(Name = "رقم التعريفي الخاص بالموظف")]
     public string? EmployeeId { get; set; }
 
-    [Display(Name = "مصاريف تشغيل الالات")]
+
+    [Display(Name = "مصاريف تشغيل الخامات")]
     public decimal? MaterialProcessingExpense { get; set; }
 
     [Display(Name = "مصاريف تشغيل الافلام")]
     public decimal? FilmsProcessingExpense { get; set; }
+
 
     [Display(Name = "جملة الخامات")]
     public decimal? MaterialsTotal { get; set; }
@@ -26,11 +29,13 @@ public partial class MiscellaneousExpense
     [Display(Name = "الاجمالي")]
     public decimal TotalAfterMaterials { get; set; }
 
-    [Display(Name = "مصاريف ادارية")]
+
+    [Display(Name = "مصروفات ادارية")]
     public decimal? AdminstrativeExpense { get; set; }
 
-    [Display(Name = "احمالي المصروفات")]
+    [Display(Name = "اجمالي المصروفات")]
     public decimal TotalExpenses { get; set; }
+
 
     [Display(Name = "النسبة")]
     public decimal Percentage { get; set; }
@@ -38,13 +43,17 @@ public partial class MiscellaneousExpense
     [Display(Name = "الجملة")]
     public decimal TotalAfterPercentage { get; set; }
 
-    [Display(Name = "وزارة المالية")]
+
+    [Display(Name = "وزارةا لمالية")]
     public decimal MinistryOfFinance { get; set; }
 
-    [Display(Name = "صندوق تحسين العاملين")]
+    [Display(Name = "صندوق تحسين العمال")]
     public decimal EmployeeImprovmentBox { get; set; }
 
-    [Display(Name = "ضريبة القيمة المضافة")]
+    [Display(Name ="الاجمالي")]
+    public decimal totalAfterEmplyeeImprovementbox{ get; set; }
+
+    [Display(Name = "صندوق تحسين العاملين")]
     public decimal ValueAddedTax { get; set; }
 
     [Display(Name = "القيمة الاجمالية")]

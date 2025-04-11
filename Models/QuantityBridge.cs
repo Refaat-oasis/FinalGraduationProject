@@ -3,40 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ThothSystemVersion1.Models;
-
 public partial class QuantityBridge
 {
-    //[Display(Name = "الرقم التعريفي لامر الشراء")]
-    public int? QuantityBridgeID { get; set; }
+    [Display(Name = "الرقم التعريفي")]
+    public int? QuantityBridgeId { get; set; }
 
     [Display(Name = "السعر")]
     public decimal Price { get; set; }
-    
-    [Display(Name = "الرقم التعريفي لاذن المردودات")]
+
+    [Display(Name = "رقم امر المرتجع")]
     public int? ReturnId { get; set; }
-    
-    [Display(Name = "الرقم التعريفي لامر الشراء")]
+
+    [Display(Name = "رقم امر الشراء")]
     public int? PurchaseId { get; set; }
-    
+
     [Display(Name = "الكمية")]
     public int Quantity { get; set; }
-    
-    [Display(Name = "اذن الصرف")]
-    public int? RequisiteId { get; set; }
-    
-    [Display(Name = "الرقم التعريفي للورق")]
-    public int? PaperId { get; set; }
-    
-    [Display(Name = "الرقم التريفي للحبر")]
-    public int? InkId { get; set; }
-    
-    [Display(Name = "الرقم التعريفي للمستلزمات")]
-    public int? SuppliesId { get; set; }
-    
-    [Display(Name = "الرقم التعريفي للجرد")]
-    public int? PhysicalCountId { get; set; }
 
-    [Display(Name ="الكمية القديمة")]
+    [Display(Name = "القيمة")]
+    public decimal? TotalBalance { get; set; }
+
+    [Display(Name = "القيمة القديمة")]
     public int? OldQuantity { get; set; }
 
     [Display(Name = "السعر القديم")]
@@ -45,9 +32,20 @@ public partial class QuantityBridge
     [Display(Name = "القيمة القديمة")]
     public decimal? OldTotalBalance { get; set; }
 
-    [Display(Name = "القيمة الحالية")]
-    public decimal? TotalBalance { get; set; }
+    [Display(Name = "رقم امر الصرف")]
+    public int? RequisiteId { get; set; }
 
+    [Display(Name = "الرقم التعريفي الخاص بالورق")]
+    public int? PaperId { get; set; }
+
+    [Display(Name = "الرقم التعريفي الخاص بالحبر")]
+    public int? InkId { get; set; }
+
+    [Display(Name = "الرقم التعريفي الخاص بالمستلزمات")]
+    public int? SuppliesId { get; set; }
+
+    [Display(Name = "رقم امر الجرد")]
+    public int? PhysicalCountId { get; set; }
 
     public virtual Ink? Ink { get; set; }
 

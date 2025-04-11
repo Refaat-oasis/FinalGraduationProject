@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
 
@@ -35,36 +34,31 @@ namespace ThothSystemVersion1.Controllers
                             return RedirectToAction("AdminHome", "Admin");
 
                         case JobRole.InventoryClerk: // Inventory
-                            return RedirectToAction("InventoryHome", "Inventory");
+                            return RedirectToAction("inventoryClerk");
                         case JobRole.InventoryManager: // Inventory Manager
-                            return RedirectToAction("InventoryManagerHome", "Inventory");
+                            return RedirectToAction("inventoryMangaer");
 
                         case JobRole.TechnicalClerk: // Technical
-                            return RedirectToAction("TechnicalHome", "Technical");
+                            return RedirectToAction("technicalClerk");
                         case JobRole.TechnicalManager: // Technical Manager
-                            return RedirectToAction("TechnicalManagerHome", "Technical");
+                            return RedirectToAction("TechnicalManager");
 
                         case JobRole.CostClerk: // Cost
-                            return RedirectToAction("CostHome", "Cost");
+                            return RedirectToAction("costClerk");
                         case JobRole.CostManager:
-                            return RedirectToAction("CostManagerHome", "Cost");
+                            return RedirectToAction("CostManager");
 
                         default:
                             return RedirectToAction("LoginPage", "Employee");
                     }
-                }
-                else
-                {
+                }else{
+                    string message = "هذا الحساب غير مفعل بعد، يرجى التواصل مع مدير النظام لتفعيل الحساب";
+                    TempData["Error"] = message;
                     return RedirectToAction("LoginPage", "Employee");
                 }
 
-            }
-            else {
-
-             
-                    
+            }else{
                 string message = "اسم المستخدم أو كلمة المرور غير صحيحة";
-
                 TempData["Error"] = message;
                 return RedirectToAction("LoginPage", "Employee");
             }
@@ -74,6 +68,37 @@ namespace ThothSystemVersion1.Controllers
         {
             return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("LoginPage", "Employee");
+        }
+        public IActionResult inventoryClerk() {
+
+            return View("~/views/inventoryClerck/inventoryClerkHome.cshtml");
+        }
+        public IActionResult inventoryManager() {
+
+            return View("~/views/inventory/inventoryManagerHome.cshtml");
+        }
+        public IActionResult technicalClerk() {
+
+            return View("~/views/technicalClerk/technicalClerkHome.cshtml");
+        }
+        public IActionResult technicalManager() {
+
+            return View("~/views/technicalManager/technicalManagerHome.cshtml");
+        }
+        public IActionResult costClerk() {
+
+            return View("~/views/costClerk/costClerkHome.cshtml");
+        }
+        public IActionResult costManager() {
+
+            return View("~/views/costManager/costManagerHome.cshtml");
+        }
+
+
 
     }
 }

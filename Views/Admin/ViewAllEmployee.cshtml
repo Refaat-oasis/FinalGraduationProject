@@ -50,22 +50,12 @@
                 {
                     <tr id="row-@emp.EmployeeId">
                         <td>
-                            @* <button class="deleteBtn" onclick="deleteEmployee('@emp.EmployeeId')">حذف</button> *@
-
                             <a asp-controller="Admin" asp-action="EditEmployee" asp-route-id="@emp.EmployeeId" class="editBtn">تعديل</a>
-                            @* <a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-id="@emp.EmployeeId" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')" class="editBtn">حذف</a> *@
-
-                            @* <a href="/Admin/DeleteEmployee/@emp.EmployeeId" class="deleteBtn" onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا الموظف؟')">حذف</a> *@
-
-
                         </td>
                         <td>@(emp.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@emp.JobRole.GetDisplayName()</td>
                         <td>@emp.EmployeeName</td>
                         <td>@emp.EmployeeId</td>
-
-
-
                     </tr>
                 }
             </tbody>
@@ -74,18 +64,6 @@
 
 </div>
 
-@* <script> *@
-
-
-@*     function deleteEmployee(employeeId) { *@
-@*         if (confirm("هل أنت متأكد أنك تريد حذف هذا الموظف؟")) { *@
-@*             document.getElementById("row-" + employeeId).remove(); *@
-@*             alert("تم حذف الموظف بنجاح!"); *@
-@*         } *@
-@*     } *@
-
-
-@* </script> *@
 <script src="~/js/Admin/viewAllEmployee.js">
   
 </script>

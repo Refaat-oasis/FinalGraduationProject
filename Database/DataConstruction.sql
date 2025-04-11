@@ -102,10 +102,18 @@ CREATE TABLE ProcessBridge (
     jobOrderID INT,
     machineID INT,
     labourID INT,
-    totalMachinePrice DECIMAL(10,2) DEFAULT 1 NOT NULL CHECK (totalMachinePrice >= 0),
-    totalLabourPrice DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalLabourPrice >= 0),
+
+    machineHourPrice DECIMAL (10,2) DEFAULT 1,
+    totalMachineValue DECIMAL(10,2) DEFAULT 1 NOT NULL CHECK (totalMachineValue >= 0),
+    oldMachinePrice DECIMAL (10,2)DEFAULT 1 ,
+
+    labourHourPrice DECIMAL (10,2)DEFAULT 1,
+    oldlabourPrice DECIMAL (10,2)DEFAULT 1,
+    totalLabourValue DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalLabourValue >= 0),
+
     numberOfHours DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (numberOfHours >= 0),
     employeeID NVARCHAR(30),
+
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (machineID) REFERENCES Machine(machineID),
     FOREIGN KEY (labourID) REFERENCES Labour(labourID),
@@ -125,6 +133,7 @@ CREATE TABLE MiscellaneousExpenses (
     adminstrativeExpense DECIMAL(10,2) DEFAULT 1 CHECK (adminstrativeExpense >= 0),
     totalExpenses DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalExpenses >= 0),
     percentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (percentage >= 0),
+    totalAfterEmplyeeImprovementbox DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterEmplyeeImprovementbox >= 0),
     totalAfterPercentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterPercentage >= 0),
     ministryOfFinance DECIMAL(10,2) NOT NULL DEFAULT 1,
     employeeImprovmentBox DECIMAL(10,2) NOT NULL DEFAULT 1,
@@ -140,6 +149,8 @@ CREATE TABLE PurchaseOrder (
     purchaseID INT IDENTITY(1,1) PRIMARY KEY,
     purchaseDate DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) NOT NULL,
+    remainingAmount DECIMAL (10,2) DEFAULT 0.0,
+    paidAmount DECIMAL (10,2) DEFAULT 0.0 ,
     vendorID INT NOT NULL,
     purchaseNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
@@ -250,6 +261,37 @@ CREATE TABLE QuantityBridge (
     FOREIGN KEY (paperID) REFERENCES Paper(paperID),
     FOREIGN KEY (suppliesID) REFERENCES Supplies(suppliesID),
     FOREIGN KEY (physicalCountID) REFERENCES PhysicalCountOrder(physicalCountID)
+);
+GO
+
+-- 17. Payment Table 
+
+CREATE TABLE PaymentOrder(
+    paymentID INT IDENTITY(1,1) PRIMARY KEY,
+    purchaseID INT ,
+    amount DECIMAL(10,2) DEFAULT 1 ,
+    paymentDate  DATE DEFAULT GETDATE(),
+    employeeID NVARCHAR(30) ,
+	paymentNotes NVARCHAR(2500) DEFAULT '',
+    FOREIGN KEY (purchaseID) REFERENCES PurchaseOrder(purchaseID),
+    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
+  
+);
+GO
+
+
+-- 18. RecieptsOrder Table 
+
+CREATE TABLE RecieptsOrder(
+    recieptID INT IDENTITY(1,1) PRIMARY KEY,
+    jobOrderID INT ,
+    amount DECIMAL(10,2) DEFAULT 1 ,
+    receiptDate  DATE DEFAULT GETDATE(),
+    employeeID NVARCHAR(30) ,
+	receiptNotes NVARCHAR(2500) DEFAULT '',
+    FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
+    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
+  
 );
 GO
 

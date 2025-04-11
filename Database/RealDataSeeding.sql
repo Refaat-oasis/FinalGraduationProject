@@ -226,7 +226,7 @@ GO
 ---------------------------------
 -- Insert into ProcessBridge Table
 ---------------------------------
-INSERT INTO ProcessBridge (jobOrderID, machineID, labourID, totalMachinePrice, totalLabourPrice, numberOfHours, employeeID)
+INSERT INTO ProcessBridge (jobOrderID, machineID, labourID, totalMachineValue, totalLabourValue, numberOfHours, employeeID)
 VALUES
 (1, 1, 1, 5000.00, 50.00, 10.00, 'EMP001'),
 (2, 2, 2, 3000.00, 30.00, 8.00, 'EMP002'),

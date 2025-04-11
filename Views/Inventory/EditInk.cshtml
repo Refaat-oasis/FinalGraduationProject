@@ -25,7 +25,9 @@
     <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform">
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
-        <input type="hidden" asp-for="InkId" id="tempDataSuccess" value="@TempData["success"]" />
+
+        <input type="hidden" asp-for="InkId" />
+        @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
             <label asp-for="Name" class="textlabel"></label>

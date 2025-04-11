@@ -419,6 +419,98 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
         }
+
+        public bool AddCustomer(CustomerDTO newCustomer)
+        {
+            try
+            {
+                Customer foundCustomerByPhone = _context.Customers.FirstOrDefault(c => c.CustomerPhone == newCustomer.CustomerPhone);
+                Customer foundCustomerByEmail = _context.Customers.FirstOrDefault(c => c.CustomerEmail == newCustomer.CustomerEmail);
+                if (foundCustomerByEmail != null || foundCustomerByPhone != null)
+                {
+
+                    return false;
+                }
+                if (newCustomer == null)
+                {
+                    throw new ArgumentNullException(nameof(newCustomer));
+                }
+                Customer addedCustomer = new Customer();
+                addedCustomer.CustomerName = newCustomer.CustomerName;
+                addedCustomer.CustomerAddress = newCustomer.CustomerAddress;
+                addedCustomer.CustomerEmail = newCustomer.CustomerEmail;
+                addedCustomer.CustomerNotes = newCustomer.CustomerNotes;
+                addedCustomer.CustomerPhone = newCustomer.CustomerPhone;
+                addedCustomer.Activated = true;
+                _context.Customers.Add(addedCustomer);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while adding the customer.", ex);
+            }
+        }
+
+        public Customer EditCustomer(int CustomerId)
+        {
+            try
+            {
+                Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == CustomerId);
+                if (customer == null)
+                {
+                    throw new ArgumentException("Customer not found.");
+                }
+                return customer;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the Customer.", ex);
+            }
+
+        }
+        public bool EditCustomer(int CustomerId, Customer customer)
+        {
+            try
+            {
+                Customer foundCustomer = _context.Customers.FirstOrDefault(c => c.CustomerId == CustomerId);
+
+                if (foundCustomer == null)
+                {
+                    throw new ArgumentException("Customer not found.");
+                }
+
+
+
+                //Customer foundCustomerEmail = _context.Customers.FirstOrDefault(c => c.CustomerEmail == customer.CustomerEmail);
+                //Customer foundCustomerPhone = _context.Customers.FirstOrDefault(c => c.CustomerPhone == customer.CustomerPhone);
+
+
+                //if (foundCustomerEmail != null || foundCustomerPhone != null)
+                //{
+                //    return false;
+                //}
+
+
+                //foundCustomer.CustomerName = customer.CustomerName;
+                foundCustomer.CustomerAddress = customer.CustomerAddress;
+                foundCustomer.CustomerEmail = customer.CustomerEmail;
+                foundCustomer.CustomerNotes = customer.CustomerNotes;
+                foundCustomer.CustomerPhone = customer.CustomerPhone;
+                //foundCustomer.Activated = customer.Activated;
+
+                _context.Customers.Update(foundCustomer);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while updating the customer.", ex);
+            }
+        }
     }
 }
 

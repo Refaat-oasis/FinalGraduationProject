@@ -28,7 +28,8 @@
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
 
-        <input type="hidden" asp-for="PaperId" id="tempDataSuccess" value="@TempData["success"]" />
+        <input type="hidden" asp-for="PaperId" />
+        @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
             <label asp-for="Name" class="textlabel"></label>

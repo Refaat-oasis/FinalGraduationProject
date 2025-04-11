@@ -1165,7 +1165,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     .Join(_context.Supplies, qb => qb.SuppliesId, supply => supply.SuppliesId,
                         (qb, supply) => new
                         {
-                            itemType = "المستلزمات",
+                            itemType = "المتلزمات",
                             itemId = supply.SuppliesId,
                             name = supply.Name,
                             quantity = supply.Quantity
@@ -1275,7 +1275,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
 
 
-                    else if (!returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
+                    else if (returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {

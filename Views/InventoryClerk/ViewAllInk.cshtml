@@ -36,23 +36,20 @@
             <thead>
                 <tr>
 
-
-
-                     <th> 
-                        @Html.DisplayNameFor(model => model.Price) 
-                     </th> 
-                     <th> 
-                        @Html.DisplayNameFor(model => model.Quantity) 
-                     </th> 
-                     <th> 
+                    <th>
                         @Html.DisplayNameFor(model => model.ReorderPoint)
-                     </th> 
-                     <th> 
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(model => model.Activated)
-                     </th> 
-
-                    <th>الإجراءات</th>
-
+                    </th>
 
                     <th>
                         @Html.DisplayNameFor(model => model.Colored)
@@ -68,39 +65,31 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                        <tr>
-
-
-
-                             <td> 
-                            @Html.DisplayFor(modelItem => item.Price) 
-                             </td> 
-                             <td> 
-                            @Html.DisplayFor(modelItem => item.Quantity) 
-                             </td> 
-                             <td> 
+                    <tr>
+                        <td>
                             @Html.DisplayFor(modelItem => item.ReorderPoint)
-                             </td>
-                             <td> 
-                            @Html.DisplayFor(modelItem => item.Activated) 
-                             </td> 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
 
-                            <td>
-                            @* <a asp-controller="inventory" asp-action="EditInk" asp-route-id="@item.InkId" class="editBtn">تعديل</a> *@
-                                @* <a asp-action="EditInk" asp-route-inkId="@item.InkId" class="editBtn">تعديل</a> *@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activated)
+                        </td>
 
-                            </td>
-
-                            <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Colored)
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.TotalBalance)
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

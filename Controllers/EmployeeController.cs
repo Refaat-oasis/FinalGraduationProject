@@ -34,19 +34,19 @@ namespace ThothSystemVersion1.Controllers
                             return RedirectToAction("AdminHome", "Admin");
 
                         case JobRole.InventoryClerk: // Inventory
-                            return RedirectToAction("inventoryClerk");
+                            return RedirectToAction("inventoryClerk","employee");
                         case JobRole.InventoryManager: // Inventory Manager
-                            return RedirectToAction("inventoryMangaer");
+                            return RedirectToAction("inventoryManager", "employee");
 
                         case JobRole.TechnicalClerk: // Technical
                             return RedirectToAction("technicalClerk");
                         case JobRole.TechnicalManager: // Technical Manager
-                            return RedirectToAction("TechnicalManager");
+                            return RedirectToAction("TechnicalManager", "employee");
 
                         case JobRole.CostClerk: // Cost
-                            return RedirectToAction("costClerk");
+                            return RedirectToAction("costClerk", "employee");
                         case JobRole.CostManager:
-                            return RedirectToAction("CostManager");
+                            return RedirectToAction("CostManager", "employee");
 
                         default:
                             return RedirectToAction("LoginPage", "Employee");

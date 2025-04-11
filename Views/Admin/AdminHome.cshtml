@@ -85,13 +85,7 @@
                     <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
                     <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
 
-                    @* 
-                    <li>@Html.ActionLink("شراء صنف ورق", "paperPurchase", "Inventory")</li>
-                    <li>@Html.ActionLink("شراء حبر", "inkPurchase", "Inventory")</li>
-                    <li>@Html.ActionLink("شراء مستلزمات", "supplyPurchase", "Inventory")</li>
-                 *@
                     <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
-                    <li>@Html.ActionLink("المرتجعات2", "ReturnOrder2", "Inventory")</li>
                     <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
                     <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
                 </ul>
@@ -120,7 +114,7 @@
         </ul>
 
         <div class="button">
-            @Html.ActionLink("تسجيل الخروج", "LoginPage", "Employee", null, new { @class = "btnBack" })
+            @Html.ActionLink("تسجيل الخروج", "Logout", "Employee", null, new { @class = "btnBack" })
         </div>
     </div>
 

@@ -19,7 +19,7 @@ namespace ThothSystemVersion1
             builder.Services.AddScoped<AdminBusinessLogicLayer>();
             builder.Services.AddScoped<InventoryBussinesLogicLayer>();
             builder.Services.AddScoped<TechnicalBusinessLogicLayer>();
-
+            builder.Services.AddScoped<CostBusinessLogicLayer>();
 
             builder.Services.AddDbContext<ThothContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

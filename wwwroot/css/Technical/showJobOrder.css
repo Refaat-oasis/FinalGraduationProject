@@ -1,0 +1,151 @@
+﻿body {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow: auto;
+    display: flex;
+    /*    background-color: #E6B980;*/
+    background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
+}
+
+.container {
+    /*    padding: 20px;*/
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    min-height: 100vh;
+    background-size: contain;
+    background-size: cover;
+}
+
+.mainBox {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.rowCont {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.colCont {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.back {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    margin: 10px 0;
+    text-decoration: none;
+}
+
+h1 {
+    color: black;
+    margin: 20px;
+    font-weight: 1100;
+    font-size: 55px;
+}
+
+h2 {
+    color: black;
+    margin: 20px;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+table {
+    width: 75%;
+    margin: 20px;
+    margin-left: 170px;
+    border-collapse: separate;
+    overflow: hidden;
+    border-radius: 15px;
+    border: solid black 2px;
+    border-spacing: 0;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+td {
+    font-size: 20px;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    font-size: 30px;
+    background-color: #FDF5E6;
+}
+
+tr:nth-child(odd) {
+    background-color: #F8E1C4;
+}
+
+tr:nth-child(even) {
+    background-color: #FDF5E6;
+}
+
+.row-style {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+    .row-style:nth-child(even) {
+        background-color: #F8E1C4;
+    }
+
+    .row-style:nth-child(odd) {
+        background-color: #FDF5E6;
+    }
+
+dt, dd {
+    margin: 0;
+    padding: 5px 10px;
+    width: 50%;
+}
+
+dt {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+dd {
+    text-align: center;
+}
+
+.colCont1 {
+    width: 60%;
+    margin: 20px auto;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-size: 20px;
+}

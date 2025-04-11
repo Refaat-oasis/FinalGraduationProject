@@ -1,72 +1,118 @@
 ﻿@model IEnumerable<ThothSystemVersion1.Models.Customer>
 
 @{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+
     ViewData["Title"] = "ViewAllCustomer";
 }
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Technical/viewAllCustomer.css" rel="stylesheet" />
 
-<h1>ViewAllCustomer</h1>
+</head>
+<div class="container">
+    <div class="arrow">
+        <a asp-controller="admin" asp-action="adminHome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
 
-<div class="arrow mb-3">
-    <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-    </a>
+    <h1>قائمة العملاء</h1>
+
+
+
+    <p>
+        <a asp-controller="technical" asp-action="AddCustomer" class="editBtn">اضافة</a>
+    </p>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="...ابحث عن عميل">
+    </div>
+    <div class="tableContainer">
+        <table id="customerTable">
+            <thead>
+                <tr>
+
+                    <th>الإجراءات</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Activated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerPhone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerNotes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerEmail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            <a class="editBtn" asp-controller="technical" asp-action="EditCustomer" asp-route-id="@item.CustomerId">تعديل</a>
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerNotes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerNotes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerPhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activated)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerNotes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerPhone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Activated)
-                </td>
-                <td>
-                    <a asp-action="EditCustomer" asp-route-CustomerId="@item.CustomerId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
-                </td>
-            </tr>
+<script>
+
+
+           function searchCustomer() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("customerTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows (skip the header row)
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none"; // Hide the row by default
+            td = tr[i].getElementsByTagName("td");
+
+            // Loop through all columns in the current row
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ""; // Show the row if a match is found
+                        break; // Exit the inner loop if a match is found
+                    }
+                }
+            }
         }
-    </tbody>
-</table>
+    }
+</script>

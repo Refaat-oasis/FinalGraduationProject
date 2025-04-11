@@ -32,12 +32,11 @@
     <div class="tableContainer">
 
         <table id="paperTable">
-    <thead >
-        <tr>
-             <th>@Html.DisplayNameFor(model => model.Quantity)</th> 
-             <th>@Html.DisplayNameFor(model => model.Price)</th> 
-             <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th> 
-                    <th>الإجراءات</th>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
                     <th>@Html.DisplayNameFor(model => model.Colored)</th>
                     <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
                     <th>@Html.DisplayNameFor(model => model.Weight)</th>
@@ -45,29 +44,25 @@
                     <th>@Html.DisplayNameFor(model => model.Name)</th>
 
                 </tr>
-    </thead>
-    <tbody>
+            </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                     <td>@Html.DisplayFor(modelItem => item.Quantity)</td> 
-                     <td>@Html.DisplayFor(modelItem => item.Price)</td> 
-                     <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
-                    <td>
-                            @* <a  asp-controller="inventory" asp-action="EditPaper" asp-route-id="@item.PaperId" class="editBtn">تعديل</a> *@
-                                @* <a asp-controller="Inventory" asp-action="EditPaper" asp-route-paperId="@item.PaperId" class="editBtn">تعديل</a> *@
+                    <tr>
+            
+                        <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Colored)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
 
-                    </td>
-                            <td>@Html.DisplayFor(modelItem => item.Colored)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Weight)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-
-                </tr>
+                    </tr>
                 }
-    </tbody>
-</table>
+            </tbody>
+        </table>
 </div>
 </div>
 @section Scripts { 

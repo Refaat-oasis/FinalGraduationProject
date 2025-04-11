@@ -884,7 +884,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 for (int i = 0; i < quantityBridgeList.Count; i++)
                 {
                     quantityBridgeList[i].PurchaseId = purchaseOrderNumber;
-                    quantityBridgeList[i].QuantityBridgeID = null;
+                    quantityBridgeList[i].QuantityBridgeId = null;
 
                     if (quantityBridgeList[i].InkId != null)
                     {
@@ -1194,7 +1194,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 ReturnsOrder returnOrder = new ReturnsOrder
                 {
                     EmployeeId = returnDTO.EmployeeId,
-                    purchaseID = returnDTO.purchaseID,
+                    PurchaseId = returnDTO.purchaseID,
                     JobOrderId = returnDTO.JobOrderId,
                     ReturnsNotes = returnDTO.ReturnsNotes,
                     ReturnInOut = returnDTO.ReturnInOut,
@@ -1211,7 +1211,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 for (int i = 0; i < quantityBridgeList.Count; i++)
                 {
                     quantityBridgeList[i].ReturnId = returnOrderNumber;
-                    quantityBridgeList[i].QuantityBridgeID = null;
+                    quantityBridgeList[i].QuantityBridgeId = null;
 
 
                     if (returnOrder.ReturnInOut == true  && returnOrder.JobOrderId != null)
@@ -1275,7 +1275,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
 
 
-                    else if (returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
+                    else if (returnOrder.ReturnInOut == false && returnOrder.PurchaseId != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {
@@ -1352,7 +1352,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 ReturnsOrder returnOrder = new ReturnsOrder
                 {
                     EmployeeId = returnDTO.EmployeeId,
-                    purchaseID = returnDTO.purchaseID,
+                    PurchaseId = returnDTO.purchaseID,
                     JobOrderId = returnDTO.JobOrderId,
                     ReturnsNotes = returnDTO.ReturnsNotes,
                     ReturnInOut = returnDTO.ReturnInOut,
@@ -1369,7 +1369,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 for (int i = 0; i < quantityBridgeList.Count; i++)
                 {
                     quantityBridgeList[i].ReturnId = returnOrderNumber;
-                    quantityBridgeList[i].QuantityBridgeID = null;
+                    quantityBridgeList[i].QuantityBridgeId = null;
 
 
                     if (returnOrder.ReturnInOut == true && returnOrder.JobOrderId != null)
@@ -1433,7 +1433,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
 
 
-                    else if (!returnOrder.ReturnInOut == false && returnOrder.purchaseID != null)
+                    else if (!returnOrder.ReturnInOut == false && returnOrder.PurchaseId != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {

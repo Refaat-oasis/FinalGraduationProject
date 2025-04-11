@@ -6,15 +6,17 @@ namespace ThothSystemVersion1.Models;
 
 public partial class Labour
 {
-    [Display(Name = "الاسم التعرفي للألة للعامل")]
+    [Display(Name = "الرقم التعرفي للعملية العمالية")]
     public int LabourId { get; set; }
-    
-    [Display(Name = "اسم الألة للعامل")]
+
+    [Display(Name = "اسم العملية العمالية")]
     public string LabourProcessName { get; set; } = null!;
-    
-    [Display(Name = "سعر ساعة العمل للعامل")]
+
+    [Display(Name = "السعر")]
     public decimal Price { get; set; }
 
-    [Display(Name = "حالة الاستخدام")]
+    [Display(Name = "التفعيل")]
     public bool Activated { get; set; }
+
+    public virtual ICollection<ProcessBridge> ProcessBridges { get; set; } = new List<ProcessBridge>();
 }

@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ThothSystemVersion1.Models;
-
 public partial class RequisiteOrder
 {
-    [Display(Name = "الرقم التعريفي لازن الصرف")]
+    [Display(Name = "رقم امر الصرف")]
     public int RequisiteId { get; set; }
-    
-    [Display(Name = "تاريخ اذن الصرف")]
+
+    [Display(Name = "تاريخ امر الصرف")]
     public DateOnly? RequisiteDate { get; set; }
-    
-    [Display(Name = "الرقم القومي للموظف")]
+
+    [Display(Name = "الرقم التعريفي الخاص بالموظف")]
     public string EmployeeId { get; set; } = null!;
-    
-    [Display(Name = "الرقم التعريفي للتشغيلة")]
+
+    [Display(Name = "رقم امر التصنيع")]
     public int JobOrderId { get; set; }
-    
-    [Display(Name = "ملاحظات عن اذن الصرف")]
+
+    [Display(Name = "ملاحظات")]
     public string? RequisiteNotes { get; set; }
 
     public virtual Employee Employee { get; set; } = null!;
 
     public virtual JobOrder JobOrder { get; set; } = null!;
+
+    public virtual ICollection<QuantityBridge> QuantityBridges { get; set; } = new List<QuantityBridge>();
 }

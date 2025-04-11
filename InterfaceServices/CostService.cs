@@ -1,4 +1,5 @@
 ﻿using System.Reflection.PortableExecutable;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
 using Machine = ThothSystemVersion1.Models.Machine;
 
@@ -7,7 +8,7 @@ namespace ThothSystemVersion1.InterfaceServices
     public interface CostService
     {
 
-        public bool newMachine (Machine machine);
+        public bool newMachine(Machine machine);
 
         public bool newLabour(Labour labour);
 
@@ -17,7 +18,7 @@ namespace ThothSystemVersion1.InterfaceServices
         public bool EditLabour(int id, Labour labour);
         public bool EditMachine(int id, Machine machine);
 
-        public bool addMachineAndLabourExpense(int jobOrderId);
+        public bool addMachineAndLabourExpense(MachineLabourDTO maclabdto);
 
         public bool addMiscelleneousExpense(int jobOrderId);
 

@@ -22,7 +22,12 @@ public enum JobRole
     // 5 view and add and edit
     [Display(Name = "مدير التكاليف")] CostManager,
     // 6 view and add
-    [Display(Name = "موظف التكاليف")] CostClerk
+    [Display(Name = "موظف التكاليف")] CostClerk,
+
+    // 7 view and add and edit
+    [Display(Name = "موظف التكاليف")] AcoountingManager,
+    // 8 view and add
+    [Display(Name = "موظف التكاليف")] AccountingClerk,
 }
 public partial class Employee
 {

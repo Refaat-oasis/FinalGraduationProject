@@ -47,7 +47,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-            else {
+            else
+            {
                 return false;
                 throw new NotImplementedException();
             }
@@ -68,43 +69,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        //public bool AddVendor(VendorEditDTO newVendor)
-        //{
-        //    try
-        //    {
-        //        Vendor foundVendorByPhone = _context.Vendors.FirstOrDefault(v => v.VendorPhone == newVendor.VendorPhone);
-        //        Vendor foundVendorByEmail = _context.Vendors.FirstOrDefault(v => v.VendorEmail == newVendor.VendorEmail);
-        //        if (foundVendorByEmail != null || foundVendorByPhone != null)
-        //        {
-
-        //            return false;
-        //        }
-
-        //        if (newVendor == null)
-        //        {
-        //            throw new ArgumentNullException(nameof(newVendor));
-        //        }
-
-        //        Vendor addedVendor = new Vendor();
-
-        //        addedVendor.VendorName = newVendor.VendorName;
-        //        addedVendor.VendorEmail = newVendor.VendorEmail;
-        //        addedVendor.VendorPhone = newVendor.VendorPhone;
-        //        addedVendor.VendorNotes = newVendor.VendorNotes;
-        //        addedVendor.VendorAddress = newVendor.VendorAddress;
-
-
-        //        _context.Vendors.Add(addedVendor);
-        //        _context.SaveChanges();
-
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception (ex) here
-        //        throw new ApplicationException("An error occurred while adding the vendor.", ex);
-        //    }
-        //}
         public bool AddVendor(VendorAddDTO newVendor)
         {
             try
@@ -366,7 +330,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public bool purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
         {
-            try {
+            try
+            {
 
                 List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
                 PurchaseOrder purchaseOrder = new PurchaseOrder();
@@ -415,7 +380,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
 
                 return false;
-            
+
             }
 
         }
@@ -423,7 +388,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public bool purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
         {
-            try {
+            try
+            {
                 List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
                 PurchaseOrder purchaseOrder = new PurchaseOrder();
 
@@ -469,7 +435,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex)
             {
                 return false;
-            
+
             }
 
         }
@@ -521,20 +487,21 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return true;
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 return false;
-            
+
             }
         }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // view bags lists
-       
+
         public List<Paper> GetActivePapers() => _context.Papers.Where(p => p.Activated).ToList();
-       
+
         public List<Ink> GetActiveInks() => _context.Inks.Where(i => i.Activated).ToList();
-        
+
         public List<Supply> GetActiveSupplies() => _context.Supplies.Where(s => s.Activated).ToList();
 
         public List<RequisiteOrder> getLast15RequisiteORder() => _context.RequisiteOrders
@@ -558,14 +525,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
             return paperList;
         }
-      
+
         public List<Ink> getAllActiveInk()
         {
 
             List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
             return inkList;
         }
-        
+
         public List<Supply> getAllActiveSupply()
         {
 
@@ -697,13 +664,13 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                     && p.PurchaseDate <= endingDate
                                     )
                         .ToList();
-                        
+
                         List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
                                    p.PhysicalCountId == qb.PhysicalCountId
                                    && p.PhysicalCountDate >= beginingDate
                                     && p.PhysicalCountDate <= endingDate
                                     ).ToList();
-                        
+
                         List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
                                    req.RequisiteId == qb.RequisiteId
                                    && req.RequisiteDate >= beginingDate
@@ -761,7 +728,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
                     break;
 
-                    case "Supply":
+                case "Supply":
 
                     quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
                     foreach (QuantityBridge qb in quantityBridgeList)
@@ -824,7 +791,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 .Where(po => po.PurchaseDate >= beginningDate && po.PurchaseDate <= endDate)
                 .ToList();
 
-           
+
             var vendorPurchases = (from po in purchaseOrdersInRange
                                    join qb in _context.QuantityBridges on po.PurchaseId equals qb.PurchaseId
                                    group qb by po.VendorId into g
@@ -850,10 +817,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 })
                      .ToList();
 
-           
+
             InventoryReportViewModel invModel = new InventoryReportViewModel
             {
-                VendorReport = vendorReport.Select(v => (v.Vendor, v.PurchaseCount, v.TotalOldBalance)).ToList()  
+                VendorReport = vendorReport.Select(v => (v.Vendor, v.PurchaseCount, v.TotalOldBalance)).ToList()
             };
 
             return invModel;
@@ -1021,7 +988,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             InventoryReportViewModel rankingModel = new InventoryReportViewModel
             {
                 CustomerReport = rankedCustomers
-                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance , x.unearnedBalance,x.RemainingBalance))
+                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance, x.unearnedBalance, x.RemainingBalance))
                     .ToList()
             };
 
@@ -1214,7 +1181,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     quantityBridgeList[i].QuantityBridgeId = null;
 
 
-                    if (returnOrder.ReturnInOut == true  && returnOrder.JobOrderId != null)
+                    if (returnOrder.ReturnInOut == true && returnOrder.JobOrderId != null)
                     {
                         if (quantityBridgeList[i].InkId != null)
                         {

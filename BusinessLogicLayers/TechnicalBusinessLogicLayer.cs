@@ -90,14 +90,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             return _context.Supplies.Where(s => s.Activated).ToList();
         }
-        //public List<JobOrder> GetJobOrdersWithCustomers()
-        //{
-        //    return _context.JobOrders
-        //           .Include(j => j.Customer)
-        //            .OrderByDescending(j => j.StartDate)
-        //           .Take(10)
-        //           .ToList();
-        //}
 
         public (bool success, string message) CreateRequisite(RequisiteOrderDTO requisiteDTO)
         {
@@ -131,13 +123,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         // Calculate new quantity and average price
                         double newQuantity = ink.Quantity - quantityBridgeList[i].Quantity;
                         decimal totalValue = (decimal)newQuantity * ink.Price;
-                        //(decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-
-                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
-                        // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
@@ -160,13 +146,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         double newQuantity = paper.Quantity - quantityBridgeList[i].Quantity;
                         decimal totalValue = (decimal)newQuantity * paper.Price;
 
-                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-
-                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
-
-                        // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = paper.Price;
                         quantityBridgeList[i].OldQuantity = paper.Quantity;
                         quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
@@ -187,12 +166,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         // Calculate new quantity and average price
                         double newQuantity = supply.Quantity - quantityBridgeList[i].Quantity;
                         decimal totalValue = (decimal)newQuantity * supply.Price;
-                        //decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-
-                        //decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-
-                        //quantityBridgeList[i].TotalBalance = newtotalBalance;
 
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = supply.Price;
@@ -226,7 +199,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return customerList;
         }
 
-         public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
+        public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
         {
 
             JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
@@ -342,6 +315,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
             return employeelist;
         }
+
         public List<Customer> GetAvailableCustomerss()
         {
 
@@ -472,6 +446,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
+
         public bool EditCustomer(int CustomerId, Customer customer)
         {
             try
@@ -511,6 +486,76 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException("An error occurred while updating the customer.", ex);
             }
         }
+
+        public List<JobOrderCustEmpVM> GetJobOrdersWithoutProcessBridge()
+        {
+            // Get job orders without process bridges
+            var jobOrderIdsWithBridges = _context.ProcessBridges
+                .Where(pb => pb.JobOrderId != null)
+                .Select(pb => pb.JobOrderId.Value)
+                .Distinct()
+                .ToList();
+
+            var jobOrdersWithoutBridges = _context.JobOrders
+                .Where(jo => !jobOrderIdsWithBridges.Contains(jo.JobOrderId))
+                .ToList();
+
+            // Handle customer IDs (assuming CustomerId is int)
+            var customerIds = jobOrdersWithoutBridges
+                .Where(jo => jo.CustomerId.HasValue)
+                .Select(jo => jo.CustomerId.Value)
+                .Distinct()
+                .ToList();
+
+            // Handle employee IDs (now as string)
+            var employeeIds = jobOrdersWithoutBridges
+                .Where(jo => !string.IsNullOrEmpty(jo.EmployeeId))
+                .Select(jo => jo.EmployeeId)
+                .Distinct()
+                .ToList();
+
+            // Get related data
+            var customers = _context.Customers
+                .Where(c => customerIds.Contains(c.CustomerId))
+                .ToDictionary(c => c.CustomerId);
+
+            var employees = _context.Employees
+                .Where(e => employeeIds.Contains(e.EmployeeId))
+                .ToDictionary(e => e.EmployeeId);
+
+            // Create view models with proper null checking
+            return jobOrdersWithoutBridges
+                .Where(jo => jo.CustomerId.HasValue &&
+                            !string.IsNullOrEmpty(jo.EmployeeId) &&
+                            customers.ContainsKey(jo.CustomerId.Value) &&
+                            employees.ContainsKey(jo.EmployeeId))
+                .Select(jo => new JobOrderCustEmpVM
+                {
+                    // Customer data
+                    CustomerId = jo.CustomerId.Value,
+                    CustomerAddress = customers[jo.CustomerId.Value].CustomerAddress,
+                    CustomerPhone = customers[jo.CustomerId.Value].CustomerPhone,
+                    CustomerName = customers[jo.CustomerId.Value].CustomerName,
+                    CustomerEmail = customers[jo.CustomerId.Value].CustomerEmail,
+
+                    // Job Order data
+                    JobOrderId = jo.JobOrderId,
+                    OrderProgress = jo.OrderProgress,
+                    RemainingAmount = jo.RemainingAmount,
+                    EarnedRevenue = jo.EarnedRevenue,
+                    UnearnedRevenue = jo.UnearnedRevenue,
+                    StartDate = jo.StartDate,
+                    EndDate = jo.EndDate,
+                    JobOrdernotes = jo.JobOrdernotes,
+
+                    // Employee data (now handling string ID)
+                    EmployeeId = jo.EmployeeId,
+                    EmployeeName = employees[jo.EmployeeId].EmployeeName
+                })
+                .ToList();
+        }
+
+
     }
 }
 

@@ -1,5 +1,340 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿ @model ThothSystemVersion1.DataTransfereObject.MachineLabourDTO
+
 @{
+    ViewData["Title"] = "Add Machine and Labour Expense";
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-pVnH1+Wom7X6Wy0r6V8DyZl6IYtQ1l4Fy/igO7kkIcE2gW6oPYoiO6lA6G7Tf58zD5YVbIF4ZJpIvG8P+KViwg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+@* Success and Error Messages *@
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        <i class="fas fa-check-circle"></i> @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+    </div>
+}
+
+<div class="card mt-4 shadow">
+    <div class="card-header bg-primary text-white">
+        <i class="fas fa-info-circle me-2"></i> تفاصيل الطلبية
+    </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <!-- Order ID -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-hashtag fa-2x text-primary me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Order ID</div>
+                        <div class="fw-bold">@Model.JobOrderId</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Employee -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-user fa-2x text-success me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Employee</div>
+                        <div class="fw-bold">@Model.EmployeeId</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Status -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-tasks fa-2x text-warning me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Status</div>
+                        <div class="fw-bold">@Model.OrderProgress</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Date -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-calendar-alt fa-2x text-info me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Start Date</div>
+                        <div class="fw-bold">@Model.StartDate</div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Date -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-calendar-check fa-2x text-info me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">End Date</div>
+                        <div class="fw-bold">
+                            @Model.EndDate
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Remaining Amount -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-wallet fa-2x text-danger me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Remaining</div>
+                        <div class="fw-bold">@Model.RemainingAmount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Unearned Revenue -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-money-bill-wave fa-2x text-secondary me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Unearned Rev.</div>
+                        <div class="fw-bold">@Model.UnearnedRevenue</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Earned Revenue -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-chart-line fa-2x text-success me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Earned Rev.</div>
+                        <div class="fw-bold">@Model.EarnedRevenue</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Notes (full width) -->
+            <div class="col-12">
+                <div class="d-flex align-items-start">
+                    <i class="fas fa-sticky-note fa-2x text-dark me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Notes</div>
+                        <div class="fw-normal">@Model.JobOrdernotes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4 shadow">
+    <div class="card-body">
+        <h4 class="card-title">اضافة عناصر التكلفة</h4>
+
+
+
+        @using (Html.BeginForm("addMachineAndLabourExpense", "cost", FormMethod.Post))
+        {
+            <input type="text" name="JobOrderId" hidden value="@Model.JobOrderId">
+
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-4">
+                    <label class="form-label">Expense Type</label>
+                    <select id="itemType" class="form-select">
+                        <option value="">-- Select Type --</option>
+                        <option value="Machine">ماكينة</option>
+                        <option value="Labour">عمال</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">العنصر</label>
+                    <select id="itemId" class="form-select" disabled>
+                        <option value="">-- اختر العنصر --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">عدد الساعات</label>
+                    <input type="number" id="NumberOfHours" class="form-control" min="0" step="0.5">
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="button" id="addItem" class="btn btn-primary w-100">
+                        <i class="fas fa-plus me-2"></i>اضافة العنصر
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>عنصر المقايسة</th>
+                            <th>عدد الساعات</th>
+                            <th>الاجرائات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsTableBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="hiddenItemsContainer"></div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check-circle me-2"></i>Submit Expenses
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const dataSources = {
+                Machine: @Html.Raw(Json.Serialize(ViewBag.machineList)),
+                Labour: @Html.Raw(Json.Serialize(ViewBag.labourList))
+            };
+
+            let items = [];
+            let editIndex = -1;
+
+            // Populate items dropdown
+            $('#itemType').change(function () {
+                const type = $(this).val();
+                const $itemSelect = $('#itemId');
+                $itemSelect.empty().prop('disabled', !type).append('<option value="">-- Select --</option>');
+
+                if (type && dataSources[type]) {
+                    dataSources[type].forEach(item => {
+                        const id = item.machineId || item.labourId;
+                        const name = item.machineProcessName || item.labourProcessName;
+                        $itemSelect.append(`<option value="${id}">${name}</option>`);
+                    });
+                }
+            });
+
+            // Add/Update item
+            $('#addItem').click(function () {
+                const itemType = $('#itemType').val();
+                const itemId = $('#itemId').val();
+                const itemName = $('#itemId option:selected').text();
+                const numberOfHours = parseFloat($('#NumberOfHours').val());
+
+                if (!itemType || !itemId || isNaN(numberOfHours) || numberOfHours <= 0) {
+                    alert('Please fill all fields correctly');
+                    return;
+                }
+
+                // Get price from data source
+                const sourceArray = dataSources[itemType];
+                const selectedItem = sourceArray.find(x =>
+                    (itemType === 'Machine' ? x.machineId : x.labourId) == itemId
+                );
+
+                const hourPrice = itemType === 'Machine'
+                    ? selectedItem.machineHourPrice
+                    : selectedItem.labourHourPrice;
+
+                const newItem = {
+                    itemType,
+                    itemId: parseInt(itemId),
+                    itemName,
+                    numberOfHours,
+                    hourPrice: parseFloat(hourPrice)
+                };
+
+                if (editIndex === -1) {
+                    items.push(newItem);
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                    $('#addItem').html('<i class="fas fa-plus me-2"></i>Add Item');
+                }
+
+                resetForm();
+                renderItems();
+            });
+
+            // Edit item
+            $(document).on('click', '.editItem', function () {
+                const index = $(this).closest('tr').data('index');
+                const item = items[index];
+
+                $('#itemType').val(item.itemType).trigger('change');
+
+                setTimeout(() => {
+                    $('#itemId').val(item.itemId);
+                    $('#NumberOfHours').val(item.numberOfHours);
+                }, 100);
+
+                editIndex = index;
+                $('#addItem').html('<i class="fas fa-sync me-2"></i>Update Item');
+            });
+
+            // Delete item
+            $(document).on('click', '.deleteItem', function () {
+                const index = $(this).closest('tr').data('index');
+                items.splice(index, 1);
+                renderItems();
+            });
+
+            // Form validation
+            $('form').submit(function (e) {
+                if (items.length === 0) {
+                    e.preventDefault();
+                    alert('Please add at least one expense item');
+                }
+            });
+
+            function resetForm() {
+                $('#itemType').val('');
+                $('#itemId').val('').prop('disabled', true);
+                $('#NumberOfHours').val('');
+            }
+
+            function renderItems() {
+                const $tbody = $('#itemsTableBody');
+                const $hidden = $('#hiddenItemsContainer');
+
+                $tbody.empty();
+                $hidden.empty();
+
+                items.forEach((item, index) => {
+                    // Create table row
+                    $tbody.append(`
+                        <tr data-index="${index}">
+                            <td>${item.itemName}</td>
+                            <td>${item.numberOfHours}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-warning btn-sm editItem">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm deleteItem">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `);
+
+                    // Add hidden inputs for DTO binding
+                    const isMachine = item.itemType === 'Machine';
+                    $hidden.append(`
+                        <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineId' : 'LabourId'}" value="${item.itemId}" />
+                        <input type="hidden" name="ProcessBridges[${index}].NumberOfHours" value="${item.numberOfHours}" />
+                        <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineHourPrice' : 'LabourHourPrice'}" value="${item.hourPrice}" />
+                    `);
+                });
+            }
+        });
+
+    </script>
+
 }

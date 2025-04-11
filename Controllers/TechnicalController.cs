@@ -206,6 +206,118 @@ namespace ThothSystemVersion1.Controllers
                 return View(jobOrder);
             }
         }
+        [HttpGet]
+        public IActionResult AddCustomer()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            {
+                try
+                {
+                    CustomerDTO empty = new CustomerDTO();
+                    return View("~/Views/Technical/AddCustomer.cshtml", empty);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult AddCustomer(CustomerDTO customer)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Technical/AddCustomer.cshtml", customer);
+                }
+
+                bool isVendorAdded = _technicalBusinessLogicLayer.AddCustomer(customer);
+
+                if (!isVendorAdded)
+                {
+                    ModelState.AddModelError("", "الايميل او رقم الهاتف تم استخدامه من قبل");
+                    return View("~/Views/Technical/AddCustomer.cshtml", customer);
+                }
+
+                TempData["Success"] = "تم إضافة العميل بنجاح";
+                return RedirectToAction("AddCustomer", "Technical");
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء إضافة العميل";
+                return View("~/Views/Technical/AddCustomer.cshtml", customer);
+            }
+        }
+
+
+
+        [HttpGet]
+        public IActionResult EditCustomer(int CustomerId)
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3)
+                {
+                    Customer foundCustomer = _technicalBusinessLogicLayer.EditCustomer(CustomerId);
+                    return View("~/Views/Technical/EditCustomer.cshtml", foundCustomer);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the Customer.", ex);
+            }
+
+
+        }
+        [HttpPost]
+        public IActionResult EditCustomer(int CustomerId, Customer customer)
+        {
+            try
+            {
+                //if (!ModelState.IsValid)
+                //{
+
+                //    return View("~/Views/Technical/EditCustomer.cshtml", customer);
+                //}
+
+                bool isCustomerEdited = _technicalBusinessLogicLayer.EditCustomer(CustomerId, customer);
+
+                //if (!isCustomerEdited)
+                //{
+                //    TempData["Error"] = ("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
+                //    return View("~/Views/Technical/EditCustomer.cshtml", customer);
+                //}
+                TempData["Success"] = "تم تعديل بيانات العميل";
+                return RedirectToAction("EditCustomer", "Technical", new { CustomerId });
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات العميل";
+                return View("~/Views/Technical/EditCustomer.cshtml", customer);
+            }
+        }
+
     }
     //[HttpPost]
     //public IActionResult Create(RequisiteOrderDTO dto)
@@ -234,6 +346,7 @@ namespace ThothSystemVersion1.Controllers
     //    TempData["ErrorMessage"] = result.Message;
     //    return RedirectToAction("Create");
     //}
+
 
 }
 

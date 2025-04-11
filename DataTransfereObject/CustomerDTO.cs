@@ -25,6 +25,8 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Required(ErrorMessage = "يجد عليك ادخال رقم هاتف العميل ")]
         [StringLength(15, MinimumLength = 10, ErrorMessage = "رقم الهاتف يجب ان تكون بين 10 ارقام و 14 رقم")]
         public string CustomerPhone { get; set; } = null!;
+        [Display(Name = "حالة الحساب للعميل")]
+        public bool Activated { get; set; }
 
     }
 }

@@ -415,34 +415,32 @@ namespace ThothSystemVersion1.Controllers
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Sherwet section
-
         [HttpGet]
         public IActionResult AddVendor()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 1 || jobRole == 2)
             {
-try
-            {
-                VendorAddDTO empty = new VendorAddDTO();
-                return View("~/Views/Inventory/AddVendor.cshtml", empty);
-            }
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
+                try
+                {
+                    VendorAddDTO empty = new VendorAddDTO();
+                    return View("~/Views/Inventory/AddVendor.cshtml", empty);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
             }
             else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
-            
+
         }
 
 
@@ -463,49 +461,47 @@ try
                     ModelState.AddModelError("", "الايميل او رقم الهاتف تم استخدامه من قبل");
                     return View(vendor);
                 }
-
-                return RedirectToAction("ViewAllVendor", "inventory");
+                TempData["Success"] = "تم اضافة بيانات العميل";
+                return RedirectToAction("AddVendor", "inventory");
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                TempData["Error"] = "حدث خطأ أثناء اضافة بيانات العميل";
+                return View("~/Views/Inventory/AddVendor.cshtml", vendor);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
+
         }
         //edit ink
         [HttpGet]
         public IActionResult EditInk(int inkId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
-try
-            {
-                Ink ink = _businessLogicL.GetInkByID(inkId);
-                return View("~/Views/Inventory/EditInk.cshtml", ink);
-            }
+                try
+                {
+                    Ink ink = _businessLogicL.GetInkByID(inkId);
+                    return View("~/Views/Inventory/EditInk.cshtml", ink);
+                }
 
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
             }
             else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
-            
+
         }
         [HttpPost]
-        public IActionResult EditInk(int inkId, Ink updatedInk)
+        public IActionResult EditInk(int InkId, Ink updatedInk)
         {
             try
             {
@@ -513,23 +509,24 @@ try
                 {
                     return BadRequest("Invalid data.");
                 }
-                bool isEditSuccess = _businessLogicL.EditInk(inkId, updatedInk);
+                bool isEditSuccess = _businessLogicL.EditInk(InkId, updatedInk);
                 if (!isEditSuccess)
                 {
                     ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
                     return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
 
                 }
-                return RedirectToAction("ViewAllInk", "Inventory");
+                TempData["Success"] = "تم تعديل بيانات الحبر";
+                return RedirectToAction("EditInk", "Inventory", new { InkId });
+
             }
 
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            //catch (ArgumentException ex)
             catch (Exception ex)
+
             {
-                return StatusCode(500, ex.Message); // Internal server error
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الحبر";
+                return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
             }
         }
 
@@ -538,20 +535,21 @@ try
         public IActionResult EditPaper(int paperId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {try
+            if (jobRole == 0 || jobRole == 1)
             {
-                Paper paper = _businessLogicL.GetPaperByID(paperId);
-                return View("~/Views/Inventory/EditPaper.cshtml", paper);
-            }
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
+                try
+                {
+                    Paper paper = _businessLogicL.GetPaperByID(paperId);
+                    return View("~/Views/Inventory/EditPaper.cshtml", paper);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
 
             }
             else
@@ -559,11 +557,11 @@ try
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
-            
+
         }
 
         [HttpPost]
-        public IActionResult EditPaper(int paperId, Paper updatedPaper)
+        public IActionResult EditPaper(int PaperId, Paper updatedPaper)
         {
             try
             {
@@ -573,7 +571,7 @@ try
                 }
 
 
-                bool isEditSuccess = _businessLogicL.editPaper(paperId, updatedPaper);
+                bool isEditSuccess = _businessLogicL.editPaper(PaperId, updatedPaper);
 
 
                 if (!isEditSuccess)
@@ -581,17 +579,16 @@ try
                     ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
                     return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
                 }
-                return RedirectToAction("ViewAllPaper", "Inventory");
+                TempData["Success"] = "تم تعديل بيانات الورق";
+                return RedirectToAction("EdiTpaper", "Inventory", new { PaperId });
 
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الورق";
+                return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+
         }
 
         //edit supply
@@ -599,32 +596,32 @@ try
         public IActionResult EditSupply(int suppliesId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
-try
-            {
-                Supply supply = _businessLogicL.GetSupplyByID(suppliesId);
-                return View("~/Views/Inventory/EditSupply.cshtml", supply);
-            }
+                try
+                {
+                    Supply supply = _businessLogicL.GetSupplyByID(suppliesId);
+                    return View("~/Views/Inventory/EditSupply.cshtml", supply);
+                }
 
-            catch (ApplicationException ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message); // Employee not found
-            }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message); // Employee not found
+                }
             }
             else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
-            
+
         }
         [HttpPost]
-        public IActionResult EditSupply(int suppliesId, Supply updatedSupply)
+        public IActionResult EditSupply(int SuppliesId, Supply updatedSupply)
         {
             try
             {
@@ -632,24 +629,23 @@ try
                 {
                     return BadRequest("Invalid data.");
                 }
-                bool isEditSuccess = _businessLogicL.editSupply(suppliesId, updatedSupply);
+                bool isEditSuccess = _businessLogicL.editSupply(SuppliesId, updatedSupply);
                 if (!isEditSuccess)
                 {
                     ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
                     return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
 
                 }
-                return RedirectToAction("ViewAllSupply", "Inventory");
+                TempData["Success"] = "تم تعديل بيانات المستلزمات";
+                return RedirectToAction("EditSupply", "Inventory", new { SuppliesId });
             }
 
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات المستلزمات";
+                return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message); // Internal server error
-            }
+
         }
         //return
         [HttpGet]
@@ -660,7 +656,6 @@ try
 
                 var items = _businessLogicL.GetJobOrderItems(jobOrderId);
                 return Json(items);
-                // { itemType = "الورق", itemId = 26, name = "ورق أبيض لامع", quantity = 40 }
             }
             catch (Exception ex)
             {
@@ -675,35 +670,40 @@ try
             {
                 var items = _businessLogicL.GetPurchaseOrderItems(purchaseId);
                 return Json(items);
-                //{ itemType = "الورق", name = "ورق فاخر", quantity = 295 }
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { error = ex.Message });
             }
         }
-
         [HttpGet]
         public IActionResult ReturnOrder()
         {
-            try
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
             {
+                try
+                {
+                    ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
+                    ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+                    ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+                    ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+                    ViewBag.InkList = _businessLogicL.getAllActiveInk();
+                    ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
 
-                ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
-                ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
-                ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
-                ViewBag.PaperList = _businessLogicL.getAllActivePaper();
-                ViewBag.InkList = _businessLogicL.getAllActiveInk();
-                ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+                    return View(new ReturnOrderDTO());
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
+                    return RedirectToAction("AdminHome", "Admin");
+                }
+            }
 
-                return View(new ReturnOrderDTO());
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
-                return RedirectToAction("AdminHome", "Admin");
-            }
+
+            return RedirectToAction("Unauthorized", "employee");
         }
+
 
         [HttpPost]
         public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
@@ -739,7 +739,7 @@ try
                 return RedirectToAction("ReturnOrder");
             }
         }
-       
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

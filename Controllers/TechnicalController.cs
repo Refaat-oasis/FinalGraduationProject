@@ -177,19 +177,34 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
-
         [HttpPost]
-        public IActionResult EditJobOrder(int jobOrderid, JobOrderDTO jobOrder)
+        public IActionResult EditJobOrder(int jobOrderid, JobOrder jobOrder)
         {
             try
             {
+                JobOrderDTO jODto = new JobOrderDTO();
+                jODto.CustomerId = jobOrder.CustomerId;
+                jODto.OrderProgress = jobOrder.OrderProgress;
+                jODto.JobOrderId = jobOrder.JobOrderId;
+                jODto.JobOrdernotes = jobOrder.JobOrdernotes;
+                jODto.EarnedRevenue = jobOrder.EarnedRevenue;
+                jODto.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                jODto.RemainingAmount = jobOrder.RemainingAmount;
+                jODto.EndDate = jobOrder.EndDate;
+                jODto.StartDate = jobOrder.StartDate;
+                jODto.EmployeeId = jobOrder.EmployeeId;
+
+
+                ModelState.Clear();
+                TryValidateModel(jODto);
+
                 if (!ModelState.IsValid)
                 {
 
                     return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
                 }
 
-                var result = _technicalBusinessLogicLayer.EditJobOrder(jobOrderid, jobOrder);
+                var result = _technicalBusinessLogicLayer.EditJobOrder(jobOrderid, jODto);
 
                 if (result.success)
                 {

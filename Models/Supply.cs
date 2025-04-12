@@ -9,6 +9,7 @@ public partial class Supply
     public int SuppliesId { get; set; }
 
     [Display(Name = "اسم المستلزم")]
+    [Required(ErrorMessage = "يجب ادخال اسم المستلزم")]
     public string Name { get; set; } = null!;
 
     [Display(Name = "القيمة المتاحة")]
@@ -21,6 +22,7 @@ public partial class Supply
     public int Quantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
+    [Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

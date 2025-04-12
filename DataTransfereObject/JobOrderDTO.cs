@@ -43,8 +43,5 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الرقم القومي للموظف")]
         public string? EmployeeId { get; set; }
 
-        public virtual Customer? Customer { get; set; }
-
-        public virtual Employee? Employee { get; set; }
     }
 }

@@ -9,12 +9,14 @@ public partial class Ink
     public int InkId { get; set; }
 
     [Display(Name = "اسم الحبر")]
+    [Required(ErrorMessage = "يجب ادخال اسم الحبر")]
     public string Name { get; set; } = null!;
 
     [Display(Name = "القيمة المتاحة")]
     public decimal? TotalBalance { get; set; }
 
-    [Display(Name = "اللوم")]
+    [Display(Name = "اللون")]
+    [Required(ErrorMessage = "يجب ادخال قيمة اللون")]
     public string Colored { get; set; } = null!;
 
     [Display(Name = "السعر")]
@@ -24,6 +26,7 @@ public partial class Ink
     public int Quantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
+    [Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

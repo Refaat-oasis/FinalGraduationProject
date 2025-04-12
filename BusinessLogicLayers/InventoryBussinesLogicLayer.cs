@@ -24,10 +24,13 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+
         public bool addInk(Ink newInk)
         {
+
             if (newInk != null)
             {
+                newInk.Activated = true;
                 _context.Add(newInk);
                 _context.SaveChanges();
                 return true;
@@ -35,14 +38,15 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             else
             {
                 return false;
-                throw new NotImplementedException();
             }
         }
 
         public bool addPaper(Paper newPaper)
         {
+
             if (newPaper != null)
             {
+                newPaper.Activated = true;
                 _context.Add(newPaper);
                 _context.SaveChanges();
                 return true;
@@ -50,7 +54,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             else
             {
                 return false;
-                throw new NotImplementedException();
             }
         }
 
@@ -58,6 +61,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             if (newSupply != null)
             {
+                newSupply.Activated = true;
                 _context.Add(newSupply);
                 _context.SaveChanges();
                 return true;
@@ -65,7 +69,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             else
             {
                 return false;
-                throw new NotImplementedException();
             }
         }
 

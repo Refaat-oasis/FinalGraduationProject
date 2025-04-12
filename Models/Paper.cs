@@ -9,18 +9,22 @@ public partial class Paper
     public int PaperId { get; set; }
 
     [Display(Name = "اسم الورق")]
+    [Required(ErrorMessage = "يجب ادخال اسم الورق")]
     public string Name { get; set; } = null!;
 
     [Display(Name = "النوع")]
+    [Required(ErrorMessage = "يجب ادخال نوع الورق")]
     public string? Type { get; set; }
 
     [Display(Name = "الوزن")]
+    [Required(ErrorMessage = "يجب ادخال قيمة الوزن")]
     public decimal? Weight { get; set; }
 
     [Display(Name = "القيمة المتاحة")]
     public decimal? TotalBalance { get; set; }
 
     [Display(Name = "اللون")]
+    [Required(ErrorMessage = "يجب ادخال قيمة اللون")]
     public string Colored { get; set; } = null!;
 
     [Display(Name = "الكمية")]
@@ -30,6 +34,7 @@ public partial class Paper
     public decimal Price { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
+    [Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

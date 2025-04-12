@@ -91,7 +91,137 @@ namespace ThothSystemVersion1.Controllers
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Sandra section
 
+        [HttpGet]
+        public IActionResult EditLabour(int LabID)
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5)
+            {
+                try
+                {
+                    var labour = _costbusinessLogicL.GetLabourById(LabID);
+                    return View("~/Views/Cost/EditLabour.cshtml", labour);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
 
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+        [HttpPost]
+        public IActionResult EditLabour(int LabID, Labour updatedLabour)
+        {
+            if (updatedLabour == null)
+            {
+                ModelState.AddModelError("", "بيانات العامل غير صالحة.");
+                return BadRequest(ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                // Return to the view with validation errors
+                return View(updatedLabour);
+            }
+
+            try
+            {
+                var result = _costbusinessLogicL.EditLabour(LabID, updatedLabour); // Update the labour
+                if (result.Success)
+                {
+                    TempData["Success"] = result.Message;
+                    return RedirectToAction("EditLabour", "cost", LabID);
+                }
+                else
+                {
+
+                    TempData["Error"] = result.Message;
+                    return RedirectToAction("EditLabour", "cost", LabID);
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                return View(updatedLabour);
+            }
+
+        }
+        [HttpGet]
+        public IActionResult EditMachine(int MachineID)
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5)
+            {
+                try
+                {
+                    var machine = _costbusinessLogicL.GetMachineById(MachineID);
+                    return View("~/Views/Cost/EditMachine.cshtml", machine);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+        [HttpPost]
+        public IActionResult EditMachine(int MachineID, Machine updatedMachine)
+        {
+            if (updatedMachine == null)
+            {
+                ModelState.AddModelError("", "بيانات الالة غير صالحة.");
+                return BadRequest(ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                // Return to the view with validation errors
+                return View(updatedMachine);
+            }
+            try
+            {
+                var result = _costbusinessLogicL.EditMachine(MachineID, updatedMachine); // Update the labour
+                if (result.Success)
+                {
+                    TempData["Success"] = result.Message;
+                    return RedirectToAction("EditMachine", "cost", MachineID);
+                }
+                else
+                {
+
+                    TempData["Error"] = result.Message;
+                    return RedirectToAction("EditMachine", "cost", MachineID);
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                return View(updatedMachine);
+            }
+
+        }
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

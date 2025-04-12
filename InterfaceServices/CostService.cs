@@ -15,8 +15,8 @@ namespace ThothSystemVersion1.InterfaceServices
         public List<Labour> ViewAllLabour();
         public List<Machine> ViewAllMachines();
 
-        public bool EditLabour(int id, Labour labour);
-        public bool EditMachine(int id, Machine machine);
+        public (bool Success, string Message) EditLabour(int LabourID, Labour lab);
+        public (bool Success, string Message) EditMachine(int MachineID, Machine machine);
 
         public bool addMachineAndLabourExpense(MachineLabourDTO maclabdto);
 

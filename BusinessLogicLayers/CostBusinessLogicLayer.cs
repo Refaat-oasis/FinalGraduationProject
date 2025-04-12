@@ -73,14 +73,60 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             throw new NotImplementedException();
         }
 
-        public bool EditLabour(int id, Labour labour)
+        public (bool Success, string Message) EditLabour(int LabourID, Labour lab)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (lab == null)
+                {
+                    return (false, "بيانات العملية المطلوبة غير متوفرة.");
+                }
+                Labour exsistingLabour = _context.Labours.FirstOrDefault(a => a.LabourId == lab.LabourId);
+                if (exsistingLabour == null)
+                {
+                    return (false, "العملية غير موجودة.");
+                }
+                exsistingLabour.LabourProcessName = lab.LabourProcessName;
+                exsistingLabour.Price = lab.Price;
+                exsistingLabour.Activated = lab.Activated;
+
+                _context.Labours.Update(exsistingLabour); // Mark the entity as modified
+                _context.SaveChanges(); // Save changes to the database
+                return (true, $" تم تعديل العملية {exsistingLabour.LabourProcessName}"); // Success
+
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
         }
 
-        public bool EditMachine(int id, Machine machine)
+        public (bool Success, string Message) EditMachine(int MachineID, Machine machine)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (machine == null)
+                {
+                    return (false, "بيانات الالة المطلوبة غير متوفرة.");
+                }
+                Machine exsistingMachine = _context.Machines.FirstOrDefault(a => a.MachineId == machine.MachineId);
+                if (exsistingMachine == null)
+                {
+                    return (false, "الالة غير موجود.");
+                }
+                exsistingMachine.MachineProcessName = machine.MachineProcessName;
+                exsistingMachine.Price = machine.Price;
+                exsistingMachine.Activated = machine.Activated;
+
+                _context.Machines.Update(exsistingMachine); // Mark the entity as modified
+                _context.SaveChanges(); // Save changes to the database
+                return (true, $" تم تعديل الالة  {exsistingMachine.MachineProcessName}"); // Success
+
+            }
+            catch (Exception ex)
+            {
+                return (false, $"حدث خطأ: {ex.Message}");
+            }
         }
 
         public bool newLabour(Labour labour)
@@ -115,6 +161,43 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             List<Labour> labourList = _context.Labours.Where(mach => mach.Activated == true).ToList();
             return labourList;
         }
+        public Labour GetLabourById(int id)
+        {
+            try
+            {
+                Labour labour = _context.Labours.Find(id); // Synchronous Find
+                if (labour == null)
+                {
+                    throw new ArgumentException("Labour not found.");
+                }
+                return labour;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the labour.", ex);
+            }
+        }
 
+        
+        public Machine GetMachineById(int id)
+        {
+            try
+            {
+                Machine machine = _context.Machines.Find(id); // Synchronous Find
+                if (machine == null)
+                {
+                    throw new ArgumentException("Machine not found.");
+                }
+                return machine;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the machine.", ex);
+            }
+        }
+
+        
     }
 }

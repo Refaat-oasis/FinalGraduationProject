@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     Layout = null;
 }
@@ -5,7 +7,11 @@
 
 @model Paper;
 
+@{
 
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 
 
@@ -27,15 +33,50 @@
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
-    </div>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="admin" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
 
-    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+       
+       }
+    </div>
 
 
     <form asp-action="NewPaper" id="myform" enctype="multipart/form-data" method="post">
+        @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> @TempData["Success"]
+                <input type="hidden" id="tempDataSuccess" value="true" />
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                <input type="hidden" id="tempDataSuccess" value="false" />
+            </div>
+        }
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div class="text">
             <h1>إضافة صنف ورق جديد</h1>
         </div>

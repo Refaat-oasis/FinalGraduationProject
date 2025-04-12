@@ -26,7 +26,6 @@ public partial class Ink
     public int Quantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
-    [Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

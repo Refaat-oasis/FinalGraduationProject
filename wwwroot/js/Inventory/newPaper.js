@@ -82,10 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
             this.submit();
         }
     });
+    const tempDataElement = document.getElementById('tempDataSuccess');
+    const jobRoleElement = document.getElementById('hdnJobRole');
 
-    if (tempDataSuccess && tempDataSuccess.value === "true") {
+    // Get values with proper fallbacks
+    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+    console.log("Success message exists:", hasSuccessMessage);
+    console.log("Job role:", jobRole);
+
+    // Mapping of job roles to their respective URLs
+    const jobRoleRoutes = {
+        0: "/Admin/AdminHome",
+        1: "/employee/inventoryManager",
+        2: "/employee/inventoryClerk",
+        3: "/employee/TechnicalManager",
+        4: "/employee/technicalClerk",
+        5: "/employee/CostManager",
+        6: "/employee/costClerk"
+    };
+
+    if (hasSuccessMessage) {
         setTimeout(function () {
-            window.location.href = " / Inventory / ViewAllPaper ";
-        }, 3000); // 3 ثواني
+            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+            window.location.href = redirectUrl;
+        }, 3000);
     }
 });

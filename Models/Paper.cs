@@ -34,7 +34,6 @@ public partial class Paper
     public decimal Price { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
-    [Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الشراء")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

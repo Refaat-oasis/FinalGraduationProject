@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Mapping of job roles to their respective URLs
     const jobRoleRoutes = {
-        0: "/Admin/AdminHome",
+        0: "/employee/AdminHome",
         1: "/employee/inventoryManager",
         2: "/employee/inventoryClerk",
         3: "/employee/TechnicalManager",

@@ -21,22 +21,6 @@ namespace ThothSystemVersion1.Controllers
 
         // sherwet section
 
-        [HttpGet]
-        public IActionResult AdminHome()
-        {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 )
-            {
-
-            return View("~/Views/Admin/AdminHome.cshtml");
-            }
-            else
-            {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-
-        }
   
         [HttpGet]
         public IActionResult ViewAllEmployee()

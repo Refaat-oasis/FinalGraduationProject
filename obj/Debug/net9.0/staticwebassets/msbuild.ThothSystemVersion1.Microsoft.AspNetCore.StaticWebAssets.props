@@ -1092,8 +1092,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>11ub9bogop</Fingerprint>
-      <Integrity>O15ij7daeK38HjMul5Ezj/rJKFm5tTiSz8xO0mRxNws=</Integrity>
+      <Fingerprint>nbranb75b1</Fingerprint>
+      <Integrity>LSQGZbbjEdileuZVffZL6hvzvCmgZS0daXg1/E+LbB0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\newPaper.js'))</OriginalItemSpec>

@@ -127,6 +127,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldPrice = ink.Price;
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+                        quantityBridgeList[i].Price = ink.Price;
 
                         // Update paper properties
                         ink.Quantity = (int)newQuantity;
@@ -149,6 +150,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldPrice = paper.Price;
                         quantityBridgeList[i].OldQuantity = paper.Quantity;
                         quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+                        quantityBridgeList[i].Price = paper.Price;
 
                         // Update paper properties
                         paper.Quantity = (int)newQuantity;
@@ -171,6 +173,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldPrice = supply.Price;
                         quantityBridgeList[i].OldQuantity = supply.Quantity;
                         quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+                        quantityBridgeList[i].Price = supply.Price;
 
                         // Update paper properties
                         supply.Quantity = (int)newQuantity;

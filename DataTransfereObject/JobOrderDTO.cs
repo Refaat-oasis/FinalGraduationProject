@@ -8,10 +8,12 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "الرقم التعريفي للتشغيلة")]
         public int JobOrderId { get; set; }
 
+        [Range(typeof(decimal), "0", "1000000", ErrorMessage = "المبلغ المتبقي يجب أن يكون بين 0 و 1,000,000")]
         [Required(ErrorMessage = "يجب عليك ادخال المبلغ المتبقى")]
         [Display(Name = "المبلغ المتبقي")]
         public decimal? RemainingAmount { get; set; }
 
+        [Range(typeof(decimal), "0", "1000000", ErrorMessage = "المبلغ المدفوع مقدما يجب أن يكون بين 0 و 1,000,000")]
         [Required(ErrorMessage = "يجب عليك ادخال المبلغ المدفوع مقدما")]
         [Display(Name = "المبلغ المدفوع مقدما")]
         public decimal? UnearnedRevenue { get; set; }
@@ -19,6 +21,7 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "ملاحظات عن التشغيلة")]
         public string? JobOrdernotes { get; set; }
 
+        [Range(typeof(decimal), "0", "1000000", ErrorMessage = "المبلغ المستحق يجب أن يكون بين 0 و 1,000,000")]
         [Required(ErrorMessage = "يجب عليك ادخال المبلغ المستحق")]
         [Display(Name = "المبلغ المستحق")]
         public decimal? EarnedRevenue { get; set; }

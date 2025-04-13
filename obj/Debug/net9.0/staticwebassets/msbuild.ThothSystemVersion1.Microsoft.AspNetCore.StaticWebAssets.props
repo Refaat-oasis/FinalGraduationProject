@@ -1038,8 +1038,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>p7oncc2uhd</Fingerprint>
-      <Integrity>VbayVYnuo7tvqJHN5FWB7Pxy5qeRaJN0+TsByghtwIE=</Integrity>
+      <Fingerprint>l5wu1p71az</Fingerprint>
+      <Integrity>SVPHIDVIETAj6hXHVxy4g8DWCazu69GbvZBHsF5Qp80=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\editVendor.js'))</OriginalItemSpec>

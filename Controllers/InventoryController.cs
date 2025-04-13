@@ -317,7 +317,7 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 1)
             {
-                Vendor foundVendor = _businessLogicL.GetVendorByID(vendorID);
+                var foundVendor = _businessLogicL.GetVendorByID(vendorID);
                 return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
             }
             else
@@ -330,7 +330,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditVendor(int vendorID, Vendor newvendor)
+        public IActionResult EditVendor(int vendorID, VendorEditDTO newvendor)
         {
             try
             {
@@ -358,6 +358,7 @@ namespace ThothSystemVersion1.Controllers
                 return View(newvendor);
             }
         }
+
 
 
 

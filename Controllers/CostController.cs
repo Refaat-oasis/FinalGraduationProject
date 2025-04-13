@@ -84,6 +84,43 @@ namespace ThothSystemVersion1.Controllers
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Mariam section
+        [HttpGet]
+        public IActionResult ViewAllLabour()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5 || jobRole ==6)
+            {
+
+                List<Labour> labourList = _costbusinessLogicL.ViewAllLabour();
+                return View("~/Views/Cost/ViewAllLabour.cshtml", labourList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+
+        [HttpGet]
+        public IActionResult ViewAllMachines()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            {
+
+                List<Machine> machineList = _costbusinessLogicL.ViewAllMachines();
+                return View("~/Views/Cost/ViewAllMachines.cshtml", machineList);
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
 
 
 

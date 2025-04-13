@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ThothSystemVersion1.Models.Labour>
+
+@{
+    ViewData["Title"] = "قائمة العمليات العمالية";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().LabourId)</th>
+            <th>@Html.DisplayNameFor(model => model.First().LabourProcessName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LabourId</td>
+                <td>@item.LabourProcessName</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
+            </tr>
+        }
+    </tbody>
+</table>

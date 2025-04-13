@@ -142,12 +142,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public List<Labour> ViewAllLabour()
         {
-            throw new NotImplementedException();
+            List<Labour> labourList = _context.Labours.ToList();
+            return labourList;
         }
 
         public List<Machine> ViewAllMachines()
         {
-            throw new NotImplementedException();
+            List<Machine> machineList = _context.Machines.ToList();
+            return machineList;
         }
 
         public List<Machine> getActiveMachine()

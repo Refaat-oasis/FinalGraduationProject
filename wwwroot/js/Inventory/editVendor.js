@@ -48,7 +48,7 @@
 
 
         if (VendorEmail.value.trim() === "") {
-            VendorEmailError.innerText = "  رجاء إدخال الايميل الخاص بالمورد";
+            VendorEmailError.innerText = " رجاء إدخال الايميل الخاص بالمورد ";
             isValid = false;
         }
 

@@ -254,7 +254,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool EditVendor(int vendorID, Vendor newVendor)
+        public bool EditVendor(int vendorID, VendorEditDTO newVendor)
         {
             try
             {
@@ -289,14 +289,22 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public Vendor GetVendorByID(int vendorID)
+        public VendorEditDTO GetVendorByID(int vendorID)
         {
             Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
             if (foundVendor == null)
             {
                 throw new ArgumentException("Vendor not found.");
             }
-            return foundVendor;
+            VendorEditDTO vendor = new VendorEditDTO();
+            vendor.VendorId = foundVendor.VendorId;
+            vendor.VendorName = foundVendor.VendorName;
+            vendor.VendorEmail = foundVendor.VendorEmail;
+            vendor.VendorPhone = foundVendor.VendorPhone;
+            vendor.VendorAddress = foundVendor.VendorAddress;
+
+
+            return vendor;
         }
 
         public List<Vendor> ViewAllVendor()
@@ -326,10 +334,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return supplyList;
         }
 
-        public bool AddVendor(VendorEditDTO newVendor)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool AddVendor(VendorAddDTO newVendor)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public bool purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
         {

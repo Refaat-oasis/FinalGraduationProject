@@ -27,12 +27,12 @@
 
 
         if (VendorName.value.trim() === "") {
-            VendorNameError.innerText = "رجاء إدخال اسمك";
+            VendorNameError.innerText = "رجاء إدخال اسم المورد";
             isValid = false;
         }
 
         if (VendorPhone.value.trim() === "") {
-            VendorPhoneError.innerText = "رجاء إدخال رقمك";
+            VendorPhoneError.innerText = "رجاء إدخال رقم المورد";
             VendorPhoneError.style.display = "block";
             isValid = false;
         } else if (VendorPhone.value.length < 11) {
@@ -42,13 +42,13 @@
         }
 
         if (VendorAddress.value.trim() === "") {
-            VendorAddressError.innerText = " رجاءإدخال عنوانك";
+            VendorAddressError.innerText = " رجاءإدخال عنوان المورد";
             isValid = false;
         }
 
 
         if (VendorEmail.value.trim() === "") {
-            VendorEmailError.innerText = "رجاء إدخال الايميل ";
+            VendorEmailError.innerText = "  رجاء إدخال الايميل الخاص بالمورد";
             isValid = false;
         }
 

@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@model Employee;
+@model ThothSystemVersion1.DataTransfereObject.EmployeeDTO;
 
 
 <head>
@@ -44,7 +44,7 @@
         <div class="input-control">
             <label asp-for="@Model.JobRole" class="textlabel"> </label>
             <select asp-for="@Model.JobRole" id="options" class="place">
-                <option value="" disabled>--تحديد الدور الوظيفي--</option>
+                <option value="" selected>--تحديد الدور الوظيفي--</option>
                 <option value="4">الفني</option>
                 <option value="2">المخازن</option>
                 <option value="6">التكاليف</option>
@@ -52,7 +52,7 @@
             <span asp-validation-for="@Model.JobRole" class="error"></span>
         </div>
         <div class="button-container">
-           
+
             @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
             <input type="submit" value="اضافه" class="btn btn-secondary" />
         </div>

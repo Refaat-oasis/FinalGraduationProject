@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+@using ThothSystemVersion1.ViewModels
+
+@model List<JobOrderCustEmpVM>
+
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
+</head>
+<div class="container">
+   
+    <h1>الطلبيات</h1>
+    <div class="btn">
+        <a asp-action="CreateNewJobOrder" asp-controller="Technical" class="editBtn">اضافة</a>
+    </div>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchJobOrder()" placeholder="ابحث عن طلب...">
+    </div>
+    <div class="tableContainer">
+        <table id="jobOrderTable">
+            <tr>
+                <th colspan="2">الإجراءات</th>
+                <th>العميل</th>
+                <th>حالة الطلب</th>
+                <th>تاريخ الانتهاء</th>
+                <th>تاريخ البدء</th>
+            </tr>
+            @{
+                foreach (JobOrderCustEmpVM job in Model.OrderByDescending(j => j.StartDate))
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Accounting" asp-action="makeReceipt" asp-route-JobOrderId="@job.JobOrderId" class="editBtn">طلب استلام اموال</a>
+                        </td>
+                        <td>
+                            <a asp-controller="technical" asp-action="ShowJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId" class="editBtn">اظهار التفاصيل</a>
+                        </td>
+                        <td>@job.CustomerName</td>
+                        <td>@job.OrderProgress</td>
+                        <td>@job.EndDate</td>
+                        <td>@job.StartDate</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<script src="~/js/Technical/viewAllJobOrder.js">
+</script>

@@ -64,15 +64,19 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult UnauthorizedAccess()
         {
             return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
         }
+
+        [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("LoginPage", "Employee");
         }
+
         [HttpGet]
         public IActionResult AdminHome()
         {
@@ -88,13 +92,15 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+
         [HttpGet]
-        public IActionResult inventoryClerk() {
+        public IActionResult inventoryClerk()
+        {
 
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 2)
             {
-            return View("~/views/inventoryClerck/inventoryClerkHome.cshtml");
+                return View("~/views/inventoryClerck/inventoryClerkHome.cshtml");
 
             }
             else
@@ -104,13 +110,15 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+
         [HttpGet]
-        public IActionResult inventoryManager() {
+        public IActionResult inventoryManager()
+        {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 1)
             {
-            return View("~/views/inventory/inventoryManagerHome.cshtml");
-              
+                return View("~/views/inventory/inventoryManagerHome.cshtml");
+
             }
             else
             {
@@ -118,11 +126,13 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+
         [HttpGet]
-        public IActionResult technicalClerk() {
+        public IActionResult technicalClerk()
+        {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 4)
-            {          
+            {
                 return View("~/views/technicalClerk/technicalClerkHome.cshtml");
             }
             else
@@ -130,12 +140,14 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+
         [HttpGet]
-        public IActionResult technicalManager() {
+        public IActionResult technicalManager()
+        {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 3)
             {
-            return View("~/views/technicalManager/technicalManagerHome.cshtml");
+                return View("~/views/technical/technicalManagerHome.cshtml");
 
             }
             else
@@ -144,12 +156,14 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+
         [HttpGet]
-        public IActionResult costClerk() {
+        public IActionResult costClerk()
+        {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 6)
             {
-            return View("~/views/costClerk/costClerkHome.cshtml");
+                return View("~/views/costClerk/costClerkHome.cshtml");
 
             }
             else
@@ -158,12 +172,42 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
+
         [HttpGet]
-        public IActionResult costManager() {
+        public IActionResult costManager()
+        {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 5)
             {
-            return View("~/views/costManager/costManagerHome.cshtml");
+                return View("~/views/cost/costManagerHome.cshtml");
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AccountingManager()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 6)
+            {
+                return View("~/views/Accounting/AccountingManagerHome.cshtml");
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AccountingClerk()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 7)
+            {
+                return View("~/views/AccountingClerk/AccountingClerkHome.cshtml");
             }
             else
             {

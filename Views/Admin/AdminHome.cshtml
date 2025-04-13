@@ -107,8 +107,16 @@
                 التكاليف
                 <ul>
                     <li>@Html.ActionLink("حساب تكلفة طلب", "viewAlljobOrder", "Cost")</li>
-                    <li>@Html.ActionLink("عرض التقارير المالية", "ViewReports", "Cost")</li>
-                    <li>@Html.ActionLink("متابعة المصروفات", "ExpenseTracking", "Cost")</li>
+                    @*                     <li>@Html.ActionLink("عرض التقارير المالية", "ViewReports", "Cost")</li>
+                    <li>@Html.ActionLink("متابعة المصروفات", "ExpenseTracking", "Cost")</li> *@
+                </ul>
+            </li>
+
+            <li onclick="toggleDropdown(this)">
+                الحسابات
+                <ul>
+                    <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "accounting")</li>
+                    <li>@Html.ActionLink("طلب دفع اموال", "ViewReports", "Accounting")</li>
                 </ul>
             </li>
         </ul>

@@ -26,8 +26,7 @@ namespace ThothSystemVersion1.Controllers
 
         public IActionResult viewAlljobOrder()
         {
-
-            List<JobOrderCustEmpVM> jobOrderList = _techBusinessLogiclayer.GetJobOrdersWithoutProcessBridge();
+            List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
 
             return View("~/views/Cost/viewAlljobOrder.cshtml", jobOrderList);
         }

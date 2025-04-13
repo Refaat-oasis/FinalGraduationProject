@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
-//using ThothSystemVersion1.DTOs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
@@ -488,74 +487,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 throw new ApplicationException("An error occurred while updating the customer.", ex);
             }
-        }
-
-        public List<JobOrderCustEmpVM> GetJobOrdersWithoutProcessBridge()
-        {
-            // Get job orders without process bridges
-            var jobOrderIdsWithBridges = _context.ProcessBridges
-                .Where(pb => pb.JobOrderId != null)
-                .Select(pb => pb.JobOrderId.Value)
-                .Distinct()
-                .ToList();
-
-            var jobOrdersWithoutBridges = _context.JobOrders
-                .Where(jo => !jobOrderIdsWithBridges.Contains(jo.JobOrderId))
-                .ToList();
-
-            // Handle customer IDs (assuming CustomerId is int)
-            var customerIds = jobOrdersWithoutBridges
-                .Where(jo => jo.CustomerId.HasValue)
-                .Select(jo => jo.CustomerId.Value)
-                .Distinct()
-                .ToList();
-
-            // Handle employee IDs (now as string)
-            var employeeIds = jobOrdersWithoutBridges
-                .Where(jo => !string.IsNullOrEmpty(jo.EmployeeId))
-                .Select(jo => jo.EmployeeId)
-                .Distinct()
-                .ToList();
-
-            // Get related data
-            var customers = _context.Customers
-                .Where(c => customerIds.Contains(c.CustomerId))
-                .ToDictionary(c => c.CustomerId);
-
-            var employees = _context.Employees
-                .Where(e => employeeIds.Contains(e.EmployeeId))
-                .ToDictionary(e => e.EmployeeId);
-
-            // Create view models with proper null checking
-            return jobOrdersWithoutBridges
-                .Where(jo => jo.CustomerId.HasValue &&
-                            !string.IsNullOrEmpty(jo.EmployeeId) &&
-                            customers.ContainsKey(jo.CustomerId.Value) &&
-                            employees.ContainsKey(jo.EmployeeId))
-                .Select(jo => new JobOrderCustEmpVM
-                {
-                    // Customer data
-                    CustomerId = jo.CustomerId.Value,
-                    CustomerAddress = customers[jo.CustomerId.Value].CustomerAddress,
-                    CustomerPhone = customers[jo.CustomerId.Value].CustomerPhone,
-                    CustomerName = customers[jo.CustomerId.Value].CustomerName,
-                    CustomerEmail = customers[jo.CustomerId.Value].CustomerEmail,
-
-                    // Job Order data
-                    JobOrderId = jo.JobOrderId,
-                    OrderProgress = jo.OrderProgress,
-                    RemainingAmount = jo.RemainingAmount,
-                    EarnedRevenue = jo.EarnedRevenue,
-                    UnearnedRevenue = jo.UnearnedRevenue,
-                    StartDate = jo.StartDate,
-                    EndDate = jo.EndDate,
-                    JobOrdernotes = jo.JobOrdernotes,
-
-                    // Employee data (now handling string ID)
-                    EmployeeId = jo.EmployeeId,
-                    EmployeeName = employees[jo.EmployeeId].EmployeeName
-                })
-                .ToList();
         }
 
 

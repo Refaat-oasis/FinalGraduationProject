@@ -645,12 +645,12 @@ namespace ThothSystemVersion1.Controllers
                 catch (Exception ex)
                 {
                     TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
-                    return RedirectToAction("AdminHome", "Admin");
+                    //return RedirectToAction("AdminHome", "Admin");
                 }
             }
 
 
-            return RedirectToAction("Unauthorized", "employee");
+            return RedirectToAction("UnauthorizedAccess", "employee");
         }
 
 
@@ -664,8 +664,8 @@ namespace ThothSystemVersion1.Controllers
             {
                 if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
                 {
-                    TempData["ErrorMessage"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
-                    return RedirectToAction("ReturnOrder");
+                    TempData["Error"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
+                    return View();
                 }
 
 
@@ -673,19 +673,19 @@ namespace ThothSystemVersion1.Controllers
 
                 if (result.success)
                 {
-                    TempData["SuccessMessage"] = result.message;
+                    TempData["Success"] = result.message;
+                    return View();
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = result.message;
+                    TempData["Error"] = result.message;
+                    return View();
                 }
-
-                return RedirectToAction("ReturnOrder");
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
-                return RedirectToAction("ReturnOrder");
+                TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
+                return View();
             }
         }
 

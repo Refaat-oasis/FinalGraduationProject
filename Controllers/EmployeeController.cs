@@ -67,6 +67,7 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult UnauthorizedAccess()
         {
+            HttpContext.Session.Clear();
             return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
         }
 

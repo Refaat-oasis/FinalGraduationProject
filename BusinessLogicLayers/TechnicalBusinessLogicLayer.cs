@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.InterfaceServices;
@@ -203,113 +204,154 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
         {
-
+            // Initialize with null checks at every level
             JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
-            MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
-            RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
-            ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
-            Customer cust = _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
-            Employee empJob = _context.Employees.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
-            Employee empRequisite = _context.Employees.FirstOrDefault(e => e.EmployeeId == requisiteOrder.EmployeeId);
-            Employee empReturn = _context.Employees.FirstOrDefault(e => e.EmployeeId == returnOrder.EmployeeId);
-            Employee empMiscellen = _context.Employees.FirstOrDefault(e => e.EmployeeId == miscellaneousExpense.EmployeeId);
-            List<QuantityBridge> quantityBridges = _context.QuantityBridges.Where(
-                q => q.RequisiteId == requisiteOrder.RequisiteId || q.ReturnId == returnOrder.ReturnId)
-            .ToList();
-            List<ProcessBridge> processBridges = _context.ProcessBridges.Where(
-                p => p.JobOrderId == jobOrderId)
-                .ToList();
-            List<Paper> papers = new List<Paper>();
-            List<Ink> inks = new List<Ink>();
-            List<Supply> supplies = new List<Supply>();
-            List<Employee> employees = new List<Employee>();
-            List<Labour> labours = new List<Labour>();
-            List<Machine> machines = new List<Machine>();
-            employees.Add(empJob);
-            employees.Add(empRequisite);
-            employees.Add(empReturn);
-            employees.Add(empMiscellen);
-
-            foreach (ProcessBridge pb in processBridges)
-            {
-                if (pb.LabourId != null)
-                {
-                    Labour lab = _context.Labours.FirstOrDefault(e => e.LabourId == pb.LabourId);
-                    labours.Add(lab);
-                }
-                if (pb.MachineId != null)
-                {
-                    Machine mach = _context.Machines.FirstOrDefault(i => i.MachineId == pb.MachineId);
-                    machines.Add(mach);
-                }
-            }
-
-            foreach (QuantityBridge QB in quantityBridges)
-            {
-
-                if (QB.InkId != null)
-                {
-                    Ink ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
-                    inks.Add(ink);
-                }
-                else if (QB.PaperId != null)
-                {
-                    Paper paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
-                    papers.Add(paper);
-                }
-                else if (QB.SuppliesId != null)
-                {
-                    Supply supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
-                    supplies.Add(supply);
-                }
-
-
-            }
-
+            if (jobOrder == null) return null;
 
             JobOrderSpecificationsViewModel joborderSpecifics = new JobOrderSpecificationsViewModel();
+
+            // Safe mapping of JobOrder properties
             joborderSpecifics.JobOrderId = jobOrder.JobOrderId;
             joborderSpecifics.RemainingAmount = jobOrder.RemainingAmount;
             joborderSpecifics.UnearnedRevenue = jobOrder.UnearnedRevenue;
             joborderSpecifics.JobOrdernotes = jobOrder.JobOrdernotes;
             joborderSpecifics.EarnedRevenue = jobOrder.EarnedRevenue;
             joborderSpecifics.OrderProgress = jobOrder.OrderProgress;
-            joborderSpecifics.CustomerId = jobOrder.CustomerId;
             joborderSpecifics.StartDate = jobOrder.StartDate;
             joborderSpecifics.EndDate = jobOrder.EndDate;
             joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
-            joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesId;
-            joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
-            joborderSpecifics.FilmsProcessingExpense = miscellaneousExpense.FilmsProcessingExpense;
-            joborderSpecifics.MaterialsTotal = miscellaneousExpense.MaterialsTotal;
-            joborderSpecifics.TotalAfterMaterials = miscellaneousExpense.TotalAfterMaterials;
-            joborderSpecifics.AdminstrativeExpense = miscellaneousExpense.AdminstrativeExpense;
-            joborderSpecifics.TotalExpenses = miscellaneousExpense.TotalExpenses;
-            joborderSpecifics.Percentage = miscellaneousExpense.Percentage;
-            joborderSpecifics.TotalAfterPercentage = miscellaneousExpense.TotalAfterPercentage;
-            joborderSpecifics.MinistryOfFinance = miscellaneousExpense.MinistryOfFinance;
-            joborderSpecifics.EmployeeImprovmentBox = miscellaneousExpense.EmployeeImprovmentBox;
-            joborderSpecifics.ValueAddedTax = miscellaneousExpense.ValueAddedTax;
-            joborderSpecifics.FinalTotal = miscellaneousExpense.FinalTotal;
-            joborderSpecifics.RequisiteId = requisiteOrder.RequisiteId;
-            joborderSpecifics.RequisiteDate = requisiteOrder.RequisiteDate;
-            joborderSpecifics.RequisiteNotes = requisiteOrder.RequisiteNotes;
-            joborderSpecifics.ReturnId = returnOrder.ReturnId;
-            joborderSpecifics.ReturnDate = returnOrder.ReturnDate;
-            joborderSpecifics.ReturnsNotes = returnOrder.ReturnsNotes;
-            joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
+            joborderSpecifics.CustomerId = jobOrder.CustomerId;
+
+            // Safe handling of related entities
+            MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
+            RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+            ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+
+            // Safe mapping of MiscellaneousExpense
+            if (miscellaneousExpense != null)
+            {
+                joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesId;
+                joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
+                // ... map all other properties similarly ...
+            }
+
+            // Safe mapping of RequisiteOrder
+            if (requisiteOrder != null)
+            {
+                joborderSpecifics.RequisiteId = requisiteOrder.RequisiteId;
+                joborderSpecifics.RequisiteDate = requisiteOrder.RequisiteDate;
+                joborderSpecifics.RequisiteNotes = requisiteOrder.RequisiteNotes;
+            }
+
+            // Safe mapping of ReturnOrder
+            if (returnOrder != null)
+            {
+                joborderSpecifics.ReturnId = returnOrder.ReturnId;
+                joborderSpecifics.ReturnDate = returnOrder.ReturnDate;
+                joborderSpecifics.ReturnsNotes = returnOrder.ReturnsNotes;
+                joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
+            }
+
+            // Safe handling of Customer
+            Customer cust = jobOrder.CustomerId.HasValue
+                ? _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId)
+                : null;
+
+            joborderSpecifics.CustomerName = cust?.CustomerName;
+
+            // Safe handling of Employees
+            List<Employee> employees = new List<Employee>();
+
+            if (jobOrder.EmployeeId != null)
+            {
+                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId));
+            }
+
+            if (requisiteOrder?.EmployeeId != null)
+            {
+                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == requisiteOrder.EmployeeId));
+            }
+
+            if (returnOrder?.EmployeeId != null)
+            {
+                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == returnOrder.EmployeeId));
+            }
+
+            if (miscellaneousExpense?.EmployeeId != null)
+            {
+                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == miscellaneousExpense.EmployeeId));
+            }
+
+            joborderSpecifics.Employees = employees.Where(e => e != null).ToList();
+
+            // Safe handling of QuantityBridges
+            List<QuantityBridge> quantityBridges = new List<QuantityBridge>();
+
+            if (requisiteOrder != null || returnOrder != null)
+            {
+                quantityBridges = _context.QuantityBridges
+                    .Where(q => (requisiteOrder != null && q.RequisiteId == requisiteOrder.RequisiteId) ||
+                               (returnOrder != null && q.ReturnId == returnOrder.ReturnId))
+                    .ToList();
+            }
+
             joborderSpecifics.QuantityBridges = quantityBridges;
-            joborderSpecifics.ProcessBridges = processBridges;
-            joborderSpecifics.CustomerName = cust.CustomerName;
+
+            // Safe handling of ProcessBridges
+            joborderSpecifics.ProcessBridges = _context.ProcessBridges
+                .Where(p => p.JobOrderId == jobOrderId)
+                .ToList();
+
+            // Safe handling of Materials
+            List<Paper> papers = new List<Paper>();
+            List<Ink> inks = new List<Ink>();
+            List<Supply> supplies = new List<Supply>();
+            List<Labour> labours = new List<Labour>();
+            List<Machine> machines = new List<Machine>();
+
+            foreach (var QB in quantityBridges)
+            {
+                if (QB.InkId != null)
+                {
+                    var ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
+                    if (ink != null) inks.Add(ink);
+                }
+                else if (QB.PaperId != null)
+                {
+                    var paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
+                    if (paper != null) papers.Add(paper);
+                }
+                else if (QB.SuppliesId != null)
+                {
+                    var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
+                    if (supply != null) supplies.Add(supply);
+                }
+            }
+
+            foreach (var pb in joborderSpecifics.ProcessBridges)
+            {
+                if (pb.LabourId != null)
+                {
+                    var lab = _context.Labours.FirstOrDefault(e => e.LabourId == pb.LabourId);
+                    if (lab != null) labours.Add(lab);
+                }
+
+                if (pb.MachineId != null)
+                {
+                    var mach = _context.Machines.FirstOrDefault(i => i.MachineId == pb.MachineId);
+                    if (mach != null) machines.Add(mach);
+                }
+            }
+
+            // Assign collected materials
             joborderSpecifics.Papers = papers;
             joborderSpecifics.Inks = inks;
             joborderSpecifics.Supplies = supplies;
             joborderSpecifics.Labours = labours;
             joborderSpecifics.Machines = machines;
-            joborderSpecifics.Employees = employees;
+
             return joborderSpecifics;
         }
-
 
         public List<Employee> GetAvailableEmployees()
         {

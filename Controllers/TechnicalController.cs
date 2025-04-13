@@ -38,13 +38,12 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-        [HttpGet]
         public IActionResult ShowJobOrderSpecifications(int jobOrderId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 3 || jobRole == 4)
             {
-                JobOrderSpecificationsViewModel JobOrderSpecificationsViewModelList = _technicalBusinessLogicLayer.ShowJobOrderSpecifications(jobOrderId);
+                JobOrderSpecificationsViewModel JobOrderSpecificationsViewModelList =  _technicalBusinessLogicLayer.ShowJobOrderSpecifications(jobOrderId);
                 return View("~/Views/technical/showJobOrderSpecifications.cshtml", JobOrderSpecificationsViewModelList);
             }
             else
@@ -52,7 +51,6 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
-
         [HttpGet]
         public IActionResult ViewAllCustomer()
         {

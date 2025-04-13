@@ -8,8 +8,7 @@
     min-height: 100vh;
     background-size: contain;
     background-size: cover;
-    align-items:center;
-
+    align-items: center;
 }
 
 
@@ -32,8 +31,7 @@
 
 
 .arrow {
-    
-    display:flex;
+    display: flex;
     justify-content: flex-start;
     margin: 20px;
 }
@@ -56,11 +54,11 @@
 }
 
 h1 {
-    text-align:center;
-    color: black;
-    margin: 20px;
-    font-weight: 900;
-    font-size: 50px;
+    color: black !important;
+    margin: 20px !important;
+    font-weight: 900 !important;
+    font-size: 50px !important;
+    text-align: center !important;
 }
 
 
@@ -91,7 +89,8 @@ h5 {
 .btn1 {
     margin-left: auto !important;
     margin-right: auto !important;
-} 
+}
+
     .btn1:hover {
         background-color: #545b62;
         color: #fff;
@@ -99,16 +98,16 @@ h5 {
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 3);
     }
-    .colCont1{
-        align-items:center;
-    }
+
+.colCont1 {
+    align-items: center;
+}
 
 
 .rowCont {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-   
 }
 
 .colCont {
@@ -176,7 +175,6 @@ h5 {
 table {
     width: 85%;
     margin: 20px;
-  
     border-collapse: separate;
     overflow: hidden;
     border-radius: 15px;
@@ -207,13 +205,13 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #FDF5E6;
 }
- 
+
 
 
 /*table {
     width: 70%;*/ /* تقليل العرض من 75% إلى 60% */
-    /*margin: 20px auto;*/ /* توسيط الجدول */
-    /*border-collapse: separate;
+/*margin: 20px auto;*/ /* توسيط الجدول */
+/*border-collapse: separate;
     overflow: hidden;
     border-radius: 15px;
     border: solid black 2px;
@@ -224,12 +222,12 @@ tr:nth-child(even) {
 /* تعديل حجم الخط في الجدول */
 /*td {
     font-size: 18px;*/ /* تصغير حجم الخط */
-    /*text-align: center;
+/*text-align: center;
 }
 
 th {
     font-size: 24px;*/ /* تصغير حجم الخط */
-    /*background-color: #FDF5E6;
+/*background-color: #FDF5E6;
 }*/
 
 /* وضع الزراير بجانب بعضها */
@@ -259,3 +257,78 @@ th {
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 3);
     }
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(120%);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+.notification-content {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Alexandria', sans-serif;
+}
+
+.notification i {
+    font-size: 24px;
+}
+
+.success {
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+    color: #10b981;
+}
+
+.error {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #ef4444;
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    animation: progress 5s linear forwards;
+}
+
+    .progress-bar.success {
+        background-color: #10b981;
+    }
+
+    .progress-bar.error {
+        background-color: #ef4444;
+    }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}

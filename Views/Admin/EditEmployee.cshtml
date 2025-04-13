@@ -1,37 +1,98 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
     Layout = null;
 }
 
 @model Employee;
 
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+
 <head>
-    <link rel="stylesheet" href="~/css/Admin/editEmployee.css"/>
+    <link rel="stylesheet" href="~/css/Admin/editEmployee.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
 
 
 </head>
 
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+        else if (jobRole == 2)
+        {
+            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+
+
+    }
+</div>
+
 <div class="form-container">
     <h1>  تعديل بيانات الموظف : @Model.EmployeeName </h1>
 
+    @* Success and Error Messages *@
     @if (TempData["Success"] != null)
     {
-        <div class="success-message">
-            <i class="bx bx-check-circle"></i> @TempData["Success"]
+        <div class="notification success">
+            <div class="notification-content">
+                <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+            </div>
+            <input type="hidden" id="tempDataSuccess" value="true" />
+            <div class="progress-bar success"></div>
         </div>
     }
+
     @if (TempData["Error"] != null)
     {
-        <div class="error-message">
-            <i class="bx bx-error-circle"></i> @TempData["Error"]
+        <div class="notification error">
+            <div class="notification-content">
+                <i class='bx bx-error-circle'></i>
+                <span>@TempData["Error"]</span>
+            </div>
+            <input type="hidden" id="tempDataSuccess" value="false" />
+
+            <div class="progress-bar error"></div>
+
         </div>
     }
+    <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
     <form asp-controller="admin" asp-action="EditEmployee" method="post" class="Employee-form">
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
-        <a asp-controller="Admin" asp-action="AdminHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
 
         <input asp-for="@Model.EmployeeId" type="hidden" />
 
@@ -44,12 +105,12 @@
             <label asp-for="@Model.EmployeeName" class="textlabel"></label>
             <input asp-for="@Model.EmployeeName" class="place" />
         </div>
-        
+
         <div class="input-control">
             <label asp-for="@Model.EmployeePassword" class="textlabel"> </label>
             <input asp-for="@Model.EmployeePassword" class="place" />
         </div>
-        
+
         <div class="input-control">
             <label asp-for="@Model.Activated" class="textlabel"> </label>
             <select asp-for="@Model.Activated" id="options" class="place">
@@ -57,18 +118,20 @@
                     if (Model.Activated)
                     {
                         <option value="true" selected>مفعل</option>
-                        <option value="false" >غير مفعل</option>
-                    }else{
-                        <option value="false" selected>غير مفعل</option>
-                        <option value="true" >مفعل</option>
+                        <option value="false">غير مفعل</option>
                     }
-                 }
+                    else
+                    {
+                        <option value="false" selected>غير مفعل</option>
+                        <option value="true">مفعل</option>
+                    }
+                }
             </select>
-        
-        <div class="button-container">
-            @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
-            <input type="submit" value="تعديل" class="btn btn-primary" />
-        </div>
+
+            <div class="button-container">
+                @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
+                <input type="submit" value="تعديل" class="btn btn-primary" />
+            </div>
     </form>
 </div>
 

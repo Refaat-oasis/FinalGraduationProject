@@ -1,7 +1,15 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
     Layout = null;
 }
 @model JobOrder
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 @{
     ViewData["Title"] = "تعديل أمر عمل";
@@ -31,14 +39,46 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Technical/EditJobOrder.css" rel="stylesheet" />
 
+
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
+
 </head>
 <body>
-    <div class="arrow mb-3">
-        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
-    </div>
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
 
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
+    </div>
 
     <div class="form-container">
 
@@ -46,18 +86,31 @@
         <h1>تعديل أمر العمل @Model.JobOrderId</h1>
 
 
-        @if (TempData["SuccessMessage"] != null)
+        @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                @TempData["SuccessMessage"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
-        @if (TempData["ErrorMessage"] != null)
+
+        @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">
-                @TempData["ErrorMessage"]
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
-        }
+        }}
 
         <form asp-action="EditJobOrder" method="post">
             <input type="hidden" asp-for="JobOrderId" />
@@ -159,40 +212,123 @@
     }
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // تعيين القيمة المحددة مسبقاً لحالة العمل
+                document.addEventListener('DOMContentLoaded', function() {
+            // Set the preselected value for order progress
             const progressSelect = document.querySelector('#OrderProgress');
             if (progressSelect) {
-                const currentProgress = '@Model.OrderProgress';
+                const currentProgress = progressSelect.getAttribute('data-current-progress');
                 if (currentProgress) {
                     progressSelect.value = currentProgress;
                 }
             }
 
-            // التحقق من تاريخ الانتهاء
-                <script>
-        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation
             const form = document.querySelector('form');
-            form.addEventListener('submit', function(e) {
-                // Get the formatted date from the hidden input or the readonly field
-                const startDateValue = document.querySelector('[name="StartDate"]').value;
-                const endDateValue = document.getElementById('EndDate').value;
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
 
-                if (startDateValue && endDateValue) {
-                    const startDate = new Date(startDateValue);
-                    const endDate = new Date(endDateValue);
+                    // Date validation
+                    const startDateInput = document.querySelector('[name="StartDate"]');
+                    const endDateInput = document.getElementById('EndDate');
+                    const dateError = document.getElementById('date-error'); // Add this element in your HTML
 
-                    if (endDate <= startDate) {
-                        e.preventDefault();
-                        alert('يجب أن يكون تاريخ النهاية بعد تاريخ البداية');
-                        document.getElementById('EndDate').focus();
+                    if (startDateInput && endDateInput) {
+                        const startDateValue = startDateInput.value;
+                        const endDateValue = endDateInput.value;
+
+                        if (startDateValue && endDateValue) {
+                            const startDate = new Date(startDateValue);
+                            const endDate = new Date(endDateValue);
+
+                            if (endDate <= startDate) {
+                                isValid = false;
+                                if (dateError) {
+                                    dateError.textContent = 'يجب أن يكون تاريخ النهاية بعد تاريخ البداية';
+                                    dateError.style.display = 'block';
+                                } else {
+                                    alert('يجب أن يكون تاريخ النهاية بعد تاريخ البداية');
+                                }
+                                endDateInput.focus();
+                            }
+                        }
                     }
-                }
-            });
+
+                    // Order progress validation
+                    if (progressSelect) {
+                        const progressError = document.getElementById('progress-error'); // Add this element in your HTML
+                        if (!progressSelect.value) {
+                            isValid = false;
+                            if (progressError) {
+                                progressError.textContent = 'الرجاء تحديد حالة الطلب';
+                                progressError.style.display = 'block';
+                            } else {
+                                alert('الرجاء تحديد حالة الطلب');
+                            }
+                            progressSelect.focus();
+                        }
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault();
+                    }
+                });
+            }
+
+            // Real-time date validation (optional)
+            const endDateInput = document.getElementById('EndDate');
+            if (endDateInput) {
+                endDateInput.addEventListener('change', function() {
+                    const startDateInput = document.querySelector('[name="StartDate"]');
+                    const dateError = document.getElementById('date-error');
+
+                    if (startDateInput && startDateInput.value && this.value) {
+                        const startDate = new Date(startDateInput.value);
+                        const endDate = new Date(this.value);
+
+                        if (endDate <= startDate) {
+                            if (dateError) {
+                                dateError.textContent = 'يجب أن يكون تاريخ النهاية بعد تاريخ البداية';
+                                dateError.style.display = 'block';
+                            }
+                        } else if (dateError) {
+                            dateError.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+                const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
+
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
+
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
+
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
         });
     </script>
 
-            </script>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 }

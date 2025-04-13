@@ -1,4 +1,14 @@
-﻿ @model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
+﻿ @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+ @model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
 @{
     ViewData["Title"] = "إنشاء أمر عمل جديد";
 
@@ -21,13 +31,46 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/TechnicalClerk/createNewJobOrder.css" rel="stylesheet" />
 
+
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
+
 </head>
 
 <body>
-    <div class="arrow mb-3">
-        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
 
     <div class="form-container">
@@ -35,18 +78,33 @@
         <h1>إنشاء أمر عمل جديد</h1>
 
 
-        @if (TempData["SuccessMessage"] != null)
+        @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                @TempData["SuccessMessage"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
-        @if (TempData["ErrorMessage"] != null)
+
+        @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">
-                @TempData["ErrorMessage"]
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
         }
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
         <form asp-action="CreateNewJobOrder" method="post" class="needs-validation" novalidate>
             <input type="hidden" asp-for="StartDate" value="@startDate.ToString("yyyy-MM-dd")" />
@@ -88,10 +146,11 @@
             <div class="rowCont">
                 <!-- Start Date -->
                 <div class="colCont">
-                    <label class="form-label">تاريخ البدأ في التشغيلة</label>
+                    شغيلة</label>
                     <div class="input-group">
                         <span class="input-group-text bg-light">
-                            <i class="fas fa-calendar-day"></i>
+                            <i class="fas fa-cal
+                    <label class="form-label">تاريخ البدأ في التendar-day"></i>
                         </span>
                         <input type="date"
                                class="form-control bg-light"
@@ -278,5 +337,33 @@
                 });
             }
         }
+
+        const tempDataElement = document.getElementById('tempDataSuccess');
+    const jobRoleElement = document.getElementById('hdnJobRole');
+
+    // Get values with proper fallbacks
+    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+    console.log("Success message exists:", hasSuccessMessage);
+    console.log("Job role:", jobRole);
+
+    // Mapping of job roles to their respective URLs
+    const jobRoleRoutes = {
+        0: "/employee/AdminHome",
+        1: "/employee/inventoryManager",
+        2: "/employee/inventoryClerk",
+        3: "/employee/TechnicalManager",
+        4: "/employee/technicalClerk",
+        5: "/employee/CostManager",
+        6: "/employee/costClerk"
+    };
+
+    if (hasSuccessMessage) {
+        setTimeout(function () {
+            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+            window.location.href = redirectUrl;
+        }, 3000);
+    }
     });
 </script>

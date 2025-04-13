@@ -1,62 +1,136 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@using ThothSystemVersion1.DataTransfereObject
+
 @{
     Layout = null;
 }
+@{
 
-@model ThothSystemVersion1.DataTransfereObject.VendorEditDTO ;
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+@model Vendor;
 
 <head>
     <link href="~/css/Inventory/editVendor.css" rel="stylesheet" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
+
+
 
 </head>
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
 
-    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
 
-<div class="form-container">
-    <h1>تعديل المورد : @Model.VendorName </h1>
-    <form asp-controller="inventory" asp-action="Editvendor" name="form1" method="post" enctype="multipart/form-data" class="Vendor-form">
+    <div class="form-container">
+        <h1>تعديل المورد : @Model.VendorName </h1>
 
-        <input asp-for="@Model.VendorId" hidden/>
+        @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
 
-        <div class="input-control">
-            <label asp-for="@Model.VendorName" class="textlabel"> </label>
-            <input asp-for="@Model.VendorName" class="place" />
-            <span asp-validation-for="@Model.VendorName" class="error"></span>
-        </div>
-        <div class="input-control">
-            <label asp-for="@Model.VendorPhone" class="textlabel"></label>
-            <input asp-for="@Model.VendorPhone" class="place" />
-            <span asp-validation-for="@Model.VendorPhone" class="error"></span>
-        </div>
-        <div class="input-control">
-            <label asp-for="@Model.VendorAddress" class="textlabel">  </label>
-            <input asp-for="@Model.VendorAddress" class="place" />
-            <span asp-validation-for="@Model.VendorAddress" class="error"></span>
-        </div>
-        <div class="input-control">
-            <label asp-for="@Model.VendorEmail" class="textlabel"> </label>
-            <input asp-for="@Model.VendorEmail" class="place">
-            <span asp-validation-for="@Model.VendorEmail" class="error"></span>
-        </div>
-        <div class="input-control">
-            <label asp-for="@Model.VendorNotes" class="textlabel"> </label>
-            <input asp-for="@Model.VendorNotes" class="place">
-            <span asp-validation-for="@Model.VendorNotes" class="error"></span>
-        </div>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
+        }
 
-        <div class="button-container">
+        @if (TempData["Error"] != null)
+        {
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
+            </div>
+        }
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
+
+        <form asp-controller="inventory" asp-action="Editvendor" name="form1" method="post" enctype="multipart/form-data" class="Vendor-form">
+
+            <input asp-for="@Model.VendorId" hidden />
+
+            <div class="input-control">
+                <label asp-for="@Model.VendorName" class="textlabel"> </label>
+                <input asp-for="@Model.VendorName" class="place" />
+                <span asp-validation-for="@Model.VendorName" class="error"></span>
+            </div>
+            <div class="input-control">
+                <label asp-for="@Model.VendorPhone" class="textlabel"></label>
+                <input asp-for="@Model.VendorPhone" class="place" />
+                <span asp-validation-for="@Model.VendorPhone" class="error"></span>
+            </div>
+            <div class="input-control">
+                <label asp-for="@Model.VendorAddress" class="textlabel">  </label>
+                <input asp-for="@Model.VendorAddress" class="place" />
+                <span asp-validation-for="@Model.VendorAddress" class="error"></span>
+            </div>
+            <div class="input-control">
+                <label asp-for="@Model.VendorEmail" class="textlabel"> </label>
+                <input asp-for="@Model.VendorEmail" class="place">
+                <span asp-validation-for="@Model.VendorEmail" class="error"></span>
+            </div>
+            <div class="input-control">
+                <label asp-for="@Model.VendorNotes" class="textlabel"> </label>
+                <input asp-for="@Model.VendorNotes" class="place">
+                <span asp-validation-for="@Model.VendorNotes" class="error"></span>
+            </div>
+
+            <div class="button-container">
                 @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
-            <input type="submit" value="اضافه" class="btn btn-secondary" />
-        </div>
-    </form>
-</div>
+                <input type="submit" value="تعديل" class="btn btn-secondary" />
+            </div>
+        </form>
+    </div>
 </div>
 
-        <script src="~/js/Inventory/editVendor.js"></script>
+<script src="~/js/Inventory/editVendor.js"></script>

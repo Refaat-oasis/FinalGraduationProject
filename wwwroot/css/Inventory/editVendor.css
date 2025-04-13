@@ -1,15 +1,17 @@
-﻿ .form-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        border-radius: 8px;
-        background-size: cover;
-        background-position: center;
-        display: block;
-        overflow: auto;
-    }
+﻿@import url('editvendor.css');
+
+.form-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    overflow: auto;
+}
 
 
     .form-container::before {
@@ -29,90 +31,131 @@
         background-position: center;
     }
 
+.success-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #28a745; /* لون أخضر يدل على النجاح */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #eafaf1;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-
-
-    h1 {
-        text-align: center;
-        font-size: 30px;
-        color: #050505;
-        margin-bottom: 20px;
+    .success-message i {
+        font-size: 40px;
     }
 
-    .input-control {
-        margin-left: 25%;
-        position: center;
-        width: 50%;
-    }
+.error-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #dc3545; /* لون أحمر يدل على الخطأ */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fdecea;
+    border: 2px solid #dc3545;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-
-
-    .textlabel {
-        display: block;
-        font-weight: 15px;
-        margin-bottom: 5px;
-        color: #090909;
-        font-size: 35px;
-        text-align: right;
-    }
-
-    .place {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #000000;
-        border-radius: 5px;
-        font-size: 20px;
-        text-align: right;
-        direction: rtl;
-    }
-
-
-
-    .button-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        gap: 60px;
-    }
-
-    .btn {
-        padding: 10px 15px;
-        font-size: 25px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+    .error-message i {
+        font-size: 40px;
     }
 
 
-    .btn-primary {
+
+
+h1 {
+    color: black !important;
+    margin: 20px !important;
+    font-weight: 900 !important;
+    font-size: 50px !important;
+    text-align: center !important; /* Added right alignment */
+}
+
+.input-control {
+    margin-left: 25%;
+    position: center;
+    width: 50%;
+}
+
+
+
+.textlabel {
+    display: block;
+    font-weight: 15px;
+    margin-bottom: 5px;
+    color: #090909;
+    font-size: 35px;
+    text-align: right;
+}
+
+.place {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: right;
+    direction: rtl;
+}
+
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.btn-primary {
+    background-color: #000000;
+    color: white;
+}
+
+    .btn-primary:hover {
         background-color: #000000;
-        color: white;
     }
 
-        .btn-primary:hover {
-            background-color: #000000;
-        }
+.btn-secondary {
+    background-color: #000000;
+    color: white;
+}
 
-    .btn-secondary {
-        background-color: #000000;
-        color: white;
-    }
-
-    .btn:hover {
-        background-color: #545b62;
-    }
+.btn:hover {
+    background-color: #545b62;
+}
 
 
-    .error {
-        color: red;
-        font-size: 20px;
-        margin-top: 5px;
-        display: block;
-        text-align: right;
-        direction: rtl;
-    }
+.error {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    direction: rtl;
+}
 
 .arrow {
     display: flex;
@@ -135,4 +178,79 @@
     margin: 10px 0;
     position: fixed;
     text-decoration: none;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(120%);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+.notification-content {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Alexandria', sans-serif;
+}
+
+.notification i {
+    font-size: 24px;
+}
+
+.success {
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+    color: #10b981;
+}
+
+.error {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #ef4444;
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    animation: progress 5s linear forwards;
+}
+
+    .progress-bar.success {
+        background-color: #10b981;
+    }
+
+    .progress-bar.error {
+        background-color: #ef4444;
+    }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
 }

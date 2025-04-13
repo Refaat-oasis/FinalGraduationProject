@@ -51,9 +51,31 @@
         }
     });
 
-    if (tempDataSuccess && tempDataSuccess.value === "true") {
+    const tempDataElement = document.getElementById('tempDataSuccess');
+    const jobRoleElement = document.getElementById('hdnJobRole');
+
+    // Get values with proper fallbacks
+    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+    console.log("Success message exists:", hasSuccessMessage);
+    console.log("Job role:", jobRole);
+
+    // Mapping of job roles to their respective URLs
+    const jobRoleRoutes = {
+        0: "/employee/AdminHome",
+        1: "/employee/inventoryManager",
+        2: "/employee/inventoryClerk",
+        3: "/employee/TechnicalManager",
+        4: "/employee/technicalClerk",
+        5: "/employee/CostManager",
+        6: "/employee/costClerk"
+    };
+
+    if (hasSuccessMessage) {
         setTimeout(function () {
-            window.location.href = " / Admin / ViewAllEmployee ";
-        }, 3000); // 3 ثواني
+            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+            window.location.href = redirectUrl;
+        }, 3000);
     }
 });

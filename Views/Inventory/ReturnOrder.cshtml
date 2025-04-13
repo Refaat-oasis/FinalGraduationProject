@@ -1,4 +1,17 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.ReturnOrderDTO
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    Layout = null;
+}
+
+@model ThothSystemVersion1.DataTransfereObject.ReturnOrderDTO
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 <head>
     <meta charset="utf-8" />
@@ -15,171 +28,222 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ReturnOrder.css" rel="stylesheet" />
 
+
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
+
 </head>
 
 <body>
 
-    <div class="arrow mb-3">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
-    </div>
-    <div class="form-container">
+    <div class="container">
+        <div class="arrow">
+            @{
+                // admin
+                if (jobRole == 0)
+                {
+                    <a asp-controller="employee" asp-action="adminhome" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                    </a>
 
-        <h1>مرتجعات</h1>
+                } // inventory manager
+                else if (jobRole == 1)
+                {
+                    <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
+                else if (jobRole == 2)
+                {
+                    <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
 
 
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success">
-                <i class="bx bx-check-circle"></i> @TempData["SuccessMessage"]
-            </div>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger">
-                <i class="bx bx-error-circle"></i> @TempData["ErrorMessage"]
-            </div>
-        }
+            }
+        </div>
 
-        <form asp-action="ReturnOrder" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
 
-            <div class="rowCont">
+        <div class="form-container">
 
-                <div class="colCont">
-                    <div class="form-check mt-4">
-                        <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
-                        <label class="form-check-label" for="returnInOut">
-                            إضافة للمخزون
-                        </label>
+            <h1>مرتجعات</h1>
+
+
+            @* Success and Error Messages *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="notification success">
+                    <div class="notification-content">
+                        <i class='bx bx-check-circle'></i> @TempData["Success"]
+
                     </div>
+                    <input type="hidden" id="tempDataSuccess" value="true" />
+                    <div class="progress-bar success"></div>
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="notification error">
+                    <div class="notification-content">
+                        <i class='bx bx-error-circle'></i>
+                        <span>@TempData["Error"]</span>
+                    </div>
+                    <input type="hidden" id="tempDataSuccess" value="false" />
+
+                    <div class="progress-bar error"></div>
+
+                </div>
+            }
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+
+            <form asp-action="ReturnOrder" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
+
+                <div class="rowCont">
+
+                    <div class="colCont">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
+                            <label class="form-check-label" for="returnInOut">
+                                إضافة للمخزون
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="colCont">
+                        <label class="form-label">مصدر الامر</label>
+                        <select id="returnType" class="form-select" required>
+                            <option value="">-- اختر مصدر الامر --</option>
+                            <option value="job"> امر تصنيع</option>
+                            <option value="purchase"> امر شراء</option>
+                        </select>
+                    </div>
+
                 </div>
 
-                <div class="colCont">
-                    <label class="form-label">مصدر الامر</label>
-                    <select id="returnType" class="form-select" required>
-                        <option value="">-- اختر مصدر الامر --</option>
-                        <option value="job"> امر تصنيع</option>
-                        <option value="purchase"> امر شراء</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="rowCont" id="jobOrderSection" style="display:none;">
-                <div class="colCont">
-                    <label asp-for="JobOrderId" class="form-label">اختر أمر التشغيل</label>
-                    <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
-                        <option value="">-- اختر أمر التشغيل --</option>
-                        @if (ViewBag.JobOrderList != null)
-                        {
-                            foreach (var job in ViewBag.JobOrderList)
+                <div class="rowCont" id="jobOrderSection" style="display:none;">
+                    <div class="colCont">
+                        <label asp-for="JobOrderId" class="form-label">اختر أمر التشغيل</label>
+                        <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
+                            <option value="">-- اختر أمر التشغيل --</option>
+                            @if (ViewBag.JobOrderList != null)
                             {
-                                <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                                foreach (var job in ViewBag.JobOrderList)
+                                {
+                                    <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                                }
                             }
-                        }
-                    </select>
-                    <span asp-validation-for="JobOrderId" class="text-danger"></span>
+                        </select>
+                        <span asp-validation-for="JobOrderId" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="rowCont" id="purchaseOrderSection" style="display:none;">
-                <div class="colCont">
-                    <label asp-for="purchaseID" class="form-label">اختر أمر الشراء</label>
-                    <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
-                        <option value="">-- اختر أمر الشراء --</option>
-                        @if (ViewBag.PurchaseOrderList != null)
-                        {
-                            foreach (var purchase in ViewBag.PurchaseOrderList)
+                <div class="rowCont" id="purchaseOrderSection" style="display:none;">
+                    <div class="colCont">
+                        <label asp-for="purchaseID" class="form-label">اختر أمر الشراء</label>
+                        <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
+                            <option value="">-- اختر أمر الشراء --</option>
+                            @if (ViewBag.PurchaseOrderList != null)
                             {
-                                <option value="@purchase.PurchaseId">@purchase.PurchaseId - @(purchase.Vendor?.VendorName ?? "بدون مورد")</option>
+                                foreach (var purchase in ViewBag.PurchaseOrderList)
+                                {
+                                    <option value="@purchase.PurchaseId">@purchase.PurchaseId - @(purchase.Vendor?.VendorName ?? "بدون مورد")</option>
+                                }
                             }
-                        }
-                    </select>
-                    <span asp-validation-for="purchaseID" class="text-danger"></span>
+                        </select>
+                        <span asp-validation-for="purchaseID" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="rowCont">
+                <div class="rowCont">
+                    <div class="colCont">
+                        <label asp-for="ReturnsNotes" class="form-label">ملاحظات </label>
+                        <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <!-- Manual item addition section -->
+                <div class="card mt-4 border-primary shadow-sm" id="manualAdditionSection" style="display:none;">
+
+                    <h5 class="mb-0">اضف عنصر للمرتجع</h5>
+
+                    <div class="card-body">
+                        <div class="rowCont">
+                            <div class="colCont">
+                                <button type="button" id="addItem" class="btn1">إضافة</button>
+                            </div>
+
+                            <div class="colCont">
+                                <label class="form-label">كمية الإرجاع</label>
+                                <input type="number" id="itemQuantity" class="form-control" min="1" />
+                                <small id="originalQuantityInfo" class="text-muted" style="display:none;">
+                                    الكمية الأصلية: <span id="originalQuantityValue">0</span>
+                                </small>
+                            </div>
+
+                            <div class="colCont">
+                                <label class="form-label">الصنف</label>
+                                <select id="itemId" class="form-select" disabled>
+                                    <option value="">-- اختر الصنف --</option>
+                                </select>
+                            </div>
+
+                            <div class="colCont">
+                                <label class="form-label">نوع العنصر</label>
+                                <select id="itemType" class="form-select">
+                                    <option value="">-- اختر النوع --</option>
+                                    <option value="Paper">ورق</option>
+                                    <option value="Ink">حبر</option>
+                                    <option value="Supply">مستلزمات</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected items for return -->
+                <div class="card mt-4 border-info shadow-sm">
+
+                    <h5 class="mb-0">العناصر المضافه للاسترجاع</h5>
+
+                    <div class="card-body">
+                        <div class="tableContainer">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>نوع الصنف</th>
+                                        <th>الصنف</th>
+                                        <th>الكمية الأصلية</th>
+                                        <th>كمية الإرجاع</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
+                            لم يتم تحديد أي أصناف للإرجاع بعد
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hiddenItemsContainer"></div>
+
                 <div class="colCont">
-                    <label asp-for="ReturnsNotes" class="form-label">ملاحظات </label>
-                    <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
+                    <button type="submit" id="submitBtn" class="btn1">حفظ</button>
                 </div>
-            </div>
-
-            <!-- Manual item addition section -->
-            <div class="card mt-4 border-primary shadow-sm" id="manualAdditionSection" style="display:none;">
-
-                <h5 class="mb-0">اضف عنصر للمرتجع</h5>
-
-                <div class="card-body">
-                    <div class="rowCont">
-                        <div class="colCont">
-                            <button type="button" id="addItem" class="btn1">إضافة</button>
-                        </div>
-
-                        <div class="colCont">
-                            <label class="form-label">كمية الإرجاع</label>
-                            <input type="number" id="itemQuantity" class="form-control" min="1" />
-                            <small id="originalQuantityInfo" class="text-muted" style="display:none;">
-                                الكمية الأصلية: <span id="originalQuantityValue">0</span>
-                            </small>
-                        </div>
-
-                        <div class="colCont">
-                            <label class="form-label">الصنف</label>
-                            <select id="itemId" class="form-select" disabled>
-                                <option value="">-- اختر الصنف --</option>
-                            </select>
-                        </div>
-
-                        <div class="colCont">
-                            <label class="form-label">نوع العنصر</label>
-                            <select id="itemType" class="form-select">
-                                <option value="">-- اختر النوع --</option>
-                                <option value="Paper">ورق</option>
-                                <option value="Ink">حبر</option>
-                                <option value="Supply">مستلزمات</option>
-                            </select>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Selected items for return -->
-            <div class="card mt-4 border-info shadow-sm">
-
-                <h5 class="mb-0">العناصر المضافه للاسترجاع</h5>
-
-                <div class="card-body">
-                    <div class="tableContainer">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>نوع الصنف</th>
-                                    <th>الصنف</th>
-                                    <th>الكمية الأصلية</th>
-                                    <th>كمية الإرجاع</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="itemsTableBody"></tbody>
-                        </table>
-                    </div>
-                    <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
-                        لم يتم تحديد أي أصناف للإرجاع بعد
-                    </div>
-                </div>
-            </div>
-
-            <div id="hiddenItemsContainer"></div>
-
-            <div class="colCont">
-                <button type="submit" id="submitBtn" class="btn1">حفظ</button>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 </body>
 
 
@@ -378,6 +442,34 @@
                 }
                 return true;
             });
+
+                const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
+
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
+
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
+
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
         });
     </script>
 }

@@ -4,7 +4,13 @@
 
 
 @model List<Vendor>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
 
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 <head>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ViewAllVendor.css" rel="stylesheet" />
@@ -12,9 +18,30 @@
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
 
     <h1>قائمة الموردين</h1>
@@ -35,6 +62,7 @@
                 <tr>
                     <th>الإجراءات</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorAddress)</th>
+                    <th>@Html.DisplayNameFor(Model => Model[0].Activated)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorEmail)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorPhone)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorName)</th>
@@ -51,6 +79,7 @@
 
                         </td>
                         <td>@vend.VendorAddress</td>
+                        <td>@vend.Activated</td>
                         <td>@vend.VendorEmail </td>
                         <td>@vend.VendorPhone </td>
                         <td>@vend.VendorName</td>

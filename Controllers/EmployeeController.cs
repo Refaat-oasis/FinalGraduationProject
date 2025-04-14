@@ -101,7 +101,7 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 2)
             {
-                return View("~/views/inventoryClerck/inventoryClerkHome.cshtml");
+                return View("~/views/inventoryClerk/inventoryClerkHome.cshtml");
 
             }
             else

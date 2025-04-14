@@ -5,6 +5,13 @@
 
     ViewData["Title"] = "قائمة الورق";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 <head>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" />
@@ -12,14 +19,38 @@
 </head>
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Admin" asp-action="AdminHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
 
     <h1>قائمة الورق</h1>
 
-    <div id="reorderMessages" class="reorderMsg" style="display:none;"></div>
+    <div id="reorderMessages" class="reorderMsg" style="display:none;">
+        <button class="close-btn" onclick="closeReorderMessages()">×</button>
+
+    </div>
 
     <p>
         <a asp-controller="inventory" asp-action="NewPaper" class="editBtn">اضافة</a>
@@ -38,6 +69,7 @@
                     <th>@Html.DisplayNameFor(model => model.Price)</th>
                     <th>@Html.DisplayNameFor(model => model.Quantity)</th>
                     <th>@Html.DisplayNameFor(model => model.Colored)</th>
+                    <th>@Html.DisplayNameFor(model => model.Activated)</th>
                     <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
                     <th>@Html.DisplayNameFor(model => model.Weight)</th>
                     <th>@Html.DisplayNameFor(model => model.Type)</th>
@@ -57,6 +89,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Price)</td>
                         <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
                         <td>@Html.DisplayFor(modelItem => item.Colored)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Activated)</td>
                         <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
                         <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                         <td>@Html.DisplayFor(modelItem => item.Type)</td>
@@ -69,6 +102,12 @@
     </div>
 </div>
 @section Scripts {
+    <script>
+        function closeReorderMessages() {
+                 var messageDiv = document.getElementById("reorderMessages");
+                 messageDiv.style.display = "none";
+             }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
             integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
             crossorigin="anonymous"

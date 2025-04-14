@@ -224,11 +224,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 Supply foundSupply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == suppliesId);
-                //if (foundSupply == null)
-                //{
+                if (foundSupply == null)
+                {
 
-                //    throw new ArgumentException("Supply not found.");
-                //}
+                    throw new ArgumentException("Supply not found.");
+                }
                 foundSupply.Name = newSupply.Name;
                 foundSupply.Activated = newSupply.Activated;
                 foundSupply.ReorderPoint = newSupply.ReorderPoint;

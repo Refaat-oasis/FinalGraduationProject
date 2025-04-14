@@ -227,8 +227,8 @@ namespace ThothSystemVersion1.Controllers
             {
                 try
                 {
-                    CustomerDTO empty = new CustomerDTO();
-                    return View("~/Views/Technical/AddCustomer.cshtml", empty);
+
+                    return View("~/Views/Technical/AddCustomer.cshtml");
                 }
                 catch (ApplicationException ex)
                 {
@@ -257,11 +257,12 @@ namespace ThothSystemVersion1.Controllers
                     return View("~/Views/Technical/AddCustomer.cshtml", customer);
                 }
 
-                bool isVendorAdded = _technicalBusinessLogicLayer.AddCustomer(customer);
+                bool isCustomerAdded = _technicalBusinessLogicLayer.AddCustomer(customer);
 
-                if (!isVendorAdded)
+                if (!isCustomerAdded)
                 {
-                    ModelState.AddModelError("", "الايميل او رقم الهاتف تم استخدامه من قبل");
+                    ModelState.AddModelError("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
+
                     return View("~/Views/Technical/AddCustomer.cshtml", customer);
                 }
 
@@ -274,9 +275,6 @@ namespace ThothSystemVersion1.Controllers
                 return View("~/Views/Technical/AddCustomer.cshtml", customer);
             }
         }
-
-
-
         [HttpGet]
         public IActionResult EditCustomer(int CustomerId)
         {
@@ -285,49 +283,72 @@ namespace ThothSystemVersion1.Controllers
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
                 if (jobRole == 0 || jobRole == 3)
                 {
-                    Customer foundCustomer = _technicalBusinessLogicLayer.EditCustomer(CustomerId);
-                    return View("~/Views/Technical/EditCustomer.cshtml", foundCustomer);
+                    var customer = _technicalBusinessLogicLayer.EditCustomer(CustomerId);
+
+                    if (customer == null)
+                    {
+                        return NotFound();
+                    }
+
+
+                    CustomerDTO customerDto = new CustomerDTO
+                    {
+                        CustomerId = customer.CustomerId,
+                        CustomerName = customer.CustomerName,
+                        CustomerEmail = customer.CustomerEmail,
+                        CustomerPhone = customer.CustomerPhone,
+                        CustomerAddress = customer.CustomerAddress,
+                        CustomerNotes = customer.CustomerNotes
+                    };
+
+                    return View("~/Views/Technical/EditCustomer.cshtml", customerDto);
                 }
                 else
                 {
-
-                    return RedirectToAction("UnauthorizedAccess", "employee");
+                    return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the Customer.", ex);
+                throw new ApplicationException("An error occurred while fetching the customer.", ex);
             }
-
-
         }
+
         [HttpPost]
-        public IActionResult EditCustomer(int CustomerId, Customer customer)
+        public IActionResult EditCustomer(int CustomerId, CustomerDTO updatedCustomer)
         {
             try
             {
-                //if (!ModelState.IsValid)
-                //{
+                if (updatedCustomer == null)
+                {
+                    ModelState.AddModelError("", "البيانات غير صالحة");
+                    return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
+                }
 
-                //    return View("~/Views/Technical/EditCustomer.cshtml", customer);
-                //}
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
+                }
 
-                bool isCustomerEdited = _technicalBusinessLogicLayer.EditCustomer(CustomerId, customer);
 
-                //if (!isCustomerEdited)
-                //{
-                //    TempData["Error"] = ("", "البريد الالكتروني او رقم الهاتف تم استخدامه من قبل");
-                //    return View("~/Views/Technical/EditCustomer.cshtml", customer);
-                //}
+                bool isEditSuccess = _technicalBusinessLogicLayer.EditCustomer(CustomerId, updatedCustomer);
+
+                if (!isEditSuccess)
+                {
+
+                    //ModelState.AddModelError("CustomerEmail", "هذا البريد الإلكتروني مستخدم من قبل عميل آخر");
+                    //ModelState.AddModelError("CustomerPhone", "رقم الهاتف مستخدم من قبل عميل آخر");
+                    ModelState.AddModelError("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
+                    return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
+                }
+
                 TempData["Success"] = "تم تعديل بيانات العميل";
                 return RedirectToAction("EditCustomer", "Technical", new { CustomerId });
-
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات العميل";
-                return View("~/Views/Technical/EditCustomer.cshtml", customer);
+                return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
             }
         }
 

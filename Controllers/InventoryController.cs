@@ -372,7 +372,7 @@ namespace ThothSystemVersion1.Controllers
             {
                 try
                 {
-                    VendorAddDTO empty = new VendorAddDTO();
+                    VendorEditDTO empty = new VendorEditDTO();
                     return View("~/Views/Inventory/AddVendor.cshtml", empty);
                 }
                 catch (ApplicationException ex)
@@ -394,7 +394,7 @@ namespace ThothSystemVersion1.Controllers
 
 
         [HttpPost]
-        public IActionResult AddVendor(VendorAddDTO vendor)
+        public IActionResult AddVendor(VendorEditDTO vendor)
         {
             try
             {
@@ -420,7 +420,6 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
-        //edit ink
         [HttpGet]
         public IActionResult EditInk(int inkId)
         {
@@ -430,9 +429,10 @@ namespace ThothSystemVersion1.Controllers
                 try
                 {
                     Ink ink = _businessLogicL.GetInkByID(inkId);
+
+
                     return View("~/Views/Inventory/EditInk.cshtml", ink);
                 }
-
                 catch (ApplicationException ex)
                 {
                     return StatusCode(500, ex.Message); // Internal server error
@@ -444,11 +444,10 @@ namespace ThothSystemVersion1.Controllers
             }
             else
             {
-
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
-
         }
+
         [HttpPost]
         public IActionResult EditInk(int InkId, Ink updatedInk)
         {
@@ -456,28 +455,28 @@ namespace ThothSystemVersion1.Controllers
             {
                 if (updatedInk == null)
                 {
-                    return BadRequest("Invalid data.");
-                }
-                bool isEditSuccess = _businessLogicL.EditInk(InkId, updatedInk);
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
+                    ModelState.AddModelError("", "البيانات غير صالحة");
                     return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
-
                 }
+
+
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
+                }
+
+                bool isEditSuccess = _businessLogicL.EditInk(InkId, updatedInk);
+
                 TempData["Success"] = "تم تعديل بيانات الحبر";
                 return RedirectToAction("EditInk", "Inventory", new { InkId });
-
             }
-
-            //catch (ArgumentException ex)
             catch (Exception ex)
-
             {
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الحبر";
                 return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
             }
         }
+
 
         //edit paper
         [HttpGet]
@@ -489,6 +488,7 @@ namespace ThothSystemVersion1.Controllers
                 try
                 {
                     Paper paper = _businessLogicL.GetPaperByID(paperId);
+
                     return View("~/Views/Inventory/EditPaper.cshtml", paper);
                 }
                 catch (ApplicationException ex)
@@ -516,51 +516,48 @@ namespace ThothSystemVersion1.Controllers
             {
                 if (updatedPaper == null)
                 {
-                    return BadRequest("Invalid data.");
+                    ModelState.AddModelError("", "البيانات غير صالحة");
+                    return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
                 }
-
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
+                }
 
                 bool isEditSuccess = _businessLogicL.editPaper(PaperId, updatedPaper);
 
-
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
-                    return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
-                }
                 TempData["Success"] = "تم تعديل بيانات الورق";
-                return RedirectToAction("EdiTpaper", "Inventory", new { PaperId });
-
+                return RedirectToAction("EditPaper", "Inventory", new { PaperId });
             }
             catch (ArgumentException ex)
             {
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الورق";
                 return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
             }
-
         }
 
-        //edit supply
+        //edit paper
         [HttpGet]
-        public IActionResult EditSupply(int suppliesId)
+        public IActionResult EditSupply(int SuppliesId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 1)
             {
                 try
                 {
-                    Supply supply = _businessLogicL.GetSupplyByID(suppliesId);
+                    Supply supply = _businessLogicL.GetSupplyByID(SuppliesId);
+
                     return View("~/Views/Inventory/EditSupply.cshtml", supply);
                 }
-
                 catch (ApplicationException ex)
                 {
                     return StatusCode(500, ex.Message); // Internal server error
                 }
                 catch (ArgumentException ex)
                 {
-                    return NotFound(ex.Message); // Employee not found
+                    return NotFound(ex.Message);
                 }
+
             }
             else
             {
@@ -576,15 +573,14 @@ namespace ThothSystemVersion1.Controllers
             {
                 if (updatedSupply == null)
                 {
-                    return BadRequest("Invalid data.");
+                    ModelState.AddModelError("", "البيانات غير صالحة");
+                    return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
+                }
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
                 }
                 bool isEditSuccess = _businessLogicL.editSupply(SuppliesId, updatedSupply);
-                if (!isEditSuccess)
-                {
-                    ModelState.AddModelError("", "قيمة نقطة اعادة الشراء يجب ان تكون اكبر من صفر");
-                    return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
-
-                }
                 TempData["Success"] = "تم تعديل بيانات المستلزمات";
                 return RedirectToAction("EditSupply", "Inventory", new { SuppliesId });
             }

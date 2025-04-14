@@ -30,17 +30,20 @@
         @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
-            <label asp-for="Name" class="textlabel"></label>
-            <input asp-for="Name" id="Name" class="place" />
+            <label asp-for="@Model.Name" class="textlabel"></label>
+            <input asp-for="@Model.Name" id="Name" class="place" />
+            <span asp-validation-for="@Model.Name" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="Colored" class="textlabel"></label>
-            <select asp-for="Colored" id="Colored" class="place">
+            <label asp-for="@Model.Colored" class="textlabel"></label>
+            <select asp-for="@Model.Colored" id="Colored" class="place">
                 <option value="blue">أزرق</option>
                 <option value="black">أسود</option>
             </select>
+            <span asp-validation-for="@Model.Colored" class="error"></span>
+
         </div>
 
         <div class="inputBox">
@@ -59,8 +62,9 @@
         </div>
 
         <div class="inputBox">
-            <label asp-for="ReorderPoint" class="textlabel"></label>
-            <input asp-for="ReorderPoint" id="ReorderPoint" class="place" />
+            <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
+            <input asp-for="@Model.ReorderPoint" step="any" type="number" step="any" id="ReorderPoint" class="place" />
+            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
             <span class="error"></span>
         </div>
 
@@ -70,13 +74,13 @@
                 @{
                     if (Model.Activated)
                     {
-                                <option value="true" selected>مفعل</option>
-                                <option value="false">غير مفعل</option>
+                    <option value="true" selected>مفعل</option>
+                    <option value="false">غير مفعل</option>
                     }
                     else
                     {
-                                <option value="false" selected>غير مفعل</option>
-                                <option value="true">مفعل</option>
+                    <option value="false" selected>غير مفعل</option>
+                    <option value="true">مفعل</option>
                     }
                 }
             </select>

@@ -10,14 +10,17 @@ public partial class Paper
 
     [Display(Name = "اسم الورق")]
     [Required(ErrorMessage = "يجب ادخال اسم الورق")]
+    [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الورق يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string Name { get; set; } = null!;
 
     [Display(Name = "النوع")]
     [Required(ErrorMessage = "يجب ادخال نوع الورق")]
     public string? Type { get; set; }
 
+
     [Display(Name = "الوزن")]
     [Required(ErrorMessage = "يجب ادخال قيمة الوزن")]
+    [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal? Weight { get; set; }
 
     [Display(Name = "القيمة المتاحة")]
@@ -34,6 +37,8 @@ public partial class Paper
     public decimal Price { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
+    //[Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الطلب")]
+    [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

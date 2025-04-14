@@ -2,14 +2,6 @@
 @{
     Layout = null;
 }
-
-
-
-
-
-
-
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,57 +27,60 @@
     <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
 
     <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+
         <div class="text">
             <h1>إضافة عميل جديد</h1>
         </div>
+        <div asp-validation-summary="ModelOnly" class="error"></div>
 
         <div class="inputBox">
-            <label for="CustomerName">اسم العميل</label>
+            <label asp-for="@Model.CustomerName">اسم العميل</label>
             <input type="text" asp-for="@Model.CustomerName" id="CustomerName" />
-            <p asp-validation-for="@Model.CustomerName" class="error"></p>
+            <span asp-validation-for="@Model.CustomerName" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Address">عنوان العميل</label>
+            <label asp-for="@Model.CustomerAddress">عنوان العميل</label>
             <input type="text" asp-for="@Model.CustomerAddress" id="Address" />
-            <p asp-validation-for="@Model.CustomerAddress" class="error"></p>
+            <span asp-validation-for="@Model.CustomerAddress" class="error"></span>
+
         </div>
 
         <div class="inputBox">
-            <label for="Email">الإيميل الإلكتروني</label>
+            <label asp-for="@Model.CustomerEmail">الإيميل الإلكتروني</label>
             <input type="text" asp-for="@Model.CustomerEmail" id="Email" />
-            <p asp-validation-for="@Model.CustomerEmail" class="error"></p>
+            <span asp-validation-for="@Model.CustomerEmail" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Phone">رقم الهاتف</label>
+            <label asp-for="@Model.CustomerPhone">رقم الهاتف</label>
             <input type="text" asp-for="@Model.CustomerPhone" id="Phone" />
-            <p asp-validation-for="@Model.CustomerPhone" class="error"></p>
+            <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Notes">ملاحظات عن العميل</label>
+            <label asp-for="@Model.CustomerNotes">ملاحظات عن العميل</label>
             <input type="text" asp-for="@Model.CustomerNotes" id="Notes" />
-            <p asp-validation-for="@Model.CustomerNotes" class="error"></p>
+            <span asp-validation-for="@Model.CustomerNotes" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label asp-for="@Model.Activated" class="textlabel"> </label>
-            <select asp-for="@Model.Activated" id="options">
-                @{
-                    if (Model.Activated)
-                    {
-                        <option value="true" selected>مفعل</option>
-                        <option value="false">غير مفعل</option>
-                    }
-                    else
-                    {
-                        <option value="false" selected>غير مفعل</option>
-                        <option value="true">مفعل</option>
-                    }
-                }
-            </select>
-        </div>
+        @* <div class="inputBox"> *@
+        @*     <label asp-for="@Model.Activated" class="textlabel"> </label> *@
+        @*     <select asp-for="@Model.Activated" id="options"> *@
+        @*         @{ *@
+        @*             if (Model.Activated) *@
+        @*             { *@
+        @*                 <option value="true" selected>مفعل</option> *@
+        @*                 <option value="false">غير مفعل</option> *@
+        @*             } *@
+        @*             else *@
+        @*             { *@
+        @*                 <option value="false" selected>غير مفعل</option> *@
+        @*                 <option value="true">مفعل</option> *@
+        @*             } *@
+        @*         } *@
+        @*     </select> *@
+        @* </div> *@
 
         <div class="buttons">
             <div class="Add">

@@ -72,7 +72,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public bool AddVendor(VendorAddDTO newVendor)
+        public bool AddVendor(VendorEditDTO newVendor)
         {
             try
             {
@@ -131,15 +131,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
+        
         public bool EditInk(int inkID, Ink newInk)
         {
             try
             {
                 Ink foundInk = _context.Inks.FirstOrDefault(i => i.InkId == inkID);
-                if (newInk.ReorderPoint < 0)
-                {
-                    return false;
-                }
                 if (foundInk == null)
                 {
 
@@ -182,11 +179,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 Paper foundPaper = _context.Papers.FirstOrDefault(p => p.PaperId == paperID);
-
-                if (newPaper.ReorderPoint < 0)
-                {
-                    return false;
-                }
                 if (foundPaper == null)
                 {
 
@@ -232,15 +224,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 Supply foundSupply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == suppliesId);
-                if (newSupply.ReorderPoint < 0)
-                {
-                    return false;
-                }
-                if (foundSupply == null)
-                {
+                //if (foundSupply == null)
+                //{
 
-                    throw new ArgumentException("Supply not found.");
-                }
+                //    throw new ArgumentException("Supply not found.");
+                //}
                 foundSupply.Name = newSupply.Name;
                 foundSupply.Activated = newSupply.Activated;
                 foundSupply.ReorderPoint = newSupply.ReorderPoint;
@@ -253,7 +241,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException($"An error occurred while updating the supply", ex);
             }
         }
-
         public bool EditVendor(int vendorID, VendorEditDTO newVendor)
         {
             try
@@ -1066,7 +1053,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemId = paper.PaperId,
                             name = paper.Name,
 
-                            quantity = paper.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 
@@ -1079,7 +1066,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemId = ink.InkId,
                             name = ink.Name,
 
-                            quantity = ink.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 
@@ -1092,7 +1079,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemId = supply.SuppliesId,
                             name = supply.Name,
 
-                            quantity = supply.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 
@@ -1122,7 +1109,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemType = "الورق",
                             itemId = paper.PaperId,
                             name = paper.Name,
-                            quantity = paper.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 
@@ -1134,7 +1121,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemType = "الحبر",
                             itemId = ink.InkId,
                             name = ink.Name,
-                            quantity = ink.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 
@@ -1146,7 +1133,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemType = "المتلزمات",
                             itemId = supply.SuppliesId,
                             name = supply.Name,
-                            quantity = supply.Quantity
+                            quantity = qb.Quantity
                         })
                     .ToList();
 

@@ -472,16 +472,17 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
+
         public Customer EditCustomer(int CustomerId)
         {
             try
             {
-                Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == CustomerId);
-                if (customer == null)
+                Customer foundcustomer = _context.Customers.FirstOrDefault(c => c.CustomerId == CustomerId);
+                if (foundcustomer == null)
                 {
                     throw new ArgumentException("Customer not found.");
                 }
-                return customer;
+                return foundcustomer;
             }
             catch (Exception ex)
             {
@@ -491,7 +492,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
-        public bool EditCustomer(int CustomerId, Customer customer)
+        public bool EditCustomer(int CustomerId, CustomerDTO customer)
         {
             try
             {
@@ -502,24 +503,21 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     throw new ArgumentException("Customer not found.");
                 }
 
+                bool isEmailUsedByAnother = _context.Customers
+      .Any(c => c.CustomerEmail == customer.CustomerEmail && c.CustomerId != CustomerId);
+                bool isPhoneUsedByAnother = _context.Customers
+                    .Any(c => c.CustomerPhone == customer.CustomerPhone && c.CustomerId != CustomerId);
 
+                if (isEmailUsedByAnother || isPhoneUsedByAnother)
+                {
+                    return false;
+                }
 
-                //Customer foundCustomerEmail = _context.Customers.FirstOrDefault(c => c.CustomerEmail == customer.CustomerEmail);
-                //Customer foundCustomerPhone = _context.Customers.FirstOrDefault(c => c.CustomerPhone == customer.CustomerPhone);
-
-
-                //if (foundCustomerEmail != null || foundCustomerPhone != null)
-                //{
-                //    return false;
-                //}
-
-
-                //foundCustomer.CustomerName = customer.CustomerName;
+                foundCustomer.CustomerName = customer.CustomerName;
                 foundCustomer.CustomerAddress = customer.CustomerAddress;
                 foundCustomer.CustomerEmail = customer.CustomerEmail;
                 foundCustomer.CustomerNotes = customer.CustomerNotes;
                 foundCustomer.CustomerPhone = customer.CustomerPhone;
-                //foundCustomer.Activated = customer.Activated;
 
                 _context.Customers.Update(foundCustomer);
                 _context.SaveChanges();
@@ -530,6 +528,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException("An error occurred while updating the customer.", ex);
             }
         }
+
 
 
     }

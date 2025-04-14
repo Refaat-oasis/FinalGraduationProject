@@ -32,31 +32,35 @@
         @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
-            <label asp-for="Name" class="textlabel"></label>
-            <input asp-for="Name" id="Name" class="place" />
+            <label asp-for="@Model.Name" class="textlabel"></label>
+            <input asp-for="@Model.Name" id="Name" class="place" />
+            <span asp-validation-for="@Model.Name" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="Type" class="textlabel"></label>
-            <input asp-for="Type" id="Type" class="place" />
+            <label asp-for="@Model.Type" class="textlabel"></label>
+            <input asp-for="@Model.Type" id="Type" class="place" />
+            <span asp-validation-for="@Model.Type" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="Weight" class="textlabel"></label>
-            <input asp-for="Weight" id="Weight" class="place" />
+            <label asp-for="@Model.Weight" class="textlabel"></label>
+            <input type="number" step="any" asp-for="@Model.Weight" id="Weight" class="place" />
+            <span asp-validation-for="@Model.Weight" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="Colored" class="textlabel"></label>
-            <select asp-for="Colored" class="place">
+            <label asp-for="@Model.Colored" class="textlabel"></label>
+            <select asp-for="@Model.Colored" class="place">
                 <option value="none">بدون لون</option>
                 <option value="white">أبيض</option>
                 <option value="red">أحمر</option>
                 <option value="yellow">أصفر</option>
             </select>
+            <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>
 
 
@@ -79,8 +83,9 @@
         </div>
 
         <div class="inputBox">
-            <label asp-for="ReorderPoint" class="textlabel"></label>
-            <input asp-for="ReorderPoint" class="place" />
+            <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
+            <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" />
+            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
             <span class="error"></span>
         </div>
 
@@ -89,13 +94,13 @@
             <select asp-for="Activated" id="options" class="place">
                 @if (Model.Activated)
                 {
-                    <option value="true" selected>مفعل</option>
-                    <option value="false">غير مفعل</option>
+                <option value="true" selected>مفعل</option>
+                <option value="false">غير مفعل</option>
                 }
                 else
                 {
-                    <option value="false" selected>غير مفعل</option>
-                    <option value="true">مفعل</option>
+                <option value="false" selected>غير مفعل</option>
+                <option value="true">مفعل</option>
                 }
             </select>
         </div>

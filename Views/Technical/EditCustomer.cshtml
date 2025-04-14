@@ -1,4 +1,4 @@
-﻿@model ThothSystemVersion1.Models.Customer
+﻿@model ThothSystemVersion1.DataTransfereObject.CustomerDTO
 
 <head>
     <meta charset="UTF-8" />
@@ -30,36 +30,41 @@
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
 
-        <input type="hidden" asp-for="CustomerId" />
+        <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
 
         <div class="inputBox">
-            <label asp-for="CustomerName" class="textlabel"></label>
-            <input asp-for="CustomerName" id="CustomerName" class="place" readonly disabled />
+            <label asp-for="@Model.CustomerName" class="textlabel"></label>
+            <input asp-for="@Model.CustomerName" id="CustomerName" class="place" />
+            <span asp-validation-for="@Model.CustomerName" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="CustomerAddress" class="textlabel"></label>
-            <input asp-for="CustomerAddress" id="Address" class="place" />
+            <label asp-for="@Model.CustomerAddress" class="textlabel"></label>
+            <input asp-for="@Model.CustomerAddress" id="Address" class="place" />
+            <span asp-validation-for="@Model.CustomerAddress" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="CustomerEmail" class="textlabel"></label>
-            <input asp-for="CustomerEmail" id="Email" class="place" />
+            <label asp-for="@Model.CustomerEmail" class="textlabel"></label>
+            <input asp-for="@Model.CustomerEmail" id="Email" class="place" />
+            <span asp-validation-for="@Model.CustomerEmail" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="CustomerPhone" class="textlabel"></label>
-            <input asp-for="CustomerPhone" id="Phone" class="place" />
+            <label asp-for="@Model.CustomerPhone" class="textlabel"></label>
+            <input asp-for="@Model.CustomerPhone" id="Phone" class="place" type="text" />
+            <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
             <span class="error"></span>
         </div>
 
 
         <div class="inputBox">
-            <label asp-for="CustomerNotes" class="textlabel"></label>
-            <input asp-for="CustomerNotes" id="Notes" class="place" />
+            <label asp-for="@Model.CustomerNotes" class="textlabel"></label>
+            <input asp-for="@Model.CustomerNotes" id="Notes" class="place" />
+            <span asp-validation-for="@Model.CustomerNotes" class="error"></span>
             <span class="error"></span>
         </div>
 

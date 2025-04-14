@@ -10,7 +10,9 @@ public partial class Ink
 
     [Display(Name = "اسم الحبر")]
     [Required(ErrorMessage = "يجب ادخال اسم الحبر")]
+    [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الحبر يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string Name { get; set; } = null!;
+
 
     [Display(Name = "القيمة المتاحة")]
     public decimal? TotalBalance { get; set; }
@@ -26,6 +28,8 @@ public partial class Ink
     public int Quantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
+    //[Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الطلب")]
+    [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal? ReorderPoint { get; set; }
 
     [Display(Name = "التفعيل")]

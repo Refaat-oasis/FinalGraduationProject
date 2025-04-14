@@ -1,5 +1,4 @@
 ﻿@model ThothSystemVersion1.Models.Supply
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,8 +31,9 @@
         @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
-            <label asp-for="Name" class="textlabel"></label>
-            <input asp-for="Name" id="Name" class="place" />
+            <label asp-for="@Model.Name" class="textlabel"></label>
+            <input asp-for="@Model.Name" id="Name" class="place" />
+            <span asp-validation-for="@Model.Name" class="error"></span>
             <span class="error"></span>
         </div>
 
@@ -57,25 +57,28 @@
         </div>
 
         <div class="inputBox">
-            <label asp-for="ReorderPoint" class="textlabel"></label>
-            <input asp-for="ReorderPoint" class="place" />
+            <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
+            <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" />
+            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="Activated" class="textlabel"> </label>
-            <select asp-for="Activated" id="options" class="place">
+            <label asp-for="@Model.Activated" class="textlabel"> </label>
+            <select asp-for="@Model.Activated" id="options" class="place">
                 @if (Model.Activated)
                 {
-                    <option value="true" selected>مفعل</option>
-                    <option value="false">غير مفعل</option>
+                <option value="true" selected>مفعل</option>
+                <option value="false">غير مفعل</option>
                 }
                 else
                 {
-                    <option value="false" selected>غير مفعل</option>
-                    <option value="true">مفعل</option>
+                <option value="false" selected>غير مفعل</option>
+                <option value="true">مفعل</option>
                 }
             </select>
+            <span asp-validation-for="@Model.Activated" class="error"></span>
         </div>
 
         <div class="button-container">

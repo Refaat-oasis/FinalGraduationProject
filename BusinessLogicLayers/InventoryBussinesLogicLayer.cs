@@ -326,172 +326,172 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         //    throw new NotImplementedException();
         //}
 
-        public bool purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
-        {
-            try
-            {
+        //public bool purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
+        //{
+        //    try
+        //    {
 
-                List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-                PurchaseOrder purchaseOrder = new PurchaseOrder();
+        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
 
-                purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-                purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-                purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
 
-                _context.PurchaseOrders.Add(purchaseOrder);
-                _context.SaveChanges();
+        //        _context.PurchaseOrders.Add(purchaseOrder);
+        //        _context.SaveChanges();
 
-                int lastone = _context.PurchaseOrders
-                          .OrderByDescending(po => po.PurchaseId)
-                          .Select(po => po.PurchaseId)
-                          .FirstOrDefault();
-
-
-                for (int i = 0; i < quantityBridgeList.Count; i++)
-                {
-                    quantityBridgeList[i].PurchaseId = lastone;
-                    Paper pap = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
-                    if (pap != null)
-                    {
-                        // Calculate new quantity and average price
-                        double totalQuantity = pap.Quantity + quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)pap.Quantity * pap.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-                        // Update paper properties
-                        pap.Quantity = (int)totalQuantity;
-                        pap.Price = averagePrice;
-                        pap.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-                        _context.Papers.Update(pap);
-                    }
-                }
-
-                // Add QuantityBridges to context and save all changes
-                _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                _context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                return false;
-
-            }
-
-        }
+        //        int lastone = _context.PurchaseOrders
+        //                  .OrderByDescending(po => po.PurchaseId)
+        //                  .Select(po => po.PurchaseId)
+        //                  .FirstOrDefault();
 
 
-        public bool purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
-        {
-            try
-            {
-                List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-                PurchaseOrder purchaseOrder = new PurchaseOrder();
+        //        for (int i = 0; i < quantityBridgeList.Count; i++)
+        //        {
+        //            quantityBridgeList[i].PurchaseId = lastone;
+        //            Paper pap = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+        //            if (pap != null)
+        //            {
+        //                // Calculate new quantity and average price
+        //                double totalQuantity = pap.Quantity + quantityBridgeList[i].Quantity;
+        //                decimal totalValue = (decimal)pap.Quantity * pap.Price +
+        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-                purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-                purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+        //                // Update paper properties
+        //                pap.Quantity = (int)totalQuantity;
+        //                pap.Price = averagePrice;
+        //                pap.TotalBalance = (decimal)totalQuantity * averagePrice;
 
-                _context.PurchaseOrders.Add(purchaseOrder);
-                _context.SaveChanges();
+        //                _context.Papers.Update(pap);
+        //            }
+        //        }
 
-                int lastone = _context.PurchaseOrders
-                          .OrderByDescending(po => po.PurchaseId)
-                          .Select(po => po.PurchaseId)
-                          .FirstOrDefault();
+        //        // Add QuantityBridges to context and save all changes
+        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+        //        _context.SaveChanges();
 
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                for (int i = 0; i < quantityBridgeList.Count; i++)
-                {
-                    quantityBridgeList[i].PurchaseId = lastone;
-                    Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
-                    if (ink != null)
-                    {
-                        // Calculate new quantity and average price
-                        double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)ink.Quantity * ink.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+        //        return false;
 
-                        // Update paper properties
-                        ink.Quantity = (int)totalQuantity;
-                        ink.Price = averagePrice;
-                        ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+        //    }
 
-                        _context.Inks.Update(ink);
-                    }
-                }
-
-                // Add QuantityBridges to context and save all changes
-                _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-
-            }
-
-        }
-        public bool purchaseNewSupply(purchaseOrderDTO purchaseOrdDTO)
-        {
-
-            try
-            {
-                List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-                PurchaseOrder purchaseOrder = new PurchaseOrder();
-
-                purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-                purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-                purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
-
-                _context.PurchaseOrders.Add(purchaseOrder);
-                _context.SaveChanges();
-
-                int lastone = _context.PurchaseOrders
-                          .OrderByDescending(po => po.PurchaseId)
-                          .Select(po => po.PurchaseId)
-                          .FirstOrDefault();
+        //}
 
 
-                for (int i = 0; i < quantityBridgeList.Count; i++)
-                {
-                    quantityBridgeList[i].PurchaseId = lastone;
-                    Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
-                    if (supply != null)
-                    {
-                        // Calculate new quantity and average price
-                        double totalQuantity = supply.Quantity + quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)supply.Quantity * supply.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+        //public bool purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
+        //{
+        //    try
+        //    {
+        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
 
-                        // Update paper properties
-                        supply.Quantity = (int)totalQuantity;
-                        supply.Price = averagePrice;
-                        supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
 
-                        _context.Supplies.Update(supply);
-                    }
-                }
+        //        _context.PurchaseOrders.Add(purchaseOrder);
+        //        _context.SaveChanges();
 
-                // Add QuantityBridges to context and save all changes
-                _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-                _context.SaveChanges();
-                return true;
+        //        int lastone = _context.PurchaseOrders
+        //                  .OrderByDescending(po => po.PurchaseId)
+        //                  .Select(po => po.PurchaseId)
+        //                  .FirstOrDefault();
 
-            }
-            catch (Exception ex)
-            {
 
-                return false;
+        //        for (int i = 0; i < quantityBridgeList.Count; i++)
+        //        {
+        //            quantityBridgeList[i].PurchaseId = lastone;
+        //            Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+        //            if (ink != null)
+        //            {
+        //                // Calculate new quantity and average price
+        //                double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
+        //                decimal totalValue = (decimal)ink.Quantity * ink.Price +
+        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-            }
-        }
+        //                // Update paper properties
+        //                ink.Quantity = (int)totalQuantity;
+        //                ink.Price = averagePrice;
+        //                ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+        //                _context.Inks.Update(ink);
+        //            }
+        //        }
+
+        //        // Add QuantityBridges to context and save all changes
+        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+
+        //    }
+
+        //}
+        //public bool purchaseNewSupply(purchaseOrderDTO purchaseOrdDTO)
+        //{
+
+        //    try
+        //    {
+        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
+        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
+
+        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
+        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
+        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+
+        //        _context.PurchaseOrders.Add(purchaseOrder);
+        //        _context.SaveChanges();
+
+        //        int lastone = _context.PurchaseOrders
+        //                  .OrderByDescending(po => po.PurchaseId)
+        //                  .Select(po => po.PurchaseId)
+        //                  .FirstOrDefault();
+
+
+        //        for (int i = 0; i < quantityBridgeList.Count; i++)
+        //        {
+        //            quantityBridgeList[i].PurchaseId = lastone;
+        //            Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+        //            if (supply != null)
+        //            {
+        //                // Calculate new quantity and average price
+        //                double totalQuantity = supply.Quantity + quantityBridgeList[i].Quantity;
+        //                decimal totalValue = (decimal)supply.Quantity * supply.Price +
+        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+        //                // Update paper properties
+        //                supply.Quantity = (int)totalQuantity;
+        //                supply.Price = averagePrice;
+        //                supply.TotalBalance = (decimal)totalQuantity * averagePrice;
+
+        //                _context.Supplies.Update(supply);
+        //            }
+        //        }
+
+        //        // Add QuantityBridges to context and save all changes
+        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
+        //        _context.SaveChanges();
+        //        return true;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return false;
+
+        //    }
+        //}
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // view bags lists
@@ -831,7 +831,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             try
             {
-
+                decimal purchaseOrderRemainingBalance=0;
                 List<QuantityBridge> quantityBridgeList = purchaseDTO.BridgeList;
 
                 PurchaseOrder purchaseOrder = new PurchaseOrder();
@@ -862,7 +862,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         decimal averagePrice = totalValue / (decimal)totalQuantity;
 
                         decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-
+                        purchaseOrderRemainingBalance += newtotalBalance; 
                         quantityBridgeList[i].TotalBalance = newtotalBalance;
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
@@ -892,7 +892,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
                         quantityBridgeList[i].TotalBalance = newtotalBalance;
-
+                        purchaseOrderRemainingBalance += newtotalBalance;
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = paper.Price;
                         quantityBridgeList[i].OldQuantity = paper.Quantity;
@@ -902,6 +903,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         paper.Quantity = (int)totalQuantity;
                         paper.Price = averagePrice;
                         paper.TotalBalance = (decimal)totalQuantity * averagePrice;
+
                         _context.Papers.Update(paper);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
                         _context.SaveChanges();
@@ -919,7 +921,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
                         decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-
+                        purchaseOrderRemainingBalance += newtotalBalance;
                         quantityBridgeList[i].TotalBalance = newtotalBalance;
 
                         // update to the old data in the bridge
@@ -936,7 +938,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         _context.SaveChanges();
 
                     }
-
+                    PurchaseOrder purch = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseOrderNumber);
+                    purch.RemainingAmount = purchaseOrderRemainingBalance;
+                    _context.PurchaseOrders.Update(purch);
+                    _context.SaveChanges();
                 }
                 return (true, "تمت عملية الشراء بنجاح");
             }

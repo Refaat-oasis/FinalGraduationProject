@@ -108,14 +108,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcSW52ZW50b3J5Q2xlcmtIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/InventoryClerk/PhysicalCount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcUGh5c2ljYWxDb3VudC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/InventoryClerk/ReturnOrder.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcUmV0dXJuT3JkZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/InventoryClerk/ViewAllInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbEluay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -128,8 +120,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFN1cHBseS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/InventoryClerk/ViewAllVendorcshtml.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFZlbmRvcmNzaHRtbC5jc2h0bWw=
+[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/InventoryClerk/ViewAllVendor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
@@ -222,18 +214,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/TechnicalClerk/CreateNewJobOrder.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcQ3JlYXRlTmV3Sm9iT3JkZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/TechnicalClerk/CreateRequisite.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcQ3JlYXRlUmVxdWlzaXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/TechnicalClerk/ShowJobOrderSpecifications.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcU2hvd0pvYk9yZGVyU3BlY2lmaWNhdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/TechnicalClerk/TechnicalClerkHome.cshtml]

@@ -27,10 +27,15 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult ViewAllJobOrder()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            if (jobRole == 0 || jobRole == 3)
             {
                 List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
                 return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+            }
+            else if (jobRole == 4) {
+                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
+                return View("~/Views/technicalclerk/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+
             }
             else
             {
@@ -55,10 +60,14 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult ViewAllCustomer()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            if (jobRole == 0 || jobRole == 3)
             {
                 List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
                 return View(customerList);
+            }
+            else if (jobRole == 4) {
+                List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
+                return View("~/Views/technicalclerk/ViewAllCustomer.cshtml", customerList);
             }
             else
             {

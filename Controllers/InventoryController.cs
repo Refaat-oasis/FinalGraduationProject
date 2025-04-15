@@ -686,10 +686,15 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult ViewAllVendor()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
                 List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
                 return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
+            }
+            else if (jobRole == 2) {
+                List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
+                return View("~/Views/Inventoryclerk/ViewAllVendor.cshtml" , vendorList);
+            
             }
             else
             {
@@ -703,11 +708,17 @@ namespace ThothSystemVersion1.Controllers
         public async Task<IActionResult> ViewAllInk()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
                 List<Ink> inkList = await _businessLogicL.ViewAllInk();
                 await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
                 return View(inkList);
+            }
+            else if (jobRole == 2) {
+                List<Ink> inkList = await _businessLogicL.ViewAllInk();
+                await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
+                return View("~/Views/Inventoryclerk/ViewAllInk.cshtml", inkList);
+
             }
             else
             {
@@ -722,11 +733,18 @@ namespace ThothSystemVersion1.Controllers
         public async Task<IActionResult> ViewAllPaper()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
                 List<Paper> paperList = await _businessLogicL.ViewAllPaper();
                 await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
                 return View(paperList);
+            }else if ( jobRole == 2)
+            {
+
+                List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+                await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+                return View("~/Views/Inventoryclerk/ViewAllpaper.cshtml", paperList);
+
             }
             else
             {
@@ -740,12 +758,17 @@ namespace ThothSystemVersion1.Controllers
         public async Task<IActionResult> ViewAllSupply()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            if (jobRole == 0 || jobRole == 1)
             {
 
                 List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
                 await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint", "Reorder point reached for Supply: [SupplyName]");
                 return View(suppplyList);
+            } else if (jobRole == 2) {
+
+                List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+                await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+                return View("~/Views/Inventoryclerk/ViewAllpaper.cshtml", paperList);
             }
             else
             {

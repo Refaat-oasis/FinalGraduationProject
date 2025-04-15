@@ -286,13 +286,6 @@ namespace ThothSystemVersion1.Controllers
 
         // Mariam section
 
-        //[HttpGet]
-        //public IActionResult VendorReport()
-        //{
-
-        //    return View(new InventoryReportViewModel());
-        //}
-
         [HttpPost]
         public IActionResult CustomerReport(DateOnly beginingDate, DateOnly endingDate)
         {

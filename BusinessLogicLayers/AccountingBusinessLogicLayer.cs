@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.Database;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
@@ -54,9 +55,33 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             throw new NotImplementedException();
         }
-        public bool makeRecipt()
+        public bool makeRecipt(RecieptOrderDTO recDTO)
         {
-            throw new NotImplementedException();
+            JobOrder joborder = _context.JobOrders.FirstOrDefault(jo => jo.JobOrderId == recDTO.JobOrderId);
+            if (joborder != null) {
+                if (joborder.RemainingAmount < recDTO.Amount)
+                {
+                    return false;
+                }
+
+                joborder.RemainingAmount -= recDTO.Amount;
+                joborder.UnearnedRevenue += recDTO.Amount;
+
+                _context.JobOrders.Update(joborder);
+                RecieptsOrder reciept = new RecieptsOrder();
+                reciept.ReceiptNotes = recDTO.ReceiptNotes;
+                reciept.Amount = recDTO.Amount;
+                reciept.JobOrderId = recDTO.JobOrderId;
+
+                _context.RecieptsOrders.Add(reciept);
+
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+               return false;
+            }
         }
         public bool makePayment()
         {

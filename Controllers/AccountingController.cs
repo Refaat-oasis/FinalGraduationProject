@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using ThothSystemVersion1.BusinessLogicLayers;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
 
@@ -37,25 +39,58 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult makeReceipt(int JobOrderId)
         {
-
-            //JobOrderSpecificationsViewModel jO = _techBusinessLogicL.ShowJobOrderSpecifications(JobOrderId);
             JobOrder jO = _techBusinessLogicL.GetJobOrderByID(JobOrderId);
-            return View(jO);
+            ReceiptJobOrderVM RJO = new ReceiptJobOrderVM();
+            RJO.JobOrderId = jO.JobOrderId;
+            RJO.CustomerId = jO.CustomerId;
+            RJO.StartDate = jO.StartDate;
+            RJO.EndDate = jO.EndDate;
+            RJO.JobOrdernotes = jO.JobOrdernotes;
+            RJO.RemainingAmount = jO.RemainingAmount;
+            RJO.UnearnedRevenue = jO.UnearnedRevenue;
+            RJO.EarnedRevenue = jO.EarnedRevenue;
+            RJO.EmployeeId = jO.EmployeeId;
+
+            return View(RJO);
 
         }
 
         [HttpPost]
-        public IActionResult makeReceipt()
+        public IActionResult makeReceipt( ReceiptJobOrderVM receiptVM)
         {
+            RecieptOrderDTO receiptDTO = new RecieptOrderDTO();
+            receiptDTO.JobOrderId = receiptVM.JobOrderId;
+            receiptDTO.ReceiptNotes = receiptVM.ReceiptNotes;
+            receiptDTO.Amount = receiptVM.Amount;
 
-            //JobOrderSpecificationsViewModel jO = _techBusinessLogicL.ShowJobOrderSpecifications(JobOrderId);
-            //JobOrder jO = _techBusinessLogicL.GetJobOrderByID(JobOrderId);
-            return View();
+
+            ModelState.Clear();
+            TryValidateModel(receiptDTO);
+            if (ModelState.IsValid)
+            {
+                // Save the receipt to the database
+                bool result = _businessLogicL.makeRecipt(receiptDTO);
+                if (result)
+                {
+                    // Redirect to a success page or show a success message
+                    string message= "تم استلام الاموال";
+                    TempData["Success"] = message;
+                    return View(receiptVM);
+                }
+                else
+                {
+                    string message = "حدث خطأ في العملية";
+                    TempData["Error"] = message;
+                    // Handle the error case
+                    return View(receiptVM);
+                }
+            }
+            return View(receiptVM);
 
         }
 
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [HttpGet]
         public IActionResult viewPurchaseOrderdsWithRemainingAmount()

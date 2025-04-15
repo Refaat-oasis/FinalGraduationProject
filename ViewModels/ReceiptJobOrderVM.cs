@@ -24,22 +24,31 @@ namespace ThothSystemVersion1.ViewModels
         [Display(Name = "مرحلة التقدم")]
         public string? OrderProgress { get; set; }
 
-        [Display(Name = "العميل")]
-        public int? CustomerId { get; set; }
-
         [Display(Name = "تاريخ البدء")]
         public DateOnly? StartDate { get; set; }
 
         [Display(Name = "تاريخ الانتهاء")]
         public DateOnly EndDate { get; set; }
 
+
+        // customer
+
+        [Display(Name = "العميل")]
+        public int? CustomerId { get; set; }
+        [Display(Name = "اسم العميل")]
+        public string CustomerName { get; set; } = null!;
+
+        // employee
+
         [Display(Name = "الرقم التعريفي الخاص بالموظف")]
         public string? EmployeeId { get; set; }
 
-        [Display(Name = "الرقم الخاص باستلام الاموال")]
+        [Display(Name = "اسم الموظف")]
+        public string EmployeeName { get; set; } = null!;
+
 
         // receipt
-
+        [Display(Name = "الرقم الخاص باستلام الاموال")]
         public int RecieptId { get; set; }
 
         [Display(Name = "المبلغ")]

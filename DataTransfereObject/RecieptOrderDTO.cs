@@ -15,5 +15,8 @@ namespace ThothSystemVersion1.DataTransfereObject
 
         [Display(Name = "ملاحظات")]
         public string? ReceiptNotes { get; set; }
+
+        [Display(Name = "الرقم التعريفي الخاص بالموظف")]
+        public string? EmployeeId { get; set; }
     }
 }

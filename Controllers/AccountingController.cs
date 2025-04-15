@@ -39,7 +39,7 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult makeReceipt(int JobOrderId)
         {
-            JobOrder jO = _techBusinessLogicL.GetJobOrderByID(JobOrderId);
+            JobOrderCustEmpVM jO = _techBusinessLogicL.getJobOrderVM(JobOrderId);
             ReceiptJobOrderVM RJO = new ReceiptJobOrderVM();
             RJO.JobOrderId = jO.JobOrderId;
             RJO.CustomerId = jO.CustomerId;
@@ -50,6 +50,8 @@ namespace ThothSystemVersion1.Controllers
             RJO.UnearnedRevenue = jO.UnearnedRevenue;
             RJO.EarnedRevenue = jO.EarnedRevenue;
             RJO.EmployeeId = jO.EmployeeId;
+            RJO.EmployeeName = jO.EmployeeName;
+            RJO.CustomerName = jO.CustomerName;
 
             return View(RJO);
 
@@ -58,10 +60,13 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult makeReceipt( ReceiptJobOrderVM receiptVM)
         {
+            
+
             RecieptOrderDTO receiptDTO = new RecieptOrderDTO();
             receiptDTO.JobOrderId = receiptVM.JobOrderId;
             receiptDTO.ReceiptNotes = receiptVM.ReceiptNotes;
             receiptDTO.Amount = receiptVM.Amount;
+            receiptDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
 
 
             ModelState.Clear();
@@ -98,13 +103,55 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 6 || jobRole == 7)
             {
-                List<PurchaseOrderEmpVendVm> purchaseOrders = _businessLogicL.getPurchaseOrdersWithRemainingAmount();
+                List<PaymentPurchaseOrderVM> purchaseOrders = _businessLogicL.getPurchaseOrdersWithRemainingAmount();
                 return View("~/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml", purchaseOrders);
             }
             else
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                return RedirectToAction("UnauthorizedAccess", "employee"); 
             }
+        }
+        [HttpGet]
+        public IActionResult makePayment(int purchaseID) {
+            PaymentPurchaseOrderVM payment = _businessLogicL.gitPurchaseOrderVM(purchaseID);
+            return View(payment);
+
+        }
+        [HttpPost]
+        public IActionResult makePayment(PaymentPurchaseOrderVM paymentVM) {
+
+
+
+            PaymentOrderDTO paymentDTO = new PaymentOrderDTO();
+            paymentDTO.PurchaseId = paymentVM.PurchaseId;
+            paymentDTO.PaymentNotes = paymentVM.PaymentNotes;
+            paymentDTO.Amount = paymentVM.Amount;
+            paymentDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+
+
+            ModelState.Clear();
+            TryValidateModel(paymentDTO);
+            if (ModelState.IsValid)
+            {
+                // Save the receipt to the database
+                bool result = _businessLogicL.makePayment(paymentDTO);
+                if (result)
+                {
+                    // Redirect to a success page or show a success message
+                    string message = "تم دفع الاموال";
+                    TempData["Success"] = message;
+                    return View(paymentVM);
+                }
+                else
+                {
+                    string message = "حدث خطأ في العملية";
+                    TempData["Error"] = message;
+                    // Handle the error case
+                    return View(paymentVM);
+                }
+            }
+            return View(paymentVM);
+
         }
 
     }

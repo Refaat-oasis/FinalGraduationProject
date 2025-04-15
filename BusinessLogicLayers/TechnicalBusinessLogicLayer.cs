@@ -437,6 +437,37 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
         }
+        public JobOrderCustEmpVM getJobOrderVM(int jobOrderID) {
+
+            JobOrder job = _context.JobOrders.FirstOrDefault(jo => jo.JobOrderId == jobOrderID);
+            Employee emp = _context.Employees.FirstOrDefault(emp => emp.EmployeeId == job.EmployeeId);
+            Customer cus = _context.Customers.FirstOrDefault(cus => cus.CustomerId == job.CustomerId);
+            JobOrderCustEmpVM jobSpecific = new JobOrderCustEmpVM();
+            
+            // job order
+            jobSpecific.OrderProgress = job.OrderProgress;
+            jobSpecific.JobOrderId = job.JobOrderId;
+            jobSpecific.RemainingAmount = job.RemainingAmount;
+            jobSpecific.EarnedRevenue = job.EarnedRevenue;
+            jobSpecific.EarnedRevenue = job.EarnedRevenue;
+            jobSpecific.JobOrdernotes = job.JobOrdernotes;
+            jobSpecific.StartDate = job.StartDate;
+            jobSpecific.EndDate = job.EndDate;
+            // employee
+            jobSpecific.EmployeeId = emp.EmployeeId;
+            jobSpecific.EmployeeName = emp.EmployeeName;
+            // customer
+            jobSpecific.CustomerId = cus.CustomerId;
+            jobSpecific.CustomerName = cus.CustomerName;
+            jobSpecific.CustomerNotes = cus.CustomerNotes;
+            jobSpecific.CustomerPhone = cus.CustomerPhone;
+            jobSpecific.CustomerAddress = cus.CustomerAddress;
+            jobSpecific.CustomerEmail = cus.CustomerEmail;
+
+            return jobSpecific;
+
+
+        }
 
         public bool AddCustomer(CustomerDTO newCustomer)
         {

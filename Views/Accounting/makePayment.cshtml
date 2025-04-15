@@ -1,10 +1,11 @@
-﻿@model ThothSystemVersion1.ViewModels.ReceiptJobOrderVM
+﻿@model ThothSystemVersion1.ViewModels.PaymentPurchaseOrderVM
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "Make Receipt";
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("jobRole role is " + jobRole);
     var remainingAmount = Model.RemainingAmount;
 }
 
@@ -37,7 +38,7 @@
 
 <div class="card shadow-sm mb-5">
     <div class="card-header bg-primary text-white">
-        <h3 class="mb-0">Job Order Details</h3>
+        <h3 class="mb-0">Purchase Order Details</h3>
     </div>
     <div class="card-body">
         <dl class="row">
@@ -48,40 +49,28 @@
                 @Html.DisplayFor(model => model.RemainingAmount)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UnearnedRevenue)
+                @Html.DisplayNameFor(model => model.PaidAmount)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UnearnedRevenue)
+                @Html.DisplayFor(model => model.PaidAmount)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.JobOrdernotes)
+                @Html.DisplayNameFor(model => model.PurchaseNotes)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.JobOrdernotes)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.EarnedRevenue)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.EarnedRevenue)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.OrderProgress)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.OrderProgress)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CustomerName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CustomerName)
+                @Html.DisplayFor(model => model.PurchaseNotes)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.EmployeeName)
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.EmployeeName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.VendorName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.VendorName)
             </dd>
         </dl>
     </div>
@@ -112,8 +101,8 @@
         <h3 class="mb-0">Add New Receipt</h3>
     </div>
     <div class="card-body">
-        <form method="post" asp-action="makereceipt" asp-controller="accounting" id="receiptForm" novalidate>
-            <input type="hidden" asp-for="JobOrderId" />
+        <form method="post" asp-action="makepayment" asp-controller="accounting" id="receiptForm" novalidate>
+            <input type="hidden" asp-for="PurchaseId" />
             <input type="hidden" id="hdnRemainingAmount" value="@remainingAmount" />
 
             <div class="form-group">
@@ -126,20 +115,20 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label asp-for="ReceiptDate" class="font-weight-bold"></label>
-                    <input asp-for="ReceiptDate" class="form-control" type="date"
+                    <label asp-for=@Model.PaymentDate class="font-weight-bold"></label>
+                    <input asp-for=@Model.PaymentDate class="form-control" type="date"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled />
-                    <span asp-validation-for="ReceiptDate" class="text-danger"></span>
+                    <span asp-validation-for=@Model.PaymentDate class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="ReceiptNotes" class="font-weight-bold"></label>
-                    <textarea asp-for="ReceiptNotes" class="form-control" rows="2"></textarea>
-                    <span asp-validation-for="ReceiptNotes" class="text-danger"></span>
+                    <label asp-for=@Model.PaymentNotes class="font-weight-bold"></label>
+                    <textarea asp-for=@Model.PaymentNotes class="form-control" rows="2"></textarea>
+                    <span asp-validation-for=@Model.PaymentNotes class="text-danger"></span>
                 </div>
             </div>
 
             <div class="text-right">
-                <button type="submit" class="btn btn-success">Save Receipt</button>
+                <button type="submit" class="btn btn-success">Save payment</button>
             </div>
         </form>
     </div>

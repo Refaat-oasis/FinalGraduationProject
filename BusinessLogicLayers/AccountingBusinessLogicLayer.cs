@@ -51,9 +51,28 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
-        public List<PurchaseOrderEmpVendVm> getPurchaseOrdersWithRemainingAmount()
+        public List<PaymentPurchaseOrderVM> getPurchaseOrdersWithRemainingAmount()
         {
-            throw new NotImplementedException();
+            List<PurchaseOrder> purchaseOrderList = _context.PurchaseOrders.Where(po => po.RemainingAmount > 0).ToList();
+            List<Vendor> vendorList = _context.Vendors.ToList();
+            List<Employee> employeeList = _context.Employees.ToList();
+            List<PaymentPurchaseOrderVM> purchaseCompleteList = new List<PaymentPurchaseOrderVM>();
+
+            for (int i = 0; i < purchaseOrderList.Count; i++) {
+
+                PaymentPurchaseOrderVM purchOrdVm = new PaymentPurchaseOrderVM();
+
+                purchOrdVm.PurchaseId = purchaseOrderList[i].PurchaseId;
+                purchOrdVm.PurchaseDate = purchaseOrderList[i].PurchaseDate;
+                purchOrdVm.RemainingAmount = purchaseOrderList[i].RemainingAmount;
+                purchOrdVm.PaidAmount = purchaseOrderList[i].PaidAmount;
+                purchOrdVm.EmployeeName =employeeList.FirstOrDefault(emp=> emp.EmployeeId == employeeList[i].EmployeeId).EmployeeName;
+                purchOrdVm.VendorName =vendorList.FirstOrDefault(vend => vend.VendorId == vendorList[i].VendorId).VendorName;
+                
+                purchaseCompleteList.Add(purchOrdVm);
+            }
+            return purchaseCompleteList;
+
         }
         public bool makeRecipt(RecieptOrderDTO recDTO)
         {
@@ -72,6 +91,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 reciept.ReceiptNotes = recDTO.ReceiptNotes;
                 reciept.Amount = recDTO.Amount;
                 reciept.JobOrderId = recDTO.JobOrderId;
+                reciept.EmployeeId = recDTO.EmployeeId;
 
                 _context.RecieptsOrders.Add(reciept);
 
@@ -83,9 +103,35 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                return false;
             }
         }
-        public bool makePayment()
+        public bool makePayment(PaymentOrderDTO  paymentdto)
         {
-            throw new NotImplementedException();
+            PurchaseOrder purchase = _context.PurchaseOrders.FirstOrDefault(purch => purch.PurchaseId == paymentdto.PurchaseId);
+            if (purchase != null)
+            {
+                if (purchase.RemainingAmount < paymentdto.Amount)
+                {
+                    return false;
+                }
+
+                purchase.RemainingAmount -= paymentdto.Amount;
+                purchase.PaidAmount += paymentdto.Amount;
+
+                _context.PurchaseOrders.Update(purchase);
+                PaymentOrder payment = new PaymentOrder();
+                payment.PaymentNotes = paymentdto.PaymentNotes;
+                payment.Amount = paymentdto.Amount;
+                payment.PurchaseId = paymentdto.PurchaseId;
+                payment.EmployeeId = paymentdto.EmployeeId;
+
+                _context.PaymentOrders.Add(payment);
+
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool editJobOrder(int orderid, JobOrder jobOrder)
         {
@@ -95,6 +141,33 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         {
             throw new NotImplementedException();
         }
+
+        public PaymentPurchaseOrderVM gitPurchaseOrderVM(int purchaseID) {
+
+            PurchaseOrder payment = _context.PurchaseOrders.FirstOrDefault(pay => pay.PurchaseId == purchaseID);
+            Employee emp = _context.Employees.FirstOrDefault(emp => emp.EmployeeId == payment.EmployeeId);
+            Vendor ven = _context.Vendors.FirstOrDefault(vend => vend.VendorId == payment.VendorId);
+
+            PaymentPurchaseOrderVM paymentVm = new PaymentPurchaseOrderVM();
+            // purchase
+            paymentVm.PurchaseId = payment.PurchaseId;
+            paymentVm.PurchaseNotes = payment.PurchaseNotes;
+            paymentVm.PurchaseDate = payment.PurchaseDate;
+            paymentVm.PaidAmount = payment.PaidAmount;
+            paymentVm.RemainingAmount = payment.RemainingAmount;
+
+            //vendor
+            paymentVm.VendorId = payment.VendorId;
+            paymentVm.VendorName = ven.VendorName;
+            // employee
+            paymentVm.EmployeeId = payment.EmployeeId;
+            paymentVm.EmployeeName = emp.EmployeeName;
+
+
+
+            return paymentVm;
+        }
+
     }
     
     }

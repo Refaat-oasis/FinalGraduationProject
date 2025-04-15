@@ -36,8 +36,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xKb2JPcmRlcldpdGhSZW1haW5pbmdBbW91bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Accounting/makePayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xtYWtlUGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Accounting/makeReceipt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xtYWtlUmVjZWlwdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xQdXJjaGFzZU9yZGVyV2l0aFJlbWFpbmluZ0Ftb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/THE KNOWER/Desktop/GraduationProjectThothSystem/FinalGraduationProject/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]

@@ -1,4 +1,5 @@
-﻿using ThothSystemVersion1.Models;
+﻿using ThothSystemVersion1.DataTransfereObject;
+using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.InterfaceServices
@@ -8,7 +9,7 @@ namespace ThothSystemVersion1.InterfaceServices
         public List<JobOrderCustEmpVM> getJObOrderWithRemainingAmount();
         public List<PurchaseOrderEmpVendVm> getPurchaseOrdersWithRemainingAmount();
 
-        public bool makeRecipt();
+        public bool makeRecipt( RecieptOrderDTO recOrd);
         public bool makePayment();
 
         public bool editJobOrder(int orderid ,JobOrder jobOrder);

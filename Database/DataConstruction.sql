@@ -72,10 +72,10 @@ GO
 -- 5. JobOrder Table
 CREATE TABLE JobOrder (
     jobOrderID INT IDENTITY(1,1) PRIMARY KEY,
-    remainingAmount DECIMAL(10,2) DEFAULT 1 CHECK (remainingAmount >= 0),
-    unearnedRevenue DECIMAL(10,2) DEFAULT 1 CHECK (unearnedRevenue >= 0),
+    remainingAmount DECIMAL(10,2) DEFAULT 0 CHECK (remainingAmount >= 0),
+    unearnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (unearnedRevenue >= 0),
     jobOrdernotes NVARCHAR(100) DEFAULT '',
-    earnedRevenue DECIMAL(10,2) DEFAULT 1 CHECK (earnedRevenue >= 0),
+    earnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (earnedRevenue >= 0),
     orderProgress NVARCHAR(20) DEFAULT 'قيد الانتظار' ,
     customerID INT,
     startDate DATE DEFAULT GETDATE(),
@@ -104,14 +104,14 @@ CREATE TABLE ProcessBridge (
     labourID INT,
 
     machineHourPrice DECIMAL (10,2) DEFAULT 1,
-    totalMachineValue DECIMAL(10,2) DEFAULT 1 NOT NULL CHECK (totalMachineValue >= 0),
+    totalMachineValue DECIMAL(10,2) DEFAULT 0 NOT NULL CHECK (totalMachineValue >= 0),
     oldMachinePrice DECIMAL (10,2)DEFAULT 1 ,
 
     labourHourPrice DECIMAL (10,2)DEFAULT 1,
     oldlabourPrice DECIMAL (10,2)DEFAULT 1,
-    totalLabourValue DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalLabourValue >= 0),
+    totalLabourValue DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalLabourValue >= 0),
 
-    numberOfHours DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (numberOfHours >= 0),
+    numberOfHours DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (numberOfHours >= 0),
     employeeID NVARCHAR(30),
 
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
@@ -126,19 +126,19 @@ CREATE TABLE MiscellaneousExpenses (
     MiscellaneousExpensesID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT,
     employeeID NVARCHAR(30),
-    materialProcessingExpense DECIMAL(10,2) DEFAULT 1 CHECK (materialProcessingExpense >= 0),
-    filmsProcessingExpense DECIMAL(10,2) DEFAULT 1 CHECK (filmsProcessingExpense >= 0),
-    materialsTotal DECIMAL(10,2) DEFAULT 1 CHECK (materialsTotal >= 0),
-    totalAfterMaterials DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterMaterials >= 0),
-    adminstrativeExpense DECIMAL(10,2) DEFAULT 1 CHECK (adminstrativeExpense >= 0),
-    totalExpenses DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalExpenses >= 0),
-    percentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (percentage >= 0),
-    totalAfterEmplyeeImprovementbox DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterEmplyeeImprovementbox >= 0),
-    totalAfterPercentage DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (totalAfterPercentage >= 0),
-    ministryOfFinance DECIMAL(10,2) NOT NULL DEFAULT 1,
-    employeeImprovmentBox DECIMAL(10,2) NOT NULL DEFAULT 1,
-    valueAddedTax DECIMAL(10,2) NOT NULL DEFAULT 1,
-    finalTotal DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (finalTotal >= 0),
+    materialProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (materialProcessingExpense >= 0),
+    filmsProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (filmsProcessingExpense >= 0),
+    materialsTotal DECIMAL(10,2) DEFAULT 0 CHECK (materialsTotal >= 0),
+    totalAfterMaterials DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterMaterials >= 0),
+    adminstrativeExpense DECIMAL(10,2) DEFAULT 0 CHECK (adminstrativeExpense >= 0),
+    totalExpenses DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalExpenses >= 0),
+    percentage DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (percentage >= 0),
+    totalAfterEmplyeeImprovementbox DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterEmplyeeImprovementbox >= 0),
+    totalAfterPercentage DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterPercentage >= 0),
+    ministryOfFinance DECIMAL(10,2) NOT NULL DEFAULT 0,
+    employeeImprovmentBox DECIMAL(10,2) NOT NULL DEFAULT 0,
+    valueAddedTax DECIMAL(10,2) NOT NULL DEFAULT 0,
+    finalTotal DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (finalTotal >= 0),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
@@ -149,8 +149,8 @@ CREATE TABLE PurchaseOrder (
     purchaseID INT IDENTITY(1,1) PRIMARY KEY,
     purchaseDate DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) NOT NULL,
-    remainingAmount DECIMAL (10,2) DEFAULT 0.0,
-    paidAmount DECIMAL (10,2) DEFAULT 0.0 ,
+    remainingAmount DECIMAL (10,2) DEFAULT 0.0 CHECK (remainingAmount >= 0),
+    paidAmount DECIMAL (10,2) DEFAULT 0.0 CHECK (paidAmount >= 0),
     vendorID INT NOT NULL,
     purchaseNotes NVARCHAR(2500) NULL DEFAULT '',
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
@@ -190,13 +190,13 @@ CREATE TABLE Paper (
     paperID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
     type NVARCHAR(25) NULL DEFAULT '',
-    weight DECIMAL(10,2) NULL DEFAULT 1,
-    totalBalance DECIMAL(10,2) DEFAULT 1,
+    weight DECIMAL(10,2) NULL DEFAULT 0,
+    totalBalance DECIMAL(10,2) DEFAULT 0,
     colored NVARCHAR(10) NOT NULL DEFAULT '',
-    quantity INT NOT NULL DEFAULT 1,
-    price DECIMAL(10,2) NOT NULL DEFAULT 1,
-    reorderPoint DECIMAL(10,2) DEFAULT 1,
-    CHECK (weight >= 0.0 AND price > 0.0 AND quantity >= 0),
+    quantity INT NOT NULL DEFAULT 0,
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    reorderPoint DECIMAL(10,2) DEFAULT 0,
+    CHECK (weight >= 0.0 AND price >= 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
 );
 GO
@@ -205,12 +205,12 @@ GO
 CREATE TABLE Ink (
     inkID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
-    totalBalance DECIMAL(10,2) DEFAULT 1,
+    totalBalance DECIMAL(10,2) DEFAULT 0,
     colored NVARCHAR(20) NOT NULL DEFAULT '',
-    price DECIMAL(10,2) NOT NULL DEFAULT 1,
-    quantity INT NOT NULL DEFAULT 1,
-    reorderPoint DECIMAL(10,2) DEFAULT 1,
-    CHECK (price > 0.0 AND quantity >= 0),
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    quantity INT NOT NULL DEFAULT 0,
+    reorderPoint DECIMAL(10,2) DEFAULT 0,
+    CHECK (price >= 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
 );
 GO
@@ -219,11 +219,11 @@ GO
 CREATE TABLE Supplies (
     suppliesID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
-    totalBalance DECIMAL(10,2) DEFAULT 1,
-    price DECIMAL(10,2) NOT NULL DEFAULT 1,
-    quantity INT NOT NULL DEFAULT 1,
-    reorderPoint DECIMAL(10,2) DEFAULT 1,
-    CHECK (quantity > 0 AND price > 0.0),
+    totalBalance DECIMAL(10,2) DEFAULT 0,
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    quantity INT NOT NULL DEFAULT 0,
+    reorderPoint DECIMAL(10,2) DEFAULT 0,
+    CHECK (quantity >= 0 AND price > 0.0),
 	Activated BIT DEFAULT 1
 );
 GO
@@ -244,11 +244,11 @@ CREATE TABLE QuantityBridge (
     price DECIMAL(10,2) NULL ,
     returnID INT NULL,
     purchaseID INT NULL,
-    quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),
-    totalBalance DECIMAL(10,2) NULL DEFAULT 1,
+    quantity INT NOT NULL DEFAULT 0 CHECK (quantity >= 0),
+    totalBalance DECIMAL(10,2) NULL DEFAULT 0,
     oldQuantity INT NULL DEFAULT 1 ,
     oldPrice DECIMAL(10,2) NULL ,
-    oldTotalBalance DECIMAL(10,2) NULL DEFAULT 1,
+    oldTotalBalance DECIMAL(10,2) NULL DEFAULT 0,
     requisiteID INT NULL,
     paperID INT NULL,
     inkID INT NULL,
@@ -264,12 +264,12 @@ CREATE TABLE QuantityBridge (
 );
 GO
 
--- 17. Payment Table 
+-- 17. PaymentsOrder Table 
 
 CREATE TABLE PaymentOrder(
     paymentID INT IDENTITY(1,1) PRIMARY KEY,
     purchaseID INT ,
-    amount DECIMAL(10,2) DEFAULT 1 ,
+    amount DECIMAL(10,2) DEFAULT 0 CHECK (amount >= 0),
     paymentDate  DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) ,
 	paymentNotes NVARCHAR(2500) DEFAULT '',
@@ -285,7 +285,7 @@ GO
 CREATE TABLE RecieptsOrder(
     recieptID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT ,
-    amount DECIMAL(10,2) DEFAULT 1 ,
+    amount DECIMAL(10,2) DEFAULT 0 CHECK (amount >= 0),
     receiptDate  DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) ,
 	receiptNotes NVARCHAR(2500) DEFAULT '',
@@ -293,132 +293,4 @@ CREATE TABLE RecieptsOrder(
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
   
 );
-GO
-
----------------------------------
--- Triggers Creation
----------------------------------
-
--- Trigger: Cascading DELETE from JobOrder to ProcessBridge
-CREATE TRIGGER trg_DeleteJobOrder
-ON JobOrder
-FOR DELETE
-AS
-BEGIN
-    DELETE FROM ProcessBridge
-    WHERE jobOrderID IN (SELECT jobOrderID FROM deleted);
-END;
-GO
-
--- Trigger: Cascading UPDATE from JobOrder to ProcessBridge
-CREATE TRIGGER trg_UpdateJobOrder
-ON JobOrder
-FOR UPDATE
-AS
-BEGIN
-    -- Assume single-row update for the primary key
-    DECLARE @oldJobOrderID INT, @newJobOrderID INT;
-    SELECT @oldJobOrderID = jobOrderID FROM deleted;
-    SELECT @newJobOrderID = jobOrderID FROM inserted;
-    
-    IF @oldJobOrderID <> @newJobOrderID
-    BEGIN
-        UPDATE ProcessBridge
-        SET jobOrderID = @newJobOrderID
-        WHERE jobOrderID = @oldJobOrderID;
-    END
-END;
-GO
-
--- Trigger: Cascading DELETE from Employee to ProcessBridge
-CREATE TRIGGER trg_DeleteEmployee
-ON Employee
-FOR DELETE
-AS
-BEGIN
-    DELETE FROM ProcessBridge
-    WHERE employeeID IN (SELECT employeeID FROM deleted);
-END;
-GO
-
--- Trigger: Cascading UPDATE from Employee to ProcessBridge
-CREATE TRIGGER trg_UpdateEmployee
-ON Employee
-FOR UPDATE
-AS
-BEGIN
-    -- Assume single-row update for the primary key
-    DECLARE @oldEmployeeID VARCHAR(30), @newEmployeeID VARCHAR(30);
-    SELECT @oldEmployeeID = employeeID FROM deleted;
-    SELECT @newEmployeeID = employeeID FROM inserted;
-    
-    IF @oldEmployeeID <> @newEmployeeID
-    BEGIN
-        UPDATE ProcessBridge
-        SET employeeID = @newEmployeeID
-        WHERE employeeID = @oldEmployeeID;
-    END
-END;
-GO
-
--- Trigger: Cascading DELETE from JobOrder to ReturnsOrder
-CREATE TRIGGER trg_DeleteJobOrder_ReturnsOrder
-ON JobOrder
-FOR DELETE
-AS
-BEGIN
-    DELETE FROM ReturnsOrder
-    WHERE jobOrderID IN (SELECT jobOrderID FROM deleted);
-END;
-GO
-
--- Trigger: Cascading UPDATE from JobOrder to ReturnsOrder
-CREATE TRIGGER trg_UpdateJobOrder_ReturnsOrder
-ON JobOrder
-FOR UPDATE
-AS
-BEGIN
-    -- Assume single-row update for the primary key
-    DECLARE @oldJobOrderID INT, @newJobOrderID INT;
-    SELECT @oldJobOrderID = jobOrderID FROM deleted;
-    SELECT @newJobOrderID = jobOrderID FROM inserted;
-    
-    IF @oldJobOrderID <> @newJobOrderID
-    BEGIN
-        UPDATE ReturnsOrder
-        SET jobOrderID = @newJobOrderID
-        WHERE jobOrderID = @oldJobOrderID;
-    END
-END;
-GO
-
--- Trigger: Cascading DELETE from Employee to PurchaseOrder
-CREATE TRIGGER trg_DeleteEmployee_PurchaseOrder
-ON Employee
-FOR DELETE
-AS
-BEGIN
-    DELETE FROM PurchaseOrder
-    WHERE employeeID IN (SELECT employeeID FROM deleted);
-END;
-GO
-
--- Trigger: Cascading UPDATE from Employee to PurchaseOrder
-CREATE TRIGGER trg_UpdateEmployee_PurchaseOrder
-ON Employee
-FOR UPDATE
-AS
-BEGIN
-    -- Assume single-row update for the primary key
-    DECLARE @oldEmployeeID VARCHAR(30), @newEmployeeID VARCHAR(30);
-    SELECT @oldEmployeeID = employeeID FROM deleted;
-    SELECT @newEmployeeID = employeeID FROM inserted;
-    
-    IF @oldEmployeeID <> @newEmployeeID
-    BEGIN
-        UPDATE PurchaseOrder
-        SET employeeID = @newEmployeeID
-        WHERE employeeID = @oldEmployeeID;
-    END
-END;
 GO

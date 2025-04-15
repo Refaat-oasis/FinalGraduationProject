@@ -1,69 +1,226 @@
-﻿@model ThothSystemVersion1.Models.JobOrder
+﻿@model ThothSystemVersion1.ViewModels.ReceiptJobOrderVM
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
-    ViewData["Title"] = "makeReceipt";
+    ViewData["Title"] = "Make Receipt";
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    var remainingAmount = Model.RemainingAmount;
 }
 
-<h1>makeReceipt</h1>
+<h1 class="mb-4">Make Receipt</h1>
 
-<div>
-    <h4>JobOrder</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobOrderId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobOrderId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RemainingAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RemainingAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnearnedRevenue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnearnedRevenue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobOrdernotes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobOrdernotes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EarnedRevenue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EarnedRevenue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderProgress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderProgress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmployeeId)
-        </dd>
-    </dl>
+<div class="arrow mb-4">
+    @if (jobRole == 0)
+    {
+        <a asp-controller="Employee" asp-action="AdminHome" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+        </a>
+    }
+    else if (jobRole == 6)
+    {
+        <a asp-controller="Employee" asp-action="AccountingManager" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+        </a>
+    }
+    else if (jobRole == 7)
+    {
+        <a asp-controller="Employee" asp-action="AccountingClerk" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+        </a>
+    }
 </div>
 
-<form action="makeReceipt" method="post">
-    
+<!-- Hidden fields for JavaScript access -->
+<input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
+<input type="hidden" id="hdnJobRole" value="@jobRole" />
 
+<div class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Job Order Details</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.JobOrderId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.JobOrderId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RemainingAmount)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RemainingAmount)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UnearnedRevenue)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UnearnedRevenue)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.JobOrdernotes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.JobOrdernotes)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EarnedRevenue)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EarnedRevenue)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.OrderProgress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OrderProgress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CustomerId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EmployeeId)
+            </dd>
+        </dl>
+    </div>
+</div>
 
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
-</form>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> @TempData["Error"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+        <h3 class="mb-0">Add New Receipt</h3>
+    </div>
+    <div class="card-body">
+        <form method="post" id="receiptForm" novalidate>
+            <input type="hidden" asp-for="JobOrderId" />
+            <input type="hidden" id="hdnRemainingAmount" value="@remainingAmount" />
+
+            <div class="form-group">
+                <label asp-for="Amount" class="font-weight-bold"></label>
+                <input asp-for="Amount" class="form-control" id="txtAmount" />
+                <small class="form-text text-muted">Enter amount between 0.01 and @remainingAmount</small>
+                <span asp-validation-for="Amount" class="text-danger"></span>
+                <div id="amountError" class="text-danger mt-1" style="display:none;"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ReceiptDate" class="font-weight-bold"></label>
+                    <input asp-for="ReceiptDate" class="form-control" type="date"
+                           value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled />
+                    <span asp-validation-for="ReceiptDate" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="ReceiptNotes" class="font-weight-bold"></label>
+                    <textarea asp-for="ReceiptNotes" class="form-control" rows="2"></textarea>
+                    <span asp-validation-for="ReceiptNotes" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-success">Save Receipt</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation logic
+            const form = document.getElementById('receiptForm');
+            const amountInput = document.getElementById('txtAmount');
+            const errorDiv = document.getElementById('amountError');
+            const remaining = parseFloat(document.getElementById('hdnRemainingAmount').value);
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const val = parseFloat(amountInput.value);
+                    let msg = '';
+
+                    if (isNaN(val)) {
+                        msg = 'Please enter a valid number';
+                    } else if (val <= 0) {
+                        msg = 'Amount must be greater than zero';
+                    } else if (val > remaining) {
+                        msg = `Amount cannot exceed remaining balance (${remaining})`;
+                    }
+
+                    if (msg) {
+                        e.preventDefault();
+                        errorDiv.textContent = msg;
+                        errorDiv.style.display = 'block';
+                        amountInput.classList.add('is-invalid');
+                    }
+                });
+            }
+
+            // Redirect logic
+            const successElement = document.getElementById('tempDataSuccess');
+            const jobRoleElement = document.getElementById('hdnJobRole');
+
+            if (successElement && successElement.value === 'true') {
+                // Show redirect notification
+                const notice = document.createElement('div');
+                notice.className = 'redirect-notice';
+                notice.innerHTML = 'Redirecting in 3 seconds...';
+                document.body.appendChild(notice);
+
+                const role = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+                const routes = {
+                    0: '@Url.Action("AdminHome", "Employee")',
+                    6: '@Url.Action("AccountingManager", "Employee")',
+                    7: '@Url.Action("AccountingClerk", "Employee")'
+                };
+
+                setTimeout(() => {
+                    notice.remove();
+                    window.location.href = routes[role] || '@Url.Action("LoginPage", "Employee")';
+                }, 3000);
+            }
+        });
+    </script>
+
+    <style>
+        .redirect-notice {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+    </style>
+}

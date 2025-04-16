@@ -1,7 +1,24 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.CustomerDTO;
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+@model ThothSystemVersion1.DataTransfereObject.CustomerDTO;
 @{
     Layout = null;
 }
+
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+
+
+
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,76 +37,81 @@
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Technical" asp-action="TechnicalManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // Technical manager
+            else if (jobRole == 3)
+            {
+                <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+        }
     </div>
-    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
 
     <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+        @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> @TempData["Success"]
+                <input type="hidden" id="tempDataSuccess" value="true" />
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                <input type="hidden" id="tempDataSuccess" value="false" />
+            </div>
+        }
+        <div asp-validation-summary="ModelOnly" class="error"></div>
 
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div class="text">
             <h1>إضافة عميل جديد</h1>
         </div>
-        <div asp-validation-summary="ModelOnly" class="error"></div>
 
         <div class="inputBox">
-            <label asp-for="@Model.CustomerName">اسم العميل</label>
+            <label for="CustomerName">اسم العميل</label>
             <input type="text" asp-for="@Model.CustomerName" id="CustomerName" />
             <span asp-validation-for="@Model.CustomerName" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.CustomerAddress">عنوان العميل</label>
+            <label for="Address">عنوان العميل</label>
             <input type="text" asp-for="@Model.CustomerAddress" id="Address" />
             <span asp-validation-for="@Model.CustomerAddress" class="error"></span>
-
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.CustomerEmail">الإيميل الإلكتروني</label>
+            <label for="Email">الإيميل الإلكتروني</label>
             <input type="text" asp-for="@Model.CustomerEmail" id="Email" />
             <span asp-validation-for="@Model.CustomerEmail" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.CustomerPhone">رقم الهاتف</label>
+            <label for="Phone">رقم الهاتف</label>
             <input type="text" asp-for="@Model.CustomerPhone" id="Phone" />
             <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.CustomerNotes">ملاحظات عن العميل</label>
+            <label for="Notes">ملاحظات عن العميل</label>
             <input type="text" asp-for="@Model.CustomerNotes" id="Notes" />
             <span asp-validation-for="@Model.CustomerNotes" class="error"></span>
         </div>
 
-        @* <div class="inputBox"> *@
-        @*     <label asp-for="@Model.Activated" class="textlabel"> </label> *@
-        @*     <select asp-for="@Model.Activated" id="options"> *@
-        @*         @{ *@
-        @*             if (Model.Activated) *@
-        @*             { *@
-        @*                 <option value="true" selected>مفعل</option> *@
-        @*                 <option value="false">غير مفعل</option> *@
-        @*             } *@
-        @*             else *@
-        @*             { *@
-        @*                 <option value="false" selected>غير مفعل</option> *@
-        @*                 <option value="true">مفعل</option> *@
-        @*             } *@
-        @*         } *@
-        @*     </select> *@
-        @* </div> *@
-
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="إضافه" class="Add" />
-            </div>
-
-            <div class="reset">
-                @* <input type="reset" value="إعادة إدخال" class="btnReset" /> *@
-            </div>
+        <div class="button-container">
+                <input type="submit" value="إضافه" class="btn btn-secondary" />
+           
         </div>
 
     </form>

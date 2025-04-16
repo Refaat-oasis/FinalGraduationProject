@@ -34,6 +34,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         [RegularExpression(@"^(?:\+20|0020|0)?1[0125][0-9]{8}$", ErrorMessage = "يجب إدخال رقم هاتف صحيح مثل 010xxxxxxxx أو +2010xxxxxxxx")]
         public string CustomerPhone { get; set; } = null!;
         [Display(Name = "التفعيل")]
-        public bool? Activated { get; set; }
+        public bool Activated { get; set; }
     }
 }

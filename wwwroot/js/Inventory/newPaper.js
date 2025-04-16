@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const Quantity = document.getElementById("Quantity");
     const Price = document.getElementById("Price");
     const Colored = document.getElementById("Colored");
+    const ReorderPoint = document.getElementById("ReorderPoint");
+    const TotalBalance = document.getElementById("TotalBalance");
+
+
 
     const setError = (input, errorMsg) => {
         const inputBox = input.parentElement;
@@ -30,7 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
             setError(paperName, "برجاء إدخال اسم الورق");
             valid = false;
         } else {
-            setSuccess(paperName);
+            let arabicRegex = /^[\u0600-\u06FF\s]+$/;
+            if (!arabicRegex.test(paperName.value.trim())) {
+                setError(paperName, "يجب أن يحتوي الاسم على حروف عربية فقط");
+                valid = false;
+            } else {
+                setSuccess(paperName);
+            }
         }
 
         if (Type.value.trim() === "") {
@@ -66,6 +76,20 @@ document.addEventListener("DOMContentLoaded", function () {
             valid = false;
         } else {
             setSuccess(Colored);
+        }
+
+        if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
+            setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");
+            valid = false;
+        } else {
+            setSuccess(ReorderPoint);
+        }
+
+        if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
+            setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
+            valid = false;
+        } else {
+            setSuccess(TotalBalance);
         }
 
         return valid;

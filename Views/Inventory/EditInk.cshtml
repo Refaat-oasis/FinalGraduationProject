@@ -1,13 +1,26 @@
-﻿@model ThothSystemVersion1.Models.Ink
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+
+@model ThothSystemVersion1.Models.Ink
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/EditInk.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 @{
     ViewData["Title"] = "تعديل بيانات الحبر";
@@ -15,19 +28,49 @@
 
 <div class="form-container">
 
-    <div class="arrow">
-        <a asp-controller="Invntory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        <div class="arrow">
+            @{
+                // admin
+                if (jobRole == 0)
+                {
+                    <a asp-controller="employee" asp-action="adminhome" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                    </a>
+
+                } // inventory manager
+                else if (jobRole == 1)
+                {
+                    <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
+
+            }
     </div>
+
     <h1> تعديل بيانات الحبر  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform">
+            @* Success and Error Messages *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> @TempData["Success"]
+                    <input type="hidden" id="tempDataSuccess" value="true" />
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                    <input type="hidden" id="tempDataSuccess" value="false" />
+                </div>
+            }
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
 
 
         <input type="hidden" asp-for="InkId" />
-        @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
         <div class="inputBox">
             <label asp-for="@Model.Name" class="textlabel"></label>
@@ -49,16 +92,22 @@
         <div class="inputBox">
             <label asp-for="TotalBalance" class="textlabel"></label>
             <input asp-for="TotalBalance" id="TotalBalance" class="place" readonly disabled />
+            <span class="error"></span>
+
         </div>
 
         <div class="inputBox">
             <label asp-for="Quantity" class="textlabel"></label>
             <input asp-for="Quantity" id="Quantity" class="place" readonly disabled />
+            <span class="error"></span>
+
         </div>
 
         <div class="inputBox">
             <label asp-for="Price" class="textlabel"></label>
             <input asp-for="Price" id="Price" class="place" readonly disabled />
+            <span class="error"></span>
+
         </div>
 
         <div class="inputBox">
@@ -84,6 +133,7 @@
                     }
                 }
             </select>
+            </div>
 
             <div class="button-container">
                 @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@

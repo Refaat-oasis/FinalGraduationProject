@@ -549,6 +549,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 foundCustomer.CustomerEmail = customer.CustomerEmail;
                 foundCustomer.CustomerNotes = customer.CustomerNotes;
                 foundCustomer.CustomerPhone = customer.CustomerPhone;
+                foundCustomer.Activated = customer.Activated;
+
 
                 _context.Customers.Update(foundCustomer);
                 _context.SaveChanges();

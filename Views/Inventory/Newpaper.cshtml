@@ -111,6 +111,19 @@
             <p asp-validation-for="@Model.Colored" class="error"></p>
         </div>
 
+
+        <div class="inputBox">
+            <label for="TotalBalance">القيمة المتاحه</label>
+            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
+            <p asp-validation-for="@Model.TotalBalance" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="ReorderPoint">نقطة إعادة الطلب</label>
+            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
+        </div>
+
         <div class="inputBox">
             <label for="Price">سعر الورق</label>
                 <input type="number" step="any" asp-for="@Model.Price" id="Price" />

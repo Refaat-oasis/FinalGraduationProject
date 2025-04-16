@@ -176,8 +176,8 @@ namespace ThothSystemVersion1.Controllers
                 {
                     bool result = _businessLogicL.addSupply(newSupply);
 
-                    string messageSuccess = "تم اضافة الورق الجديد";
-                    string messageError = "هناك خظأ في اضافة الورق الجديد";
+                    string messageSuccess = "تم اضافة المستلزم الجديد";
+                    string messageError = "هناك خظأ في اضافة المستلزم الجديد";
 
                     if (result)
                     {

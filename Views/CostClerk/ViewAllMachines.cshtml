@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ThothSystemVersion1.Models.Machine>
+
+@{
+    ViewData["Title"] = "قائمة الماكينات";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // adjust as needed
+}
+
+<h2 class="text-end">@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped text-end">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().MachineId)</th>
+            <th>@Html.DisplayNameFor(model => model.First().MachineProcessName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MachineId</td>
+                <td>@item.MachineProcessName</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -236,8 +236,8 @@ namespace ThothSystemVersion1.Controllers
             {
                 try
                 {
-
-                    return View("~/Views/Technical/AddCustomer.cshtml");
+                    var model = new CustomerDTO(); 
+                    return View("~/Views/Technical/AddCustomer.cshtml", model);
                 }
                 catch (ApplicationException ex)
                 {
@@ -307,7 +307,8 @@ namespace ThothSystemVersion1.Controllers
                         CustomerEmail = customer.CustomerEmail,
                         CustomerPhone = customer.CustomerPhone,
                         CustomerAddress = customer.CustomerAddress,
-                        CustomerNotes = customer.CustomerNotes
+                        CustomerNotes = customer.CustomerNotes,
+                       Activated = customer.Activated
                     };
 
                     return View("~/Views/Technical/EditCustomer.cshtml", customerDto);

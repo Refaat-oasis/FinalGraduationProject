@@ -1,9 +1,20 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
 @{
     Layout = null;
 }
 
 
 @model Ink;
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 <head>
     <meta charset="UTF-8" />
@@ -23,15 +34,54 @@
 
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Inventory" asp-action="InventoryManagerHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+            // Inventory clerk
+            // else if (jobRole == 2)
+            // {
+            //     <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+            //         <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            //     </a>
+            // }
+
+
+        }
     </div>
 
-    <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" />
+    @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
 
     <form asp-controller="Inventory" asp-action="NewInk" id="myform" enctype="multipart/form-data" method="post">
+        @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> @TempData["Success"]
+                <input type="hidden" id="tempDataSuccess" value="true" />
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                <input type="hidden" id="tempDataSuccess" value="false" />
+            </div>
+        }
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div class="text">
             <h1>إضافة صنف حبر جديد</h1>
         </div>
@@ -58,6 +108,18 @@
             <label for="Price">سعر الحبر</label>
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="TotalBalance">القيمة المتاحه</label>
+            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
+            <p asp-validation-for="@Model.TotalBalance" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="ReorderPoint">نقطة إعادة الطلب</label>
+            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
         </div>
 
         <div class="buttons">

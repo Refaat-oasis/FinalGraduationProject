@@ -105,9 +105,11 @@
             <li onclick="toggleDropdown(this)">
                 التكاليف
                 <ul>
-                    <li>@Html.ActionLink("حساب تكلفة طلب", "viewAlljobOrder", "Cost")</li>
-                    <li>@Html.ActionLink("عرض قائمة العمليات العمالية", "ViewAllLabour", "Cost")</li>
-                    <li>@Html.ActionLink("عرض قائمة الماكينات", "ViewAllMachines", "Cost")</li>
+                    <li>@Html.ActionLink("إضافه عامل جديد", "AddLabour", "Cost")</li>
+                    <li>@Html.ActionLink("عرض جميع العمال", "ViewAllLabour", "Cost")</li>
+                    <li>@Html.ActionLink("إضافه اله جديدة", "AddMachine", "Cost")</li>
+                    <li>@Html.ActionLink("عرض جميع الالات", "ViewAllMachine", "Cost")</li>
+                    <li>@Html.ActionLink("عرض جميع أوامر التصنيع", "ViewAllJobOrder", "Cost")</li>
 
 
                     @*                     <li>@Html.ActionLink("عرض التقارير المالية", "ViewReports", "Cost")</li>

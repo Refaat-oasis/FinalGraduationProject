@@ -1,0 +1,145 @@
+﻿.container {
+    min-height: 100vh; 
+    padding-top: 80px; 
+    width: 100%;
+    max-width: 800px;
+    font-family: Calibri;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    د background-size: cover;
+    background-position: center;
+    display: flex;
+}
+
+    .container::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
+        opacity: 0.75;
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+    }
+
+.text {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    margin-top: 30px;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    position: center;
+    width: 350px;
+}
+
+    .inputBox label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #090909;
+        font-size: 25px;
+        align-items: flex-end;
+        text-align: right;
+        direction: rtl;
+    }
+
+    .inputBox input {
+        border: 2px solid #4F3217;
+        border-radius: 5px;
+        background-color: #FDF5E6;
+        font-size: 16px;
+        width: 100%;
+        padding: 10px;
+        text-align: right;
+        direction: rtl;
+    }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+input.Add,
+input.btnReset {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+    input.Add:hover,
+    input.btnReset:hover {
+        background-color: #545b62;
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+.inputBox.error {
+    color: red;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: right;
+    display: flex;
+    margin-right: 8px;
+    margin-top: 10px;
+}
+.error {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    font-weight: 600;
+    direction: rtl;
+}
+
+.arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.arrow {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.back {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    margin: 10px 0;
+    position: fixed;
+    text-decoration: none;
+}

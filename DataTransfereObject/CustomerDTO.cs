@@ -15,8 +15,8 @@ namespace ThothSystemVersion1.DataTransfereObject
 
         [Display(Name = "عنوان العميل")]
         [Required(ErrorMessage = "يجب عليك ادخال عنوان العميل")]
-        [RegularExpression(@"^[\u0621-\u064A0-9\s]+$",
-    ErrorMessage = "يجب كتابة العنوان باستخدام الحروف العربية والأرقام والمسافات فقط، مثل: المحافظة المدينة العنوان بالتفصيل")]
+      //[RegularExpression(@"^[\u0621-\u064A0-9\s]+$"
+    //ErrorMessage = "يجب كتابة العنوان باستخدام الحروف العربية والأرقام والمسافات فقط، مثل: المحافظة المدينة العنوان بالتفصيل")]
         public string? CustomerAddress { get; set; }
 
         [Display(Name = "الايميل الخاص بالعميل")]

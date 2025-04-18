@@ -38,7 +38,10 @@
         }
 
         if (Price.value.trim() === "") {
-            setError(Price, "برجاء إدخال سعر الاله");
+            setError(Price, "برجاء إدخال سعر الاله ");
+            valid = false;
+        } else if (parseFloat(Price.value) <= 0) {
+            setError(Price, "يجب إدخال قيمة أكبر من الصفر");
             valid = false;
         } else {
             setSuccess(Price);

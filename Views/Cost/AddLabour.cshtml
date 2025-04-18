@@ -26,6 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <link href="~/css/Cost/AddLabour.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
@@ -75,11 +77,6 @@
             <h1>إضافة عامل جديد</h1>
         </div>
 
-        @* <div class="inputBox"> *@
-        @*     <label for="LabourId">الرقم لتعريفي للعامل</label> *@
-        @*     <input type="number" asp-for="@Model.LabourId" id="LabourId" /> *@
-        @*     <p asp-validation-for="@Model.LabourId" class="error"></p> *@
-        @* </div> *@
 
         <div class="inputBox">
             <label for="Name">اسم العامل</label>
@@ -88,31 +85,10 @@
         </div>
 
         <div class="inputBox">
-            <label for="Price">سعر العامل</label>
+            <label for="Price">سعر العمليه العماليه</label>
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
             <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
-
-
-        @* <div class="inputBox"> *@
-        @*     <label asp-for="@Model.Activated" class="textlabel"> </label> *@
-        @*     <select asp-for="@Model.Activated" id="options" class="place"> *@
-        @*         @{ *@
-        @*             if (Model.Activated) *@
-        @*             { *@
-        @*                 <option value="true" selected>مفعل</option> *@
-        @*                 <option value="false">غير مفعل</option> *@
-        @*             } *@
-        @*             else *@
-        @*             { *@
-        @*                 <option value="false" selected>غير مفعل</option> *@
-        @*                 <option value="true">مفعل</option> *@
-        @*             } *@
-        @*         } *@
-        @*     </select> *@
-        @* </div> *@
-
-
 
         <div class="buttons">
             <div class="Add">
@@ -123,7 +99,6 @@
                 <input type="reset" value="إعادة إدخال" class="btnReset" />
             </div>
         </div>
-
-    </form>
+</form>
 </div>
 <script src="~/js/Cost/AddLabour.js"></script>

@@ -23,12 +23,12 @@
     function validate() {
         let valid = true;
 
-        if (LabourId.value.trim() === "") {
-            setError(LabourId, "برجاء إدخال الرقم التعريفي للعامل");
-            valid = false;
-        } else {
-            setSuccess(LabourId);
-        }
+        //if (LabourId.value.trim() === "") {
+        //    setError(LabourId, "برجاء إدخال الرقم التعريفي للعامل");
+        //    valid = false;
+        //} else {
+        //    setSuccess(LabourId);
+        //}
 
         if (Name.value.trim() === "") {
             setError(Name, "برجاء إدخال اسم العامل");

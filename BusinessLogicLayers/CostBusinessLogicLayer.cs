@@ -129,15 +129,52 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.Message}");
             }
         }
-
         public bool newLabour(Labour labour)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (labour == null)
+                {
+                    throw new ArgumentNullException(nameof(labour));
+                }
+                Labour addedLabour = new Labour();
+                addedLabour.LabourProcessName = labour.LabourProcessName;
+                addedLabour.Price = labour.Price;
+                addedLabour.Activated = true;
+                _context.Labours.Add(addedLabour);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while adding the labour.", ex);
+            }
         }
 
         public bool newMachine(Machine machine)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (machine == null)
+                {
+                    throw new ArgumentNullException(nameof(machine));
+                }
+                Machine addedMachine = new Machine();
+                addedMachine.MachineProcessName = machine.MachineProcessName;
+                addedMachine.Price = machine.Price;
+                addedMachine.Activated = true;
+                _context.Machines.Add(addedMachine);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while adding the machine.", ex);
+            }
         }
 
         public List<Labour> ViewAllLabour()

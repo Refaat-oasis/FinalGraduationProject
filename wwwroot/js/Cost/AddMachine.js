@@ -23,12 +23,12 @@
     function validate() {
         let valid = true;
 
-        if (MachineId.value.trim() === "") {
-            setError(MachineId, "برجاء إدخال الرقم التعريفي للاله");
-            valid = false;
-        } else {
-            setSuccess(MachineId);
-        }
+        //if (MachineId.value.trim() === "") {
+        //    setError(MachineId, "برجاء إدخال الرقم التعريفي للاله");
+        //    valid = false;
+        //} else {
+        //    setSuccess(MachineId);
+        //}
 
         if (Name.value.trim() === "") {
             setError(Name, "برجاء إدخال اسم الاله");

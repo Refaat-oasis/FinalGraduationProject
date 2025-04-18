@@ -64,6 +64,7 @@
 
 
     <form asp-controller="Technical" asp-action="EditCustomer" method="post" id="myform">
+        <input type="hidden" asp-for="CustomerId" />
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {

@@ -1155,163 +1155,189 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-
         public (bool success, string message) ReturnOrder(ReturnOrderDTO returnDTO)
         {
-            try
-            {
-                List<QuantityBridge> quantityBridgeList = returnDTO.BridgeList;
-                ReturnsOrder returnOrder = new ReturnsOrder
+            
+                try
                 {
-                    EmployeeId = returnDTO.EmployeeId,
-                    PurchaseId = returnDTO.purchaseID,
-                    JobOrderId = returnDTO.JobOrderId,
-                    ReturnsNotes = returnDTO.ReturnsNotes,
-                    ReturnInOut = returnDTO.ReturnInOut,
-                };
-
-                _context.ReturnsOrders.Add(returnOrder);
-                _context.SaveChanges();
-
-                int returnOrderNumber = _context.ReturnsOrders
-                        .OrderByDescending(po => po.ReturnId)
-                        .Select(po => po.ReturnId)
-                        .FirstOrDefault();
-
-                for (int i = 0; i < quantityBridgeList.Count; i++)
-                {
-                    quantityBridgeList[i].ReturnId = returnOrderNumber;
-                    quantityBridgeList[i].QuantityBridgeId = null;
-
-
-                    if (returnOrder.ReturnInOut == true && returnOrder.JobOrderId != null)
+                    List<QuantityBridge> quantityBridgeList = returnDTO.BridgeList;
+                    ReturnsOrder returnOrder = new ReturnsOrder
                     {
-                        if (quantityBridgeList[i].InkId != null)
+                        EmployeeId = returnDTO.EmployeeId,
+                        PurchaseId = returnDTO.purchaseID,
+                        JobOrderId = returnDTO.JobOrderId,
+                        ReturnsNotes = returnDTO.ReturnsNotes,
+                        ReturnInOut = returnDTO.ReturnInOut,
+                    };
+
+                    _context.ReturnsOrders.Add(returnOrder);
+                    _context.SaveChanges();
+
+                    int returnOrderNumber = _context.ReturnsOrders
+                            .OrderByDescending(po => po.ReturnId)
+                            .Select(po => po.ReturnId)
+                            .FirstOrDefault();
+
+                    decimal totalReturnValue = 0;
+                    for (int i = 0; i < quantityBridgeList.Count; i++)
+                    {
+                        quantityBridgeList[i].ReturnId = returnOrderNumber;
+                        quantityBridgeList[i].QuantityBridgeId = null;
+
+                        if (returnOrder.ReturnInOut == true && returnOrder.JobOrderId != null)
                         {
-                            var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
-                            if (ink != null)
+                            if (quantityBridgeList[i].InkId != null)
                             {
+                                var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+                                if (ink != null)
+                                {
+                                    quantityBridgeList[i].OldPrice = ink.Price;
+                                    quantityBridgeList[i].OldQuantity = ink.Quantity;
+                                    quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
-                                quantityBridgeList[i].OldPrice = ink.Price;
-                                quantityBridgeList[i].OldQuantity = ink.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+                                    ink.Quantity += quantityBridgeList[i].Quantity;
 
-                                // Now update the quantity
-                                ink.Quantity += quantityBridgeList[i].Quantity;
+                                    _context.Inks.Update(ink);
+                                    _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                }
+                            }
+                            else if (quantityBridgeList[i].PaperId != null)
+                            {
+                                var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+                                if (paper != null)
+                                {
+                                    quantityBridgeList[i].OldPrice = paper.Price;
+                                    quantityBridgeList[i].OldQuantity = paper.Quantity;
+                                    quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
 
+                                    paper.Quantity += quantityBridgeList[i].Quantity;
 
-                                _context.Inks.Update(ink);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
+                                    _context.Papers.Update(paper);
+                                    _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                }
+                            }
+                            else if (quantityBridgeList[i].SuppliesId != null)
+                            {
+                                var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+                                if (supply != null)
+                                {
+                                    quantityBridgeList[i].OldPrice = supply.Price;
+                                    quantityBridgeList[i].OldQuantity = supply.Quantity;
+                                    quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+
+                                    supply.Quantity += quantityBridgeList[i].Quantity;
+
+                                    _context.Supplies.Update(supply);
+                                    _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                }
                             }
                         }
-                        else if (quantityBridgeList[i].PaperId != null)
+                        if (returnOrder.ReturnInOut == false && returnOrder.PurchaseId != null)
                         {
-                            var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
-                            if (paper != null)
+                           
+                            var quantityBridge = _context.QuantityBridges
+                                                .Where(qb => qb.PurchaseId == returnOrder.PurchaseId)
+                                                .ToList();
+
+                            foreach (var qb in quantityBridge)
                             {
-                                // Store old values BEFORE making any changes
-                                quantityBridgeList[i].OldPrice = paper.Price;
-                                quantityBridgeList[i].OldQuantity = paper.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
+                                
+                                if (quantityBridgeList[i].InkId != null && qb.InkId == quantityBridgeList[i].InkId)
+                                {
+                                    var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+                                    if (ink != null)
+                                    {
+                                        // السعر هنا من QuantityBridge
+                                        decimal itemPrice = qb.Price; // السعر من الـ QuantityBridge
+                                        decimal itemReturnValue = itemPrice * quantityBridgeList[i].Quantity;
+                                        totalReturnValue += itemReturnValue;
 
+                                       
+                                        quantityBridgeList[i].OldPrice = ink.Price;
+                                        quantityBridgeList[i].OldQuantity = ink.Quantity;
+                                        quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
-                                paper.Quantity += quantityBridgeList[i].Quantity;
+                                        ink.Quantity -= quantityBridgeList[i].Quantity;
+                                        _context.Inks.Update(ink);
+                                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                    }
+                                }
+                               
+                                else if (quantityBridgeList[i].PaperId != null && qb.PaperId == quantityBridgeList[i].PaperId)
+                                {
+                                    var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
+                                    if (paper != null)
+                                    {
+                                       
+                                        decimal itemPrice = qb.Price; 
+                                        decimal itemReturnValue = itemPrice * quantityBridgeList[i].Quantity;
+                                        totalReturnValue += itemReturnValue;
 
+                                        
+                                        quantityBridgeList[i].OldPrice = paper.Price;
+                                        quantityBridgeList[i].OldQuantity = paper.Quantity;
+                                        quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
 
-                                _context.Papers.Update(paper);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
-                            }
-                        }
-                        else if (quantityBridgeList[i].SuppliesId != null)
-                        {
-                            var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
-                            if (supply != null)
-                            {
+                                        paper.Quantity -= quantityBridgeList[i].Quantity;
+                                        _context.Papers.Update(paper);
+                                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                    }
+                                }
+                            
+                                else if (quantityBridgeList[i].SuppliesId != null && qb.SuppliesId == quantityBridgeList[i].SuppliesId)
+                                {
+                                    var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
+                                    if (supply != null)
+                                    {
+                                        
+                                        decimal itemPrice = qb.Price; 
+                                        decimal itemReturnValue = itemPrice * quantityBridgeList[i].Quantity;
+                                        totalReturnValue += itemReturnValue;
 
-                                quantityBridgeList[i].OldPrice = supply.Price;
-                                quantityBridgeList[i].OldQuantity = supply.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
+                                      
+                                        quantityBridgeList[i].OldPrice = supply.Price;
+                                        quantityBridgeList[i].OldQuantity = supply.Quantity;
+                                        quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
 
-
-                                supply.Quantity += quantityBridgeList[i].Quantity;
-
-                                _context.Supplies.Update(supply);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
+                                        supply.Quantity -= quantityBridgeList[i].Quantity;
+                                        _context.Supplies.Update(supply);
+                                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                    }
+                                }
                             }
                         }
                     }
+                        _context.SaveChanges();
 
-
-                    else if (returnOrder.ReturnInOut == false && returnOrder.PurchaseId != null)
+                    if (returnOrder.ReturnInOut == false && returnOrder.PurchaseId != null)
                     {
-                        if (quantityBridgeList[i].InkId != null)
+                        var purchaseOrder = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == returnOrder.PurchaseId);
+                        if (purchaseOrder != null)
                         {
-                            var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
-                            if (ink != null)
+                            purchaseOrder.RemainingAmount -= totalReturnValue;
+
+                            if (purchaseOrder.RemainingAmount < 0)
                             {
-
-                                quantityBridgeList[i].OldPrice = ink.Price;
-                                quantityBridgeList[i].OldQuantity = ink.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
-
-
-                                ink.Quantity -= quantityBridgeList[i].Quantity;
-
-                                _context.Inks.Update(ink);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
+                                purchaseOrder.RemainingAmount = 0;
                             }
-                        }
-                        else if (quantityBridgeList[i].PaperId != null)
-                        {
-                            var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
-                            if (paper != null)
-                            {
 
-                                quantityBridgeList[i].OldPrice = paper.Price;
-                                quantityBridgeList[i].OldQuantity = paper.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
-
-
-                                paper.Quantity -= quantityBridgeList[i].Quantity;
-
-                                _context.Papers.Update(paper);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
-                            }
-                        }
-                        else if (quantityBridgeList[i].SuppliesId != null)
-                        {
-                            var supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
-                            if (supply != null)
-                            {
-
-                                quantityBridgeList[i].OldPrice = supply.Price;
-                                quantityBridgeList[i].OldQuantity = supply.Quantity;
-                                quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
-
-
-                                supply.Quantity -= quantityBridgeList[i].Quantity;
-
-
-                                _context.Supplies.Update(supply);
-                                _context.QuantityBridges.Add(quantityBridgeList[i]);
-                                _context.SaveChanges();
-                            }
+                            _context.PurchaseOrders.Update(purchaseOrder);
+                            _context.SaveChanges();
                         }
                     }
+
+                  
+                    return (true, "تم المرتجع بنجاح");
                 }
 
-                return (true, "تم المرتجع بنجاح");
+                catch (Exception ex)
+                {
+                  
+                    return (false, $"حدث خطأ: {ex.ToString()}");
+                }
             }
-            catch (Exception ex)
-            {
-                return (false, $"حدث خطأ: {ex.ToString()}");
-            }
-        }
+        
+
 
 
         public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
@@ -1354,7 +1380,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 quantityBridgeList[i].OldQuantity = ink.Quantity;
                                 quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
-                                // Now update the quantity
+                              
                                 ink.Quantity += quantityBridgeList[i].Quantity;
 
 
@@ -1368,7 +1394,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
                             if (paper != null)
                             {
-                                // Store old values BEFORE making any changes
+                                
                                 quantityBridgeList[i].OldPrice = paper.Price;
                                 quantityBridgeList[i].OldQuantity = paper.Quantity;
                                 quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;

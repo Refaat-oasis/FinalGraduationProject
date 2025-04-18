@@ -263,7 +263,105 @@ namespace ThothSystemVersion1.Controllers
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // sherwet section
 
+        [HttpGet]
+        public IActionResult AddMachine()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            {
+                try
+                {
+                    Machine model = new Machine();
+                    return View("~/Views/Cost/AddMachine.cshtml",model);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
 
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult AddMachine(Machine machine)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Cost/AddMachine.cshtml", machine);
+                }
+
+                bool isCustomerAdded = _costbusinessLogicL.newMachine(machine);
+
+                TempData["Success"] = "تم إضافة الالة بنجاح";
+                return RedirectToAction("AddMachine", "Cost");
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء إضافة الالة";
+                return View("~/Views/Cost/AddMachine.cshtml", machine);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AddLabour()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            {
+                try
+                {
+                    Labour model = new Labour();
+                    return View("~/Views/Cost/AddLabour.cshtml",model);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult AddLabour(Labour labour)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Cost/AddLabour.cshtml", labour);
+                }
+
+                bool isCustomerAdded = _costbusinessLogicL.newLabour(labour);
+
+                TempData["Success"] = "تم إضافة العامل بنجاح";
+                return RedirectToAction("AddLabour", "Cost");
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء إضافة العامل";
+                return View("~/Views/Cost/AddLabour.cshtml", labour);
+            }
+        }
 
 
 

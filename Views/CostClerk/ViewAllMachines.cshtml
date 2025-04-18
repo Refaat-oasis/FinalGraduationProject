@@ -2,29 +2,77 @@
 
 @{
     ViewData["Title"] = "قائمة الماكينات";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // adjust as needed
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
 }
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Cost/viewAllMachines.css" rel="stylesheet" />
 
-<h2 class="text-end">@ViewData["Title"]</h2>
+</head>
+<div class="container">
+    <div class="arrow">
+        <a asp-controller="employee" asp-action="costClerk" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+        </a>
+    </div>
+    <h1>قائمة الماكينات</h1>
 
-<table class="table table-bordered table-striped text-end">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.First().MachineId)</th>
-            <th>@Html.DisplayNameFor(model => model.First().MachineProcessName)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Price)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.MachineId</td>
-                <td>@item.MachineProcessName</td>
-                <td>@item.Price.ToString("C")</td>
-                <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
-            </tr>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchMachine()" placeholder="...ابحث عن ماكينة">
+    </div>
+    <div class="tableContainer">
+        <table id="machineTable">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().MachineProcessName)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().MachineId)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>@item.MachineProcessName</td>
+                        <td>@item.MachineId</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+
+
+           function searchMachine() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("machineTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows (skip the header row)
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none"; // Hide the row by default
+            td = tr[i].getElementsByTagName("td");
+
+            // Loop through all columns in the current row
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ""; // Show the row if a match is found
+                        break; // Exit the inner loop if a match is found
+                    }
+                }
+            }
         }
-    </tbody>
-</table>
+    }
+</script>

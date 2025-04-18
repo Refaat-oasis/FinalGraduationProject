@@ -230,235 +230,244 @@
         <button type="submit" id="submitBtn" class="btn btn-success btn-lg">حفظ أمر الإرجاع</button>
     </div>
 </form>
-            @section Scripts {
-                <script>
-                    $(document).ready(function () {
+@section Scripts {
+    <script>
+        $(document).ready(function () {
             console.log("Document is ready1");
-                        // Toggle between job order and purchase order sections
-                        $('#returnType').change(function () {
-                            const selectedType = $(this).val();
-                            $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
-                            $('#jobOrderSelect, #purchaseOrderSelect').val('');
-                            items = [];
-                            renderItems();
+            // Toggle between job order and purchase order sections
+            $('#returnType').change(function () {
+                const selectedType = $(this).val();
+                $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
+                $('#jobOrderSelect, #purchaseOrderSelect').val('');
+                items = [];
+                renderItems();
 
-                            if (selectedType === 'job') {
-                                $('#jobOrderSection').show();
-                                $('#returnInOut').prop('checked', true);
-                            } else if (selectedType === 'purchase') {
-                                $('#purchaseOrderSection').show();
-                                $('#returnInOut').prop('checked', false);
-                            }
-                        });
+                if (selectedType === 'job') {
+                    $('#jobOrderSection').show();
+                    $('#returnInOut').prop('checked', true);
+                } else if (selectedType === 'purchase') {
+                    $('#purchaseOrderSection').show();
+                    $('#returnInOut').prop('checked', false);
+                }
+            });
 
-                        let items = [];
-                        let editIndex = -1;
-                        let orderItems = [];
+            let items = [];
+            let editIndex = -1;
+            let orderItems = [];
 
-                        // Load items for a job order
-                        $('#jobOrderSelect').change(function () {
-                            const jobOrderId = $(this).val();
-                            if (!jobOrderId) {
-                                $('#manualAdditionSection').hide();
-                                orderItems = [];
-                                return;
-                            }
-                            $.get('/Inventory/GetJobOrderItems', { jobOrderId }, function (data) {
-                                orderItems = data;
-                                $('#manualAdditionSection').show();
-                                populateItemTypes();
-                            }).fail(xhr => alert('Error loading job order items: ' + xhr.responseText));
-                        });
+            // Load items for a job order
+            $('#jobOrderSelect').change(function () {
+                const jobOrderId = $(this).val();
+                if (!jobOrderId) {
+                    $('#manualAdditionSection').hide();
+                    orderItems = [];
+                    return;
+                }
+                $.get('/Inventory/GetJobOrderItems', { jobOrderId }, function (data) {
+                    orderItems = data;
+                    $('#manualAdditionSection').show();
+                    populateItemTypes();
+                }).fail(xhr => alert('حدث خطأ اثناء تحميل بيانات الطلبية : ' + xhr.responseText));
+            });
 
-                        // Load items for a purchase order
-                        $('#purchaseOrderSelect').change(function () {
-                            const purchaseId = $(this).val();
-                            if (!purchaseId) {
-                                $('#manualAdditionSection').hide();
-                                orderItems = [];
-                                return;
-                            }
-                            $.get('/Inventory/GetPurchaseOrderItems', { purchaseId }, function (data) {
-                                orderItems = data;
-                                $('#manualAdditionSection').show();
-                                populateItemTypes();
-                            }).fail(xhr => alert('Error loading purchase order items: ' + xhr.responseText));
-                        });
+            // Load items for a purchase order
+            $('#purchaseOrderSelect').change(function () {
+                const purchaseId = $(this).val();
+                if (!purchaseId) {
+                    $('#manualAdditionSection').hide();
+                    orderItems = [];
+                    return;
+                }
+                $.get('/Inventory/GetPurchaseOrderItems', { purchaseId }, function (data) {
+                    orderItems = data;
+                    $('#manualAdditionSection').show();
+                    populateItemTypes();
+                }).fail(xhr => alert('حدث خطأ اثناء تحميل بيانات امر الشراء: ' + xhr.responseText));
+            });
 
-                        function populateItemTypes() {
-                            const $itemType = $('#itemType');
-                            $itemType.empty().append('<option value="">-- اختر النوع --</option>');
-                            const unique = [...new Set(orderItems.map(i => i.itemType))];
-                            unique.forEach(type => {
-                                $itemType.append(`<option value="${type}">${type}</option>`);
-                            });
-                        }
+            function populateItemTypes() {
+                const $itemType = $('#itemType');
+                $itemType.empty().append('<option value="">-- اختر النوع --</option>');
+                const unique = [...new Set(orderItems.map(i => i.itemType))];
+                unique.forEach(type => {
+                    $itemType.append(`<option value="${type}">${type}</option>`);
+                });
+            }
 
-                        // When a type is chosen, fill the item dropdown
-                        $('#itemType').change(function () {
-                            const selectedType = $(this).val();
-                            const $itemSelect = $('#itemId');
-                            $itemSelect.empty().prop('disabled', !selectedType)
-                                       .append('<option value="">-- اختر الصنف --</option>');
-                            if (!selectedType) return;
+            // When a type is chosen, fill the item dropdown
+            $('#itemType').change(function () {
+                const selectedType = $(this).val();
+                const $itemSelect = $('#itemId');
+                $itemSelect.empty().prop('disabled', !selectedType)
+                           .append('<option value="">-- اختر الصنف --</option>');
+                if (!selectedType) return;
 
-                            orderItems
-                                .filter(i => i.itemType === selectedType)
-                                .forEach(item => {
-                                    const id = item.itemId || item.paperId || item.inkId || item.suppliesId;
-                                    const name = item.name;
-                                    const qty  = item.quantity || 0;
-                                    $itemSelect.append(
-                                        `<option value="${id}" data-quantity="${qty}">${name} (ID: ${id}) - الكمية: ${qty}</option>`
-                                    );
-                                });
-                        });
-
-                        // Show original quantity when an item is selected
-                        $('#itemId').change(function () {
-                            const qty = parseInt($(this).find(':selected').data('quantity')) || 0;
-                            $('#originalQuantityValue').text(qty);
-                            $('#originalQuantityInfo').show();
-                            $('#itemQuantity').attr('max', qty).val('');
-                        });
-
-                        // Add or edit an item in the list
-                        $('#addItem').click(function () {
-                            const type = $('#itemType').val();
-                            const id   = $('#itemId').val();
-                            const name = $('#itemId option:selected').text().split(' (ID:')[0].trim();
-                            const orig = parseInt($('#originalQuantityValue').text());
-                            const qty  = parseInt($('#itemQuantity').val());
-
-                            if (!type || !id || !qty || qty <= 0) {
-                                return alert('Please fill all fields correctly');
-                            }
-                            if (qty > orig) {
-                                return alert(`Return quantity (${qty}) exceeds original quantity (${orig})`);
-                            }
-
-                            const newItem = { itemType: type, itemId: id, itemName: name, originalQuantity: orig, quantity: qty };
-
-                            if (editIndex === -1) {
-                                const idx = items.findIndex(i => i.itemType === type && i.itemId == id);
-                                if (idx !== -1) items[idx].quantity += qty;
-                                else items.push(newItem);
-                            } else {
-                                items[editIndex] = newItem;
-                                editIndex = -1;
-                            }
-                            console.log(newItem);
-                            console.log(items);
-
-                            renderItems();
-                            resetItemForm();
-                        });
-
-                        function renderItems() {
-                            const $tb = $('#itemsTableBody'), $hc = $('#hiddenItemsContainer');
-                            $tb.empty(); $hc.empty();
-                            items.forEach((it, i) => {
-                                $tb.append(`
-                                    <tr data-index="${i}">
-                                        <td>${it.itemType}</td>
-                                        <td>${it.itemName}</td>
-                                        <td>${it.originalQuantity}</td>
-                                        <td>${it.quantity}</td>
-                                        <td>
-                                            <button class="btn btn-warning btn-sm editItem">Edit</button>
-                                            <button class="btn btn-danger btn-sm deleteItem">Delete</button>
-                                        </td>
-                                    </tr>
-                                `);
-                                let inputs = '';
-                                if (it.itemType === 'Paper' || it.itemType === 'الورق')
-                                    inputs += `<input type="hidden" name="BridgeList[${i}].PaperId" value="${it.itemId}" />`;
-                                else if (it.itemType === 'Ink' || it.itemType === 'الحبر')
-                                    inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
-                                else if (it.itemType === 'Supply' || it.itemType === 'المتلزمات')
-                                    inputs += `<input type="hidden" name="BridgeList[${i}].SuppliesId" value="${it.itemId}" />`;
-                                inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
-                                $hc.append(inputs);
-                                console.log(inputs)
-                            });
-                            $('#noSelectedItemsMessage').toggle(items.length === 0);
-                    
-                        }
-
-                        function resetItemForm() {
-                            $('#itemType').val('');
-                            $('#itemId').empty().prop('disabled', true);
-                            $('#itemQuantity').val('');
-                            $('#originalQuantityInfo').hide();
-                        }
-
-                        // Edit & Delete handlers
-                        $('#itemsTableBody')
-                            .on('click', '.deleteItem', function () {
-                                items.splice($(this).closest('tr').data('index'), 1);
-                                renderItems();
-                            })
-                            .on('click', '.editItem', function () {
-                                const i = $(this).closest('tr').data('index'), it = items[i];
-                                $('#itemType').val(it.itemType).trigger('change');
-                                setTimeout(() => {
-                                    $('#itemId').val(it.itemId);
-                                    $('#originalQuantityValue').text(it.originalQuantity);
-                                    $('#itemQuantity').val(it.quantity);
-                                    editIndex = i;
-                                }, 300);
-                            });
-
-                        // Form validation
-                        $('#returnOrderForm').submit(function (e) {
-                            if (!items.length) {
-                                e.preventDefault(); alert('Please add at least one item');
-                                return false;
-                            }
-                            const t = $('#returnType').val();
-                            if (t === 'job' && !$('#jobOrderSelect').val()) {
-                                e.preventDefault(); alert('Please select a job order'); return false;
-                            }
-                            if (t === 'purchase' && !$('#purchaseOrderSelect').val()) {
-                                e.preventDefault(); alert('Please select a purchase order'); return false;
-                            }
-                            return true;
-                        });
+                orderItems
+                    .filter(i => i.itemType === selectedType)
+                    .forEach(item => {
+                        const id = item.itemId || item.paperId || item.inkId || item.suppliesId;
+                        const name = item.name;
+                        const qty  = item.quantity || 0;
+                        $itemSelect.append(
+                            `<option value="${id}" data-quantity="${qty}">${name} (ID: ${id}) - الكمية: ${qty}</option>`
+                        );
                     });
+            });
 
+            // Show original quantity when an item is selected
+            $('#itemId').change(function () {
+                const qty = parseInt($(this).find(':selected').data('quantity')) || 0;
+                $('#originalQuantityValue').text(qty);
+                $('#originalQuantityInfo').show();
+                $('#itemQuantity').attr('max', qty).val('');
+            });
 
+            // Add or edit an item in the list
+            $('#addItem').click(function () {
+                const type = $('#itemType').val();
+                const id   = $('#itemId').val();
+                const name = $('#itemId option:selected').text().split(' (ID:')[0].trim();
+                const orig = parseInt($('#originalQuantityValue').text());
+                const qty  = parseInt($('#itemQuantity').val());
 
-                </script>
-                <script>
+                if (!type || !id || !qty || qty <= 0) {
+                    return alert('الرجاء ملئ جميع البيانات بشكل صحيح');
+                }
+                if (qty > orig) {
+                    return alert(`كمية المرتجع (${qty}) اكبر من كمية الاصلية (${orig})`);
+                }
+
+                const newItem = { itemType: type, itemId: id, itemName: name, originalQuantity: orig, quantity: qty };
+
+                if (editIndex === -1) {
+                    const idx = items.findIndex(i => i.itemType === type && i.itemId == id);
+                    if (idx !== -1) items[idx].quantity += qty;
+                    else items.push(newItem);
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                }
+                console.log(newItem);
+                console.log(items);
+
+                renderItems();
+                resetItemForm();
+            });
+
+            function renderItems() {
+                const $tb = $('#itemsTableBody'), $hc = $('#hiddenItemsContainer');
+                $tb.empty(); $hc.empty();
+                items.forEach((it, i) => {
+                    $tb.append(`
+                        <tr data-index="${i}">
+                            <td>${it.itemType}</td>
+                            <td>${it.itemName}</td>
+                            <td>${it.originalQuantity}</td>
+                            <td>${it.quantity}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm editItem">تعديل</button>
+                                <button type="button" class="btn btn-danger btn-sm deleteItem">حذف</button>
+                            </td>
+                        </tr>
+                    `);
+                    let inputs = '';
+                    if (it.itemType === 'Paper' || it.itemType === 'الورق')
+                        inputs += `<input type="hidden" name="BridgeList[${i}].PaperId" value="${it.itemId}" />`;
+                    else if (it.itemType === 'Ink' || it.itemType === 'الحبر')
+                        inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
+                    else if (it.itemType === 'Supply' || it.itemType === 'المتلزمات')
+                        inputs += `<input type="hidden" name="BridgeList[${i}].SuppliesId" value="${it.itemId}" />`;
+                    inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
+                    $hc.append(inputs);
+                    console.log(inputs)
+                });
+                $('#noSelectedItemsMessage').toggle(items.length === 0);
+            }
+
+            function resetItemForm() {
+                $('#itemType').val('');
+                $('#itemId').empty().prop('disabled', true);
+                $('#itemQuantity').val('');
+                $('#originalQuantityInfo').hide();
+                $('#addItem').text('إضافة');
+                editIndex = -1;
+            }
+
+            // Edit & Delete handlers
+            $('#itemsTableBody')
+                .on('click', '.deleteItem', function (e) {
+                    e.preventDefault();
+                    items.splice($(this).closest('tr').data('index'), 1);
+                    renderItems();
+                })
+                .on('click', '.editItem', function (e) {
+                    e.preventDefault();
+                    editIndex = $(this).closest('tr').data('index');
+                    var item = items[editIndex];
+
+                    $('#itemType').val(item.itemType).trigger('change');
+
+                    const checkItemExists = setInterval(() => {
+                        const $itemId = $('#itemId');
+                        if ($itemId.find('option').length > 1) {
+                            clearInterval(checkItemExists);
+                            $itemId.val(item.itemId);
+                            $('#itemQuantity').val(item.quantity);
+                            $('#originalQuantityValue').text(item.originalQuantity);
+                            $('#originalQuantityInfo').show();
+                            $('#addItem').text('تحديث العنصر');
+
+                            $('html, body').animate({
+                                scrollTop: $('#manualAdditionSection').offset().top
+                            }, 500);
+                        }
+                    }, 100);
+                });
+
+            // Form validation
+            $('#returnOrderForm').submit(function (e) {
+                if (!items.length) {
+                    e.preventDefault(); alert('من فضلك اضف عنصر واحد علي الاقل');
+                    return false;
+                }
+                const t = $('#returnType').val();
+                if (t === 'job' && !$('#jobOrderSelect').val()) {
+                    e.preventDefault(); alert('اختر طلبية'); return false;
+                }
+                if (t === 'purchase' && !$('#purchaseOrderSelect').val()) {
+                    e.preventDefault(); alert('اختر امر الشراء '); return false;
+                }
+                return true;
+            });
+        });
 
         console.log("Document is ready");
-                    const tempDataElement = document.getElementById('tempDataSuccess');
-                    const jobRoleElement = document.getElementById('hdnJobRole');
+        const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
 
-                    Get values with proper fallbacks
-                    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-                    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-                    console.log("Success message exists:", hasSuccessMessage);
-                    console.log("Job role:", jobRole);
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
 
-                    Mapping of job roles to their respective URLs
-                    const jobRoleRoutes = {
-                        0: "/employee/AdminHome",
-                        1: "/employee/inventoryManager",
-                        2: "/employee/inventoryClerk",
-                        3: "/employee/TechnicalManager",
-                        4: "/employee/technicalClerk",
-                        5: "/employee/CostManager",
-                        6: "/employee/costClerk"
-                    };
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
 
-                    if (hasSuccessMessage) {
-                        setTimeout(function () {
-                            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-                            window.location.href = redirectUrl;
-                        }, 3000);
-                    }
-                    });
-                </script>
-            }
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
+    </script>
+}

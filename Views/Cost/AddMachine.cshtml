@@ -75,42 +75,42 @@
             <h1>إضافة اله جديدة</h1>
         </div>
 
-        <div class="inputBox">
-            <label for="MachineId">الرقم لتعريفي للاله</label>
-            <input type="text" asp-for="@Model.MachineId" id="MachineId" />
-            <p asp-validation-for="@Model.MachineId" class="error"></p>
-        </div>
+        @* <div class="inputBox"> *@
+        @*     <label for="MachineId">الرقم لتعريفي للاله</label> *@
+        @*     <input type="text" asp-for="@Model.MachineId" id="MachineId" /> *@
+        @*     <p asp-validation-for="@Model.MachineId" class="error"></p> *@
+        @* </div> *@
 
         <div class="inputBox">
             <label for="Name">اسم الاله</label>
-            <input type="number" asp-for="@Model.MachineProcessName" id="Name" />
-            <p asp-validation-for="@Model.MachineProcessName" class="error"></p>
+            <input type="text" asp-for="@Model.MachineProcessName" id="Name" />
+            <span asp-validation-for="@Model.MachineProcessName" class="error"></span>
         </div>
 
         <div class="inputBox">
             <label for="Price">سعر الاله</label>
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+            <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
 
 
-        <div class="inputBox">
-            <label asp-for="@Model.Activated" class="textlabel"> </label>
-            <select asp-for="@Model.Activated" id="options" class="place">
-                @{
-                    if (Model.Activated)
-                    {
-                        <option value="true" selected>مفعل</option>
-                        <option value="false">غير مفعل</option>
-                    }
-                    else
-                    {
-                        <option value="false" selected>غير مفعل</option>
-                        <option value="true">مفعل</option>
-                    }
-                }
-            </select>
-        </div>
+        @* <div class="inputBox"> *@
+        @*     <label asp-for="@Model.Activated" class="textlabel"> </label> *@
+        @*     <select asp-for="@Model.Activated" id="options" class="place"> *@
+        @*         @{ *@
+        @*             if (Model.Activated) *@
+        @*             { *@
+        @*                 <option value="true" selected>مفعل</option> *@
+        @*                 <option value="false">غير مفعل</option> *@
+        @*             } *@
+        @*             else *@
+        @*             { *@
+        @*                 <option value="false" selected>غير مفعل</option> *@
+        @*                 <option value="true">مفعل</option> *@
+        @*             } *@
+        @*         } *@
+        @*     </select> *@
+        @* </div> *@
 
       
       

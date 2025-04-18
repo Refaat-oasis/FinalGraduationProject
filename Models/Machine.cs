@@ -10,9 +10,13 @@ public partial class Machine
     public int MachineId { get; set; }
 
     [Display(Name = "اسم الماكينة")]
+    [Required(ErrorMessage = "يجب ادخال اسم الماكينة")]
+    [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الورق يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string MachineProcessName { get; set; } = null!;
 
     [Display(Name = "سعر")]
+    [Required(ErrorMessage = "يجب ادخال سعر الماكينة")]
+    [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal Price { get; set; }
 
     [Display(Name = "التفعيل")]

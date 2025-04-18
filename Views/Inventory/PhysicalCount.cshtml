@@ -79,7 +79,7 @@
                 </div>
                 <div class="colCont">
                     <label class="form-label">نوع العنصر</label>
-                    <select id="inventoryType" name="itemType" class="form-select" required>
+                    <select id="inventoryType" name="itemType" class="form-select">
                         <option value="">-- اختر نوع العنصر --</option>
                         <option value="Paper">ورق</option>
                         <option value="Ink">حبر</option>
@@ -94,15 +94,15 @@
             </div>
 
             <div class="rowCont">
-                @* <div class="colCont"> *@
-                @*     <label class="form-label">تاريخ الجرد</label> *@
-                @*     <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /> *@
-                @*     <span class="error-message" id="physicalCountDateError" style="color: red; display: none;">يرجى اختيار تاريخ الجرد</span> *@
-                @* </div> *@
+                <div class="colCont"> 
+                     <label class="form-label">تاريخ الجرد</label> 
+                     <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled/> 
+                     <span class="error-message" id="physicalCountDateError" style="color: red; display: none;">يرجى اختيار تاريخ الجرد</span> 
+                </div> 
 
                 <div class="colCont">
                     <label class="form-label">الكمية الجديدة</label>
-                    <input type="number" name="newQuantity" class="form-control" min="0" required />
+                    <input type="number" name="newQuantity" class="form-control" min="0"  />
                     <span class="error-message" id="newQuantityError" style="color: red; display: none;">يرجى إدخال الكمية الجديدة</span>
                 </div>
 

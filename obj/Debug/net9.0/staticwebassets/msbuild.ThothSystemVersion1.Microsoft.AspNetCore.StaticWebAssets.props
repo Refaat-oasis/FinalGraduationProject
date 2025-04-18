@@ -1182,8 +1182,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jhzsrby8z6</Fingerprint>
-      <Integrity>p8kKLxg60y9eL08/94W7u7JqlTc6+gPmj00y/uAVbVk=</Integrity>
+      <Fingerprint>1iqcs2lsco</Fingerprint>
+      <Integrity>KUVTstGLextx4Xdv791mtjFm5rvjG1LgUIR8tAykkaQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Inventory\EditPaper.js'))</OriginalItemSpec>

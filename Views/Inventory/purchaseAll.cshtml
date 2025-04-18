@@ -113,18 +113,6 @@
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
-        @* @if (TempData["Success"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-success"> *@
-        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
-        @*     </div> *@
-        @* } *@
-        @* @if (TempData["Error"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-danger"> *@
-        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
-        @*     </div> *@
-        @* } *@
 
         @using (Html.BeginForm("purchaseall", "Inventory", FormMethod.Post))
         {
@@ -134,7 +122,7 @@
                     @Html.DropDownList("VendorId",
                              new SelectList(vendors, "VendorId", "VendorName"),
                              "-- اختر التاجر --",
-                             htmlAttributes: new { @class = "form-select", required = "required" })
+                             htmlAttributes: new { @class = "form-select" })
                 </div>
 
                 <div class="colCont">

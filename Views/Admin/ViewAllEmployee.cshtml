@@ -3,6 +3,17 @@
 }
 
 @using ThothSystemVersion1.Utilities
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = null;
+}
+
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 
 @model List<Employee>
@@ -17,11 +28,19 @@
 </head>
 
 <div class="container">
-    <div class="arrow"> 
-        <a asp-controller="Admin" asp-action="AdminHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } 
+        }
     </div>
+
 
     <h1>قائمة الموظفين</h1>
     <div class="btn">

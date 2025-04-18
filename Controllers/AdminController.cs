@@ -78,7 +78,7 @@ namespace ThothSystemVersion1.Controllers
                     return View(employee); 
                 }
                 TempData["Success"] = "تم اضافة موظف بنجاح";
-                return RedirectToAction("ViewAllEmployee", "admin");
+                return View(employee);
             }
             catch(Exception ex)
             {

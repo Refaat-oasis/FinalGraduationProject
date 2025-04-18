@@ -2,7 +2,7 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 
-@using ThothSystemVersion1.DataTransfereObject
+@model ThothSystemVersion1.DataTransfereObject.VendorEditDTO;
 
 @{
     Layout = null;
@@ -13,7 +13,6 @@
     Console.WriteLine("JobRole: " + jobRole);
 }
 
-@model Vendor;
 
 <head>
     <link href="~/css/Inventory/editVendor.css" rel="stylesheet" />

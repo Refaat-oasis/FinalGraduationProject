@@ -50,13 +50,6 @@
             setSuccess(ReorderPoint);
         }
 
-        if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
-            setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
-            valid = false;
-        } else {
-            setSuccess(TotalBalance);
-        }
-
         return valid;
     }
 

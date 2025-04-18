@@ -1,7 +1,10 @@
 ﻿ @model ThothSystemVersion1.DataTransfereObject.MachineLabourDTO
-
+ @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "Add Machine and Labour Expense";
+    ViewData["Title"] = "MISCLLANOEUS EXPENSE";
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    var remainingAmount = Model.RemainingAmount;
 }
 
 <link rel="stylesheet"
@@ -10,20 +13,42 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
 
+<div class="arrow mb-4">
+    @if (jobRole == 0)
+    {
+        <a asp-controller="Employee" asp-action="AdminHome" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+        </a>
+    }
+    else if (jobRole == 6)
+    {
+        <a asp-controller="Employee" asp-action="AccountingManager" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i> 
+        </a>
+    }
+    else if (jobRole == 7)
+    {
+        <a asp-controller="Employee" asp-action="AccountingClerk" class="back">
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+        </a>
+    }
+</div>
 @* Success and Error Messages *@
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success">
         <i class="fas fa-check-circle"></i> @TempData["Success"]
+        <input type="hidden" id="tempDataSuccess" value="true" />
     </div>
 }
 @if (TempData["Error"] != null)
 {
     <div class="alert alert-danger">
         <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+        <input type="hidden" id="tempDataSuccess" value="false" />
     </div>
 }
-
+<input type="hidden" id="hdnJobRole" value="@jobRole" />
 <div class="card mt-4 shadow">
     <div class="card-header bg-primary text-white">
         <i class="fas fa-info-circle me-2"></i> تفاصيل الطلبية
@@ -46,7 +71,7 @@
                     <i class="fas fa-user fa-2x text-success me-3"></i>
                     <div>
                         <div class="text-uppercase text-muted small">Employee</div>
-                        <div class="fw-bold">@Model.EmployeeId</div>
+                        <div class="fw-bold">@Model.EmployeeName</div>
                     </div>
                 </div>
             </div>
@@ -112,6 +137,16 @@
                     </div>
                 </div>
             </div>
+            <!-- Customer -->
+            <div class="col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-chart-line fa-2x text-success me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small">Customer</div>
+                        <div class="fw-bold">@Model.CustomerName</div>
+                    </div>
+                </div>
+            </div>
             <!-- Notes (full width) -->
             <div class="col-12">
                 <div class="d-flex align-items-start">
@@ -122,6 +157,27 @@
                     </div>
                 </div>
             </div>
+            <!-- Used Balances -->
+            <div class="col-12 mb-4">
+                <div class="p-3 rounded shadow-sm bg-light border d-flex align-items-center">
+                    <i class="fas fa-sticky-note fa-2x text-primary me-3"></i>
+                    <div>
+                        <div class="text-uppercase text-muted small mb-1">المستهلك من الورق، الحبر، المستلزمات</div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-secondary fs-6">
+                                <i class="fas fa-file-alt me-1"></i> ورق: @Model.paperBalance
+                            </span>
+                            <span class="badge bg-danger fs-6">
+                                <i class="fas fa-fill-drip me-1"></i> حبر: @Model.inkBalance
+                            </span>
+                            <span class="badge bg-warning text-dark fs-6">
+                                <i class="fas fa-toolbox me-1"></i> مستلزمات: @Model.supplyBalance
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -130,14 +186,11 @@
     <div class="card-body">
         <h4 class="card-title">اضافة عناصر التكلفة</h4>
 
-
-
         @using (Html.BeginForm("addMachineAndLabourExpense", "cost", FormMethod.Post))
         {
             <input type="text" name="JobOrderId" hidden value="@Model.JobOrderId">
 
             <div class="row g-3 mb-4">
-
                 <div class="col-md-4">
                     <label class="form-label">Expense Type</label>
                     <select id="itemType" class="form-select">
@@ -164,7 +217,6 @@
                         <i class="fas fa-plus me-2"></i>اضافة العنصر
                     </button>
                 </div>
-
             </div>
 
             <div class="table-responsive">
@@ -184,157 +236,256 @@
 
             <div id="hiddenItemsContainer"></div>
 
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <label class="form-label">مصاريف تشغيل الخامات</label>
+                    <input asp-for="MaterialProcessingExpense" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">مصاريف تشغيل الافلام</label>
+                    <input asp-for="FilmsProcessingExpense" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">جملة الخامات</label>
+                    <input asp-for="MaterialsTotal" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">الاجمالي</label>
+                    <input asp-for="TotalAfterMaterials" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">مصروفات ادارية</label>
+                    <input asp-for="AdminstrativeExpense" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">اجمالي المصروفات</label>
+                    <input asp-for="TotalExpenses" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">النسبة</label>
+                    <input asp-for="Percentage" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">الجملة</label>
+                    <input asp-for="TotalAfterPercentage" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">وزارةا لمالية</label>
+                    <input asp-for="MinistryOfFinance" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">صندوق تحسين العمال</label>
+                    <input asp-for="EmployeeImprovmentBox" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">الاجمالي بعد تحسين العمال</label>
+                    <input asp-for="totalAfterEmplyeeImprovementbox" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">ضريبة القيمة المضافة</label>
+                    <input asp-for="ValueAddedTax" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">القيمة الاجمالية</label>
+                    <input asp-for="FinalTotal" class="form-control" type="number" step="0.01" />
+                </div>
+            </div>
+
             <div class="mt-4">
                 <button type="submit" class="btn btn-success">
                     <i class="fas fa-check-circle me-2"></i>Submit Expenses
                 </button>
             </div>
         }
-    </div>
-</div>
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            const dataSources = {
-                Machine: @Html.Raw(Json.Serialize(ViewBag.machineList)),
-                Labour: @Html.Raw(Json.Serialize(ViewBag.labourList))
-            };
+        @section Scripts {
+            <script>
+                $(document).ready(function () {
+                    const dataSources = {
+                        Machine: @Html.Raw(Json.Serialize(ViewBag.machineList)),
+                        Labour: @Html.Raw(Json.Serialize(ViewBag.labourList))
+                    };
 
-            let items = [];
-            let editIndex = -1;
+                    let items = [];
+                    let editIndex = -1;
 
-            // Populate items dropdown
-            $('#itemType').change(function () {
-                const type = $(this).val();
-                const $itemSelect = $('#itemId');
-                $itemSelect.empty().prop('disabled', !type).append('<option value="">-- Select --</option>');
+                    // Populate items dropdown
+                    $('#itemType').change(function () {
+                        const type = $(this).val();
+                        const $itemSelect = $('#itemId');
+                        $itemSelect.empty().prop('disabled', !type).append('<option value="">-- Select --</option>');
 
-                if (type && dataSources[type]) {
-                    dataSources[type].forEach(item => {
-                        const id = item.machineId || item.labourId;
-                        const name = item.machineProcessName || item.labourProcessName;
-                        $itemSelect.append(`<option value="${id}">${name}</option>`);
+                        if (type && dataSources[type]) {
+                            dataSources[type].forEach(item => {
+                                const id = item.machineId || item.labourId;
+                                const name = item.machineProcessName || item.labourProcessName;
+                                $itemSelect.append(`<option value="${id}">${name}</option>`);
+                            });
+                        }
                     });
-                }
-            });
 
-            // Add/Update item
-            $('#addItem').click(function () {
-                const itemType = $('#itemType').val();
-                const itemId = $('#itemId').val();
-                const itemName = $('#itemId option:selected').text();
-                const numberOfHours = parseFloat($('#NumberOfHours').val());
+                    // Add/Update item
+                    $('#addItem').click(function () {
+                        const itemType = $('#itemType').val();
+                        const itemId = $('#itemId').val();
+                        const itemName = $('#itemId option:selected').text();
+                        const numberOfHours = parseFloat($('#NumberOfHours').val());
 
-                if (!itemType || !itemId || isNaN(numberOfHours) || numberOfHours <= 0) {
-                    alert('Please fill all fields correctly');
-                    return;
-                }
+                        if (!itemType || !itemId || isNaN(numberOfHours) || numberOfHours <= 0) {
+                            alert('Please fill all fields correctly');
+                            return;
+                        }
 
-                // Get price from data source
-                const sourceArray = dataSources[itemType];
-                const selectedItem = sourceArray.find(x =>
-                    (itemType === 'Machine' ? x.machineId : x.labourId) == itemId
-                );
+                        // Get price from data source
+                        const sourceArray = dataSources[itemType];
+                        const selectedItem = sourceArray.find(x =>
+                            (itemType === 'Machine' ? x.machineId : x.labourId) == itemId
+                        );
 
-                const hourPrice = itemType === 'Machine'
-                    ? selectedItem.machineHourPrice
-                    : selectedItem.labourHourPrice;
+                        const hourPrice = itemType === 'Machine'
+                            ? selectedItem.machineHourPrice
+                            : selectedItem.labourHourPrice;
 
-                const newItem = {
-                    itemType,
-                    itemId: parseInt(itemId),
-                    itemName,
-                    numberOfHours,
-                    hourPrice: parseFloat(hourPrice)
+                        const newItem = {
+                            itemType,
+                            itemId: parseInt(itemId),
+                            itemName,
+                            numberOfHours,
+                            hourPrice: parseFloat(hourPrice)
+                        };
+
+                        if (editIndex === -1) {
+                            items.push(newItem);
+                        } else {
+                            items[editIndex] = newItem;
+                            editIndex = -1;
+                            $('#addItem').html('<i class="fas fa-plus me-2"></i>Add Item');
+                        }
+
+                        resetForm();
+                        renderItems();
+                    });
+
+                    // Edit item
+                    $(document).on('click', '.editItem', function () {
+                        const index = $(this).closest('tr').data('index');
+                        const item = items[index];
+
+                        $('#itemType').val(item.itemType).trigger('change');
+
+                        setTimeout(() => {
+                            $('#itemId').val(item.itemId);
+                            $('#NumberOfHours').val(item.numberOfHours);
+                        }, 100);
+
+                        editIndex = index;
+                        $('#addItem').html('<i class="fas fa-sync me-2"></i>Update Item');
+                    });
+
+                    // Delete item
+                    $(document).on('click', '.deleteItem', function () {
+                        const index = $(this).closest('tr').data('index');
+                        items.splice(index, 1);
+                        renderItems();
+                    });
+
+                    // Form validation
+                    $('form').submit(function (e) {
+                        if (items.length === 0) {
+                            e.preventDefault();
+                            alert('Please add at least one expense item');
+                        }
+                    });
+
+                    function resetForm() {
+                        $('#itemType').val('');
+                        $('#itemId').val('').prop('disabled', true);
+                        $('#NumberOfHours').val('');
+                    }
+
+                    function renderItems() {
+                        const $tbody = $('#itemsTableBody');
+                        const $hidden = $('#hiddenItemsContainer');
+
+                        $tbody.empty();
+                        $hidden.empty();
+
+                        items.forEach((item, index) => {
+                            // Create table row
+                            $tbody.append(`
+                                <tr data-index="${index}">
+                                    <td>${item.itemName}</td>
+                                    <td>${item.numberOfHours}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-warning btn-sm editItem">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm deleteItem">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `);
+
+                            // Add hidden inputs for DTO binding
+                            const isMachine = item.itemType === 'Machine';
+                            $hidden.append(`
+                                <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineId' : 'LabourId'}" value="${item.itemId}" />
+                                <input type="hidden" name="ProcessBridges[${index}].NumberOfHours" value="${item.numberOfHours}" />
+                                <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineHourPrice' : 'LabourHourPrice'}" value="${item.hourPrice}" />
+                            `);
+                        });
+                    }
+                });
+
+            </script>
+            <script>
+                console.log("Script loaded successfully!");
+                document.addEventListener('DOMContentLoaded', function () {
+                const tempDataElement = document.getElementById('tempDataSuccess');
+                const jobRoleElement = document.getElementById('hdnJobRole');
+
+                // Get values with proper fallbacks
+                const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+                const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+                console.log("Success message exists:", hasSuccessMessage);
+                console.log("Job role:", jobRole);
+
+                // Mapping of job roles to their respective URLs
+                const jobRoleRoutes = {
+                    0: "/employee/AdminHome",
+                    1: "/employee/inventoryManager",
+                    2: "/employee/inventoryClerk",
+                    3: "/employee/TechnicalManager",
+                    4: "/employee/technicalClerk",
+                    5: "/employee/CostManager",
+                    6: "/employee/costClerk",
+                    7: "/employee/AccountingManager",
+                    8: "/employee/AccountingClerk"
                 };
 
-                if (editIndex === -1) {
-                    items.push(newItem);
-                } else {
-                    items[editIndex] = newItem;
-                    editIndex = -1;
-                    $('#addItem').html('<i class="fas fa-plus me-2"></i>Add Item');
+                if (hasSuccessMessage) {
+                    setTimeout(function () {
+                        const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                        window.location.href = redirectUrl;
+                    }, 3000);
                 }
-
-                resetForm();
-                renderItems();
-            });
-
-            // Edit item
-            $(document).on('click', '.editItem', function () {
-                const index = $(this).closest('tr').data('index');
-                const item = items[index];
-
-                $('#itemType').val(item.itemType).trigger('change');
-
-                setTimeout(() => {
-                    $('#itemId').val(item.itemId);
-                    $('#NumberOfHours').val(item.numberOfHours);
-                }, 100);
-
-                editIndex = index;
-                $('#addItem').html('<i class="fas fa-sync me-2"></i>Update Item');
-            });
-
-            // Delete item
-            $(document).on('click', '.deleteItem', function () {
-                const index = $(this).closest('tr').data('index');
-                items.splice(index, 1);
-                renderItems();
-            });
-
-            // Form validation
-            $('form').submit(function (e) {
-                if (items.length === 0) {
-                    e.preventDefault();
-                    alert('Please add at least one expense item');
-                }
-            });
-
-            function resetForm() {
-                $('#itemType').val('');
-                $('#itemId').val('').prop('disabled', true);
-                $('#NumberOfHours').val('');
-            }
-
-            function renderItems() {
-                const $tbody = $('#itemsTableBody');
-                const $hidden = $('#hiddenItemsContainer');
-
-                $tbody.empty();
-                $hidden.empty();
-
-                items.forEach((item, index) => {
-                    // Create table row
-                    $tbody.append(`
-                        <tr data-index="${index}">
-                            <td>${item.itemName}</td>
-                            <td>${item.numberOfHours}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning btn-sm editItem">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-sm deleteItem">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    `);
-
-                    // Add hidden inputs for DTO binding
-                    const isMachine = item.itemType === 'Machine';
-                    $hidden.append(`
-                        <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineId' : 'LabourId'}" value="${item.itemId}" />
-                        <input type="hidden" name="ProcessBridges[${index}].NumberOfHours" value="${item.numberOfHours}" />
-                        <input type="hidden" name="ProcessBridges[${index}].${isMachine ? 'MachineHourPrice' : 'LabourHourPrice'}" value="${item.hourPrice}" />
-                    `);
                 });
-            }
-        });
+            </script>
 
-    </script>
-
-}
+        }

@@ -34,18 +34,28 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult addMachineAndLabourExpense(int JobOrderId)
         {
             // Get the job order details
-            JobOrder jobOrder = _techBusinessLogiclayer.GetJobOrderByID(JobOrderId);
+
+
+            JobOrderCost jobOrder = _costbusinessLogicL.GetJobOrderForCost(JobOrderId);
 
             MachineLabourDTO machLabDto = new MachineLabourDTO();
             machLabDto.JobOrderId = jobOrder.JobOrderId;
             machLabDto.CustomerId = jobOrder.CustomerId;
+            machLabDto.CustomerName = jobOrder.CustomerName;
+            machLabDto.EmployeeId = jobOrder.EmployeeId;
+            machLabDto.EmployeeName = jobOrder.EmployeeName;
+            machLabDto.OrderProgress = jobOrder.OrderProgress;
+            machLabDto.paperBalance = null;
             machLabDto.StartDate = jobOrder.StartDate;
             machLabDto.EndDate = jobOrder.EndDate;
             machLabDto.JobOrdernotes = jobOrder.JobOrdernotes;
             machLabDto.RemainingAmount = jobOrder.RemainingAmount;
             machLabDto.UnearnedRevenue = jobOrder.UnearnedRevenue;
             machLabDto.EarnedRevenue = jobOrder.EarnedRevenue;
-
+            machLabDto.paperBalance = jobOrder.paperBalance;
+            machLabDto.inkBalance = jobOrder.inkBalance;
+            machLabDto.supplyBalance = jobOrder.supplyBalance;
+            //machLabDto
 
 
             ViewBag.labourList = _costbusinessLogicL.getActiveLabour();
@@ -79,7 +89,6 @@ namespace ThothSystemVersion1.Controllers
 
 
         }
-
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

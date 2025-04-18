@@ -1,4 +1,5 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.PortableExecutable;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.InterfaceServices;
@@ -21,7 +22,27 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public bool addMachineAndLabourExpense(MachineLabourDTO machlabdto)
         {
+
             List<ProcessBridge> proBrid = new List<ProcessBridge>();
+            MiscellaneousExpense misc = new MiscellaneousExpense();
+            misc.JobOrderId = machlabdto.JobOrderId;
+            misc.EmployeeId = machlabdto.EmployeeId;
+            misc.JobOrderId = machlabdto.JobOrderId;
+            misc.MaterialProcessingExpense = machlabdto.MaterialProcessingExpense;
+            misc.FilmsProcessingExpense = machlabdto.FilmsProcessingExpense;
+            misc.MaterialsTotal = machlabdto.MaterialsTotal;
+            misc.TotalAfterMaterials = machlabdto.TotalAfterMaterials;
+            misc.AdminstrativeExpense = machlabdto.AdminstrativeExpense;
+            misc.TotalExpenses = machlabdto.TotalExpenses;
+            misc.Percentage = machlabdto.Percentage;
+            misc.TotalAfterPercentage = machlabdto.TotalAfterPercentage;
+            misc.MinistryOfFinance = machlabdto.MinistryOfFinance;
+            misc.EmployeeImprovmentBox = machlabdto.EmployeeImprovmentBox;
+            misc.ValueAddedTax = machlabdto.ValueAddedTax;
+            misc.totalAfterEmplyeeImprovementbox = machlabdto.totalAfterEmplyeeImprovementbox;
+            misc.FinalTotal = machlabdto.FinalTotal;
+            _context.MiscellaneousExpenses.Add(misc);
+            _context.SaveChanges();
 
             proBrid = machlabdto.processBridges;
 
@@ -305,6 +326,90 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 })
                 .ToList();
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///fetch data of another controllers
+        ///
+
+        public JobOrderCost GetJobOrderForCost(int jobOrderID)
+        {
+            decimal paperBalance = 0;
+            decimal inkBalance = 0;
+            decimal supplyBalance = 0;
+
+
+            JobOrder existingJobOrder = _context.JobOrders
+                .Include(j => j.Customer)
+                .Include(j => j.Employee)
+                .FirstOrDefault(v => v.JobOrderId == jobOrderID);
+            Employee employees = _context.Employees.FirstOrDefault(emp => emp.EmployeeId == existingJobOrder.EmployeeId);
+            Customer customer = _context.Customers.FirstOrDefault(cus => cus.CustomerId == existingJobOrder.CustomerId);
+            JobOrderCost joborder = new JobOrderCost();
+            joborder.CustomerId = customer.CustomerId;
+            joborder.CustomerAddress = customer.CustomerAddress;
+            joborder.CustomerPhone = customer.CustomerPhone;
+            joborder.CustomerName = customer.CustomerName;
+            joborder.CustomerEmail = customer.CustomerEmail;
+            joborder.JobOrderId = existingJobOrder.JobOrderId;
+            joborder.OrderProgress = existingJobOrder.OrderProgress;
+            joborder.RemainingAmount = existingJobOrder.RemainingAmount;
+            joborder.EarnedRevenue = existingJobOrder.EarnedRevenue;
+            joborder.UnearnedRevenue = existingJobOrder.UnearnedRevenue;
+            joborder.StartDate = existingJobOrder.StartDate;
+            joborder.EndDate = existingJobOrder.EndDate;
+            joborder.JobOrdernotes = existingJobOrder.JobOrdernotes;
+            joborder.EmployeeId = existingJobOrder.EmployeeId;
+            joborder.EmployeeName = employees.EmployeeName;
+            List<RequisiteOrder> req = _context.RequisiteOrders.Where(req => req.JobOrderId == jobOrderID).ToList();
+            List<ReturnsOrder> ret = _context.ReturnsOrders.Where(req => req.JobOrderId == jobOrderID).ToList();
+            for (int i = 0; i < req.Count; i++)
+            {
+                List<QuantityBridge> qb = _context.QuantityBridges.Where(q => q.RequisiteId == req[i].RequisiteId).ToList();
+                foreach (QuantityBridge item in qb)
+                {
+
+                    if (item.PaperId != null)
+                    {
+                        paperBalance += item.TotalBalance ?? 0;
+
+                    }
+                    else if (item.InkId != null)
+                    {
+                        inkBalance += item.TotalBalance ?? 0;
+                    }
+                    else if (item.SuppliesId != null)
+                    {
+                        supplyBalance += item.TotalBalance ?? 0;
+                    }
+                }
+            }
+            for (int i = 0; i < ret.Count; i++)
+            {
+                List<QuantityBridge> qb = _context.QuantityBridges.Where(q => q.RequisiteId == req[i].RequisiteId).ToList();
+                foreach (QuantityBridge item in qb)
+                {
+
+                    if (item.PaperId != null)
+                    {
+                        paperBalance -= item.TotalBalance ?? 0;
+
+                    }
+                    else if (item.InkId != null)
+                    {
+                        inkBalance -= item.TotalBalance ?? 0;
+                    }
+                    else if (item.SuppliesId != null)
+                    {
+                        supplyBalance -= item.TotalBalance ?? 0;
+                    }
+                }
+            }
+            joborder.paperBalance = paperBalance;
+            joborder.inkBalance = inkBalance;
+            joborder.supplyBalance = supplyBalance;
+            return joborder ?? throw new ArgumentException("امر العمل غير موجود");
+        }
+
 
 
     }

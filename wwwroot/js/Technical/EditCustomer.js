@@ -26,16 +26,16 @@
         let valid = true;
 
 
-        if (Name.value.trim() === "") {
-            setError(Name, "برجاء إدخال اسم العميل");
+        if (CustomerName.value.trim() === "") {
+            setError(CustomerName, "برجاء إدخال اسم العميل");
             valid = false;
         } else {
             let arabicRegex = /^[\u0600-\u06FF\s]+$/;
-            if (!arabicRegex.test(Name.value.trim())) {
-                setError(Name, "يجب أن يحتوي الاسم على حروف عربية فقط");
+            if (!arabicRegex.test(CustomerName.value.trim())) {
+                setError(CustomerName, "يجب أن يحتوي الاسم على حروف عربية فقط");
                 valid = false;
             } else {
-                setSuccess(Name);
+                setSuccess(CustomerName);
             }
         }
 

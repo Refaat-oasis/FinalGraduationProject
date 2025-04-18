@@ -45,26 +45,26 @@
             // admin
             if (jobRole == 0)
             {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+                        <a asp-controller="employee" asp-action="adminhome" class="back">
+                            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                        </a>
 
             } // Technical manager
             else if (jobRole == 3)
             {
-                <a asp-controller="employee" asp-action="TechnicalManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+                        <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+                            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                        </a>
             }
 
         }
     </div>
 
-    @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@
 
 
     <form asp-controller="Technical" asp-action="EditCustomer" method="post" id="myform">
         <input type="hidden" asp-for="CustomerId" />
+
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
@@ -123,13 +123,13 @@
                 @{
                     if (Model.Activated)
                     {
-                        <option value="true" selected>مفعل</option>
-                        <option value="false">غير مفعل</option>
+                                <option value="true" selected>مفعل</option>
+                                <option value="false">غير مفعل</option>
                     }
                     else
                     {
-                        <option value="false" selected>غير مفعل</option>
-                        <option value="true">مفعل</option>
+                                <option value="false" selected>غير مفعل</option>
+                                <option value="true">مفعل</option>
                     }
                 }
             </select>

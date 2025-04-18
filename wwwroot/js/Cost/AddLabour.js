@@ -44,12 +44,23 @@
         }
 
 
-        if (Price.value.trim() === "") {
-            setError(Price, "برجاء إدخال سعر العامل");
+        if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
+            setError(Price, "برجاء إدخال سعر العمليه العماليه ");
             valid = false;
         } else {
             setSuccess(Price);
         }
+
+        if (Price.value.trim() === "") {
+            setError(Price, "برجاء إدخال سعر العملية العمالية");
+            valid = false;
+        } else if (parseFloat(Price.value) <= 0) {
+            setError(Price, "يجب إدخال قيمة أكبر من الصفر");
+            valid = false;
+        } else {
+            setSuccess(Price);
+        }
+
 
 
         return valid;

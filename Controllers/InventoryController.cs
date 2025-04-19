@@ -343,7 +343,7 @@ namespace ThothSystemVersion1.Controllers
                     return View("~/Views/Inventory/EditVendor.cshtml", newvendor);
                 }
                 TempData["Success"] = "تم تعديل بيانات المورد";
-                return RedirectToAction("ViewAllVendor", "Inventory");
+                return View("EditVendor", newvendor);
             }
             catch (Exception ex)
             {

@@ -44,7 +44,7 @@
 
                         <td>
                              @* <button class="editBtn" id="edijob" asp-action="showJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId">اظهار التفاصيل</button> *@
-                            <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
+                            <a class="editBtn" href="@Url.Action("showJobOrderSpecifications","Technical", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
 
                         </td>
                         <td>@job.CustomerName</td>

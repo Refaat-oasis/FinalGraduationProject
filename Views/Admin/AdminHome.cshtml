@@ -4,6 +4,7 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="@Url.Content("~/css/LogIn.css")" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,8 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>ThoTh</title>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+
     <link href="@Url.Content("~/css/Admin/adminHome.css")" rel="stylesheet" />
+
+    <link rel="icon"
+          type="image/jpeg"
+          href="~/image/eye.jpg"
+          asp-append-version="true" />
 
     <style>
         #reorderMessages {
@@ -97,6 +104,7 @@
                     <li>@Html.ActionLink("إضافة عميل", "AddCustomer", "Technical")</li>
                     <li>@Html.ActionLink("عرض جميع العملاء", "ViewAllCustomer", "Technical")</li>
                     <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
+                    <li>@Html.ActionLink("إضافة طلبية جديدة", "CreateNewJobOrder", "Technical")</li>
 
                 </ul>
             </li>
@@ -110,9 +118,6 @@
                     <li>@Html.ActionLink("عرض جميع الالات", "ViewAllMachines", "Cost")</li>
                     <li>@Html.ActionLink("عرض جميع أوامر التصنيع", "ViewAllJobOrder", "Cost")</li>
 
-
-                    @*                     <li>@Html.ActionLink("عرض التقارير المالية", "ViewReports", "Cost")</li>
-                    <li>@Html.ActionLink("متابعة المصروفات", "ExpenseTracking", "Cost")</li> *@
                 </ul>
             </li>
 

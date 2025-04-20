@@ -1,0 +1,128 @@
+﻿/* General page styling */
+body {
+    background: url("/image/brown-bokeh-textured-plain-product-background.jpg") center/cover fixed;
+    opacity: 0.95;
+    min-height: 100vh;
+}
+
+/* Card styling */
+.card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: none !important;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-family: 'Alexandria', sans-serif;
+}
+
+/* Form styling */
+.form-control {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 2px solid #000000 !important;
+    font-size: 1.1rem;
+    direction: rtl;
+    text-align: right;
+}
+
+.form-group label {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 600;
+    direction: rtl;
+    text-align: right;
+    display: block;
+    width: 100%;
+}
+
+/* Button styling */
+.btn-success {
+    background-color: #2e7d32 !important;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+    .btn-success:hover {
+        background-color: #1b5e20 !important;
+        transform: translateY(-2px);
+    }
+
+/* Back arrow styling */
+.arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+    .back:hover {
+        background: rgba(0, 0, 0, 0.9) !important;
+        transform: scale(1.1);
+    }
+
+/* Alert styling */
+.alert {
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    border: none;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.alert-success {
+    border-right: 5px solid #2e7d32 !important;
+}
+
+.alert-danger {
+    border-right: 5px solid #c62828 !important;
+}
+
+/* Amount input specific styling */
+#txtAmount {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin: 15px !important;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .btn-success {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+/* Animation for redirect notice */
+.redirect-notice {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    font-weight: 600;
+    color: #2e7d32;
+    animation: slideIn 0.5s forwards;
+}

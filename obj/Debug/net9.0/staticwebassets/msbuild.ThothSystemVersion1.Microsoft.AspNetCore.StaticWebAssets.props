@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Accounting\PaymentReceipt.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ThothSystemVersion1</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ThothSystemVersion1</BasePath>
+      <RelativePath>css/Accounting/PaymentReceipt.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ez0o1tbrdb</Fingerprint>
+      <Integrity>BkCB1xczoheCinMnwb+eLATxydWRclgajCUaCRrcZiQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Accounting\PaymentReceipt.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Admin\addEmployee.css'))">
       <SourceType>Package</SourceType>
       <SourceId>ThothSystemVersion1</SourceId>
@@ -12,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ptjeyb77uj</Fingerprint>
-      <Integrity>IwaSk0MljunY7/ImO9xyh/Pu5fYZ8CmoUbfi5TvTUMQ=</Integrity>
+      <Fingerprint>flcu57otu3</Fingerprint>
+      <Integrity>vQPfYmXjtU+UqhelEC+VysbYcEIzlIqza6jNRyWSQAo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Admin\addEmployee.css'))</OriginalItemSpec>
@@ -624,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>b6xly5aep0</Fingerprint>
-      <Integrity>za4MBkezSnTp3vhS+XzwShnCgpEf54+yMhgF8hMpZqs=</Integrity>
+      <Fingerprint>f86rscx085</Fingerprint>
+      <Integrity>sUuybNwMEamMaufuSVAxyGFSzPRMn+H2/v8Q421S3Gk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\SharedViews\login.css'))</OriginalItemSpec>
@@ -1038,8 +1056,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>g5ul8lan36</Fingerprint>
-      <Integrity>5GcVk9zy1blMiBuBgG4LLcqZk9Q9F8vmi0oYdP9D4Uk=</Integrity>
+      <Fingerprint>we2bhsvrwi</Fingerprint>
+      <Integrity>+DGx5Bas2b1cIEXCL6zYdF5RefUHNo4ZJBJ3yRPWQY0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Admin\editEmployee.js'))</OriginalItemSpec>

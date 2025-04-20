@@ -27,13 +27,13 @@
 
     <div class="sidebar">
         <ul class="dropdown">
-        <li onclick="toggleDropdown(this)">
-            الحسابات
-            <ul>
-                <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "accounting")</li>
-                <li>@Html.ActionLink("طلب دفع اموال", "viewPurchaseOrderdsWithRemainingAmount", "Accounting")</li>
-            </ul>
-        </li>
+            <li onclick="toggleDropdown(this)">
+                الحسابات
+                <ul>
+                    <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "accounting")</li>
+                    <li>@Html.ActionLink("طلب دفع اموال", "viewPurchaseOrderdsWithRemainingAmount", "Accounting")</li>
+                </ul>
+            </li>
         </ul>
         <div class="button">
             @Html.ActionLink("تسجيل الخروج", "Logout", "Employee", null, new { @class = "btnBack" })
@@ -49,3 +49,4 @@
 </body>
 
 </html>
+

@@ -2,6 +2,13 @@
     Layout = null;
 }
 @using ThothSystemVersion1.ViewModels
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 @model List<JobOrderCustEmpVM>
 
@@ -12,14 +19,33 @@
 </head>
 <div class="container">
     <div class="arrow">
-        <a asp-controller="Technical" asp-action="TechnicalClerkHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // Technical manager
+            else if (jobRole == 3)
+            {
+                <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            } // Technical Clerk
+            else if (jobRole == 4)
+            {
+                <a asp-controller="employee" asp-action="TechnicalClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
     <h1>الطلبيات</h1>
-    @* <div class="btn"> *@
-    @*     <a class="editBtn">اضافة</a> *@
-    @* </div> *@
+
     <div class="search-container">
         <i class='bx bx-search search-icon'></i>
         <input type="text" id="searchInput" onkeyup="searchJobOrder()" placeholder="ابحث عن طلب...">

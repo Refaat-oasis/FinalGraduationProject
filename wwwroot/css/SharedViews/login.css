@@ -203,3 +203,12 @@ input.btnReset {
     input.btnReset:hover {
         background: rgb(66 32 6);
     }
+.registration-container {
+    background-color: rgba(75,75,75, 0.5); /* soft white with transparency */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}

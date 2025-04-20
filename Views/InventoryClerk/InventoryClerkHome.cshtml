@@ -1,27 +1,29 @@
 ﻿@model Employee;
-
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="@Url.Content("~/css/LogIn.css")" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="@Url.Content("~/photos/eye.jpg")" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>ThoTh</title>
-    <link href="@Url.Content("~/css/InventoryClerk/InventoryHome.css")" rel="stylesheet" />
+
+
 
     <style>
         #reorderMessages {
             position: fixed;
             top: 10%;
             left: 0;
-            background-color: #ffcc00;
-            color: black;
+            /* background-color: #ffcc00;  */
+            /* background-color: rgba(0, 0, 0, 0.7); */
+            color: white;
             padding: 10px;
             width: 250px;
             max-height: 90%;
@@ -49,7 +51,6 @@
                 }
     </style>
 
-
 </head>
 <body>
     <div id="reorderMessages" class="reorderMsg">
@@ -63,14 +64,15 @@
             <li onclick="toggleDropdown(this)">
                 المخازن
                 <ul>
-
+                    <li>@Html.ActionLink("إضافة صنف ورق جديد", "NewPaper", "Inventory")</li>
+                    <li>@Html.ActionLink("إضافة حبر جديد", "NewInk", "Inventory")</li>
+                    <li>@Html.ActionLink("إضافة مستلزمات جديده", "NewSupply", "Inventory")</li>
                     <li>@Html.ActionLink("عرض مخزون الورق", "viewallpaper", "Inventory")</li>
                     <li>@Html.ActionLink("عرض مخزون الحبر", "ViewAllInk", "Inventory")</li>
                     <li>@Html.ActionLink("عرض مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
                     <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
                     <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
                     <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
-                    <li>@Html.ActionLink("المرتجعات2", "ReturnOrder2", "Inventory")</li>
                     <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
                 </ul>
             </li>
@@ -78,7 +80,7 @@
             </ul>
 
         <div class="button">
-                @Html.ActionLink("تسجيل الخروج", "LoginPage", "Employee", null, new { @class = "btnBack" })
+                @Html.ActionLink("تسجيل الخروج", "logout", "Employee", null, new { @class = "btnBack" })
         </div>
         </div>
 

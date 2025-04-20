@@ -46,7 +46,7 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult ShowJobOrderSpecifications(int jobOrderId)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            if (jobRole == 0 || jobRole == 3 || jobRole == 4 || jobRole == 7 || jobRole ==8)
             {
                 JobOrderSpecificationsViewModel JobOrderSpecificationsViewModelList =  _technicalBusinessLogicLayer.ShowJobOrderSpecifications(jobOrderId);
                 return View("~/Views/technical/showJobOrderSpecifications.cshtml", JobOrderSpecificationsViewModelList);

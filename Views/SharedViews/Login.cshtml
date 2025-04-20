@@ -1,17 +1,12 @@
 @model Employee
-<style>
-
-</style>
-
-
 
 
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -19,8 +14,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="~/css/SharedViews/login.css" rel="stylesheet" />
-    <title>ThoTh</title>
+    <!-- Other meta tags and links -->
+    
+    <link rel="icon"
+          type="image/jpeg"
+          href="~/image/eye.jpg"
+          asp-append-version="true" />
 </head>
+
 
 <div id="navbar">
     <div class="hieroglyph">𓅝𓏏𓎛  </div>
@@ -45,6 +46,7 @@
 
 
 <div class="registeration">
+  <div class="registration-container">
     <form action="/Employee/EmployeeLogin" id="myform" enctype="multipart/form-data" method="post">
         <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
         <br />
@@ -58,18 +60,12 @@
             <i class="bx bxs-user"></i>
             <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
         </div>
-
+        <br />
         <div class="inputBox">
             <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" id="Password" />
             <i class="fa-solid fa-eye" id="togglePassword"></i>
             <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
         </div>
-
-
-        @* <div class="rememberMe"> *@
-        @*     <label><input type="checkbox" />تذكر بياناتي</label> *@
-        @* </div> *@
-
 
         <div class="LogIn">
             <input type="submit" value="تسجيل الدخول" class="btnLog" />
@@ -78,7 +74,9 @@
         <div class="reset">
             <input type="reset" value="إعادة إدخال" class="btnReset" />
         </div>
+     
     </form>
+  </div>
 </div>
 
 

@@ -16,12 +16,13 @@ namespace ThothSystemVersion1.DataTransfereObject
 
         [Required(ErrorMessage = "يجب عليك ادخال عنوان المورد")]
         [Display(Name = "عنوان التاجر")]
-        [RegularExpression(@"^([\u0600-\u06FFa-zA-Z0-9\s]+،){2}[\u0600-\u06FFa-zA-Z0-9\s\-.,#]+$",
-            ErrorMessage = "يجب كتابة العنوان بصيغة: المحافظة، المدينة، العنوان بالتفصيل")]
+        [RegularExpression(@"^[\u0600-\u06FF0-9\u0660-\u0669\s\-.,#،]+$", ErrorMessage = "يجب كتابة العنوان باللغة العربية مع السماح بالأرقام وعلامات الترقيم")]
         public string? VendorAddress { get; set; }
 
+
+
         [Display(Name = "الايميل الخاص للتاجر")]
-        [Required(ErrorMessage = "يجب عليك إدخال البريد الإلكتروني الخاص بالتاجر")]
+        [Required(ErrorMessage = "يجب عليك إدخال البريد الإلكتروني الخاص بالمورد")]
         [EmailAddress(ErrorMessage = "صيغة البريد الإلكتروني غير صحيحة")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "صيغة البريد الإلكتروني غير صحيحة")]
         public string? VendorEmail { get; set; }

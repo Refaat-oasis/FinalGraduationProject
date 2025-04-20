@@ -22,13 +22,12 @@
 
         // Name validation
         if (VendorName.value.trim() === "") {
-            VendorNameError.innerText = "رجاء إدخال اسمك";
-            isValid = false;
+            VendorNameError.innerText = "يجب عليك إدخال اسم المورد"
         }
 
         // Phone validation - only numbers
         if (VendorPhone.value.trim() === "") {
-            VendorPhoneError.innerText = "رجاء إدخال رقمك";
+            VendorPhoneError.innerText = "يجب عليك إدخال رقم هاتف المورد"
             isValid = false;
         } else if (!/^\d+$/.test(VendorPhone.value)) {
             VendorPhoneError.innerText = "يجب إدخال أرقام فقط";
@@ -40,14 +39,14 @@
 
         // Address validation
         if (VendorAddress.value.trim() === "") {
-            VendorAddressError.innerText = "رجاء إدخال عنوانك";
+            VendorAddressError.innerText = "يجب عليك إدخال عنوان المورد";
             isValid = false;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (VendorEmail.value.trim() === "") {
-            VendorEmailError.innerText = "رجاء إدخال الإيميل";
+            VendorEmailError.innerText = "يجب عليك إدخال البريد الإلكتروني الخاص بالمورد ";
             isValid = false;
         } else if (!emailRegex.test(VendorEmail.value)) {
             VendorEmailError.innerText = "رجاء إدخال إيميل صحيح (يجب أن يحتوي على @ و .)";

@@ -21,7 +21,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         public List<JobOrderCustEmpVM> ViewAllJobOrder()
         {
 
-            List<JobOrder> jobOrdersList = _context.JobOrders.ToList();
+            List<JobOrder> jobOrdersList = _context.JobOrders.OrderByDescending(j => j.StartDate).ToList();
             List<Customer> customersList = _context.Customers.ToList();
             List<Employee> employeeList = _context.Employees.ToList();
             List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = new List<JobOrderCustEmpVM>();

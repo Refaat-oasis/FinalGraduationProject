@@ -24,7 +24,7 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult viewJobOrderWithRemainingAmount()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 6 || jobRole == 7)
+            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
             {
                 List<JobOrderCustEmpVM> jobOrders = _businessLogicL.getJObOrderWithRemainingAmount();
                 return View("~/Views/Accounting/JobOrderWithRemainingAmount.cshtml", jobOrders);
@@ -39,7 +39,10 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult makeReceipt(int JobOrderId)
         {
-            JobOrderCustEmpVM jO = _techBusinessLogicL.getJobOrderVM(JobOrderId);
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            {
+                JobOrderCustEmpVM jO = _techBusinessLogicL.getJobOrderVM(JobOrderId);
             ReceiptJobOrderVM RJO = new ReceiptJobOrderVM();
             RJO.JobOrderId = jO.JobOrderId;
             RJO.CustomerId = jO.CustomerId;
@@ -54,7 +57,11 @@ namespace ThothSystemVersion1.Controllers
             RJO.CustomerName = jO.CustomerName;
 
             return View(RJO);
-
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpPost]
@@ -101,7 +108,7 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult viewPurchaseOrderdsWithRemainingAmount()
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 6 || jobRole == 7)
+            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
             {
                 List<PaymentPurchaseOrderVM> purchaseOrders = _businessLogicL.getPurchaseOrdersWithRemainingAmount();
                 return View("~/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml", purchaseOrders);
@@ -113,8 +120,16 @@ namespace ThothSystemVersion1.Controllers
         }
         [HttpGet]
         public IActionResult makePayment(int purchaseID) {
-            PaymentPurchaseOrderVM payment = _businessLogicL.gitPurchaseOrderVM(purchaseID);
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            {
+                PaymentPurchaseOrderVM payment = _businessLogicL.gitPurchaseOrderVM(purchaseID);
             return View(payment);
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
 
         }
         [HttpPost]

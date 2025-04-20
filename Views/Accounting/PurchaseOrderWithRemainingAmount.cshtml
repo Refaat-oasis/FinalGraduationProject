@@ -1,4 +1,11 @@
 ﻿@using ThothSystemVersion1.ViewModels
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 @model List<PaymentPurchaseOrderVM>
 
@@ -16,6 +23,27 @@
 <div class="container">
    
     <h1>اوامر الشراء</h1>
+
+    <div class="arrow mb-4">
+        @if (jobRole == 0)
+        {
+            <a asp-controller="Employee" asp-action="AdminHome" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+        else if (jobRole == 7)
+        {
+            <a asp-controller="Employee" asp-action="AccountingManager" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+        else if (jobRole == 8)
+        {
+            <a asp-controller="Employee" asp-action="AccountingClerk" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+    </div>
 
     <div class="tableContainer">
         <table id="jobOrderTable">

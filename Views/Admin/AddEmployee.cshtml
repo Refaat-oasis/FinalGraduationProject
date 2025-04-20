@@ -1,5 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
 
 @{
     Layout = null;
@@ -7,22 +12,16 @@
 
 @model ThothSystemVersion1.DataTransfereObject.EmployeeDTO;
 
-@{
-
-    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
-    Console.WriteLine("JobRole: " + jobRole);
-}
 
 
 <head>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Admin/addEmployee.css" rel="stylesheet" />
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />

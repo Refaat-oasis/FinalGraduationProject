@@ -23,12 +23,5 @@ namespace ThothSystemVersion1.ViewModels
         public List<(Customer Customer, int OrderCount, decimal TotalBalance , decimal unearnedBalance , decimal RemainingBalance)> CustomerReport { get; set; } = new();
 
 
-
-
-        // every item in the purchase order must have one elemt in the quantity bridge that look similar
-        // to the item in the purchase order
-        // we loop the purchase order according to the condition and then the quantity bridge
-
-
     }
 }

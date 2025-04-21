@@ -8,6 +8,10 @@
     Console.WriteLine("JobRole: " + jobRole);
 }
 
+@{
+    ViewData["Title"] = "Thoth";
+}
+
 @model ThothSystemVersion1.DataTransfereObject.ReturnOrderDTO
 
 <head>
@@ -442,6 +446,7 @@
         });
 
         console.log("Document is ready");
+
         const tempDataElement = document.getElementById('tempDataSuccess');
         const jobRoleElement = document.getElementById('hdnJobRole');
 

@@ -12,7 +12,7 @@
 }
 
 @{
-    ViewData["Title"] = "تعديل أمر عمل";
+    ViewData["Title"] = "Thoth";
 
     // Safely format dates
     var startDateFormatted = Model.StartDate.HasValue
@@ -49,7 +49,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    <title>ThoTh</title>
+    @* <title>ThoTh</title> *@
 
 </head>
 <body>
@@ -86,6 +86,7 @@
         <h1>تعديل أمر العمل @Model.JobOrderId</h1>
 
 
+
         @if (TempData["Success"] != null)
         {
             <div class="notification success">
@@ -110,7 +111,7 @@
                 <div class="progress-bar error"></div>
 
             </div>
-        }}
+        }
 
         <form asp-action="EditJobOrder" method="post">
             <input type="hidden" asp-for="JobOrderId" />

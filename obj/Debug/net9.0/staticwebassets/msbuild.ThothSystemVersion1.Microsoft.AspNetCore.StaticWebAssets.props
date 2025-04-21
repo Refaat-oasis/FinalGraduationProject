@@ -444,8 +444,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>phwv56moes</Fingerprint>
-      <Integrity>PROW4C4e3ZgNu6ltXfJ8nbKiAODAkn6pVLk4LYOBoN4=</Integrity>
+      <Fingerprint>dqgdxumhyd</Fingerprint>
+      <Integrity>C9GlvLzUvamaMtMd3iYpYKfcnvrlulLUHr9nW3zlllw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\purchaseAll.css'))</OriginalItemSpec>
@@ -462,8 +462,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5nus9rbsab</Fingerprint>
-      <Integrity>IS9VVohlllMunvnGvukBps2Ut2HyAbLheIi5U0O0VdI=</Integrity>
+      <Fingerprint>9cxrx6oyx1</Fingerprint>
+      <Integrity>d4WbC9P/mA+llBsR5T6lIy9W7VH7+s4k1zWwiSfcPJQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\ReturnOrder.css'))</OriginalItemSpec>

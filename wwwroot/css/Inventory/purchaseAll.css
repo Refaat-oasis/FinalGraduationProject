@@ -67,7 +67,7 @@ h5 {
     margin: 20px;
     text-align: right;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .btn1 {
@@ -173,40 +173,27 @@ h5 {
 }
 
 table {
-    width: 85%;
-    margin: 20px;
+    width: 100%;
+    margin: 20px auto;
     border-collapse: separate;
     overflow: hidden;
     border-radius: 15px;
     border: solid black 2px;
     border-spacing: 0;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    direction: rtl; /* Added for table */
 }
-
 
 td {
-    font-size: 20px;
-    text-align: center;
-}
-
-th, td {
-    padding: 10px;
+    font-size: 18px;
+    text-align: center; /* Changed from center to right */
 }
 
 th {
-    font-size: 30px;
+    font-size: 22px;
     background-color: #FDF5E6;
+    text-align: center; /* Added right alignment */
 }
-
-tr:nth-child(odd) {
-    background-color: #F8E1C4;
-}
-
-tr:nth-child(even) {
-    background-color: #FDF5E6;
-}
-
-
 
 /*table {
     width: 70%;*/ /* تقليل العرض من 75% إلى 60% */

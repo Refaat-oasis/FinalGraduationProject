@@ -156,8 +156,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7lq03q6d6l</Fingerprint>
-      <Integrity>ZU5A90LGF9mwVSI6auKUXNu4sX3HsEspnGZxp0i6emg=</Integrity>
+      <Fingerprint>dumqzql9ua</Fingerprint>
+      <Integrity>287EdSVq192TEpkHF6IZnASYEk+RIydKOBro64yDC3k=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Cost\EditLabour.css'))</OriginalItemSpec>

@@ -1,8 +1,17 @@
-﻿@model Machine
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+
+@model Machine
 
 @{
-    ViewData["Title"] = "تعديل بيانات الآلة";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Thoth";
+    Layout = null;
 }
 
 <head>
@@ -16,16 +25,37 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Cost/EditMachine.css" rel="stylesheet" />
 
 </head>
 <body>
     <div class="arrow">
-        <a asp-controller="Admin" asp-action="AdminHome" class="back">
-            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-        </a>
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
     </div>
     <div class="form-container">
 
@@ -33,24 +63,29 @@
 
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle"></i> @TempData["Success"]
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
 
         @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
         }
-
         <form asp-action="EditMachine" method="post">
             <input type="hidden" asp-for="MachineId" />
 
@@ -193,13 +228,32 @@
                 }
             });
 
-        @if (TempData["Success"] != null)
-        {
-            <text>
-                        setTimeout(function() {
-                        window.location.href = '@Url.Action("AdminHome", "Admin")';
-                           }, 5000);
-            </text>
+        const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
+
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
+
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
+
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
         }
         });
     </script>

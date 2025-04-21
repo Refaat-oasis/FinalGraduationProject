@@ -8,7 +8,7 @@
  @model ThothSystemVersion1.DataTransfereObject.JobOrderDTO
 
 @{
-    ViewData["Title"] = "إنشاء أمر عمل جديد";
+    ViewData["Title"] = "Thoth";
 
     // Initialize dates safely
     var startDate = Model?.StartDate ?? DateOnly.FromDateTime(DateTime.Today);
@@ -135,20 +135,20 @@
                 </div>
 
                 <!-- Employee Section -->
-                <div class="colCont">
-                    <label asp-for="EmployeeId" class="form-label">المسؤول</label>
-                    <select asp-for="EmployeeId" class="form-select" required>
-                        <option value="">-- اختر الموظف --</option>
-                        @if (ViewBag.employeeList != null)
-                        {
-                            @foreach (var employee in ViewBag.employeeList as List<Employee>)
-                            {
-                                <option value="@employee.EmployeeId">@employee.EmployeeName</option>
-                            }
-                        }
-                    </select>
-                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
-                </div>
+                @* <div class="colCont"> *@
+                @*     <label asp-for="EmployeeId" class="form-label">المسؤول</label> *@
+                @*     <select asp-for="EmployeeId" class="form-select" required> *@
+                @*         <option value="">-- اختر الموظف --</option> *@
+                @*         @if (ViewBag.employeeList != null) *@
+                @*         { *@
+                @*             @foreach (var employee in ViewBag.employeeList as List<Employee>) *@
+                @*             { *@
+                @*                 <option value="@employee.EmployeeId">@employee.EmployeeName</option> *@
+                @*             } *@
+                @*         } *@
+                @*     </select> *@
+                @*     <span asp-validation-for="EmployeeId" class="text-danger"></span> *@
+                @* </div> *@
             </div>
 
             <div class="rowCont">

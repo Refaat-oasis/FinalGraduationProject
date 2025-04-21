@@ -204,6 +204,7 @@ h1 {
         outline: none;
     }
 
+
 /* Notification styles */
 .notification {
     position: fixed;
@@ -278,3 +279,4 @@ h1 {
         width: 0%;
     }
 }
+

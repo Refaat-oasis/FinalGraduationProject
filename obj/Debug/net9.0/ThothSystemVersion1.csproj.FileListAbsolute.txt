@@ -13973,8 +13973,6 @@ C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\comp
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-kqwapd66a5.gz
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-gy430ck0tk.gz
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-bm7q0cmya9.gz
-C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-phwv56moes.gz
-C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\vqoalrmg43-5nus9rbsab.gz
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\5pg52vl7u3-7jd2lfdwgw.gz
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\1b7590srk4-7jd2lfdwgw.gz
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\ammhkwhug5-7jd2lfdwgw.gz
@@ -14106,3 +14104,5 @@ C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\Thot
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\b3syx999cn-dumqzql9ua.gz
+C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\vqoalrmg43-9cxrx6oyx1.gz
+C:\Users\Mira\Desktop\Last version1\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-dqgdxumhyd.gz

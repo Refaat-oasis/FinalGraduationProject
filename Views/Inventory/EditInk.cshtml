@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/EditInk.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
@@ -28,49 +29,77 @@
 
 <div class="form-container">
 
-        <div class="arrow">
-            @{
-                // admin
-                if (jobRole == 0)
-                {
-                    <a asp-controller="employee" asp-action="adminhome" class="back">
-                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                    </a>
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
 
-                } // inventory manager
-                else if (jobRole == 1)
-                {
-                    <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                    </a>
-                }
-
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
             }
+
+        }
     </div>
 
     <h1> تعديل بيانات الحبر  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform">
-            @* Success and Error Messages *@
-            @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i> @TempData["Success"]
-                    <input type="hidden" id="tempDataSuccess" value="true" />
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
                 </div>
-            }
-            @if (TempData["Error"] != null)
-            {
-                <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
-                    <input type="hidden" id="tempDataSuccess" value="false" />
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
                 </div>
-            }
-            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
+            </div>
+        }
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
+        @* Success and Error Messages *@
+        @* @if (TempData["Success"] != null) *@
+        @* { *@
+        @*     <div class="alert alert-success"> *@
+        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
+        @*         <input type="hidden" id="tempDataSuccess" value="true" /> *@
+        @*     </div> *@
+        @* } *@
+        @* @if (TempData["Error"] != null) *@
+        @* { *@
+        @*     <div class="alert alert-danger"> *@
+        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
+        @*         <input type="hidden" id="tempDataSuccess" value="false" /> *@
+        @*     </div> *@
+        @* } *@
+        @* <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
+        @* <div asp-validation-summary="ModelOnly" class="error"></div> *@
 
 
-        <input type="hidden" asp-for="InkId" />
+         <input type="hidden" asp-for="InkId" /> 
 
         <div class="inputBox">
             <label asp-for="@Model.Name" class="textlabel"></label>
@@ -84,6 +113,7 @@
             <select asp-for="@Model.Colored" id="Colored" class="place">
                 <option value="blue">أزرق</option>
                 <option value="black">أسود</option>
+                <option value="mix">ألوان</option>
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
 
@@ -123,22 +153,22 @@
                 @{
                     if (Model.Activated)
                     {
-                    <option value="true" selected>مفعل</option>
-                    <option value="false">غير مفعل</option>
+                        <option value="true" selected>مفعل</option>
+                        <option value="false">غير مفعل</option>
                     }
                     else
                     {
-                    <option value="false" selected>غير مفعل</option>
-                    <option value="true">مفعل</option>
+                        <option value="false" selected>غير مفعل</option>
+                        <option value="true">مفعل</option>
                     }
                 }
             </select>
-            </div>
+        </div>
 
-            <div class="button-container">
-                @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
-                <input type="submit" value="تعديل" class="btn btn-primary" />
-            </div>
+        <div class="button-container">
+            @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
+            <input type="submit" value="تعديل" class="btn btn-primary" />
+        </div>
     </form>
 </div>
 

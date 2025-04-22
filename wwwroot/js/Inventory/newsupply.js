@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ReorderPoint = document.getElementById("ReorderPoint");
     const TotalBalance = document.getElementById("TotalBalance");
 
- 
+
     function validate() {
         let valid = true;
 
@@ -23,19 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        if (Quantity.value.trim() === "" || isNaN(parseFloat(Quantity.value)) || parseFloat(Quantity.value) <= 0) {
-            setError(Quantity, "برجاء إدخال كمية المستلزم بشكل صحيح");
-            valid = false;
-        } else {
-            setSuccess(Quantity);
-        }
+        //if (Quantity.value.trim() === "" || isNaN(parseFloat(Quantity.value)) || parseFloat(Quantity.value) <= 0) {
+        //    setError(Quantity, "برجاء إدخال كمية المستلزم بشكل صحيح");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Quantity);
+        //}
 
-        if (Price.value.trim() === "" || isNaN(parseFloat(Price.value)) || parseFloat(Price.value) <= 0) {
-            setError(Price, "برجاء إدخال سعر المستلزم بشكل صحيح");
-            valid = false;
-        } else {
-            setSuccess(Price);
-        }
+        //if (Price.value.trim() === "" || isNaN(parseFloat(Price.value)) || parseFloat(Price.value) <= 0) {
+        //    setError(Price, "برجاء إدخال سعر المستلزم بشكل صحيح");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Price);
+        //}
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
             setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");
@@ -44,12 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(ReorderPoint);
         }
 
-        if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
-            setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
-            valid = false;
-        } else {
-            setSuccess(TotalBalance);
-        }
+        //if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
+        //    setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
+        //    valid = false;
+        //} else {
+        //    setSuccess(TotalBalance);
+        //}
 
         return valid;
     }

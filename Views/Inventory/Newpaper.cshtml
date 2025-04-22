@@ -20,7 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    @* <link rel="icon" type="image/x-icon" href="@Url.Content("~/photos/eye.jpg")" /> *@
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -55,29 +57,42 @@
                 </a>
             }
 
-       
-       }
+
+        }
     </div>
 
 
     <form asp-action="NewPaper" id="myform" enctype="multipart/form-data" method="post">
-        @* Success and Error Messages *@
-        @* Success and Error Messages *@
+
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
+
         @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
+
         <div class="text">
             <h1>إضافة صنف ورق جديد</h1>
         </div>
@@ -96,20 +111,25 @@
 
         <div class="inputBox">
             <label for="Weight">وزن الورق</label>
-                <input type="number" step="any" asp-for="@Model.Weight" id="Weight" />
+            <input type="number" step="any" asp-for="@Model.Weight" id="Weight" />
             <p asp-validation-for="@Model.Weight" class="error"></p>
         </div>
 
         <div class="inputBox">
             <label for="Quantity">كميه الورق</label>
-                <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="Colored">لون الورق</label>
-                <input type="text" asp-for="@Model.Colored" id="Colored" />
-            <p asp-validation-for="@Model.Colored" class="error"></p>
+            <label asp-for="@Model.Colored"></label>
+            <select asp-for="@Model.Colored" class="input">
+                <option value="white">أبيض</option>
+                <option value="red">أحمر</option>
+                <option value="green">أخضر</option>
+                <option value="yellow">أصفر</option>
+            </select>
+            <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>
 
 
@@ -127,7 +147,7 @@
 
         <div class="inputBox">
             <label for="Price">سعر الورق</label>
-                <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
         </div>
 
@@ -140,7 +160,7 @@
                 <input type="reset" value="إعادة إدخال" class="btnReset" />
             </div>
         </div>
-        
+
     </form>
 </div>
 <script src="~/js/Inventory/newPaper.js"></script>

@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -37,16 +37,16 @@
             // admin
             if (jobRole == 0)
             {
-                        <a asp-controller="employee" asp-action="adminhome" class="back">
-                            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                        </a>
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
 
             } // Cost manager
             else if (jobRole == 5)
             {
                 <a asp-controller="employee" asp-action="CostManager" class="back">
-                            <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                        </a>
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
             }
 
 
@@ -58,19 +58,32 @@
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
-                <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i> @TempData["Success"]
-                    <input type="hidden" id="tempDataSuccess" value="true" />
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
                 </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
         }
+
         @if (TempData["Error"] != null)
         {
-                <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
-                    <input type="hidden" id="tempDataSuccess" value="false" />
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
                 </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
+            </div>
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
         <div class="text">
             <h1>إضافة اله جديدة</h1>
         </div>
@@ -86,7 +99,7 @@
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
             <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
-      
+
         <div class="buttons">
             <div class="Add">
                 <input type="submit" value="تأكيد الإضافة " class="Add" />

@@ -40,19 +40,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
-            setError(Quantity, "برجاء إدخال كمية الحبر");
-            valid = false;
-        } else {
-            setSuccess(Quantity);
-        }
+        //if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
+        //    setError(Quantity, "برجاء إدخال كمية الحبر");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Quantity);
+        //}
 
-        if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
-            setError(Price, "برجاء إدخال سعر الحبر");
-            valid = false;
-        } else {
-            setSuccess(Price);
-        }
+        //if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
+        //    setError(Price, "برجاء إدخال سعر الحبر");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Price);
+        //}
 
         if (Colored.value.trim() === "") {
             setError(Colored, "برجاء إدخال لون الحبر");
@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(Colored);
         }
 
-        if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
-            setError(TotalBalance, "برجاء إدخال القيمة المتاحه للحبر");
-            valid = false;
-        } else {
-            setSuccess(TotalBalance);
-        }
+        //if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
+        //    setError(TotalBalance, "برجاء إدخال القيمة المتاحه للحبر");
+        //    valid = false;
+        //} else {
+        //    setSuccess(TotalBalance);
+        //}
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
             setError(ReorderPoint, "برجاء إدخال نقطة إعادة الطلب");
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return valid;
     }
 
-  
+
 
     myform.addEventListener("submit", function (e) {
         e.preventDefault(); // Always prevent default first

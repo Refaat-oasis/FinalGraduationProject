@@ -35,6 +35,19 @@ footer {
     padding: 10px;
 }
 
+.assiutLogo {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    z-index: 999;
+}
+
+    .assiutLogo img {
+        height: 65px;
+        width: auto;
+    }
+
+
 
 .hieroglyph {
     font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
@@ -157,15 +170,26 @@ footer {
 /* } */
 
 
-.inputBox.error {
+/*.inputBox.error {
     color: red;
     font-size: 15px;
     font-weight: bolder;
     text-align: right;
     display: flex;
     margin-right: 8px;
-    margin-top: 10px;
+    margin-top: 15px;
+}*/
+
+.error {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 18px;
+    /*    margin-top: 6px;*/
+    /*    margin-bottom: 5px;*/
 }
+
 
 
 input.btnLog {
@@ -203,6 +227,7 @@ input.btnReset {
     input.btnReset:hover {
         background: rgb(66 32 6);
     }
+
 .registration-container {
     background-color: rgba(75,75,75, 0.5); /* soft white with transparency */
     padding: 40px;

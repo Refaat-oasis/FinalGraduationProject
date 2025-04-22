@@ -1,7 +1,7 @@
 .container {
     width: 100%;
-    min-height: 100vh; 
-    padding-top: 80px; 
+    min-height: 100vh;
+    padding-top: 80px;
     max-width: 800px;
     font-family: Calibri;
     padding: 20px;
@@ -44,7 +44,7 @@
     margin-bottom: 15px;
     margin-left: 5%;
     position: center;
-    width:350px;
+    width: 350px;
 }
 
     .inputBox label {
@@ -53,9 +53,9 @@
         margin-bottom: 5px;
         color: #090909;
         font-size: 25px;
-        align-items:flex-end;
+        align-items: flex-end;
         text-align: right;
-        direction:rtl;
+        direction: rtl;
     }
 
     .inputBox input {
@@ -69,10 +69,21 @@
         direction: rtl;
     }
 
-   .buttons{
-       display:flex;
-       justify-content:center;
-   }
+    .inputBox .input {
+        border: 2px solid #4F3217;
+        border-radius: 5px;
+        background-color: #FDF5E6;
+        font-size: 16px;
+        width: 100%;
+        padding: 10px;
+        text-align: right;
+        direction: rtl;
+    }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
 
 input.Add,
 input.btnReset {
@@ -134,11 +145,12 @@ input.btnReset {
     position: fixed;
     text-decoration: none;
 }
-/*.success-message {
+
+.success-message {
     font-size: 28px;
     font-weight: bold;
-    color: #28a745;*/ /* ??? ???? ??? ??? ?????? */
-    /*text-align: center;
+    color: #28a745; /* ??? ???? ??? ??? ?????? */
+    text-align: center;
     margin-bottom: 20px;
     padding: 10px;
     background-color: #eafaf1;
@@ -157,8 +169,8 @@ input.btnReset {
 .error-message {
     font-size: 28px;
     font-weight: bold;
-    color: #dc3545;*/ /* ??? ???? ??? ??? ????? */
-    /*text-align: center;
+    color: #dc3545; /* ??? ???? ??? ??? ????? */
+    text-align: center;
     margin-bottom: 20px;
     padding: 10px;
     background-color: #fdecea;
@@ -174,6 +186,7 @@ input.btnReset {
         font-size: 40px;
     }
 
+/* Notification styles */
 .notification {
     position: fixed;
     top: 20px;
@@ -209,4 +222,41 @@ input.btnReset {
     background-color: #fef2f2;
     border-left: 4px solid #ef4444;
     color: #ef4444;
-}*/
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    animation: progress 5s linear forwards;
+}
+
+    .progress-bar.success {
+        background-color: #10b981;
+    }
+
+    .progress-bar.error {
+        background-color: #ef4444;
+    }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}

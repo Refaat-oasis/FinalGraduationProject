@@ -15,21 +15,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="~/css/SharedViews/login.css" rel="stylesheet" />
     <!-- Other meta tags and links -->
-    
-    <link rel="icon"
-          type="image/jpeg"
-          href="~/image/eye.jpg"
-          asp-append-version="true" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
 </head>
 
 
 <div id="navbar">
+    <div class="assiutLogo">
+        <img src="./image/Assiut_University_logo.gif" alt="شعار جامعة أسيوط" />
+    </div>
+
     <div class="hieroglyph">𓅝𓏏𓎛  </div>
     <img src="./image/eye.jpg" alt="logo">
 </div>
 
+
+@*  Success and Error Messages  *@
+
 <div class="card-body">
-    @* Success and Error Messages *@
     @if (TempData["Success"] != null)
     {
         <div class="alert alert-success">
@@ -42,41 +44,42 @@
             <i class="bx bx-error-circle"></i> @TempData["Error"]
         </div>
     }
-    </div>
-
+</div>
 
 <div class="registeration">
-  <div class="registration-container">
-    <form action="/Employee/EmployeeLogin" id="myform" enctype="multipart/form-data" method="post">
-        <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
-        <br />
+    <div class="registration-container">
+        <form action="/Employee/EmployeeLogin" id="myform" enctype="multipart/form-data" method="post">
+            <h1>تحوت يرحب بك .. من فضلك قم بتسجيل الدخول</h1>
 
-        <div class="text">
-            <h1>TH<span>&#x13080;</span>TH</h1>
-        </div>
+            <div class="text">
+                <h1>TH<span>&#x13080;</span>TH</h1>
+            </div>
 
-        <div class="inputBox">
-            <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" id="userName" />
-            <i class="bx bxs-user"></i>
+            <div class="inputBox">
+                <input type="text" asp-for="@Model.EmployeeUserName" placeholder="اسم المستخدم" id="userName" />
+                <i class="bx bxs-user"></i>
+            </div>
             <p asp-validation-for="@Model.EmployeeUserName" class="error"></p>
-        </div>
-        <br />
-        <div class="inputBox">
-            <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" id="Password" />
-            <i class="fa-solid fa-eye" id="togglePassword"></i>
+
+
+            <br />
+            <div class="inputBox">
+                <input type="password" asp-for="@Model.EmployeePassword" placeholder="كلمه المرور" id="Password" />
+                <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
             <p asp-validation-for="@Model.EmployeePassword" class="error"></p>
-        </div>
 
-        <div class="LogIn">
-            <input type="submit" value="تسجيل الدخول" class="btnLog" />
-        </div>
 
-        <div class="reset">
-            <input type="reset" value="إعادة إدخال" class="btnReset" />
-        </div>
-     
-    </form>
-  </div>
+            <div class="LogIn">
+                <input type="submit" value="تسجيل الدخول" class="btnLog" />
+            </div>
+
+            <div class="reset">
+                <input type="reset" value="إعادة إدخال" class="btnReset" />
+            </div>
+
+        </form>
+    </div>
 </div>
 
 

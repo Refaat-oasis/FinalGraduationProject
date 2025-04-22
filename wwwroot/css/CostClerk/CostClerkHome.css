@@ -10,13 +10,10 @@
     overflow: hidden; /* to disable horizontal motion*/
 }
 
-header {
+header, footer {
     display: none;
 }
 
-footer {
-    display: none;
-}
 
 .sidebar {
     display: fixed;
@@ -38,7 +35,8 @@ footer {
 }
 
     .dropdown > li {
-        background: #E6C3A3;
+        /*        background: #8B4513;*/
+        background-color: #E6C3A3;
         color: white;
         padding: 10px;
         margin-bottom: 5px;
@@ -77,11 +75,12 @@ footer {
                 }
 
                     .dropdown > li ul li a:hover {
-                        color: #444;
+                        color: #C08552;
                     }
 
 .btnBack {
     background-color: #E6C3A3;
+    /*    background: #8B4513;*/
     color: white;
     padding: 10px 15px;
     margin-top: 5px;

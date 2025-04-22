@@ -5,7 +5,7 @@
 
 .container {
     max-width: 100%;
-/*    margin: 50px auto;*/
+    /*    margin: 50px auto;*/
     padding: 20px;
     border-radius: 8px;
     position: relative;
@@ -88,8 +88,7 @@ h1, h2 {
 .btn-primary {
     background-color: #000000;
     color: white;
-    align-content:center;
-
+    align-content: center;
 }
 
     .btn-primary:hover {
@@ -99,13 +98,13 @@ h1, h2 {
 .btn-secondary {
     background-color: #000000;
     color: white;
-    padding: 0.25rem 0.5rem; 
-    font-size: 0.875rem; 
-    line-height: 1.5; 
-    border-radius: 0.2rem; 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.3s ease;
 }
 
@@ -164,13 +163,13 @@ h1, h2 {
 
 .card {
     background-color: transparent !important;
-    border: none !important; 
+    border: none !important;
 }
 
 .card-header {
     background-color: transparent !important;
-    color: #000 !important; 
-    border-bottom: 1px solid #ddd !important; 
+    color: #000 !important;
+    border-bottom: 1px solid #ddd !important;
 }
 
 .card-body {
@@ -179,4 +178,119 @@ h1, h2 {
 
 .shadow {
     box-shadow: none !important;
+}
+
+.success-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #28a745; /* لون أخضر يدل على النجاح */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #eafaf1;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .success-message i {
+        font-size: 40px;
+    }
+
+.error-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #dc3545; /* لون أحمر يدل على الخطأ */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fdecea;
+    border: 2px solid #dc3545;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .error-message i {
+        font-size: 40px;
+    }
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(120%);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+.notification-content {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Alexandria', sans-serif;
+}
+
+.notification i {
+    font-size: 24px;
+}
+
+.success {
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+    color: #10b981;
+}
+
+.error {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #ef4444;
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    animation: progress 5s linear forwards;
+}
+
+    .progress-bar.success {
+        background-color: #10b981;
+    }
+
+    .progress-bar.error {
+        background-color: #ef4444;
+    }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
 }

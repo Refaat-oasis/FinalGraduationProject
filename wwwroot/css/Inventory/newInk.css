@@ -69,6 +69,17 @@
         direction: rtl;
     }
 
+    .inputBox .input {
+        border: 2px solid #4F3217;
+        border-radius: 5px;
+        background-color: #FDF5E6;
+        font-size: 16px;
+        width: 100%;
+        padding: 10px;
+        text-align: right;
+        direction: rtl;
+    }
+
 .buttons {
     display: flex;
     justify-content: center;
@@ -175,7 +186,8 @@ input.btnReset {
         font-size: 40px;
     }
 
-/*.notification {
+/* Notification styles */
+.notification {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -210,4 +222,41 @@ input.btnReset {
     background-color: #fef2f2;
     border-left: 4px solid #ef4444;
     color: #ef4444;
-}*/
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    animation: progress 5s linear forwards;
+}
+
+    .progress-bar.success {
+        background-color: #10b981;
+    }
+
+    .progress-bar.error {
+        background-color: #ef4444;
+    }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}

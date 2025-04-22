@@ -42,6 +42,13 @@
             setSuccess(Weight);
         }
 
+        if (Type.value.trim() === "") {
+            setError(Type, "برجاء إدخال نوع الورق");
+            valid = false;
+        } else {
+            setSuccess(Type);
+        }
+
 
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
             setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");

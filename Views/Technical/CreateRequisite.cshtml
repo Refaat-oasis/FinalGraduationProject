@@ -1,5 +1,4 @@
-﻿
-@model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO
+﻿@model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
@@ -13,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="LogIn.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="./photos/eye.jpg" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -62,132 +61,146 @@
             <h1 class="mb-0">إنشاء أمر صرف جديد</h1>
         </div>
 
+        @*     @if (TempData["SuccessMessage"] != null) *@
+        @*     { *@
+        @*         <div class="alert alert-success alert-dismissible fade show mb-4"> *@
+        @*             <i class="bx bx-check-circle"></i> @TempData["SuccessMessage"] *@
+        @*             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> *@
+        @*         </div> *@
+        @*     } *@
+        @*     @if (TempData["ErrorMessage"] != null) *@
+        @*     { *@
+        @*         <div class="alert alert-danger alert-dismissible fade show mb-4"> *@
+        @*             <i class="bx bx-error-circle"></i> @TempData["ErrorMessage"] *@
+        @*             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> *@
+        @*         </div> *@
+        @*     } *@
+
         <div class="card-body px-4 py-3">
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="alert alert-success alert-dismissible fade show mb-4">
-                    <i class="bx bx-check-circle"></i> @TempData["SuccessMessage"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="alert alert-danger alert-dismissible fade show mb-4">
-                    <i class="bx bx-error-circle"></i> @TempData["ErrorMessage"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
+        <form asp-action="CreateRequisite" asp-controller="Technical" id="requisiteForm" method="post">
 
-            <form asp-action="CreateRequisite" asp-controller="Technical" id="requisiteForm" method="post">
                 @* Success and Error Messages *@
-                @if (TempData["Success"] != null)
-                {
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i> @TempData["Success"]
-                        <input type="hidden" id="tempDataSuccess" value="true" />
+            @if (TempData["Success"] != null)
+            {
+                <div class="notification success">
+                    <div class="notification-content">
+                        <i class='bx bx-check-circle'></i> @TempData["Success"]
+
                     </div>
-                }
-                @if (TempData["Error"] != null)
-                {
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
-                        <input type="hidden" id="tempDataSuccess" value="false" />
+                    <input type="hidden" id="tempDataSuccess" value="true" />
+                    <div class="progress-bar success"></div>
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="notification error">
+                    <div class="notification-content">
+                        <i class='bx bx-error-circle'></i>
+                        <span>@TempData["Error"]</span>
                     </div>
-                }
-                <input type="hidden" id="hdnJobRole" value="@jobRole" />
-                <!-- قسم اختيار الطلبية -->
-                <div class="mb-4">
-                    <label asp-for="JobOrderId" class="textlabel fw-bold">اختر الطلبيّة</label>
-                    <select asp-for="JobOrderId" class="form-select" required>
-                        <option value="">اختر الطلبيّة</option>
-                        @foreach (var job in ViewBag.JobOrderList)
-                        {
-                            <option value="@job.JobOrderId">
-                                @job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")
-                            </option>
-                        }
-                    </select>
-                    <span asp-validation-for="JobOrderId" class="text-danger small"></span>
+                    <input type="hidden" id="tempDataSuccess" value="false" />
+
+                    <div class="progress-bar error"></div>
+
                 </div>
+            }
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+            <div asp-validation-summary="ModelOnly" class="error"></div>
 
-                <!-- قسم الملاحظات -->
-                <div class="mb-4">
-                    <label asp-for="RequisiteNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
-                    <textarea asp-for="RequisiteNotes" class="form-control" rows="3"></textarea>
-                </div>
+            <!-- قسم اختيار الطلبية -->
+            <div class="mb-4">
+                <label asp-for="JobOrderId" class="textlabel fw-bold">اختر الطلبيّة</label>
+                <select asp-for="JobOrderId" class="form-select" required>
+                    <option value="">اختر الطلبيّة</option>
+                    @foreach (var job in ViewBag.JobOrderList)
+                    {
+                        <option value="@job.JobOrderId">
+                            @job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="JobOrderId" class="text-danger small"></span>
+            </div>
 
-                <!-- قسم إضافة الأصناف -->
-                <div class="mb-4">
-                    <h2 class="fw-bold mb-3">إضافة صنف</h2>
+            <!-- قسم الملاحظات -->
+            <div class="mb-4">
+                <label asp-for="RequisiteNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
+                <textarea asp-for="RequisiteNotes" class="form-control" rows="3"></textarea>
+            </div>
 
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="textlabel">نوع الصنف</label>
-                            <select id="itemType" class="form-select">
-                                <option value="">اختر النوع</option>
-                                <option value="Paper">ورق</option>
-                                <option value="Ink">حبر</option>
-                                <option value="Supply">مستلزمات</option>
-                            </select>
+            <!-- قسم إضافة الأصناف -->
+            <div class="mb-4">
+                <h2 class="fw-bold mb-3">إضافة صنف</h2>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="textlabel">نوع الصنف</label>
+                        <select id="itemType" class="form-select">
+                            <option value="">اختر النوع</option>
+                            <option value="Paper">ورق</option>
+                            <option value="Ink">حبر</option>
+                            <option value="Supply">مستلزمات</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="textlabel">الصنف</label>
+                        <select id="itemId" class="form-select" disabled>
+                            <option value="">اختر الصنف</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="textlabel">الكمية الحالية</label>
+                        <input type="number" id="currentQuantity" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="textlabel">الكمية المطلوبة</label>
+                        <input type="number" id="itemQuantity" class="form-control" min="1" />
+                        <div id="quantityError" class="text-danger small" style="display:none;">
+                            الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
                         </div>
-
-                        <div class="col-md-6">
-                            <label class="textlabel">الصنف</label>
-                            <select id="itemId" class="form-select" disabled>
-                                <option value="">اختر الصنف</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="textlabel">الكمية الحالية</label>
-                            <input type="number" id="currentQuantity" class="form-control" readonly />
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="textlabel">الكمية المطلوبة</label>
-                            <input type="number" id="itemQuantity" class="form-control" min="1" />
-                            <div id="quantityError" class="text-danger small" style="display:none;">
-                                الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-end mt-3">
-                        <button type="button" id="addItemBtn" class="btn btn-primary px-4">إضافة</button>
                     </div>
                 </div>
 
-                <!-- جدول الأصناف المضافة -->
-                <div class="mb-4">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead style="background-color: transparent;">
-                                <tr>
-                                    <th>نوع الصنف</th>
-                                    <th>اسم الصنف</th>
-                                    <th>الكمية الحالية</th>
-                                    <th>الكمية المطلوبة</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="itemsTableBody">
-                                <!-- سيتم إضافة الصفوف هنا ديناميكيًا -->
-
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="text-end mt-3">
+                    <button type="button" id="addItemBtn" class="btn btn-primary px-4">إضافة</button>
                 </div>
+            </div>
 
-                <div id="hiddenItemsContainer"></div>
+            <!-- جدول الأصناف المضافة -->
+            <div class="mb-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead style="background-color: transparent;">
+                            <tr>
+                                <th>نوع الصنف</th>
+                                <th>اسم الصنف</th>
+                                <th>الكمية الحالية</th>
+                                <th>الكمية المطلوبة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody">
+                            <!-- سيتم إضافة الصفوف هنا ديناميكيًا -->
 
-                <!-- زر الحفظ -->
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4 py-2 me-2">حفظ الطلب</button>
-                    @* <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button> *@
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div id="hiddenItemsContainer"></div>
+
+            <!-- زر الحفظ -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-4 py-2 me-2">حفظ الطلب</button>
+                @* <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button> *@
+            </div>
+        </form>
     </div>
+</div>
 </div>
 
 
@@ -431,11 +444,33 @@
                 }
             });
         });
-                // ✅ التحقق من TempData والقيام بعملية إعادة التوجيه
-        if (tempDataSuccess && tempDataSuccess.value === "true") {
-            setTimeout(function () {
-                window.location.href = " / Inventory / ViewAllInk ";
-            }, 3000); // 3 ثواني
-        }
+                const tempDataElement = document.getElementById('tempDataSuccess');
+            const jobRoleElement = document.getElementById('hdnJobRole');
+
+            // Get values with proper fallbacks
+            const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+            const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+            console.log("Success message exists:", hasSuccessMessage);
+            console.log("Job role:", jobRole);
+
+            // Mapping of job roles to their respective URLs
+            const jobRoleRoutes = {
+                0: "/employee/AdminHome",
+                1: "/employee/inventoryManager",
+                2: "/employee/inventoryClerk",
+                3: "/employee/TechnicalManager",
+                4: "/employee/technicalClerk",
+                5: "/employee/CostManager",
+                6: "/employee/costClerk"
+            };
+
+            if (hasSuccessMessage) {
+                setTimeout(function () {
+                    const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                    window.location.href = redirectUrl;
+                }, 3000);
+            }
+        });
     </script>
 }

@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/EditPaper.css" rel="stylesheet" />
     <title>ThoTh</title>
@@ -51,23 +52,50 @@
     <h1> تعديل بيانات الورق  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditPaper" method="post" id="myform">
-        @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
+
         @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
+        @* Success and Error Messages *@
+        @* @if (TempData["Success"] != null) *@
+        @* { *@
+        @*     <div class="alert alert-success"> *@
+        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
+        @*         <input type="hidden" id="tempDataSuccess" value="true" /> *@
+        @*     </div> *@
+        @* } *@
+        @* @if (TempData["Error"] != null) *@
+        @* { *@
+        @*     <div class="alert alert-danger"> *@
+        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
+        @*         <input type="hidden" id="tempDataSuccess" value="false" /> *@
+        @*     </div> *@
+        @* } *@
+        @* <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
+        @* <div asp-validation-summary="ModelOnly" class="error"></div> *@
 
 
         <input type="hidden" asp-for="PaperId" />
@@ -96,9 +124,9 @@
         <div class="inputBox">
             <label asp-for="@Model.Colored" class="textlabel"></label>
             <select asp-for="@Model.Colored" class="place">
-                <option value="none">بدون لون</option>
                 <option value="white">أبيض</option>
                 <option value="red">أحمر</option>
+                <option value="green">أخضر</option>
                 <option value="yellow">أصفر</option>
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
@@ -135,13 +163,13 @@
             <select asp-for="Activated" id="options" class="place">
                 @if (Model.Activated)
                 {
-                <option value="true" selected>مفعل</option>
-                <option value="false">غير مفعل</option>
+                    <option value="true" selected>مفعل</option>
+                    <option value="false">غير مفعل</option>
                 }
                 else
                 {
-                <option value="false" selected>غير مفعل</option>
-                <option value="true">مفعل</option>
+                    <option value="false" selected>غير مفعل</option>
+                    <option value="true">مفعل</option>
                 }
             </select>
         </div>

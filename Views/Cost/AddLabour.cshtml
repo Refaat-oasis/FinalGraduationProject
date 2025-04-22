@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -60,19 +60,32 @@
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
         }
+
         @if (TempData["Error"] != null)
         {
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
                 <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
             </div>
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
         <div class="text">
             <h1>إضافة عامل جديد</h1>
         </div>
@@ -99,6 +112,6 @@
                 <input type="reset" value="إعادة إدخال" class="btnReset" />
             </div>
         </div>
-</form>
+    </form>
 </div>
 <script src="~/js/Cost/AddLabour.js"></script>

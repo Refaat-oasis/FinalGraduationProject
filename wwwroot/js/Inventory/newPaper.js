@@ -57,19 +57,19 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(Weight);
         }
 
-        if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
-            setError(Quantity, "برجاء إدخال كمية الورق  ");
-            valid = false;
-        } else {
-            setSuccess(Quantity);
-        }
+        //if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
+        //    setError(Quantity, "برجاء إدخال كمية الورق  ");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Quantity);
+        //}
 
-        if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
-            setError(Price, "برجاء إدخال سعر الورق ");
-            valid = false;
-        } else {
-            setSuccess(Price);
-        }
+        //if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
+        //    setError(Price, "برجاء إدخال سعر الورق ");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Price);
+        //}
 
         if (Colored.value.trim() === "") {
             setError(Colored, "برجاء إدخال لون الورق");
@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(ReorderPoint);
         }
 
-        if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
-            setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
-            valid = false;
-        } else {
-            setSuccess(TotalBalance);
-        }
+        //if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
+        //    setError(TotalBalance, "برجاء إدخال قيمة أكبر من الصفر");
+        //    valid = false;
+        //} else {
+        //    setSuccess(TotalBalance);
+        //}
 
         return valid;
     }

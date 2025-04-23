@@ -4710,7 +4710,6 @@ C:\Users\ECC\OneDrive\Desktop\proj\FinalGraduationProject\obj\Debug\net9.0\ref\T
 C:\Users\ECC\OneDrive\Desktop\proj\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-grc9eykgi7.gz
 C:\Users\ECC\OneDrive\Desktop\proj\FinalGraduationProject\obj\Debug\net9.0\compressed\qbsxc6zff3-51w47f31vy.gz
 C:\Users\ECC\OneDrive\Desktop\proj\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-b6xly5aep0.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\qbsxc6zff3-51w47f31vy.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\shahd\Desktop\laaastttt\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.AssemblyReference.cache
 C:\Users\shahd\Desktop\laaastttt\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.GeneratedMSBuildEditorConfig.editorconfig
@@ -8215,7 +8214,6 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\e70hfup3nb-akolmkrhej.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\1l5jzb9n0a-gijowyzy9x.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\sldk2hcltg-tmafzvopq4.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-n3mk9p5a5d.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3ubkw9895f-9ubra5kno8.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\kj10orhuvu-9ubra5kno8.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\vmhns9fjru-3t18g42i7c.gz
@@ -11103,18 +11101,14 @@ C:\Users\Mira\Desktop\GP Last\FinalGraduationProject\obj\Debug\net9.0\compressed
 C:\Users\Mira\Desktop\GP Last\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-n87rezonxd.gz
 C:\Users\Mira\Desktop\GP Last\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-3snb4y2eu5.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\gj6jwyaagd-ejcq77dx5x.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b3syx999cn-7lq03q6d6l.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\t4rwhzwlm0-jnrhlgupzj.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\yvojsbjw2z-df04rfwyq8.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\dkqxwr3hwq-oyjft2c8pl.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b6wwng7kjp-hxudwrs2g7.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-phwv56moes.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\vqoalrmg43-5nus9rbsab.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\yx3wwi9og7-tj30r0gmw1.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\fyhgnovqg6-h8h4ktgwvv.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q100uh0nll-ilitzpeloe.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-n87rezonxd.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-3snb4y2eu5.gz
 C:\Users\Compu Market\Desktop\Gp31\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.csproj.AssemblyReference.cache
 C:\Users\Compu Market\Desktop\Gp31\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Compu Market\Desktop\Gp31\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.AssemblyInfoInputs.cache
@@ -13601,23 +13595,12 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\new\FinalGraduationProj
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\new\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\new\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\new\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\holn2ycktz-58jzrhnbaz.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\wuyea7w9l7-9b6fg71g31.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\urp3u2rv2e-ft1q14wsrg.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\xljuy4axw5-l996pa8f9d.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ncglpcehx4-l8sbxs429o.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\qzols184xp-l8sbxs429o.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\xcwc7fpbpc-58jzrhnbaz.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\i4t4n4wmqv-1q2jvtmd9w.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ywkd8ikajd-br7lm9oxxg.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\lbg0v9001x-br7lm9oxxg.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\jxbomy881g-58jzrhnbaz.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b96qb1uoig-7m9cwuk2qv.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-kqwapd66a5.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-gy430ck0tk.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\sdqy9s2ps2-apv7u4ns8d.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-647xpa87l0.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\lwmp6zqse4-hqn9x11d2t.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\upbjjn82of-58jzrhnbaz.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\1rkcmktk9d-9ubra5kno8.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\25gxhuegeh-3ystkpl21l.gz
@@ -13625,12 +13608,7 @@ C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\cojxfrsju5-9ubra5kno8.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-lo7l3evlk7.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-4bv3hffdcb.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-a2cbtav5k7.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-hpf7mj3mx8.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\d8xlm8olav-jurp68e3t4.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\2ynxzqyove-7ccwj5ebu7.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-7t2ckz1glm.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-1iqcs2lsco.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\gj6jwyaagd-ejcq77dx5x.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\holn2ycktz-58jzrhnbaz.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\wuyea7w9l7-9b6fg71g31.gz
@@ -13676,7 +13654,6 @@ D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-hpf7m
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\d8xlm8olav-jurp68e3t4.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\2ynxzqyove-7ccwj5ebu7.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-7t2ckz1glm.gz
-C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-f86rscx085.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\7vdkt1swif-flcu57otu3.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\fk4qjgm0u7-we2bhsvrwi.gz
 C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\4q3jwkanni-ez0o1tbrdb.gz
@@ -14952,3 +14929,26 @@ C:\Users\shahd\Desktop\neeeew\FinalGraduationProject\obj\Debug\net9.0\refint\Tho
 C:\Users\shahd\Desktop\neeeew\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\shahd\Desktop\neeeew\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\shahd\Desktop\neeeew\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\holn2ycktz-xtdfdb5x2c.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\wuyea7w9l7-cgufisfyu3.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\urp3u2rv2e-lsyoyezr5g.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b3syx999cn-dumqzql9ua.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\i4t4n4wmqv-newgxmr90l.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\ywkd8ikajd-dk35oa45k4.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\lbg0v9001x-dk35oa45k4.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\b96qb1uoig-hw658jfd3e.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-dbjaem119t.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-t3q3ozgh5c.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-dqgdxumhyd.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\vqoalrmg43-9cxrx6oyx1.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-nncxvjgyn9.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-cnhawuavuy.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-9jan9bblr7.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\lwmp6zqse4-wedg8odsqs.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-lvsqck0e8y.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-fmflrbi499.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-jxta9dxvug.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-hyi8nl8yuw.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\d8xlm8olav-wtxeukw5he.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\qbsxc6zff3-4ebjfx92nh.gz
+C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-pnwd7hvh19.gz

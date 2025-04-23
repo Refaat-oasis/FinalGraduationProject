@@ -5,6 +5,8 @@ using ThothSystemVersion1.Database;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.ViewModels;
 using ThothSystemVersion1.DataTransfereObject;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using ThothSystemVersion1.Utilities;
 namespace ThothSystemVersion1.BusinessLogicLayers
 { 
      public class AdminBusinessLogicLayer : AdminService
@@ -23,36 +25,51 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return employeesList;
 
         }
-
         public bool AddEmployee(EmployeeDTO employee)
         {
-            Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
-            Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
-
-            if (foundEmployeeById != null || foundEmployeeByUsername != null)
-            {
-                // Employee with the same ID or username already exists
-                return false;
-            }
-
             if (employee == null)
             {
                 throw new ArgumentNullException(nameof(employee));
             }
 
-            Employee addedOne = new Employee();
-            addedOne.EmployeeName = employee.EmployeeName;
-            addedOne.EmployeeUserName = employee.EmployeeUserName;
-            addedOne.EmployeePassword = employee.EmployeePassword;
-            addedOne.EmployeeId = employee.EmployeeId;
-            addedOne.JobRole = employee.JobRole;
-            addedOne.Activated = true;
+            Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
+
+            Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
+
+            if (foundEmployeeById != null || foundEmployeeByUsername != null)
+            {
+                return false;
+            }
+
+            string hashedPassword = Hashing.HashPassword(employee.EmployeePassword);
+
+            Employee addedOne = new Employee
+            {
+                EmployeeName = employee.EmployeeName,
+                EmployeeUserName = employee.EmployeeUserName,
+                EmployeePassword = hashedPassword,
+                EmployeeId = employee.EmployeeId,
+                JobRole = employee.JobRole,
+                Activated = true
+            };
 
             _context.Employees.Add(addedOne);
             _context.SaveChanges();
 
-            return true;
+            // ✅ Save plain username and password in file (for record or testing)
+            string fileName = $"{employee.EmployeeUserName}.txt";
+            string filePath = Path.Combine("EmployeeRecords", fileName);
+            Directory.CreateDirectory("EmployeeRecords");
 
+            string fileContent = $"الرقم القومي للموظف : {addedOne.EmployeeId}\n" +
+                                 $"الاسم: {addedOne.EmployeeName}\n" +
+                                 $"اسم المستخدم للبرنامج: {employee.EmployeeUserName}\n" + // original
+                                 $"كلمة المرور: {employee.EmployeePassword}\n" + // original
+                                 $"الدور الوظيفي المحدد: {addedOne.JobRole}\n";
+
+            File.WriteAllText(filePath, fileContent);
+
+            return true;
         }
 
         public Employee GetEmployeeById(string id)
@@ -68,8 +85,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+
                 // Log the exception (ex) here
                 throw new ApplicationException("An error occurred while fetching the employee.", ex);
+
             }
         }
 
@@ -87,15 +107,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 {
                     return (false, "الموظف غير موجود.");
                 }
-                //if (existingEmployeeUserName != null) {
-
-                //    return false;
-                //}
 
                 // Update properties
-                //existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
                 existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
-                existingEmployee.EmployeePassword = updatedEmployee.EmployeePassword;
+                //existingEmployee.EmployeePassword = updatedEmployee.EmployeePassword;
                 existingEmployee.Activated = updatedEmployee.Activated;
                 _context.Employees.Update(existingEmployee); // Mark the entity as modified
                 _context.SaveChanges(); // Save changes to the database
@@ -103,8 +119,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+
                 // Log the exception (ex) here
                 return (false, $"حدث خطأ: {ex.Message}");
+
             }
         }
 

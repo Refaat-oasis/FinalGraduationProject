@@ -44,17 +44,17 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddEmployee()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0)
-            {
+            //int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            //if (jobRole == 0)
+            //{
 
             return View("~/Views/Admin/AddEmployee.cshtml");
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+            //    return RedirectToAction("UnauthorizedAccess", "employee");
+            //}
         }
 
         [HttpPost]

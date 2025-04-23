@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Threading.Tasks;
 using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
@@ -15,56 +16,65 @@ namespace ThothSystemVersion1.Controllers
         }
         public IActionResult EmployeeLogin(string EmployeeUserName, string EmployeePassword)
         {
-            
+            // Hash the username to match stored version
+         
+
+            // Try to find the employee by hashed username only
             Employee loggedEmployee = context.Employees.FirstOrDefault(
-                e =>e.EmployeeUserName == EmployeeUserName && e.EmployeePassword == EmployeePassword);
+                e => e.EmployeeUserName == EmployeeUserName);
 
             if (loggedEmployee != null)
             {
-                if (loggedEmployee.Activated)
+                // Verify password
+                bool passwordMatch = Hashing.VerifyPassword(EmployeePassword, loggedEmployee.EmployeePassword);
+
+                if (!passwordMatch)
                 {
-                    HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
-                    HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName.ToString());
-                    HttpContext.Session.SetString("EmployeeUserName", loggedEmployee.EmployeeUserName.ToString());
-                    HttpContext.Session.SetInt32("JobRole", (int)loggedEmployee.JobRole);
-
-                    switch (loggedEmployee.JobRole)
-                    {
-                        case JobRole.Admin: // Admin
-                            return RedirectToAction("AdminHome", "employee");
-
-                        case JobRole.InventoryClerk: // Inventory
-                            return RedirectToAction("inventoryClerk","employee");
-                        case JobRole.InventoryManager: // Inventory Manager
-                            return RedirectToAction("inventoryManager", "employee");
-
-                        case JobRole.TechnicalClerk: // Technical
-                            return RedirectToAction("technicalClerk");
-                        case JobRole.TechnicalManager: // Technical Manager
-                            return RedirectToAction("TechnicalManager", "employee");
-
-                        case JobRole.CostClerk: // Cost
-                            return RedirectToAction("costClerk", "employee");
-                        case JobRole.CostManager:
-                            return RedirectToAction("CostManager", "employee");
-                        case JobRole.AcoountingManager: // Accounting
-                            return RedirectToAction("AccountingManager", "employee");
-                        case JobRole.AccountingClerk:
-                            return RedirectToAction("AccountingClerk", "employee");
-                        default:
-                            string message = "هناك خظأ في البيانات المستخدمة";
-                            TempData["Error"] = message;
-                            return RedirectToAction("LoginPage", "Employee");
-                    }
-                }else{
-                    string message = "هذا الحساب غير مفعل بعد، يرجى التواصل مع مدير النظام لتفعيل الحساب";
-                    TempData["Error"] = message;
+                    TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
                     return RedirectToAction("LoginPage", "Employee");
                 }
 
-            }else{
-                string message = "اسم المستخدم أو كلمة المرور غير صحيحة";
-                TempData["Error"] = message;
+                if (!loggedEmployee.Activated)
+                {
+                    TempData["Error"] = "هذا الحساب غير مفعل بعد، يرجى التواصل مع مدير النظام لتفعيل الحساب";
+                    return RedirectToAction("LoginPage", "Employee");
+                }
+
+                // Set session
+                HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
+                HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName);
+                HttpContext.Session.SetString("EmployeeUserName", EmployeeUserName); // use original not hashed
+                HttpContext.Session.SetInt32("JobRole", (int)loggedEmployee.JobRole);
+
+                // Redirect based on job role
+                switch (loggedEmployee.JobRole)
+                {
+                    case JobRole.Admin:
+                        return RedirectToAction("AdminHome", "employee");
+                    case JobRole.InventoryClerk:
+                        return RedirectToAction("inventoryClerk", "employee");
+                    case JobRole.InventoryManager:
+                        return RedirectToAction("inventoryManager", "employee");
+                    case JobRole.TechnicalClerk:
+                        return RedirectToAction("technicalClerk");
+                    case JobRole.TechnicalManager:
+                        return RedirectToAction("TechnicalManager", "employee");
+                    case JobRole.CostClerk:
+                        return RedirectToAction("costClerk", "employee");
+                    case JobRole.CostManager:
+                        return RedirectToAction("CostManager", "employee");
+                    case JobRole.AcoountingManager:
+                        return RedirectToAction("AccountingManager", "employee");
+                    case JobRole.AccountingClerk:
+                        return RedirectToAction("AccountingClerk", "employee");
+                    default:
+                        TempData["Error"] = "هناك خظأ في البيانات المستخدمة";
+                        return RedirectToAction("LoginPage", "Employee");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
                 return RedirectToAction("LoginPage", "Employee");
             }
         }

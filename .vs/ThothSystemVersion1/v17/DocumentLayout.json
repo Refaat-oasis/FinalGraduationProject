@@ -34,7 +34,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -59,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\THE KNOWER\\Desktop\\thoth system\\TheProject\\ThothSystemVersion1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

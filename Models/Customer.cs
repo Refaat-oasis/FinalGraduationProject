@@ -27,5 +27,9 @@ public partial class Customer
     [Display(Name = "التفعيل")]
     public bool Activated { get; set; }
 
+    [Display(Name = "مصدر العميل")]
+    public string? CustomerSource { get; set; }
+
+
     public virtual ICollection<JobOrder> JobOrders { get; set; } = new List<JobOrder>();
 }

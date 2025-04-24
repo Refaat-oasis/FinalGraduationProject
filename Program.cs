@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Hubs;
 
 namespace ThothSystemVersion1

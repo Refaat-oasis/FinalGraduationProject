@@ -36,6 +36,9 @@ public partial class MiscellaneousExpense
     [Display(Name = "اجمالي المصروفات")]
     public decimal TotalExpenses { get; set; }
 
+    [Display(Name = "اخرى")]
+    public decimal? Other { get; set; }
+
 
     [Display(Name = "النسبة")]
     public decimal Percentage { get; set; }
@@ -43,8 +46,7 @@ public partial class MiscellaneousExpense
     [Display(Name = "الجملة")]
     public decimal TotalAfterPercentage { get; set; }
 
-
-    [Display(Name = "وزارةا لمالية")]
+    [Display(Name = "وزارة المالية")]
     public decimal MinistryOfFinance { get; set; }
 
     [Display(Name = "صندوق تحسين العمال")]

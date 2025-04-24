@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using AspNetCoreGeneratedDocument;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 using ThothSystemVersion1.BusinessLogicLayers;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
-
 namespace ThothSystemVersion1.Controllers
 {
     public class InventoryController : Controller
@@ -238,6 +239,7 @@ namespace ThothSystemVersion1.Controllers
 
             InventoryReportViewModel invViewModel = _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
 
+            ExportToExcelItems(invViewModel);
             return View(invViewModel);
 
         }
@@ -245,24 +247,22 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult purchaseall()
         {
-            //int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            //if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            //{
-            ViewBag.PaperList = _businessLogicL.GetActivePapers();
-            ViewBag.InkList = _businessLogicL.GetActiveInks();
-            ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
-            ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                ViewBag.PaperList = _businessLogicL.GetActivePapers();
+                ViewBag.InkList = _businessLogicL.GetActiveInks();
+                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
             return View();
-            //}
-            //else
-            //{
+            }else{
 
-            //    return RedirectToAction("UnauthorizedAccess", "employee");
-            //}
+                return RedirectToAction("UnauthorizedAccess", "employee");
+    }
 
 
-        }
+}
 
         [HttpPost]
         public IActionResult purchaseall(purchaseOrderDTO dto)
@@ -816,6 +816,136 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = result.Message;
 
             return RedirectToAction("PhysicalCount");
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        //Views_Inventory_InventoryPrinting section 
+
+        //public IActionResult ExportToExcelItems(InventoryReportViewModel viewModel)
+        //{
+        //    try {
+
+        //        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+        //        using (var package = new ExcelPackage())
+        //        {
+        //            var worksheet = package.Workbook.Worksheets.Add($"تقارير العناصر");
+
+        //            // Add Headers
+        //            worksheet.Cells[1, 1].Value = "اسم المورد";
+        //            worksheet.Cells[1, 2].Value = "اسم الموظف";
+        //            worksheet.Cells[1, 3].Value = "المبلغ المتبقي";
+        //            worksheet.Cells[1, 4].Value = "المبلغ المدفوع";
+        //            worksheet.Cells[1, 5].Value = "الحساب";
+        //            worksheet.Cells[1, 6].Value = "السعر";
+        //            worksheet.Cells[1, 7].Value = "تاريخ الشراء";
+        //            worksheet.Cells[1, 8].Value = "تفاصيل الشراء";
+
+
+        //            // Add Data
+        //            for (int i = 0; i < viewModel.modifiedPurchaseOrderList.Count; i++)
+        //            {
+        //                worksheet.Cells[i + 2, 1].Value = viewModel.modifiedPurchaseOrderList[i].Vendorname;
+        //                worksheet.Cells[i + 2, 2].Value = viewModel.modifiedPurchaseOrderList[i].EmployeeName;
+        //                worksheet.Cells[i + 2, 3].Value = viewModel.modifiedPurchaseOrderList[i].RemainingAmount;
+        //                worksheet.Cells[i + 2, 4].Value = viewModel.modifiedPurchaseOrderList[i].PaidAmount;
+        //                worksheet.Cells[i + 2, 5].Value = viewModel.modifiedPurchaseOrderList[i].balance;
+        //                worksheet.Cells[i + 2, 6].Value = viewModel.modifiedPurchaseOrderList[i].price;
+        //                worksheet.Cells[i + 2, 7].Value = viewModel.modifiedPurchaseOrderList[i].PurchaseDate;
+        //                worksheet.Cells[i + 2, 8].Value = viewModel.modifiedPurchaseOrderList[i].PurchaseNotes;
+
+        //            }
+
+        //            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+        //            var stream = new MemoryStream(package.GetAsByteArray());
+        //            return File(stream,
+        //                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        //                "Export.xlsx");
+        //        }
+
+        //    } catch (Exception ex)
+        //    {
+        //        WriteException.WriteExceptionToFile(ex);
+        //        return null;
+        //    }
+        //}
+        public IActionResult ExportToExcelItems(InventoryReportViewModel viewModel)
+        {
+            try
+            {
+                // 1) Configure EPPlus license BEFORE creating any ExcelPackage
+                // Noncommercial personal use
+                ExcelPackage.License.SetNonCommercialPersonal("Your Name");
+                // —or— for organizational noncommercial use:
+                // ExcelPackage.License.SetNonCommercialOrganization("Your Organization"); :contentReference[oaicite:0]{index=0}
+
+                // 2) Build the Excel package
+                using var package = new ExcelPackage();
+                var ws = package.Workbook.Worksheets.Add("تقارير العناصر");
+
+                // Add headers
+                ws.Cells[1, 1].Value = "اسم المورد";
+                ws.Cells[1, 2].Value = "اسم الموظف";
+                ws.Cells[1, 3].Value = "المبلغ المتبقي";
+                ws.Cells[1, 4].Value = "المبلغ المدفوع";
+                ws.Cells[1, 5].Value = "الحساب";
+                ws.Cells[1, 6].Value = "السعر";
+                ws.Cells[1, 7].Value = "تاريخ الشراء";
+                ws.Cells[1, 8].Value = "تفاصيل الشراء";
+
+                // Populate rows
+                for (int i = 0; i < viewModel.modifiedPurchaseOrderList.Count; i++)
+                {
+                    var item = viewModel.modifiedPurchaseOrderList[i];
+                    ws.Cells[i + 1, 1].Value = item.Vendorname;
+                    ws.Cells[i + 1, 2].Value = item.EmployeeName;
+                    ws.Cells[i + 1, 3].Value = item.RemainingAmount;
+                    ws.Cells[i + 1, 4].Value = item.PaidAmount;
+                    ws.Cells[i + 1, 5].Value = item.balance;
+                    ws.Cells[i + 1, 6].Value = item.price;
+                    ws.Cells[i + 1, 7].Value = item.PurchaseDate;
+                    ws.Cells[i + 1, 8].Value = item.PurchaseNotes;
+                }
+
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+
+                // 3) Prepare file contents and name
+                byte[] fileContents = package.GetAsByteArray();
+                string fileName = $"تقرير الصنف_{DateTime.Now:yyyy-MM-dd}.xlsx";
+
+
+                // Get the base application directory
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+                // Create Exceptions directory if it doesn't exist
+                string exceptionsRoot = Path.Combine(basePath, "exports");
+                Directory.CreateDirectory(exceptionsRoot);
+
+
+                // 4) Save a server-side copy under wwwroot/exports
+                string exportsFolder = Path.Combine(basePath, "exports");
+                if (!Directory.Exists(exportsFolder))
+                    Directory.CreateDirectory(exportsFolder);
+
+                string fullPath = Path.Combine(exportsFolder, fileName);
+                System.IO.File.WriteAllBytes(fullPath, fileContents);
+                // `fullPath` is now the physical path on disk
+
+                // 5) Return the Excel file to the browser
+                return File(
+                    fileContents,
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    fileName
+                );
+            }
+            catch (Exception ex)
+            {
+                // Log your exception as needed...
+                return StatusCode(500, "An error occurred while generating the report.");
+            }
         }
     }
 }

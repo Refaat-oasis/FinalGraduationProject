@@ -80,22 +80,22 @@ GO
 ---------------------------------
 INSERT INTO Employee (employeeID, employeeUserName, employeePassword, employeeName, jobRole)
 VALUES
-('EMP001', 'ali_ahmed', 'password123', 'علي أحمد', 0),
-('EMP002', 'fatima_mohamed', 'password123', 'فاطمة محمد', 0),
-('EMP003', 'khaled_saeed', 'password123', 'خالد سعيد', 0),
-('EMP004', 'layla_abdullah', 'password123', 'ليلى عبدالله', 0),
-('EMP005', 'mohamed_hassan', 'password123', 'محمد حسن', 0),
-('EMP006', 'noura_khaled', 'password123', 'نورة خالد', 0),
-('EMP007', 'saeed_ali', 'password123', 'سعيد علي', 1),
-('EMP008', 'ahmed_mahmoud', 'password123', 'أحمد محمود', 2),
-('EMP009', 'mona_abdelrahman', 'password123', 'منى عبدالرحمن', 3),
-('EMP010', 'abdullah_sulaiman', 'password123', 'عبدالله سليمان', 1),
-('EMP011', 'hanna_fouad', 'password123', 'هناء فؤاد', 2),
-('EMP012', 'yasser_nasser', 'password123', 'ياسر ناصر', 3),
-('EMP013', 'sara_khaled', 'password123', 'سارة خالد', 1),
-('EMP014', 'omar_mohamed', 'password123', 'عمر محمد', 2),
-('EMP015', 'maryam_ali', 'password123', 'مريم علي', 3),
-('EMP016', 'fahad_abdulaziz', 'password123', 'فهد عبدالعزيز', 1),
+('EMP001', 'admin', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'علي أحمد', 0),
+('EMP002', 'fatima_mohamed', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'فاطمة محمد', 0),
+('EMP003', 'khaled_saeed', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'خالد سعيد', 1),
+('EMP004', 'layla_abdullah', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'ليلى عبدالله', 2),
+('EMP005', 'mohamed_hassan', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'محمد حسن', 3),
+('EMP006', 'noura_khaled', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'نورة خالد', 4),
+('EMP007', 'saeed_ali', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'سعيد علي', 5),
+('EMP008', 'ahmed_mahmoud', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'أحمد محمود', 6),
+('EMP009', 'mona_abdelrahman', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'منى عبدالرحمن', 7),
+('EMP010', 'abdullah_sulaiman', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'عبدالله سليمان', 8),
+('EMP011', 'hanna_fouad', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'هناء فؤاد', 2),
+('EMP012', 'yasser_nasser', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'ياسر ناصر', 3),
+('EMP013', 'sara_khaled', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'سارة خالد', 1),
+('EMP014', 'omar_mohamed', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'عمر محمد', 2),
+('EMP015', 'maryam_ali', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'مريم علي', 3),
+('EMP016', 'fahad_abdulaziz', '5sqxH4KfcW9zCLTad25FHQk5X+OTyjOdy5D3gGnYzx92RUjH4+Y9jFvhZbESSpil', 'فهد عبدالعزيز', 1),
 ('EMP017', 'nasser_saad', 'password123', 'ناصر سعد', 2),
 ('EMP018', 'latifa_ahmed', 'password123', 'لطيفة أحمد', 3),
 ('EMP019', 'abdelrahman_khaled', 'password123', 'عبدالرحمن خالد', 1),
@@ -374,7 +374,7 @@ GO
 ---------------------------------
 -- Insert into Paper Table
 ---------------------------------
-INSERT INTO Paper (name, type, weight, totalBalance, colored, quantity, price, reorderPoint)
+INSERT INTO Paper (name, size, weight, totalBalance, colored, quantity, price, reorderPoint)
 VALUES
 ('ورق أبيض', 'A4', 80.00, 1000.00, 'لا', 100, 10.00, 100.00),
 ('ورق ملون', 'A4', 80.00, 500.00, 'نعم', 50, 15.00, 50.00),

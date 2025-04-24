@@ -36,6 +36,10 @@ public partial class JobOrder
     [Display(Name = "الرقم التعريفي الخاص بالموظف")]
     public string? EmployeeId { get; set; }
 
+    [Display(Name ="مصدر امر الطلبية")]
+    public string? JobOrderSource { get; set; }
+
+
     public virtual Customer? Customer { get; set; }
 
     public virtual Employee? Employee { get; set; }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ThothSystemVersion1.Models.Labour>
 
 @{
-    ViewData["Title"] = "قائمة العمليات العمالية";
+    ViewData["Title"] = "Thoth";
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
 }
@@ -12,11 +12,11 @@
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Cost/viewAllLabour.css" rel="stylesheet" />
-
-</head>
+}
 <div class="container">
     <div class="arrow">
         @{
@@ -54,7 +54,6 @@
                     <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Price)</th>
                     <th>@Html.DisplayNameFor(model => model.First().LabourProcessName)</th>
-                    <th>@Html.DisplayNameFor(model => model.First().LabourId)</th>
 
                 </tr>
             </thead>
@@ -69,7 +68,6 @@
                         <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@item.Price.ToString("C")</td>
                         <td>@item.LabourProcessName</td>
-                        <td>@item.LabourId</td>
 
                     </tr>
                 }

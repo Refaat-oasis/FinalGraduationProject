@@ -168,6 +168,9 @@
     }
 </style>
 <head>
+    <title>Thoth</title>
+
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
 </head>
@@ -200,8 +203,8 @@
                     <tr>
 
                         <td>
-                              <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
-                           
+                            <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
+
                         </td>
                         <td>
                             <a class="editBtn" href="@Url.Action("addMachineAndLabourExpense", new { jobOrderId = job.JobOrderId })">تفاصيل المقايسة </a>

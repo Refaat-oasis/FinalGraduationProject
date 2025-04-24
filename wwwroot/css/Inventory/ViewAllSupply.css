@@ -39,20 +39,21 @@
     }
 
 .reorderMsg {
-    left: 60%;
-    background-color: transparent;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F8E1C4;
     font-size: 25px;
     max-width: 500px;
     min-width: 200px;
+    min-height: 40px;
     padding: 15px;
     border-radius: 10px;
     display: inline-block;
     text-align: center;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    min-height: 40px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 #reorderMessages .close-btn {

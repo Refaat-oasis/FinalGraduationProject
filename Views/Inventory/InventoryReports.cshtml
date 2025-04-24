@@ -5,8 +5,8 @@
 
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
+    ViewData["Title"] = "Thoth";
 
-    ViewData["Title"] = "تقارير المخزون";
 }
 
 @{
@@ -22,37 +22,37 @@
 }
 @model ThothSystemVersion1.ViewModels.InventoryReportViewModel
 
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="~/css/Inventory/InventoryReports.css" rel="stylesheet" />
-
-</head>
+    <link href="~/css/Inventory/inventoryReports.css" rel="stylesheet" />
+}
 
 
 <div class="container">
- @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
 
-            } // inventory manager
-            else if (jobRole == 1)
-            {
-                <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-}
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+    }
     <div class="mainBox">
         <h1>تقارير المخازن</h1>
         <div class="toggle-btn" onclick="toggleForm()">
 
             <span>حركة المخزون <i class='bx bx-chevrons-down'></i></span>
         </div>
- 
+
         <div id="formSection" class="hiddenBox">
             <form method="post" asp-action="inventoryReports">
                 <div class="rowCont">

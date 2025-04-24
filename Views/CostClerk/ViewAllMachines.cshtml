@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ThothSystemVersion1.Models.Machine>
 
 @{
-    ViewData["Title"] = "قائمة الماكينات";
+    ViewData["Title"] = "Thoth";
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 }
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Cost/viewAllMachines.css" rel="stylesheet" />
-
-</head>
+}
 <div class="container">
     <div class="arrow">
         <a asp-controller="employee" asp-action="costClerk" class="back">
@@ -28,7 +28,6 @@
                     <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Price)</th>
                     <th>@Html.DisplayNameFor(model => model.First().MachineProcessName)</th>
-                    <th>@Html.DisplayNameFor(model => model.First().MachineId)</th>
 
                 </tr>
             </thead>
@@ -40,7 +39,6 @@
                         <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@item.Price.ToString("C")</td>
                         <td>@item.MachineProcessName</td>
-                        <td>@item.MachineId</td>
 
                     </tr>
                 }

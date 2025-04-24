@@ -10,13 +10,13 @@
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
-    ViewData["Title"] = "تفاصيل التشغيلة";
+    ViewData["Title"] = "Thoth";
 }
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Technical/showJobOrder.css" rel="stylesheet" />
-
-</head>
+}
 <div class="container">
     <div class="arrow">
         @{
@@ -125,7 +125,7 @@
                 else
                 {
                     <tr>
-                        <td>لا توجد بيانات</td>
+                        <td colspan="2">لا توجد بيانات</td>
                     </tr>
                 }
             </tbody>
@@ -133,62 +133,62 @@
     </div>
 
     <!-- Labours Table -->
-    <div class="mainBox">
-        <h2>العمليات</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>اسم العمليه</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Labours != null && Model.Labours.Any())
-                {
-                    foreach (var labour in Model.Labours)
-                    {
-                        <tr>
-                            <td>@labour.LabourProcessName</td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td>لا توجد بيانات</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    @* <div class="mainBox"> *@
+    @*     <h2>العمليات</h2> *@
+    @*     <table> *@
+    @*         <thead> *@
+    @*             <tr> *@
+    @*                 <th>اسم العمليه</th> *@
+    @*             </tr> *@
+    @*         </thead> *@
+    @*         <tbody> *@
+    @*             @if (Model.Labours != null && Model.Labours.Any()) *@
+    @*             { *@
+    @*                 foreach (var labour in Model.Labours) *@
+    @*                 { *@
+    @*                     <tr> *@
+    @*                         <td>@labour.LabourProcessName</td> *@
+    @*                     </tr> *@
+    @*                 } *@
+    @*             } *@
+    @*             else *@
+    @*             { *@
+    @*                 <tr> *@
+    @*                     <td>لا توجد بيانات</td> *@
+    @*                 </tr> *@
+    @*             } *@
+    @*         </tbody> *@
+    @*     </table> *@
+    @* </div> *@
 
-    <!-- Machines Table -->
-    <div class="mainBox">
-        <h2>الآلات</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>اسم الآلة</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Machines != null && Model.Machines.Any())
-                {
-                    foreach (var machine in Model.Machines)
-                    {
-                        <tr>
-                            <td>@machine.MachineProcessName</td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td>لا توجد بيانات</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    @* <!-- Machines Table --> *@
+    @* <div class="mainBox"> *@
+    @*     <h2>الآلات</h2> *@
+    @*     <table class="table table-bordered"> *@
+    @*         <thead> *@
+    @*             <tr> *@
+    @*                 <th>اسم الآلة</th> *@
+    @*             </tr> *@
+    @*         </thead> *@
+    @*         <tbody> *@
+    @*             @if (Model.Machines != null && Model.Machines.Any()) *@
+    @*             { *@
+    @*                 foreach (var machine in Model.Machines) *@
+    @*                 { *@
+    @*                     <tr> *@
+    @*                         <td>@machine.MachineProcessName</td> *@
+    @*                     </tr> *@
+    @*                 } *@
+    @*             } *@
+    @*             else *@
+    @*             { *@
+    @*                 <tr> *@
+    @*                     <td>لا توجد بيانات</td> *@
+    @*                 </tr> *@
+    @*             } *@
+    @*         </tbody> *@
+    @*     </table> *@
+    @* </div> *@
     @if (Model.QuantityBridges?.Any() == true && Model.RequisiteId != null)
     {
         @* <h2>الكميات المسحوبة</h2> *@
@@ -495,9 +495,8 @@
                     <th>تكلفة الآلة</th>
                     <th>تكلفة العمالة</th>
                     <th>ساعات العمل</th>
-                    <th>معرف العملية</th>
-
-                    <!-- إضافة أعمدة أخرى حسب الحاجة -->
+                    <th>اسم الآلة</th>
+                    <th>اسم العملية</th>
                 </tr>
             </thead>
             <tbody>
@@ -507,11 +506,38 @@
                         <td>@pb.TotalMachineValue</td>
                         <td>@pb.TotalLabourValue</td>
                         <td>@pb.NumberOfHours</td>
-                        <td>@pb.ProcessBridgeId</td>
 
+                        <td>
+                            @if (Model.Machines != null && Model.Machines.Any())
+                            {
+                                foreach (var machine in Model.Machines)
+                                {
+                                    <div>@machine.MachineProcessName</div>
+                                }
+                            }
+                            else
+                            {
+                                <div>لا توجد بيانات</div>
+                            }
+                        </td>
+
+                        <td>
+                            @if (Model.Labours != null && Model.Labours.Any())
+                            {
+                                foreach (var labour in Model.Labours)
+                                {
+                                    <div>@labour.LabourProcessName</div>
+                                }
+                            }
+                            else
+                            {
+                                <div>لا توجد بيانات</div>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
+
 </div>

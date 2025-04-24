@@ -6,9 +6,12 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @RenderSection("HeadContent", required: false)
+
 </head>
 <body>
     @RenderBody()
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

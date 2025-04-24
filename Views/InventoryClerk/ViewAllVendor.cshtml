@@ -12,6 +12,9 @@
     Console.WriteLine("JobRole: " + jobRole);
 }
 <head>
+    <title>Thoth</title>
+
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ViewAllVendor.css" rel="stylesheet" />
 </head>
@@ -60,6 +63,7 @@
                 <tr>
                     <th>الإجراءات</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorAddress)</th>
+                    <th>@Html.DisplayNameFor(Model => Model[0].Activated)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorEmail)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorPhone)</th>
                     <th>@Html.DisplayNameFor(model => model[0].VendorName)</th>
@@ -73,6 +77,7 @@
 
 
                         <td>@vend.VendorAddress</td>
+                        <td>@(vend.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@vend.VendorEmail </td>
                         <td>@vend.VendorPhone </td>
                         <td>@vend.VendorName</td>

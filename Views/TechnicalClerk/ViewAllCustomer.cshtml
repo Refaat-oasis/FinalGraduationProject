@@ -10,13 +10,13 @@
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
-    ViewData["Title"] = "ViewAllCustomer";
+    ViewData["Title"] = "Thoth";
 }
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Technical/viewAllCustomer.css" rel="stylesheet" />
-
-</head>
+}
 <div class="container">
     <div class="arrow">
         @{
@@ -91,9 +91,8 @@
                         @*     <a class="editBtn" asp-controller="technical" asp-action="EditCustomer" asp-route-id="@item.CustomerId">تعديل</a> *@
 
                         @* </td> *@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Activated)
-                        </td>
+                        <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.CustomerPhone)
                         </td>

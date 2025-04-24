@@ -14,6 +14,9 @@
 
 
 <head>
+    <title>Thoth</title>
+
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
 </head>
@@ -53,7 +56,7 @@
     <div class="tableContainer">
         <table id="jobOrderTable">
             <tr>
-                <th >الإجراءات</th>
+                <th>الإجراءات</th>
                 <th>حالة الطلب</th>
                 <th>تاريخ الانتهاء</th>
                 <th>تاريخ البدء</th>
@@ -63,23 +66,23 @@
             @{
                 foreach (JobOrderCustEmpVM job in Model)
                 {
-                            <tr>
-                                @* <td>
+                    <tr>
+                        @* <td>
                                      <button class="editBtn" id="edijob" onclick="editJobOrder('@job.JobOrderId')">تعديل</button>
                                  </td>
                                  *@
 
-                                <td>
+                        <td>
                             @* <button class="editBtn" id="edijob" asp-action="showJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId">اظهار التفاصيل</button> *@
-                                    <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
+                            <a class="editBtn" href="@Url.Action("showJobOrderSpecifications", new { jobOrderId = job.JobOrderId })">اظهار التفاصيل</a>
 
-                                </td>
-                                <td>@job.OrderProgress</td>
-                                <td>@job.EndDate</td>
-                                <td>@job.StartDate</td>
+                        </td>
+                        <td>@job.OrderProgress</td>
+                        <td>@job.EndDate</td>
+                        <td>@job.StartDate</td>
                         <td>@job.CustomerName</td>
 
-                            </tr>
+                    </tr>
                 }
             }
         </table>

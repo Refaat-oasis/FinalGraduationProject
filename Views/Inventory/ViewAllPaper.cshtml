@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
 
-    ViewData["Title"] = "قائمة الورق";
+    ViewData["Title"] = "Thoth";
 }
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
@@ -12,11 +12,11 @@
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
-<head>
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" />
-
-</head>
+}
 <div class="container">
     <div class="arrow">
         @{
@@ -89,7 +89,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Price)</td>
                         <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
                         <td>@Html.DisplayFor(modelItem => item.Colored)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Activated)</td>
+                        <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
                         <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                         <td>@Html.DisplayFor(modelItem => item.Type)</td>

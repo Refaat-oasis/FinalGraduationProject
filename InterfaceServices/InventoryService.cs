@@ -10,7 +10,7 @@ namespace ThothSystemVersion1.InterfaceServices
          public Task <List<Paper>> ViewAllPaper();
          public Task <List<Ink>> ViewAllInk();
          public Task<List<Supply>> ViewAllSupply();
-        public bool AddVendor(VendorEditDTO newVendor);
+        public bool AddVendor(VendorAddDTO newVendor);
         public bool EditVendor(int vendorID, VendorEditDTO newVendor);
 
         // inventory ink section

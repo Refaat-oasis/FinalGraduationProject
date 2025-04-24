@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ThothSystemVersion1.Models;
-namespace ThothSystemVersion1.Database;
+
+namespace ThothSystemVersion1;
+
 public partial class ThothContext : DbContext
 {
     public ThothContext()
@@ -13,6 +15,8 @@ public partial class ThothContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<ColorWeightSize> ColorWeightSizes { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
 
@@ -52,21 +56,45 @@ public partial class ThothContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-G085LKD\\SQLEXPRESS;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-EFNEGP3;Database=ThothSystem;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.UseCollation("Arabic_100_CS_AI");
 
+        modelBuilder.Entity<ColorWeightSize>(entity =>
+        {
+            entity.HasKey(e => e.ColorWeightSizeId).HasName("PK_ColorWei_CB626C94FAE272BF");
+
+            entity.ToTable("ColorWeightSize");
+
+            entity.Property(e => e.ColorWeightSizeId).HasColumnName("colorWeightSizeID");
+            entity.Property(e => e.Colored)
+                .HasMaxLength(10)
+                .HasDefaultValue("")
+                .HasColumnName("colored");
+            entity.Property(e => e.Size)
+                .HasMaxLength(25)
+                .HasDefaultValue("")
+                .HasColumnName("size");
+            entity.Property(e => e.Type)
+                .HasDefaultValue(0)
+                .HasColumnName("type");
+            entity.Property(e => e.Weight)
+                .HasDefaultValue(0m)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("weight");
+        });
+
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__B611CB9D783D521D");
+            entity.HasKey(e => e.CustomerId).HasName("PK_Customer_B611CB9D505F0A72");
 
             entity.ToTable("Customer");
 
-            entity.HasIndex(e => e.CustomerPhone, "UQ__Customer__311068C4E9673657").IsUnique();
+            entity.HasIndex(e => e.CustomerPhone, "UQ_Customer_311068C4D5C64637").IsUnique();
 
-            entity.HasIndex(e => e.CustomerEmail, "UQ__Customer__FFE82D72387E9B7E").IsUnique();
+            entity.HasIndex(e => e.CustomerEmail, "UQ_Customer_FFE82D7216D6C4D9").IsUnique();
 
             entity.Property(e => e.CustomerId).HasColumnName("customerID");
             entity.Property(e => e.Activated).HasDefaultValue(true);
@@ -90,21 +118,19 @@ public partial class ThothContext : DbContext
                 .HasMaxLength(15)
                 .HasDefaultValue("")
                 .HasColumnName("customerPhone");
+            entity.Property(e => e.CustomerSource)
+                .HasMaxLength(100)
+                .HasDefaultValue("")
+                .HasColumnName("customerSource");
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.EmployeeId).HasName("PK__Employee__C134C9A18AF66C12");
+            entity.HasKey(e => e.EmployeeId).HasName("PK_Employee_C134C9A1A997094B");
 
-            entity.ToTable("Employee", tb =>
-                {
-                    tb.HasTrigger("trg_DeleteEmployee");
-                    tb.HasTrigger("trg_DeleteEmployee_PurchaseOrder");
-                    tb.HasTrigger("trg_UpdateEmployee");
-                    tb.HasTrigger("trg_UpdateEmployee_PurchaseOrder");
-                });
+            entity.ToTable("Employee");
 
-            entity.HasIndex(e => e.EmployeeUserName, "UQ__Employee__8D8E404745DF0EE3").IsUnique();
+            entity.HasIndex(e => e.EmployeeUserName, "UQ_Employee_8D8E40478F1D472E").IsUnique();
 
             entity.Property(e => e.EmployeeId)
                 .HasMaxLength(30)
@@ -122,12 +148,15 @@ public partial class ThothContext : DbContext
                 .HasMaxLength(255)
                 .HasDefaultValue("")
                 .HasColumnName("employeeUserName");
+            entity.Property(e => e.Forgetpassword)
+                .HasDefaultValue(true)
+                .HasColumnName("forgetpassword");
             entity.Property(e => e.JobRole).HasColumnName("jobRole");
         });
 
         modelBuilder.Entity<Ink>(entity =>
         {
-            entity.HasKey(e => e.InkId).HasName("PK__Ink__13DA870371A7A5F7");
+            entity.HasKey(e => e.InkId).HasName("PK_Ink_13DA8703BABEE992");
 
             entity.ToTable("Ink");
 
@@ -142,44 +171,39 @@ public partial class ThothContext : DbContext
                 .HasDefaultValue("")
                 .HasColumnName("name");
             entity.Property(e => e.Price)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
-            entity.Property(e => e.Quantity)
-                .HasDefaultValue(1)
-                .HasColumnName("quantity");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ReorderPoint)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("reorderPoint");
             entity.Property(e => e.TotalBalance)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalBalance");
         });
 
         modelBuilder.Entity<JobOrder>(entity =>
         {
-            entity.HasKey(e => e.JobOrderId).HasName("PK__JobOrder__759794652E3081F3");
+            entity.HasKey(e => e.JobOrderId).HasName("PK_JobOrder_759794651F212C2D");
 
-            entity.ToTable("JobOrder", tb =>
-                {
-                    tb.HasTrigger("trg_DeleteJobOrder");
-                    tb.HasTrigger("trg_DeleteJobOrder_ReturnsOrder");
-                    tb.HasTrigger("trg_UpdateJobOrder");
-                    tb.HasTrigger("trg_UpdateJobOrder_ReturnsOrder");
-                });
+            entity.ToTable("JobOrder");
 
             entity.Property(e => e.JobOrderId).HasColumnName("jobOrderID");
             entity.Property(e => e.CustomerId).HasColumnName("customerID");
             entity.Property(e => e.EarnedRevenue)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("earnedRevenue");
             entity.Property(e => e.EmployeeId)
                 .HasMaxLength(30)
                 .HasColumnName("employeeID");
             entity.Property(e => e.EndDate).HasColumnName("endDate");
+            entity.Property(e => e.JobOrderSource)
+                .HasMaxLength(100)
+                .HasDefaultValue("")
+                .HasColumnName("jobOrderSource");
             entity.Property(e => e.JobOrdernotes)
                 .HasMaxLength(100)
                 .HasDefaultValue("")
@@ -189,29 +213,29 @@ public partial class ThothContext : DbContext
                 .HasDefaultValue("قيد الانتظار")
                 .HasColumnName("orderProgress");
             entity.Property(e => e.RemainingAmount)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("remainingAmount");
             entity.Property(e => e.StartDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnName("startDate");
             entity.Property(e => e.UnearnedRevenue)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("unearnedRevenue");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.JobOrders)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__JobOrder__custom__60A75C0F");
+                .HasConstraintName("FK_JobOrdercustom_6383C8BA");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.JobOrders)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__JobOrder__employ__619B8048");
+                .HasConstraintName("FK_JobOrderemploy_6477ECF3");
         });
 
         modelBuilder.Entity<Labour>(entity =>
         {
-            entity.HasKey(e => e.LabourId).HasName("PK__Labour__681E871C0E3C6B3C");
+            entity.HasKey(e => e.LabourId).HasName("PK_Labour_681E871CFB9E23DE");
 
             entity.ToTable("Labour");
 
@@ -229,7 +253,7 @@ public partial class ThothContext : DbContext
 
         modelBuilder.Entity<Machine>(entity =>
         {
-            entity.HasKey(e => e.MachineId).HasName("PK__Machine__D1ABE00DB733CCA7");
+            entity.HasKey(e => e.MachineId).HasName("PK_Machine_D1ABE00DBB46738B");
 
             entity.ToTable("Machine");
 
@@ -247,77 +271,82 @@ public partial class ThothContext : DbContext
 
         modelBuilder.Entity<MiscellaneousExpense>(entity =>
         {
-            entity.HasKey(e => e.MiscellaneousExpensesId).HasName("PK__Miscella__9EC2AFA36D387507");
+            entity.HasKey(e => e.MiscellaneousExpensesId).HasName("PK_Miscella_9EC2AFA3E8286D0B");
 
             entity.Property(e => e.MiscellaneousExpensesId).HasColumnName("MiscellaneousExpensesID");
             entity.Property(e => e.AdminstrativeExpense)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("adminstrativeExpense");
             entity.Property(e => e.EmployeeId)
                 .HasMaxLength(30)
                 .HasColumnName("employeeID");
             entity.Property(e => e.EmployeeImprovmentBox)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("employeeImprovmentBox");
             entity.Property(e => e.FilmsProcessingExpense)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("filmsProcessingExpense");
             entity.Property(e => e.FinalTotal)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("finalTotal");
             entity.Property(e => e.JobOrderId).HasColumnName("jobOrderID");
             entity.Property(e => e.MaterialProcessingExpense)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("materialProcessingExpense");
             entity.Property(e => e.MaterialsTotal)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("materialsTotal");
             entity.Property(e => e.MinistryOfFinance)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("ministryOfFinance");
+            entity.Property(e => e.Other)
+                .HasDefaultValue(0m)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("other");
             entity.Property(e => e.Percentage)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("percentage");
+            entity.Property(e => e.totalAfterEmplyeeImprovementbox)
+                .HasDefaultValue(0m)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("totalAfterEmplyeeImprovementbox");
             entity.Property(e => e.TotalAfterMaterials)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalAfterMaterials");
             entity.Property(e => e.TotalAfterPercentage)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalAfterPercentage");
             entity.Property(e => e.TotalExpenses)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalExpenses");
             entity.Property(e => e.ValueAddedTax)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("valueAddedTax");
-            entity.Property(e => e.totalAfterEmplyeeImprovementbox)
-                .HasDefaultValue(1m)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("totalAfterEmplyeeImprovementbox");
+
             entity.HasOne(d => d.Employee).WithMany(p => p.MiscellaneousExpenses)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__Miscellan__emplo__0F624AF8");
+                .HasConstraintName("FK_Miscellanemplo_160F4887");
 
             entity.HasOne(d => d.JobOrder).WithMany(p => p.MiscellaneousExpenses)
                 .HasForeignKey(d => d.JobOrderId)
-                .HasConstraintName("FK__Miscellan__jobOr__0E6E26BF");
+                .HasConstraintName("FK_MiscellanjobOr_151B244E");
         });
 
         modelBuilder.Entity<Paper>(entity =>
         {
-            entity.HasKey(e => e.PaperId).HasName("PK__Paper__396E28533F15E59D");
+            entity.HasKey(e => e.PaperId).HasName("PK_Paper_396E2853EB3A8F9C");
 
             entity.ToTable("Paper");
 
@@ -332,39 +361,36 @@ public partial class ThothContext : DbContext
                 .HasDefaultValue("")
                 .HasColumnName("name");
             entity.Property(e => e.Price)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
-            entity.Property(e => e.Quantity)
-                .HasDefaultValue(1)
-                .HasColumnName("quantity");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ReorderPoint)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("reorderPoint");
-            entity.Property(e => e.TotalBalance)
-                .HasDefaultValue(1m)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("totalBalance");
-            entity.Property(e => e.Type)
+            entity.Property(e => e.Size)
                 .HasMaxLength(25)
                 .HasDefaultValue("")
-                .HasColumnName("type");
+                .HasColumnName("size");
+            entity.Property(e => e.TotalBalance)
+                .HasDefaultValue(0m)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("totalBalance");
             entity.Property(e => e.Weight)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("weight");
         });
 
         modelBuilder.Entity<PaymentOrder>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__PaymentO__A0D9EFA6E8665386");
+            entity.HasKey(e => e.PaymentId).HasName("PK_PaymentO_A0D9EFA6BA13A792");
 
             entity.ToTable("PaymentOrder");
 
             entity.Property(e => e.PaymentId).HasColumnName("paymentID");
             entity.Property(e => e.Amount)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("amount");
             entity.Property(e => e.EmployeeId)
@@ -381,16 +407,16 @@ public partial class ThothContext : DbContext
 
             entity.HasOne(d => d.Employee).WithMany(p => p.PaymentOrders)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__PaymentOr__emplo__5AB9788F");
+                .HasConstraintName("FK_PaymentOremplo_6442E2C9");
 
             entity.HasOne(d => d.Purchase).WithMany(p => p.PaymentOrders)
                 .HasForeignKey(d => d.PurchaseId)
-                .HasConstraintName("FK__PaymentOr__purch__59C55456");
+                .HasConstraintName("FK_PaymentOrpurch_634EBE90");
         });
 
         modelBuilder.Entity<PhysicalCountOrder>(entity =>
         {
-            entity.HasKey(e => e.PhysicalCountId).HasName("PK__Physical__428288467BA421FA");
+            entity.HasKey(e => e.PhysicalCountId).HasName("PK_Physical_428288461C33FEF3");
 
             entity.ToTable("PhysicalCountOrder");
 
@@ -408,12 +434,12 @@ public partial class ThothContext : DbContext
 
             entity.HasOne(d => d.Employee).WithMany(p => p.PhysicalCountOrders)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__PhysicalC__emplo__46B27FE2");
+                .HasConstraintName("FK_PhysicalCemplo_4F47C5E3");
         });
 
         modelBuilder.Entity<ProcessBridge>(entity =>
         {
-            entity.HasKey(e => e.ProcessBridgeId).HasName("PK__ProcessB__0B3E7649D5310630");
+            entity.HasKey(e => e.ProcessBridgeId).HasName("PK_ProcessB_0B3E7649781D8CDA");
 
             entity.ToTable("ProcessBridge");
 
@@ -433,7 +459,6 @@ public partial class ThothContext : DbContext
                 .HasColumnName("machineHourPrice");
             entity.Property(e => e.MachineId).HasColumnName("machineID");
             entity.Property(e => e.NumberOfHours)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("numberOfHours");
             entity.Property(e => e.OldMachinePrice)
@@ -445,34 +470,32 @@ public partial class ThothContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("oldlabourPrice");
             entity.Property(e => e.TotalLabourValue)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalLabourValue");
             entity.Property(e => e.TotalMachineValue)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalMachineValue");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.ProcessBridges)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__ProcessBr__emplo__778AC167");
+                .HasConstraintName("FK_ProcessBremplo_7A672E12");
 
             entity.HasOne(d => d.JobOrder).WithMany(p => p.ProcessBridges)
                 .HasForeignKey(d => d.JobOrderId)
-                .HasConstraintName("FK__ProcessBr__jobOr__74AE54BC");
+                .HasConstraintName("FK_ProcessBrjobOr_778AC167");
 
             entity.HasOne(d => d.Labour).WithMany(p => p.ProcessBridges)
                 .HasForeignKey(d => d.LabourId)
-                .HasConstraintName("FK__ProcessBr__labou__76969D2E");
+                .HasConstraintName("FK_ProcessBrlabou_797309D9");
 
             entity.HasOne(d => d.Machine).WithMany(p => p.ProcessBridges)
                 .HasForeignKey(d => d.MachineId)
-                .HasConstraintName("FK__ProcessBr__machi__75A278F5");
+                .HasConstraintName("FK_ProcessBrmachi_787EE5A0");
         });
 
         modelBuilder.Entity<PurchaseOrder>(entity =>
         {
-            entity.HasKey(e => e.PurchaseId).HasName("PK__Purchase__0261224C31BB3F91");
+            entity.HasKey(e => e.PurchaseId).HasName("PK_Purchase_0261224C5D7AB821");
 
             entity.ToTable("PurchaseOrder");
 
@@ -500,17 +523,17 @@ public partial class ThothContext : DbContext
             entity.HasOne(d => d.Employee).WithMany(p => p.PurchaseOrders)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PurchaseO__emplo__160F4887");
+                .HasConstraintName("FK_PurchaseOemplo_1EA48E88");
 
             entity.HasOne(d => d.Vendor).WithMany(p => p.PurchaseOrders)
                 .HasForeignKey(d => d.VendorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PurchaseO__vendo__17036CC0");
+                .HasConstraintName("FK_PurchaseOvendo_1F98B2C1");
         });
 
         modelBuilder.Entity<QuantityBridge>(entity =>
         {
-            entity.HasKey(e => e.QuantityBridgeId).HasName("PK__Quantity__74C924196D3553E9");
+            entity.HasKey(e => e.QuantityBridgeId).HasName("PK_Quantity_74C92419315EA66C");
 
             entity.ToTable("QuantityBridge");
 
@@ -523,7 +546,7 @@ public partial class ThothContext : DbContext
                 .HasDefaultValue(1)
                 .HasColumnName("oldQuantity");
             entity.Property(e => e.OldTotalBalance)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("oldTotalBalance");
             entity.Property(e => e.PaperId).HasColumnName("paperID");
@@ -532,55 +555,53 @@ public partial class ThothContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.PurchaseId).HasColumnName("purchaseID");
-            entity.Property(e => e.Quantity)
-                .HasDefaultValue(1)
-                .HasColumnName("quantity");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.RequisiteId).HasColumnName("requisiteID");
             entity.Property(e => e.ReturnId).HasColumnName("returnID");
             entity.Property(e => e.SuppliesId).HasColumnName("suppliesID");
             entity.Property(e => e.TotalBalance)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalBalance");
 
             entity.HasOne(d => d.Ink).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.InkId)
-                .HasConstraintName("FK__QuantityB__inkID__51300E55");
+                .HasConstraintName("FK_QuantityBinkID_59C55456");
 
             entity.HasOne(d => d.Paper).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.PaperId)
-                .HasConstraintName("FK__QuantityB__paper__5224328E");
+                .HasConstraintName("FK_QuantityBpaper_5AB9788F");
 
             entity.HasOne(d => d.PhysicalCount).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.PhysicalCountId)
-                .HasConstraintName("FK__QuantityB__physi__540C7B00");
+                .HasConstraintName("FK_QuantityBphysi_5CA1C101");
 
             entity.HasOne(d => d.Purchase).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.PurchaseId)
-                .HasConstraintName("FK__QuantityB__purch__4F47C5E3");
+                .HasConstraintName("FK_QuantityBpurch_57DD0BE4");
 
             entity.HasOne(d => d.Requisite).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.RequisiteId)
-                .HasConstraintName("FK__QuantityB__requi__503BEA1C");
+                .HasConstraintName("FK_QuantityBrequi_58D1301D");
 
             entity.HasOne(d => d.Return).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.ReturnId)
-                .HasConstraintName("FK__QuantityB__retur__4E53A1AA");
+                .HasConstraintName("FK_QuantityBretur_56E8E7AB");
 
             entity.HasOne(d => d.Supplies).WithMany(p => p.QuantityBridges)
                 .HasForeignKey(d => d.SuppliesId)
-                .HasConstraintName("FK__QuantityB__suppl__531856C7");
+                .HasConstraintName("FK_QuantityBsuppl_5BAD9CC8");
         });
 
         modelBuilder.Entity<RecieptsOrder>(entity =>
         {
-            entity.HasKey(e => e.RecieptId).HasName("PK__Reciepts__71D49F63835FC591");
+            entity.HasKey(e => e.RecieptId).HasName("PK_Reciepts_71D49F6382C45C01");
 
             entity.ToTable("RecieptsOrder");
 
             entity.Property(e => e.RecieptId).HasColumnName("recieptID");
             entity.Property(e => e.Amount)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("amount");
             entity.Property(e => e.EmployeeId)
@@ -597,16 +618,16 @@ public partial class ThothContext : DbContext
 
             entity.HasOne(d => d.Employee).WithMany(p => p.RecieptsOrders)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__RecieptsO__emplo__6166761E");
+                .HasConstraintName("FK_RecieptsOemplo_6BE40491");
 
             entity.HasOne(d => d.JobOrder).WithMany(p => p.RecieptsOrders)
                 .HasForeignKey(d => d.JobOrderId)
-                .HasConstraintName("FK__RecieptsO__jobOr__607251E5");
+                .HasConstraintName("FK_RecieptsOjobOr_6AEFE058");
         });
 
         modelBuilder.Entity<RequisiteOrder>(entity =>
         {
-            entity.HasKey(e => e.RequisiteId).HasName("PK__Requisit__325566014071CA45");
+            entity.HasKey(e => e.RequisiteId).HasName("PK_Requisit_32556601673ED26F");
 
             entity.ToTable("RequisiteOrder");
 
@@ -626,17 +647,17 @@ public partial class ThothContext : DbContext
             entity.HasOne(d => d.Employee).WithMany(p => p.RequisiteOrders)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Requisite__emplo__236943A5");
+                .HasConstraintName("FK_Requisiteemplo_2BFE89A6");
 
             entity.HasOne(d => d.JobOrder).WithMany(p => p.RequisiteOrders)
                 .HasForeignKey(d => d.JobOrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Requisite__jobOr__245D67DE");
+                .HasConstraintName("FK_RequisitejobOr_2CF2ADDF");
         });
 
         modelBuilder.Entity<ReturnsOrder>(entity =>
         {
-            entity.HasKey(e => e.ReturnId).HasName("PK__ReturnsO__EBA763F984751E2D");
+            entity.HasKey(e => e.ReturnId).HasName("PK_ReturnsO_EBA763F92C063760");
 
             entity.ToTable("ReturnsOrder");
 
@@ -660,20 +681,20 @@ public partial class ThothContext : DbContext
             entity.HasOne(d => d.Employee).WithMany(p => p.ReturnsOrders)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReturnsOr__emplo__1EA48E88");
+                .HasConstraintName("FK_ReturnsOremplo_2739D489");
 
             entity.HasOne(d => d.JobOrder).WithMany(p => p.ReturnsOrders)
                 .HasForeignKey(d => d.JobOrderId)
-                .HasConstraintName("FK__ReturnsOr__jobOr__1CBC4616");
+                .HasConstraintName("FK_ReturnsOrjobOr_25518C17");
 
             entity.HasOne(d => d.Purchase).WithMany(p => p.ReturnsOrders)
                 .HasForeignKey(d => d.PurchaseId)
-                .HasConstraintName("FK__ReturnsOr__purch__1DB06A4F");
+                .HasConstraintName("FK_ReturnsOrpurch_2645B050");
         });
 
         modelBuilder.Entity<Supply>(entity =>
         {
-            entity.HasKey(e => e.SuppliesId).HasName("PK__Supplies__C654A0F4840227A9");
+            entity.HasKey(e => e.SuppliesId).HasName("PK_Supplies_C654A0F4B0355706");
 
             entity.Property(e => e.SuppliesId).HasColumnName("suppliesID");
             entity.Property(e => e.Activated).HasDefaultValue(true);
@@ -682,31 +703,28 @@ public partial class ThothContext : DbContext
                 .HasDefaultValue("")
                 .HasColumnName("name");
             entity.Property(e => e.Price)
-                .HasDefaultValue(1m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
-            entity.Property(e => e.Quantity)
-                .HasDefaultValue(1)
-                .HasColumnName("quantity");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ReorderPoint)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("reorderPoint");
             entity.Property(e => e.TotalBalance)
-                .HasDefaultValue(1m)
+                .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("totalBalance");
         });
 
         modelBuilder.Entity<Vendor>(entity =>
         {
-            entity.HasKey(e => e.VendorId).HasName("PK__Vendor__EC65C4E3C8551B04");
+            entity.HasKey(e => e.VendorId).HasName("PK_Vendor_EC65C4E3B8E71EED");
 
             entity.ToTable("Vendor");
 
-            entity.HasIndex(e => e.VendorEmail, "UQ__Vendor__61AB83AB61E414AE").IsUnique();
+            entity.HasIndex(e => e.VendorEmail, "UQ_Vendor_61AB83AB72A3ACF6").IsUnique();
 
-            entity.HasIndex(e => e.VendorPhone, "UQ__Vendor__8FB8D3A37443DA84").IsUnique();
+            entity.HasIndex(e => e.VendorPhone, "UQ_Vendor_8FB8D3A3C2656EA4").IsUnique();
 
             entity.Property(e => e.VendorId).HasColumnName("vendorID");
             entity.Property(e => e.Activated).HasDefaultValue(true);

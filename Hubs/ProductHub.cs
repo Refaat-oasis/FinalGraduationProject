@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
 //using ThothSystemVersion1.Data; // Assuming you have a DbContext for your database
 

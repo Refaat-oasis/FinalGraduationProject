@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.InterfaceServices;
@@ -185,7 +184,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     throw new ArgumentException("Paper not found.");
                 }
                 foundPaper.Name = newPaper.Name;
-                foundPaper.Type = newPaper.Type;
+                foundPaper.Size = newPaper.Size;
                 foundPaper.Weight = newPaper.Weight;
                 foundPaper.Colored = newPaper.Colored;
                 foundPaper.Activated = newPaper.Activated;

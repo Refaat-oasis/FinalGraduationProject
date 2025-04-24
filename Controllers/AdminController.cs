@@ -1,7 +1,5 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ThothSystemVersion1.BusinessLogicLayers;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
 using ThothSystemVersion1.ViewModels;
@@ -44,17 +42,17 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddEmployee()
         {
-            //int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            //if (jobRole == 0)
-            //{
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0)
+            {
 
-            return View("~/Views/Admin/AddEmployee.cshtml");
-            //}
-            //else
-            //{
+                return View("~/Views/Admin/AddEmployee.cshtml");
+            }
+            else
+            {
 
-            //    return RedirectToAction("UnauthorizedAccess", "employee");
-            //}
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
         }
 
         [HttpPost]

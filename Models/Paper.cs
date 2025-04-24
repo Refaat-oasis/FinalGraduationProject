@@ -13,9 +13,9 @@ public partial class Paper
     [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الورق يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string Name { get; set; } = null!;
 
-    [Display(Name = "النوع")]
-    [Required(ErrorMessage = "يجب ادخال نوع الورق")]
-    public string? Type { get; set; }
+    [Display(Name = "الحجم")]
+    [Required(ErrorMessage = "يجب ادخال حجم الورق")]
+    public string? Size { get; set; }
 
 
     [Display(Name = "الوزن")]

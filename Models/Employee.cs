@@ -49,6 +49,10 @@ public partial class Employee
     [Display(Name = "التفعيل")]
     public bool Activated { get; set; }
 
+    
+    public bool? Forgetpassword { get; set; }
+
+
     public virtual ICollection<JobOrder> JobOrders { get; set; } = new List<JobOrder>();
 
     public virtual ICollection<MiscellaneousExpense> MiscellaneousExpenses { get; set; } = new List<MiscellaneousExpense>();

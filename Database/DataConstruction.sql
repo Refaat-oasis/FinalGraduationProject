@@ -33,6 +33,7 @@ CREATE TABLE Customer (
     customerEmail NVARCHAR(250) NULL UNIQUE DEFAULT '',
     customerNotes NVARCHAR(2500) NULL DEFAULT '',
     customerPhone NVARCHAR(15) NOT NULL UNIQUE DEFAULT '',
+    customerSource NVARCHAR(100) NULL DEFAULT '',
 	Activated BIT DEFAULT 1
 );
 GO
@@ -56,6 +57,7 @@ CREATE TABLE Employee (
     employeePassword NVARCHAR(255) NOT NULL DEFAULT '',
     employeeName NVARCHAR(255) NOT NULL DEFAULT '',
     jobRole INT NOT NULL DEFAULT 0,
+    forgetpassword BIT DEFAULT 1,
 	Activated BIT DEFAULT 1
 );
 GO
@@ -76,6 +78,7 @@ CREATE TABLE JobOrder (
     unearnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (unearnedRevenue >= 0),
     jobOrdernotes NVARCHAR(100) DEFAULT '',
     earnedRevenue DECIMAL(10,2) DEFAULT 0 CHECK (earnedRevenue >= 0),
+    jobOrderSource NVARCHAR(100) DEFAULT '',
     orderProgress NVARCHAR(20) DEFAULT 'قيد الانتظار' ,
     customerID INT,
     startDate DATE DEFAULT GETDATE(),
@@ -129,16 +132,17 @@ CREATE TABLE MiscellaneousExpenses (
     materialProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (materialProcessingExpense >= 0),
     filmsProcessingExpense DECIMAL(10,2) DEFAULT 0 CHECK (filmsProcessingExpense >= 0),
     materialsTotal DECIMAL(10,2) DEFAULT 0 CHECK (materialsTotal >= 0),
-    totalAfterMaterials DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterMaterials >= 0),
+    totalAfterMaterials DECIMAL(10,2) NULL DEFAULT 0 CHECK (totalAfterMaterials >= 0),
     adminstrativeExpense DECIMAL(10,2) DEFAULT 0 CHECK (adminstrativeExpense >= 0),
-    totalExpenses DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalExpenses >= 0),
-    percentage DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (percentage >= 0),
-    totalAfterEmplyeeImprovementbox DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterEmplyeeImprovementbox >= 0),
-    totalAfterPercentage DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalAfterPercentage >= 0),
-    ministryOfFinance DECIMAL(10,2) NOT NULL DEFAULT 0,
-    employeeImprovmentBox DECIMAL(10,2) NOT NULL DEFAULT 0,
-    valueAddedTax DECIMAL(10,2) NOT NULL DEFAULT 0,
-    finalTotal DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (finalTotal >= 0),
+    totalExpenses DECIMAL(10,2) NULL DEFAULT 0 CHECK (totalExpenses >= 0),
+    percentage DECIMAL(10,2) NULL DEFAULT 0 CHECK (percentage >= 0),
+    totalAfterEmplyeeImprovementbox DECIMAL(10,2)  NULL DEFAULT 0 CHECK (totalAfterEmplyeeImprovementbox >= 0),
+    other DECIMAL(10,2)  NULL DEFAULT 0 CHECK (other >= 0),
+    totalAfterPercentage DECIMAL(10,2)  NULL DEFAULT 0 CHECK (totalAfterPercentage >= 0),
+    ministryOfFinance DECIMAL(10,2)  NULL DEFAULT 0,
+    employeeImprovmentBox DECIMAL(10,2)  NULL DEFAULT 0,
+    valueAddedTax DECIMAL(10,2)  NULL DEFAULT 0,
+    finalTotal DECIMAL(10,2)  NULL DEFAULT 0 CHECK (finalTotal >= 0),
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
@@ -189,7 +193,7 @@ GO
 CREATE TABLE Paper (
     paperID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
-    type NVARCHAR(25) NULL DEFAULT '',
+    size NVARCHAR(25) NULL DEFAULT '',
     weight DECIMAL(10,2) NULL DEFAULT 0,
     totalBalance DECIMAL(10,2) DEFAULT 0,
     colored NVARCHAR(10) NOT NULL DEFAULT '',
@@ -294,3 +298,17 @@ CREATE TABLE RecieptsOrder(
   
 );
 GO
+
+
+-- 19. ColorWeightSize Table
+
+CREATE TABLE ColorWeightSize (
+   
+    colorWeightSizeID INT IDENTITY(1,1) PRIMARY KEY,
+    type int NULL DEFAULT 0,
+    size NVARCHAR(25) NULL DEFAULT '',
+    weight DECIMAL(10,2) NULL DEFAULT 0,
+    colored NVARCHAR(10)  NULL DEFAULT ''
+
+    
+);

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Threading.Tasks;
-using ThothSystemVersion1.Database;
 using ThothSystemVersion1.Models;
 
 namespace ThothSystemVersion1.Controllers

@@ -130,21 +130,16 @@ namespace ThothSystemVersion1.Controllers
                 if (result.Success)
                 {
                     TempData["Success"] = result.Message;
-                    //return View("~/Views/Admin/EditEmployee.cshtml", id);
                     return RedirectToAction("EditEmployee", "admin", id);
                 }
                 else
                 {
-                    //if (result.Message.Contains("اسم المستخدم"))
-                    //{
-                    //    TempData["Error"] = result.Message;
-                    //    return RedirectToAction("EditEmployee", new { id = id });
-                    //}
+                    
                     TempData["Error"] = result.Message;
                     return RedirectToAction("EditEmployee", "admin", id);
                 }
 
-                //return RedirectToAction("ViewAllEmployee");
+                
 
             }
 
@@ -153,10 +148,6 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
                 return View(updatedEmployee);
             }
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, ex.Message); // Internal server error
-            //}
         }
 
     }

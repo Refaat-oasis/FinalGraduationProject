@@ -18,6 +18,7 @@
 </head>
 
 @{
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
@@ -80,25 +81,7 @@
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
-        @* Success and Error Messages *@
-        @* @if (TempData["Success"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-success"> *@
-        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="true" /> *@
-        @*     </div> *@
-        @* } *@
-        @* @if (TempData["Error"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-danger"> *@
-        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="false" /> *@
-        @*     </div> *@
-        @* } *@
-        @* <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
-        @* <div asp-validation-summary="ModelOnly" class="error"></div> *@
-
-
+       
          <input type="hidden" asp-for="InkId" /> 
 
         <div class="inputBox">
@@ -110,10 +93,22 @@
 
         <div class="inputBox">
             <label asp-for="@Model.Colored" class="textlabel"></label>
-            <select asp-for="@Model.Colored" id="Colored" class="place">
-                <option value="blue">أزرق</option>
-                <option value="black">أسود</option>
-                <option value="mix">ألوان</option>
+            <select asp-for="@Model.Colored" class="input">
+
+                @{
+
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 0 && item.Colored == Model.Colored)
+                        {
+                            <option value="@item.Colored" selected>@item.Colored</option>
+                        }
+                        else if (item.Type == 0)
+                        {
+                            <option value="@item.Colored">@item.Colored</option>
+                        }
+                    }
+                }
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
 
@@ -166,11 +161,10 @@
         </div>
 
         <div class="button-container">
-            @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
             <input type="submit" value="تعديل" class="btn btn-primary" />
         </div>
     </form>
 </div>
 
-<script src="~/js/Inventory/EditInk.js"></script>
+@* <script src="~/js/Inventory/EditInk.js"></script> *@
 

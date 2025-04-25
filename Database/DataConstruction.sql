@@ -57,7 +57,7 @@ CREATE TABLE Employee (
     employeePassword NVARCHAR(255) NOT NULL DEFAULT '',
     employeeName NVARCHAR(255) NOT NULL DEFAULT '',
     jobRole INT NOT NULL DEFAULT 0,
-    forgetpassword BIT DEFAULT 1,
+    forgetpassword BIT DEFAULT 0,
 	Activated BIT DEFAULT 1
 );
 GO

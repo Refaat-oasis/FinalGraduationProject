@@ -129,8 +129,9 @@
     </form>
 </div>
 <div>
-    <form action="forgetPassword" method="post">
+    <form asp-controller="Employee" asp-action="forgetPassword" method="post">
         <div class="button-container">
+            <input type="hidden" asp-for="@Model.EmployeeId" value="@Model.EmployeeId" />
             <input type="submit" value="نسيت كلمة السر" class="btn btn-primary" />
         </div>
     </form>

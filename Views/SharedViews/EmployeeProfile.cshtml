@@ -1,0 +1,102 @@
+﻿@model ThothSystemVersion1.DataTransfereObject.EmployeeDTO
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+        else if (jobRole == 2)
+        {
+            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }else if(jobRole == 3)
+        {
+            <a asp-controller="employee" asp-action="tecnicalManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+
+
+    }
+</div>
+<div class="form-container">
+    <h1>الملف الشخصي للموظف</h1>
+
+    <form asp-controller="Employee" asp-action="EditEmployee" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="@Model.EmployeeId" value="@Model.EmployeeId"/>
+        <!-- Employee ID (Disabled) -->
+        <div class="inputBox">
+            <label asp-for="EmployeeId" class="textlabel"></label>
+            <input asp-for="EmployeeId" class="form-control" disabled />
+             <!-- Important for model binding -->
+        </div>
+
+        <!-- User Name -->
+        <div class="inputBox">
+            <label asp-for="EmployeeUserName" class="textlabel"></label>
+            <input asp-for="EmployeeUserName" class="form-control" value="@Model.EmployeeUserName" disabled/>
+            <span asp-validation-for="EmployeeUserName" class="text-danger"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="inputBox">
+            <label asp-for="EmployeePassword" class="textlabel"></label>
+            <input asp-for="EmployeePassword" class="form-control" type="password" />
+            <span asp-validation-for="EmployeePassword" class="text-danger"></span>
+        </div>
+
+        <!-- Employee Name -->
+        <div class="inputBox">
+            <label asp-for="EmployeeName" class="textlabel"></label>
+            <input asp-for="EmployeeName" class="form-control" value="@Model.EmployeeName"/>
+            <span asp-validation-for="EmployeeName" class="text-danger"></span>
+        </div>
+
+        <!-- Job Role (Disabled) -->
+        <div class="inputBox">
+            <label asp-for="JobRole" class="textlabel"></label>
+            <input asp-for="JobRole" class="form-control" disabled value="@Model.JobRole">
+               
+        </div>
+
+        <!-- Activated Status (Disabled) -->
+        <div class="inputBox">
+            <label asp-for="Activated" class="textlabel"></label>
+            <input asp-for="Activated" class="form-check-input" disabled value="@Model.Activated" />
+            <input type="hidden" asp-for="Activated" /> <!-- Important for model binding -->
+        </div>
+
+        
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

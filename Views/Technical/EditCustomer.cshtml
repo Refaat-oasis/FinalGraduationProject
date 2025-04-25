@@ -120,6 +120,26 @@
             <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
         </div>
 
+        <div class="inputBox">
+            <label for="CustomerSource">مصدر العميل </label>
+            <select asp-for="@Model.CustomerSource" id="CustomerSource">
+                @{
+                    var sources = new List<string> { "داخلي", "خارجي", "الجامعة" };
+                    foreach (var source in sources)
+                    {
+                        if (source == Model.CustomerSource)
+                        {
+                            <option value="@source" selected>@source</option>
+                        }
+                        else
+                        {
+                            <option value="@source">@source</option>
+                        }
+                    }
+                }
+            </select>
+            <span asp-validation-for="@Model.CustomerSource" class="error"></span>
+        </div>
 
         <div class="inputBox">
             <label asp-for="CustomerNotes" class="textlabel"></label>

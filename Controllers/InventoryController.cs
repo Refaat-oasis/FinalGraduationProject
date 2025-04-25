@@ -41,6 +41,8 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 1 || jobRole == 2)
             {
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
                 return View(new Paper());
             }
             else
@@ -66,11 +68,15 @@ namespace ThothSystemVersion1.Controllers
                     if (result)
                     {
                         TempData["Success"] = messageSuccess;
+                        List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                        ViewBag.ColorWeightSizeList = colorWeightSizes;
                         return View("newpaper", newPaper);
                     }
                     else
                     {
                         TempData["Error"] = messageError;
+                        List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                        ViewBag.ColorWeightSizeList = colorWeightSizes;
                         return View("newpaper", newPaper);
 
                     }
@@ -80,6 +86,8 @@ namespace ThothSystemVersion1.Controllers
                 }
                 else
                 {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
                     return View("newpaper", newPaper);
                 }
 
@@ -98,6 +106,8 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 1 || jobRole == 2)
             {
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
                 return View(new Ink());
             }
             else
@@ -113,7 +123,7 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                //newInk.Activated = true;
+                
 
                 if (ModelState.IsValid)
                 {
@@ -123,29 +133,38 @@ namespace ThothSystemVersion1.Controllers
 
                     if (result)
                     {
+                        List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                        ViewBag.ColorWeightSizeList = colorWeightSizes;
                         TempData["Success"] = messageSuccess;
                         return View(newInk);
                     }
                     else
                     {
+                        List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                        ViewBag.ColorWeightSizeList = colorWeightSizes;
                         TempData["Error"] = messageError;
                         return View(newInk);
 
                     }
 
-
-                    //return RedirectToAction("ViewAllInk", "inventory");
                 }
                 else
                 {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
                     return View(newInk);
                 }
 
             }
             catch (Exception ex)
             {
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
+                string messageError = "هناك خظأ في اضافة الحبر الجديد";
 
-                return BadRequest(ex);
+                TempData["Error"] = messageError;
+                return View(newInk);
+
             }
         }
 
@@ -191,19 +210,21 @@ namespace ThothSystemVersion1.Controllers
                         return View(newSupply);
 
                     }
-                    //return RedirectToAction("viewallsupply", "inventory");
+
                 }
                 else
                 {
-                    return View(newSupply);
+                   return View(newSupply);
                 }
 
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex);
-            }
+                string messageError = "هناك خظأ في اضافة المستلزم الجديد";
+                TempData["Error"] = messageError;
+                return View(newSupply);
+                    
+             }
 
         }
 
@@ -280,9 +301,36 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("purchaseall");
         }
 
+        [HttpPost]
+        public IActionResult deleteColorWeightSize(int ColorWeightSizeId)
+        {
+
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1)
+            {
+                bool success = _businessLogicL.DeleteColorWeightSize(ColorWeightSizeId);
+                if (success)
+                {
+                    TempData["Success"] = "تم حذف البيانات بنجاح";
+                    return RedirectToAction("ViewAllColorWeightSize", "Inventory");
+                }
+                else
+                {
+                    TempData["Error"] = "حدث خطأ أثناء حذف البيانات";
+                    return RedirectToAction("ViewAllVendorColorWeightSize", "Inventory");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
 
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section
 
@@ -353,10 +401,10 @@ namespace ThothSystemVersion1.Controllers
         }
 
 
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        //sherwet Section
+        
         [HttpGet]
         public IActionResult AddVendor()
         {
@@ -413,6 +461,7 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+        
         [HttpGet]
         public IActionResult EditInk(int inkId)
         {
@@ -421,6 +470,9 @@ namespace ThothSystemVersion1.Controllers
             {
                 try
                 {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
+
                     Ink ink = _businessLogicL.GetInkByID(inkId);
 
 
@@ -480,6 +532,8 @@ namespace ThothSystemVersion1.Controllers
             {
                 try
                 {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
                     Paper paper = _businessLogicL.GetPaperByID(paperId);
 
                     return View("~/Views/Inventory/EditPaper.cshtml", paper);
@@ -559,6 +613,7 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+        
         [HttpPost]
         public IActionResult EditSupply(int SuppliesId, Supply updatedSupply)
         {
@@ -586,6 +641,7 @@ namespace ThothSystemVersion1.Controllers
 
         }
         //return
+        
         [HttpGet]
         public IActionResult GetJobOrderItems(int jobOrderId)
         {
@@ -614,6 +670,7 @@ namespace ThothSystemVersion1.Controllers
                 return StatusCode(500, new { error = ex.Message });
             }
         }
+        
         [HttpGet]
         public IActionResult ReturnOrder()
         {
@@ -641,7 +698,6 @@ namespace ThothSystemVersion1.Controllers
 
             return RedirectToAction("UnauthorizedAccess", "employee");
         }
-
 
         [HttpPost]
         public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
@@ -679,7 +735,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sandra section
         [HttpGet]
@@ -818,7 +874,7 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("PhysicalCount");
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
         //Views_Inventory_InventoryPrinting section 
 

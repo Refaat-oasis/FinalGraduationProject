@@ -11,10 +11,10 @@
 
 <head>
 
-    <link rel="stylesheet" href="~/css/Admin/editEmployee.css" />
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Home.css" />
+   
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -118,48 +118,48 @@
 <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
 <div class="form-container">
-    <h1>الملف الشخصي للموظف</h1>
+    <h2>الملف الشخصي للموظف</h2>
 
     <form asp-controller="Employee" asp-action="EditEmployee" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="@Model.EmployeeId" value="@Model.EmployeeId"/>
        
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="EmployeeId" class="textlabel"></label>
-            <input asp-for="EmployeeId" class="form-control" disabled />
+            <input asp-for="EmployeeId" class="place" disabled />
             
         </div>
 
         <!-- User Name -->
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="EmployeeUserName" class="textlabel"></label>
-            <input asp-for="EmployeeUserName" class="form-control" value="@Model.EmployeeUserName" />
+            <input asp-for="EmployeeUserName" class="place" value="@Model.EmployeeUserName" />
             <span asp-validation-for="EmployeeUserName" class="text-danger"></span>
         </div>
 
         <!-- Employee Name -->
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="EmployeeName" class="textlabel"></label>
-            <input asp-for="EmployeeName" class="form-control" value="@Model.EmployeeName"/>
+            <input asp-for="EmployeeName" class="place" value="@Model.EmployeeName" />
             <span asp-validation-for="EmployeeName" class="text-danger"></span>
         </div>
 
         <!-- Password -->
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="EmployeePassword" class="textlabel"></label>
-            <input asp-for="EmployeePassword" class="form-control" type="password" />
+            <input asp-for="EmployeePassword" class="place" type="password" />
             <span asp-validation-for="EmployeePassword" class="text-danger"></span>
         </div>
 
         <!-- Job Role (Disabled) -->
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="JobRole" class="textlabel"></label>
-            <input asp-for="JobRole" class="form-control" disabled value="@Model.JobRole">
+            <input asp-for="JobRole" class="place" disabled value="@Model.JobRole">
                
         </div>
 
         <!-- Activated Status (Disabled) -->
-        <div class="inputBox">
+        <div class="input-control">
             <label asp-for="Activated" class="textlabel"></label>
             <select asp-for="@Model.Activated" id="options" class="place" disabled>
                 @{
@@ -173,8 +173,8 @@
         </div>
 
         
-        <div class="button-container">
-            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+        <div class="button-container ">
+            <button type="submit" class="btn">حفظ التعديلات</button>
         </div>
     </form>
 </div>

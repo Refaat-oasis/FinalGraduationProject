@@ -144,16 +144,21 @@ namespace ThothSystemVersion1.Controllers
             jobOrder.EmployeeId = employeeId;
 
             var result = _technicalBusinessLogicLayer.AddJobOrder(jobOrder);
+            //if (result.success)
+            //{
+            //    TempData["Success"] = result.message;
+            //    return RedirectToAction("CreateNewJobOrder");
+            //}
+            //TempData["Error"] = result.message;
             if (result.success)
-            {
                 TempData["Success"] = result.message;
-                return RedirectToAction("CreateNewJobOrder");
-            }
-            TempData["Error"] = result.message;
-
+            else
+                TempData["Error"] = result.message;
 
             return RedirectToAction("CreateNewJobOrder");
+
         }
+
         [HttpGet]
         public IActionResult EditJobOrder(int jobOrderid)
         {

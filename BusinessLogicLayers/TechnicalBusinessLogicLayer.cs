@@ -417,9 +417,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (jobOrder.EndDate < existingJobOrder.StartDate)
                     return (false, "تاريخ الانتهاء يجب أن يكون بعد تاريخ البداية");
 
-                //existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
-                //existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
-                //existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
+                existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
+                existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
                 existingJobOrder.JobOrdernotes = jobOrder.JobOrdernotes;
                 existingJobOrder.OrderProgress = jobOrder.OrderProgress;
                 existingJobOrder.EndDate = jobOrder.EndDate;

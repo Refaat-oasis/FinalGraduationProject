@@ -119,6 +119,16 @@
         </div>
 
         <div class="inputBox">
+            <label for="CustomerSource">مصدر العميل </label>
+            <select asp-for="@Model.CustomerSource" id="PhoneType">
+                <option value="داخلي">داخلي</option>
+                <option value="خارجي">خارجي</option>
+                <option value="الجامعة">الجامعة</option>
+            </select>
+            <span asp-validation-for="@Model.CustomerSource" class="error"></span>
+        </div>
+
+        <div class="inputBox">
             <label for="Notes">ملاحظات عن العميل</label>
             <input type="text" asp-for="@Model.CustomerNotes" id="Notes" />
             <span asp-validation-for="@Model.CustomerNotes" class="error"></span>

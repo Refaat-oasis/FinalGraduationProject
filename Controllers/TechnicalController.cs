@@ -308,7 +308,8 @@ namespace ThothSystemVersion1.Controllers
                         CustomerPhone = customer.CustomerPhone,
                         CustomerAddress = customer.CustomerAddress,
                         CustomerNotes = customer.CustomerNotes,
-                       Activated = customer.Activated
+                        CustomerSource = customer.CustomerSource,
+                        Activated = customer.Activated
                     };
 
                     return View("~/Views/Technical/EditCustomer.cshtml", customerDto);

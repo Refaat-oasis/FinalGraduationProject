@@ -18,6 +18,7 @@
 </head>
 
 @{
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
@@ -79,25 +80,7 @@
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
-        @* Success and Error Messages *@
-        @* @if (TempData["Success"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-success"> *@
-        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="true" /> *@
-        @*     </div> *@
-        @* } *@
-        @* @if (TempData["Error"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-danger"> *@
-        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="false" /> *@
-        @*     </div> *@
-        @* } *@
-        @* <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
-        @* <div asp-validation-summary="ModelOnly" class="error"></div> *@
-
-
+       
         <input type="hidden" asp-for="PaperId" />
 
         <div class="inputBox">
@@ -109,25 +92,69 @@
 
         <div class="inputBox">
             <label asp-for="@Model.Size" class="textlabel"></label>
-            <input asp-for="@Model.Size" id="Size" class="place" />
+            <select asp-for="@Model.Size" class="input">
+                @{
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+
+                        if (item.Type == 2 && item.Size == Model.Size)
+                        {
+                            <option value="@item.Size" selected>@item.Size</option>
+
+                        }
+                        else if (item.Type == 2)
+                        {
+                            <option value="@item.Size">@item.Size</option>
+                        }
+
+                    }
+                    }
+            </select>
+
             <span asp-validation-for="@Model.Size" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
             <label asp-for="@Model.Weight" class="textlabel"></label>
-            <input type="number" step="any" asp-for="@Model.Weight" id="Weight" class="place" />
+            <select asp-for="@Model.Weight" class="input">
+
+                @{
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 1 && item.Weight == Model.Weight)
+                        {
+                            <option value="@item.Weight" selected>@item.Weight</option>
+                        }
+                        else if (item.Type == 1)
+                        {
+                            <option value="@item.Weight" selected>@item.Weight</option>
+                        }
+                    }
+                }
+            </select>
             <span asp-validation-for="@Model.Weight" class="error"></span>
             <span class="error"></span>
         </div>
 
         <div class="inputBox">
             <label asp-for="@Model.Colored" class="textlabel"></label>
-            <select asp-for="@Model.Colored" class="place">
-                <option value="white">أبيض</option>
-                <option value="red">أحمر</option>
-                <option value="green">أخضر</option>
-                <option value="yellow">أصفر</option>
+            <select asp-for="@Model.Colored" class="input">
+
+                @{
+
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 0 && item.Colored == Model.Colored)
+                        {
+                            <option value="@item.Colored" selected>@item.Colored</option>
+                        }
+                        else if (item.Type == 0)
+                        {
+                            <option value="@item.Colored">@item.Colored</option>
+                    }
+                    }
+                }
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>

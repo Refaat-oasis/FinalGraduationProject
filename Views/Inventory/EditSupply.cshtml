@@ -79,24 +79,7 @@
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
-        @* Success and Error Messages *@
-        @* @if (TempData["Success"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-success"> *@
-        @*         <i class="fas fa-check-circle"></i> @TempData["Success"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="true" /> *@
-        @*     </div> *@
-        @* } *@
-        @* @if (TempData["Error"] != null) *@
-        @* { *@
-        @*     <div class="alert alert-danger"> *@
-        @*         <i class="fas fa-exclamation-circle"></i> @TempData["Error"] *@
-        @*         <input type="hidden" id="tempDataSuccess" value="false" /> *@
-        @*     </div> *@
-        @* } *@
-        @* <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
-        @* <div asp-validation-summary="ModelOnly" class="error"></div> *@
-
+       
 
         <input type="hidden" asp-for="SuppliesId" />
         @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@

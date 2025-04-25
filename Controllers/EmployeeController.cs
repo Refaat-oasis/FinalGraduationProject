@@ -1,28 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Threading.Tasks;
+using ThothSystemVersion1.BusinessLogicLayers;
+using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 
 namespace ThothSystemVersion1.Controllers
 {
     public class EmployeeController : Controller
     {
+        private readonly ThothContext _context;
+        private readonly AdminBusinessLogicLayer _businessLogicL;
 
-        ThothContext context = new ThothContext();
+        public EmployeeController( AdminBusinessLogicLayer admin , ThothContext th) {
+            _context = th;
+            _businessLogicL = admin;
+
+
+        }
+
+    
+        [HttpGet]
         public IActionResult LoginPage()
         {
             return View("~/Views/SharedViews/login.cshtml", new Employee());
         }
+
+        [HttpPost]
         public IActionResult EmployeeLogin(string EmployeeUserName, string EmployeePassword)
         {
-            // Hash the username to match stored version
          
 
             // Try to find the employee by hashed username only
-            Employee loggedEmployee = context.Employees.FirstOrDefault(
+            Employee loggedEmployee = _context.Employees.FirstOrDefault(
                 e => e.EmployeeUserName == EmployeeUserName);
 
-            if (loggedEmployee != null)
+            if (loggedEmployee != null && loggedEmployee.Forgetpassword == true) { 
+            
+                return RedirectToAction("Forgetpassword", "Employee", routeValues: new { loggedEmployee.EmployeeId });
+
+            }else if(loggedEmployee != null)
             {
                 // Verify password
                 bool passwordMatch = Hashing.VerifyPassword(EmployeePassword, loggedEmployee.EmployeePassword);
@@ -71,11 +89,65 @@ namespace ThothSystemVersion1.Controllers
                         return RedirectToAction("LoginPage", "Employee");
                 }
             }
-            else
-            {
+            else {
                 TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
                 return RedirectToAction("LoginPage", "Employee");
             }
+        }
+
+        [HttpGet]
+        public IActionResult EmployeeProfile(string employeeId) {
+
+            Employee emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+                EmployeeDTO employeeDTO = new EmployeeDTO();
+            if (emp != null)
+            {
+                employeeDTO.EmployeeId = emp.EmployeeId;
+                employeeDTO.EmployeeName = emp.EmployeeName;
+                employeeDTO.EmployeeUserName = emp.EmployeeUserName;
+                employeeDTO.JobRole = emp.JobRole;
+                employeeDTO.Activated = emp.Activated;
+                employeeDTO.EmployeePassword = emp.EmployeePassword;
+            }
+            else
+            {
+                TempData["Error"] = "رقم الهوية غير صحيح.";
+                return RedirectToAction("LoginPage", "Employee");
+            }
+
+
+            return View("~/Views/SharedViews/EmployeeProfile.cshtml", employeeDTO);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditEmployee(string EmployeeId, EmployeeDTO updatedEmployee)
+        {
+            try
+            {
+                
+                Employee existingEmployee = _context.Employees.Find(EmployeeId); // Find the employee by ID
+                                                                                 //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                string password = updatedEmployee.EmployeePassword;
+
+                string newPassword = Hashing.HashPassword(password);
+                 //Update properties
+                //existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
+                existingEmployee.EmployeePassword = newPassword;
+                _context.Employees.Update(existingEmployee); // Mark the entity as modified
+                _context.SaveChanges(); // Save changes to the database
+                return RedirectToAction("EmployeeProfile", "Employee", new {EmployeeId });
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+
+                // Log the exception (ex) here
+                return RedirectToAction("EmployeeProfile", "Employee", new {EmployeeId });
+
+            }
+
         }
 
         [HttpGet]
@@ -91,6 +163,63 @@ namespace ThothSystemVersion1.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("LoginPage", "Employee");
         }
+
+        [HttpGet]
+        public IActionResult ForgetPassword(string EmployeeId)
+        {
+            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
+            return View("~/Views/SharedViews/ForgetPassword.cshtml", employee);
+        }
+
+        [HttpPost]
+        public IActionResult forgetPassword(string EmployeeId) {
+
+            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
+            if (employee != null)
+            {
+                employee.Forgetpassword = false;
+                _context.Update(employee);
+                _context.SaveChanges();
+                string id = EmployeeId;
+                TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
+                return RedirectToAction("EditEmployee", "admin" , routeValues: new { id = EmployeeId });
+            }
+            else
+            {
+                TempData["Error"] = "رقم الهوية غير صحيح.";
+                return RedirectToAction("EditEmployee", "admin");
+            }
+
+
+        }
+        [HttpPost]
+        public IActionResult RegisterNewPassword(string employeeId ,Employee emp) 
+        {
+            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            if (employee != null)
+            {
+                
+                string pass = emp.EmployeePassword;
+                string newHashedPassword = Hashing.HashPassword(pass);
+                employee.Forgetpassword = false;
+                employee.EmployeePassword = newHashedPassword;
+                //employee.EmployeePassword
+                _context.Update(employee);
+                _context.SaveChanges();
+                TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
+                return RedirectToAction("forgetPassword", "Employee", new { employee.EmployeeId });
+            }
+            else
+            {
+                TempData["Error"] = "رقم الهوية غير صحيح.";
+                return RedirectToAction("forgetPassword", "Employee",new { employee.EmployeeId });
+            }
+
+
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // pages for each job role
 
         [HttpGet]
         public IActionResult AdminHome()

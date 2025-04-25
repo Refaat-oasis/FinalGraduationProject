@@ -4,6 +4,8 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @{
     Layout = null;
+
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 }
 
 
@@ -104,14 +106,39 @@
         </div>
 
         <div class="inputBox">
-            <label for="Size">نوع الورق</label>
-            <input type="text" asp-for="@Model.Size" id="Type" />
+            <label for="Size">مقاس الورق</label>
+            <select asp-for="@Model.Size" class="input">
+                <option value="none" selected disabled>اختار المقاس</option>
+                @{
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 2)
+                        {
+                            <option value="@item.Size" >@item.Size</option>
+                        }
+                    }
+                
+                }
+            </select>
             <p asp-validation-for="@Model.Size" class="error"></p>
         </div>
 
         <div class="inputBox">
             <label for="Weight">وزن الورق</label>
-            <input type="number" step="any" asp-for="@Model.Weight" id="Weight" />
+            <select asp-for="@Model.Weight" class="input">
+                <option value="none" selected disabled>اختار الوزن</option>
+
+                @{
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 1)
+                        {
+                            <option value="@item.Weight">@item.Weight</option>
+                        }
+                    }
+
+                }
+            </select>
             <p asp-validation-for="@Model.Weight" class="error"></p>
         </div>
 
@@ -124,10 +151,19 @@
         <div class="inputBox">
             <label asp-for="@Model.Colored"></label>
             <select asp-for="@Model.Colored" class="input">
-                <option value="white">أبيض</option>
-                <option value="red">أحمر</option>
-                <option value="green">أخضر</option>
-                <option value="yellow">أصفر</option>
+                <option value="none" selected disabled>اختار اللون</option>
+
+                @{
+
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 0)
+                        {
+                            <option value="@item.Colored">@item.Colored</option>
+                        }
+                    }
+
+                }
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>
@@ -163,4 +199,4 @@
 
     </form>
 </div>
-<script src="~/js/Inventory/newPaper.js"></script>
+@* <script src="~/js/Inventory/newPaper.js"></script> *@

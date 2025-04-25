@@ -489,6 +489,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 addedCustomer.CustomerEmail = newCustomer.CustomerEmail;
                 addedCustomer.CustomerNotes = newCustomer.CustomerNotes;
                 addedCustomer.CustomerPhone = newCustomer.CustomerPhone;
+                addedCustomer.CustomerSource = newCustomer.CustomerSource;
                 addedCustomer.Activated = true;
                 _context.Customers.Add(addedCustomer);
                 _context.SaveChanges();
@@ -548,6 +549,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 foundCustomer.CustomerEmail = customer.CustomerEmail;
                 foundCustomer.CustomerNotes = customer.CustomerNotes;
                 foundCustomer.CustomerPhone = customer.CustomerPhone;
+                foundCustomer.CustomerSource = customer.CustomerSource;
                 foundCustomer.Activated = customer.Activated;
 
 

@@ -35,5 +35,9 @@ namespace ThothSystemVersion1.DataTransfereObject
         public string CustomerPhone { get; set; } = null!;
         [Display(Name = "التفعيل")]
         public bool Activated { get; set; }
+
+        [Display(Name = "مصدر العميل")]
+        [Required(ErrorMessage = "يجب عليك إختيار مصدر العميل")]
+        public string? CustomerSource { get; set; }
     }
 }

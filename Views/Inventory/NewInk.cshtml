@@ -1,16 +1,14 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
-
-
 @{
     Layout = null;
 }
 
-
 @model Ink;
 
 @{
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
@@ -106,9 +104,19 @@
         <div class="inputBox">
             <label asp-for="@Model.Colored"></label>
             <select asp-for="@Model.Colored" id="Colored" class="input">
-                <option value="blue">أزرق</option>
-                <option value="black">أسود</option>
-                <option value="mix">ألوان</option>
+                <option value="none" selected disabled>اختار اللون</option>
+
+                @{
+
+                    foreach (ColorWeightSize item in cwsList)
+                    {
+                        if (item.Type == 0)
+                        {
+                            <option value="@item.Colored">@item.Colored</option>
+                        }
+                    }
+
+                }
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
 
@@ -150,4 +158,4 @@
 
     </form>
 </div>
-<script src="~/js/Inventory/newInk.js"></script>
+@* <script src="~/js/Inventory/newInk.js"></script> *@

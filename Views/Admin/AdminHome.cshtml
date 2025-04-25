@@ -2,6 +2,16 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 10;
+    string employeeName = HttpContextAccessor.HttpContext.Session.GetString("EmployeeName") ?? "Unknown";
+    string employeeId = HttpContextAccessor.HttpContext.Session.GetString("EmployeeID") ?? "Unknown";
+    Console.WriteLine("JobRole: " + jobRole);
+    Console.WriteLine("EmployeeName: " + employeeName);
+    Console.WriteLine("EmployeeId: " + employeeId);
+}
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -69,6 +79,7 @@
 
     <div class="sidebar">
         <ul class="dropdown">
+            <li>  @Html.ActionLink("عرض الملف الشخصي", "EmployeeProfile", "Employee", new { employeeId }) </li>
             <li onclick="toggleDropdown(this)">
                 إدارة المطبعة
                 <ul>

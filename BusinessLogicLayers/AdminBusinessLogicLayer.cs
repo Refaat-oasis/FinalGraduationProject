@@ -49,6 +49,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 EmployeePassword = hashedPassword,
                 EmployeeId = employee.EmployeeId,
                 JobRole = employee.JobRole,
+                Forgetpassword = true,
                 Activated = true
             };
 

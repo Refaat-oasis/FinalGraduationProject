@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Linq.Expressions;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -173,6 +175,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException("An error occurred while fetching the paper.", ex);
             }
         }
+       
         public bool editPaper(int paperID, Paper newPaper)
         {
             try
@@ -240,6 +243,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException($"An error occurred while updating the supply", ex);
             }
         }
+       
         public bool EditVendor(int vendorID, VendorEditDTO newVendor)
         {
             try
@@ -320,177 +324,39 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return supplyList;
         }
 
-        //public bool AddVendor(VendorAddDTO newVendor)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public bool DeleteColorWeightSize(int ColorWeightSizeId)
+        {
+            try
+            {
 
-        //public bool purchaseNewPaper(purchaseOrderDTO purchaseOrdDTO)
-        //{
-        //    try
-        //    {
+                ColorWeightSize cwz = _context.ColorWeightSizes.FirstOrDefault(c => c.ColorWeightSizeId == ColorWeightSizeId);
+                if (cwz == null)
+                {
+                    return false;
+                }
+                else
+                {
 
-        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
+                    _context.ColorWeightSizes.Remove(cwz);
+                    _context.SaveChanges();
 
-        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return false;
+            }
+        }
 
-        //        _context.PurchaseOrders.Add(purchaseOrder);
-        //        _context.SaveChanges();
+        public List<ColorWeightSize> getAllColorWeightSize() {
 
-        //        int lastone = _context.PurchaseOrders
-        //                  .OrderByDescending(po => po.PurchaseId)
-        //                  .Select(po => po.PurchaseId)
-        //                  .FirstOrDefault();
-
-
-        //        for (int i = 0; i < quantityBridgeList.Count; i++)
-        //        {
-        //            quantityBridgeList[i].PurchaseId = lastone;
-        //            Paper pap = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
-        //            if (pap != null)
-        //            {
-        //                // Calculate new quantity and average price
-        //                double totalQuantity = pap.Quantity + quantityBridgeList[i].Quantity;
-        //                decimal totalValue = (decimal)pap.Quantity * pap.Price +
-        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-        //                // Update paper properties
-        //                pap.Quantity = (int)totalQuantity;
-        //                pap.Price = averagePrice;
-        //                pap.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-        //                _context.Papers.Update(pap);
-        //            }
-        //        }
-
-        //        // Add QuantityBridges to context and save all changes
-        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-        //        _context.SaveChanges();
-
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return false;
-
-        //    }
-
-        //}
+            List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
+            return colorWeightSizeList;
 
 
-        //public bool purchaseNewInk(purchaseOrderDTO purchaseOrdDTO)
-        //{
-        //    try
-        //    {
-        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
-
-        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
-
-        //        _context.PurchaseOrders.Add(purchaseOrder);
-        //        _context.SaveChanges();
-
-        //        int lastone = _context.PurchaseOrders
-        //                  .OrderByDescending(po => po.PurchaseId)
-        //                  .Select(po => po.PurchaseId)
-        //                  .FirstOrDefault();
-
-
-        //        for (int i = 0; i < quantityBridgeList.Count; i++)
-        //        {
-        //            quantityBridgeList[i].PurchaseId = lastone;
-        //            Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
-        //            if (ink != null)
-        //            {
-        //                // Calculate new quantity and average price
-        //                double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
-        //                decimal totalValue = (decimal)ink.Quantity * ink.Price +
-        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-        //                // Update paper properties
-        //                ink.Quantity = (int)totalQuantity;
-        //                ink.Price = averagePrice;
-        //                ink.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-        //                _context.Inks.Update(ink);
-        //            }
-        //        }
-
-        //        // Add QuantityBridges to context and save all changes
-        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-        //        _context.SaveChanges();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-
-        //    }
-
-        //}
-        //public bool purchaseNewSupply(purchaseOrderDTO purchaseOrdDTO)
-        //{
-
-        //    try
-        //    {
-        //        List<QuantityBridge> quantityBridgeList = purchaseOrdDTO.BridgeList;
-        //        PurchaseOrder purchaseOrder = new PurchaseOrder();
-
-        //        purchaseOrder.EmployeeId = purchaseOrdDTO.EmployeeId;
-        //        purchaseOrder.VendorId = purchaseOrdDTO.VendorId;
-        //        purchaseOrder.PurchaseNotes = purchaseOrdDTO.PurchaseNotes;
-
-        //        _context.PurchaseOrders.Add(purchaseOrder);
-        //        _context.SaveChanges();
-
-        //        int lastone = _context.PurchaseOrders
-        //                  .OrderByDescending(po => po.PurchaseId)
-        //                  .Select(po => po.PurchaseId)
-        //                  .FirstOrDefault();
-
-
-        //        for (int i = 0; i < quantityBridgeList.Count; i++)
-        //        {
-        //            quantityBridgeList[i].PurchaseId = lastone;
-        //            Supply supply = _context.Supplies.FirstOrDefault(p => p.SuppliesId == quantityBridgeList[i].SuppliesId);
-        //            if (supply != null)
-        //            {
-        //                // Calculate new quantity and average price
-        //                double totalQuantity = supply.Quantity + quantityBridgeList[i].Quantity;
-        //                decimal totalValue = (decimal)supply.Quantity * supply.Price +
-        //                                     (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-        //                decimal averagePrice = totalValue / (decimal)totalQuantity;
-
-        //                // Update paper properties
-        //                supply.Quantity = (int)totalQuantity;
-        //                supply.Price = averagePrice;
-        //                supply.TotalBalance = (decimal)totalQuantity * averagePrice;
-
-        //                _context.Supplies.Update(supply);
-        //            }
-        //        }
-
-        //        // Add QuantityBridges to context and save all changes
-        //        _context.QuantityBridges.AddRange(purchaseOrdDTO.BridgeList);
-        //        _context.SaveChanges();
-        //        return true;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return false;
-
-        //    }
-        //}
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // view bags lists
@@ -624,21 +490,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return (false, $"حدث خطأ: {ex.Message}");
             }
-        }
-
-        public bool editInk(int inkID, Ink newInk)
-        {
-            throw new NotImplementedException();
-        }
-
-        bool InventoryService.editPaper(int paperID, Paper newPaper)
-        {
-            throw new NotImplementedException();
-        }
-
-        bool InventoryService.editSupply(int suppliesID, Supply newSupply)
-        {
-            throw new NotImplementedException();
         }
 
         public InventoryReportViewModel invetoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
@@ -1034,7 +885,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 .ToList();
         }
 
-
         public List<PurchaseOrder> GetRecentPurchaseOrderwithSuppliers()
         {
             var today = DateOnly.FromDateTime(DateTime.Now);
@@ -1386,8 +1236,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
-
-
 
         public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
         {

@@ -93,6 +93,8 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "القيمة الاجمالية")]
         public decimal FinalTotal { get; set; }
 
+        [Display(Name = "اخرى")]
+        public decimal? Other { get; set; }
 
 
     }

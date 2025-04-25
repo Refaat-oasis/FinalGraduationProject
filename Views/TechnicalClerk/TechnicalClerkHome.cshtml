@@ -1,4 +1,17 @@
 ﻿@model Employee;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    string employeeName = HttpContextAccessor.HttpContext.Session.GetString("EmployeeName") ?? "Unknown";
+    string employeeId = HttpContextAccessor.HttpContext.Session.GetString("EmployeeID") ?? "Unknown";
+    Console.WriteLine("JobRole: " + jobRole);
+    Console.WriteLine("EmployeeName: " + employeeName);
+    Console.WriteLine("EmployeeId: " + employeeId);
+}
 @{
     Layout = null;
 }
@@ -50,6 +63,8 @@
     <!-- Sidebar with Dropdown -->
     <div class="sidebar">
         <ul class="dropdown">
+            <li>  @Html.ActionLink("عرض الملف الشخصي", "EmployeeProfile", "Employee", new { employeeId }) </li>
+
             <li onclick="toggleDropdown(this)">
                 الفني
                 <ul>
@@ -69,6 +84,11 @@
     <!-- Main Content -->
     <div class="container">
         <h1>تحوت يتمنى لك يومًا سعيدًا</h1>
+        <h1>
+            مرحبا يا : @{
+                @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("EmployeeName"))
+            }
+        </h1>
         <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p>
         <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
     </div>

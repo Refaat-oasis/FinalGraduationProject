@@ -113,7 +113,7 @@
             </div>
         }
 
-        <form asp-action="EditJobOrder" method="post">
+        <form asp-action="EditJobOrder" method="post" class="needs-validation" novalidate>
             <input type="hidden" asp-for="JobOrderId" />
 
             <!-- عرض بيانات العميل (غير قابلة للتعديل) -->
@@ -161,25 +161,25 @@
             </div>
 
             <!-- الحقول المالية -->
-            <div class="rowCont">
-                <div class="colCont">
-                    <label asp-for="RemainingAmount" class="form-label">المبلغ المتبقي</label>
-                    <input asp-for="RemainingAmount" type="number" step="0.01" class="form-control">
-                    <span asp-validation-for="RemainingAmount" class="text-danger"></span>
-                </div>
+            @* <div class="rowCont"> *@
+            @*     <div class="colCont"> *@
+            @*         <label asp-for="RemainingAmount" class="form-label">المبلغ المتبقي</label> *@
+            @*         <input asp-for="RemainingAmount" type="number" step="0.01" class="form-control"> *@
+            @*         <span asp-validation-for="RemainingAmount" class="text-danger"></span> *@
+            @*     </div> *@
 
-                <div class="colCont">
-                    <label asp-for="EarnedRevenue" class="form-label">الإيراد المكتسب</label>
-                    <input asp-for="EarnedRevenue" type="number" step="0.01" class="form-control">
-                    <span asp-validation-for="EarnedRevenue" class="text-danger"></span>
-                </div>
+            @*     <div class="colCont"> *@
+            @*         <label asp-for="EarnedRevenue" class="form-label">الإيراد المكتسب</label> *@
+            @*         <input asp-for="EarnedRevenue" type="number" step="0.01" class="form-control"> *@
+            @*         <span asp-validation-for="EarnedRevenue" class="text-danger"></span> *@
+            @*     </div> *@
 
-                <div class="colCont">
-                    <label asp-for="UnearnedRevenue" class="form-label">الإيراد غير المكتسب</label>
-                    <input asp-for="UnearnedRevenue" type="number" step="0.01" class="form-control">
-                    <span asp-validation-for="UnearnedRevenue" class="text-danger"></span>
-                </div>
-            </div>
+            @*     <div class="colCont"> *@
+            @*         <label asp-for="UnearnedRevenue" class="form-label">الإيراد غير المكتسب</label> *@
+            @*         <input asp-for="UnearnedRevenue" type="number" step="0.01" class="form-control"> *@
+            @*         <span asp-validation-for="UnearnedRevenue" class="text-danger"></span> *@
+            @*     </div> *@
+            @* </div> *@
 
             <!-- حالة العمل -->
             <div class="mb-3">

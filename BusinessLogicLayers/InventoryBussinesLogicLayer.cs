@@ -132,7 +132,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
-        
+
         public bool EditInk(int inkID, Ink newInk)
         {
             try
@@ -175,7 +175,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException("An error occurred while fetching the paper.", ex);
             }
         }
-       
+
         public bool editPaper(int paperID, Paper newPaper)
         {
             try
@@ -243,7 +243,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 throw new ApplicationException($"An error occurred while updating the supply", ex);
             }
         }
-       
+
         public bool EditVendor(int vendorID, VendorEditDTO newVendor)
         {
             try
@@ -681,7 +681,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             try
             {
-                decimal purchaseOrderRemainingBalance=0;
+                decimal purchaseOrderRemainingBalance = 0;
                 List<QuantityBridge> quantityBridgeList = purchaseDTO.BridgeList;
 
                 PurchaseOrder purchaseOrder = new PurchaseOrder();
@@ -712,7 +712,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         decimal averagePrice = totalValue / (decimal)totalQuantity;
 
                         decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        purchaseOrderRemainingBalance += newtotalBalance; 
+                        purchaseOrderRemainingBalance += newtotalBalance;
                         quantityBridgeList[i].TotalBalance = newtotalBalance;
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
@@ -1052,10 +1052,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                 ink.Quantity += quantityBridgeList[i].Quantity;
 
-                               
+
                                 quantityBridgeList[i].Price = (decimal)quantityBridgeList[i].OldPrice;
 
-                              
+
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
                                 _context.Inks.Update(ink);
                                 _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -1072,10 +1072,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                 paper.Quantity += quantityBridgeList[i].Quantity;
 
-                              
+
                                 quantityBridgeList[i].Price = (decimal)quantityBridgeList[i].OldPrice;
 
-                         
+
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
                                 _context.Papers.Update(paper);
@@ -1093,7 +1093,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                 supply.Quantity += quantityBridgeList[i].Quantity;
 
-                           
+
                                 quantityBridgeList[i].Price = (decimal)quantityBridgeList[i].OldPrice;
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
 
@@ -1277,7 +1277,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 quantityBridgeList[i].OldQuantity = ink.Quantity;
                                 quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
-                              
+
                                 ink.Quantity += quantityBridgeList[i].Quantity;
 
 
@@ -1291,7 +1291,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             var paper = _context.Papers.FirstOrDefault(p => p.PaperId == quantityBridgeList[i].PaperId);
                             if (paper != null)
                             {
-                                
+
                                 quantityBridgeList[i].OldPrice = paper.Price;
                                 quantityBridgeList[i].OldQuantity = paper.Quantity;
                                 quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
@@ -1394,7 +1394,86 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
+
+
+        //public bool editCharacteristic(int CharId, ColorWeightSize CWS)
+        //    {
+        //        try
+        //        {
+        //            ColorWeightSize foundCWS = _context.ColorWeightSizes.FirstOrDefault(p => p.ColorWeightSizeId == CharId);
+        //            if (foundCWS == null)
+        //            {
+
+        //                throw new ArgumentException("Characteristic not found.");
+        //            }
+        //            foundCWS.Size = CWS.Size;
+        //            foundCWS.Weight = CWS.Weight;
+        //            foundCWS.Colored = CWS.Colored;
+        //            _context.ColorWeightSizes.Update(foundCWS);
+        //            _context.SaveChanges(); // Don't forget to save changes!
+
+        //            return true;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw new ApplicationException("An error occurred while updating the Characterisitics.", ex);
+        //        }
+        //    }
+
+        public bool editCharacteristic(int CharId, ColorWeightSize CWS)
+        {
+            try
+            {
+                var existing = _context.ColorWeightSizes.FirstOrDefault(c => c.ColorWeightSizeId == CharId);
+                if (existing == null) return false;
+
+                existing.Type = CWS.Type;
+
+                // تحديث الحقل المناسب بناءً على النوع
+                if (CWS.Type == 1) // حجم
+                {
+                    existing.Size = CWS.Size;
+                    existing.Weight = null;
+                    existing.Colored = null;
+                }
+                else if (CWS.Type == 2) // وزن
+                {
+                    existing.Weight = CWS.Weight;
+                    existing.Size = null;
+                    existing.Colored = null;
+                }
+                else if (CWS.Type == 3) // لون
+                {
+                    existing.Colored = CWS.Colored;
+                    existing.Size = null;
+                    existing.Weight = null;
+                }
+
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public ColorWeightSize GetCharacteristicByID(int CharId)
+        {
+            try
+            {
+                ColorWeightSize foundCWS = _context.ColorWeightSizes.FirstOrDefault(p => p.ColorWeightSizeId == CharId);
+                if (foundCWS == null)
+                {
+                    throw new ArgumentException("Characteristic not found.");
+                }
+                return foundCWS;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here
+                throw new ApplicationException("An error occurred while fetching the Characteristic.", ex);
+            }
+        }
+
     }
-
-
 }

@@ -1,6 +1,7 @@
 ﻿using AspNetCoreGeneratedDocument;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -874,7 +875,75 @@ namespace ThothSystemVersion1.Controllers
             return RedirectToAction("PhysicalCount");
         }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [HttpGet]
+        public IActionResult EditCharacteristics(int CWSId)
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1)
+            {
+                try
+                {
+                    ColorWeightSize CWS = _businessLogicL.GetCharacteristicByID(CWSId);
+                    ViewBag.TypeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "حجم" },
+                new SelectListItem { Value = "2", Text = "وزن" },
+                new SelectListItem { Value = "3", Text = "لون" }
+            };
+                    return View("~/Views/Inventory/EditCharacterisitic.cshtml", CWS);
+                }
+                catch (ApplicationException ex)
+                {
+                    return StatusCode(500, ex.Message); // Internal server error
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+
+            }
+            else
+            {
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult EditCharacteristics(int CWSId, ColorWeightSize updatedChar)
+        {
+            try
+            {
+                if (updatedChar == null)
+                {
+                    ModelState.AddModelError("", "البيانات غير صالحة");
+                    return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+                }
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.TypeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "حجم" },
+                new SelectListItem { Value = "2", Text = "وزن" },
+                new SelectListItem { Value = "3", Text = "لون" }
+            };
+                    return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+                }
+
+                bool isEditSuccess = _businessLogicL.editCharacteristic(CWSId, updatedChar);
+
+                TempData["Success"] = "تم تعديل بيانات الخصائص";
+                return RedirectToAction("EditCharacterisitics", "Inventory", new { CWSId });
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الخصائص";
+                return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
         //Views_Inventory_InventoryPrinting section 
 

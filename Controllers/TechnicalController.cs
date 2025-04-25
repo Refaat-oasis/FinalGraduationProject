@@ -85,8 +85,7 @@ namespace ThothSystemVersion1.Controllers
                 ViewBag.PaperList = _inventoryBusinessLogicLayer.GetActivePapers();
                 ViewBag.InkList = _inventoryBusinessLogicLayer.GetActiveInks();
                 ViewBag.SupplyList = _inventoryBusinessLogicLayer.GetActiveSupplies();
-                ViewBag.JobOrderList = _technicalBusinessLogicLayer.GetLast10JobOrders();
-
+                ViewBag.JobOrderList = _inventoryBusinessLogicLayer.GetRecentJobOrdersWithCustomers();
                 return View();
             }
             else
@@ -110,10 +109,10 @@ namespace ThothSystemVersion1.Controllers
             var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
             if (result.success)
             {
-                TempData["SuccessMessage"] = result.message;
+                TempData["Success"] = result.message;
                 return RedirectToAction("CreateRequisite");
             }
-            TempData["ErrorMessage"] = result.message;
+            TempData["Error"] = result.message;
             //}
 
 
@@ -141,13 +140,16 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult CreateNewJobOrder(JobOrderDTO jobOrder)
         {
+            string employeeId = HttpContext.Session.GetString("EmployeeID");
+            jobOrder.EmployeeId = employeeId;
+
             var result = _technicalBusinessLogicLayer.AddJobOrder(jobOrder);
             if (result.success)
             {
-                TempData["SuccessMessage"] = result.message;
+                TempData["Success"] = result.message;
                 return RedirectToAction("CreateNewJobOrder");
             }
-            TempData["ErrorMessage"] = result.message;
+            TempData["Error"] = result.message;
 
 
             return RedirectToAction("CreateNewJobOrder");
@@ -175,7 +177,7 @@ namespace ThothSystemVersion1.Controllers
                 }
                 catch (ArgumentException ex)
                 {
-                    TempData["ErrorMessage"] = ex.Message;
+                    TempData["Error"] = ex.Message;
                     return RedirectToAction("ViewAllJobOrder"); // Redirect to list with error
                 }
             }
@@ -205,22 +207,21 @@ namespace ThothSystemVersion1.Controllers
                 ModelState.Clear();
                 TryValidateModel(jODto);
 
-                if (!ModelState.IsValid)
-                {
+                //if (!ModelState.IsValid)
+                //{
 
-                    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
-                }
+                //    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
+                //}
 
                 var result = _technicalBusinessLogicLayer.EditJobOrder(jobOrderid, jODto);
 
                 if (result.success)
                 {
-                    TempData["SuccessMessage"] = result.message;
-                    return RedirectToAction("ViewAllJobOrder");
+                    TempData["Success"] = result.message;
+                    return RedirectToAction("EditJobOrder", "Technical", new {jobOrderid});
                 }
-                TempData["ErrorMessage"] = result.message;
-
-                return RedirectToAction("ViewAllJobOrder", "Technical");
+                TempData["Error"] = result.message;
+                return RedirectToAction("EditJobOrder", "Technical", new { jobOrderid });
             }
             catch (Exception ex)
             {

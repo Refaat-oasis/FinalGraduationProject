@@ -137,14 +137,14 @@ namespace ThothSystemVersion1.Controllers
         // Sandra section
 
         [HttpGet]
-        public IActionResult EditLabour(int LabID)
+        public IActionResult EditLabour(int LabourID)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 5)
             {
                 try
                 {
-                    var labour = _costbusinessLogicL.GetLabourById(LabID);
+                    var labour = _costbusinessLogicL.GetLabourById(LabourID);
                     return View("~/Views/Cost/EditLabour.cshtml", labour);
                 }
                 catch (ApplicationException ex)
@@ -163,7 +163,7 @@ namespace ThothSystemVersion1.Controllers
             }
         }
         [HttpPost]
-        public IActionResult EditLabour(int LabID, Labour updatedLabour)
+        public IActionResult EditLabour(int LabourID, Labour updatedLabour)
         {
             if (updatedLabour == null)
             {
@@ -179,17 +179,17 @@ namespace ThothSystemVersion1.Controllers
 
             try
             {
-                var result = _costbusinessLogicL.EditLabour(LabID, updatedLabour); // Update the labour
+                var result = _costbusinessLogicL.EditLabour(LabourID, updatedLabour); // Update the labour
                 if (result.Success)
                 {
                     TempData["Success"] = result.Message;
-                    return RedirectToAction("EditLabour", "cost", LabID);
+                    return RedirectToAction("EditLabour", "cost", new { LabourID });
                 }
                 else
                 {
 
                     TempData["Error"] = result.Message;
-                    return RedirectToAction("EditLabour", "cost", LabID);
+                    return RedirectToAction("EditLabour", "cost", new { LabourID });
                 }
 
 
@@ -249,13 +249,13 @@ namespace ThothSystemVersion1.Controllers
                 if (result.Success)
                 {
                     TempData["Success"] = result.Message;
-                    return RedirectToAction("EditMachine", "cost", MachineID);
+                    return RedirectToAction("EditMachine", "cost", new { MachineID });
                 }
                 else
                 {
 
                     TempData["Error"] = result.Message;
-                    return RedirectToAction("EditMachine", "cost", MachineID);
+                    return RedirectToAction("EditMachine", "cost",new { MachineID });
                 }
 
             }

@@ -205,6 +205,275 @@
 
 
 
+@* @section Scripts { *@
+@*     <script> *@
+@*         $(document).ready(function () { *@
+@*             // Initialize variables *@
+@*             var items = []; *@
+@*             var editIndex = -1; *@
+
+@*             // Data sources from ViewBag *@
+@*             const dataSources = { *@
+@*                 Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)), *@
+@*                 Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)), *@
+@*                 Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList)) *@
+@*             }; *@
+
+@*             // When item type changes *@
+@*             $('#itemType').change(function () { *@
+@*                 var selectedType = $(this).val(); *@
+@*                 var $itemSelect = $('#itemId'); *@
+
+@*                 // Reset fields *@
+@*                 $itemSelect.empty().prop('disabled', !selectedType); *@
+@*                 $('#currentQuantity').val(''); *@
+@*                 $('#itemQuantity').val(''); *@
+@*                 $('#quantityError').hide(); *@
+
+@*                 if (!selectedType) { *@
+@*                     $itemSelect.append('<option value="">-- اختر الصنف --</option>'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 // Populate items based on selected type *@
+@*                 $itemSelect.append('<option value="">-- اختر الصنف --</option>'); *@
+
+@*                 if (dataSources[selectedType] && dataSources[selectedType].length > 0) { *@
+@*                     $.each(dataSources[selectedType], function(index, item) { *@
+@*                         var id = item.paperId || item.inkId || item.suppliesId; *@
+@*                         var name = item.name; *@
+@*                         var quantity = item.quantity || 0; *@
+
+@*                         $itemSelect.append($('<option>', { *@
+@*                             value: id, *@
+@*                             text: name, *@
+@*                             'data-quantity': quantity *@
+@*                         })); *@
+@*                     }); *@
+@*                 } *@
+@*             }); *@
+
+@*             // When item selection changes *@
+@*             $('#itemId').change(function () { *@
+@*                 var selectedOption = $(this).find('option:selected'); *@
+@*                 var currentQty = selectedOption.data('quantity') || 0; *@
+@*                 $('#currentQuantity').val(currentQty); *@
+@*                 $('#itemQuantity').attr('max', currentQty); *@
+@*             }); *@
+
+@*             // Quantity validation *@
+@*             $('#itemQuantity').on('input', function() { *@
+@*                 var requiredQty = parseInt($(this).val()) || 0; *@
+@*                 var currentQty = parseInt($('#currentQuantity').val()) || 0; *@
+
+@*                 if (requiredQty > currentQty) { *@
+@*                     $('#quantityError').show(); *@
+@*                     $(this).addClass('is-invalid'); *@
+@*                 } else { *@
+@*                     $('#quantityError').hide(); *@
+@*                     $(this).removeClass('is-invalid'); *@
+@*                 } *@
+@*             }); *@
+
+@*             // Add item button *@
+@*             $('#addItemBtn').click(function () { *@
+@*                 var itemType = $('#itemType').val(); *@
+@*                 var itemId = $('#itemId').val(); *@
+@*                 var itemName = $('#itemId option:selected').text(); *@
+@*                 var quantity = parseInt($('#itemQuantity').val()) || 0; *@
+@*                 var currentQuantity = parseInt($('#currentQuantity').val()) || 0; *@
+
+@*                 // Validation *@
+@*                 if (!itemType || !itemId) { *@
+@*                     alert('يجب اختيار نوع الصنف والصنف أولاً'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 if (quantity <= 0) { *@
+@*                     alert('يجب إدخال كمية صحيحة أكبر من الصفر'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 if (quantity > currentQuantity) { *@
+@*                     alert('الكمية المطلوبة أكبر من الكمية المتاحة'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 // Check if item already exists *@
+@*                 var existingItemIndex = items.findIndex(item => item.itemId == itemId); *@
+@*                 if (existingItemIndex >= 0 && editIndex === -1) { *@
+@*                     alert('هذا الصنف مضاف بالفعل'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 // Create new item *@
+@*                 var newItem = { *@
+@*                     itemType: itemType, *@
+@*                     itemId: itemId, *@
+@*                     itemName: itemName, *@
+@*                     quantity: quantity, *@
+@*                     currentQuantity: currentQuantity *@
+@*                 }; *@
+
+@*                 // Add or update item *@
+@*                 if (editIndex === -1) { *@
+@*                     items.push(newItem); *@
+@*                 } else { *@
+@*                     items[editIndex] = newItem; *@
+@*                     editIndex = -1; *@
+@*                     $('#addItemBtn').text('إضافة'); *@
+@*                 } *@
+
+@*                 // Update UI *@
+@*                 renderItemsTable(); *@
+@*                 resetItemForm(); *@
+@*             }); *@
+
+@*             // Render items table *@
+@*             function renderItemsTable() { *@
+@*                 var $tableBody = $('#itemsTableBody'); *@
+@*                 var $hiddenContainer = $('#hiddenItemsContainer'); *@
+
+@*                 $tableBody.empty(); *@
+@*                 $hiddenContainer.empty(); *@
+
+@*                 if (items.length === 0) { *@
+@*                     $tableBody.append('<tr><td colspan="5" class="text-center">لا توجد أصناف مضافة</td></tr>'); *@
+@*                     return; *@
+@*                 } *@
+
+@*                 items.forEach((item, index) => { *@
+@*                     // Add row to table *@
+@*                     $tableBody.append(` *@
+@*                         <tr data-index="${index}"> *@
+@*                             <td>${getArabicType(item.itemType)}</td> *@
+@*                             <td>${item.itemName}</td> *@
+@*                             <td>${item.currentQuantity}</td> *@
+@*                             <td>${item.quantity}</td> *@
+@*                             <td> *@
+@*                             <div class"btn-container"> *@
+@*                                 <button type="button" class="btn btn-secondary btn-sm editItem"> *@
+@*                                     <i class="bx bx-edit"></i> تعديل *@
+@*                                 </button> *@
+@*                                 <button type="button" class="btn btn-secondary btn-sm deleteItem"> *@
+@*                                     <i class="bx bx-trash"></i> حذف *@
+@*                                 </button> *@
+@*                                 </div> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     `); *@
+
+@*                     // Add hidden fields for form submission *@
+@*                     addHiddenFields(item, index); *@
+@*                 }); *@
+@*             } *@
+
+@*             // Reset item form *@
+@*             function resetItemForm() { *@
+@*                 $('#itemType').val('').trigger('change'); *@
+@*                 $('#itemId').empty().append('<option value="">-- اختر الصنف --</option>').prop('disabled', true); *@
+@*                 $('#currentQuantity').val(''); *@
+@*                 $('#itemQuantity').val(''); *@
+@*                 $('#quantityError').hide(); *@
+@*             } *@
+
+@*             // Edit item *@
+@*             $('#itemsTableBody').on('click', '.editItem', function() { *@
+@*                 editIndex = $(this).closest('tr').data('index'); *@
+@*                 var item = items[editIndex]; *@
+
+@*                 $('#itemType').val(item.itemType).trigger('change'); *@
+
+@*                 // Small delay to ensure the itemId select is populated *@
+@*                 setTimeout(() => { *@
+@*                     $('#itemId').val(item.itemId); *@
+@*                     $('#currentQuantity').val(item.currentQuantity); *@
+@*                     $('#itemQuantity').val(item.quantity); *@
+@*                     $('#addItemBtn').text('تحديث'); *@
+@*                 }, 100); *@
+@*             }); *@
+
+@*             // Delete item *@
+@*             $('#itemsTableBody').on('click', '.deleteItem', function() { *@
+@*                 if (confirm('هل أنت متأكد من حذف هذا الصنف؟')) { *@
+@*                     items.splice($(this).closest('tr').data('index'), 1); *@
+@*                     renderItemsTable(); *@
+@*                 } *@
+@*             }); *@
+
+@*             // Helper function to get Arabic type *@
+@*             function getArabicType(type) { *@
+@*                 switch(type) { *@
+@*                     case 'Paper': return 'ورق'; *@
+@*                     case 'Ink': return 'حبر'; *@
+@*                     case 'Supply': return 'مستلزمات'; *@
+@*                     default: return type; *@
+@*                 } *@
+@*             } *@
+
+@*                     function addHiddenFields(item, index) { *@
+@*             var $hiddenContainer = $('#hiddenItemsContainer'); *@
+@*             var prefix = `BridgeList[${index}]`; *@
+
+@*             var hiddenFields = ` *@
+@*                 <input type="hidden" name="${prefix}.Type" value="${item.itemType}" /> *@
+@*                 <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" /> *@
+@*             `; *@
+
+@*             // إضافة الحقل الصحيح بناءً على نوع العنصر *@
+@*             if (item.itemType === 'Paper') { *@
+@*                 hiddenFields += `<input type="hidden" name="${prefix}.PaperId" value="${item.itemId}" />`; *@
+@*             } *@
+@*             else if (item.itemType === 'Ink') { *@
+@*                 hiddenFields += `<input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />`; *@
+@*             } *@
+@*             else if (item.itemType === 'Supply') { *@
+@*                 hiddenFields += `<input type="hidden" name="${prefix}.SuppliesId" value="${item.itemId}" />`; *@
+@*             } *@
+
+@*             $hiddenContainer.append(hiddenFields); *@
+@*         } *@
+
+@*             // Form submission *@
+@*             $('#requisiteForm').submit(function(e) { *@
+@*                 // You can remove this validation if you want to allow submission without items *@
+@*                 if (items.length === 0) { *@
+@*                     if (!confirm('لم تقم بإضافة أي أصناف. هل تريد المتابعة؟')) { *@
+@*                         e.preventDefault(); *@
+@*                     } *@
+@*                 } *@
+@*             }); *@
+@*         }); *@
+@*                 const tempDataElement = document.getElementById('tempDataSuccess'); *@
+@*             const jobRoleElement = document.getElementById('hdnJobRole'); *@
+
+@*             // Get values with proper fallbacks *@
+@*             const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false; *@
+@*             const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0; *@
+
+@*             console.log("Success message exists:", hasSuccessMessage); *@
+@*             console.log("Job role:", jobRole); *@
+
+@*             // Mapping of job roles to their respective URLs *@
+@*             const jobRoleRoutes = { *@
+@*                 0: "/employee/AdminHome", *@
+@*                 1: "/employee/inventoryManager", *@
+@*                 2: "/employee/inventoryClerk", *@
+@*                 3: "/employee/TechnicalManager", *@
+@*                 4: "/employee/technicalClerk", *@
+@*                 5: "/employee/CostManager", *@
+@*                 6: "/employee/costClerk" *@
+@*             }; *@
+
+@*             if (hasSuccessMessage) { *@
+@*                 setTimeout(function () { *@
+@*                     const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage"; *@
+@*                     window.location.href = redirectUrl; *@
+@*                 }, 3000); *@
+@*             } *@
+@*         }); *@
+@*     </script> *@
+@* } *@
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -351,13 +620,13 @@
                             <td>${item.currentQuantity}</td>
                             <td>${item.quantity}</td>
                             <td>
-                            <div class"btn-container">
-                                <button type="button" class="btn btn-secondary btn-sm editItem">
-                                    <i class="bx bx-edit"></i> تعديل
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-sm deleteItem">
-                                    <i class="bx bx-trash"></i> حذف
-                                </button>
+                                <div class="btn-container">
+                                    <button type="button" class="btn btn-secondary btn-sm editItem">
+                                        <i class="bx bx-edit"></i> تعديل
+                                    </button>
+                                    <button type="button" class="btn btn-secondary btn-sm deleteItem">
+                                        <i class="bx bx-trash"></i> حذف
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -396,77 +665,82 @@
             // Delete item
             $('#itemsTableBody').on('click', '.deleteItem', function() {
                 if (confirm('هل أنت متأكد من حذف هذا الصنف؟')) {
-                    items.splice($(this).closest('tr').data('index'), 1);
+                    var index = $(this).closest('tr').data('index');
+                    items.splice(index, 1);
                     renderItemsTable();
+
+                    // Reset form if editing the deleted item
+                    if (editIndex === index) {
+                        resetItemForm();
+                        editIndex = -1;
+                        $('#addItemBtn').text('إضافة');
+                    } else if (editIndex > index) {
+                        editIndex--;
+                    }
                 }
             });
 
             // Helper function to get Arabic type
             function getArabicType(type) {
-                switch(type) {
-                    case 'Paper': return 'ورق';
-                    case 'Ink': return 'حبر';
-                    case 'Supply': return 'مستلزمات';
-                    default: return type;
+                const types = {
+                    'Paper': 'ورق',
+                    'Ink': 'حبر',
+                    'Supply': 'مستلزمات'
+                };
+                return types[type] || type;
+            }
+
+            // Add hidden fields for form submission
+            function addHiddenFields(item, index) {
+                var $hiddenContainer = $('#hiddenItemsContainer');
+                var prefix = `BridgeList[${index}]`;
+
+                var hiddenFields = `
+                    <input type="hidden" name="${prefix}.Type" value="${item.itemType}" />
+                    <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" />
+                `;
+
+                // Add the correct ID field based on item type
+                if (item.itemType === 'Paper') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.PaperId" value="${item.itemId}" />`;
                 }
-            }
+                else if (item.itemType === 'Ink') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />`;
+                }
+                else if (item.itemType === 'Supply') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.SuppliesId" value="${item.itemId}" />`;
+                }
 
-                    function addHiddenFields(item, index) {
-            var $hiddenContainer = $('#hiddenItemsContainer');
-            var prefix = `BridgeList[${index}]`;
-
-            var hiddenFields = `
-                <input type="hidden" name="${prefix}.Type" value="${item.itemType}" />
-                <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" />
-            `;
-
-            // إضافة الحقل الصحيح بناءً على نوع العنصر
-            if (item.itemType === 'Paper') {
-                hiddenFields += `<input type="hidden" name="${prefix}.PaperId" value="${item.itemId}" />`;
+                $hiddenContainer.append(hiddenFields);
             }
-            else if (item.itemType === 'Ink') {
-                hiddenFields += `<input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />`;
-            }
-            else if (item.itemType === 'Supply') {
-                hiddenFields += `<input type="hidden" name="${prefix}.SuppliesId" value="${item.itemId}" />`;
-            }
-
-            $hiddenContainer.append(hiddenFields);
-        }
 
             // Form submission
             $('#requisiteForm').submit(function(e) {
-                // You can remove this validation if you want to allow submission without items
                 if (items.length === 0) {
                     if (!confirm('لم تقم بإضافة أي أصناف. هل تريد المتابعة؟')) {
                         e.preventDefault();
                     }
                 }
             });
-        });
-                const tempDataElement = document.getElementById('tempDataSuccess');
+
+            // Handle notification and redirect
+            const tempDataElement = document.getElementById('tempDataSuccess');
             const jobRoleElement = document.getElementById('hdnJobRole');
 
-            // Get values with proper fallbacks
-            const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-            const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+            if (tempDataElement && tempDataElement.value === 'true') {
+                const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-            console.log("Success message exists:", hasSuccessMessage);
-            console.log("Job role:", jobRole);
+                const jobRoleRoutes = {
+                    0: "/employee/AdminHome",
+                    1: "/employee/inventoryManager",
+                    2: "/employee/inventoryClerk",
+                    3: "/employee/TechnicalManager",
+                    4: "/employee/technicalClerk",
+                    5: "/employee/CostManager",
+                    6: "/employee/costClerk"
+                };
 
-            // Mapping of job roles to their respective URLs
-            const jobRoleRoutes = {
-                0: "/employee/AdminHome",
-                1: "/employee/inventoryManager",
-                2: "/employee/inventoryClerk",
-                3: "/employee/TechnicalManager",
-                4: "/employee/technicalClerk",
-                5: "/employee/CostManager",
-                6: "/employee/costClerk"
-            };
-
-            if (hasSuccessMessage) {
-                setTimeout(function () {
+                setTimeout(function() {
                     const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
                     window.location.href = redirectUrl;
                 }, 3000);

@@ -127,6 +127,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
                         quantityBridgeList[i].Price = ink.Price;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * ink.Price;
 
                         // Update paper properties
                         ink.Quantity = (int)newQuantity;
@@ -150,6 +151,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldQuantity = paper.Quantity;
                         quantityBridgeList[i].OldTotalBalance = paper.TotalBalance;
                         quantityBridgeList[i].Price = paper.Price;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * paper.Price;
 
                         // Update paper properties
                         paper.Quantity = (int)newQuantity;
@@ -173,6 +175,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldQuantity = supply.Quantity;
                         quantityBridgeList[i].OldTotalBalance = supply.TotalBalance;
                         quantityBridgeList[i].Price = supply.Price;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * supply.Price;
 
                         // Update paper properties
                         supply.Quantity = (int)newQuantity;
@@ -375,16 +378,18 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (jobOrder.StartDate > jobOrder.EndDate)
                     return (false, "تاريخ البداية يجب أن يكون قبل تاريخ النهاية");
 
+                Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId.Value);
                 JobOrder addNewOne = new JobOrder();
-                addNewOne.RemainingAmount = jobOrder.RemainingAmount;
-                addNewOne.UnearnedRevenue = jobOrder.UnearnedRevenue;
-                addNewOne.EarnedRevenue = jobOrder.EarnedRevenue;
+                //addNewOne.RemainingAmount = jobOrder.RemainingAmount;
+                //addNewOne.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                //addNewOne.EarnedRevenue = jobOrder.EarnedRevenue;
                 addNewOne.JobOrdernotes = jobOrder.JobOrdernotes;
                 addNewOne.OrderProgress = jobOrder.OrderProgress;
                 addNewOne.CustomerId = jobOrder.CustomerId.Value;
                 addNewOne.StartDate = jobOrder.StartDate.Value;
                 addNewOne.EndDate = jobOrder.EndDate;
                 addNewOne.EmployeeId = jobOrder.EmployeeId;
+                addNewOne.JobOrderSource = customer.CustomerSource;
 
                 _context.JobOrders.Add(addNewOne);
                 _context.SaveChanges();
@@ -412,9 +417,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (jobOrder.EndDate < existingJobOrder.StartDate)
                     return (false, "تاريخ الانتهاء يجب أن يكون بعد تاريخ البداية");
 
-                existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
-                existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
-                existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
+                //existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
+                //existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                //existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
                 existingJobOrder.JobOrdernotes = jobOrder.JobOrdernotes;
                 existingJobOrder.OrderProgress = jobOrder.OrderProgress;
                 existingJobOrder.EndDate = jobOrder.EndDate;

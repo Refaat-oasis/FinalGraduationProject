@@ -193,7 +193,7 @@ namespace ThothSystemVersion1.Controllers
             Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
             if (employee != null)
             {
-                employee.Forgetpassword = false;
+                employee.Forgetpassword = true;
                 _context.Update(employee);
                 _context.SaveChanges();
                 string id = EmployeeId;

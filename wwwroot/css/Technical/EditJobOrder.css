@@ -308,3 +308,11 @@ h5 {
         width: 0%;
     }
 }
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.text-danger {
+    color: #dc3545;
+    font-size: 0.875em;
+}

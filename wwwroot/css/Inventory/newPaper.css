@@ -260,3 +260,17 @@ input.btnReset {
         width: 0%;
     }
 }
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.inputBox.error {
+    border-color: red;
+}
+
+.inputBox.success {
+    border-color: green;
+}

@@ -102,7 +102,7 @@
         <div class="inputBox">
             <label for="paperName">اسم خام الورق</label>
             <input type="text" asp-for="@Model.Name" id="paperName" />
-            <p asp-validation-for="@Model.Name" class="error"></p>
+            <span class="error" asp-validation-for="@Model.Name"></span>
         </div>
 
         <div class="inputBox">
@@ -120,7 +120,7 @@
                 
                 }
             </select>
-            <p asp-validation-for="@Model.Size" class="error"></p>
+            <span class="error" asp-validation-for="@Model.Size"></span>
         </div>
 
         <div class="inputBox">
@@ -139,7 +139,7 @@
 
                 }
             </select>
-            <p asp-validation-for="@Model.Weight" class="error"></p>
+            <span class="error" asp-validation-for="@Model.Weight"></span>
         </div>
 
         <div class="inputBox">
@@ -172,19 +172,19 @@
         <div class="inputBox">
             <label for="TotalBalance">القيمة المتاحه</label>
             <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
-            <p asp-validation-for="@Model.TotalBalance" class="error"></p>
+            <span asp-validation-for="@Model.TotalBalance" class="error"></span>
         </div>
 
         <div class="inputBox">
             <label for="ReorderPoint">نقطة إعادة الطلب</label>
             <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
-            <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
+            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
         </div>
 
         <div class="inputBox">
             <label for="Price">سعر الورق</label>
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+            <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
 
         <div class="buttons">
@@ -199,4 +199,4 @@
 
     </form>
 </div>
-@* <script src="~/js/Inventory/newPaper.js"></script> *@
+<script src="~/js/Inventory/newPaper.js"></script>

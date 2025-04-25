@@ -1,0 +1,6 @@
+Date: 4/25/2025 4:28:03 PM
+Exception: System.ArgumentNullException: Value cannot be null. (Parameter 'password')
+   at System.Security.Cryptography.Rfc2898DeriveBytes..ctor(String password, Byte[] salt, Int32 iterations, HashAlgorithmName hashAlgorithm)
+   at Hashing.HashPassword(String password) in C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\Utilities\Hashing.cs:line 26
+   at ThothSystemVersion1.Controllers.EmployeeController.EditEmployee(String EmployeeId, EmployeeDTO updatedEmployee) in C:\Users\THE KNOWER\Desktop\GraduationProjectThothSystem\FinalGraduationProject\FinalGraduationProject\Controllers\EmployeeController.cs:line 141
+

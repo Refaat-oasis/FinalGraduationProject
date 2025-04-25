@@ -1,5 +1,17 @@
 ﻿@model Employee;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    string employeeName = HttpContextAccessor.HttpContext.Session.GetString("EmployeeName") ?? "Unknown";
+    string employeeId = HttpContextAccessor.HttpContext.Session.GetString("EmployeeID") ?? "Unknown";
+    Console.WriteLine("JobRole: " + jobRole);
+    Console.WriteLine("EmployeeName: " + employeeName);
+    Console.WriteLine("EmployeeId: " + employeeId);
+}
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -32,6 +44,7 @@
             <ul>
                 <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "accounting")</li>
                 <li>@Html.ActionLink("طلب دفع اموال", "viewPurchaseOrderdsWithRemainingAmount", "Accounting")</li>
+                    <li>@Html.ActionLink("تعديل حسابات الطلبية", "viewJobOrderWithCost", "Accounting")</li>
             </ul>
         </li>
         </ul>
@@ -42,6 +55,11 @@
 
     <div class="container">
         <h1>تحوت يتمني لك يوم سعيد</h1>
+        <h1>
+            مرحبا يا : @{
+                @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("EmployeeName"))
+            }
+        </h1>
         <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p>
         <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
     </div>

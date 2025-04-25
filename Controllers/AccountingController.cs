@@ -11,12 +11,16 @@ namespace ThothSystemVersion1.Controllers
     {
         private readonly AccountingBusinessLogicLayer _businessLogicL;
         private readonly TechnicalBusinessLogicLayer _techBusinessLogicL;
+        private readonly CostBusinessLogicLayer _costBusinessLogicL;
         public AccountingController( AccountingBusinessLogicLayer Accbll,
-            TechnicalBusinessLogicLayer tbll) 
+            TechnicalBusinessLogicLayer tbll,
+            CostBusinessLogicLayer costbll
+            ) 
         {
 
             _businessLogicL = Accbll;
             _techBusinessLogicL = tbll;
+            _costBusinessLogicL = costbll;
 
         }
 
@@ -167,6 +171,102 @@ namespace ThothSystemVersion1.Controllers
             }
             return View(paymentVM);
 
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public IActionResult viewJobOrderWithCost() {
+
+
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            {
+                List<JobOrderCustEmpVM> jobOrders = _costBusinessLogicL.GetJobOrdersWithProcessBridge();
+                return View("~/Views/Accounting/JobOrderWithCost.cshtml", jobOrders);
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+
+
+        }
+
+        [HttpGet]
+        public IActionResult EditJobOrder(int jobOrderid)
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5)
+            {
+                try
+                {
+                    JobOrder existingJobOrder = _techBusinessLogicL.GetJobOrderByID(jobOrderid);
+                    ViewBag.EmployeeList = _techBusinessLogicL.GetAvailableEmployees();
+                    ViewBag.CustomerList = _techBusinessLogicL.GetAvailableCustomerss();
+
+
+                    if (existingJobOrder.StartDate == default)
+                    {
+                        existingJobOrder.StartDate = DateOnly.FromDateTime(DateTime.Today);
+                    }
+
+
+                    return View("~/Views/accounting/editJobOrderAccounting.cshtml", existingJobOrder);
+                }
+                catch (ArgumentException ex)
+                {
+                    TempData["Error"] = ex.Message;
+                    return RedirectToAction("viewJobOrderWithCost"); // Redirect to list with error
+                }
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+        [HttpPost]
+        public IActionResult EditJobOrder(int jobOrderid, JobOrder jobOrder)
+        {
+            try
+            {
+                JobOrderDTO jODto = new JobOrderDTO();
+                jODto.CustomerId = jobOrder.CustomerId;
+                jODto.OrderProgress = jobOrder.OrderProgress;
+                jODto.JobOrderId = jobOrder.JobOrderId;
+                jODto.JobOrdernotes = jobOrder.JobOrdernotes;
+                jODto.EarnedRevenue = jobOrder.EarnedRevenue;
+                jODto.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                jODto.RemainingAmount = jobOrder.RemainingAmount;
+                jODto.EndDate = jobOrder.EndDate;
+                jODto.StartDate = jobOrder.StartDate;
+                jODto.EmployeeId = jobOrder.EmployeeId;
+
+
+                ModelState.Clear();
+                TryValidateModel(jODto);
+
+                //if (!ModelState.IsValid)
+                //{
+
+                //    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
+                //}
+
+                var result = _techBusinessLogicL.EditJobOrder(jobOrderid, jODto);
+
+                if (result.success)
+                {
+                    TempData["Success"] = result.message;
+                    return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+                }
+                TempData["Error"] = result.message;
+                return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
+                return View("EditJobOrder", jobOrder);
+            }
         }
 
     }

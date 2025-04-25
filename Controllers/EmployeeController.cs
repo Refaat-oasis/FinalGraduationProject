@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Threading.Tasks;
 using ThothSystemVersion1.BusinessLogicLayers;
@@ -126,26 +127,41 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 
-                Employee existingEmployee = _context.Employees.Find(EmployeeId); // Find the employee by ID
-                                                                                 //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
-                string password = updatedEmployee.EmployeePassword;
+                Employee existingEmployee = _context.Employees.Find(EmployeeId);
+                Employee searchedUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                if ( searchedUsername != null  && searchedUsername.EmployeeId != existingEmployee.EmployeeId) {
 
-                string newPassword = Hashing.HashPassword(password);
-                 //Update properties
-                //existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
-                existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
-                existingEmployee.EmployeePassword = newPassword;
-                _context.Employees.Update(existingEmployee); // Mark the entity as modified
-                _context.SaveChanges(); // Save changes to the database
-                return RedirectToAction("EmployeeProfile", "Employee", new {EmployeeId });
+                    TempData["Error"] = "اسم المستخدم موجود مسبقاً";
+                    return RedirectToAction("EmployeeProfile", "Employee", new { EmployeeId });
+
+                }
+                else {
+
+                    if (updatedEmployee.EmployeePassword != null ) {
+
+                        string password = updatedEmployee.EmployeePassword;
+                        string newPassword = Hashing.HashPassword(password);
+                        existingEmployee.EmployeePassword = newPassword;
+
+                    }
+
+                    existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                    existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
+                    _context.Employees.Update(existingEmployee);
+                    _context.SaveChanges();
+                    TempData["Success"] = "تم تعديل بيانات الموظف بنجاح";
+                    return RedirectToAction("EmployeeProfile", "Employee", new { EmployeeId });
+
+                }        
+                
             }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
                 // Log the exception (ex) here
-                return RedirectToAction("EmployeeProfile", "Employee", new {EmployeeId });
-
+                // In both redirects within EditEmployee:
+                return RedirectToAction("EmployeeProfile", "Employee", new { employeeId = EmployeeId });
             }
 
         }
@@ -227,7 +243,6 @@ namespace ThothSystemVersion1.Controllers
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0)
             {
-
                 return View("~/Views/Admin/AdminHome.cshtml");
             }
             else

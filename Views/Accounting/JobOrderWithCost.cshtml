@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+@{
+    Layout = null;
+}
+@using ThothSystemVersion1.ViewModels
+
+@model List<JobOrderCustEmpVM>
+
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
+</head>
+<div class="container">
+
+    <h1>الطلبيات</h1>
+
+    <div class="arrow mb-4">
+        @if (jobRole == 0)
+        {
+            <a asp-controller="Employee" asp-action="AdminHome" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+        else if (jobRole == 7)
+        {
+            <a asp-controller="Employee" asp-action="AccountingManager" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+        else if (jobRole == 8)
+        {
+            <a asp-controller="Employee" asp-action="AccountingClerk" class="back">
+                <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
+            </a>
+        }
+    </div>
+
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchJobOrder()" placeholder="ابحث عن طلب...">
+    </div>
+    <div class="tableContainer">
+        <table id="jobOrderTable">
+            <tr>
+                <th colspan="2">الإجراءات</th>
+                <th>العميل</th>
+                <th>حالة الطلب</th>
+                <th>تاريخ الانتهاء</th>
+                <th>تاريخ البدء</th>
+            </tr>
+            @{
+                foreach (JobOrderCustEmpVM job in Model.OrderByDescending(j => j.StartDate))
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="accounting" asp-action="EditJobOrder" asp-route-jobOrderid="@job.JobOrderId" class="editBtn">تعديل</a>
+                        </td>
+                        <td>
+                            <a asp-controller="technical" asp-action="ShowJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId" class="editBtn">اظهار التفاصيل</a>
+                        </td>
+                        <td>@job.CustomerName</td>
+                        <td>@job.OrderProgress</td>
+                        <td>@job.EndDate</td>
+                        <td>@job.StartDate</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<script src="~/js/Technical/viewAllJobOrder.js">
+</script>

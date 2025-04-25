@@ -4,67 +4,137 @@
 
 
 @{
-
+    Layout = null;
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
 
+<head>
+
+    <link rel="stylesheet" href="~/css/Admin/editEmployee.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <title>ThoTh</title>
+
+</head>
 <div class="arrow">
     @{
-        // admin
-        if (jobRole == 0)
-        {
-            <a asp-controller="employee" asp-action="adminhome" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
+        switch (jobRole)
 
-        } // inventory manager
-        else if (jobRole == 1)
         {
-            <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
+            case 0:
+                <a asp-controller = "employee" asp-action = "adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 1:
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 2:
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 3:
+                <a asp-controller="employee" asp-action="technicalManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 4 :
+                <a asp-controller="employee" asp-action="technicalClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 5:
+                <a asp-controller="employee" asp-action="costManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 6:
+                <a asp-controller="employee" asp-action="costClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 7:
+                <a asp-controller="employee" asp-action="AccountingManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            case 8 :
+                <a asp-controller="employee" asp-action="AccountingClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+            default:
+                <a asp-controller="employee" asp-action="LoginPage" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+                break;
+        
         }
-        else if (jobRole == 2)
-        {
-            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
-        }else if(jobRole == 3)
-        {
-            <a asp-controller="employee" asp-action="tecnicalManager" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
-        }
-
+       
+  
 
     }
 </div>
+
+@* Success and Error Messages *@
+@if (TempData["Success"] != null)
+{
+    <div class="notification success">
+        <div class="notification-content">
+            <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+        </div>
+        <input type="hidden" id="tempDataSuccess" value="true" />
+        <div class="progress-bar success"></div>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="notification error">
+        <div class="notification-content">
+            <i class='bx bx-error-circle'></i>
+            <span>@TempData["Error"]</span>
+        </div>
+        <input type="hidden" id="tempDataSuccess" value="false" />
+
+        <div class="progress-bar error"></div>
+
+    </div>
+}
+<input type="hidden" id="hdnJobRole" value="@jobRole" />
+
 <div class="form-container">
     <h1>الملف الشخصي للموظف</h1>
 
     <form asp-controller="Employee" asp-action="EditEmployee" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="@Model.EmployeeId" value="@Model.EmployeeId"/>
-        <!-- Employee ID (Disabled) -->
+       
         <div class="inputBox">
             <label asp-for="EmployeeId" class="textlabel"></label>
             <input asp-for="EmployeeId" class="form-control" disabled />
-             <!-- Important for model binding -->
+            
         </div>
 
         <!-- User Name -->
         <div class="inputBox">
             <label asp-for="EmployeeUserName" class="textlabel"></label>
-            <input asp-for="EmployeeUserName" class="form-control" value="@Model.EmployeeUserName" disabled/>
+            <input asp-for="EmployeeUserName" class="form-control" value="@Model.EmployeeUserName" />
             <span asp-validation-for="EmployeeUserName" class="text-danger"></span>
-        </div>
-
-        <!-- Password -->
-        <div class="inputBox">
-            <label asp-for="EmployeePassword" class="textlabel"></label>
-            <input asp-for="EmployeePassword" class="form-control" type="password" />
-            <span asp-validation-for="EmployeePassword" class="text-danger"></span>
         </div>
 
         <!-- Employee Name -->
@@ -72,6 +142,13 @@
             <label asp-for="EmployeeName" class="textlabel"></label>
             <input asp-for="EmployeeName" class="form-control" value="@Model.EmployeeName"/>
             <span asp-validation-for="EmployeeName" class="text-danger"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="inputBox">
+            <label asp-for="EmployeePassword" class="textlabel"></label>
+            <input asp-for="EmployeePassword" class="form-control" type="password" />
+            <span asp-validation-for="EmployeePassword" class="text-danger"></span>
         </div>
 
         <!-- Job Role (Disabled) -->
@@ -84,8 +161,15 @@
         <!-- Activated Status (Disabled) -->
         <div class="inputBox">
             <label asp-for="Activated" class="textlabel"></label>
-            <input asp-for="Activated" class="form-check-input" disabled value="@Model.Activated" />
-            <input type="hidden" asp-for="Activated" /> <!-- Important for model binding -->
+            <select asp-for="@Model.Activated" id="options" class="place" disabled>
+                @{
+                    if (Model.Activated)
+                    {
+                        <option value="true" selected>مفعل</option>
+                        <option value="false" >غير مفعل</option>
+                    }
+                }
+            </select>
         </div>
 
         
@@ -99,4 +183,38 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+
+        const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
+
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
+
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/Employee/loginpage" 
+            1: "/Employee/loginpage" 
+            2: "/Employee/loginpage" 
+            3: "/Employee/loginpage" 
+            4: "/Employee/loginpage" 
+            5: "/Employee/loginpage" 
+            6: "/Employee/loginpage" 
+            7: "/Employee/loginpage"
+            8: "/Employee/loginpage"
+        };
+
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
+
+
+</script>
 }

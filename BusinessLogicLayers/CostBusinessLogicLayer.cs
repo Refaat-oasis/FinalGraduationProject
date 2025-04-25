@@ -326,6 +326,71 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 .ToList();
         }
 
+        public List<JobOrderCustEmpVM> GetJobOrdersWithProcessBridge()
+        {
+            // Get job orders WITH process bridges
+            var jobOrderIdsWithBridges = _context.ProcessBridges
+                .Where(pb => pb.JobOrderId != null)
+                .Select(pb => pb.JobOrderId.Value)
+                .Distinct()
+                .ToList();
+
+            var jobOrdersWithBridges = _context.JobOrders
+                .Where(jo => jobOrderIdsWithBridges.Contains(jo.JobOrderId)) // Changed condition
+                .ToList();
+
+            // Handle customer IDs
+            var customerIds = jobOrdersWithBridges
+                .Where(jo => jo.CustomerId.HasValue)
+                .Select(jo => jo.CustomerId.Value)
+                .Distinct()
+                .ToList();
+
+            // Handle employee IDs
+            var employeeIds = jobOrdersWithBridges
+                .Where(jo => !string.IsNullOrEmpty(jo.EmployeeId))
+                .Select(jo => jo.EmployeeId)
+                .Distinct()
+                .ToList();
+
+            // Get related data
+            var customers = _context.Customers
+                .Where(c => customerIds.Contains(c.CustomerId))
+                .ToDictionary(c => c.CustomerId);
+
+            var employees = _context.Employees
+                .Where(e => employeeIds.Contains(e.EmployeeId))
+                .ToDictionary(e => e.EmployeeId);
+
+            // Create view models
+            return jobOrdersWithBridges
+                .Where(jo => jo.CustomerId.HasValue &&
+                            !string.IsNullOrEmpty(jo.EmployeeId) &&
+                            customers.ContainsKey(jo.CustomerId.Value) &&
+                            employees.ContainsKey(jo.EmployeeId))
+                .Select(jo => new JobOrderCustEmpVM
+                {
+                    CustomerId = jo.CustomerId.Value,
+                    CustomerAddress = customers[jo.CustomerId.Value].CustomerAddress,
+                    CustomerPhone = customers[jo.CustomerId.Value].CustomerPhone,
+                    CustomerName = customers[jo.CustomerId.Value].CustomerName,
+                    CustomerEmail = customers[jo.CustomerId.Value].CustomerEmail,
+
+                    JobOrderId = jo.JobOrderId,
+                    OrderProgress = jo.OrderProgress,
+                    RemainingAmount = jo.RemainingAmount,
+                    EarnedRevenue = jo.EarnedRevenue,
+                    UnearnedRevenue = jo.UnearnedRevenue,
+                    StartDate = jo.StartDate,
+                    EndDate = jo.EndDate,
+                    JobOrdernotes = jo.JobOrdernotes,
+
+                    EmployeeId = jo.EmployeeId,
+                    EmployeeName = employees[jo.EmployeeId].EmployeeName
+                })
+                .ToList();
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///fetch data of another controllers
         ///

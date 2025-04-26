@@ -1,611 +1,611 @@
 {
   "Files": [
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ThothSystemVersion1.bundle.scp.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ThothSystemVersion1.bundle.scp.css",
       "PackagePath": "staticwebassets\\ThothSystemVersion1.ly5dltxemw.bundle.scp.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Accounting\\PaymentReceipt.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Accounting\\PaymentReceipt.css",
       "PackagePath": "staticwebassets\\css\\Accounting\\PaymentReceipt.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Admin\\addEmployee.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Admin\\addEmployee.css",
       "PackagePath": "staticwebassets\\css\\Admin\\addEmployee.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Admin\\adminHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Admin\\adminHome.css",
       "PackagePath": "staticwebassets\\css\\Admin\\adminHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Admin\\editEmployee.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Admin\\editEmployee.css",
       "PackagePath": "staticwebassets\\css\\Admin\\editEmployee.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Admin\\viewAllEmployee.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Admin\\viewAllEmployee.css",
       "PackagePath": "staticwebassets\\css\\Admin\\viewAllEmployee.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\CostClerk\\CostClerkHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\CostClerk\\CostClerkHome.css",
       "PackagePath": "staticwebassets\\css\\CostClerk\\CostClerkHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\AddLabour.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\AddLabour.css",
       "PackagePath": "staticwebassets\\css\\Cost\\AddLabour.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\AddMachine.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\AddMachine.css",
       "PackagePath": "staticwebassets\\css\\Cost\\AddMachine.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\CostManagerHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\CostManagerHome.css",
       "PackagePath": "staticwebassets\\css\\Cost\\CostManagerHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\EditLabour.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\EditLabour.css",
       "PackagePath": "staticwebassets\\css\\Cost\\EditLabour.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\EditMachine.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\EditMachine.css",
       "PackagePath": "staticwebassets\\css\\Cost\\EditMachine.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\viewAllLabour.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\viewAllLabour.css",
       "PackagePath": "staticwebassets\\css\\Cost\\viewAllLabour.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Cost\\viewAllMachines.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Cost\\viewAllMachines.css",
       "PackagePath": "staticwebassets\\css\\Cost\\viewAllMachines.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\InventoryClerkHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\InventoryClerkHome.css",
       "PackagePath": "staticwebassets\\css\\InventoryClerk\\InventoryClerkHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ReturnOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ReturnOrder.css",
       "PackagePath": "staticwebassets\\css\\InventoryClerk\\ReturnOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllInk.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllInk.css",
       "PackagePath": "staticwebassets\\css\\InventoryClerk\\ViewAllInk.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllPaper.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllPaper.css",
       "PackagePath": "staticwebassets\\css\\InventoryClerk\\ViewAllPaper.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllSupply.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\InventoryClerk\\ViewAllSupply.css",
       "PackagePath": "staticwebassets\\css\\InventoryClerk\\ViewAllSupply.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditInk.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\EditInk.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditPaper.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\EditPaper.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\EditSupply.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\EditSupply.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\InventoryHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\InventoryHome.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\InventoryHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\PhysicalCount.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\PhysicalCount.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\PhysicalCount.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ReturnOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ReturnOrder.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ReturnOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllInk.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllInk.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ViewAllInk.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllPaper.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllPaper.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ViewAllPaper.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllSupply.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllSupply.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ViewAllSupply.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllVendor.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\ViewAllVendor.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\ViewAllVendor.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\addVendor.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\addVendor.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\editVendor.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\editVendor.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\inventoryReports.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\inventoryReports.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\inventoryReports.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newInk.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newInk.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\newInk.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newPaper.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newPaper.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\newPaper.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newSupply.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\newSupply.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\newSupply.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Inventory\\purchaseAll.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Inventory\\purchaseAll.css",
       "PackagePath": "staticwebassets\\css\\Inventory\\purchaseAll.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\EmployeeProfile.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\EmployeeProfile.css",
       "PackagePath": "staticwebassets\\css\\SharedViews\\EmployeeProfile.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\ForgetPassword.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\ForgetPassword.css",
       "PackagePath": "staticwebassets\\css\\SharedViews\\ForgetPassword.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\SharedViews\\login.css",
       "PackagePath": "staticwebassets\\css\\SharedViews\\login.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\CreateRequisite.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\CreateRequisite.css",
       "PackagePath": "staticwebassets\\css\\TechnicalClerk\\CreateRequisite.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\EditJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\EditJobOrder.css",
       "PackagePath": "staticwebassets\\css\\TechnicalClerk\\EditJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\TechnicalClerkHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\TechnicalClerkHome.css",
       "PackagePath": "staticwebassets\\css\\TechnicalClerk\\TechnicalClerkHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\ViewAllJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\TechnicalClerk\\ViewAllJobOrder.css",
       "PackagePath": "staticwebassets\\css\\TechnicalClerk\\ViewAllJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\AddCustomer.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\AddCustomer.css",
       "PackagePath": "staticwebassets\\css\\Technical\\AddCustomer.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\CreateRequisite.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\CreateRequisite.css",
       "PackagePath": "staticwebassets\\css\\Technical\\CreateRequisite.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\EditCustomer.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\EditCustomer.css",
       "PackagePath": "staticwebassets\\css\\Technical\\EditCustomer.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\EditJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\EditJobOrder.css",
       "PackagePath": "staticwebassets\\css\\Technical\\EditJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\TechnicalManagerHome.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\TechnicalManagerHome.css",
       "PackagePath": "staticwebassets\\css\\Technical\\TechnicalManagerHome.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\createNewJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\createNewJobOrder.css",
       "PackagePath": "staticwebassets\\css\\Technical\\createNewJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\showJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\showJobOrder.css",
       "PackagePath": "staticwebassets\\css\\Technical\\showJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\viewAllCustomer.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\viewAllCustomer.css",
       "PackagePath": "staticwebassets\\css\\Technical\\viewAllCustomer.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\css\\Technical\\viewAllJobOrder.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\css\\Technical\\viewAllJobOrder.css",
       "PackagePath": "staticwebassets\\css\\Technical\\viewAllJobOrder.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\Assiut_University_logo.gif",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\Assiut_University_logo.gif",
       "PackagePath": "staticwebassets\\image\\Assiut_University_logo.gif"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\background - Copy.jpg",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\background - Copy.jpg",
       "PackagePath": "staticwebassets\\image\\background - Copy.jpg"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\background.jpeg",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\background.jpeg",
       "PackagePath": "staticwebassets\\image\\background.jpeg"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\brown-bokeh-textured-plain-product-background.jpg",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\brown-bokeh-textured-plain-product-background.jpg",
       "PackagePath": "staticwebassets\\image\\brown-bokeh-textured-plain-product-background.jpg"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg",
       "PackagePath": "staticwebassets\\image\\egyptian-wall-with-hieroglyphs - Copy.jpg"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\image\\eye.jpg",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\image\\eye.jpg",
       "PackagePath": "staticwebassets\\image\\eye.jpg"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Admin\\addEmployee.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Admin\\addEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\addEmployee.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Admin\\adminHome.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Admin\\adminHome.js",
       "PackagePath": "staticwebassets\\js\\Admin\\adminHome.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Admin\\editEmployee.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Admin\\editEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\editEmployee.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Admin\\viewAllEmployee.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Admin\\viewAllEmployee.js",
       "PackagePath": "staticwebassets\\js\\Admin\\viewAllEmployee.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\CostClerk\\CostClerkHome.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\CostClerk\\CostClerkHome.js",
       "PackagePath": "staticwebassets\\js\\CostClerk\\CostClerkHome.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Cost\\AddLabour.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Cost\\AddLabour.js",
       "PackagePath": "staticwebassets\\js\\Cost\\AddLabour.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Cost\\AddMachine.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Cost\\AddMachine.js",
       "PackagePath": "staticwebassets\\js\\Cost\\AddMachine.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Cost\\CostManagerHome.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Cost\\CostManagerHome.js",
       "PackagePath": "staticwebassets\\js\\Cost\\CostManagerHome.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\InventoryClrek\\InventoryCerkHome.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\InventoryClrek\\InventoryCerkHome.js",
       "PackagePath": "staticwebassets\\js\\InventoryClrek\\InventoryCerkHome.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditInk.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\EditInk.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditPaper.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\EditPaper.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\EditSupply.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\EditSupply.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\InventoryHome.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\InventoryHome.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\InventoryHome.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllInk.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllInk.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\ViewAllInk.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllPaper.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllPaper.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\ViewAllPaper.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllSupply.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllSupply.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\ViewAllSupply.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllVendor.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\ViewAllVendor.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\ViewAllVendor.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\addVendor.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\addVendor.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\editVendor.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\editVendor.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newInk.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newInk.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\newInk.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newPaper.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newPaper.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\newPaper.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newsupply.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\newsupply.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\newsupply.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\paperReorderPoint.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\paperReorderPoint.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Inventory\\signalRpaper.js",
       "PackagePath": "staticwebassets\\js\\Inventory\\signalRpaper.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\SharedViews\\loginEmployee.js",
       "PackagePath": "staticwebassets\\js\\SharedViews\\loginEmployee.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\TechnicalClerk\\ViewAllJobOrder.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\TechnicalClerk\\ViewAllJobOrder.js",
       "PackagePath": "staticwebassets\\js\\TechnicalClerk\\ViewAllJobOrder.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Technical\\AddCustomer.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Technical\\AddCustomer.js",
       "PackagePath": "staticwebassets\\js\\Technical\\AddCustomer.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Technical\\Create.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Technical\\Create.js",
       "PackagePath": "staticwebassets\\js\\Technical\\Create.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Technical\\EditCustomer.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Technical\\EditCustomer.js",
       "PackagePath": "staticwebassets\\js\\Technical\\EditCustomer.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\Technical\\viewAllJobOrder.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\Technical\\viewAllJobOrder.js",
       "PackagePath": "staticwebassets\\js\\Technical\\viewAllJobOrder.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.js",
       "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.js"
     },
     {
-      "Id": "D:\\GRAD PROJ\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.min.js",
+      "Id": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\wwwroot\\lib\\microsoft-signalr\\signalr.min.js",
       "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.min.js"
     },
     {

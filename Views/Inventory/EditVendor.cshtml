@@ -118,6 +118,25 @@
                 <input asp-for="@Model.VendorEmail" class="place">
                 <span asp-validation-for="@Model.VendorEmail" class="error"></span>
             </div>
+
+            <div class="input-control">
+                <label asp-for="@Model.Activated" class="textlabel"> </label>
+                <select asp-for="@Model.Activated" id="options" class="place">
+                    @{
+                        if (Model.Activated)
+                        {
+                            <option value="true" selected>مفعل</option>
+                            <option value="false">غير مفعل</option>
+                        }
+                        else
+                        {
+                            <option value="false" selected>غير مفعل</option>
+                            <option value="true">مفعل</option>
+                        }
+                    }
+                </select>
+                </div>
+
             <div class="input-control">
                 <label asp-for="@Model.VendorNotes" class="textlabel"> </label>
                 <input asp-for="@Model.VendorNotes" class="place">

@@ -62,7 +62,7 @@ h1 {
 }
 
 
-h5 {
+.title {
     color: #050505;
     margin: 20px;
     text-align: right;
@@ -163,6 +163,7 @@ h5 {
 .form-label {
     font-size: 20px;
     font-weight: bold;
+    text-align: right;
 }
 
 .tableContainer {
@@ -195,29 +196,6 @@ th {
     text-align: center; /* Added right alignment */
 }
 
-/*table {
-    width: 70%;*/ /* تقليل العرض من 75% إلى 60% */
-/*margin: 20px auto;*/ /* توسيط الجدول */
-/*border-collapse: separate;
-    overflow: hidden;
-    border-radius: 15px;
-    border: solid black 2px;
-    border-spacing: 0;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-}*/
-
-/* تعديل حجم الخط في الجدول */
-/*td {
-    font-size: 18px;*/ /* تصغير حجم الخط */
-/*text-align: center;
-}
-
-th {
-    font-size: 24px;*/ /* تصغير حجم الخط */
-/*background-color: #FDF5E6;
-}*/
-
-/* وضع الزراير بجانب بعضها */
 .button-container {
     display: flex;
     justify-content: flex-end; /* محاذاة إلى اليمين */

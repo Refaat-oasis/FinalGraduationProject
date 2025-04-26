@@ -268,6 +268,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 foundVendor.VendorPhone = newVendor.VendorPhone;
                 foundVendor.VendorAddress = newVendor.VendorAddress;
                 foundVendor.VendorNotes = newVendor.VendorNotes;
+                foundVendor.Activated = newVendor.Activated;
                 _context.Vendors.Update(foundVendor);
                 _context.SaveChanges();
                 return true;

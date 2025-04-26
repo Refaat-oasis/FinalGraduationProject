@@ -8212,23 +8212,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mariam\\.nuget\\packages\\": {},
+    "C:\\Users\\Mira\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GRAD PROJ\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "projectUniqueName": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\ThothSystemVersion1.csproj",
       "projectName": "ThothSystemVersion1",
-      "projectPath": "D:\\GRAD PROJ\\FinalGraduationProject\\ThothSystemVersion1.csproj",
-      "packagesPath": "C:\\Users\\mariam\\.nuget\\packages\\",
-      "outputPath": "D:\\GRAD PROJ\\FinalGraduationProject\\obj\\",
+      "projectPath": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "packagesPath": "C:\\Users\\Mira\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mira\\Desktop\\GP2\\FinalGraduationProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mariam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mira\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8305,7 +8305,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

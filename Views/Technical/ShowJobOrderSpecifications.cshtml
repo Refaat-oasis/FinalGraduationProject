@@ -1,5 +1,6 @@
 ﻿@model ThothSystemVersion1.ViewModels.JobOrderSpecificationsViewModel
 @using Microsoft.AspNetCore.Http
+@using ThothSystemVersion1.Utilities
 @inject IHttpContextAccessor HttpContextAccessor
 @{
 
@@ -117,7 +118,7 @@
                     {
                         <tr>
 
-                            <td>@employee.JobRole</td>
+                            <td>@employee.JobRole.GetDisplayName()</td>
                             <td>@employee.EmployeeName</td>
                         </tr>
                     }

@@ -69,40 +69,47 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult makeReceipt( ReceiptJobOrderVM receiptVM)
+        public IActionResult makeReceipt(ReceiptJobOrderVM receiptVM)
         {
-            
-
-            RecieptOrderDTO receiptDTO = new RecieptOrderDTO();
-            receiptDTO.JobOrderId = receiptVM.JobOrderId;
-            receiptDTO.ReceiptNotes = receiptVM.ReceiptNotes;
-            receiptDTO.Amount = receiptVM.Amount;
-            receiptDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-
-
-            ModelState.Clear();
-            TryValidateModel(receiptDTO);
-            if (ModelState.IsValid)
+            try
             {
-                // Save the receipt to the database
-                bool result = _businessLogicL.makeRecipt(receiptDTO);
-                if (result)
-                {
-                    // Redirect to a success page or show a success message
-                    string message= "تم استلام الاموال";
-                    TempData["Success"] = message;
-                    return View(receiptVM);
-                }
-                else
-                {
-                    string message = "حدث خطأ في العملية";
-                    TempData["Error"] = message;
-                    // Handle the error case
-                    return View(receiptVM);
-                }
-            }
-            return View(receiptVM);
 
+                RecieptOrderDTO receiptDTO = new RecieptOrderDTO();
+                receiptDTO.JobOrderId = receiptVM.JobOrderId;
+                receiptDTO.ReceiptNotes = receiptVM.ReceiptNotes;
+                receiptDTO.Amount = receiptVM.Amount;
+                receiptDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+
+
+                ModelState.Clear();
+                TryValidateModel(receiptDTO);
+                if (ModelState.IsValid)
+                {
+                    // Save the receipt to the database
+                    bool result = _businessLogicL.makeRecipt(receiptDTO);
+                    if (result)
+                    {
+                        // Redirect to a success page or show a success message
+                        string message = "تم استلام الاموال";
+                        TempData["Success"] = message;
+                        return View(receiptVM);
+                    }
+                    else
+                    {
+                        string message = "حدث خطأ في العملية";
+                        TempData["Error"] = message;
+                        // Handle the error case
+                        return View(receiptVM);
+                    }
+                }
+                return View(receiptVM);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء استلام الاموال";
+                return View(receiptVM);
+
+            }
         }
 
 
@@ -137,45 +144,54 @@ namespace ThothSystemVersion1.Controllers
 
         }
         [HttpPost]
-        public IActionResult makePayment(PaymentPurchaseOrderVM paymentVM) {
+        public IActionResult makePayment(PaymentPurchaseOrderVM paymentVM)
+        {
 
 
 
-            PaymentOrderDTO paymentDTO = new PaymentOrderDTO();
-            paymentDTO.PurchaseId = paymentVM.PurchaseId;
-            paymentDTO.PaymentNotes = paymentVM.PaymentNotes;
-            paymentDTO.Amount = paymentVM.Amount;
-            paymentDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-
-
-            ModelState.Clear();
-            TryValidateModel(paymentDTO);
-            if (ModelState.IsValid)
+            try
             {
-                // Save the receipt to the database
-                bool result = _businessLogicL.makePayment(paymentDTO);
-                if (result)
-                {
-                    // Redirect to a success page or show a success message
-                    string message = "تم دفع الاموال";
-                    TempData["Success"] = message;
-                    return View(paymentVM);
-                }
-                else
-                {
-                    string message = "حدث خطأ في العملية";
-                    TempData["Error"] = message;
-                    // Handle the error case
-                    return View(paymentVM);
-                }
-            }
-            return View(paymentVM);
+                PaymentOrderDTO paymentDTO = new PaymentOrderDTO();
+                paymentDTO.PurchaseId = paymentVM.PurchaseId;
+                paymentDTO.PaymentNotes = paymentVM.PaymentNotes;
+                paymentDTO.Amount = paymentVM.Amount;
+                paymentDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
 
+
+                ModelState.Clear();
+                TryValidateModel(paymentDTO);
+                if (ModelState.IsValid)
+                {
+                    // Save the receipt to the database
+                    bool result = _businessLogicL.makePayment(paymentDTO);
+                    if (result)
+                    {
+                        // Redirect to a success page or show a success message
+                        string message = "تم دفع الاموال";
+                        TempData["Success"] = message;
+                        return View(paymentVM);
+                    }
+                    else
+                    {
+                        string message = "حدث خطأ في العملية";
+                        TempData["Error"] = message;
+                        // Handle the error case
+                        return View(paymentVM);
+                    }
+                }
+                return View(paymentVM);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "حدث خطأ أثناء دفع الاموال";
+                return View(paymentVM);
+
+            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        [HttpGet]
         public IActionResult viewJobOrderWithCost() {
 
 

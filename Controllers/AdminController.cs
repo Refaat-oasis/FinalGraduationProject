@@ -47,17 +47,18 @@ namespace ThothSystemVersion1.Controllers
             {
 
                 return View("~/Views/Admin/AddEmployee.cshtml");
-            }
+        }
             else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-        }
+    }
+}
 
         [HttpPost]
         public IActionResult AddEmployee(EmployeeDTO employee)
         {
+            
 
             if (!ModelState.IsValid)
             {

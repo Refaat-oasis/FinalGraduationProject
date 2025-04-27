@@ -325,6 +325,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             return supplyList;
         }
 
+        public List<ColorWeightSize> ViewAllColorWeightSize()
+        {
+            List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
+            return colorWeightSizeList;
+        }
+
         public bool DeleteColorWeightSize(int ColorWeightSizeId)
         {
             try

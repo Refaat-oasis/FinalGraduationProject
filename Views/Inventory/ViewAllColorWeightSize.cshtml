@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ThothSystemVersion1.Models.ColorWeightSize>
+
+@{
+    ViewData["Title"] = "Color Weight Sizes";
+}
+
+<h1>Color Weight Sizes</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Weight</th>
+            <th>Colored</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ColorWeightSizeId</td>
+                <td>@item.Type</td>
+                <td>@item.Size</td>
+                <td>@item.Weight</td>
+                <td>@item.Colored</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.ColorWeightSizeId">Details</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.ColorWeightSizeId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.ColorWeightSizeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

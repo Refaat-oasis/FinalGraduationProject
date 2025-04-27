@@ -3,6 +3,7 @@ using System.Reflection.PortableExecutable;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ModifiedModels;
 using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 using Machine = ThothSystemVersion1.Models.Machine;
@@ -472,7 +473,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 decimal paperBalance = 0;
                 decimal inkBalance = 0;
                 decimal supplyBalance = 0;
-
+                List<ModifiedQuantityBridge> modifiedQuantityBridgeList = new List<ModifiedQuantityBridge>();
 
                 JobOrder existingJobOrder = _context.JobOrders
                     .Include(j => j.Customer)
@@ -498,6 +499,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 joborder.EmployeeName = employees.EmployeeName;
                 List<RequisiteOrder> req = _context.RequisiteOrders.Where(req => req.JobOrderId == jobOrderID).ToList();
                 List<ReturnsOrder> ret = _context.ReturnsOrders.Where(req => req.JobOrderId == jobOrderID).ToList();
+
                 for (int i = 0; i < req.Count; i++)
                 {
                     List<QuantityBridge> qb = _context.QuantityBridges.Where(q => q.RequisiteId == req[i].RequisiteId).ToList();
@@ -507,42 +509,74 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         if (item.PaperId != null)
                         {
                             paperBalance += item.TotalBalance ?? 0;
-
+                            ModifiedQuantityBridge modified = new ModifiedQuantityBridge();
+                            modified.PaperId = item.PaperId;
+                            modified.PaperName = _context.Papers.FirstOrDefault(paper => paper.PaperId == item.PaperId).Name;
+                            modified.Quantity = item.Quantity;
+                            modified.Price = item.Price;
+                            modified.TotalBalance = item.TotalBalance;
+                            modifiedQuantityBridgeList.Add(modified);
                         }
                         else if (item.InkId != null)
                         {
                             inkBalance += item.TotalBalance ?? 0;
+                            ModifiedQuantityBridge modified = new ModifiedQuantityBridge();
+                            modified.InkId = item.InkId;
+                            modified.InkName = _context.Inks.FirstOrDefault(ink => ink.InkId == item.InkId).Name;
+                            modified.Quantity = item.Quantity;
+                            modified.Price = item.Price;
+                            modified.TotalBalance = item.TotalBalance;
+                            modifiedQuantityBridgeList.Add(modified);
+
                         }
                         else if (item.SuppliesId != null)
                         {
                             supplyBalance += item.TotalBalance ?? 0;
+                            ModifiedQuantityBridge modified = new ModifiedQuantityBridge();
+                            modified.SuppliesId = item.SuppliesId;
+                            modified.SuppliesName = _context.Supplies.FirstOrDefault(supply => supply.SuppliesId == item.SuppliesId).Name;
+                            modified.Quantity = item.Quantity;
+                            modified.Price = item.Price;
+                            modified.TotalBalance = item.TotalBalance;
+                            modifiedQuantityBridgeList.Add(modified);
+
                         }
                     }
                 }
                 for (int i = 0; i < ret.Count; i++)
                 {
-                    List<QuantityBridge> qb = _context.QuantityBridges.Where(q => q.RequisiteId == req[i].RequisiteId).ToList();
+                    List<QuantityBridge> qb = _context.QuantityBridges.Where(q => q.ReturnId == ret[i].ReturnId).ToList();
                     foreach (QuantityBridge item in qb)
                     {
 
                         if (item.PaperId != null)
                         {
                             paperBalance -= item.TotalBalance ?? 0;
+                            ModifiedQuantityBridge modified = modifiedQuantityBridgeList.FirstOrDefault(mod => mod.PaperId == item.PaperId);
+                            modified.Quantity -= item.Quantity;
+                            modified.TotalBalance -= item.TotalBalance;
 
                         }
                         else if (item.InkId != null)
                         {
                             inkBalance -= item.TotalBalance ?? 0;
+                            ModifiedQuantityBridge modified = modifiedQuantityBridgeList.FirstOrDefault(mod => mod.InkId == item.InkId);
+                            modified.Quantity -= item.Quantity;
+                            modified.TotalBalance -= item.TotalBalance;
                         }
                         else if (item.SuppliesId != null)
                         {
                             supplyBalance -= item.TotalBalance ?? 0;
+                            ModifiedQuantityBridge modified = modifiedQuantityBridgeList.FirstOrDefault(mod => mod.SuppliesId == item.SuppliesId);
+                            modified.Quantity -= item.Quantity;
+                            modified.TotalBalance -= item.TotalBalance;
                         }
                     }
                 }
                 joborder.paperBalance = paperBalance;
                 joborder.inkBalance = inkBalance;
                 joborder.supplyBalance = supplyBalance;
+                joborder.modifiedQuantityBridgeList = modifiedQuantityBridgeList;
                 return joborder ?? throw new ArgumentException("امر العمل غير موجود");
             }
             catch (Exception ex)

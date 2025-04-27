@@ -1,4 +1,5 @@
 ﻿ @model ThothSystemVersion1.DataTransfereObject.MachineLabourDTO
+ @using ThothSystemVersion1.ModifiedModels;
  @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
@@ -23,7 +24,7 @@
     else if (jobRole == 6)
     {
         <a asp-controller="Employee" asp-action="AccountingManager" class="back">
-            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i> 
+            <i class="bx bx-left-arrow-circle" style="font-size:40px;color:white;"></i>
         </a>
     }
     else if (jobRole == 7)
@@ -177,6 +178,52 @@
                     </div>
                 </div>
             </div>
+            <!-- used items data-->
+
+            @* Assuming this is inside a View أو PartialView *@
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">العنصر</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر</th>
+                            <th scope="col">القيمة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.modifiedQuantityBridgeList != null && Model.modifiedQuantityBridgeList.Any())
+                        {
+                            foreach (var item in Model.modifiedQuantityBridgeList)
+                            {
+                                <tr>
+                                    @* اختر اسم العنصر المناسب، مع استخدام null-coalescing operator لتبسيط الكود *@
+                                    <td>
+                                        @{
+                                            var name = item.PaperName
+                                            ?? item.InkName
+                                            ?? item.SuppliesName
+                                            ?? "(بدون اسم)";
+                                        }
+                                        @name
+                                    </td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.TotalBalance</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">
+                                    لا توجد بيانات للعرض
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>
@@ -278,7 +325,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">وزارةا لمالية</label>
+                    <label class="form-label">وزارة المالية</label>
                     <input asp-for="MinistryOfFinance" class="form-control" type="number" step="0.01" />
                 </div>
 
@@ -293,7 +340,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">ااخري</label>
+                    <label class="form-label">اخري</label>
                     <input asp-for="Other" class="form-control" type="number" step="0.01" />
                 </div>
 

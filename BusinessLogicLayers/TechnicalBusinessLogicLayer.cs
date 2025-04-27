@@ -3,6 +3,7 @@ using System.Linq;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.BusinessLogicLayers
@@ -19,75 +20,131 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public List<JobOrderCustEmpVM> ViewAllJobOrder()
         {
-
-            List<JobOrder> jobOrdersList = _context.JobOrders.OrderByDescending(j => j.StartDate).ToList();
-            List<Customer> customersList = _context.Customers.ToList();
-            List<Employee> employeeList = _context.Employees.ToList();
-            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = new List<JobOrderCustEmpVM>();
-
-            foreach (JobOrder jobOrder in jobOrdersList)
+            try
             {
+                List<JobOrder> jobOrdersList = _context.JobOrders.OrderByDescending(j => j.StartDate).ToList();
+                List<Customer> customersList = _context.Customers.ToList();
+                List<Employee> employeeList = _context.Employees.ToList();
+                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = new List<JobOrderCustEmpVM>();
 
-                Customer customer = customersList.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
-                Employee employee = employeeList.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
-
-                if (customer != null & employee != null)
+                foreach (JobOrder jobOrder in jobOrdersList)
                 {
+                    Customer customer = customersList.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId);
+                    Employee employee = employeeList.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId);
 
-                    JobOrderCustEmpVM jobToView = new JobOrderCustEmpVM();
+                    if (customer != null && employee != null)
+                    {
+                        JobOrderCustEmpVM jobToView = new JobOrderCustEmpVM();
 
-                    // first add the customer data
-                    jobToView.CustomerId = customer.CustomerId;
-                    jobToView.CustomerAddress = customer.CustomerAddress;
-                    jobToView.CustomerPhone = customer.CustomerPhone;
-                    jobToView.CustomerName = customer.CustomerName;
-                    jobToView.CustomerEmail = customer.CustomerEmail;
+                        // first add the customer data
+                        jobToView.CustomerId = customer.CustomerId;
+                        jobToView.CustomerAddress = customer.CustomerAddress;
+                        jobToView.CustomerPhone = customer.CustomerPhone;
+                        jobToView.CustomerName = customer.CustomerName;
+                        jobToView.CustomerEmail = customer.CustomerEmail;
 
-                    // second add the job order data
-                    jobToView.JobOrderId = jobOrder.JobOrderId;
-                    jobToView.OrderProgress = jobOrder.OrderProgress;
-                    jobToView.RemainingAmount = jobOrder.RemainingAmount;
-                    jobToView.EarnedRevenue = jobOrder.EarnedRevenue;
-                    jobToView.UnearnedRevenue = jobOrder.UnearnedRevenue;
-                    jobToView.StartDate = jobOrder.StartDate;
-                    jobToView.EndDate = jobOrder.EndDate;
-                    jobToView.JobOrdernotes = jobOrder.JobOrdernotes;
-                    jobToView.CustomerId = customer.CustomerId;
+                        // second add the job order data
+                        jobToView.JobOrderId = jobOrder.JobOrderId;
+                        jobToView.OrderProgress = jobOrder.OrderProgress;
+                        jobToView.RemainingAmount = jobOrder.RemainingAmount;
+                        jobToView.EarnedRevenue = jobOrder.EarnedRevenue;
+                        jobToView.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                        jobToView.StartDate = jobOrder.StartDate;
+                        jobToView.EndDate = jobOrder.EndDate;
+                        jobToView.JobOrdernotes = jobOrder.JobOrdernotes;
+                        jobToView.CustomerId = customer.CustomerId;
 
-                    //third add the employee data
-                    jobToView.EmployeeId = jobOrder.EmployeeId;
-                    jobToView.EmployeeName = employee.EmployeeName;
+                        // third add the employee data
+                        jobToView.EmployeeId = jobOrder.EmployeeId;
+                        jobToView.EmployeeName = employee.EmployeeName;
 
-                    jobOrderCustomerViewModelsList.Add(jobToView);
-
+                        jobOrderCustomerViewModelsList.Add(jobToView);
+                    }
                 }
-
+                return jobOrderCustomerViewModelsList;
             }
-            return jobOrderCustomerViewModelsList;
+            catch (ArgumentException ex)
+            {
+                return new List<JobOrderCustEmpVM>();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new List<JobOrderCustEmpVM>();
+            }
         }
+
 
         public List<JobOrder> GetLast10JobOrders()
         {
-            return _context.JobOrders
-                 .Include(j => j.Customer)
-                .OrderByDescending(j => j.StartDate)
-                .Take(10)
-                .ToList();
+            try
+            {
+                return _context.JobOrders
+                     .Include(j => j.Customer)
+                    .OrderByDescending(j => j.StartDate)
+                    .Take(10)
+                    .ToList();
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Paper> GetAvailablePapers()
         {
-            return _context.Papers.Where(p => p.Activated).ToList();
+            try
+            {
+                return _context.Papers.Where(p => p.Activated).ToList();
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Ink> GetAvailableInks()
         {
-            return _context.Inks.Where(i => i.Activated).ToList();
+            try
+            {
+                return _context.Inks.Where(i => i.Activated).ToList();
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Supply> GetAvailableSupplies()
         {
-            return _context.Supplies.Where(s => s.Activated).ToList();
+            try
+            {
+                return _context.Supplies.Where(s => s.Activated).ToList();
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public (bool success, string message) CreateRequisite(RequisiteOrderDTO requisiteDTO)
@@ -190,183 +247,235 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return (true, "تمت انشاء اذن الصرف بنجاح");
             }
+            catch (ArgumentException ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
             catch (Exception ex)
             {
-                return (false, $"حدث خطأ: {ex.Message}");
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
             }
-
         }
 
         public List<Customer> ViewAllCustomer()
         {
-            List<Customer> customerList = _context.Customers.ToList();
+            try
+            {
+                List<Customer> customerList = _context.Customers.ToList();
 
-            return customerList;
+                return customerList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
-
         public JobOrderSpecificationsViewModel ShowJobOrderSpecifications(int jobOrderId)
         {
-            // Initialize with null checks at every level
-            JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
-            if (jobOrder == null) return null;
-
-            JobOrderSpecificationsViewModel joborderSpecifics = new JobOrderSpecificationsViewModel();
-
-            // Safe mapping of JobOrder properties
-            joborderSpecifics.JobOrderId = jobOrder.JobOrderId;
-            joborderSpecifics.RemainingAmount = jobOrder.RemainingAmount;
-            joborderSpecifics.UnearnedRevenue = jobOrder.UnearnedRevenue;
-            joborderSpecifics.JobOrdernotes = jobOrder.JobOrdernotes;
-            joborderSpecifics.EarnedRevenue = jobOrder.EarnedRevenue;
-            joborderSpecifics.OrderProgress = jobOrder.OrderProgress;
-            joborderSpecifics.StartDate = jobOrder.StartDate;
-            joborderSpecifics.EndDate = jobOrder.EndDate;
-            joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
-            joborderSpecifics.CustomerId = jobOrder.CustomerId;
-
-            // Safe handling of related entities
-            MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
-            RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
-            ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
-
-            // Safe mapping of MiscellaneousExpense
-            if (miscellaneousExpense != null)
+            try
             {
-                joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesId;
-                joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
-                // ... map all other properties similarly ...
-            }
+                // Initialize with null checks at every level
+                JobOrder jobOrder = _context.JobOrders.FirstOrDefault(j => j.JobOrderId == jobOrderId);
+                if (jobOrder == null) return null;
 
-            // Safe mapping of RequisiteOrder
-            if (requisiteOrder != null)
-            {
-                joborderSpecifics.RequisiteId = requisiteOrder.RequisiteId;
-                joborderSpecifics.RequisiteDate = requisiteOrder.RequisiteDate;
-                joborderSpecifics.RequisiteNotes = requisiteOrder.RequisiteNotes;
-            }
+                JobOrderSpecificationsViewModel joborderSpecifics = new JobOrderSpecificationsViewModel();
 
-            // Safe mapping of ReturnOrder
-            if (returnOrder != null)
-            {
-                joborderSpecifics.ReturnId = returnOrder.ReturnId;
-                joborderSpecifics.ReturnDate = returnOrder.ReturnDate;
-                joborderSpecifics.ReturnsNotes = returnOrder.ReturnsNotes;
-                joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
-            }
+                // Safe mapping of JobOrder properties
+                joborderSpecifics.JobOrderId = jobOrder.JobOrderId;
+                joborderSpecifics.RemainingAmount = jobOrder.RemainingAmount;
+                joborderSpecifics.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                joborderSpecifics.JobOrdernotes = jobOrder.JobOrdernotes;
+                joborderSpecifics.EarnedRevenue = jobOrder.EarnedRevenue;
+                joborderSpecifics.OrderProgress = jobOrder.OrderProgress;
+                joborderSpecifics.StartDate = jobOrder.StartDate;
+                joborderSpecifics.EndDate = jobOrder.EndDate;
+                joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
+                joborderSpecifics.CustomerId = jobOrder.CustomerId;
 
-            // Safe handling of Customer
-            Customer cust = jobOrder.CustomerId.HasValue
-                ? _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId)
-                : null;
+                // Safe handling of related entities
+                MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);
+                RequisiteOrder requisiteOrder = _context.RequisiteOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
+                ReturnsOrder returnOrder = _context.ReturnsOrders.FirstOrDefault(r => r.JobOrderId == jobOrderId);
 
-            joborderSpecifics.CustomerName = cust?.CustomerName;
+                // Safe mapping of MiscellaneousExpense
+                if (miscellaneousExpense != null)
+                {
+                    joborderSpecifics.MiscellaneousExpensesID = miscellaneousExpense.MiscellaneousExpensesId;
+                    joborderSpecifics.MaterialProcessingExpense = miscellaneousExpense.MaterialProcessingExpense;
+                    // ... map all other properties similarly ...
+                }
 
-            // Safe handling of Employees
-            List<Employee> employees = new List<Employee>();
+                // Safe mapping of RequisiteOrder
+                if (requisiteOrder != null)
+                {
+                    joborderSpecifics.RequisiteId = requisiteOrder.RequisiteId;
+                    joborderSpecifics.RequisiteDate = requisiteOrder.RequisiteDate;
+                    joborderSpecifics.RequisiteNotes = requisiteOrder.RequisiteNotes;
+                }
 
-            if (jobOrder.EmployeeId != null)
-            {
-                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId));
-            }
+                // Safe mapping of ReturnOrder
+                if (returnOrder != null)
+                {
+                    joborderSpecifics.ReturnId = returnOrder.ReturnId;
+                    joborderSpecifics.ReturnDate = returnOrder.ReturnDate;
+                    joborderSpecifics.ReturnsNotes = returnOrder.ReturnsNotes;
+                    joborderSpecifics.ReturnInOut = returnOrder.ReturnInOut;
+                }
 
-            if (requisiteOrder?.EmployeeId != null)
-            {
-                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == requisiteOrder.EmployeeId));
-            }
+                // Safe handling of Customer
+                Customer cust = jobOrder.CustomerId.HasValue
+                    ? _context.Customers.FirstOrDefault(c => c.CustomerId == jobOrder.CustomerId)
+                    : null;
 
-            if (returnOrder?.EmployeeId != null)
-            {
-                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == returnOrder.EmployeeId));
-            }
+                joborderSpecifics.CustomerName = cust?.CustomerName;
 
-            if (miscellaneousExpense?.EmployeeId != null)
-            {
-                employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == miscellaneousExpense.EmployeeId));
-            }
+                // Safe handling of Employees
+                List<Employee> employees = new List<Employee>();
 
-            joborderSpecifics.Employees = employees.Where(e => e != null).ToList();
+                if (jobOrder.EmployeeId != null)
+                {
+                    employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == jobOrder.EmployeeId));
+                }
 
-            // Safe handling of QuantityBridges
-            List<QuantityBridge> quantityBridges = new List<QuantityBridge>();
+                if (requisiteOrder?.EmployeeId != null)
+                {
+                    employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == requisiteOrder.EmployeeId));
+                }
 
-            if (requisiteOrder != null || returnOrder != null)
-            {
-                quantityBridges = _context.QuantityBridges
-                    .Where(q => (requisiteOrder != null && q.RequisiteId == requisiteOrder.RequisiteId) ||
-                               (returnOrder != null && q.ReturnId == returnOrder.ReturnId))
+                if (returnOrder?.EmployeeId != null)
+                {
+                    employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == returnOrder.EmployeeId));
+                }
+
+                if (miscellaneousExpense?.EmployeeId != null)
+                {
+                    employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == miscellaneousExpense.EmployeeId));
+                }
+
+                joborderSpecifics.Employees = employees.Where(e => e != null).ToList();
+
+                // Safe handling of QuantityBridges
+                List<QuantityBridge> quantityBridges = new List<QuantityBridge>();
+
+                if (requisiteOrder != null || returnOrder != null)
+                {
+                    quantityBridges = _context.QuantityBridges
+                        .Where(q => (requisiteOrder != null && q.RequisiteId == requisiteOrder.RequisiteId) ||
+                                   (returnOrder != null && q.ReturnId == returnOrder.ReturnId))
+                        .ToList();
+                }
+
+                joborderSpecifics.QuantityBridges = quantityBridges;
+
+                // Safe handling of ProcessBridges
+                joborderSpecifics.ProcessBridges = _context.ProcessBridges
+                    .Where(p => p.JobOrderId == jobOrderId)
                     .ToList();
+
+                // Safe handling of Materials
+                List<Paper> papers = new List<Paper>();
+                List<Ink> inks = new List<Ink>();
+                List<Supply> supplies = new List<Supply>();
+                List<Labour> labours = new List<Labour>();
+                List<Machine> machines = new List<Machine>();
+
+                foreach (var QB in quantityBridges)
+                {
+                    if (QB.InkId != null)
+                    {
+                        var ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
+                        if (ink != null) inks.Add(ink);
+                    }
+                    else if (QB.PaperId != null)
+                    {
+                        var paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
+                        if (paper != null) papers.Add(paper);
+                    }
+                    else if (QB.SuppliesId != null)
+                    {
+                        var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
+                        if (supply != null) supplies.Add(supply);
+                    }
+                }
+
+                foreach (var pb in joborderSpecifics.ProcessBridges)
+                {
+                    if (pb.LabourId != null)
+                    {
+                        var lab = _context.Labours.FirstOrDefault(e => e.LabourId == pb.LabourId);
+                        if (lab != null) labours.Add(lab);
+                    }
+
+                    if (pb.MachineId != null)
+                    {
+                        var mach = _context.Machines.FirstOrDefault(i => i.MachineId == pb.MachineId);
+                        if (mach != null) machines.Add(mach);
+                    }
+                }
+
+                // Assign collected materials
+                joborderSpecifics.Papers = papers;
+                joborderSpecifics.Inks = inks;
+                joborderSpecifics.Supplies = supplies;
+                joborderSpecifics.Labours = labours;
+                joborderSpecifics.Machines = machines;
+
+                return joborderSpecifics;
             }
-
-            joborderSpecifics.QuantityBridges = quantityBridges;
-
-            // Safe handling of ProcessBridges
-            joborderSpecifics.ProcessBridges = _context.ProcessBridges
-                .Where(p => p.JobOrderId == jobOrderId)
-                .ToList();
-
-            // Safe handling of Materials
-            List<Paper> papers = new List<Paper>();
-            List<Ink> inks = new List<Ink>();
-            List<Supply> supplies = new List<Supply>();
-            List<Labour> labours = new List<Labour>();
-            List<Machine> machines = new List<Machine>();
-
-            foreach (var QB in quantityBridges)
+            catch (ArgumentException ex)
             {
-                if (QB.InkId != null)
-                {
-                    var ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
-                    if (ink != null) inks.Add(ink);
-                }
-                else if (QB.PaperId != null)
-                {
-                    var paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
-                    if (paper != null) papers.Add(paper);
-                }
-                else if (QB.SuppliesId != null)
-                {
-                    var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
-                    if (supply != null) supplies.Add(supply);
-                }
+                return null;
             }
-
-            foreach (var pb in joborderSpecifics.ProcessBridges)
+            catch (Exception ex)
             {
-                if (pb.LabourId != null)
-                {
-                    var lab = _context.Labours.FirstOrDefault(e => e.LabourId == pb.LabourId);
-                    if (lab != null) labours.Add(lab);
-                }
-
-                if (pb.MachineId != null)
-                {
-                    var mach = _context.Machines.FirstOrDefault(i => i.MachineId == pb.MachineId);
-                    if (mach != null) machines.Add(mach);
-                }
+                WriteException.WriteExceptionToFile(ex);
+                return null; 
             }
-
-            // Assign collected materials
-            joborderSpecifics.Papers = papers;
-            joborderSpecifics.Inks = inks;
-            joborderSpecifics.Supplies = supplies;
-            joborderSpecifics.Labours = labours;
-            joborderSpecifics.Machines = machines;
-
-            return joborderSpecifics;
         }
+
 
         public List<Employee> GetAvailableEmployees()
         {
+            try
+            {
 
-            List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
-            return employeelist;
+                List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
+                return employeelist;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Customer> GetAvailableCustomerss()
         {
+            try
+            {
 
-            List<Customer> customerList = _context.Customers.Where(c => c.Activated).ToList();
-            return customerList;
+                List<Customer> customerList = _context.Customers.Where(c => c.Activated).ToList();
+                return customerList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public (bool success, string message) AddJobOrder(JobOrderDTO jobOrder)
@@ -395,9 +504,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return (true, "تمت انشاء امر العمل بنجاح");
             }
+            catch (ArgumentException ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
             catch (Exception ex)
             {
-                return (false, $"حدث خطأ: {ex.Message}");
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
 
@@ -427,49 +541,78 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return (true, "تمت تعديل امر العمل بنجاح");
             }
+            catch (ArgumentException ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
             catch (Exception ex)
             {
-                return (false, $"حدث خطأ: {ex.Message}");
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
         public JobOrder GetJobOrderByID(int jobOrderID)
         {
-            JobOrder existingJobOrder = _context.JobOrders
-                .Include(j => j.Customer)
-                .Include(j => j.Employee)
-                .FirstOrDefault(v => v.JobOrderId == jobOrderID);
+            try
+            {
+                JobOrder existingJobOrder = _context.JobOrders
+                    .Include(j => j.Customer)
+                    .Include(j => j.Employee)
+                    .FirstOrDefault(v => v.JobOrderId == jobOrderID);
 
-            return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
+                return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+
         }
         public JobOrderCustEmpVM getJobOrderVM(int jobOrderID) {
+            try
+            {
 
-            JobOrder job = _context.JobOrders.FirstOrDefault(jo => jo.JobOrderId == jobOrderID);
-            Employee emp = _context.Employees.FirstOrDefault(emp => emp.EmployeeId == job.EmployeeId);
-            Customer cus = _context.Customers.FirstOrDefault(cus => cus.CustomerId == job.CustomerId);
-            JobOrderCustEmpVM jobSpecific = new JobOrderCustEmpVM();
-            
-            // job order
-            jobSpecific.OrderProgress = job.OrderProgress;
-            jobSpecific.JobOrderId = job.JobOrderId;
-            jobSpecific.RemainingAmount = job.RemainingAmount;
-            jobSpecific.EarnedRevenue = job.EarnedRevenue;
-            jobSpecific.EarnedRevenue = job.EarnedRevenue;
-            jobSpecific.JobOrdernotes = job.JobOrdernotes;
-            jobSpecific.StartDate = job.StartDate;
-            jobSpecific.EndDate = job.EndDate;
-            // employee
-            jobSpecific.EmployeeId = emp.EmployeeId;
-            jobSpecific.EmployeeName = emp.EmployeeName;
-            // customer
-            jobSpecific.CustomerId = cus.CustomerId;
-            jobSpecific.CustomerName = cus.CustomerName;
-            jobSpecific.CustomerNotes = cus.CustomerNotes;
-            jobSpecific.CustomerPhone = cus.CustomerPhone;
-            jobSpecific.CustomerAddress = cus.CustomerAddress;
-            jobSpecific.CustomerEmail = cus.CustomerEmail;
+                JobOrder job = _context.JobOrders.FirstOrDefault(jo => jo.JobOrderId == jobOrderID);
+                Employee emp = _context.Employees.FirstOrDefault(emp => emp.EmployeeId == job.EmployeeId);
+                Customer cus = _context.Customers.FirstOrDefault(cus => cus.CustomerId == job.CustomerId);
+                JobOrderCustEmpVM jobSpecific = new JobOrderCustEmpVM();
 
-            return jobSpecific;
+                // job order
+                jobSpecific.OrderProgress = job.OrderProgress;
+                jobSpecific.JobOrderId = job.JobOrderId;
+                jobSpecific.RemainingAmount = job.RemainingAmount;
+                jobSpecific.EarnedRevenue = job.EarnedRevenue;
+                jobSpecific.EarnedRevenue = job.EarnedRevenue;
+                jobSpecific.JobOrdernotes = job.JobOrdernotes;
+                jobSpecific.StartDate = job.StartDate;
+                jobSpecific.EndDate = job.EndDate;
+                // employee
+                jobSpecific.EmployeeId = emp.EmployeeId;
+                jobSpecific.EmployeeName = emp.EmployeeName;
+                // customer
+                jobSpecific.CustomerId = cus.CustomerId;
+                jobSpecific.CustomerName = cus.CustomerName;
+                jobSpecific.CustomerNotes = cus.CustomerNotes;
+                jobSpecific.CustomerPhone = cus.CustomerPhone;
+                jobSpecific.CustomerAddress = cus.CustomerAddress;
+                jobSpecific.CustomerEmail = cus.CustomerEmail;
 
+                return jobSpecific;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
 
         }
 
@@ -501,10 +644,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while adding the customer.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -520,10 +667,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return foundcustomer;
             }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the Customer.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
 
         }
@@ -562,10 +713,16 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while updating the customer.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
+
         }
 
 

@@ -25,99 +25,143 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult LoginPage()
         {
-            return View("~/Views/SharedViews/login.cshtml", new Employee());
+            try
+            {
+                return View("~/Views/SharedViews/login.cshtml", new Employee());
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/login.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/login.cshtml");
+            }
         }
 
         [HttpPost]
         public IActionResult EmployeeLogin(string EmployeeUserName, string EmployeePassword)
         {
-         
-
-            // Try to find the employee by hashed username only
-            Employee loggedEmployee = _context.Employees.FirstOrDefault(
-                e => e.EmployeeUserName == EmployeeUserName);
-
-            if (loggedEmployee != null && loggedEmployee.Forgetpassword == true) { 
-            
-                return RedirectToAction("Forgetpassword", "Employee", routeValues: new { loggedEmployee.EmployeeId });
-
-            }else if(loggedEmployee != null)
+            try
             {
-                // Verify password
-                bool passwordMatch = Hashing.VerifyPassword(EmployeePassword, loggedEmployee.EmployeePassword);
+                // Try to find the employee by hashed username only
+                Employee loggedEmployee = _context.Employees.FirstOrDefault(
+                    e => e.EmployeeUserName == EmployeeUserName);
 
-                if (!passwordMatch)
+                if (loggedEmployee != null && loggedEmployee.Forgetpassword == true)
+                {
+
+                    return RedirectToAction("Forgetpassword", "Employee", routeValues: new { loggedEmployee.EmployeeId });
+
+                }
+                else if (loggedEmployee != null)
+                {
+                    // Verify password
+                    bool passwordMatch = Hashing.VerifyPassword(EmployeePassword, loggedEmployee.EmployeePassword);
+
+                    if (!passwordMatch)
+                    {
+                        TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
+                        return RedirectToAction("LoginPage", "Employee");
+                    }
+
+                    if (!loggedEmployee.Activated)
+                    {
+                        TempData["Error"] = "هذا الحساب غير مفعل بعد، يرجى التواصل مع مدير النظام لتفعيل الحساب";
+                        return RedirectToAction("LoginPage", "Employee");
+                    }
+
+                    // Set session
+                    HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
+                    HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName);
+                    HttpContext.Session.SetString("EmployeeUserName", EmployeeUserName); // use original not hashed
+                    HttpContext.Session.SetInt32("JobRole", (int)loggedEmployee.JobRole);
+
+                    // Redirect based on job role
+                    switch (loggedEmployee.JobRole)
+                    {
+                        case JobRole.Admin:
+                            return RedirectToAction("AdminHome", "employee");
+                        case JobRole.InventoryClerk:
+                            return RedirectToAction("inventoryClerk", "employee");
+                        case JobRole.InventoryManager:
+                            return RedirectToAction("inventoryManager", "employee");
+                        case JobRole.TechnicalClerk:
+                            return RedirectToAction("technicalClerk");
+                        case JobRole.TechnicalManager:
+                            return RedirectToAction("TechnicalManager", "employee");
+                        case JobRole.CostClerk:
+                            return RedirectToAction("costClerk", "employee");
+                        case JobRole.CostManager:
+                            return RedirectToAction("CostManager", "employee");
+                        case JobRole.AcoountingManager:
+                            return RedirectToAction("AccountingManager", "employee");
+                        case JobRole.AccountingClerk:
+                            return RedirectToAction("AccountingClerk", "employee");
+                        default:
+                            TempData["Error"] = "هناك خظأ في البيانات المستخدمة";
+                            return RedirectToAction("LoginPage", "Employee");
+                    }
+                }
+                else
                 {
                     TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
                     return RedirectToAction("LoginPage", "Employee");
                 }
-
-                if (!loggedEmployee.Activated)
-                {
-                    TempData["Error"] = "هذا الحساب غير مفعل بعد، يرجى التواصل مع مدير النظام لتفعيل الحساب";
-                    return RedirectToAction("LoginPage", "Employee");
-                }
-
-                // Set session
-                HttpContext.Session.SetString("EmployeeID", loggedEmployee.EmployeeId.ToString());
-                HttpContext.Session.SetString("EmployeeName", loggedEmployee.EmployeeName);
-                HttpContext.Session.SetString("EmployeeUserName", EmployeeUserName); // use original not hashed
-                HttpContext.Session.SetInt32("JobRole", (int)loggedEmployee.JobRole);
-
-                // Redirect based on job role
-                switch (loggedEmployee.JobRole)
-                {
-                    case JobRole.Admin:
-                        return RedirectToAction("AdminHome", "employee");
-                    case JobRole.InventoryClerk:
-                        return RedirectToAction("inventoryClerk", "employee");
-                    case JobRole.InventoryManager:
-                        return RedirectToAction("inventoryManager", "employee");
-                    case JobRole.TechnicalClerk:
-                        return RedirectToAction("technicalClerk");
-                    case JobRole.TechnicalManager:
-                        return RedirectToAction("TechnicalManager", "employee");
-                    case JobRole.CostClerk:
-                        return RedirectToAction("costClerk", "employee");
-                    case JobRole.CostManager:
-                        return RedirectToAction("CostManager", "employee");
-                    case JobRole.AcoountingManager:
-                        return RedirectToAction("AccountingManager", "employee");
-                    case JobRole.AccountingClerk:
-                        return RedirectToAction("AccountingClerk", "employee");
-                    default:
-                        TempData["Error"] = "هناك خظأ في البيانات المستخدمة";
-                        return RedirectToAction("LoginPage", "Employee");
-                }
             }
-            else {
-                TempData["Error"] = "اسم المستخدم أو كلمة المرور غير صحيحة";
-                return RedirectToAction("LoginPage", "Employee");
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "حدث خطأ اثناء تسجيل الدخول .";
+                return View("~/Views/SharedViews/Login.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/Login.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult EmployeeProfile(string employeeId) {
+            try
+            {
 
-            Employee emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+                Employee emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
                 EmployeeDTO employeeDTO = new EmployeeDTO();
-            if (emp != null)
-            {
-                employeeDTO.EmployeeId = emp.EmployeeId;
-                employeeDTO.EmployeeName = emp.EmployeeName;
-                employeeDTO.EmployeeUserName = emp.EmployeeUserName;
-                employeeDTO.JobRole = emp.JobRole;
-                employeeDTO.Activated = emp.Activated;
-                employeeDTO.EmployeePassword = emp.EmployeePassword;
-            }
-            else
-            {
-                TempData["Error"] = "رقم الهوية غير صحيح.";
-                return RedirectToAction("LoginPage", "Employee");
-            }
+                if (emp != null)
+                {
+                    employeeDTO.EmployeeId = emp.EmployeeId;
+                    employeeDTO.EmployeeName = emp.EmployeeName;
+                    employeeDTO.EmployeeUserName = emp.EmployeeUserName;
+                    employeeDTO.JobRole = emp.JobRole;
+                    employeeDTO.Activated = emp.Activated;
+                    employeeDTO.EmployeePassword = emp.EmployeePassword;
+                }
+                else
+                {
+                    TempData["Error"] = "رقم الهوية غير صحيح.";
+                    return RedirectToAction("LoginPage", "Employee");
+                }
 
 
-            return View("~/Views/SharedViews/EmployeeProfile.cshtml", employeeDTO);
+                return View("~/Views/SharedViews/EmployeeProfile.cshtml", employeeDTO);
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/EmployeeProfile.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/EmployeeProfile.cshtml");
+            }
 
         }
 
@@ -155,6 +199,12 @@ namespace ThothSystemVersion1.Controllers
                 }        
                 
             }
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/SharedViews/EmployeeProfile.cshtml", updatedEmployee);
+            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -164,46 +214,106 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("EmployeeProfile", "Employee", new { employeeId = EmployeeId });
             }
 
+
         }
 
         [HttpGet]
         public IActionResult UnauthorizedAccess()
         {
-            HttpContext.Session.Clear();
-            return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            try
+            {
+                HttpContext.Session.Clear();
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+
         }
 
         [HttpGet]
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
-            return RedirectToAction("LoginPage", "Employee");
+            try
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("LoginPage", "Employee");
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/Login.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/Login.cshtml");
+            }
         }
 
         [HttpGet]
         public IActionResult ForgetPassword(string EmployeeId)
         {
-            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
-            return View("~/Views/SharedViews/ForgetPassword.cshtml", employee);
+            try
+            {
+                Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
+                return View("~/Views/SharedViews/ForgetPassword.cshtml", employee);
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/ForgetPassword.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/ForgetPassword.cshtml");
+            }
         }
 
         [HttpPost]
         public IActionResult forgetPassword(string EmployeeId) {
+            try
+            {
 
-            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
-            if (employee != null)
-            {
-                employee.Forgetpassword = true;
-                _context.Update(employee);
-                _context.SaveChanges();
-                string id = EmployeeId;
-                TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
-                return RedirectToAction("EditEmployee", "admin" , routeValues: new { id = EmployeeId });
+                Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
+                if (employee != null)
+                {
+                    employee.Forgetpassword = true;
+                    _context.Update(employee);
+                    _context.SaveChanges();
+                    string id = EmployeeId;
+                    TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
+                    return RedirectToAction("EditEmployee", "admin", routeValues: new { id = EmployeeId });
+                }
+                else
+                {
+                    TempData["Error"] = "رقم الهوية غير صحيح.";
+                    return RedirectToAction("EditEmployee", "admin");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                TempData["Error"] = "رقم الهوية غير صحيح.";
-                return RedirectToAction("EditEmployee", "admin");
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/Admin/EditEmployee.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                return View("~/Views/Admin/EditEmployee.cshtml");
+
             }
 
 
@@ -211,26 +321,41 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult RegisterNewPassword(string employeeId ,Employee emp) 
         {
-            Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-            if (employee != null)
+            try
             {
-                
-                string pass = emp.EmployeePassword;
-                string newHashedPassword = Hashing.HashPassword(pass);
-                employee.Forgetpassword = false;
-                employee.EmployeePassword = newHashedPassword;
-                //employee.EmployeePassword
-                _context.Update(employee);
-                _context.SaveChanges();
-                TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
-                return RedirectToAction("forgetPassword", "Employee", new { employee.EmployeeId });
-            }
-            else
-            {
-                TempData["Error"] = "رقم الهوية غير صحيح.";
-                return RedirectToAction("forgetPassword", "Employee",new { employee.EmployeeId });
-            }
+                Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+                if (employee != null)
+                {
 
+                    string pass = emp.EmployeePassword;
+                    string newHashedPassword = Hashing.HashPassword(pass);
+                    employee.Forgetpassword = false;
+                    employee.EmployeePassword = newHashedPassword;
+                    //employee.EmployeePassword
+                    _context.Update(employee);
+                    _context.SaveChanges();
+                    TempData["Success"] = "تم إعادة تعيين كلمة المرور.";
+                    return RedirectToAction("forgetPassword", "Employee", new { employee.EmployeeId });
+                }
+                else
+                {
+                    TempData["Error"] = "رقم الهوية غير صحيح.";
+                    return RedirectToAction("forgetPassword", "Employee", new { employee.EmployeeId });
+                }
+            }
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/SharedViews/forgetPassword.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                return View("~/Views/SharedViews/forgetPassword.cshtml");
+
+            }
 
         }
 
@@ -240,48 +365,90 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AdminHome()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0)
+            try
             {
-                return View("~/Views/Admin/AdminHome.cshtml");
-            }
-            else
-            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0)
+                {
+                    return View("~/Views/Admin/AdminHome.cshtml");
+                }
+                else
+                {
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+        }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+    }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+}
         }
 
         [HttpGet]
         public IActionResult inventoryManager()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 1)
+            try
             {
-                return View("~/views/inventory/inventoryManagerHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 1)
+                {
+                    return View("~/views/inventory/inventoryManagerHome.cshtml");
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult inventoryClerk()
         {
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 2)
+            try
             {
-                return View("~/views/inventoryClerk/inventoryClerkHome.cshtml");
 
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 2)
+                {
+                    return View("~/views/inventoryClerk/inventoryClerkHome.cshtml");
+
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
 
         }
@@ -289,87 +456,171 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult technicalManager()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 3)
+            try
             {
-                return View("~/views/technical/technicalManagerHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 3)
+                {
+                    return View("~/views/technical/technicalManagerHome.cshtml");
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult technicalClerk()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 4)
+            try
             {
-                return View("~/views/technicalClerk/technicalClerkHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 4)
+                {
+                    return View("~/views/technicalClerk/technicalClerkHome.cshtml");
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult costManager()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 5)
+            try
             {
-                return View("~/views/cost/costManagerHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 5)
+                {
+                    return View("~/views/cost/costManagerHome.cshtml");
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult costClerk()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 6)
+            try
             {
-                return View("~/views/costClerk/costClerkHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 6)
+                {
+                    return View("~/views/costClerk/costClerkHome.cshtml");
 
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult AccountingManager()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 7)
+            try
             {
-                return View("~/views/Accounting/AccountingManagerHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 7)
+                {
+                    return View("~/views/Accounting/AccountingManagerHome.cshtml");
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 
         [HttpGet]
         public IActionResult AccountingClerk()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 8)
+            try
             {
-                return View("~/views/AccountingClerk/AccountingClerkHome.cshtml");
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 8)
+                {
+                    return View("~/views/AccountingClerk/AccountingClerkHome.cshtml");
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
         }
 

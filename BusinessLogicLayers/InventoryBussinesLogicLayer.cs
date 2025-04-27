@@ -98,7 +98,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 addedVendor.VendorPhone = newVendor.VendorPhone;
                 addedVendor.VendorNotes = newVendor.VendorNotes;
                 addedVendor.VendorAddress = newVendor.VendorAddress;
-                //addedVendor.Activated = true;
+                addedVendor.Activated = true;
 
 
                 _context.Vendors.Add(addedVendor);
@@ -1450,6 +1450,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     existing.Weight = null;
                 }
 
+                _context.Update(existing);
                 _context.SaveChanges();
                 return true;
             }
@@ -1473,6 +1474,50 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 // Log the exception (ex) here
                 throw new ApplicationException("An error occurred while fetching the Characteristic.", ex);
+            }
+        }
+
+        public bool addCharacteristic(ColorWeightSize CWS)
+        {
+            try
+            {
+                var newCharacteristic = new ColorWeightSize
+                {
+                    Type = CWS.Type
+                };
+
+
+                if (CWS.Type == 1)
+                {
+                    newCharacteristic.Size = CWS.Size;
+                    newCharacteristic.Weight = 0;
+                    newCharacteristic.Colored = null;
+                }
+                else if (CWS.Type == 2)
+                {
+                    newCharacteristic.Weight = CWS.Weight;
+                    newCharacteristic.Size = null;
+                    newCharacteristic.Colored = null;
+                }
+                else if (CWS.Type == 3)
+                {
+                    newCharacteristic.Colored = CWS.Colored;
+                    newCharacteristic.Size = null;
+                    newCharacteristic.Weight = 0;
+                }
+
+                _context.ColorWeightSizes.Add(newCharacteristic);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 

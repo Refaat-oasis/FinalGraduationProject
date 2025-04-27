@@ -18,60 +18,76 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
         public List<Employee> ViewAllEmployee() {
+            try
+            {
 
-            List<Employee> employeesList = _context.Employees.ToList();
-            //return View("~/Views/Admin/ViewAllEmployee.cshtml", employeesList);
-            return employeesList;
+                List<Employee> employeesList = _context.Employees.ToList();
+                return employeesList;
+            }
+            catch (Exception ex) {
+
+                WriteException.WriteExceptionToFile(ex);
+                return new List<Employee>();
+            }
 
         }
         public bool AddEmployee(EmployeeDTO employee)
         {
-            if (employee == null)
+            try
             {
-                throw new ArgumentNullException(nameof(employee));
+
+                if (employee == null)
+                {
+                    return false;
+                }
+
+                Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
+
+                Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
+
+                if (foundEmployeeById != null || foundEmployeeByUsername != null)
+                {
+                    return false;
+                }
+
+                string hashedPassword = Hashing.HashPassword(employee.EmployeePassword);
+
+                Employee addedOne = new Employee
+                {
+                    EmployeeName = employee.EmployeeName,
+                    EmployeeUserName = employee.EmployeeUserName,
+                    EmployeePassword = hashedPassword,
+                    EmployeeId = employee.EmployeeId,
+                    JobRole = employee.JobRole,
+                    Forgetpassword = true,
+                    Activated = true
+                };
+
+                _context.Employees.Add(addedOne);
+                _context.SaveChanges();
+
+                // ✅ Save plain username and password in file (for record or testing)
+                string fileName = $"{employee.EmployeeUserName}.txt";
+                string filePath = Path.Combine("EmployeeRecords", fileName);
+                Directory.CreateDirectory("EmployeeRecords");
+
+                string fileContent = $"الرقم القومي للموظف : {addedOne.EmployeeId}\n" +
+                                     $"الاسم: {addedOne.EmployeeName}\n" +
+                                     $"اسم المستخدم للبرنامج: {employee.EmployeeUserName}\n" + // original
+                                     $"كلمة المرور: {employee.EmployeePassword}\n" + // original
+                                     $"الدور الوظيفي المحدد: {addedOne.JobRole}\n";
+
+                File.WriteAllText(filePath, fileContent);
+
+                return true;
+
             }
-
-            Employee foundEmployeeById = _context.Employees.Find(employee.EmployeeId);
-
-            Employee foundEmployeeByUsername = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == employee.EmployeeUserName);
-
-            if (foundEmployeeById != null || foundEmployeeByUsername != null)
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
-
-            string hashedPassword = Hashing.HashPassword(employee.EmployeePassword);
-
-            Employee addedOne = new Employee
-            {
-                EmployeeName = employee.EmployeeName,
-                EmployeeUserName = employee.EmployeeUserName,
-                EmployeePassword = hashedPassword,
-                EmployeeId = employee.EmployeeId,
-                JobRole = employee.JobRole,
-                Forgetpassword = true,
-                Activated = true
-            };
-
-            _context.Employees.Add(addedOne);
-            _context.SaveChanges();
-
-            // ✅ Save plain username and password in file (for record or testing)
-            string fileName = $"{employee.EmployeeUserName}.txt";
-            string filePath = Path.Combine("EmployeeRecords", fileName);
-            Directory.CreateDirectory("EmployeeRecords");
-
-            string fileContent = $"الرقم القومي للموظف : {addedOne.EmployeeId}\n" +
-                                 $"الاسم: {addedOne.EmployeeName}\n" +
-                                 $"اسم المستخدم للبرنامج: {employee.EmployeeUserName}\n" + // original
-                                 $"كلمة المرور: {employee.EmployeePassword}\n" + // original
-                                 $"الدور الوظيفي المحدد: {addedOne.JobRole}\n";
-
-            File.WriteAllText(filePath, fileContent);
-
-            return true;
         }
-
         public Employee GetEmployeeById(string id)
         {
             try
@@ -79,16 +95,15 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 Employee employee = _context.Employees.Find(id); // Synchronous Find
                 if (employee == null)
                 {
-                    throw new ArgumentException("Employee not found.");
+                    return new Employee(); // Return an empty Employee object if not found
+
                 }
                 return employee;
             }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the employee.", ex);
+                return new Employee(); // Return an empty Employee object if an error occurs
 
             }
         }

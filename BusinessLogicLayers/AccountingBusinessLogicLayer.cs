@@ -55,7 +55,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex) {
 
                 WriteException.WriteExceptionToFile(ex);
-                return null;
+                return new List<JobOrderCustEmpVM>();
 
             }
 
@@ -91,7 +91,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex) { 
             
                 WriteException.WriteExceptionToFile(ex);
-                return null;
+                return new List<PaymentPurchaseOrderVM>();
 
             }
 
@@ -221,7 +221,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex) {  
             
                 WriteException.WriteExceptionToFile(ex);
-                return null;
+                return new PaymentPurchaseOrderVM();
 
             }
 

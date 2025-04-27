@@ -673,6 +673,69 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpGet]
+        public IActionResult ReturnOrder()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            {
+                try
+                {
+                    ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
+                    ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
+                    ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
+                    ViewBag.PaperList = _businessLogicL.getAllActivePaper();
+                    ViewBag.InkList = _businessLogicL.getAllActiveInk();
+                    ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+
+                    return View(new ReturnOrderDTO());
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
+                    //return RedirectToAction("AdminHome", "Admin");
+                }
+            }
+
+
+            return RedirectToAction("UnauthorizedAccess", "employee");
+        }
+
+        [HttpPost]
+        public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
+        {
+            string employeeID = HttpContext.Session.GetString("EmployeeID");
+            returnDTO.EmployeeId = employeeID;
+
+            try
+            {
+                if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
+                {
+                    TempData["Error"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
+                    return View();
+                }
+
+
+                var result = _businessLogicL.ReturnOrder(returnDTO);
+
+                if (result.success)
+                {
+                    TempData["Success"] = result.message;
+                    return View();
+                }
+                else
+                {
+                    TempData["Error"] = result.message;
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
+                return View();
+            }
+        }
+
+        [HttpGet]
         public IActionResult AddCharacteristic()
         {
             try

@@ -5,6 +5,7 @@ using ThothSystemVersion1.DataTransfereObject;
 //using ThothSystemVersion1.DTOs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.Controllers
@@ -26,52 +27,96 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllJobOrder()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3)
+            try
             {
-                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
-                return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
-            }
-            else if (jobRole == 4) {
-                List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
-                return View("~/Views/technicalclerk/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3)
+                {
+                    List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
+                    return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
+                }
+                else if (jobRole == 4)
+                {
+                    List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _technicalBusinessLogicLayer.ViewAllJobOrder();
+                    return View("~/Views/technicalclerk/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
 
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ اثناء جلب عناصر الطلبية.";
+                return View("~/Views/Technical/ViewAllJobOrder.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/ViewAllJobOrder.cshtml");
             }
         }
 
         public IActionResult ShowJobOrderSpecifications(int jobOrderId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4 || jobRole == 7 || jobRole ==8)
+            try
             {
-                JobOrderSpecificationsViewModel JobOrderSpecificationsViewModelList =  _technicalBusinessLogicLayer.ShowJobOrderSpecifications(jobOrderId);
-                return View("~/Views/technical/showJobOrderSpecifications.cshtml", JobOrderSpecificationsViewModelList);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3 || jobRole == 4 || jobRole == 7 || jobRole == 8)
+                {
+                    JobOrderSpecificationsViewModel JobOrderSpecificationsViewModelList = _technicalBusinessLogicLayer.ShowJobOrderSpecifications(jobOrderId);
+                    return View("~/Views/technical/showJobOrderSpecifications.cshtml", JobOrderSpecificationsViewModelList);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ اثناء جلب تفاصيل الطلبية.";
+                return View("~/Views/technical/showJobOrderSpecifications.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/showJobOrderSpecifications.cshtml");
             }
         }
         [HttpGet]
         public IActionResult ViewAllCustomer()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3)
+            try
             {
-                List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
-                return View(customerList);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3)
+                {
+                    List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
+                    return View(customerList);
+                }
+                else if (jobRole == 4)
+                {
+                    List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
+                    return View("~/Views/technicalclerk/ViewAllCustomer.cshtml", customerList);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else if (jobRole == 4) {
-                List<Customer> customerList = _technicalBusinessLogicLayer.ViewAllCustomer();
-                return View("~/Views/technicalclerk/ViewAllCustomer.cshtml", customerList);
-            }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في جلب  بينات العملاء .";
+                return View("~/Views/technical/ViewAllCustomer.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/ViewAllCustomer.cshtml");
             }
 
         }
@@ -79,6 +124,8 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult CreateRequisite()
         {
+            try 
+            { 
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 3 || jobRole == 4)
             {
@@ -92,81 +139,153 @@ namespace ThothSystemVersion1.Controllers
             {
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ اثناء جلب اذن الصرف .";
+                return View("~/Views/technical/CreateRequisite.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/CreateRequisite.cshtml");
+            }
+
         }
 
 
         public JsonResult GetCurrentQuantity(string itemType, int itemId)
         {
-            int quantity = _inventoryBusinessLogicLayer.GetCurrentQuantity(itemType, itemId);
-            return Json(new { currentQuantity = quantity });
+            try
+            {
+                int quantity = _inventoryBusinessLogicLayer.GetCurrentQuantity(itemType, itemId);
+                return Json(new { currentQuantity = quantity });
+            }
+            catch (ArgumentException ex)
+            {
+              
+                return Json(new { error = "حدث خطأ اثناء جلب الكميات الحالية." });
+            }
+            catch (Exception ex)
+            {
+                
+                WriteException.WriteExceptionToFile(ex);
+                return Json(new { error = "حدث خطأ غير متوقع. يرجى المحاولة لاحقاً." });
+            }
         }
+
+
         [HttpPost]
         public IActionResult CreateRequisite(RequisiteOrderDTO dto)
         {
-            //if (ModelState.IsValid)
-            //{
-            dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-            var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
-            if (result.success)
+            try
             {
-                TempData["Success"] = result.message;
+                //if (ModelState.IsValid)
+                //{
+                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
+                if (result.success)
+                {
+                    TempData["Success"] = result.message;
+                    return RedirectToAction("CreateRequisite");
+                }
+                TempData["Error"] = result.message;
+                //}
                 return RedirectToAction("CreateRequisite");
             }
-            TempData["Error"] = result.message;
-            //}
+            catch (ArgumentException ex)
+            {
 
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/Technical/CreateRequisite.cshtml", dto);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/CreateRequisite.cshtml", dto);
+            }
 
-
-            return RedirectToAction("CreateRequisite");
         }
         [HttpGet]
         public IActionResult CreateNewJobOrder()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+            try
             {
-                ViewBag.employeeList = _technicalBusinessLogicLayer.GetAvailableEmployees();
-                ViewBag.customerList = _technicalBusinessLogicLayer.GetAvailableCustomerss();
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3 || jobRole == 4)
+                {
+                    ViewBag.employeeList = _technicalBusinessLogicLayer.GetAvailableEmployees();
+                    ViewBag.customerList = _technicalBusinessLogicLayer.GetAvailableCustomerss();
 
 
-                return View();
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Technical/CreateNewJobOrder.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/CreateNewJobOrder.cshtml");
             }
         }
 
         [HttpPost]
         public IActionResult CreateNewJobOrder(JobOrderDTO jobOrder)
         {
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            jobOrder.EmployeeId = employeeId;
+            try
+            {
+                string employeeId = HttpContext.Session.GetString("EmployeeID");
+                jobOrder.EmployeeId = employeeId;
 
-            var result = _technicalBusinessLogicLayer.AddJobOrder(jobOrder);
-            //if (result.success)
-            //{
-            //    TempData["Success"] = result.message;
-            //    return RedirectToAction("CreateNewJobOrder");
-            //}
-            //TempData["Error"] = result.message;
-            if (result.success)
-                TempData["Success"] = result.message;
-            else
-                TempData["Error"] = result.message;
+                var result = _technicalBusinessLogicLayer.AddJobOrder(jobOrder);
+                //if (result.success)
+                //{
+                //    TempData["Success"] = result.message;
+                //    return RedirectToAction("CreateNewJobOrder");
+                //}
+                //TempData["Error"] = result.message;
+                if (result.success)
+                    TempData["Success"] = result.message;
+                else
+                    TempData["Error"] = result.message;
 
-            return RedirectToAction("CreateNewJobOrder");
+                return RedirectToAction("CreateNewJobOrder");
+            }
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/Technical/CreateNewJobOrder.cshtml", jobOrder);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/CreateNewJobOrder.cshtml", jobOrder);
+            }
 
         }
 
         [HttpGet]
         public IActionResult EditJobOrder(int jobOrderid)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 3)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 3)
                 {
+
                     JobOrder existingJobOrder = _technicalBusinessLogicLayer.GetJobOrderByID(jobOrderid);
                     ViewBag.EmployeeList = _technicalBusinessLogicLayer.GetAvailableEmployees();
                     ViewBag.CustomerList = _technicalBusinessLogicLayer.GetAvailableCustomerss();
@@ -179,16 +298,24 @@ namespace ThothSystemVersion1.Controllers
 
 
                     return View("~/Views/Technical/EditJobOrder.cshtml", existingJobOrder);
+
+
                 }
-                catch (ArgumentException ex)
+                else
                 {
-                    TempData["Error"] = ex.Message;
-                    return RedirectToAction("ViewAllJobOrder"); // Redirect to list with error
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (ArgumentException ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Technical/EditJobOrder.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/EditJobOrder.cshtml");
             }
         }
         [HttpPost]
@@ -228,36 +355,46 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = result.message;
                 return RedirectToAction("EditJobOrder", "Technical", new { jobOrderid });
             }
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
+            }
             catch (Exception ex)
             {
-                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
-                return View(jobOrder);
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
             }
         }
         [HttpGet]
         public IActionResult AddCustomer()
         {
+            try
+            { 
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
             if (jobRole == 0 || jobRole == 3 || jobRole == 4)
             {
-                try
-                {
                     var model = new CustomerDTO(); 
-                    return View("~/Views/Technical/AddCustomer.cshtml", model);
-                }
-                catch (ApplicationException ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
-                }
+                    return View("~/Views/Technical/AddCustomer.cshtml", model); 
             }
             else
             {
 
                 return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Technical/AddCustomer.cshtml");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/AddCustomer.cshtml");
             }
 
         }
@@ -286,7 +423,14 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (ArgumentException ex)
             {
-                TempData["Error"] = "حدث خطأ أثناء إضافة العميل";
+
+                TempData["Error"] = "حدث خطأ اثناء اضافة بيانات العميل .";
+                return View("~/Views/Technical/AddCustomer.cshtml", customer);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
                 return View("~/Views/Technical/AddCustomer.cshtml", customer);
             }
         }
@@ -325,9 +469,16 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
             }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Technical/EditCustomer.cshtml");
+            }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while fetching the customer.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Technical/EditCustomer.cshtml");
             }
         }
 
@@ -364,7 +515,14 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (ArgumentException ex)
             {
-                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات العميل";
+
+                TempData["Error"] = "حدث خطأ اثناء تعديل بيانات العميل .";
+                return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
                 return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
             }
         }

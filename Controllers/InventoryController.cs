@@ -671,72 +671,104 @@ namespace ThothSystemVersion1.Controllers
                 return StatusCode(500, new { error = ex.Message });
             }
         }
-        
+
         [HttpGet]
-        public IActionResult ReturnOrder()
+        public IActionResult AddCharacteristic()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
-            {
-                try
-                {
-                    ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
-                    ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
-                    ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
-                    ViewBag.PaperList = _businessLogicL.getAllActivePaper();
-                    ViewBag.InkList = _businessLogicL.getAllActiveInk();
-                    ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
-
-                    return View(new ReturnOrderDTO());
-                }
-                catch (Exception ex)
-                {
-                    TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
-                    //return RedirectToAction("AdminHome", "Admin");
-                }
-            }
-
-
-            return RedirectToAction("UnauthorizedAccess", "employee");
-        }
-
-        [HttpPost]
-        public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
-        {
-            string employeeID = HttpContext.Session.GetString("EmployeeID");
-            returnDTO.EmployeeId = employeeID;
-
             try
             {
-                if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
-                    TempData["Error"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
-                    return View();
-                }
+                    ViewBag.TypeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "حجم" },
+                new SelectListItem { Value = "2", Text = "وزن" },
+                new SelectListItem { Value = "3", Text = "لون" }
+            };
 
-
-                var result = _businessLogicL.ReturnOrder(returnDTO);
-
-                if (result.success)
-                {
-                    TempData["Success"] = result.message;
-                    return View();
+                    return View(new ColorWeightSize());
                 }
                 else
                 {
-                    TempData["Error"] = result.message;
-                    return View();
+                    return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
+            }
+            catch (ArgumentException ex)
+            {
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Inventory/AddCharacteristic.cshtml");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
-                return View();
+                WriteException.WriteExceptionToFile(ex);
+                return View("~/Views/Inventory/AddCharacteristic.cshtml");
             }
         }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        [HttpPost]
+        public IActionResult AddCharacteristic(ColorWeightSize newChar)
+        {
+            try
+            {
+                if (newChar == null)
+                {
+                    ModelState.AddModelError("", "البيانات غير صالحة");
+                    ViewBag.TypeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "حجم" },
+                new SelectListItem { Value = "2", Text = "وزن" },
+                new SelectListItem { Value = "3", Text = "لون" }
+            };
+
+                    return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.TypeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "حجم" },
+                new SelectListItem { Value = "2", Text = "وزن" },
+                new SelectListItem { Value = "3", Text = "لون" }
+            };
+
+                    return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+                }
+
+                bool isAddSuccess = _businessLogicL.addCharacteristic(newChar);
+
+                if (isAddSuccess)
+                {
+                    TempData["Success"] = "تم إضافة بيانات الخاصية بنجاح";
+                    return RedirectToAction("AddCharacteristic", "Inventory");
+                }
+                else
+                {
+                    TempData["Error"] = "حدث خطأ أثناء إضافة الخاصية";
+                    return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+
+                TempData["Error"] = "البيانات غير صحيحة";
+                return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+            }
+
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sandra section
         [HttpGet]
@@ -890,7 +922,7 @@ namespace ThothSystemVersion1.Controllers
                 new SelectListItem { Value = "2", Text = "وزن" },
                 new SelectListItem { Value = "3", Text = "لون" }
             };
-                    return View("~/Views/Inventory/EditCharacterisitic.cshtml", CWS);
+                    return View("~/Views/Inventory/EditCharacteristics.cshtml", CWS);
                 }
                 catch (ApplicationException ex)
                 {
@@ -911,14 +943,14 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditCharacteristics(int CWSId, ColorWeightSize updatedChar)
+        public IActionResult EditCharacteristics(int ColorWeightSizeId, ColorWeightSize updatedChar)
         {
             try
             {
                 if (updatedChar == null)
                 {
                     ModelState.AddModelError("", "البيانات غير صالحة");
-                    return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+                    return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
                 }
                 if (!ModelState.IsValid)
                 {
@@ -928,18 +960,18 @@ namespace ThothSystemVersion1.Controllers
                 new SelectListItem { Value = "2", Text = "وزن" },
                 new SelectListItem { Value = "3", Text = "لون" }
             };
-                    return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+                    return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
                 }
 
-                bool isEditSuccess = _businessLogicL.editCharacteristic(CWSId, updatedChar);
+                bool isEditSuccess = _businessLogicL.editCharacteristic(ColorWeightSizeId, updatedChar);
 
                 TempData["Success"] = "تم تعديل بيانات الخصائص";
-                return RedirectToAction("EditCharacterisitics", "Inventory", new { CWSId });
+                return RedirectToAction("EditCharacteristics", "Inventory", new { ColorWeightSizeId });
             }
             catch (ArgumentException ex)
             {
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الخصائص";
-                return View("~/Views/Inventory/EditCharacterisitics.cshtml", updatedChar);
+                return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
             }
         }
 

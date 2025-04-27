@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ThothSystemVersion1.ModifiedModels;
 
 namespace ThothSystemVersion1.ViewModels
 {
@@ -54,6 +55,7 @@ namespace ThothSystemVersion1.ViewModels
         [Display(Name = "قيمة المستلزمات الذي تم استخدامه")]
         public decimal? supplyBalance { get; set; }
 
+        public List<ModifiedQuantityBridge> modifiedQuantityBridgeList { get; set; }
 
     }
 }

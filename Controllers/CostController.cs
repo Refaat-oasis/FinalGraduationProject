@@ -55,6 +55,7 @@ namespace ThothSystemVersion1.Controllers
             machLabDto.paperBalance = jobOrder.paperBalance;
             machLabDto.inkBalance = jobOrder.inkBalance;
             machLabDto.supplyBalance = jobOrder.supplyBalance;
+            machLabDto.modifiedQuantityBridgeList = jobOrder.modifiedQuantityBridgeList;
             //machLabDto
 
 

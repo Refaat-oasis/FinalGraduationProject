@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ModifiedModels;
 
 namespace ThothSystemVersion1.DataTransfereObject
 {
@@ -49,6 +50,8 @@ namespace ThothSystemVersion1.DataTransfereObject
         public decimal? inkBalance { get; set; }
         [Display(Name = "قيمة المستلزمات الذي تم استخدامه")]
         public decimal? supplyBalance { get; set; }
+
+        public List<ModifiedQuantityBridge> modifiedQuantityBridgeList { get; set; }
 
         // Miscellaneous Expense
 

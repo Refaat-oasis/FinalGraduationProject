@@ -117,7 +117,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     return (false, "بيانات الموظف المطلوبة غير متوفرة.");
                 }
                 Employee existingEmployee = _context.Employees.Find(id); // Find the employee by ID
-                                                                         //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
+                if (existingEmployeeUserName != null && existingEmployeeUserName.EmployeeId != existingEmployee.EmployeeId)
+                {
+                    return (false, "اسم المستخدم موجود مسبقاً");
+                }                                                                         //Employee existingEmployeeUserName = _context.Employees.FirstOrDefault(e => e.EmployeeUserName == updatedEmployee.EmployeeUserName);
                 if (existingEmployee == null)
                 {
                     return (false, "الموظف غير موجود.");
@@ -130,7 +134,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 existingEmployee.Activated = updatedEmployee.Activated;
                 _context.Employees.Update(existingEmployee); // Mark the entity as modified
                 _context.SaveChanges(); // Save changes to the database
-                return (true, $"تم تعديل الموظف {updatedEmployee.EmployeeName}"); // Success
+                return (true, $"  تم تعديل الموظف {updatedEmployee.EmployeeName} بنجاح "); // Success
             }
             catch (Exception ex)
             {

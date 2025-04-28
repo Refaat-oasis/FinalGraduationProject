@@ -1,4 +1,5 @@
 ﻿using AspNetCoreGeneratedDocument;
+using Humanizer;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -39,19 +40,27 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult NewPaper()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
-                ViewBag.ColorWeightSizeList = colorWeightSizes;
-                return View(new Paper());
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
+                    return View(new Paper());
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/Newpaper.cshtml", new Paper());
             }
-
         }
 
         [HttpPost]
@@ -95,7 +104,9 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/Newpaper.cshtml", newPaper);
             }
 
         }
@@ -103,18 +114,26 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult NewInk()
         {
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
-                ViewBag.ColorWeightSizeList = colorWeightSizes;
-                return View(new Ink());
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                    ViewBag.ColorWeightSizeList = colorWeightSizes;
+                    return View(new Ink());
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/NewInk.cshtml", new Ink());
             }
 
         }
@@ -124,7 +143,7 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                
+
 
                 if (ModelState.IsValid)
                 {
@@ -159,10 +178,10 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
-                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
-                ViewBag.ColorWeightSizeList = colorWeightSizes;
+                //List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                //ViewBag.ColorWeightSizeList = colorWeightSizes;
                 string messageError = "هناك خظأ في اضافة الحبر الجديد";
-
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = messageError;
                 return View(newInk);
 
@@ -172,17 +191,25 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult NewSupply()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                return View(new Supply());
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    return View(new Supply());
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/NewSupply.cshtml", new Supply());
             }
-
 
         }
 
@@ -215,17 +242,18 @@ namespace ThothSystemVersion1.Controllers
                 }
                 else
                 {
-                   return View(newSupply);
+                    return View(newSupply);
                 }
 
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 string messageError = "هناك خظأ في اضافة المستلزم الجديد";
                 TempData["Error"] = messageError;
                 return View(newSupply);
-                    
-             }
+
+            }
 
         }
 
@@ -233,141 +261,205 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult inventoryReports()
         {
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                ViewBag.PaperList = _businessLogicL.GetActivePapers();
-                ViewBag.InkList = _businessLogicL.GetActiveInks();
-                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    ViewBag.PaperList = _businessLogicL.GetActivePapers();
+                    ViewBag.InkList = _businessLogicL.GetActiveInks();
+                    ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
 
-                return View();
+                    return View();
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/InventoryReports.cshtml");
             }
         }
 
         [HttpPost]
         public IActionResult inventoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
-            ViewBag.VendorList = _businessLogicL.ViewAllVendor();
-            ViewBag.EmployeeList = _adminBusinessLogicL.ViewAllEmployee();
-            ViewBag.JobOrderList = _technicalBusinessLogicL.ViewAllJobOrder();
+            try
+            {
+                ViewBag.VendorList = _businessLogicL.ViewAllVendor();
+                ViewBag.EmployeeList = _adminBusinessLogicL.ViewAllEmployee();
+                ViewBag.JobOrderList = _technicalBusinessLogicL.ViewAllJobOrder();
 
 
-            InventoryReportViewModel invViewModel = _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
+                InventoryReportViewModel invViewModel = _businessLogicL.invetoryReports(itemType, itemId, beginingDate, endingDate);
 
-            ExportToExcelItems(invViewModel);
-            return View(invViewModel);
-
+                ExportToExcelItems(invViewModel);
+                return View(invViewModel);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/InventoryReports.cshtml", new InventoryReportViewModel());
+            }
         }
 
         [HttpGet]
         public IActionResult purchaseall()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                ViewBag.PaperList = _businessLogicL.GetActivePapers();
-                ViewBag.InkList = _businessLogicL.GetActiveInks();
-                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
-                ViewBag.vendorList = _businessLogicL.ViewAllVendor();
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    ViewBag.PaperList = _businessLogicL.GetActivePapers();
+                    ViewBag.InkList = _businessLogicL.GetActiveInks();
+                    ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                    ViewBag.vendorList = _businessLogicL.ViewAllVendor();
 
-            return View();
-            }else{
+                    return View();
+                }
+                else
+                {
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
-    }
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/purchaseAll.cshtml");
+            }
 
-
-}
+        }
 
         [HttpPost]
         public IActionResult purchaseall(purchaseOrderDTO dto)
         {
 
+            try
+            {
+                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                var result = _businessLogicL.PurchaseAll(dto);
 
-            dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-            var result = _businessLogicL.PurchaseAll(dto);
+                if (result.success)
+                    TempData["Success"] = result.message;
+                else
+                    TempData["Error"] = result.message;
 
-            if (result.success)
-                TempData["Success"] = result.message;
-            else
-                TempData["Error"] = result.message;
-
-            return RedirectToAction("purchaseall");
+                return RedirectToAction("purchaseall");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/purchaseAll.cshtml", dto);
+            }
         }
 
         [HttpPost]
         public IActionResult deleteColorWeightSize(int ColorWeightSizeId)
         {
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                bool success = _businessLogicL.DeleteColorWeightSize(ColorWeightSizeId);
-                if (success)
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
                 {
-                    TempData["Success"] = "تم حذف البيانات بنجاح";
-                    return RedirectToAction("ViewAllColorWeightSize", "Inventory");
+                    bool success = _businessLogicL.DeleteColorWeightSize(ColorWeightSizeId);
+                    if (success)
+                    {
+                        TempData["Success"] = "تم حذف البيانات بنجاح";
+                        return RedirectToAction("ViewAllColorWeightSize", "Inventory");
+                    }
+                    else
+                    {
+                        TempData["Error"] = "حدث خطأ أثناء حذف البيانات";
+                        return RedirectToAction("ViewAllVendorColorWeightSize", "Inventory");
+                    }
+
                 }
                 else
                 {
-                    TempData["Error"] = "حدث خطأ أثناء حذف البيانات";
-                    return RedirectToAction("ViewAllVendorColorWeightSize", "Inventory");
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/ViewAllVendorColorWeightSize.cshtml");
             }
-
 
         }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Mariam section
 
         [HttpPost]
         public IActionResult CustomerReport(DateOnly beginingDate, DateOnly endingDate)
         {
+            try
+            {
+                InventoryReportViewModel invViewModel = _businessLogicL.GetCustomerRanking(beginingDate, endingDate);
 
-            InventoryReportViewModel invViewModel = _businessLogicL.GetCustomerRanking(beginingDate, endingDate);
-
-            return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
+                return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/InventoryReports.cshtml", new InventoryReportViewModel());
+            }
         }
 
         [HttpPost]
         public IActionResult VendorReport(DateOnly beginingDate, DateOnly endingDate)
         {
+            try
+            {
+                InventoryReportViewModel invViewModel = _businessLogicL.VendorReportRanking(beginingDate, endingDate);
 
-            InventoryReportViewModel invViewModel = _businessLogicL.VendorReportRanking(beginingDate, endingDate);
-
-            return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
+                return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/InventoryReports.cshtml", new InventoryReportViewModel());
+            }
         }
         [HttpGet]
         public IActionResult EditVendor(int vendorID)
         {
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                var foundVendor = _businessLogicL.GetVendorByID(vendorID);
-                return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    var foundVendor = _businessLogicL.GetVendorByID(vendorID);
+                    return View("~/Views/Inventory/EditVendor.cshtml", foundVendor);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/EditVendor.cshtml", new Vendor());
             }
-
 
         }
 
@@ -396,29 +488,39 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات المورد";
                 return View(newvendor);
             }
         }
+
         [HttpGet]
         public IActionResult ViewAllColorWeightSize()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
 
-                List<ColorWeightSize> characteristicsList = _businessLogicL.ViewAllColorWeightSize();
-                return View("~/Views/Admin/ViewAllEmployee.cshtml", characteristicsList);
+                    List<ColorWeightSize> characteristicsList = _businessLogicL.ViewAllColorWeightSize();
+                    return View("~/Views/Admin/ViewAllEmployee.cshtml", characteristicsList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض الخصائص";
+                return View("~/Views/Admin/ViewAllEmployee.cshtml", new List<ColorWeightSize>());
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
             }
-
         }
-
-
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //sherwet Section
@@ -426,29 +528,37 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddVendor()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
+                    //try
+                    //{
                     VendorAddDTO empty = new VendorAddDTO();
                     return View("~/Views/Inventory/AddVendor.cshtml", empty);
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/AddVendor.cshtml", new Vendor());
             }
-
         }
 
 
@@ -472,22 +582,25 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Success"] = "تم اضافة بيانات العميل";
                 return RedirectToAction("AddVendor", "inventory");
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء اضافة بيانات العميل";
                 return View("~/Views/Inventory/AddVendor.cshtml", vendor);
             }
 
         }
-        
+
         [HttpGet]
         public IActionResult EditInk(int inkId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
                 {
+                    //try
+                    //{
                     List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
                     ViewBag.ColorWeightSizeList = colorWeightSizes;
 
@@ -495,20 +608,29 @@ namespace ThothSystemVersion1.Controllers
 
 
                     return View("~/Views/Inventory/EditInk.cshtml", ink);
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    return StatusCode(500, ex.Message); // Internal server error
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
-                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/EditInk.cshtml", new Ink());
             }
+
         }
 
         [HttpPost]
@@ -535,6 +657,7 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الحبر";
                 return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
             }
@@ -545,31 +668,40 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditPaper(int paperId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
                 {
+                    //try
+                    //{
                     List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
                     ViewBag.ColorWeightSizeList = colorWeightSizes;
                     Paper paper = _businessLogicL.GetPaperByID(paperId);
 
                     return View("~/Views/Inventory/EditPaper.cshtml", paper);
-                }
-                catch (ApplicationException ex)
-                {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
-                }
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/EditPaper.cshtml", new Paper());
             }
 
         }
@@ -594,8 +726,9 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Success"] = "تم تعديل بيانات الورق";
                 return RedirectToAction("EditPaper", "Inventory", new { PaperId });
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الورق";
                 return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
             }
@@ -605,33 +738,41 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditSupply(int SuppliesId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
                 {
+                    //try
+                    //{
                     Supply supply = _businessLogicL.GetSupplyByID(SuppliesId);
 
                     return View("~/Views/Inventory/EditSupply.cshtml", supply);
-                }
-                catch (ApplicationException ex)
-                {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
-                }
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/EditSupply.cshtml", new Supply());
             }
-
         }
-        
+
         [HttpPost]
         public IActionResult EditSupply(int SuppliesId, Supply updatedSupply)
         {
@@ -651,15 +792,16 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("EditSupply", "Inventory", new { SuppliesId });
             }
 
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات المستلزمات";
                 return View("~/Views/Inventory/EditSupply.cshtml", updatedSupply);
             }
 
         }
         //return
-        
+
         [HttpGet]
         public IActionResult GetJobOrderItems(int jobOrderId)
         {
@@ -671,7 +813,8 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = ex.Message });
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
         }
 
@@ -685,18 +828,22 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = ex.Message });
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
         }
 
         [HttpGet]
         public IActionResult ReturnOrder()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
-                try
+
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
+                    //try
+                    //{
                     ViewBag.EmployeeList = _businessLogicL.GetActiveEmployees();
                     ViewBag.JobOrderList = _businessLogicL.GetRecentJobOrdersWithCustomers();
                     ViewBag.PurchaseOrderList = _businessLogicL.GetRecentPurchaseOrderwithSuppliers();
@@ -705,26 +852,35 @@ namespace ThothSystemVersion1.Controllers
                     ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
 
                     return View(new ReturnOrderDTO());
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
+                    //    //return RedirectToAction("AdminHome", "Admin");
+                    //}
                 }
-                catch (Exception ex)
-                {
-                    TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
-                    //return RedirectToAction("AdminHome", "Admin");
-                }
+
+
+                return RedirectToAction("UnauthorizedAccess", "employee");
             }
-
-
-            return RedirectToAction("UnauthorizedAccess", "employee");
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["ErrorMessage"] = $"حدث خطأ أثناء تحميل الصفحة: {ex.Message}";
+                return View("~/Views/Inventory/ReturnOrder.cshtml", new ReturnOrderDTO());
+            }
         }
 
         [HttpPost]
         public IActionResult ReturnOrder(ReturnOrderDTO returnDTO)
         {
-            string employeeID = HttpContext.Session.GetString("EmployeeID");
-            returnDTO.EmployeeId = employeeID;
-
             try
             {
+                string employeeID = HttpContext.Session.GetString("EmployeeID");
+                returnDTO.EmployeeId = employeeID;
+
+                //try
+                //{
                 if (returnDTO.BridgeList == null || !returnDTO.BridgeList.Any())
                 {
                     TempData["Error"] = "يجب إضافة صنف واحد على الأقل للإرجاع";
@@ -748,7 +904,8 @@ namespace ThothSystemVersion1.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الإرجاع: {ex.Message}";
-                return View();
+                WriteException.WriteExceptionToFile(ex);
+                return View(new ReturnOrderDTO());
             }
         }
 
@@ -775,15 +932,16 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/Inventory/AddCharacteristic.cshtml");
-            }
+            //catch (ArgumentException ex)
+            //{
+            //    TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+            //    return View("~/Views/Inventory/AddCharacteristic.cshtml");
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                return View("~/Views/Inventory/AddCharacteristic.cshtml");
+                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+                return View("~/Views/Inventory/AddCharacteristic.cshtml", new ColorWeightSize());
             }
         }
 
@@ -832,12 +990,12 @@ namespace ThothSystemVersion1.Controllers
                     return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
                 }
             }
-            catch (ArgumentException ex)
-            {
+            //catch (ArgumentException ex)
+            //{
 
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
-            }
+            //    TempData["Error"] = "البيانات غير صحيحة";
+            //    return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -854,148 +1012,217 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllVendor()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
-                return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
+                    return View("~/Views/Inventory/ViewAllVendor.cshtml", vendorList);
+                }
+                else if (jobRole == 2)
+                {
+                    List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
+                    return View("~/Views/Inventoryclerk/ViewAllVendor.cshtml", vendorList);
+
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else if (jobRole == 2) {
-                List<Vendor> vendorList = _businessLogicL.ViewAllVendor();
-                return View("~/Views/Inventoryclerk/ViewAllVendor.cshtml" , vendorList);
-            
-            }
-            else
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض الموردين";
+                return View("~/Views/Inventory/ViewAllVendor.cshtml", new List<Vendor>());
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
             }
-
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewAllInk()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                List<Ink> inkList = await _businessLogicL.ViewAllInk();
-                await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
-                return View(inkList);
-            }
-            else if (jobRole == 2) {
-                List<Ink> inkList = await _businessLogicL.ViewAllInk();
-                await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
-                return View("~/Views/Inventoryclerk/ViewAllInk.cshtml", inkList);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    List<Ink> inkList = await _businessLogicL.ViewAllInk();
+                    await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
+                    return View(inkList);
+                }
+                else if (jobRole == 2)
+                {
+                    List<Ink> inkList = await _businessLogicL.ViewAllInk();
+                    await _hubContext.Clients.All.SendAsync("CheckInkReorderPoint", "Reorder point reached for Ink: [InkName]");
+                    return View("~/Views/Inventoryclerk/ViewAllInk.cshtml", inkList);
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض الاحبار";
+                return View("~/Views/Inventory/ViewAllInk.cshtml", new List<Ink>());
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
             }
-
 
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewAllPaper()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-                await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
-                return View(paperList);
-            }else if ( jobRole == 2)
-            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+                    await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+                    return View(paperList);
+                }
+                else if (jobRole == 2)
+                {
 
-                List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-                await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
-                return View("~/Views/Inventoryclerk/ViewAllpaper.cshtml", paperList);
+                    List<Paper> paperList = await _businessLogicL.ViewAllPaper();
+                    await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
+                    return View("~/Views/Inventoryclerk/ViewAllpaper.cshtml", paperList);
+
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض الورق";
+                return View("~/Views/Inventory/ViewAllpaper.cshtml", new List<Paper>());
 
             }
-            else
-            {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
-            }
-
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewAllSupply()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
 
-                List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
-                await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint", "Reorder point reached for Supply: [SupplyName]");
-                return View(suppplyList);
-            } else if (jobRole == 2) {
+                    List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
+                    await _hubContext.Clients.All.SendAsync("CheckSupplyReorderPoint", "Reorder point reached for Supply: [SupplyName]");
+                    return View(suppplyList);
+                }
+                else if (jobRole == 2)
+                {
 
-                List<Paper> paperList = await _businessLogicL.ViewAllPaper();
-                await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for paper: [PaperName]");
-                return View("~/Views/Inventoryclerk/ViewAllpaper.cshtml", paperList);
+                    List<Supply> suppplyList = await _businessLogicL.ViewAllSupply();
+                    await _hubContext.Clients.All.SendAsync("ReceiveReorderMessage", "Reorder point reached for Supply: [SupplyName]");
+                    return View("~/Views/Inventoryclerk/ViewAllSupply.cshtml", suppplyList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض المستلزمات";
+                return View("~/Views/Inventory/ViewAllSupply.cshtml", new List<Paper>());
 
-                return RedirectToAction("UnauthorizedAccess", "employee");
             }
         }
 
         [HttpGet]
         public IActionResult PhysicalCount()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+            try
             {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
 
-                ViewBag.PaperList = _businessLogicL.GetActivePapers();
-                ViewBag.InkList = _businessLogicL.GetActiveInks();
-                ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
-                return View();
+                    ViewBag.PaperList = _businessLogicL.GetActivePapers();
+                    ViewBag.InkList = _businessLogicL.GetActiveInks();
+                    ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                    return View();
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/PhysicalCount.cshtml", new PhysicalCountDTO());
             }
         }
 
         public JsonResult GetCurrentQuantity(string itemType, int itemId)
         {
-            int quantity = _businessLogicL.GetCurrentQuantity(itemType, itemId);
-            return Json(new { currentQuantity = quantity });
+            try
+            {
+                int quantity = _businessLogicL.GetCurrentQuantity(itemType, itemId);
+                return Json(new { currentQuantity = quantity });
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         [HttpPost]
         public IActionResult PhysicalCount(PhysicalCountDTO phcountDto)
         {
-            string employeeId = HttpContext.Session.GetString("EmployeeID");
-            phcountDto.employeeId = employeeId;
+            try
+            {
+                string employeeId = HttpContext.Session.GetString("EmployeeID");
+                phcountDto.employeeId = employeeId;
 
-            var result = _businessLogicL.UpdateQuantity(phcountDto);
+                var result = _businessLogicL.UpdateQuantity(phcountDto);
 
-            if (result.Success)
-                TempData["Success"] = result.Message;
-            else
-                TempData["Error"] = result.Message;
+                if (result.Success)
+                    TempData["Success"] = result.Message;
+                else
+                    TempData["Error"] = result.Message;
 
-            return RedirectToAction("PhysicalCount");
+                return RedirectToAction("PhysicalCount");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الجرد: {ex.Message}";
+                return View(new PhysicalCountDTO());
+            }
         }
 
         [HttpGet]
-        public IActionResult EditCharacteristics(int CWSId)
+        public IActionResult EditCharacteristics(int ColorWeightSizeId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 1)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
                 {
-                    ColorWeightSize CWS = _businessLogicL.GetCharacteristicByID(CWSId);
+
+                    ColorWeightSize CWS = _businessLogicL.GetCharacteristicByID(ColorWeightSizeId);
                     ViewBag.TypeOptions = new List<SelectListItem>
             {
                 new SelectListItem { Value = "1", Text = "حجم" },
@@ -1003,23 +1230,29 @@ namespace ThothSystemVersion1.Controllers
                 new SelectListItem { Value = "3", Text = "لون" }
             };
                     return View("~/Views/Inventory/EditCharacteristics.cshtml", CWS);
-                }
-                catch (ApplicationException ex)
-                {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
-                }
+                    //    }
+                    //    catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
 
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = $"حدث خطأ أثناء تعديل الخصائص: {ex.Message}";
+                return View("~/Views/Inventory/EditCharacteristics.cshtml", new ColorWeightSize());
             }
-
         }
 
         [HttpPost]
@@ -1048,8 +1281,9 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Success"] = "تم تعديل بيانات الخصائص";
                 return RedirectToAction("EditCharacteristics", "Inventory", new { ColorWeightSizeId });
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الخصائص";
                 return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
             }
@@ -1181,6 +1415,7 @@ namespace ThothSystemVersion1.Controllers
             catch (Exception ex)
             {
                 // Log your exception as needed...
+                WriteException.WriteExceptionToFile(ex);
                 return StatusCode(500, "An error occurred while generating the report.");
             }
         }

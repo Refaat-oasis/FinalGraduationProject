@@ -12,7 +12,7 @@ namespace ThothSystemVersion1.InterfaceServices
         public bool makeRecipt( RecieptOrderDTO recOrd);
         public bool makePayment(PaymentOrderDTO payment);
 
-        public bool editJobOrder(int orderid ,JobOrder jobOrder);
+        public (bool success, string message) editJobOrder(int jobOrderID, JobOrderDTO jobOrder);
         public bool editPurchaseOrder(int orderid, PurchaseOrder purchaseOrder);
 
 

@@ -2,6 +2,7 @@
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.Controllers
@@ -26,69 +27,90 @@ namespace ThothSystemVersion1.Controllers
 
         public IActionResult viewAlljobOrder()
         {
-            List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
+            try
+            {
+                List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
 
-            return View("~/views/Cost/viewAlljobOrder.cshtml", jobOrderList);
+                return View("~/views/Cost/viewAlljobOrder.cshtml", jobOrderList);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/viewAlljobOrder.cshtml", new List<JobOrderCustEmpVM>());
+            }
         }
         [HttpGet]
         public IActionResult addMachineAndLabourExpense(int JobOrderId)
         {
             // Get the job order details
+            try
+            {
+
+                JobOrderCost jobOrder = _costbusinessLogicL.GetJobOrderForCost(JobOrderId);
+
+                MachineLabourDTO machLabDto = new MachineLabourDTO();
+                machLabDto.JobOrderId = jobOrder.JobOrderId;
+                machLabDto.CustomerId = jobOrder.CustomerId;
+                machLabDto.CustomerName = jobOrder.CustomerName;
+                machLabDto.EmployeeId = jobOrder.EmployeeId;
+                machLabDto.EmployeeName = jobOrder.EmployeeName;
+                machLabDto.OrderProgress = jobOrder.OrderProgress;
+                machLabDto.paperBalance = null;
+                machLabDto.StartDate = jobOrder.StartDate;
+                machLabDto.EndDate = jobOrder.EndDate;
+                machLabDto.JobOrdernotes = jobOrder.JobOrdernotes;
+                machLabDto.RemainingAmount = jobOrder.RemainingAmount;
+                machLabDto.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                machLabDto.EarnedRevenue = jobOrder.EarnedRevenue;
+                machLabDto.paperBalance = jobOrder.paperBalance;
+                machLabDto.inkBalance = jobOrder.inkBalance;
+                machLabDto.supplyBalance = jobOrder.supplyBalance;
+                //machLabDto
 
 
-            JobOrderCost jobOrder = _costbusinessLogicL.GetJobOrderForCost(JobOrderId);
+                ViewBag.labourList = _costbusinessLogicL.getActiveLabour();
+                ViewBag.machineList = _costbusinessLogicL.getActiveMachine();
 
-            MachineLabourDTO machLabDto = new MachineLabourDTO();
-            machLabDto.JobOrderId = jobOrder.JobOrderId;
-            machLabDto.CustomerId = jobOrder.CustomerId;
-            machLabDto.CustomerName = jobOrder.CustomerName;
-            machLabDto.EmployeeId = jobOrder.EmployeeId;
-            machLabDto.EmployeeName = jobOrder.EmployeeName;
-            machLabDto.OrderProgress = jobOrder.OrderProgress;
-            machLabDto.paperBalance = null;
-            machLabDto.StartDate = jobOrder.StartDate;
-            machLabDto.EndDate = jobOrder.EndDate;
-            machLabDto.JobOrdernotes = jobOrder.JobOrdernotes;
-            machLabDto.RemainingAmount = jobOrder.RemainingAmount;
-            machLabDto.UnearnedRevenue = jobOrder.UnearnedRevenue;
-            machLabDto.EarnedRevenue = jobOrder.EarnedRevenue;
-            machLabDto.paperBalance = jobOrder.paperBalance;
-            machLabDto.inkBalance = jobOrder.inkBalance;
-            machLabDto.supplyBalance = jobOrder.supplyBalance;
-            machLabDto.modifiedQuantityBridgeList = jobOrder.modifiedQuantityBridgeList;
-            //machLabDto
-
-
-            ViewBag.labourList = _costbusinessLogicL.getActiveLabour();
-            ViewBag.machineList = _costbusinessLogicL.getActiveMachine();
-
-            return View("~/views/Cost/addMachineAndLabourExpense.cshtml", machLabDto);
-
+                return View("~/views/Cost/addMachineAndLabourExpense.cshtml", machLabDto);
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/addMachineAndLabourExpense.cshtml", new MachineLabourDTO());
+            }
         }
         [HttpPost]
         public IActionResult addMachineAndLabourExpense(MachineLabourDTO machLabDto)
         {
-
-            machLabDto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-
-            bool result = _costbusinessLogicL.addMachineAndLabourExpense(machLabDto);
-
-            string messageSuccess = "تم اضافة عناصر المقايسة";
-            string messageError = "هناك خظأ في اضافة عناصر المقايسة ";
-
-            if (result)
+            try
             {
-                TempData["Success"] = messageSuccess;
-                return View(machLabDto);
+                machLabDto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+
+                bool result = _costbusinessLogicL.addMachineAndLabourExpense(machLabDto);
+
+                string messageSuccess = "تم اضافة عناصر المقايسة";
+                string messageError = "هناك خظأ في اضافة عناصر المقايسة ";
+
+                if (result)
+                {
+                    TempData["Success"] = messageSuccess;
+                    return View(machLabDto);
+                }
+                else
+                {
+                    TempData["Error"] = messageError;
+                    return View(machLabDto);
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TempData["Error"] = messageError;
-                return View(machLabDto);
-
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/addMachineAndLabourExpense.cshtml", machLabDto);
             }
-
-
         }
 
 
@@ -97,38 +119,54 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult ViewAllLabour()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5 || jobRole ==6)
+            try
             {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+                {
 
-                List<Labour> labourList = _costbusinessLogicL.ViewAllLabour();
-                return View("~/Views/Cost/ViewAllLabour.cshtml", labourList);
+                    List<Labour> labourList = _costbusinessLogicL.ViewAllLabour();
+                    return View("~/Views/Cost/ViewAllLabour.cshtml", labourList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/ViewAllLabour.cshtml", new List<Labour>());
             }
-
         }
 
 
         [HttpGet]
         public IActionResult ViewAllMachines()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            try
             {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+                {
 
-                List<Machine> machineList = _costbusinessLogicL.ViewAllMachines();
-                return View("~/Views/Cost/ViewAllMachines.cshtml", machineList);
+                    List<Machine> machineList = _costbusinessLogicL.ViewAllMachines();
+                    return View("~/Views/Cost/ViewAllMachines.cshtml", machineList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/ViewAllMachines.cshtml", new List<Machine>());
             }
-
         }
 
 
@@ -140,46 +178,54 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult EditLabour(int LabourID)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5)
                 {
+
                     var labour = _costbusinessLogicL.GetLabourById(LabourID);
                     return View("~/Views/Cost/EditLabour.cshtml", labour);
                 }
-                catch (ApplicationException ex)
+                //    catch (ApplicationException ex)
+                //{
+                //    return StatusCode(500, ex.Message); // Internal server error
+                //}
+                //catch (ArgumentException ex)
+                //{
+                //    return NotFound(ex.Message);
+                //}
+                else
                 {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/EditLabour.cshtml", new Labour());
             }
         }
         [HttpPost]
         public IActionResult EditLabour(int LabourID, Labour updatedLabour)
         {
-            if (updatedLabour == null)
-            {
-                ModelState.AddModelError("", "بيانات العامل غير صالحة.");
-                return BadRequest(ModelState);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                // Return to the view with validation errors
-                return View(updatedLabour);
-            }
-
             try
             {
+                if (updatedLabour == null)
+                {
+                    ModelState.AddModelError("", "بيانات العامل غير صالحة.");
+                    return BadRequest(ModelState);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    // Return to the view with validation errors
+                    return View(updatedLabour);
+                }
+
+
                 var result = _costbusinessLogicL.EditLabour(LabourID, updatedLabour); // Update the labour
                 if (result.Success)
                 {
@@ -194,76 +240,89 @@ namespace ThothSystemVersion1.Controllers
                 }
 
 
-                
+
             }
 
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
-                return View(updatedLabour);
+                return View("~/Views/Cost/EditLabour.cshtml", updatedLabour);
             }
 
         }
         [HttpGet]
         public IActionResult EditMachine(int MachineID)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5)
                 {
+
                     var machine = _costbusinessLogicL.GetMachineById(MachineID);
                     return View("~/Views/Cost/EditMachine.cshtml", machine);
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message); // Internal server error
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    return StatusCode(500, ex.Message); // Internal server error
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/EditMachine.cshtml", new Machine());
             }
         }
         [HttpPost]
         public IActionResult EditMachine(int MachineID, Machine updatedMachine)
         {
-            if (updatedMachine == null)
-            {
-                ModelState.AddModelError("", "بيانات الالة غير صالحة.");
-                return BadRequest(ModelState);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                // Return to the view with validation errors
-                return View(updatedMachine);
-            }
             try
             {
+                if (updatedMachine == null)
+                {
+                    ModelState.AddModelError("", "بيانات الالة غير صالحة.");
+                    return BadRequest(ModelState);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    // Return to the view with validation errors
+                    return View(updatedMachine);
+                }
+
                 var result = _costbusinessLogicL.EditMachine(MachineID, updatedMachine); // Update the labour
                 if (result.Success)
                 {
                     TempData["Success"] = result.Message;
-                    return RedirectToAction("EditMachine", "cost", new { MachineID });
+                    //return RedirectToAction("EditMachine", "cost", new { MachineID });
+                    return RedirectToAction("EditMachine", updatedMachine);
                 }
                 else
                 {
 
                     TempData["Error"] = result.Message;
-                    return RedirectToAction("EditMachine", "cost",new { MachineID });
+                    //return RedirectToAction("EditMachine", "cost", new { MachineID });
+                    return RedirectToAction("EditMachine", updatedMachine);
                 }
 
             }
 
             catch (Exception ex)
             {
-                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الآلة";
                 return View(updatedMachine);
             }
 
@@ -276,29 +335,36 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddMachine()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
                 {
+
                     Machine model = new Machine();
-                    return View("~/Views/Cost/AddMachine.cshtml",model);
+                    return View("~/Views/Cost/AddMachine.cshtml", model);
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message);
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    return StatusCode(500, ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/AddMachine.cshtml", new Machine());
             }
-
         }
 
         [HttpPost]
@@ -318,6 +384,7 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (ArgumentException ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء إضافة الالة";
                 return View("~/Views/Cost/AddMachine.cshtml", machine);
             }
@@ -326,27 +393,36 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult AddLabour()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+            try
             {
-                try
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
                 {
+                    //try
+                    //{
                     Labour model = new Labour();
-                    return View("~/Views/Cost/AddLabour.cshtml",model);
+                    return View("~/Views/Cost/AddLabour.cshtml", model);
+                    //}
+                    //catch (ApplicationException ex)
+                    //{
+                    //    return StatusCode(500, ex.Message);
+                    //}
+                    //catch (ArgumentException ex)
+                    //{
+                    //    return NotFound(ex.Message);
+                    //}
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    return StatusCode(500, ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    return NotFound(ex.Message);
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            else
+            catch (Exception ex)
             {
-
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Cost/AddLabour.cshtml", new Labour());
             }
 
         }
@@ -368,6 +444,7 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (ArgumentException ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء إضافة العامل";
                 return View("~/Views/Cost/AddLabour.cshtml", labour);
             }

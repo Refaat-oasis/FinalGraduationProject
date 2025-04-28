@@ -230,7 +230,7 @@ namespace ThothSystemVersion1.Controllers
 
                     return View("~/Views/accounting/editJobOrderAccounting.cshtml", existingJobOrder);
                 }
-                catch (ArgumentException ex)
+                catch (Exception ex)
                 {
                     TempData["Error"] = ex.Message;
                     return RedirectToAction("viewJobOrderWithCost"); // Redirect to list with error
@@ -268,15 +268,19 @@ namespace ThothSystemVersion1.Controllers
                 //    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
                 //}
 
-                var result = _techBusinessLogicL.EditJobOrder(jobOrderid, jODto);
+                var result = _businessLogicL.editJobOrder(jobOrderid, jODto);
 
                 if (result.success)
                 {
                     TempData["Success"] = result.message;
-                    return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+                    //return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+                    //return View("~/Views/accounting/editJobOrderAccounting.cshtml", jobOrder);
+                    return RedirectToAction("EditJobOrder", jobOrder);
                 }
                 TempData["Error"] = result.message;
-                return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+                //return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
+                //return View("~/Views/accounting/editJobOrderAccounting.cshtml", jobOrder);
+                return RedirectToAction("EditJobOrder", jobOrder);
             }
             catch (Exception ex)
             {

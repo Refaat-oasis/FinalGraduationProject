@@ -83,9 +83,17 @@
             </div>
 
             <!-- لون -->
+            @* <div class="mb-3" id="colorFieldGroup" style="display: none;"> *@
+            @*     <label asp-for="Colored" class="form-label">اللون</label> *@
+            @*     <input asp-for="Colored" class="form-control" /> *@
+            @*     <span asp-validation-for="Colored" class="text-danger"></span> *@
+            @* </div> *@
+            <!-- لون -->
             <div class="mb-3" id="colorFieldGroup" style="display: none;">
-                <label asp-for="Colored" class="form-label">اللون</label>
-                <input asp-for="Colored" class="form-control" />
+                <label class="form-label">اللون</label>
+                <input type="text" class="form-control" id="coloredInput"
+                       value="@(Model.Colored?.StartsWith("0x") == true ? "" : Model.Colored)" />
+                <input type="hidden" asp-for="Colored" id="actualColored" />
                 <span asp-validation-for="Colored" class="text-danger"></span>
             </div>
 
@@ -140,6 +148,26 @@
                         break;
                 }
             }
+        });
+                document.addEventListener('DOMContentLoaded', function() {
+            // معالجة اللون عند التحميل
+            const coloredValue = '@Html.Raw(Model.Colored)';
+            if (coloredValue.startsWith("0x")) {
+                // تحويل الهكس إلى سترينج
+                const hex = coloredValue.substring(2);
+                let str = '';
+                for (let i = 0; i < hex.length; i += 2) {
+                    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                }
+                document.getElementById('coloredInput').value = str;
+            } else {
+                document.getElementById('coloredInput').value = coloredValue;
+            }
+
+            // تحديث القيمة المخفية عند التعديل
+            document.getElementById('coloredInput').addEventListener('input', function() {
+                document.getElementById('actualColored').value = this.value;
+            });
         });
     </script>
 

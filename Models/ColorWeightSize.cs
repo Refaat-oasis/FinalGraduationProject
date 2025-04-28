@@ -1,16 +1,25 @@
-﻿namespace ThothSystemVersion1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ThothSystemVersion1.Models
 {
         public partial class ColorWeightSize
         {
-            public int ColorWeightSizeId { get; set; }
 
-            public int? Type { get; set; }
+        [Display(Name = "الرقم التعريفي ")]
 
-            public string? Size { get; set; }
+        public int ColorWeightSizeId { get; set; }
 
-            public decimal? Weight { get; set; }
+        [Display(Name = "النوع")]
 
-            public string? Colored { get; set; }
+        public int? Type { get; set; }
+
+        [Display(Name = "القياس")]
+        public string? Size { get; set; }
+
+        [Display(Name = "الوزن")]
+        public decimal? Weight { get; set; }
+        [Display(Name = "اللون")]
+        public string? Colored { get; set; }
         }
   
 }

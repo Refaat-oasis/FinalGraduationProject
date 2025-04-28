@@ -17,313 +17,313 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThothSystemVersion1
 build_property.RootNamespace = ThothSystemVersion1
-build_property.ProjectDir = C:\Users\Compu Market\Desktop\GP39\FinalGraduationProject\
+build_property.ProjectDir = D:\GRAD PROJ\FinalGraduationProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Compu Market\Desktop\GP39\FinalGraduationProject
+build_property.MSBuildProjectDirectory = D:\GRAD PROJ\FinalGraduationProject
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/accountingClerk/AccountingClerkHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/accountingClerk/AccountingClerkHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWNjb3VudGluZ0NsZXJrXEFjY291bnRpbmdDbGVya0hvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/AccountingManagerHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/AccountingManagerHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xBY2NvdW50aW5nTWFuYWdlckhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/editJobOrderAccounting.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/editJobOrderAccounting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xlZGl0Sm9iT3JkZXJBY2NvdW50aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/JobOrderWithCost.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/JobOrderWithCost.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xKb2JPcmRlcldpdGhDb3N0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/JobOrderWithRemainingAmount.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/JobOrderWithRemainingAmount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xKb2JPcmRlcldpdGhSZW1haW5pbmdBbW91bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/makePayment.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/makePayment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xtYWtlUGF5bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/makeReceipt.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/makeReceipt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xtYWtlUmVjZWlwdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xQdXJjaGFzZU9yZGVyV2l0aFJlbWFpbmluZ0Ftb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Admin/AddEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Admin/AdminHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Admin/EditEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Admin/ViewAllEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0FsbEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/CostClerk/CostClerkHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/CostClerk/CostClerkHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdENsZXJrXENvc3RDbGVya0hvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/CostClerk/ViewAllLabour.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/CostClerk/ViewAllLabour.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdENsZXJrXFZpZXdBbGxMYWJvdXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/CostClerk/ViewAlllJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/CostClerk/ViewAlllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdENsZXJrXFZpZXdBbGxsSm9iT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/CostClerk/ViewAllMachines.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/CostClerk/ViewAllMachines.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdENsZXJrXFZpZXdBbGxNYWNoaW5lcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/AddLabour.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/AddLabour.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxBZGRMYWJvdXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/AddMachine.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/AddMachine.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxBZGRNYWNoaW5lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/addMachineAndLabourExpense.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/addMachineAndLabourExpense.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxhZGRNYWNoaW5lQW5kTGFib3VyRXhwZW5zZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/CostManagerHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/CostManagerHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxDb3N0TWFuYWdlckhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/EditLabour.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/EditLabour.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxFZGl0TGFib3VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/EditMachine.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/EditMachine.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxFZGl0TWFjaGluZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/Index.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/ViewAllJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/ViewAllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxWaWV3QWxsSm9iT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/ViewAllLabour.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/ViewAllLabour.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxWaWV3QWxsTGFib3VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Cost/ViewAllMachines.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Cost/ViewAllMachines.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29zdFxWaWV3QWxsTWFjaGluZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Home/Index.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Home/Privacy.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/InventoryClerk/InventoryClerkHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/InventoryClerk/InventoryClerkHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcSW52ZW50b3J5Q2xlcmtIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/InventoryClerk/ViewAllInk.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/InventoryClerk/ViewAllInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbEluay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/InventoryClerk/ViewAllPaper.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/InventoryClerk/ViewAllPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFBhcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/InventoryClerk/ViewAllSupply.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/InventoryClerk/ViewAllSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFN1cHBseS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/InventoryClerk/ViewAllVendor.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/InventoryClerk/ViewAllVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5Q2xlcmtcVmlld0FsbFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/AddVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkZFZlbmRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/EditCharacteristics.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/EditCharacteristics.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRDaGFyYWN0ZXJpc3RpY3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/EditInk.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/EditInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRJbmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/EditPaper.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/EditPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRQYXBlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/EditSupply.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/EditSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/EditVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXRWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/InventoryManagerHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/InventoryManagerHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEludmVudG9yeU1hbmFnZXJIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/InventoryReports.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/InventoryReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEludmVudG9yeVJlcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/NewInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld0luay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/Newpaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld3BhcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/NewSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XE5ld1N1cHBseS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/PhysicalCount.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/PhysicalCount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFBoeXNpY2FsQ291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/purchaseAll.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/purchaseAll.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XHB1cmNoYXNlQWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ReturnOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ReturnOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFJldHVybk9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/VendorReport.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/VendorReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZlbmRvclJlcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ViewAllColorWeightSize.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ViewAllColorWeightSize.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxDb2xvcldlaWdodFNpemUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ViewAllInk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxJbmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ViewAllPaper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxQYXBlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ViewAllSupply.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxTdXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Inventory/ViewAllVendor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFZpZXdBbGxWZW5kb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/SharedViews/EmployeeProfile.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/SharedViews/EmployeeProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcRW1wbG95ZWVQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/SharedViews/ForgetPassword.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/SharedViews/ForgetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcRm9yZ2V0UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/SharedViews/Login.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/SharedViews/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/SharedViews/UnAutorizedAccess.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/SharedViews/UnAutorizedAccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkVmlld3NcVW5BdXRvcml6ZWRBY2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Shared/Error.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Shared/MinimalLayout.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Shared/MinimalLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1pbmltYWxMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/TechnicalClerk/TechnicalClerkHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/TechnicalClerk/TechnicalClerkHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcVGVjaG5pY2FsQ2xlcmtIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/TechnicalClerk/ViewAllCustomer.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/TechnicalClerk/ViewAllCustomer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcVmlld0FsbEN1c3RvbWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/TechnicalClerk/ViewAllJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/TechnicalClerk/ViewAllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsQ2xlcmtcVmlld0FsbEpvYk9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/AddCustomer.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/AddCustomer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXEFkZEN1c3RvbWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/CreateNewJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/CreateNewJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXENyZWF0ZU5ld0pvYk9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/CreateRequisite.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/CreateRequisite.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXENyZWF0ZVJlcXVpc2l0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/EditCustomer.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/EditCustomer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXEVkaXRDdXN0b21lci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/EditJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/EditJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXEVkaXRKb2JPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/ShowJobOrderSpecifications.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/ShowJobOrderSpecifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFNob3dKb2JPcmRlclNwZWNpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/TechnicalManagerHome.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/TechnicalManagerHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFRlY2huaWNhbE1hbmFnZXJIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/ViewAllCustomer.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/ViewAllCustomer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFZpZXdBbGxDdXN0b21lci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Technical/ViewAllJobOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaG5pY2FsXFZpZXdBbGxKb2JPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/_ViewImports.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/_ViewStart.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu Market/Desktop/GP39/FinalGraduationProject/Views/Shared/_Layout.cshtml]
+[D:/GRAD PROJ/FinalGraduationProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5oyuxz08q4

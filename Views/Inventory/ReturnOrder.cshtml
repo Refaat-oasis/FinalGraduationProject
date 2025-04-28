@@ -316,9 +316,9 @@
                         const id = item.itemId || item.paperId || item.inkId || item.suppliesId;
                         const name = item.name;
                         const qty  = item.quantity || 0;
-                        $itemSelect.append(
-                            `<option value="${id}" data-quantity="${qty}">${name} (ID: ${id}) - الكمية: ${qty}</option>`
-                        );
+                             $itemSelect.append(
+            `<option value="${id}" data-quantity="${qty}">${name} - الكمية: ${qty}</option>`
+        );
                     });
             });
 
@@ -338,8 +338,11 @@
                 const orig = parseInt($('#originalQuantityValue').text());
                 const qty  = parseInt($('#itemQuantity').val());
 
-                if (!type || !id || !qty || qty <= 0) {
+                if (!type || !id || !qty ) {
                     return alert('الرجاء ملئ جميع البيانات بشكل صحيح');
+                }
+                if(qty<=0) {
+                      return alert('يجب ادخال قيمة اكبر من الصفر');
                 }
                 if (qty > orig) {
                     return alert(`كمية المرتجع (${qty}) اكبر من كمية الاصلية (${orig})`);
@@ -383,7 +386,7 @@
                         inputs += `<input type="hidden" name="BridgeList[${i}].PaperId" value="${it.itemId}" />`;
                     else if (it.itemType === 'Ink' || it.itemType === 'الحبر')
                         inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
-                    else if (it.itemType === 'Supply' || it.itemType === 'المتلزمات')
+                    else if (it.itemType === 'Supply' || it.itemType === 'المستلزمات')
                         inputs += `<input type="hidden" name="BridgeList[${i}].SuppliesId" value="${it.itemId}" />`;
                     inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
                     $hc.append(inputs);

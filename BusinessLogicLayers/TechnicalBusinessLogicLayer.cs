@@ -63,14 +63,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return jobOrderCustomerViewModelsList;
             }
-            catch (ArgumentException ex)
-            {
-                return new List<JobOrderCustEmpVM>();
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                return new List<JobOrderCustEmpVM>();
+                return null;
             }
         }
 
@@ -85,10 +82,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     .Take(10)
                     .ToList();
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -102,10 +97,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return _context.Papers.Where(p => p.Activated).ToList();
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+    
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -119,10 +111,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return _context.Inks.Where(i => i.Activated).ToList();
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+ 
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -136,10 +125,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return _context.Supplies.Where(s => s.Activated).ToList();
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -247,10 +233,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return (true, "تمت انشاء اذن الصرف بنجاح");
             }
-            catch (ArgumentException ex)
-            {
-                return (false, $"حدث خطأ: {ex.ToString()}");
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -266,10 +249,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return customerList;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -428,10 +408,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return joborderSpecifics;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -448,10 +425,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
                 return employeelist;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+    
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -467,10 +441,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 List<Customer> customerList = _context.Customers.Where(c => c.Activated).ToList();
                 return customerList;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -504,10 +475,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return (true, "تمت انشاء امر العمل بنجاح");
             }
-            catch (ArgumentException ex)
-            {
-                return (false, $"حدث خطأ: {ex.ToString()}");
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -541,10 +509,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return (true, "تمت تعديل امر العمل بنجاح");
             }
-            catch (ArgumentException ex)
-            {
-                return (false, $"حدث خطأ: {ex.ToString()}");
-            }
+    
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -562,10 +527,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+   
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -604,10 +566,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return jobSpecific;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+   
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -644,10 +603,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return true;
             }
-            catch (ArgumentException ex)
-            {
-                return false;
-            }
+         
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -667,10 +623,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return foundcustomer;
             }
-            catch (ArgumentException ex)
-            {
-                return null;
-            }
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -713,10 +666,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-            catch (ArgumentException ex)
-            {
-                return false;
-            }
+  
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);

@@ -46,16 +46,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ اثناء جلب عناصر الطلبية.";
-                return View("~/Views/Technical/ViewAllJobOrder.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/ViewAllJobOrder.cshtml");
+                return View("~/Views/Technical/ViewAllJobOrder.cshtml", new List<JobOrderCustEmpVM>());
             }
         }
 
@@ -74,16 +69,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ اثناء جلب تفاصيل الطلبية.";
-                return View("~/Views/technical/showJobOrderSpecifications.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/showJobOrderSpecifications.cshtml");
+                return View("~/Views/Technical/showJobOrderSpecifications.cshtml", new List<JobOrderSpecificationsViewModel>());
             }
         }
         [HttpGet]
@@ -107,16 +97,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في جلب  بينات العملاء .";
-                return View("~/Views/technical/ViewAllCustomer.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/ViewAllCustomer.cshtml");
+                return View("~/Views/Technical/ViewAllCustomer.cshtml", new List<Customer>());
             }
 
         }
@@ -140,16 +125,11 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ اثناء جلب اذن الصرف .";
-                return View("~/Views/technical/CreateRequisite.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/CreateRequisite.cshtml");
+                return View("~/Views/Technical/CreateRequisite.cshtml", new RequisiteOrderDTO());
             }
 
         }
@@ -162,11 +142,7 @@ namespace ThothSystemVersion1.Controllers
                 int quantity = _inventoryBusinessLogicLayer.GetCurrentQuantity(itemType, itemId);
                 return Json(new { currentQuantity = quantity });
             }
-            catch (ArgumentException ex)
-            {
-              
-                return Json(new { error = "حدث خطأ اثناء جلب الكميات الحالية." });
-            }
+
             catch (Exception ex)
             {
                 
@@ -194,17 +170,12 @@ namespace ThothSystemVersion1.Controllers
                 //}
                 return RedirectToAction("CreateRequisite");
             }
-            catch (ArgumentException ex)
-            {
 
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/Technical/CreateRequisite.cshtml", dto);
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/CreateRequisite.cshtml", dto);
+                return View(new RequisiteOrderDTO());
             }
 
         }
@@ -227,16 +198,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/Technical/CreateNewJobOrder.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/CreateNewJobOrder.cshtml");
+                return View("~/Views/Technical/CreateNewJobOrder.cshtml", new JobOrderDTO());
             }
         }
 
@@ -261,12 +227,6 @@ namespace ThothSystemVersion1.Controllers
                     TempData["Error"] = result.message;
 
                 return RedirectToAction("CreateNewJobOrder");
-            }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/Technical/CreateNewJobOrder.cshtml", jobOrder);
             }
             catch (Exception ex)
             {
@@ -306,16 +266,16 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/Technical/EditJobOrder.cshtml");
-            }
+            //catch (ArgumentException ex)
+            //{
+            //    TempData["Error"] = ex.Message;
+            //    return RedirectToAction("ViewAllJobOrder"); // Redirect to list with error
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/EditJobOrder.cshtml");
+                return View("~/Views/Technical/EditJobOrder.cshtml", new JobOrderDTO());
             }
         }
         [HttpPost]
@@ -357,12 +317,11 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = result.message;
                 return RedirectToAction("EditJobOrder", jobOrder);
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
-            }
+            //catch (Exception ex)
+            //{
+            //    TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
+            //    return View(jobOrder);
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -387,16 +346,19 @@ namespace ThothSystemVersion1.Controllers
                 return RedirectToAction("UnauthorizedAccess", "employee");
             }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/Technical/AddCustomer.cshtml");
-            }
+            //catch (ApplicationException ex)
+            //{
+            //    return StatusCode(500, ex.Message);
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    return NotFound(ex.Message);
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/AddCustomer.cshtml");
+                return View("~/Views/Technical/AddCustomer.cshtml", new CustomerDTO());
             }
 
         }
@@ -423,16 +385,15 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Success"] = "تم إضافة العميل بنجاح";
                 return RedirectToAction("AddCustomer", "Technical");
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "حدث خطأ اثناء اضافة بيانات العميل .";
-                return View("~/Views/Technical/AddCustomer.cshtml", customer);
-            }
+            //catch (ArgumentException ex)
+            //{
+            //    TempData["Error"] = "حدث خطأ أثناء إضافة العميل";
+            //    return View("~/Views/Technical/AddCustomer.cshtml", customer);
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                TempData["Error"] = "حدث خطأ أثناء إضافة العميل.";
                 return View("~/Views/Technical/AddCustomer.cshtml", customer);
             }
         }
@@ -471,16 +432,16 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/Technical/EditCustomer.cshtml");
-            }
+            //catch (ArgumentException ex)
+            //{
+            //    TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
+            //    return View("~/Views/Technical/EditCustomer.cshtml");
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Technical/EditCustomer.cshtml");
+                return View("~/Views/Technical/EditCustomer.cshtml", new CustomerDTO());
             }
         }
 
@@ -515,16 +476,15 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Success"] = "تم تعديل بيانات العميل";
                 return RedirectToAction("EditCustomer", "Technical", new { CustomerId });
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "حدث خطأ اثناء تعديل بيانات العميل .";
-                return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
-            }
+            //catch (ArgumentException ex)
+            //{
+            //    TempData["Error"] = "حدث خطأ أثناء تعديل بيانات العميل";
+            //    return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
+            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                TempData["Error"] = "حدث خطأ أثناء تعديل بيانات العميل.";
                 return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
             }
         }

@@ -1182,7 +1182,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     .Join(_context.Supplies, qb => qb.SuppliesId, supply => supply.SuppliesId,
                         (qb, supply) => new
                         {
-                            itemType = "المتلزمات",
+                            itemType = "المستلزمات",
                             itemId = supply.SuppliesId,
                             name = supply.Name,
 
@@ -1238,7 +1238,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     .Join(_context.Supplies, qb => qb.SuppliesId, supply => supply.SuppliesId,
                         (qb, supply) => new
                         {
-                            itemType = "المتلزمات",
+                            itemType = "المستلزمات",
                             itemId = supply.SuppliesId,
                             name = supply.Name,
                             quantity = qb.Quantity

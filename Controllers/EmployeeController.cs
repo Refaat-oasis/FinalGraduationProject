@@ -29,16 +29,11 @@ namespace ThothSystemVersion1.Controllers
             {
                 return View("~/Views/SharedViews/login.cshtml", new Employee());
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/login.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/login.cshtml");
+                return View("~/Views/SharedViews/login.cshtml", new Employee());
             }
         }
 
@@ -112,17 +107,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("LoginPage", "Employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "حدث خطأ اثناء تسجيل الدخول .";
-                return View("~/Views/SharedViews/Login.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/Login.cshtml");
+                return View("~/Views/SharedViews/Login.cshtml", new Employee());
             }
         }
 
@@ -151,16 +140,11 @@ namespace ThothSystemVersion1.Controllers
 
                 return View("~/Views/SharedViews/EmployeeProfile.cshtml", employeeDTO);
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/EmployeeProfile.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/EmployeeProfile.cshtml");
+                return View("~/Views/SharedViews/EmployeeProfile.cshtml", new Employee());
             }
 
         }
@@ -199,13 +183,7 @@ namespace ThothSystemVersion1.Controllers
                 }        
                 
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/SharedViews/EmployeeProfile.cshtml", updatedEmployee);
-            }
-            catch (Exception ex)
+          catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
@@ -213,6 +191,7 @@ namespace ThothSystemVersion1.Controllers
                 // In both redirects within EditEmployee:
                 return RedirectToAction("EmployeeProfile", "Employee", new { employeeId = EmployeeId });
             }
+
 
 
         }
@@ -223,11 +202,6 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 HttpContext.Session.Clear();
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
                 return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
             }
             catch (Exception ex)
@@ -247,11 +221,6 @@ namespace ThothSystemVersion1.Controllers
                 HttpContext.Session.Clear();
                 return RedirectToAction("LoginPage", "Employee");
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/Login.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -268,16 +237,11 @@ namespace ThothSystemVersion1.Controllers
                 Employee employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == EmployeeId);
                 return View("~/Views/SharedViews/ForgetPassword.cshtml", employee);
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/ForgetPassword.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/ForgetPassword.cshtml");
+                return View("~/Views/SharedViews/ForgetPassword.cshtml", new Employee());
             }
         }
 
@@ -302,17 +266,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("EditEmployee", "admin");
                 }
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/Admin/EditEmployee.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
-                return View("~/Views/Admin/EditEmployee.cshtml");
+                return View("~/Views/Admin/EditEmployee.cshtml", new Employee());
 
             }
 
@@ -343,17 +301,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("forgetPassword", "Employee", new { employee.EmployeeId });
                 }
             }
-            catch (ArgumentException ex)
-            {
-
-                TempData["Error"] = "البيانات غير صحيحة";
-                return View("~/Views/SharedViews/forgetPassword.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
-                return View("~/Views/SharedViews/forgetPassword.cshtml");
+                return View("~/Views/SharedViews/forgetPassword.cshtml", new Employee());
 
             }
 
@@ -378,18 +330,14 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
         }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-    }
+                    
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml",new Employee());
 }
-        }
+}
 
         [HttpGet]
         public IActionResult inventoryManager()
@@ -408,18 +356,14 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
+                 
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
-        }
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml",new Employee());
+}
+}
 
         [HttpGet]
         public IActionResult inventoryClerk()
@@ -438,20 +382,16 @@ namespace ThothSystemVersion1.Controllers
 
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
-            }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
+            
+                  }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml",new Employee());
+}
 
-        }
+}
 
         [HttpGet]
         public IActionResult technicalManager()
@@ -470,16 +410,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 
@@ -498,16 +433,12 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
-            catch (Exception ex)
+
+      catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 
@@ -526,16 +457,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 
@@ -555,16 +481,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 
@@ -583,16 +504,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 
@@ -611,16 +527,11 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            catch (ArgumentException ex)
-            {
-                TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml");
+                return View("~/Views/SharedViews/UnAutorizedAccess.cshtml", new Employee());
             }
         }
 

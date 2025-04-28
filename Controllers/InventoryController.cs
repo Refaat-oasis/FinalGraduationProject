@@ -504,7 +504,7 @@ namespace ThothSystemVersion1.Controllers
                 {
 
                     List<ColorWeightSize> characteristicsList = _businessLogicL.ViewAllColorWeightSize();
-                    return View("~/Views/Admin/ViewAllEmployee.cshtml", characteristicsList);
+                    return View("~/Views/Inventory/ViewAllColorWeightSize.cshtml", characteristicsList);
                 }
                 else
                 {

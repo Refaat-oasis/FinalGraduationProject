@@ -179,12 +179,37 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
-        
-        public bool editJobOrder(int orderid, JobOrder jobOrder)
+
+        public (bool success, string message) editJobOrder(int jobOrderID, JobOrderDTO jobOrder)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                JobOrder existingJobOrder = _context.JobOrders
+            .Include(j => j.Customer)
+            .Include(j => j.Employee)
+            .FirstOrDefault(j => j.JobOrderId == jobOrderID);
+                if (existingJobOrder == null)
+                {
+                    return (false, "امر العمل غير موجود");
+                }
+
+
+                existingJobOrder.RemainingAmount = jobOrder.RemainingAmount;
+                existingJobOrder.UnearnedRevenue = jobOrder.UnearnedRevenue;
+                existingJobOrder.EarnedRevenue = jobOrder.EarnedRevenue;
+                existingJobOrder.JobOrdernotes = jobOrder.JobOrdernotes;
+                _context.JobOrders.Update(existingJobOrder); // Mark the entity as modified
+                _context.SaveChanges();
+                return (true, "تمت تعديل امر العمل بنجاح");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
         }
-        
+
         public bool editPurchaseOrder(int orderid, PurchaseOrder purchaseOrder)
         {
             throw new NotImplementedException();

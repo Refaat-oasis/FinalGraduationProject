@@ -350,10 +350,12 @@ namespace ThothSystemVersion1.Controllers
                 if (result.success)
                 {
                     TempData["Success"] = result.message;
-                    return RedirectToAction("EditJobOrder", "Technical", new {jobOrderid});
+                    //return RedirectToAction("EditJobOrder", "Technical", new {jobOrderid});
+                    return RedirectToAction("EditJobOrder", jobOrder);
+
                 }
                 TempData["Error"] = result.message;
-                return RedirectToAction("EditJobOrder", "Technical", new { jobOrderid });
+                return RedirectToAction("EditJobOrder", jobOrder);
             }
             catch (ArgumentException ex)
             {

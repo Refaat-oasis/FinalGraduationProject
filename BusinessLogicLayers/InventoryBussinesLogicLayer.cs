@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using ThothSystemVersion1.DataTransfereObject;
@@ -28,47 +29,81 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public bool addInk(Ink newInk)
         {
-
-            if (newInk != null)
+            try
             {
-                newInk.Activated = true;
-                _context.Add(newInk);
-                _context.SaveChanges();
-                return true;
+                if (newInk != null)
+                {
+                    newInk.Activated = true;
+                    _context.Add(newInk);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
 
         public bool addPaper(Paper newPaper)
         {
-
-            if (newPaper != null)
+            try
             {
-                newPaper.Activated = true;
-                _context.Add(newPaper);
-                _context.SaveChanges();
-                return true;
+                if (newPaper != null)
+                {
+                    newPaper.Activated = true;
+                    _context.Add(newPaper);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
 
         public bool addSupply(Supply newSupply)
         {
-            if (newSupply != null)
+            try
             {
-                newSupply.Activated = true;
-                _context.Add(newSupply);
-                _context.SaveChanges();
-                return true;
+                if (newSupply != null)
+                {
+                    newSupply.Activated = true;
+                    _context.Add(newSupply);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
@@ -106,10 +141,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while adding the vendor.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -125,10 +164,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return ink;
             }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the ink.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
 
         }
@@ -152,9 +195,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while updating the ink.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -169,10 +217,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return foundPaper;
             }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the paper.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
         }
 
@@ -196,9 +248,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while updating the ink.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -213,10 +270,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return supply;
             }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the supply.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
 
         }
@@ -238,9 +299,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
-                throw new ApplicationException($"An error occurred while updating the supply", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -273,62 +339,120 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentException ex)
             {
-                //throw new ApplicationException("An error occurred while updating the vendor.", ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
 
         public VendorEditDTO GetVendorByID(int vendorID)
         {
-            Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
-            if (foundVendor == null)
+            try
             {
-                throw new ArgumentException("Vendor not found.");
+                Vendor foundVendor = _context.Vendors.FirstOrDefault(v => v.VendorId == vendorID);
+                if (foundVendor == null)
+                {
+                    throw new ArgumentException("Vendor not found.");
+                }
+                VendorEditDTO vendor = new VendorEditDTO();
+                vendor.VendorId = foundVendor.VendorId;
+                vendor.VendorName = foundVendor.VendorName;
+                vendor.VendorEmail = foundVendor.VendorEmail;
+                vendor.VendorPhone = foundVendor.VendorPhone;
+                vendor.VendorAddress = foundVendor.VendorAddress;
+
+
+                return vendor;
             }
-            VendorEditDTO vendor = new VendorEditDTO();
-            vendor.VendorId = foundVendor.VendorId;
-            vendor.VendorName = foundVendor.VendorName;
-            vendor.VendorEmail = foundVendor.VendorEmail;
-            vendor.VendorPhone = foundVendor.VendorPhone;
-            vendor.VendorAddress = foundVendor.VendorAddress;
-
-
-            return vendor;
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Vendor> ViewAllVendor()
         {
-            List<Vendor> vendorsList = _context.Vendors.ToList();
-            return vendorsList;
+            try
+            {
+                List<Vendor> vendorsList = _context.Vendors.ToList();
+                return vendorsList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public async Task<List<Ink>> ViewAllInk()
         {
-            List<Ink> inkList = _context.Inks.ToList();
+            try
+            {
+                List<Ink> inkList = _context.Inks.ToList();
 
-            return inkList;
+                return inkList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public async Task<List<Paper>> ViewAllPaper()
         {
-            List<Paper> papersList = _context.Papers.ToList();
+            try
+            {
+                List<Paper> papersList = _context.Papers.ToList();
 
-            return papersList;
+                return papersList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public async Task<List<Supply>> ViewAllSupply()
         {
-            List<Supply> supplyList = _context.Supplies.ToList();
+            try
+            {
+                List<Supply> supplyList = _context.Supplies.ToList();
 
-            return supplyList;
-        }
-
-        public List<ColorWeightSize> ViewAllColorWeightSize()
-        {
-            List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
-            return colorWeightSizeList;
+                return supplyList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public bool DeleteColorWeightSize(int ColorWeightSizeId)
@@ -350,6 +474,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     return true;
                 }
             }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -357,11 +485,22 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public List<ColorWeightSize> getAllColorWeightSize() {
-
-            List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
-            return colorWeightSizeList;
-
+        public List<ColorWeightSize> getAllColorWeightSize()
+        {
+            try
+            {
+                List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
+                return colorWeightSizeList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
 
         }
 
@@ -391,29 +530,63 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public List<Paper> getAllActivePaper()
         {
-
-            List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
-            return paperList;
+            try
+            {
+                List<Paper> paperList = _context.Papers.Where(p => p.Activated == true).ToList();
+                return paperList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Ink> getAllActiveInk()
         {
-
-            List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
-            return inkList;
+            try
+            {
+                List<Ink> inkList = _context.Inks.Where(p => p.Activated == true).ToList();
+                return inkList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         public List<Supply> getAllActiveSupply()
         {
-
-            List<Supply> supplyList = _context.Supplies.Where(p => p.Activated == true).ToList();
-            return supplyList;
+            try
+            {
+                List<Supply> supplyList = _context.Supplies.Where(p => p.Activated == true).ToList();
+                return supplyList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // الحصول على الكمية الحالية
         public int GetCurrentQuantity(string itemType, int itemId)
         {
+
             return itemType switch
             {
                 "Paper" => _context.Papers.FirstOrDefault(p => p.PaperId == itemId)?.Quantity ?? 0,
@@ -493,193 +666,220 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {phdto.newQuantity}");
             }
+            catch (ArgumentException ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
             catch (Exception ex)
             {
-                return (false, $"حدث خطأ: {ex.Message}");
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
 
         public InventoryReportViewModel invetoryReports(string itemType, int itemId, DateOnly beginingDate, DateOnly endingDate)
         {
-            List<QuantityBridge> quantityBridgeList = new List<QuantityBridge>();
-            List<PurchaseOrder> purchaseOrderList = new List<PurchaseOrder>();
-            List<RequisiteOrder> requisiteOrderList = new List<RequisiteOrder>();
-            List<ReturnsOrder> returnOrderList = new List<ReturnsOrder>();
-            List<PhysicalCountOrder> physicalCountList = new List<PhysicalCountOrder>();
-            switch (itemType)
+            try
             {
-                case "Paper":
-                    quantityBridgeList = _context.QuantityBridges.Where(q => q.PaperId == itemId).ToList();
+                List<QuantityBridge> quantityBridgeList = new List<QuantityBridge>();
+                List<PurchaseOrder> purchaseOrderList = new List<PurchaseOrder>();
+                List<RequisiteOrder> requisiteOrderList = new List<RequisiteOrder>();
+                List<ReturnsOrder> returnOrderList = new List<ReturnsOrder>();
+                List<PhysicalCountOrder> physicalCountList = new List<PhysicalCountOrder>();
+                switch (itemType)
+                {
+                    case "Paper":
+                        quantityBridgeList = _context.QuantityBridges.Where(q => q.PaperId == itemId).ToList();
 
-                    foreach (QuantityBridge qb in quantityBridgeList)
-                    {
-                        List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
-                                    p.PurchaseId == qb.PurchaseId
-                                    && p.PurchaseDate >= beginingDate
-                                    && p.PurchaseDate <= endingDate
-                                    )
-                        .ToList();
+                        foreach (QuantityBridge qb in quantityBridgeList)
+                        {
+                            List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                        p.PurchaseId == qb.PurchaseId
+                                        && p.PurchaseDate >= beginingDate
+                                        && p.PurchaseDate <= endingDate
+                                        )
+                            .ToList();
 
-                        List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
-                                   p.PhysicalCountId == qb.PhysicalCountId
-                                   && p.PhysicalCountDate >= beginingDate
-                                    && p.PhysicalCountDate <= endingDate
-                                    ).ToList();
+                            List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                       p.PhysicalCountId == qb.PhysicalCountId
+                                       && p.PhysicalCountDate >= beginingDate
+                                        && p.PhysicalCountDate <= endingDate
+                                        ).ToList();
 
-                        List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
-                                   req.RequisiteId == qb.RequisiteId
-                                   && req.RequisiteDate >= beginingDate
-                                    && req.RequisiteDate <= endingDate
-                                   ).ToList();
+                            List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                       req.RequisiteId == qb.RequisiteId
+                                       && req.RequisiteDate >= beginingDate
+                                        && req.RequisiteDate <= endingDate
+                                       ).ToList();
 
-                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
-                                   ret.ReturnId == qb.ReturnId
-                                   && ret.ReturnDate >= beginingDate
-                                    && ret.ReturnDate <= endingDate
-                                   ).ToList();
-
-
-                        purchaseOrderList.AddRange(purorders);
-                        physicalCountList.AddRange(phyOrders);
-                        returnOrderList.AddRange(retOrders);
-                        requisiteOrderList.AddRange(reqOrders);
-                    }
-                    break;
-
-                case "Ink":
-                    quantityBridgeList = _context.QuantityBridges.Where(q => q.InkId == itemId).ToList();
-                    foreach (QuantityBridge qb in quantityBridgeList)
-                    {
-                        List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
-                                    p.PurchaseId == qb.PurchaseId
-                                    && p.PurchaseDate >= beginingDate
-                                    && p.PurchaseDate <= endingDate
-                                    )
-                        .ToList();
-
-                        List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
-                                   p.PhysicalCountId == qb.PhysicalCountId
-                                   && p.PhysicalCountDate >= beginingDate
-                                    && p.PhysicalCountDate <= endingDate
-                                    ).ToList();
-
-                        List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
-                                   req.RequisiteId == qb.RequisiteId
-                                   && req.RequisiteDate >= beginingDate
-                                    && req.RequisiteDate <= endingDate
-                                   ).ToList();
-
-                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
-                                   ret.ReturnId == qb.ReturnId
-                                   && ret.ReturnDate >= beginingDate
-                                    && ret.ReturnDate <= endingDate
-                                   ).ToList();
+                            List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                       ret.ReturnId == qb.ReturnId
+                                       && ret.ReturnDate >= beginingDate
+                                        && ret.ReturnDate <= endingDate
+                                       ).ToList();
 
 
-                        purchaseOrderList.AddRange(purorders);
-                        physicalCountList.AddRange(phyOrders);
-                        returnOrderList.AddRange(retOrders);
-                        requisiteOrderList.AddRange(reqOrders);
-                    }
-                    break;
+                            purchaseOrderList.AddRange(purorders);
+                            physicalCountList.AddRange(phyOrders);
+                            returnOrderList.AddRange(retOrders);
+                            requisiteOrderList.AddRange(reqOrders);
+                        }
+                        break;
 
-                case "Supply":
+                    case "Ink":
+                        quantityBridgeList = _context.QuantityBridges.Where(q => q.InkId == itemId).ToList();
+                        foreach (QuantityBridge qb in quantityBridgeList)
+                        {
+                            List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                        p.PurchaseId == qb.PurchaseId
+                                        && p.PurchaseDate >= beginingDate
+                                        && p.PurchaseDate <= endingDate
+                                        )
+                            .ToList();
 
-                    quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
-                    foreach (QuantityBridge qb in quantityBridgeList)
-                    {
-                        List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
-                                    p.PurchaseId == qb.PurchaseId
-                                    && p.PurchaseDate >= beginingDate
-                                    && p.PurchaseDate <= endingDate
-                                    )
-                        .ToList();
+                            List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                       p.PhysicalCountId == qb.PhysicalCountId
+                                       && p.PhysicalCountDate >= beginingDate
+                                        && p.PhysicalCountDate <= endingDate
+                                        ).ToList();
 
-                        List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
-                                   p.PhysicalCountId == qb.PhysicalCountId
-                                   && p.PhysicalCountDate >= beginingDate
-                                    && p.PhysicalCountDate <= endingDate
-                                    ).ToList();
+                            List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                       req.RequisiteId == qb.RequisiteId
+                                       && req.RequisiteDate >= beginingDate
+                                        && req.RequisiteDate <= endingDate
+                                       ).ToList();
 
-                        List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
-                                   req.RequisiteId == qb.RequisiteId
-                                   && req.RequisiteDate >= beginingDate
-                                    && req.RequisiteDate <= endingDate
-                                   ).ToList();
-
-                        List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
-                                   ret.ReturnId == qb.ReturnId
-                                   && ret.ReturnDate >= beginingDate
-                                    && ret.ReturnDate <= endingDate
-                                   ).ToList();
-
-
-                        purchaseOrderList.AddRange(purorders);
-                        physicalCountList.AddRange(phyOrders);
-                        returnOrderList.AddRange(retOrders);
-                        requisiteOrderList.AddRange(reqOrders);
-                    }
+                            List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                       ret.ReturnId == qb.ReturnId
+                                       && ret.ReturnDate >= beginingDate
+                                        && ret.ReturnDate <= endingDate
+                                       ).ToList();
 
 
-                    break;
+                            purchaseOrderList.AddRange(purorders);
+                            physicalCountList.AddRange(phyOrders);
+                            returnOrderList.AddRange(retOrders);
+                            requisiteOrderList.AddRange(reqOrders);
+                        }
+                        break;
+
+                    case "Supply":
+
+                        quantityBridgeList = _context.QuantityBridges.Where(q => q.SuppliesId == itemId).ToList();
+                        foreach (QuantityBridge qb in quantityBridgeList)
+                        {
+                            List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                        p.PurchaseId == qb.PurchaseId
+                                        && p.PurchaseDate >= beginingDate
+                                        && p.PurchaseDate <= endingDate
+                                        )
+                            .ToList();
+
+                            List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                       p.PhysicalCountId == qb.PhysicalCountId
+                                       && p.PhysicalCountDate >= beginingDate
+                                        && p.PhysicalCountDate <= endingDate
+                                        ).ToList();
+
+                            List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                       req.RequisiteId == qb.RequisiteId
+                                       && req.RequisiteDate >= beginingDate
+                                        && req.RequisiteDate <= endingDate
+                                       ).ToList();
+
+                            List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                       ret.ReturnId == qb.ReturnId
+                                       && ret.ReturnDate >= beginingDate
+                                        && ret.ReturnDate <= endingDate
+                                       ).ToList();
 
 
-                default:
-                    break;
+                            purchaseOrderList.AddRange(purorders);
+                            physicalCountList.AddRange(phyOrders);
+                            returnOrderList.AddRange(retOrders);
+                            requisiteOrderList.AddRange(reqOrders);
+                        }
+
+
+                        break;
+
+
+                    default:
+                        break;
+                }
+
+                InventoryReportViewModel invViewModel = new InventoryReportViewModel();
+                invViewModel.purchaseOrderList = purchaseOrderList;
+                invViewModel.requisiteOrderList = requisiteOrderList;
+                invViewModel.quantityBridgeList = quantityBridgeList;
+                invViewModel.returnOrderList = returnOrderList;
+                invViewModel.physicalCountlist = physicalCountList;
+
+                return (invViewModel);
             }
-
-            InventoryReportViewModel invViewModel = new InventoryReportViewModel();
-            invViewModel.purchaseOrderList = purchaseOrderList;
-            invViewModel.requisiteOrderList = requisiteOrderList;
-            invViewModel.quantityBridgeList = quantityBridgeList;
-            invViewModel.returnOrderList = returnOrderList;
-            invViewModel.physicalCountlist = physicalCountList;
-
-            return (invViewModel);
-
+            catch (ArgumentException ex)
+            {
+                return new InventoryReportViewModel();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new InventoryReportViewModel();
+            }
         }
 
         public InventoryReportViewModel VendorReportRanking(DateOnly beginningDate, DateOnly endDate)
         {
-            // Retrieve purchase orders within the specified date range
-            var purchaseOrdersInRange = _context.PurchaseOrders
-                .Where(po => po.PurchaseDate >= beginningDate && po.PurchaseDate <= endDate)
-                .ToList();
+            try
+            {
+                // Retrieve purchase orders within the specified date range
+                var purchaseOrdersInRange = _context.PurchaseOrders
+                    .Where(po => po.PurchaseDate >= beginningDate && po.PurchaseDate <= endDate)
+                    .ToList();
 
 
-            var vendorPurchases = (from po in purchaseOrdersInRange
-                                   join qb in _context.QuantityBridges on po.PurchaseId equals qb.PurchaseId
-                                   group qb by po.VendorId into g
-                                   select new
-                                   {
-                                       VendorId = g.Key,
-                                       PurchaseCount = g.Select(q => q.PurchaseId).Distinct().Count(),
-                                       TotalOldBalance = g.Sum(q => (q.Price) * (q.Quantity))
-                                       //TotalOldBalance = g.Sum(q => q.TotalBalance)
+                var vendorPurchases = (from po in purchaseOrdersInRange
+                                       join qb in _context.QuantityBridges on po.PurchaseId equals qb.PurchaseId
+                                       group qb by po.VendorId into g
+                                       select new
+                                       {
+                                           VendorId = g.Key,
+                                           PurchaseCount = g.Select(q => q.PurchaseId).Distinct().Count(),
+                                           TotalOldBalance = g.Sum(q => (q.Price) * (q.Quantity))
+                                           //TotalOldBalance = g.Sum(q => q.TotalBalance)
 
-                                   })
+                                       })
+                             .ToList();
+
+                // Join with vendor details and apply ranking based on both criteria
+                var vendorReport = (from vp in vendorPurchases
+                                    join vendor in _context.Vendors on vp.VendorId equals vendor.VendorId
+                                    orderby vp.PurchaseCount descending, vp.TotalOldBalance descending
+                                    select new
+                                    {
+                                        Vendor = vendor,
+                                        PurchaseCount = vp.PurchaseCount,
+                                        TotalOldBalance = vp.TotalOldBalance
+                                    })
                          .ToList();
 
-            // Join with vendor details and apply ranking based on both criteria
-            var vendorReport = (from vp in vendorPurchases
-                                join vendor in _context.Vendors on vp.VendorId equals vendor.VendorId
-                                orderby vp.PurchaseCount descending, vp.TotalOldBalance descending
-                                select new
-                                {
-                                    Vendor = vendor,
-                                    PurchaseCount = vp.PurchaseCount,
-                                    TotalOldBalance = vp.TotalOldBalance
-                                })
-                     .ToList();
 
+                InventoryReportViewModel invModel = new InventoryReportViewModel
+                {
+                    VendorReport = vendorReport.Select(v => (v.Vendor, v.PurchaseCount, v.TotalOldBalance)).ToList()
+                };
 
-            InventoryReportViewModel invModel = new InventoryReportViewModel
+                return invModel;
+            }
+            catch (ArgumentException ex)
             {
-                VendorReport = vendorReport.Select(v => (v.Vendor, v.PurchaseCount, v.TotalOldBalance)).ToList()
-            };
-
-            return invModel;
-
+                return new InventoryReportViewModel();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new InventoryReportViewModel();
+            }
 
         }
 
@@ -802,9 +1002,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 }
                 return (true, "تمت عملية الشراء بنجاح");
             }
+            catch (ArgumentException ex)
+            {
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
             catch (Exception ex)
             {
-                return (false, $"حدث خطأ: {ex.Message}");
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
             }
 
 
@@ -813,95 +1018,130 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public InventoryReportViewModel GetCustomerRanking(DateOnly beginningDate, DateOnly endDate)
         {
-            // Retrieve JobOrders within the specified date range
-            var jobOrdersInRange = _context.JobOrders
-                .Where(jo => jo.StartDate >= beginningDate && jo.EndDate <= endDate)
-                .ToList();
-
-
-            var customerRankings = (from jo in jobOrdersInRange
-                                    where jo.CustomerId != null  // ensure we only include valid customers
-                                    group jo by jo.CustomerId into g
-                                    select new
-                                    {
-                                        CustomerId = g.Key,
-                                        OrderCount = g.Count(),
-                                        TotalBalance = g.Sum(x => x.EarnedRevenue ?? 0),
-                                        unearnedBalance = g.Sum(x => x.UnearnedRevenue ?? 0),
-                                        RemainingBalance = g.Sum(x => x.RemainingAmount ?? 0),
-                                    }).ToList();
-
-            // Join the aggregated data with Customers to get full customer details
-            var rankedCustomers = (from cr in customerRankings
-                                   join c in _context.Customers on cr.CustomerId equals c.CustomerId
-                                   orderby cr.OrderCount descending, cr.TotalBalance descending
-                                   select new
-                                   {
-                                       Customer = c,
-                                       OrderCount = cr.OrderCount,
-                                       TotalBalance = cr.TotalBalance,
-                                       unearnedBalance = cr.unearnedBalance,
-                                       RemainingBalance = cr.RemainingBalance
-                                   }).ToList();
-
-            // Prepare and return the view model
-            InventoryReportViewModel rankingModel = new InventoryReportViewModel
+            try
             {
-                CustomerReport = rankedCustomers
-                    .Select(x => (x.Customer, x.OrderCount, x.TotalBalance, x.unearnedBalance, x.RemainingBalance))
-                    .ToList()
-            };
+                // Retrieve JobOrders within the specified date range
+                var jobOrdersInRange = _context.JobOrders
+                    .Where(jo => jo.StartDate >= beginningDate && jo.EndDate <= endDate)
+                    .ToList();
 
-            return rankingModel;
+
+                var customerRankings = (from jo in jobOrdersInRange
+                                        where jo.CustomerId != null  // ensure we only include valid customers
+                                        group jo by jo.CustomerId into g
+                                        select new
+                                        {
+                                            CustomerId = g.Key,
+                                            OrderCount = g.Count(),
+                                            TotalBalance = g.Sum(x => x.EarnedRevenue ?? 0),
+                                            unearnedBalance = g.Sum(x => x.UnearnedRevenue ?? 0),
+                                            RemainingBalance = g.Sum(x => x.RemainingAmount ?? 0),
+                                        }).ToList();
+
+                // Join the aggregated data with Customers to get full customer details
+                var rankedCustomers = (from cr in customerRankings
+                                       join c in _context.Customers on cr.CustomerId equals c.CustomerId
+                                       orderby cr.OrderCount descending, cr.TotalBalance descending
+                                       select new
+                                       {
+                                           Customer = c,
+                                           OrderCount = cr.OrderCount,
+                                           TotalBalance = cr.TotalBalance,
+                                           unearnedBalance = cr.unearnedBalance,
+                                           RemainingBalance = cr.RemainingBalance
+                                       }).ToList();
+
+                // Prepare and return the view model
+                InventoryReportViewModel rankingModel = new InventoryReportViewModel
+                {
+                    CustomerReport = rankedCustomers
+                        .Select(x => (x.Customer, x.OrderCount, x.TotalBalance, x.unearnedBalance, x.RemainingBalance))
+                        .ToList()
+                };
+
+                return rankingModel;
+            }
+            catch (ArgumentException ex)
+            {
+                return new InventoryReportViewModel();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new InventoryReportViewModel();
+            }
         }
 
 
         public ReturnOrderDTO processSelection(ReturnOrderDTO returnDto)
         {
-            // purchase order
-            if (returnDto.ReturnInOut == false)
+            try
             {
-                List<QuantityBridge> purchasedItems = _context.QuantityBridges
-                    //.Include(q => q.PurchaseId)
-                    .Where(q => q.PurchaseId == returnDto.purchaseID)
-                    .ToList();
-                returnDto.ListOfordered = purchasedItems;
+                // purchase order
+                if (returnDto.ReturnInOut == false)
+                {
+                    List<QuantityBridge> purchasedItems = _context.QuantityBridges
+                        //.Include(q => q.PurchaseId)
+                        .Where(q => q.PurchaseId == returnDto.purchaseID)
+                        .ToList();
+                    returnDto.ListOfordered = purchasedItems;
+                }
+                else if (returnDto.ReturnInOut == true)
+                {
+                    // job order
+                    List<QuantityBridge> requisitedItems = _context.QuantityBridges
+                        //.Include(q => q.RequisiteId)
+                        .Where(q => q.RequisiteId == returnDto.JobOrderId)
+                        .ToList();
+                    returnDto.ListOfordered = requisitedItems;
+                }
+                return returnDto;
             }
-            else if (returnDto.ReturnInOut == true)
+            catch (Exception ex)
             {
-                // job order
-                List<QuantityBridge> requisitedItems = _context.QuantityBridges
-                    //.Include(q => q.RequisiteId)
-                    .Where(q => q.RequisiteId == returnDto.JobOrderId)
-                    .ToList();
-                returnDto.ListOfordered = requisitedItems;
+                WriteException.WriteExceptionToFile(ex);
+                return new ReturnOrderDTO();
             }
-            return returnDto;
-
         }
 
         public List<JobOrder> GetRecentJobOrdersWithCustomers()
         {
-            var today = DateOnly.FromDateTime(DateTime.Now);
-            var fromDate = today.AddDays(-30);
+            try
+            {
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                var fromDate = today.AddDays(-30);
 
-            return _context.JobOrders
-                .Include(j => j.Customer)
-                .Where(j => j.StartDate != null && j.StartDate >= fromDate && j.StartDate <= today)
-                .OrderByDescending(j => j.StartDate)
-                .ToList();
+                return _context.JobOrders
+                    .Include(j => j.Customer)
+                    .Where(j => j.StartDate != null && j.StartDate >= fromDate && j.StartDate <= today)
+                    .OrderByDescending(j => j.StartDate)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new List<JobOrder>();
+            }
         }
 
         public List<PurchaseOrder> GetRecentPurchaseOrderwithSuppliers()
         {
-            var today = DateOnly.FromDateTime(DateTime.Now);
-            var fromDate = today.AddDays(-30);
+            try
+            {
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                var fromDate = today.AddDays(-30);
 
-            return _context.PurchaseOrders
-                .Include(p => p.Vendor)
-                .Where(p => p.PurchaseDate != null && p.PurchaseDate >= fromDate && p.PurchaseDate <= today)
-                .OrderByDescending(p => p.PurchaseDate)
-                .ToList();
+                return _context.PurchaseOrders
+                    .Include(p => p.Vendor)
+                    .Where(p => p.PurchaseDate != null && p.PurchaseDate >= fromDate && p.PurchaseDate <= today)
+                    .OrderByDescending(p => p.PurchaseDate)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new List<PurchaseOrder>();
+            }
         }
 
         public List<Employee> GetActiveEmployees() => _context.Employees.Where(e => e.Activated).ToList();
@@ -960,7 +1200,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"حدث خطأ أثناء جلب بيانات أمر التشغيل: {ex.Message}", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return new List<object>();
             }
         }
 
@@ -1013,7 +1254,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"حدث خطأ أثناء جلب بيانات أمر الشراء: {ex.Message}", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return new List<object>();
             }
         }
 
@@ -1239,7 +1481,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
             catch (Exception ex)
             {
-
+                WriteException.WriteExceptionToFile(ex);
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
@@ -1397,6 +1639,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
@@ -1440,7 +1683,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (CWS.Type == 1) // حجم
                 {
                     existing.Size = CWS.Size;
-                    existing.Weight = null;
+                    existing.Weight = 0;
                     existing.Colored = null;
                 }
                 else if (CWS.Type == 2) // وزن
@@ -1453,15 +1696,16 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 {
                     existing.Colored = CWS.Colored;
                     existing.Size = null;
-                    existing.Weight = null;
+                    existing.Weight = 0;
                 }
 
                 _context.Update(existing);
                 _context.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
@@ -1478,8 +1722,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
-                throw new ApplicationException("An error occurred while fetching the Characteristic.", ex);
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
         }
 
@@ -1516,16 +1760,24 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-            catch (ArgumentException ex)
-            {
-                return false;
-            }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 return false;
             }
         }
-
+        public List<ColorWeightSize> ViewAllColorWeightSize()
+        {
+            try
+            {
+                List<ColorWeightSize> colorWeightSizeList = _context.ColorWeightSizes.ToList();
+                return colorWeightSizeList;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new List<ColorWeightSize>();
+            }
+        }
     }
 }

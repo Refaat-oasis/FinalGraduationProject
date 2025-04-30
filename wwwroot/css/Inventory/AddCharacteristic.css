@@ -1,7 +1,7 @@
 ﻿.container {
+    width: 100%;
     min-height: 100vh;
     padding-top: 80px;
-    width: 100%;
     max-width: 800px;
     font-family: Calibri;
     padding: 20px;
@@ -29,38 +29,13 @@
         background-position: center;
     }
 
-.text {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: black;
-    margin-top: 30px;
-}
 
-h1 {
-    text-align: center;
-    font-size: 30px;
-    color: #050505;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.textlabel {
-    display: block;
-    font-size: 30px;
-    margin-bottom: 5px;
-    color: #FDF5E6;
-    text-align: right;
-}
-
-.place {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    font-size: 20px;
-    text-align: right;
-    direction: rtl;
+  h1 {
+    color: black !important;
+    margin: 20px !important;
+    font-weight: 900 !important;
+    font-size: 50px !important;
+    text-align: center !important; /* Added right alignment */
 }
 
 
@@ -96,62 +71,33 @@ h1 {
         direction: rtl;
     }
 
-    .inputBox select {
-        border: 2px solid #4F3217;
-        border-radius: 5px;
-        background-color: #FDF5E6;
-        font-size: 16px;
-        width: 100%;
-        padding: 10px;
-        text-align: right;
-        direction: rtl;
-     
-    }
 
-        .inputBox select:focus {
-            border-color: #4F3217;
-            outline: none;
-        }
 
-.inputBox {
-    position: relative;
-}
-
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.buttons {
     display: flex;
     justify-content: center;
-    gap: 60px;
 }
 
-.btn {
-    padding: 10px 15px;
-    font-size: 25px;
+input.Add,
+input.btnReset {
+    padding: 10px 20px;
+    font-size: 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
-}
-
-
-/*.btn-primary {
-    background-color: #000000;
+    background-color: black;
     color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
 
-    .btn-primary:hover {
-        background-color: #000000;
-    }*/
-
-.btn-secondary {
-    background-color: #000000;
-    color: white;
-}
-
-.btn:hover {
-    background-color: #545b62;
-}
+    input.Add:hover,
+    input.btnReset:hover {
+        background-color: #545b62;
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
 
 .inputBox.error {
     color: red;
@@ -163,7 +109,28 @@ h1 {
     margin-top: 10px;
 }
 
+.inputBox select {
+    border: 2px solid #4F3217; 
+    border-radius: 5px;
+    background-color: #FDF5E6; 
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    text-align: right;
+    direction: rtl; 
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+}
 
+    .inputBox select:focus {
+        border-color: #4F3217; 
+        outline: none; 
+    }
+
+.inputBox {
+    position: relative;
+}
 
 .arrow {
     position: absolute;

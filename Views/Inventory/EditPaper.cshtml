@@ -53,168 +53,131 @@
     <h1> تعديل بيانات الورق  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditPaper" method="post" id="myform">
-        @if (TempData["Success"] != null)
-        {
-            <div class="notification success">
-                <div class="notification-content">
-                    <i class='bx bx-check-circle'></i> @TempData["Success"]
-
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="true" />
-                <div class="progress-bar success"></div>
+    @if (TempData["Success"] != null)
+    {
+        <div class="notification success">
+            <div class="notification-content">
+                <i class='bx bx-check-circle'></i> @TempData["Success"]
             </div>
-        }
+            <input type="hidden" id="tempDataSuccess" value="true" />
+            <div class="progress-bar success"></div>
+        </div>
+    }
 
-        @if (TempData["Error"] != null)
-        {
-            <div class="notification error">
-                <div class="notification-content">
-                    <i class='bx bx-error-circle'></i>
-                    <span>@TempData["Error"]</span>
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="false" />
-
-                <div class="progress-bar error"></div>
-
+    @if (TempData["Error"] != null)
+    {
+        <div class="notification error">
+            <div class="notification-content">
+                <i class='bx bx-error-circle'></i>
+                <span>@TempData["Error"]</span>
             </div>
-        }
-        <input type="hidden" id="hdnJobRole" value="@jobRole" />
-        <div asp-validation-summary="ModelOnly" class="error"></div>
-       
-        <input type="hidden" asp-for="PaperId" />
-
-        <div class="inputBox">
-            <label asp-for="@Model.Name" class="textlabel"></label>
-            <input asp-for="@Model.Name" id="Name" class="place" />
-            <span asp-validation-for="@Model.Name" class="error"></span>
-            <span class="error"></span>
+            <input type="hidden" id="tempDataSuccess" value="false" />
+            <div class="progress-bar error"></div>
         </div>
+    }
 
-        <div class="inputBox">
-            <label asp-for="@Model.Size" class="textlabel"></label>
-            <select asp-for="@Model.Size" class="input">
-                @{
-                    foreach (ColorWeightSize item in cwsList)
+    <input type="hidden" id="hdnJobRole" value="@jobRole" />
+    <div asp-validation-summary="ModelOnly" class="error"></div>
+
+    <input type="hidden" asp-for="PaperId" />
+
+    <div class="inputBox">
+        <label asp-for="@Model.Name" class="textlabel"></label>
+        <input asp-for="@Model.Name" id="Name" class="place" />
+        <span asp-validation-for="@Model.Name" class="error"></span>
+    </div>
+
+    <div class="inputBox">
+        <label asp-for="@Model.Size" class="textlabel"></label>
+        <select asp-for="@Model.Size" class="place">
+            @{
+                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+                {
+                    if (item.Type == 1)
                     {
-
-                        if (item.Type == 2 && item.Size == Model.Size)
-                        {
-                            <option value="@item.Size" selected>@item.Size</option>
-
-                        }
-                        else if (item.Type == 2)
-                        {
-                            <option value="@item.Size">@item.Size</option>
-                        }
-
-                    }
-                    }
-            </select>
-
-            <span asp-validation-for="@Model.Size" class="error"></span>
-            <span class="error"></span>
-        </div>
-
-        <div class="inputBox">
-            <label asp-for="@Model.Weight" class="textlabel"></label>
-            <select asp-for="@Model.Weight" class="input">
-
-                @{
-                    foreach (ColorWeightSize item in cwsList)
-                    {
-                        if (item.Type == 1 && item.Weight == Model.Weight)
-                        {
-                            <option value="@item.Weight" selected>@item.Weight</option>
-                        }
-                        else if (item.Type == 1)
-                        {
-                            <option value="@item.Weight" selected>@item.Weight</option>
-                        }
+                        <option value="@item.Size" @(item.Size == Model.Size ? "selected" : "")>@item.Size</option>
                     }
                 }
-            </select>
-            <span asp-validation-for="@Model.Weight" class="error"></span>
-            <span class="error"></span>
-        </div>
+            }
+        </select>
+        <span asp-validation-for="@Model.Size" class="error"></span>
+    </div>
 
-        <div class="inputBox">
-            <label asp-for="@Model.Colored" class="textlabel"></label>
-            <select asp-for="@Model.Colored" class="input">
-
-                @{
-
-                    foreach (ColorWeightSize item in cwsList)
+    <div class="inputBox">
+        <label asp-for="@Model.Weight" class="textlabel"></label>
+        <select asp-for="@Model.Weight" class="place">
+            @{
+                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+                {
+                    if (item.Type == 2)
                     {
-                        if (item.Type == 0 && item.Colored == Model.Colored)
-                        {
-                            <option value="@item.Colored" selected>@item.Colored</option>
-                        }
-                        else if (item.Type == 0)
-                        {
-                            <option value="@item.Colored">@item.Colored</option>
-                    }
+                        <option value="@item.Weight" @(item.Weight == Model.Weight ? "selected" : "")>@item.Weight</option>
                     }
                 }
-            </select>
-            <span asp-validation-for="@Model.Colored" class="error"></span>
-        </div>
+            }
+        </select>
+        <span asp-validation-for="@Model.Weight" class="error"></span>
+    </div>
 
+    <div class="inputBox">
+        <label asp-for="@Model.Colored" class="textlabel"></label>
+        <select asp-for="@Model.Colored" class="place">
+            @{
+                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+                {
+                    if (item.Type == 3)
+                    {
+                        <option value="@item.Colored" @(item.Colored == Model.Colored ? "selected" : "")>@item.Colored</option>
+                    }
+                }
+            }
+        </select>
+        <span asp-validation-for="@Model.Colored" class="error"></span>
+    </div>
 
-        <div class="inputBox">
-            <label asp-for="Quantity" class="textlabel"></label>
-            <input asp-for="Quantity" id="Quantity" class="place" readonly disabled />
-            <span class="error"></span>
-        </div>
+    <div class="inputBox">
+        <label asp-for="Quantity" class="textlabel"></label>
+        <input asp-for="Quantity" id="Quantity" class="place" readonly disabled />
+    </div>
 
-        <div class="inputBox">
-            <label asp-for="Price" class="textlabel"></label>
-            <input asp-for="Price" class="place" readonly disabled />
-            <span class="error"></span>
-        </div>
+    <div class="inputBox">
+        <label asp-for="Price" class="textlabel"></label>
+        <input asp-for="Price" class="place" readonly disabled />
+    </div>
 
-        <div class="inputBox">
-            <label asp-for="TotalBalance" class="textlabel"></label>
-            <input asp-for="TotalBalance" class="place" readonly disabled />
-            <span class="error"></span>
-        </div>
+    <div class="inputBox">
+        <label asp-for="TotalBalance" class="textlabel"></label>
+        <input asp-for="TotalBalance" class="place" readonly disabled />
+    </div>
 
-        <div class="inputBox">
-            <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
-            <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" />
-            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
-            <span class="error"></span>
-        </div>
+    <div class="inputBox">
+        <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
+        <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" id="ReorderPoint" />
+        <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+    </div>
 
-        <div class="inputBox">
+      <div class="inputBox"> 
             <label asp-for="Activated" class="textlabel"> </label>
             <select asp-for="Activated" id="options" class="place">
                 @if (Model.Activated)
                 {
                     <option value="true" selected>مفعل</option>
                     <option value="false">غير مفعل</option>
-                }
-                else
-                {
+                } 
+                else 
+                { 
                     <option value="false" selected>غير مفعل</option>
                     <option value="true">مفعل</option>
                 }
             </select>
         </div>
 
-        <div class="button-container">
-            @* <input type="button" value="رجوع" onclick="history.back()" class="btn btn-secondary" /> *@
-            <input type="submit" value="تعديل" class="btn btn-primary" />
-        </div>
-    </form>
+    <div class="button-container">
+        <input type="submit" value="تعديل" class="btn btn-primary" />
+    </div>
+</form>
+
+
 </div>
-
-
-<script src="~/js/Inventory/EditPaper.js"></script>
-
-
-
-
-
-
 
 

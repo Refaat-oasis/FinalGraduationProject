@@ -71,7 +71,6 @@
             <div class="notification success">
                 <div class="notification-content">
                     <i class='bx bx-check-circle'></i> @TempData["Success"]
-
                 </div>
                 <input type="hidden" id="tempDataSuccess" value="true" />
                 <div class="progress-bar success"></div>
@@ -86,14 +85,12 @@
                     <span>@TempData["Error"]</span>
                 </div>
                 <input type="hidden" id="tempDataSuccess" value="false" />
-
                 <div class="progress-bar error"></div>
-
             </div>
         }
+
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
-
 
         <div class="text">
             <h1>إضافة صنف ورق جديد</h1>
@@ -110,14 +107,13 @@
             <select asp-for="@Model.Size" class="input">
                 <option value="none" selected disabled>اختار المقاس</option>
                 @{
-                    foreach (ColorWeightSize item in cwsList)
+                    foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
                     {
                         if (item.Type == 2)
                         {
-                            <option value="@item.Size" >@item.Size</option>
+                            <option value="@item.Size">@item.Size</option>
                         }
                     }
-                
                 }
             </select>
             <span class="error" asp-validation-for="@Model.Size"></span>
@@ -127,16 +123,14 @@
             <label for="Weight">وزن الورق</label>
             <select asp-for="@Model.Weight" class="input">
                 <option value="none" selected disabled>اختار الوزن</option>
-
                 @{
-                    foreach (ColorWeightSize item in cwsList)
+                    foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
                     {
                         if (item.Type == 1)
                         {
                             <option value="@item.Weight">@item.Weight</option>
                         }
                     }
-
                 }
             </select>
             <span class="error" asp-validation-for="@Model.Weight"></span>
@@ -152,22 +146,18 @@
             <label asp-for="@Model.Colored"></label>
             <select asp-for="@Model.Colored" class="input">
                 <option value="none" selected disabled>اختار اللون</option>
-
                 @{
-
-                    foreach (ColorWeightSize item in cwsList)
+                    foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
                     {
                         if (item.Type == 0)
                         {
                             <option value="@item.Colored">@item.Colored</option>
                         }
                     }
-
                 }
             </select>
             <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>
-
 
         <div class="inputBox">
             <label for="TotalBalance">القيمة المتاحه</label>
@@ -196,7 +186,7 @@
                 <input type="reset" value="إعادة إدخال" class="btnReset" />
             </div>
         </div>
-
     </form>
+
 </div>
 <script src="~/js/Inventory/newPaper.js"></script>

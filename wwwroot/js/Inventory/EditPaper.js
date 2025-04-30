@@ -1,33 +1,37 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const myform = document.getElementById("myform");
     const Name = document.getElementById("Name");
-    const Type = document.getElementById("Type");
-    const Weight = document.getElementById("Weight");
-    const ReorderPoint = document.getElementById("ReorderPoint");
-    const TotalBalance = document.getElementById("TotalBalance");
-
-
+    const Type = document.querySelector("select[name='Type']");
+    const Size = document.querySelector("select[name='Size']");
+    const Colored = document.querySelector("select[name='Colored']");
+    const Weight = document.querySelector("select[name='Weight']");
+    const ReorderPoint = document.getElementById("ReorderPoint")
 
     const setError = (input, errorMsg) => {
-        const parent = input.parentElement;
-        const errorSpan = parent.querySelector(".error");
-        errorSpan.innerText = errorMsg;
-        errorSpan.style.color = "red";
+        const parent = input.closest(".inputBox");
+        const errorSpan = parent ? parent.querySelector(".error") : null;
+        if (errorSpan) {
+            errorSpan.innerText = errorMsg;
+            errorSpan.style.color = "red";
+        }
         input.classList.add("error");
+        input.classList.remove("success");
     };
 
     const setSuccess = (input) => {
-        const parent = input.parentElement;
-        const errorSpan = parent.querySelector(".error");
-        errorSpan.innerText = "";
+        const parent = input.closest(".inputBox");
+        const errorSpan = parent ? parent.querySelector(".error") : null;
+        if (errorSpan) {
+            errorSpan.innerText = "";
+        }
         input.classList.remove("error");
         input.classList.add("success");
     };
 
     function validate() {
         let valid = true;
+        const arabicRegex = /^[\u0600-\u06FF\s]+$/;
 
-        let arabicRegex = /^[\u0600-\u06FF\s]+$/;
         if (!arabicRegex.test(Name.value.trim())) {
             setError(Name, "يجب أن يحتوي الاسم على حروف عربية فقط");
             valid = false;
@@ -35,23 +39,36 @@
             setSuccess(Name);
         }
 
-        if (Weight.value.trim() === "" || isNaN(Weight.value) || parseFloat(Weight.value) <= 0) {
-            setError(Weight, "برجاء إدخال قيمة أكبر من الصفر");
+        if (!Weight || Weight.value.trim() === "") {
+            setError(Weight, "برجاء اختيار الوزن");
             valid = false;
         } else {
             setSuccess(Weight);
         }
 
-        if (Type.value.trim() === "") {
-            setError(Type, "برجاء إدخال نوع الورق");
+        if (!Size || Size.value.trim() === "") {
+            setError(Size, "برجاء اختيار حجم الورق");
+            valid = false;
+        } else {
+            setSuccess(Size);
+        }
+
+        if (!Colored || Colored.value.trim() === "") {
+            setError(Colored, "برجاء اختيار لون الورق");
+            valid = false;
+        } else {
+            setSuccess(Colored);
+        }
+
+        if (!Type || Type.value.trim() === "") {
+            setError(Type, "برجاء اختيار نوع الورق");
             valid = false;
         } else {
             setSuccess(Type);
         }
 
-
         if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
-            setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");
+            setError(ReorderPoint, "برجاء إدخال قيمة رقمية صحيحة أكبر من الصفر");
             valid = false;
         } else {
             setSuccess(ReorderPoint);
@@ -61,32 +78,20 @@
     }
 
     myform.addEventListener("submit", function (e) {
-        if (!validate()) {
-            e.preventDefault();
-        }
-    });
-    myform.addEventListener("submit", function (e) {
-        e.preventDefault(); // Always prevent default first
+        e.preventDefault();
 
-        if (!validate()) {
-            // Validation failed
-            return false;
-        } else {
-            // Validation successful - submit the form programmatically
+        if (validate()) {
             this.submit();
         }
     });
+
+    // التعامل مع TempData للرسالة والوظيفة
     const tempDataElement = document.getElementById('tempDataSuccess');
     const jobRoleElement = document.getElementById('hdnJobRole');
 
-    // Get values with proper fallbacks
-    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+    const hasSuccessMessage = tempDataElement?.value === 'true';
+    const jobRole = parseInt(jobRoleElement?.value) || 0;
 
-    console.log("Success message exists:", hasSuccessMessage);
-    console.log("Job role:", jobRole);
-
-    // Mapping of job roles to their respective URLs
     const jobRoleRoutes = {
         0: "/employee/AdminHome",
         1: "/employee/inventoryManager",
@@ -98,10 +103,9 @@
     };
 
     if (hasSuccessMessage) {
-        setTimeout(function () {
+        setTimeout(() => {
             const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
             window.location.href = redirectUrl;
         }, 3000);
     }
 });
-

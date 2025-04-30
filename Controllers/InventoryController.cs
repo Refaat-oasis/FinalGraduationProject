@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using ThothSystemVersion1.BusinessLogicLayers;
@@ -638,12 +639,14 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
+
                 if (updatedInk == null)
                 {
                     ModelState.AddModelError("", "البيانات غير صالحة");
                     return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
                 }
-
 
                 if (!ModelState.IsValid)
                 {
@@ -658,6 +661,10 @@ namespace ThothSystemVersion1.Controllers
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
+
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
+
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الحبر";
                 return View("~/Views/Inventory/EditInk.cshtml", updatedInk);
             }
@@ -665,6 +672,7 @@ namespace ThothSystemVersion1.Controllers
 
 
         //edit paper
+        
         [HttpGet]
         public IActionResult EditPaper(int paperId)
         {
@@ -673,27 +681,13 @@ namespace ThothSystemVersion1.Controllers
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
                 if (jobRole == 0 || jobRole == 1)
                 {
-                    //try
-                    //{
                     List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
                     ViewBag.ColorWeightSizeList = colorWeightSizes;
                     Paper paper = _businessLogicL.GetPaperByID(paperId);
-
                     return View("~/Views/Inventory/EditPaper.cshtml", paper);
-                    //}
-                    //catch (ApplicationException ex)
-                    //{
-                    //    return StatusCode(500, ex.Message); // Internal server error
-                    //}
-                    //catch (ArgumentException ex)
-                    //{
-                    //    return NotFound(ex.Message);
-                    //}
-
                 }
                 else
                 {
-
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
@@ -703,7 +697,6 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
                 return View("~/Views/Inventory/EditPaper.cshtml", new Paper());
             }
-
         }
 
         [HttpPost]
@@ -711,6 +704,9 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
+
                 if (updatedPaper == null)
                 {
                     ModelState.AddModelError("", "البيانات غير صالحة");
@@ -722,17 +718,19 @@ namespace ThothSystemVersion1.Controllers
                 }
 
                 bool isEditSuccess = _businessLogicL.editPaper(PaperId, updatedPaper);
-
                 TempData["Success"] = "تم تعديل بيانات الورق";
                 return RedirectToAction("EditPaper", "Inventory", new { PaperId });
             }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
+                List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
+                ViewBag.ColorWeightSizeList = colorWeightSizes;
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الورق";
                 return View("~/Views/Inventory/EditPaper.cshtml", updatedPaper);
             }
         }
+
 
         //edit paper
         [HttpGet]
@@ -919,11 +917,11 @@ namespace ThothSystemVersion1.Controllers
                 if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
                     ViewBag.TypeOptions = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = "حجم" },
-                new SelectListItem { Value = "2", Text = "وزن" },
-                new SelectListItem { Value = "3", Text = "لون" }
-            };
+      {
+          new SelectListItem { Value = "1", Text = "القياس" },
+          new SelectListItem { Value = "2", Text = "الوزن" },
+          new SelectListItem { Value = "3", Text = "اللون" }
+      };
 
                     return View(new ColorWeightSize());
                 }
@@ -956,11 +954,11 @@ namespace ThothSystemVersion1.Controllers
                 {
                     ModelState.AddModelError("", "البيانات غير صالحة");
                     ViewBag.TypeOptions = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = "حجم" },
-                new SelectListItem { Value = "2", Text = "وزن" },
-                new SelectListItem { Value = "3", Text = "لون" }
-            };
+      {
+          new SelectListItem { Value = "1", Text = "القياس" },
+          new SelectListItem { Value = "2", Text = "الوزن" },
+          new SelectListItem { Value = "3", Text = "اللون" }
+      };
 
                     return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
                 }
@@ -968,11 +966,11 @@ namespace ThothSystemVersion1.Controllers
                 if (!ModelState.IsValid)
                 {
                     ViewBag.TypeOptions = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = "حجم" },
-                new SelectListItem { Value = "2", Text = "وزن" },
-                new SelectListItem { Value = "3", Text = "لون" }
-            };
+      {
+          new SelectListItem { Value = "1", Text = "القياس" },
+          new SelectListItem { Value = "2", Text = "الوزن" },
+          new SelectListItem { Value = "3", Text = "اللون" }
+      };
 
                     return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
                 }

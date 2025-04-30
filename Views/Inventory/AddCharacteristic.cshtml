@@ -1,18 +1,20 @@
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+
 
 @{
     Layout = null;
 }
 
-@model Ink;
+
+@model ColorWeightSize;
 
 @{
-    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
+
 
 <head>
     <meta charset="UTF-8" />
@@ -25,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link href="~/css/Inventory/newInk.css" rel="stylesheet" />
+    <link href="~/css/Inventory/AddCharacteristic.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
 
@@ -60,8 +62,10 @@
         }
     </div>
 
-    <form asp-controller="Inventory" asp-action="NewInk" id="myform" enctype="multipart/form-data" method="post">
-        @* Success and Error Messages *@
+
+
+    <form asp-controller="Inventory" asp-action="AddCharacteristic" id="myform" enctype="multipart/form-data" method="post">
+        @* رسائل النجاح أو الخطأ *@
         @if (TempData["Success"] != null)
         {
             <div class="notification success">
@@ -86,68 +90,48 @@
         }
 
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
-        <div asp-validation-summary="ModelOnly" class="error"></div>
 
-        <div class="text">
-            <h1>إضافة صنف حبر جديد</h1>
-        </div>
+        <h1>إضافة مواصفات</h1>
 
         <div class="inputBox">
-            <label for="InkName">اسم الحبر</label>
-            <input type="text" asp-for="@Model.Name" id="InkName" />
-            <p asp-validation-for="@Model.Name" class="error"></p>
-        </div>
-
-        <div class="inputBox">
-            <label asp-for="@Model.Colored"></label>
-            <select asp-for="@Model.Colored" id="Colored" class="input">
-                <option value="none" selected disabled>اختر اللون</option>
-                @{
-                    foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
-                    {
-                        if (item.Type == 0)
-                        {
-                            <option value="@item.Colored">@item.Colored</option>
-                        }
-                    }
-                }
+            <label>أختر نوع المواصفة</label>
+            <select asp-for="Type" id="Type">
+                <option value="" disabled selected>اختر النوع</option>
+                <option value="1">القياس</option>
+                <option value="2">الوزن</option>
+                <option value="3">اللون</option>
             </select>
-            <span asp-validation-for="@Model.Colored" class="error"></span>
+            <span asp-validation-for="Type" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label for="Quantity">كميه الحبر</label>
-            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
-            <p asp-validation-for="@Model.Quantity" class="error"></p>
+        <div class="inputBox" id="sizeInput" style="display: none;">
+            <label>القياس</label>
+            <input asp-for="Size" id="Size" />
+            <span asp-validation-for="Size" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label for="Price">سعر الحبر</label>
-            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+        <div class="inputBox" id="weightInput" style="display: none;">
+            <label>الوزن</label>
+            <input asp-for="Weight" id="Weight" />
+            <span asp-validation-for="Weight" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label for="TotalBalance">القيمة المتاحه</label>
-            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
-            <p asp-validation-for="@Model.TotalBalance" class="error"></p>
+        <div class="inputBox" id="colorInput" style="display: none;">
+            <label>اللون</label>
+            <input asp-for="Colored" id="Colored" />
+            <span asp-validation-for="Colored" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label for="ReorderPoint">نقطة إعادة الطلب</label>
-            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
-            <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
-        </div>
+      
+
 
         <div class="buttons">
             <div class="Add">
                 <input type="submit" value="تأكيد الإضافة " class="Add" />
             </div>
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
         </div>
     </form>
 
 </div>
- <script src="~/js/Inventory/newInk.js"></script> 
+<script src="~/js/Inventory/AddCharacteristic.js"></script>
+

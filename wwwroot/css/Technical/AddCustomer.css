@@ -262,15 +262,25 @@ h1 {
 }
 
 .success {
-    background-color: #f0fdf4;
+/*    background-color: #f0fdf4;
     border-left: 4px solid #10b981;
-    color: #10b981;
+    color: #10b981;*/
 }
 
 .error {
-    background-color: #fef2f2;
-    border-left: 4px solid #ef4444;
-    color: #ef4444;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545; /* لون أحمر يدل على الخطأ */
+    text-align: center;
+    margin-bottom: 5px;
+    padding: 10px;
+    /*    background-color: #fdecea;
+    border: 2px solid #dc3545;*/
+    /*    border-radius: 10px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .progress-bar {

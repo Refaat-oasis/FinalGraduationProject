@@ -8212,23 +8212,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ECC\\.nuget\\packages\\": {},
+    "C:\\Users\\shahd\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ECC\\OneDrive\\Desktop\\اخرررر نسخهههه\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "projectUniqueName": "C:\\Users\\shahd\\Desktop\\ارفع منه\\FinalGraduationProject\\ThothSystemVersion1.csproj",
       "projectName": "ThothSystemVersion1",
-      "projectPath": "C:\\Users\\ECC\\OneDrive\\Desktop\\اخرررر نسخهههه\\FinalGraduationProject\\ThothSystemVersion1.csproj",
-      "packagesPath": "C:\\Users\\ECC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ECC\\OneDrive\\Desktop\\اخرررر نسخهههه\\FinalGraduationProject\\obj\\",
+      "projectPath": "C:\\Users\\shahd\\Desktop\\ارفع منه\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "packagesPath": "C:\\Users\\shahd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shahd\\Desktop\\ارفع منه\\FinalGraduationProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ECC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\shahd\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

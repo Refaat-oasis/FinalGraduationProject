@@ -1,4 +1,0 @@
-Date: 4/30/2025 3:41:49 AM
-Exception: System.ArgumentException: Characteristic not found.
-   at ThothSystemVersion1.BusinessLogicLayers.InventoryBussinesLogicLayer.GetCharacteristicByID(Int32 CharId) in C:\Users\ECC\OneDrive\Desktop\اخرررر نسخهههه\FinalGraduationProject\BusinessLogicLayers\InventoryBussinesLogicLayer.cs:line 1719
-

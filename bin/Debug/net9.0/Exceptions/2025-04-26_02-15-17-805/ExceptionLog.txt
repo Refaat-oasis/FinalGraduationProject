@@ -1,4 +1,0 @@
-Date: 4/26/2025 2:15:17 AM
-Exception: System.ArgumentException: Employee not found.
-   at ThothSystemVersion1.BusinessLogicLayers.AdminBusinessLogicLayer.GetEmployeeById(String id) in D:\GRAD PROJ\FinalGraduationProject\BusinessLogicLayers\AdminBusinessLogicLayer.cs:line 82
-

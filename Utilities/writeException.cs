@@ -9,16 +9,10 @@ namespace ThothSystemVersion1.Utilities
         {
             try
             {
-                // Get the base application directory
-                string basePath = AppDomain.CurrentDomain.BaseDirectory;
-
-                // Create Exceptions directory if it doesn't exist
-                string exceptionsRoot = Path.Combine(basePath, "Exceptions");
-                Directory.CreateDirectory(exceptionsRoot);
-
+                
                 // Create timestamped folder
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff");
-                string exceptionFolder = Path.Combine(exceptionsRoot, timestamp);
+                string exceptionFolder = Path.Combine("Exceptions", timestamp);
                 Directory.CreateDirectory(exceptionFolder);
 
                 // Create log file path

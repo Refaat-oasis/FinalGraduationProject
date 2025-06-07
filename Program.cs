@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Hubs;
@@ -30,7 +30,7 @@ namespace ThothSystemVersion1
                 options.Cookie.HttpOnly = true; 
                 options.Cookie.IsEssential = true; 
             });
-            
+
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSignalR();
 

@@ -24,11 +24,15 @@ public partial class Ink
     [Display(Name = "السعر")]
     public decimal Price { get; set; }
 
-    [Display(Name = "الكمية")]
+    [Display(Name = "السحبات")]
     public int Quantity { get; set; }
 
+    [Display(Name ="الوحدات")]
+    public int NumberOfUnits { get; set; }
+    [Display(Name ="متوسط السحبات")]
+    public int AverageQuantity { get; set; }
+
     [Display(Name = "نقطة اعادة الطلب")]
-    //[Required(ErrorMessage = "يجب ادخال قيمة نقطة اعادة الطلب")]
     [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal? ReorderPoint { get; set; }
 

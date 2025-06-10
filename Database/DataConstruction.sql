@@ -213,6 +213,8 @@ CREATE TABLE Ink (
     colored NVARCHAR(20) NOT NULL DEFAULT '',
     price DECIMAL(10,2) NOT NULL DEFAULT 0,
     quantity INT NOT NULL DEFAULT 0,
+    averageQuantity INT NOT NULL DEFAULT 0,
+    numberOfUnits INT NOT NULL DEFAULT 0,
     reorderPoint DECIMAL(10,2) DEFAULT 0,
     CHECK (price >= 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
@@ -249,6 +251,7 @@ CREATE TABLE QuantityBridge (
     returnID INT NULL,
     purchaseID INT NULL,
     quantity INT NOT NULL DEFAULT 0 CHECK (quantity >= 0),
+    averageQuantity INT NOT NULL ,
     totalBalance DECIMAL(10,2) NULL DEFAULT 0,
     oldQuantity INT NULL DEFAULT 1 ,
     oldPrice DECIMAL(10,2) NULL ,

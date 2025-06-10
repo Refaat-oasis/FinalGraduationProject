@@ -20,6 +20,9 @@ public partial class QuantityBridge
     [Display(Name = "الكمية")]
     public int Quantity { get; set; }
 
+    [Display(Name ="الوحدات")]
+    public int NumberOfUnits { get; set; }
+
     [Display(Name = "القيمة")]
     public decimal? TotalBalance { get; set; }
 

@@ -32,9 +32,9 @@ namespace ThothSystemVersion1.Hubs
             var inks = _context.Inks.ToList();
             foreach (var ink in inks)
             {
-                if (ink.Quantity < ink.ReorderPoint)
+                if (ink.NumberOfUnits < ink.ReorderPoint)
                 {
-                    await Clients.All.SendAsync("ReceiveReorderMessageInk", $"تم الوصول للحد الادني من : {ink.Name} ,\n بكمية :{ink.Quantity}");
+                    await Clients.All.SendAsync("ReceiveReorderMessageInk", $"تم الوصول للحد الادني من : {ink.Name} ,\n بكمية :{ink.NumberOfUnits}");
                 }
             }
         }

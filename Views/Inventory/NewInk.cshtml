@@ -116,7 +116,7 @@
         </div>
 
         <div class="inputBox">
-            <label for="Quantity">كميه الحبر</label>
+            <label for="Quantity">عدد سحبات الحبر</label>
             <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
@@ -128,9 +128,15 @@
         </div>
 
         <div class="inputBox">
-            <label for="TotalBalance">القيمة المتاحه</label>
-            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
-            <p asp-validation-for="@Model.TotalBalance" class="error"></p>
+            <label for="AverageQuantity">متوسط السحبات</label>
+            <input type="number" step="any" asp-for="@Model.AverageQuantity" id="AverageQuantity" />
+            <p asp-validation-for="@Model.AverageQuantity" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="NumberOfUnits">عدد العبوات</label>
+            <input type="number" step="any" asp-for="@Model.NumberOfUnits" id="NumberOfUnits" />
+            <p asp-validation-for="@Model.NumberOfUnits" class="error"></p>
         </div>
 
         <div class="inputBox">

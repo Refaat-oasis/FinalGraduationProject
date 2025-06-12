@@ -34,6 +34,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (newInk != null)
                 {
                     newInk.Activated = true;
+                    newInk.TotalBalance = newInk.Price * newInk.NumberOfUnits;
                     _context.Add(newInk);
                     _context.SaveChanges();
                     return true;
@@ -61,6 +62,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (newPaper != null)
                 {
                     newPaper.Activated = true;
+                    newPaper.TotalBalance = newPaper.Price * newPaper.Quantity;
                     _context.Add(newPaper);
                     _context.SaveChanges();
                     return true;
@@ -88,6 +90,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (newSupply != null)
                 {
                     newSupply.Activated = true;
+                    newSupply.TotalBalance = newSupply.Price * newSupply.Quantity;
                     _context.Add(newSupply);
                     _context.SaveChanges();
                     return true;

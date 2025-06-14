@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ThothSystemVersion1.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,6 +23,9 @@ public partial class QuantityBridge
 
     [Display(Name ="الوحدات")]
     public int NumberOfUnits { get; set; }
+
+
+    public decimal? UnitPrice { get; set; }
 
     [Display(Name = "القيمة")]
     public decimal? TotalBalance { get; set; }
@@ -50,9 +54,20 @@ public partial class QuantityBridge
     [Display(Name = "رقم امر الجرد")]
     public int? PhysicalCountId { get; set; }
 
+    public int? PerpetualRequisiteId { get; set; }
+
+    public int? MachineStoreId { get; set; }
+
+    public int? SparePartsId { get; set; }
+
+
     public virtual Ink? Ink { get; set; }
 
+    public virtual MachineStore? MachineStore { get; set; }
+
     public virtual Paper? Paper { get; set; }
+
+    public virtual PerpetualRequisiteOrder? PerpetualRequisite { get; set; }
 
     public virtual PhysicalCountOrder? PhysicalCount { get; set; }
 
@@ -61,6 +76,8 @@ public partial class QuantityBridge
     public virtual RequisiteOrder? Requisite { get; set; }
 
     public virtual ReturnsOrder? Return { get; set; }
+
+    public virtual SparePart? SpareParts { get; set; }
 
     public virtual Supply? Supplies { get; set; }
 }

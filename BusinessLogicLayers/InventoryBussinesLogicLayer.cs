@@ -194,6 +194,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 foundInk.Colored = newInk.Colored;
                 foundInk.Activated = newInk.Activated;
                 foundInk.ReorderPoint = newInk.ReorderPoint;
+                foundInk.AverageQuantity = newInk.AverageQuantity;
                 _context.Inks.Update(foundInk);
                 _context.SaveChanges();
                 return true;

@@ -26,6 +26,7 @@ ALTER DATABASE ThothSystem
 ---------------------------------
 
 -- 1. Customer Table
+
 CREATE TABLE Customer (
     customerID INT IDENTITY(1,1) PRIMARY KEY,
     customerName NVARCHAR(255) NOT NULL DEFAULT '',
@@ -39,6 +40,7 @@ CREATE TABLE Customer (
 GO
 
 -- 2. Vendor Table
+
 CREATE TABLE Vendor (
     vendorID INT IDENTITY(1,1) PRIMARY KEY,
     vendorName NVARCHAR(255) NOT NULL DEFAULT '',
@@ -51,6 +53,7 @@ CREATE TABLE Vendor (
 GO
 
 -- 3. Employee Table
+
 CREATE TABLE Employee (
     employeeID NVARCHAR(30) NOT NULL PRIMARY KEY,
     employeeUserName NVARCHAR(255) NOT NULL UNIQUE DEFAULT '',
@@ -63,15 +66,17 @@ CREATE TABLE Employee (
 GO
 
 -- 4. Labour Table
+
 CREATE TABLE Labour (
     labourID INT IDENTITY(1,1) PRIMARY KEY,
     labourProcessName NVARCHAR(255) NOT NULL DEFAULT '',
-    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price > 0.0),
+    price DECIMAL(10,2) NOT NULL DEFAULT 1 CHECK (price >= 0.0),
 	Activated BIT DEFAULT 1
 );
 GO
 
 -- 5. JobOrder Table
+
 CREATE TABLE JobOrder (
     jobOrderID INT IDENTITY(1,1) PRIMARY KEY,
     remainingAmount DECIMAL(10,2) DEFAULT 0 CHECK (remainingAmount >= 0),
@@ -91,6 +96,7 @@ CREATE TABLE JobOrder (
 GO
 
 -- 6. Machine Table
+
 CREATE TABLE Machine (
     machineID INT IDENTITY(1,1) PRIMARY KEY,
     machineProcessName NVARCHAR(100) NOT NULL DEFAULT '',
@@ -100,23 +106,18 @@ CREATE TABLE Machine (
 GO
 
 -- 7. ProcessBridge Table
+
 CREATE TABLE ProcessBridge (
     ProcessBridgeID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT,
     machineID INT,
     labourID INT,
-
     machineHourPrice DECIMAL (10,2) DEFAULT 1,
     totalMachineValue DECIMAL(10,2) DEFAULT 0 NOT NULL CHECK (totalMachineValue >= 0),
-    oldMachinePrice DECIMAL (10,2)DEFAULT 1 ,
-
     labourHourPrice DECIMAL (10,2)DEFAULT 1,
-    oldlabourPrice DECIMAL (10,2)DEFAULT 1,
     totalLabourValue DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (totalLabourValue >= 0),
-
     numberOfHours DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (numberOfHours >= 0),
     employeeID NVARCHAR(30),
-
     FOREIGN KEY (jobOrderID) REFERENCES JobOrder(jobOrderID),
     FOREIGN KEY (machineID) REFERENCES Machine(machineID),
     FOREIGN KEY (labourID) REFERENCES Labour(labourID),
@@ -125,6 +126,7 @@ CREATE TABLE ProcessBridge (
 GO
 
 -- 8. MiscellaneousExpenses Table
+
 CREATE TABLE MiscellaneousExpenses (
     MiscellaneousExpensesID INT IDENTITY(1,1) PRIMARY KEY,
     jobOrderID INT,
@@ -149,6 +151,7 @@ CREATE TABLE MiscellaneousExpenses (
 GO
 
 -- 14. PurchaseOrder Table
+
 CREATE TABLE PurchaseOrder (
     purchaseID INT IDENTITY(1,1) PRIMARY KEY,
     purchaseDate DATE DEFAULT GETDATE(),
@@ -163,6 +166,7 @@ CREATE TABLE PurchaseOrder (
 GO
 
 -- 9. ReturnsOrder Table
+
 CREATE TABLE ReturnsOrder (
     returnID INT IDENTITY(1,1) PRIMARY KEY,
     returnDate DATE DEFAULT GETDATE(),
@@ -178,6 +182,7 @@ CREATE TABLE ReturnsOrder (
 GO
 
 -- 10. RequisiteOrder Table
+
 CREATE TABLE RequisiteOrder (
     requisiteID INT IDENTITY(1,1) PRIMARY KEY,
     requisiteDate DATE DEFAULT GETDATE(),
@@ -190,13 +195,14 @@ CREATE TABLE RequisiteOrder (
 GO
 
 -- 11. Paper Table
+
 CREATE TABLE Paper (
     paperID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
     size NVARCHAR(25) NULL DEFAULT '',
     weight DECIMAL(10,2) NULL DEFAULT 0,
-    totalBalance DECIMAL(10,2) DEFAULT 0,
     colored NVARCHAR(10) NOT NULL DEFAULT '',
+    totalBalance DECIMAL(10,2) DEFAULT 0,
     quantity INT NOT NULL DEFAULT 0,
     price DECIMAL(10,2) NOT NULL DEFAULT 0,
     reorderPoint DECIMAL(10,2) DEFAULT 0,
@@ -206,6 +212,7 @@ CREATE TABLE Paper (
 GO
 
 -- 12. Ink Table
+
 CREATE TABLE Ink (
     inkID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
@@ -215,6 +222,7 @@ CREATE TABLE Ink (
     quantity INT NOT NULL DEFAULT 0,
     averageQuantity INT NOT NULL DEFAULT 0,
     numberOfUnits INT NOT NULL DEFAULT 0,
+    unitPrice DECIMAL (10,2) NOT NULL DEFAULT 0,
     reorderPoint DECIMAL(10,2) DEFAULT 0,
     CHECK (price >= 0.0 AND quantity >= 0),
 	Activated BIT DEFAULT 1
@@ -222,6 +230,7 @@ CREATE TABLE Ink (
 GO
 
 -- 13. Supplies Table
+
 CREATE TABLE Supplies (
     suppliesID INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(30) NOT NULL DEFAULT '',
@@ -235,6 +244,7 @@ CREATE TABLE Supplies (
 GO
 
 -- 15. PhysicalCountOrder Table
+
 CREATE TABLE PhysicalCountOrder (
     physicalCountID INT IDENTITY(1,1) PRIMARY KEY,
     employeeID NVARCHAR(30),
@@ -244,24 +254,66 @@ CREATE TABLE PhysicalCountOrder (
 );
 GO
 
--- 16. QuantityBridge Table
+-- 16. MachineStore Table
+
+CREATE TABLE MachineStore(
+    machineStoreID INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(30) NOT NULL DEFAULT'',
+    Activated BIT DEFAULT 1
+);
+GO
+
+-- 17. SpareParts Table
+
+CREATE TABLE SpareParts(
+    sparePartsID INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(30) NOT NULL DEFAULT'',
+    totalBalance DECIMAL(10,2) DEFAULT 0,
+    quantity INT NOT NULL DEFAULT 0,
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    reorderPoint DECIMAL(10,2) DEFAULT 0,
+    CHECK (price >= 0.0 AND quantity >= 0),
+	Activated BIT DEFAULT 1
+)
+GO
+
+-- 18.PerpetualRequisite Table
+
+CREATE TABLE PerpetualRequisiteOrder (
+    perpetualRequisiteID INT IDENTITY(1,1) PRIMARY KEY,
+    perpetualRequisiteDate DATE DEFAULT GETDATE(),
+    employeeID NVARCHAR(30) NOT NULL,
+    requisiteNotes NVARCHAR(2500) NULL DEFAULT '',
+    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
+
+);
+GO
+
+-- 19. QuantityBridge Table
+
 CREATE TABLE QuantityBridge (
     QuantityBridgeID INT IDENTITY(1,1) PRIMARY KEY,
-    price DECIMAL(10,2) NULL ,
+    price DECIMAL(10,2) NULL DEFAULT 0 ,
     returnID INT NULL,
     purchaseID INT NULL,
-    quantity INT NOT NULL DEFAULT 0 CHECK (quantity >= 0),
-    numberOfUnits INT NOT NULL DEFAULT 0,
-    averageQuantity INT NOT NULL DEFAULT 0 ,
+    quantity INT NULL DEFAULT 0 CHECK (quantity >= 0),
+    numberOfUnits INT NULL DEFAULT 0,
+    unitPrice DECIMAL(10,2) NULL DEFAULT 0 ,
     totalBalance DECIMAL(10,2) NULL DEFAULT 0,
     oldQuantity INT NULL DEFAULT 1 ,
-    oldPrice DECIMAL(10,2) NULL ,
+    oldPrice DECIMAL(10,2) NULL DEFAULT 0,
     oldTotalBalance DECIMAL(10,2) NULL DEFAULT 0,
     requisiteID INT NULL,
     paperID INT NULL,
     inkID INT NULL,
     suppliesID INT NULL,
     physicalCountID INT NULL,
+    perpetualRequisiteID INT NULL,
+    machineStoreID INT NULL,
+    sparePartsID INT NULL,
+    FOREIGN KEY (sparePartsID) REFERENCES SpareParts(sparePartsID),
+    FOREIGN KEY (machineStoreID) REFERENCES MachineStore (machineStoreID),
+    FOREIGN KEY (perpetualRequisiteID) REFERENCES PerpetualRequisiteOrder(perpetualRequisiteID),
     FOREIGN KEY (returnID) REFERENCES ReturnsOrder(returnID),
     FOREIGN KEY (purchaseID) REFERENCES PurchaseOrder(purchaseID),
     FOREIGN KEY (requisiteID) REFERENCES RequisiteOrder(requisiteID),
@@ -272,7 +324,7 @@ CREATE TABLE QuantityBridge (
 );
 GO
 
--- 17. PaymentsOrder Table 
+-- 20. PaymentsOrder Table 
 
 CREATE TABLE PaymentOrder(
     paymentID INT IDENTITY(1,1) PRIMARY KEY,
@@ -288,7 +340,7 @@ CREATE TABLE PaymentOrder(
 GO
 
 
--- 18. RecieptsOrder Table 
+-- 21. RecieptsOrder Table 
 
 CREATE TABLE RecieptsOrder(
     recieptID INT IDENTITY(1,1) PRIMARY KEY,
@@ -304,16 +356,16 @@ CREATE TABLE RecieptsOrder(
 GO
 
 
--- 19. ColorWeightSize Table
+-- 22. ColorWeightSize Table
 
-CREATE TABLE ColorWeightSize (
-   
+CREATE TABLE ColorWeightSize (   
     colorWeightSizeID INT IDENTITY(1,1) PRIMARY KEY,
     type int NULL DEFAULT 0,
     size NVARCHAR(25) NULL DEFAULT '',
     weight DECIMAL(10,2) NULL DEFAULT 0,
     colored NVARCHAR(10)  NULL DEFAULT ''
 
-    
 );
+
 GO
+

@@ -119,6 +119,20 @@
         <input asp-for="TotalBalance" class="place" readonly disabled />
     </div>
 
+        <div class="inputBox">
+        <label asp-for="NumberOfUnits" class="textlabel"></label>
+        <input asp-for="NumberOfUnits" class="place" readonly disabled />
+    </div>
+
+        <div class="inputBox">
+        <label asp-for="AverageQuantity" class="textlabel"></label>
+        <input asp-for="AverageQuantity" class="place"   />
+                <span asp-validation-for="AverageQuantity" class="error"></span>
+    </div>
+
+
+
+
     <div class="inputBox">
         <label asp-for="ReorderPoint" class="textlabel"></label>
         <input asp-for="ReorderPoint" type="number" step="any" class="place" id="ReorderPoint" />

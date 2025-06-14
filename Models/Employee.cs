@@ -70,4 +70,7 @@ public partial class Employee
     public virtual ICollection<RequisiteOrder> RequisiteOrders { get; set; } = new List<RequisiteOrder>();
 
     public virtual ICollection<ReturnsOrder> ReturnsOrders { get; set; } = new List<ReturnsOrder>();
+
+    public virtual ICollection<PerpetualRequisiteOrder> PerpetualRequisiteOrders { get; set; } = new List<PerpetualRequisiteOrder>();
+
 }

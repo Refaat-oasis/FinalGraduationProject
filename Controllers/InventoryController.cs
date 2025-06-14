@@ -600,8 +600,7 @@ namespace ThothSystemVersion1.Controllers
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
                 if (jobRole == 0 || jobRole == 1)
                 {
-                    //try
-                    //{
+
                     List<ColorWeightSize> colorWeightSizes = _businessLogicL.getAllColorWeightSize();
                     ViewBag.ColorWeightSizeList = colorWeightSizes;
 
@@ -609,15 +608,7 @@ namespace ThothSystemVersion1.Controllers
 
 
                     return View("~/Views/Inventory/EditInk.cshtml", ink);
-                    //}
-                    //catch (ApplicationException ex)
-                    //{
-                    //    return StatusCode(500, ex.Message); // Internal server error
-                    //}
-                    //catch (ArgumentException ex)
-                    //{
-                    //    return NotFound(ex.Message);
-                    //}
+                   
                 }
                 else
                 {

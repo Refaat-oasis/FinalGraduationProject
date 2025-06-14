@@ -58,7 +58,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         proBrid[i].MachineHourPrice = machine.Price;
                         proBrid[i].TotalMachineValue = machine.Price * proBrid[i].NumberOfHours;
                         proBrid[i].JobOrderId = machlabdto.JobOrderId;
-                        proBrid[i].OldMachinePrice = machine.Price;
+                        //proBrid[i].OldMachinePrice = machine.Price;
                         proBrid[i].EmployeeId = machlabdto.EmployeeId;
 
                         _context.ProcessBridges.Add(proBrid[i]);
@@ -71,7 +71,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         proBrid[i].LabourHourPrice = labour.Price;
                         proBrid[i].TotalLabourValue = labour.Price * proBrid[i].NumberOfHours;
                         proBrid[i].JobOrderId = machlabdto.JobOrderId;
-                        proBrid[i].OldlabourPrice = labour.Price;
+                        //proBrid[i].OldlabourPrice = labour.Price;
                         proBrid[i].EmployeeId = machlabdto.EmployeeId;
 
                         _context.ProcessBridges.Add(proBrid[i]);

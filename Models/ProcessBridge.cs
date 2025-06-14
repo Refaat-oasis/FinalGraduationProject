@@ -23,14 +23,8 @@ public partial class ProcessBridge
     [Display(Name = "قيمة عدد ساعات المكينة")]
     public decimal TotalMachineValue { get; set; }
 
-    [Display(Name = "سعر الساعة للمكينة القديم")]
-    public decimal? OldMachinePrice { get; set; }
-
     [Display(Name = "سعر ساعة العملية العمالية")]
     public decimal? LabourHourPrice { get; set; }
-
-    [Display(Name = "سعر العملية العمالية القديم")]
-    public decimal? OldlabourPrice { get; set; }
 
     [Display(Name = "قيمة عدد الساعات العمالية")]
     public decimal TotalLabourValue { get; set; }

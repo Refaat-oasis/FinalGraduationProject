@@ -36,6 +36,9 @@ public partial class Ink
     [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal? ReorderPoint { get; set; }
 
+
+    public decimal UnitPrice { get; set; }
+
     [Display(Name = "التفعيل")]
     public bool Activated { get; set; }
 

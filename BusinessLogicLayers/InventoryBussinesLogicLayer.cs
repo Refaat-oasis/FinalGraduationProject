@@ -1783,5 +1783,40 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return new List<ColorWeightSize>();
             }
         }
+        public List<MachineStore> ViewAllMachineStore()
+        {
+            try
+            {
+                List<MachineStore> machineStoreList = _context.MachineStores.ToList();
+                return machineStoreList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        public List<SparePart> ViewAllSpareParts()
+        {
+            try
+            {
+                List<SparePart> sparePartsList = _context.SpareParts.ToList();
+                return sparePartsList;
+            }
+            catch (ArgumentException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+        }
     }
 }

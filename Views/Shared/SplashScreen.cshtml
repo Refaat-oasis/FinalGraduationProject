@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disney Movies</title>
+    <link rel="icon" type="image/jpeg" href="/image/brown-bokeh-textured-plain-product-background.jpg" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+        }
+
+        #splash-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Video -->
+    <div id="splash-screen">
+        <video autoplay muted playsinline id="splash-video">
+            <source src="./image/Splashnew.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('splash-video');
+            var splashScreen = document.querySelector('.splash-screen');
+            var fallbackImage = document.querySelector('.fallback-image');
+            var redirectTime = 4000; // 4 ثواني
+            var hasRedirected = false;
+
+            // 1. محاولة تشغيل الفيديو
+            function tryPlayVideo() {
+                var playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.error('Auto-play failed:', error);
+                        showFallback();
+                    });
+                }
+            }
+
+            // 2. التحقق من جاهزية الفيديو
+            video.addEventListener('canplay', function() {
+                tryPlayVideo();
+            });
+
+            // 3. عند حدوث خطأ
+            video.addEventListener('error', function() {
+                console.error('Video load error');
+                showFallback();
+            });
+
+            function showFallback() {
+                video.style.display = 'none';
+                if (fallbackImage) {
+                    fallbackImage.style.display = 'block';
+                }
+                // الانتقال مباشرة إذا لم توجد صورة بديلة
+                setTimeout(redirectToMain, 1000);
+            }
+
+            function redirectToMain() {
+                if (hasRedirected) return;
+                hasRedirected = true;
+
+                // الانتقال إلى صفحة تسجيل الدخول
+                window.location.href = "/SharedViews/Login";
+            }
+
+            // بدء العد التنازلي للتحويل
+            setTimeout(redirectToMain, redirectTime);
+
+            // إذا انتهى الفيديو مبكراً
+            video.addEventListener('ended', redirectToMain);
+
+            // محاولة تشغيل الفيديو فوراً
+            tryPlayVideo();
+
+
+        });
+    </script>
+</body>
+

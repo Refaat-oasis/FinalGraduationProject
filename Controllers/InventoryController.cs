@@ -1130,7 +1130,7 @@ namespace ThothSystemVersion1.Controllers
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء عرض المستلزمات";
-                return View("~/Views/Inventory/ViewAllSupply.cshtml", new List<Paper>());
+                return View("~/Views/Inventory/ViewAllSupply.cshtml", new List<Supply>());
 
             }
         }
@@ -1406,6 +1406,59 @@ namespace ThothSystemVersion1.Controllers
                 // Log your exception as needed...
                 WriteException.WriteExceptionToFile(ex);
                 return StatusCode(500, "An error occurred while generating the report.");
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> ViewAllMachineStore()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    List<MachineStore> machineStoreList = _businessLogicL.ViewAllMachineStore();
+                    return View(machineStoreList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض مخزون الالات";
+                return View("~/Views/Inventory/ViewAllMachineStore.cshtml", new List<MachineStore>());
+
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewAllSpareParts()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    List<SparePart> sparePartsList = _businessLogicL.ViewAllSpareParts();
+                    return View(sparePartsList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض مخزون قطع غيار الالات";
+                return View("~/Views/Inventory/ViewAllSpareParts.cshtml", new List<SparePart>());
+
             }
         }
     }

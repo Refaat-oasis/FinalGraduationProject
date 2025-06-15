@@ -323,7 +323,7 @@ namespace ThothSystemVersion1.Controllers
                     ViewBag.InkList = _businessLogicL.GetActiveInks();
                     ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
                     ViewBag.vendorList = _businessLogicL.ViewAllVendor();
-
+                    ViewBag.sparepartList = _businessLogicL.getActiveSpareParts();
                     return View();
                 }
                 else

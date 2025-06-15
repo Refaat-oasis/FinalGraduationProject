@@ -517,6 +517,16 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         public List<Supply> GetActiveSupplies() => _context.Supplies.Where(s => s.Activated).ToList();
 
+
+        public List<SparePart> getActiveSpareParts()
+        {
+
+            List<SparePart> sparepartslist = _context.SpareParts.Where(sp => sp.Activated == true).ToList();
+
+            return sparepartslist;
+        }
+
+
         public List<RequisiteOrder> getLast15RequisiteORder() => _context.RequisiteOrders
             .OrderByDescending(r => r.RequisiteDate)
             .Take(15)
@@ -916,15 +926,19 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     {
                         Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
 
-                        // Calculate new quantity and average price
-                        double totalQuantity = ink.Quantity + quantityBridgeList[i].Quantity;
-                        decimal totalValue = (decimal)ink.Quantity * ink.Price +
-                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        decimal averagePrice = totalValue / (decimal)totalQuantity;
 
-                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                        purchaseOrderRemainingBalance += newtotalBalance;
-                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+                        // quantity bridge calculations 
+                        quantityBridgeList[i].UnitPrice = quantityBridgeList[i].Price;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].UnitPrice * quantityBridgeList[i].NumberOfUnits;
+                        decimal totalValue = (decimal)quantityBridgeList[i].TotalBalance + (decimal)ink.TotalBalance;
+
+                        decimal averageUnitPrice = totalValue / (ink.NumberOfUnits + quantityBridgeList[i].NumberOfUnits);
+                        decimal averagequantityPrice = totalValue / (ink.Quantity + quantityBridgeList[i].Quantity);
+
+                        int totalQuantity = quantityBridgeList[i].Quantity + ink.Quantity;
+                        int totalNumberOfUnits = quantityBridgeList[i].NumberOfUnits + ink.NumberOfUnits;
+
+
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
@@ -932,8 +946,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         // Update paper properties
                         ink.Quantity = (int)totalQuantity;
-                        ink.Price = averagePrice;
-                        ink.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        ink.Price = averagequantityPrice;
+                        ink.UnitPrice = averageUnitPrice;
+                        ink.NumberOfUnits = totalNumberOfUnits;
+                        ink.TotalBalance = totalNumberOfUnits * averageUnitPrice;
 
                         _context.Inks.Update(ink);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -995,6 +1011,36 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         supply.Price = averagePrice;
                         supply.TotalBalance = (decimal)totalQuantity * averagePrice;
                         _context.Supplies.Update(supply);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].SparePartsId != null)
+                    {
+
+                        SparePart sparepart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == quantityBridgeList[i].SparePartsId);
+
+                        //calculate new quantity
+                        double totalQuantity = sparepart.Quantity + quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)sparepart.Quantity * sparepart.Price +
+                                             (decimal)quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        decimal averagePrice = totalValue / (decimal)totalQuantity;
+
+
+                        decimal newtotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                        purchaseOrderRemainingBalance += newtotalBalance;
+                        quantityBridgeList[i].TotalBalance = newtotalBalance;
+
+                        // update to the old data in the bridge
+                        quantityBridgeList[i].OldPrice = sparepart.Price;
+                        quantityBridgeList[i].OldQuantity = sparepart.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = sparepart.TotalBalance;
+
+                        // Update paper properties
+                        sparepart.Quantity = (int)totalQuantity;
+                        sparepart.Price = averagePrice;
+                        sparepart.TotalBalance = (decimal)totalQuantity * averagePrice;
+                        _context.SpareParts.Update(sparepart);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
                         _context.SaveChanges();
 

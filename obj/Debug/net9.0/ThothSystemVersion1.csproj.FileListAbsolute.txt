@@ -19295,7 +19295,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\e70hfup3nb-akolmkrhej.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\0z7m9iqla1-7xovqiwrxb.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\ddf741xfmz-i8349y1sw5.gz
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-nncxvjgyn9.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\1l5jzb9n0a-gijowyzy9x.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\qvqygqfj1t-lp3b3zbdpk.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\sdqy9s2ps2-apv7u4ns8d.gz
@@ -20732,3 +20731,5 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGr
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-t3lfneguen.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-wxtyajfxfo.gz

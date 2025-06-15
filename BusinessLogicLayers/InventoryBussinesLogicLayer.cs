@@ -926,18 +926,18 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     {
                         Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
 
-
-                        // quantity bridge calculations 
                         quantityBridgeList[i].UnitPrice = quantityBridgeList[i].Price;
+                        // quantity bridge calculations 
+
                         quantityBridgeList[i].TotalBalance = quantityBridgeList[i].UnitPrice * quantityBridgeList[i].NumberOfUnits;
                         decimal totalValue = (decimal)quantityBridgeList[i].TotalBalance + (decimal)ink.TotalBalance;
 
                         decimal averageUnitPrice = totalValue / (ink.NumberOfUnits + quantityBridgeList[i].NumberOfUnits);
-                        decimal averagequantityPrice = totalValue / (ink.Quantity + quantityBridgeList[i].Quantity);
+                        decimal averagequantityPrice = totalValue / (ink.Quantity + (quantityBridgeList[i].NumberOfUnits*ink.AverageQuantity));
 
-                        int totalQuantity = quantityBridgeList[i].Quantity + ink.Quantity;
                         int totalNumberOfUnits = quantityBridgeList[i].NumberOfUnits + ink.NumberOfUnits;
 
+                        int newInkQuantity = quantityBridgeList[i].NumberOfUnits * ink.AverageQuantity;
 
                         // update to the old data in the bridge
                         quantityBridgeList[i].OldPrice = ink.Price;
@@ -945,7 +945,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
                         // Update paper properties
-                        ink.Quantity = (int)totalQuantity;
+                        ink.Quantity +=newInkQuantity ;
                         ink.Price = averagequantityPrice;
                         ink.UnitPrice = averageUnitPrice;
                         ink.NumberOfUnits = totalNumberOfUnits;

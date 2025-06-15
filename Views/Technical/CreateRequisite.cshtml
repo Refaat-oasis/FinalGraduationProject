@@ -121,6 +121,23 @@
                 <h2 class="fw-bold mb-3">إضافة صنف</h2>
 
                 <div class="row g-3">
+    <div class="col-md-6">
+        <label class="textlabel">الصنف</label>
+        <select id="itemId" class="form-select" disabled>
+            <option value="">اختر الصنف</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label class="textlabel">نوع الصنف</label>
+        <select id="itemType" class="form-select">
+            <option value="">اختر النوع</option>
+            <option value="Paper">ورق</option>
+            <option value="Ink">حبر</option>
+            <option value="Supply">مستلزمات</option>
+        </select>
+    </div>
+
+               @*  <div class="row g-3">
                     <div class="col-md-6">
                         <label class="textlabel">نوع الصنف</label>
                         <select id="itemType" class="form-select">
@@ -136,7 +153,7 @@
                         <select id="itemId" class="form-select" disabled>
                             <option value="">اختر الصنف</option>
                         </select>
-                    </div>
+                    </div> *@
 
                     <div class="col-md-6">
                         <label class="textlabel">الكمية الحالية</label>
@@ -150,6 +167,18 @@
                             الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
                         </div>
                     </div>
+
+                        <div id="inkFields" style="display: none;">
+                            <div class="form-group">
+                                <label for="averageUsage" class="textlabel">متوسط السحبات</label>
+                                <input type="number" class="form-control" id="averageUsage" min="1" />
+                            </div>
+                            <div class="form-group">
+                                <label for="usageCount" class="textlabel">عدد السحبات</label>
+                                <input type="number" class="form-control" id="usageCount" min="1" />
+                            </div>
+                        </div>
+
                 </div>
 
                 <div class="text-end mt-3">
@@ -190,6 +219,254 @@
 </div>
 </div>
 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var items = [];
+            var editIndex = -1;
+
+            const dataSources = {
+                Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+            };
+
+            $('#itemType').change(function () {
+                var selectedType = $(this).val();
+                var $itemSelect = $('#itemId');
+
+                $itemSelect.empty().prop('disabled', !selectedType);
+                $('#currentQuantity').val('');
+                $('#itemQuantity').val('');
+                $('#quantityError').hide();
+
+                // إظهار خانات السحبات إذا كان حبر
+                if (selectedType === 'Ink') {
+                    $('#inkFields').show();
+                } else {
+                    $('#inkFields').hide();
+                    $('#averageUsage').val('');
+                    $('#usageCount').val('');
+                }
+
+                if (!selectedType) {
+                    $itemSelect.append('<option value="">-- اختر الصنف --</option>');
+                    return;
+                }
+
+                $itemSelect.append('<option value="">-- اختر الصنف --</option>');
+
+                if (dataSources[selectedType] && dataSources[selectedType].length > 0) {
+                    $.each(dataSources[selectedType], function(index, item) {
+                        var id = item.paperId || item.inkId || item.suppliesId;
+                        var name = item.name;
+                        var quantity = item.quantity || 0;
+
+                        $itemSelect.append($('<option>', {
+                            value: id,
+                            text: name,
+                            'data-quantity': quantity
+                        }));
+                    });
+                }
+            });
+
+            $('#itemId').change(function () {
+                var selectedOption = $(this).find('option:selected');
+                var currentQty = selectedOption.data('quantity') || 0;
+                $('#currentQuantity').val(currentQty);
+                $('#itemQuantity').attr('max', currentQty);
+            });
+
+            $('#itemQuantity').on('input', function() {
+                var requiredQty = parseInt($(this).val()) || 0;
+                var currentQty = parseInt($('#currentQuantity').val()) || 0;
+
+                if (requiredQty > currentQty) {
+                    $('#quantityError').show();
+                    $(this).addClass('is-invalid');
+                } else {
+                    $('#quantityError').hide();
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            $('#addItemBtn').click(function () {
+                var itemType = $('#itemType').val();
+                var itemId = $('#itemId').val();
+                var itemName = $('#itemId option:selected').text();
+                var quantity = parseInt($('#itemQuantity').val()) || 0;
+                var currentQuantity = parseInt($('#currentQuantity').val()) || 0;
+                var averageUsage = parseInt($('#averageUsage').val()) || 0;
+                var usageCount = parseInt($('#usageCount').val()) || 0;
+
+                if (!itemType || !itemId) {
+                    alert('يجب اختيار نوع الصنف والصنف أولاً');
+                    return;
+                }
+
+                if (quantity <= 0) {
+                    alert('يجب إدخال كمية صحيحة أكبر من الصفر');
+                    return;
+                }
+
+                if (quantity > currentQuantity) {
+                    alert('الكمية المطلوبة أكبر من الكمية المتاحة');
+                    return;
+                }
+
+                if (itemType === 'Ink' && (averageUsage <= 0 || usageCount <= 0)) {
+                    alert('يجب إدخال متوسط وعدد السحبات بشكل صحيح');
+                    return;
+                }
+
+                var newItem = {
+                    itemType: itemType,
+                    itemId: itemId,
+                    itemName: itemName,
+                    quantity: quantity,
+                    currentQuantity: currentQuantity,
+                    averageUsage: averageUsage,
+                    usageCount: usageCount
+                };
+
+                if (editIndex === -1) {
+                    items.push(newItem);
+                } else {
+                    items[editIndex] = newItem;
+                    editIndex = -1;
+                    $('#addItemBtn').text('إضافة');
+                }
+
+                renderItemsTable();
+                resetItemForm();
+            });
+
+            function renderItemsTable() {
+                var $tableBody = $('#itemsTableBody');
+                var $hiddenContainer = $('#hiddenItemsContainer');
+
+                $tableBody.empty();
+                $hiddenContainer.empty();
+
+                if (items.length === 0) {
+                    $tableBody.append('<tr><td colspan="7" class="text-center">لا توجد أصناف مضافة</td></tr>');
+                    return;
+                }
+
+                items.forEach((item, index) => {
+                    $tableBody.append(`
+                        <tr data-index="${index}">
+                            <td>${getArabicType(item.itemType)}</td>
+                            <td>${item.itemName}</td>
+                            <td>${item.currentQuantity}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.itemType === 'Ink' ? item.averageUsage : '-'}</td>
+                            <td>${item.itemType === 'Ink' ? item.usageCount : '-'}</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm editItem"><i class="bx bx-edit"></i> تعديل</button>
+                                <button type="button" class="btn btn-secondary btn-sm deleteItem"><i class="bx bx-trash"></i> حذف</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    addHiddenFields(item, index);
+                });
+            }
+
+            function resetItemForm() {
+                $('#itemType').val('').trigger('change');
+                $('#itemId').empty().append('<option value="">-- اختر الصنف --</option>').prop('disabled', true);
+                $('#currentQuantity').val('');
+                $('#itemQuantity').val('');
+                $('#averageUsage').val('');
+                $('#usageCount').val('');
+                $('#inkFields').hide();
+                $('#quantityError').hide();
+            }
+
+            $('#itemsTableBody').on('click', '.editItem', function () {
+                editIndex = $(this).closest('tr').data('index');
+                var item = items[editIndex];
+
+                $('#itemType').val(item.itemType).trigger('change');
+
+                setTimeout(() => {
+                    $('#itemId').val(item.itemId);
+                    $('#currentQuantity').val(item.currentQuantity);
+                    $('#itemQuantity').val(item.quantity);
+                    $('#averageUsage').val(item.averageUsage || '');
+                    $('#usageCount').val(item.usageCount || '');
+                    if (item.itemType === 'Ink') {
+                        $('#inkFields').show();
+                    }
+                    $('#addItemBtn').text('تحديث');
+                }, 100);
+            });
+
+            $('#itemsTableBody').on('click', '.deleteItem', function () {
+                if (confirm('هل أنت متأكد من حذف هذا الصنف؟')) {
+                    var index = $(this).closest('tr').data('index');
+                    items.splice(index, 1);
+                    renderItemsTable();
+
+                    if (editIndex === index) {
+                        resetItemForm();
+                        editIndex = -1;
+                        $('#addItemBtn').text('إضافة');
+                    } else if (editIndex > index) {
+                        editIndex--;
+                    }
+                }
+            });
+
+            function getArabicType(type) {
+                const types = {
+                    'Paper': 'ورق',
+                    'Ink': 'حبر',
+                    'Supply': 'مستلزمات'
+                };
+                return types[type] || type;
+            }
+
+            function addHiddenFields(item, index) {
+                var $hiddenContainer = $('#hiddenItemsContainer');
+                var prefix = `BridgeList[${index}]`;
+
+                var hiddenFields = `
+                    <input type="hidden" name="${prefix}.Type" value="${item.itemType}" />
+                    <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" />
+                `;
+
+                if (item.itemType === 'Paper') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.PaperId" value="${item.itemId}" />`;
+                }
+                else if (item.itemType === 'Ink') {
+                    hiddenFields += `
+                        <input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />
+                        <input type="hidden" name="${prefix}.AverageUsage" value="${item.averageUsage}" />
+                        <input type="hidden" name="${prefix}.UsageCount" value="${item.usageCount}" />
+                    `;
+                }
+                else if (item.itemType === 'Supply') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.SuppliesId" value="${item.itemId}" />`;
+                }
+
+                $hiddenContainer.append(hiddenFields);
+            }
+
+            $('#requisiteForm').submit(function(e) {
+                if (items.length === 0) {
+                    if (!confirm('لم تقم بإضافة أي أصناف. هل تريد المتابعة؟')) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+@* 
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -463,4 +740,4 @@
             }
         });
     </script>
-}
+} *@

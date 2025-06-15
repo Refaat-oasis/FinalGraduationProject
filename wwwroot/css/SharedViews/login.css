@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
 
 body {
-    background: url("/image/egyptian-wall-with-hieroglyphs - Copy.jpg");
+    background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -194,7 +194,7 @@ footer {
 
 input.btnLog {
     color: #fff;
-    background-color: #5D3A1A;
+    background-color: #E6C3A3;
     margin: 10px;
     font-size: small;
     font-weight: bolder;
@@ -207,13 +207,13 @@ input.btnLog {
 
 
     input.btnLog:hover {
-        background: rgb(66 32 6);
+        background: #444;
     }
 
 
 input.btnReset {
     color: #fff;
-    background-color: #5D3A1A;
+    background-color: #E6C3A3;
     margin: 10px;
     font-size: small;
     font-weight: bolder;
@@ -225,7 +225,7 @@ input.btnReset {
 }
 
     input.btnReset:hover {
-        background: rgb(66 32 6);
+        background: #444;
     }
 
 .registration-container {

@@ -122,11 +122,17 @@ h1 {
     height: 40px;
     padding: 5px 10px;
     background-color: #FDF5E6;
-    font-size: 15px;
+    font-size: 20px;
     text-align: right;
     direction: rtl;
     border: 2px solid;
     border-radius: 5px;
+}
+
+.form-control {
+    height: 40px;
+    padding: 4px 8px;
+    font-size: 16px;
 }
 
     .form-control:hover,
@@ -166,34 +172,48 @@ h1 {
     text-align: right;
 }
 
-.tableContainer {
+.tableContainer1 {
     display: flex;
     justify-content: center;
-    margin: 20px;
-    overflow: auto;
-}
-
-table {
-    width: 100%;
     margin: 20px auto;
-    border-collapse: separate;
-    overflow: hidden;
-    border-radius: 15px;
-    border: solid black 2px;
-    border-spacing: 0;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    direction: rtl; /* Added for table */
+    overflow: auto;
+    width: 90%;
 }
 
-td {
-    font-size: 18px;
-    text-align: center; /* Changed from center to right */
+table.mainTable {
+    width: 100%;
+    direction: rtl; /* للكتابة من اليمين */
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 20px;
 }
 
 th {
-    font-size: 22px;
+    font-size: 24px;
     background-color: #FDF5E6;
-    text-align: center; /* Added right alignment */
+}
+
+tr:nth-child(odd) {
+    background-color: #F8E1C4;
+}
+
+tr:nth-child(even) {
+    background-color: #FDF5E6;
+}
+
+.tableRow {
+    padding-left: 20px; /* تقريب الصف من اليسار */
+    direction: rtl; /* لأن الصفحة بالعربي */
+    text-align: right; /* المحاذاة لليمين */
 }
 
 .button-container {

@@ -92,13 +92,13 @@
         <label asp-for="Colored" class="textlabel"></label>
         <select asp-for="Colored" class="place">
             @{
-                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
-                {
-                    if (item.Type == 0)
-                    {
-                        // <option value="@item.Colored" @(item.Colored == Model.Colored ? "selected" : "")>@item.Colored</option>
-                    }
-                }
+        foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+        {
+            if (item.Type == 0)
+            {
+                <option value="@item.Colored">@item.Colored</option>
+            }
+        }
             }
         </select>
         <span asp-validation-for="Colored" class="error"></span>

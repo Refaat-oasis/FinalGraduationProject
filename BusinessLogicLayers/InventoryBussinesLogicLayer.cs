@@ -1211,8 +1211,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 WriteException.WriteExceptionToFile(ex);
                 return new ReturnOrderDTO();
             }
-        }
 
+        }
         public List<JobOrder> GetRecentJobOrdersWithCustomers()
         {
             try
@@ -1254,7 +1254,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
         public List<Employee> GetActiveEmployees() => _context.Employees.Where(e => e.Activated).ToList();
-
         public List<object> GetJobOrderItems(int jobOrderId)
         {
             try
@@ -1788,23 +1787,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 existing.Type = CWS.Type;
 
-                // تحديث الحقل المناسب بناءً على النوع
-                if (CWS.Type == 1) // حجم
+
+                if (CWS.Type == 0)
                 {
-                    existing.Size = CWS.Size;
+                    existing.Colored = CWS.Colored;
                     existing.Weight = 0;
-                    existing.Colored = null;
+                    existing.Size = null;
                 }
-                else if (CWS.Type == 2) // وزن
+                else if (CWS.Type == 1)
                 {
                     existing.Weight = CWS.Weight;
                     existing.Size = null;
                     existing.Colored = null;
                 }
-                else if (CWS.Type == 3) // لون
+                else if (CWS.Type == 2)
                 {
-                    existing.Colored = CWS.Colored;
-                    existing.Size = null;
+                    existing.Size = CWS.Size;
+                    existing.Colored = null;
                     existing.Weight = 0;
                 }
 
@@ -1846,22 +1845,22 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 };
 
 
-                if (CWS.Type == 1)
+                if (CWS.Type == 0)
                 {
-                    newCharacteristic.Size = CWS.Size;
+                    newCharacteristic.Colored = CWS.Colored;
                     newCharacteristic.Weight = 0;
-                    newCharacteristic.Colored = null;
+                    newCharacteristic.Size = null;
                 }
-                else if (CWS.Type == 2)
+                else if (CWS.Type == 1)
                 {
                     newCharacteristic.Weight = CWS.Weight;
                     newCharacteristic.Size = null;
                     newCharacteristic.Colored = null;
                 }
-                else if (CWS.Type == 3)
+                else if (CWS.Type == 2)
                 {
-                    newCharacteristic.Colored = CWS.Colored;
-                    newCharacteristic.Size = null;
+                    newCharacteristic.Size = CWS.Size;
+                    newCharacteristic.Colored = null;
                     newCharacteristic.Weight = 0;
                 }
 

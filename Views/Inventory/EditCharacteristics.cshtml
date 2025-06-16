@@ -2,225 +2,220 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 @model ColorWeightSize
+
 @{
-    ViewData["Title"] = "Thoth";
     Layout = null;
-}
-@{
-
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
-    Console.WriteLine("JobRole: " + jobRole);
 }
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-
-    <!-- Bootstrap CSS RTL -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/Inventory/EditCharacteristics.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Inventory/AddCharacteristic.css" rel="stylesheet" />
+    <title>ThoTh</title>
 </head>
 
-
-<body>
+<div class="container">
     <div class="arrow">
         @{
-            // admin
             if (jobRole == 0)
             {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-
-            } // inventory manager
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+            }
             else if (jobRole == 1)
             {
-                <a asp-controller="employee" asp-action="InventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
             }
             else if (jobRole == 2)
             {
-                <a asp-controller="employee" asp-action="InventoryClerk" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
             }
-
-
         }
     </div>
 
-    <div class="form-container">
+    <form asp-controller="Inventory" asp-action="EditCharacteristics" id="myform" method="post">
+        <input type="hidden" asp-for="ColorWeightSizeId" />
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
+        <h1>تعديل المواصفة</h1>
 
-
-
-        <h1>تعديل المواصفات</h1>
-
-        @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
-            <div class="notification success">
-                <div class="notification-content">
-                    <i class='bx bx-check-circle'></i> @TempData["Success"]
-
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="true" />
-                <div class="progress-bar success"></div>
+        <div class="notification success">
+            <div class="notification-content">
+                <i class='bx bx-check-circle'></i> @TempData["Success"]
             </div>
+            <input type="hidden" id="tempDataSuccess" value="true" />
+            <div class="progress-bar success"></div>
+        </div>
         }
 
         @if (TempData["Error"] != null)
         {
-            <div class="notification error">
-                <div class="notification-content">
-                    <i class='bx bx-error-circle'></i>
-                    <span>@TempData["Error"]</span>
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="false" />
-
-                <div class="progress-bar error"></div>
-
+        <div class="notification error">
+            <div class="notification-content">
+                <i class='bx bx-error-circle'></i> <span>@TempData["Error"]</span>
             </div>
+            <input type="hidden" id="tempDataSuccess" value="false" />
+            <div class="progress-bar error"></div>
+        </div>
         }
 
-        <form asp-action="EditCharacteristics" method="post">
-            <input type="hidden" asp-for="ColorWeightSizeId" />
+        <div class="inputBox">
+            <label>أختر نوع المواصفة</label>
+            <select asp-for="Type" id="Type">
+                <option value="" disabled selected>اختر النوع</option>
+                <option value="0">اللون</option>
+                <option value="1">الوزن</option>
+                <option value="2">القياس</option>
+            </select>
+            <span asp-validation-for="Type" class="error"></span>
+        </div>
 
-            <div class="input-control">
-                <label asp-for="Type" class="textlabel">نوع المواصفة</label>
-                <select asp-for="Type" class="form-select" id="typeSelect" onchange="showRelevantField()">
-                    <option value="">اختر النوع</option>
-                    @foreach (var item in ViewBag.TypeOptions)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="Type" class="text-danger"></span>
+        <div class="inputBox" id="sizeInput" style="display: none;">
+            <label>اللون</label>
+            <input asp-for="Colored" id="Colored" />
+            <span asp-validation-for="Colored" class="error"></span>
+        </div>
+
+        <div class="inputBox" id="weightInput" style="display: none;">
+            <label>الوزن</label>
+            <input asp-for="Weight" id="Weight" />
+            <span asp-validation-for="Weight" class="error"></span>
+        </div>
+
+        <div class="inputBox" id="colorInput" style="display: none;">
+            <label>القياس</label>
+            <input asp-for="Size" id="Size" />
+            <span asp-validation-for="Size" class="error"></span>
+        </div>
+
+        <div class="buttons">
+            <div class="Add">
+                <input type="submit" value="حفظ التعديلات" class="Add" />
             </div>
+        </div>
+    </form>
+</div>
 
-            <!-- حجم -->
-            <div class="input-control" id="sizeFieldGroup" style="display: none;">
-                <label asp-for="Size" class="textlabel">الحجم</label>
-                <input asp-for="Size" class="place" />
-                <span asp-validation-for="Size" class="text-danger"></span>
-            </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("myform");
+        const type = document.getElementById("Type");
+        const colorInput = document.getElementById("Colored");
+        const weightInput = document.getElementById("Weight");
+        const sizeInput = document.getElementById("Size");
 
-            <!-- وزن -->
-            <div class="input-control" id="weightFieldGroup" style="display: none;">
-                <label asp-for="Weight" class="textlabel">الوزن (كجم)</label>
-                <input asp-for="Weight" type="number" step="0.01" class="place" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
+        const divColor = document.getElementById("colorInput");
+        const divWeight = document.getElementById("weightInput");
+        const divSize = document.getElementById("sizeInput");
 
-            <!-- لون -->
-            @* <div class="mb-3" id="colorFieldGroup" style="display: none;"> *@
-            @*     <label asp-for="Colored" class="form-label">اللون</label> *@
-            @*     <input asp-for="Colored" class="form-control" /> *@
-            @*     <span asp-validation-for="Colored" class="text-danger"></span> *@
-            @* </div> *@
-
-            <!-- لون -->
-            <div class="input-control" id="colorFieldGroup" style="display: none;">
-                <label class="textlabel">اللون</label>
-                <input type="text" class="place" id="coloredInput"
-                       value="@(Model.Colored?.StartsWith("0x") == true ? "" : Model.Colored)" />
-                <input type="hidden" asp-for="Colored" id="actualColored" />
-                <span asp-validation-for="Colored" class="text-danger"></span>
-            </div>
-
-            <div class="button-container">
-                <button type="submit" class="btn1">حفظ التغييرات</button>
-                @* <a href="@Url.Action("Index")" class="btn btn-outline-secondary">العودة للقائمة</a> *@
-            </div>
-        </form>
-    </div>
-
-    <script>
-        // عرض الحقل المناسب عند تغيير النوع
-        function showRelevantField() {
-            // إخفاء جميع الحقول أولاً
-            document.getElementById('sizeFieldGroup').style.display = 'none';
-            document.getElementById('weightFieldGroup').style.display = 'none';
-            document.getElementById('colorFieldGroup').style.display = 'none';
-
-            // عرض الحقل المناسب حسب الاختيار
-            const typeSelect = document.getElementById('typeSelect');
-            switch(typeSelect.value) {
-                case '1': // حجم
-                    document.getElementById('sizeFieldGroup').style.display = 'block';
-                    break;
-                case '2': // وزن
-                    document.getElementById('weightFieldGroup').style.display = 'block';
-                    break;
-                case '3': // لون
-                    document.getElementById('colorFieldGroup').style.display = 'block';
-                    break;
-            }
+        function toggleFields() {
+            const selected = parseInt(type.value);
+            divSize.style.display = selected === 0 ? "block" : "none";
+            divWeight.style.display = selected === 1 ? "block" : "none";
+            divColor.style.display = selected === 2 ? "block" : "none";
         }
 
-        // تهيئة النموذج عند التحميل
-        document.addEventListener('DOMContentLoaded', function() {
-            // تعيين قيمة النوع إذا كانت موجودة
-            const typeSelect = document.getElementById('typeSelect');
-            if (@Model.Type > 0) {
-                typeSelect.value = '@Model.Type';
-                showRelevantField();
+        type.addEventListener("change", toggleFields);
+        toggleFields(); // أول تحميل
 
-                // تعيين القيمة الحالية للحقل المناسب
-                switch(@Model.Type) {
-                    case 1:
-                        document.getElementById('Size').value = '@Model.Size';
-                        break;
-                    case 2:
-                        document.getElementById('Weight').value = '@Model.Weight';
-                        break;
-                    case 3:
-                        document.getElementById('Colored').value = '@Model.Colored';
-                        break;
-                }
+        const setError = (input, msg) => {
+            const parent = input.closest(".inputBox");
+            const errorSpan = parent ? parent.querySelector(".error") : null;
+            if (errorSpan) {
+                errorSpan.innerText = msg;
+                errorSpan.style.color = "red";
             }
-        });
-                document.addEventListener('DOMContentLoaded', function() {
-            // معالجة اللون عند التحميل
-            const coloredValue = '@Html.Raw(Model.Colored)';
-            if (coloredValue.startsWith("0x")) {
-                // تحويل الهكس إلى سترينج
-                const hex = coloredValue.substring(2);
-                let str = '';
-                for (let i = 0; i < hex.length; i += 2) {
-                    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-                }
-                document.getElementById('coloredInput').value = str;
+            input.classList.add("error");
+            input.classList.remove("success");
+        };
+
+        const setSuccess = (input) => {
+            const parent = input.closest(".inputBox");
+            const errorSpan = parent ? parent.querySelector(".error") : null;
+            if (errorSpan) {
+                errorSpan.innerText = "";
+            }
+            input.classList.remove("error");
+            input.classList.add("success");
+        };
+
+        function validate() {
+            let valid = true;
+            const selectedType = parseInt(type.value);
+
+            if (isNaN(selectedType)) {
+                setError(type, "برجاء اختيار نوع المواصفة");
+                valid = false;
             } else {
-                document.getElementById('coloredInput').value = coloredValue;
+                setSuccess(type);
             }
 
-            // تحديث القيمة المخفية عند التعديل
-            document.getElementById('coloredInput').addEventListener('input', function() {
-                document.getElementById('actualColored').value = this.value;
-            });
-        });
-    </script>
+            if (selectedType === 0) { // قياس
+                if (!colorInput.value.trim()) {
+                    setError(colorInput, "برجاء إدخال القياس");
+                    valid = false;
+                } else {
+                    setSuccess(colorInput);
+                }
+            } else if (selectedType === 1) { // وزن
+                if (!weightInput.value.trim() || isNaN(weightInput.value)) {
+                    setError(weightInput, "برجاء إدخال وزن رقمي");
+                    valid = false;
+                } else {
+                    setSuccess(weightInput);
+                }
+            } else if (selectedType === 2) { // لون
+                if (!sizeInput.value.trim()) {
+                    setError(sizeInput, "برجاء إدخال اللون");
+                    valid = false;
+                } else {
+                    setSuccess(sizeInput);
+                }
+            }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+            return valid;
+        }
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (validate()) {
+                form.submit();
+            }
+        });
+
+        const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
+
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
+
+        if (hasSuccessMessage) {
+            setTimeout(() => {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
+    });
+</script>

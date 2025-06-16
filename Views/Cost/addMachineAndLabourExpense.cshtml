@@ -45,16 +45,18 @@
 @* Success and Error Messages *@
 @if (TempData["Success"] != null)
 {
-    <div class="alert alert-success">
-        <i class="fas fa-check-circle"></i> @TempData["Success"]
+    <div class="notification success">
+        <div class="notification-content"><i class='bx bx-check-circle'></i> @TempData["Success"]</div>
         <input type="hidden" id="tempDataSuccess" value="true" />
+        <div class="progress-bar success"></div>
     </div>
 }
 @if (TempData["Error"] != null)
 {
-    <div class="alert alert-danger">
-        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+    <div class="notification error">
+        <div class="notification-content"><i class='bx bx-error-circle'></i> @TempData["Error"]</div>
         <input type="hidden" id="tempDataSuccess" value="false" />
+        <div class="progress-bar error"></div>
     </div>
 }
 <input type="hidden" id="hdnJobRole" value="@jobRole" />
@@ -176,10 +178,10 @@
     <table>
         <thead>
             <tr>
-                <th scope="col">العنصر</th>
-                <th scope="col">الكمية</th>
-                <th scope="col">السعر</th>
                 <th scope="col">القيمة</th>
+                <th scope="col">السعر</th>
+                <th scope="col">الكمية</th>
+                <th scope="col">العنصر</th>
             </tr>
         </thead>
         <tbody>
@@ -263,9 +265,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>عنصر المقايسة</th>
-                    <th>عدد الساعات</th>
                     <th>الاجرائات</th>
+                    <th>عدد الساعات</th>
+                    <th>عنصر المقايسة</th>
                 </tr>
             </thead>
             <tbody id="itemsTableBody">
@@ -371,7 +373,7 @@
             $('#itemType').change(function () {
                 const type = $(this).val();
                 const $itemSelect = $('#itemId');
-                $itemSelect.empty().prop('disabled', !type).append('<option value="">-- Select --</option>');
+                $itemSelect.empty().prop('disabled', !type).append('<option value="">-- اختر العنصر --</option>');
 
                 if (type && dataSources[type]) {
                     dataSources[type].forEach(item => {
@@ -472,18 +474,20 @@
                     // Create table row
                     $tbody.append(`
                         <tr data-index="${index}">
-                            <td>${item.itemName}</td>
-                            <td>${item.numberOfHours}</td>
-                            <td>
+                        <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning btn-sm editItem">
-                                        <i class="fas fa-edit"></i> Edit
+                                        <i class="fas fa-edit"></i> تعديل
                                     </button>
                                     <button type="button" class="btn btn-danger btn-sm deleteItem">
-                                        <i class="fas fa-trash"></i> Delete
+                                        <i class="fas fa-trash"></i> حذف
                                     </button>
                                 </div>
                             </td>
+                           
+                            <td>${item.numberOfHours}</td>
+                             <td>${item.itemName}</td>
+                            
                         </tr>
                     `);
 

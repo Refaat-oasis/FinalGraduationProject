@@ -909,9 +909,9 @@ namespace ThothSystemVersion1.Controllers
                 {
                     ViewBag.TypeOptions = new List<SelectListItem>
       {
-          new SelectListItem { Value = "1", Text = "القياس" },
-          new SelectListItem { Value = "2", Text = "الوزن" },
-          new SelectListItem { Value = "3", Text = "اللون" }
+          new SelectListItem { Value = "0", Text = "اللون" },
+          new SelectListItem { Value = "1", Text = "الوزن" },
+          new SelectListItem { Value = "2", Text = "القياس" }
       };
 
                     return View(new ColorWeightSize());
@@ -946,9 +946,9 @@ namespace ThothSystemVersion1.Controllers
                     ModelState.AddModelError("", "البيانات غير صالحة");
                     ViewBag.TypeOptions = new List<SelectListItem>
       {
-          new SelectListItem { Value = "1", Text = "القياس" },
-          new SelectListItem { Value = "2", Text = "الوزن" },
-          new SelectListItem { Value = "3", Text = "اللون" }
+          new SelectListItem { Value = "0", Text = "اللون" },
+          new SelectListItem { Value = "1", Text = "الوزن" },
+          new SelectListItem { Value = "2", Text = "القياس" }
       };
 
                     return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
@@ -958,9 +958,9 @@ namespace ThothSystemVersion1.Controllers
                 {
                     ViewBag.TypeOptions = new List<SelectListItem>
       {
-          new SelectListItem { Value = "1", Text = "القياس" },
-          new SelectListItem { Value = "2", Text = "الوزن" },
-          new SelectListItem { Value = "3", Text = "اللون" }
+          new SelectListItem { Value = "0", Text = "اللون" },
+          new SelectListItem { Value = "1", Text = "الوزن" },
+          new SelectListItem { Value = "2", Text = "القياس" }
       };
 
                     return View("~/Views/Inventory/AddCharacteristic.cshtml", newChar);
@@ -993,6 +993,7 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1233,6 +1234,7 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult EditCharacteristics(int ColorWeightSizeId)
         {
@@ -1243,11 +1245,15 @@ namespace ThothSystemVersion1.Controllers
                 {
 
                     ColorWeightSize CWS = _businessLogicL.GetCharacteristicByID(ColorWeightSizeId);
+                    if (CWS == null)
+                    {
+                        return NotFound();
+                    }
                     ViewBag.TypeOptions = new List<SelectListItem>
             {
-                new SelectListItem { Value = "1", Text = "حجم" },
-                new SelectListItem { Value = "2", Text = "وزن" },
-                new SelectListItem { Value = "3", Text = "لون" }
+                new SelectListItem { Value = "0", Text = "اللون" },
+                new SelectListItem { Value = "1", Text = "الوزن" },
+                new SelectListItem { Value = "2", Text = "القياس" }
             };
                     return View("~/Views/Inventory/EditCharacteristics.cshtml", CWS);
                     //    }
@@ -1289,9 +1295,9 @@ namespace ThothSystemVersion1.Controllers
                 {
                     ViewBag.TypeOptions = new List<SelectListItem>
             {
-                new SelectListItem { Value = "1", Text = "حجم" },
-                new SelectListItem { Value = "2", Text = "وزن" },
-                new SelectListItem { Value = "3", Text = "لون" }
+                new SelectListItem { Value = "0", Text = "اللون" },
+                new SelectListItem { Value = "1", Text = "الوزن" },
+                new SelectListItem { Value = "2", Text = "القياس" }
             };
                     return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
                 }
@@ -1308,6 +1314,7 @@ namespace ThothSystemVersion1.Controllers
                 return View("~/Views/Inventory/EditCharacteristics.cshtml", updatedChar);
             }
         }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///

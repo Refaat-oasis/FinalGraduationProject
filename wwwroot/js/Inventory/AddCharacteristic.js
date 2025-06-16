@@ -11,9 +11,9 @@
 
     function toggleFields() {
         const selected = parseInt(type.value);
-        divSize.style.display = selected === 1 ? "block" : "none";
-        divWeight.style.display = selected === 2 ? "block" : "none";
-        divColor.style.display = selected === 3 ? "block" : "none";
+        divSize.style.display = selected === 0 ? "block" : "none";
+        divWeight.style.display = selected === 1 ? "block" : "none";
+        divColor.style.display = selected === 2 ? "block" : "none";
     }
 
     type.addEventListener("change", toggleFields);
@@ -51,26 +51,26 @@
             setSuccess(type);
         }
 
-        if (selectedType === 1) { // القياس
-            if (!sizeInput.value.trim()) {
-                setError(sizeInput, "برجاء إدخال القياس");
+        if (selectedType === 0) {
+            if (!colorInput.value.trim()) {
+                setError(colorInput, "برجاء إدخال اللون");
                 valid = false;
             } else {
-                setSuccess(sizeInput);
+                setSuccess(colorInput);
             }
-        } else if (selectedType === 2) { // الوزن
+        } else if (selectedType === 1) {
             if (!weightInput.value.trim() || isNaN(weightInput.value)) {
                 setError(weightInput, "برجاء إدخال وزن رقمي");
                 valid = false;
             } else {
                 setSuccess(weightInput);
             }
-        } else if (selectedType === 3) { // اللون
-            if (!colorInput.value.trim()) {
-                setError(colorInput, "برجاء إدخال اللون");
+        } else if (selectedType === 2) {
+            if (!sizeInput.value.trim()) {
+                setError(sizeInput, "برجاء إدخال القياس");
                 valid = false;
             } else {
-                setSuccess(colorInput);
+                setSuccess(sizeInput);
             }
         }
 

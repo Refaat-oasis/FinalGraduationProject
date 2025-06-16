@@ -85,7 +85,10 @@
                 </div>
             </div>
 
-            <div class="title"><h5>إضافة عنصر</h5></div>
+            <div class="title">
+                <h3>إضافة عنصر</h3>
+            </div>
+
             <div class="rowCont">
                 <div class="colCont" id="priceFieldDiv">
                     <label class="form-label">السعر</label>
@@ -95,16 +98,19 @@
                     <label class="form-label">الكمية</label>
                     <input type="number" id="itemQuantity" class="form-control" min="0" />
                 </div>
+
                 <div class="colCont" id="unitsFieldDiv" style="display:none;">
                     <label class="form-label">عدد الوحدات</label>
                     <input type="number" id="NumberOfUnits" class="form-control" min="0" />
                 </div>
+
                 <div class="colCont">
                     <label class="form-label">العنصر</label>
                     <select id="itemId" class="form-select" disabled>
                         <option value="">-- اختر العنصر --</option>
                     </select>
                 </div>
+
                 <div class="colCont">
                     <label class="form-label">نوع العنصر</label>
                     <select id="itemType" class="form-select">
@@ -115,17 +121,26 @@
                         <option value="sparePart">قطع غيار</option>
                     </select>
                 </div>
+
                 <div class="colCont">
                     <button type="button" id="addItem" class="btn1">أضف العنصر</button>
                 </div>
+
             </div>
 
-            <div class="tableContainer">
-                <table class="table">
+            <div class="tableContainer1">
+                <table class="mainTable">
                     <thead>
-                        <tr><th>العنصر</th><th>الكمية</th><th>عدد الوحدات</th><th>السعر</th><th>الإجراءات</th></tr>
+                        <tr>
+                            <th>العنصر</th>
+                            <th>الكمية</th>
+                            <th>السعر</th>
+                            <th>عدد الوحدات</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
                     </thead>
-                    <tbody id="itemsTableBody"></tbody>
+                    <tbody id="itemsTableBody" class="tableRow"></tbody>
                 </table>
             </div>
 
@@ -140,9 +155,9 @@
             var items = [], editIndex = -1;
             const dataSources = {
                 Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
-                Ink:   @Html.Raw(Json.Serialize(ViewBag.InkList)),
-                Supply:@Html.Raw(Json.Serialize(ViewBag.SupplyList)),
-                sparePart:@Html.Raw(Json.Serialize(ViewBag.sparepartList))
+                Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList)),
+                sparePart: @Html.Raw(Json.Serialize(ViewBag.sparepartList))
             };
 
             $('#itemType').change(function() {
@@ -158,64 +173,104 @@
 
                 var $sel = $('#itemId').empty().prop('disabled', !type).append('<option value="">-- اختر --</option>');
                 if (!type) return;
-                dataSources[type].forEach(i => {
-                    const id = i.paperId||i.inkId||i.suppliesId||i.sparePartsId;
-                    $sel.append(`<option value="${id}">${i.name}</option>`);
+                dataSources[type].forEach(function(i) {
+                    const id = i.paperId || i.inkId || i.suppliesId || i.sparePartsId;
+                    const name = i.name || i.paperName || i.inkName || i.suppliesName || i.sparePartsName;
+                    $sel.append($('<option>', { value: id, text: name }));
                 });
             });
 
             function renderItems() {
-                $('#itemsTableBody,#hiddenItemsContainer').empty();
-                items.forEach(function(it,idx) {
-                    $('#itemsTableBody').append(`
-                    <tr data-index="${idx}">
-                      <td>${it.itemName}</td>
-                      <td>${it.quantity}</td>
-                      <td>${it.numberOfUnits}</td>
-                      <td>${it.price.toFixed(2)}</td>
-                      <td>
-                        <button type="button" class="btn editItem"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn deleteItem"><i class="fa fa-trash"></i></button>
-                      </td>
-                    </tr>`);
+                $('#itemsTableBody, #hiddenItemsContainer').empty();
+                items.forEach(function(it, idx) {
+                    $('#itemsTableBody').append(
+                        '<tr data-index="' + idx + '">' +
+                        '<td>' + it.itemName + '</td>' +
+                        '<td>' + it.quantity + '</td>' +
+                        '<td>' + it.price.toFixed(2) + '</td>' +
+                        '<td>' + (it.numberOfUnits || '') + '</td>' +
+                        '<td>' +
+                        '<button type="button" class="btn editItem">تعديل</button>' +
+                        '<button type="button" class="btn deleteItem">حذف</button>' +
+                        '</td>' +
+                        '</tr>'
+                    );
 
                     var hidden = [];
-                    if (it.itemType==='Ink')      hidden.push(`<input type="hidden" name="BridgeList[${idx}].InkId" value="${it.itemId}" />`);
-                    if (it.itemType==='Paper')    hidden.push(`<input type="hidden" name="BridgeList[${idx}].PaperId" value="${it.itemId}" />`);
-                    if (it.itemType==='Supply')   hidden.push(`<input type="hidden" name="BridgeList[${idx}].SuppliesId" value="${it.itemId}" />`);
-                    if (it.itemType==='sparePart')hidden.push(`<input type="hidden" name="BridgeList[${idx}].SparePartsId" value="${it.itemId}" />`);
+                    if (it.itemType === 'Ink') hidden.push('<input type="hidden" name="BridgeList[' + idx + '].InkId" value="' + it.itemId + '" />');
+                    if (it.itemType === 'Paper') hidden.push('<input type="hidden" name="BridgeList[' + idx + '].PaperId" value="' + it.itemId + '" />');
+                    if (it.itemType === 'Supply') hidden.push('<input type="hidden" name="BridgeList[' + idx + '].SuppliesId" value="' + it.itemId + '" />');
+                    if (it.itemType === 'sparePart') hidden.push('<input type="hidden" name="BridgeList[' + idx + '].SparePartsId" value="' + it.itemId + '" />');
+
                     hidden.push(
-                      `<input type="hidden" name="BridgeList[${idx}].Quantity" value="${it.quantity}" />`,
-                      `<input type="hidden" name="BridgeList[${idx}].NumberOfUnits" value="${it.numberOfUnits}" />`,
-                      `<input type="hidden" name="BridgeList[${idx}].Price" value="${it.price}" />`
+                        '<input type="hidden" name="BridgeList[' + idx + '].Quantity" value="' + it.quantity + '" />',
+                        '<input type="hidden" name="BridgeList[' + idx + '].NumberOfUnits" value="' + (it.numberOfUnits || '') + '" />',
+                        '<input type="hidden" name="BridgeList[' + idx + '].Price" value="' + it.price + '" />'
                     );
+
                     $('#hiddenItemsContainer').append(hidden.join(''));
                 });
             }
 
             $('#addItem').click(function() {
-                var type=$('#itemType').val(), id=$('#itemId').val(), name=$('#itemId option:selected').text(),
-                    qty=parseInt($('#itemQuantity').val(),10), units=parseInt($('#NumberOfUnits').val(),10)||0,
-                    price=parseFloat($('#itemPrice').val());
+                var type = $('#itemType').val(),
+                    id = $('#itemId').val(),
+                    name = $('#itemId option:selected').text(),
+                    qty = parseInt($('#itemQuantity').val()) || 0,
+                    units = parseInt($('#NumberOfUnits').val()) || 0,
+                    price = parseFloat($('#itemPrice').val()) || 0;
 
-                if(!type||!id||(type!=='Ink'&&(isNaN(qty)||qty<0))||isNaN(price)||price<0) {
+                if (!type || !id || (type !== 'Ink' && (isNaN(qty) || qty <= 0)) || isNaN(price) || price <= 0) {
                     return alert('يرجى تعبئة جميع الحقول بشكل صحيح');
                 }
-                var obj={itemType:type,itemId:id,itemName:name,quantity:qty,numberOfUnits:units,price:price};
-                if(editIndex<0) items.push(obj); else { items[editIndex]=obj; editIndex=-1;$('#addItem').text('أضف العنصر'); }
-                $('#itemType,#itemQuantity,#NumberOfUnits,#itemPrice').val('');
-                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled',true);
+
+                var obj = {
+                    itemType: type,
+                    itemId: id,
+                    itemName: name,
+                    quantity: type === 'Ink' ? 0 : qty,
+                    numberOfUnits: type === 'Ink' ? units : 0,
+                    price: price
+                };
+
+                if (editIndex < 0) {
+                    items.push(obj);
+                } else {
+                    items[editIndex] = obj;
+                    editIndex = -1;
+                    $('#addItem').text('أضف العنصر');
+                }
+
+                $('#itemType').val('');
+                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
+                $('#itemQuantity, #NumberOfUnits, #itemPrice').val('');
                 renderItems();
             });
 
-            $('#itemsTableBody').on('click','.editItem',function(){
-                editIndex=$(this).closest('tr').data('index'); var it=items[editIndex];
-                $('#itemType').val(it.itemType).trigger('change'); setTimeout(()=>$('#itemId').val(it.itemId),0);
-                $('#itemQuantity').val(it.quantity); $('#NumberOfUnits').val(it.numberOfUnits); $('#itemPrice').val(it.price);
+            $('#itemsTableBody').on('click', '.editItem', function() {
+                editIndex = $(this).closest('tr').data('index');
+                var it = items[editIndex];
+                $('#itemType').val(it.itemType).trigger('change');
+                setTimeout(function() {
+                    $('#itemId').val(it.itemId);
+                }, 0);
+                $('#itemQuantity').val(it.quantity);
+                $('#NumberOfUnits').val(it.numberOfUnits);
+                $('#itemPrice').val(it.price);
                 $('#addItem').text('تحديث العنصر');
             });
-            $('#itemsTableBody').on('click','.deleteItem',function(){ items.splice($(this).closest('tr').data('index'),1); renderItems(); });
-            $('form').submit(function(e){ if(!items.length){ alert('يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.'); e.preventDefault(); }});
+
+            $('#itemsTableBody').on('click', '.deleteItem', function() {
+                items.splice($(this).closest('tr').data('index'), 1);
+                renderItems();
+            });
+
+            $('form').submit(function(e) {
+                if (!items.length) {
+                    alert('يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.');
+                    e.preventDefault();
+                }
+            });
         });
     </script>
 </body>

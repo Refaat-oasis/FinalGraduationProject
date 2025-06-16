@@ -10065,7 +10065,6 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\lumojjvrku-oye4kzb6le.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\brhlif5rdi-oye4kzb6le.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\8v0nayaic8-zch5cio7fm.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-bm7q0cmya9.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\e70hfup3nb-akolmkrhej.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\1l5jzb9n0a-gijowyzy9x.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\qvqygqfj1t-lp3b3zbdpk.gz
@@ -10154,12 +10153,6 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.ThothSystemVersion1.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.ThothSystemVersion1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.build.ThothSystemVersion1.props
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.ThothSystemVersion1.props
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.ThothSystemVersion1.props
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.pack.json
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
@@ -15742,10 +15735,7 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\System.Security.Cryptography.Xml.dll
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\System.Text.Encoding.CodePages.dll
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\4q3jwkanni-ez0o1tbrdb.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\7vdkt1swif-flcu57otu3.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\gj6jwyaagd-ejcq77dx5x.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\holn2ycktz-xtdfdb5x2c.gz
@@ -15769,9 +15759,7 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\5pg52vl7u3-wye12jtatc.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\1b7590srk4-rlpowmqkdh.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\ammhkwhug5-rlpowmqkdh.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-nncxvjgyn9.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\sdqy9s2ps2-apv7u4ns8d.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-cnhawuavuy.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\yx3wwi9og7-tj30r0gmw1.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\w8za6qj1c0-9jan9bblr7.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\lwmp6zqse4-wedg8odsqs.gz
@@ -15783,8 +15771,6 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\xpo4untnwv-zsmtmekk52.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\cojxfrsju5-9ubra5kno8.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\ofkl3npbhb-n87rezonxd.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-lo7l3evlk7.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-lvsqck0e8y.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\msov3vdtfd-4bv3hffdcb.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\q86prgy7jv-fmflrbi499.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\3pua62sh4k-jxta9dxvug.gz
@@ -17236,7 +17222,6 @@ C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\0z7m9iqla1-7xovqiwrxb.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\ddf741xfmz-i8349y1sw5.gz
 C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\fyhgnovqg6-4w9vw8ytbo.gz
-C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-0ap1jwxrfx.gz
 C:\Users\Mira\Desktop\GP6\FinalGraduationProject\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Mira\Desktop\GP6\FinalGraduationProject\bin\Debug\net9.0\appsettings.json
 C:\Users\Mira\Desktop\GP6\FinalGraduationProject\bin\Debug\net9.0\libman.json
@@ -20733,3 +20718,26 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGr
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final2\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-t3lfneguen.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-wxtyajfxfo.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\4q3jwkanni-cn90i8e214.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-t3lfneguen.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\t6623i07px-g0bm6h1yyx.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\er0elg6w4w-ceh62gejhf.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-880p2lum4x.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-wxtyajfxfo.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-h4bqpzoi7b.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\dj3xgco56r-gczzybyzeh.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\a6vpowe2k3-8j8ejzcgtw.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\n4sj2esx5n-qcih7ojr8i.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\compressed\pwqar0qgch-8074grbxw4.gz
+C:\Users\sandra\OneDrive\Desktop\Last Dance FB\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.build.json.cache

@@ -1147,6 +1147,7 @@ namespace ThothSystemVersion1.Controllers
                     ViewBag.PaperList = _businessLogicL.GetActivePapers();
                     ViewBag.InkList = _businessLogicL.GetActiveInks();
                     ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                    ViewBag.SparePartsList = _businessLogicL.getActiveSpareParts();
                     return View();
                 }
                 else
@@ -1173,7 +1174,20 @@ namespace ThothSystemVersion1.Controllers
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                return null;
+                return Json(new { currentQuantity = 0 });
+            }
+        }
+        public JsonResult GetCurrentNumberOfUnits(string itemType, int itemId)
+        {
+            try
+            {
+                int numberOfUnits = _businessLogicL.GetCurrentNumberOfUnits(itemType, itemId);
+                return Json(new { currentNumberOfUnits = numberOfUnits });
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return Json(new { currentNumberOfUnits = 0 });
             }
         }
 
@@ -1184,6 +1198,23 @@ namespace ThothSystemVersion1.Controllers
             {
                 string employeeId = HttpContext.Session.GetString("EmployeeID");
                 phcountDto.employeeId = employeeId;
+
+                int currentQuantity = _businessLogicL.GetCurrentQuantity(phcountDto.itemType, phcountDto.itemId);
+                int currentNumberOfUnits = 0;
+
+                if (phcountDto.itemType == "Ink")
+                {
+                    currentNumberOfUnits = _businessLogicL.GetCurrentNumberOfUnits(phcountDto.itemType, phcountDto.itemId);
+                }
+                phcountDto.newQuantity = phcountDto.newQuantity == 0 ? currentQuantity : phcountDto.newQuantity;
+                if (phcountDto.itemType == "Ink")
+                {
+                    phcountDto.newNumberOfUnits = phcountDto.newNumberOfUnits == 0 ? currentNumberOfUnits : phcountDto.newNumberOfUnits;
+                }
+                else
+                {
+                    phcountDto.newNumberOfUnits = 0;
+                }
 
                 var result = _businessLogicL.UpdateQuantity(phcountDto);
 

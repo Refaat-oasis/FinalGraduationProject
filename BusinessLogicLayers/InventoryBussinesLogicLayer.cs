@@ -606,8 +606,17 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 "Paper" => _context.Papers.FirstOrDefault(p => p.PaperId == itemId)?.Quantity ?? 0,
                 "Ink" => _context.Inks.FirstOrDefault(i => i.InkId == itemId)?.Quantity ?? 0,
                 "Supply" => _context.Supplies.FirstOrDefault(s => s.SuppliesId == itemId)?.Quantity ?? 0,
+                "Spare Parts" => _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == itemId)?.Quantity ?? 0,
                 _ => 0 // Default case
             };
+        }
+        public int GetCurrentNumberOfUnits(string itemType, int itemId)
+        {
+            if (itemType == "Ink")
+            {
+                return _context.Inks.FirstOrDefault(i => i.InkId == itemId)?.NumberOfUnits ?? 0;
+            }
+            return 0;
         }
 
         public (bool Success, string Message) UpdateQuantity(PhysicalCountDTO phdto)
@@ -615,8 +624,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 int oldQuantity = 0;
+                int oldNumberOfUnits = 0;
                 string itemName = "";
                 QuantityBridge quantityBridge = new QuantityBridge();
+                bool quantityChanged = false;
+                bool unitsChanged = false;
 
                 switch (phdto.itemType)
                 {
@@ -625,6 +637,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         if (paper == null) return (false, "الورق غير موجود");
                         oldQuantity = paper.Quantity;
                         itemName = paper.Name;
+
+                        quantityChanged = (paper.Quantity != phdto.newQuantity);
                         paper.Quantity = phdto.newQuantity;
 
                         quantityBridge.PaperId = phdto.itemId;
@@ -635,12 +649,17 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         var ink = _context.Inks.Find(phdto.itemId);
                         if (ink == null) return (false, "الحبر غير موجود");
                         oldQuantity = ink.Quantity;
+                        oldNumberOfUnits = ink.NumberOfUnits;
                         itemName = ink.Name;
+
+                        quantityChanged = (ink.Quantity != phdto.newQuantity);
+                        unitsChanged = (ink.NumberOfUnits != phdto.newNumberOfUnits);
                         ink.Quantity = phdto.newQuantity;
+                        ink.NumberOfUnits = phdto.newNumberOfUnits;
 
-                        quantityBridge.PaperId = phdto.itemId;
+                        quantityBridge.InkId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
-
+                        quantityBridge.NumberOfUnits = phdto.newNumberOfUnits;
                         break;
 
                     case "Supply":
@@ -648,9 +667,25 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         if (supply == null) return (false, "المستلزمات غير موجودة");
                         oldQuantity = supply.Quantity;
                         itemName = supply.Name;
+
+                        quantityChanged = (supply.Quantity != phdto.newQuantity);
                         supply.Quantity = phdto.newQuantity;
 
-                        quantityBridge.PaperId = phdto.itemId;
+                        quantityBridge.SuppliesId = phdto.itemId;
+                        quantityBridge.Quantity = phdto.newQuantity;
+
+                        break;
+
+                    case "Spare Parts":
+                        var spareParts = _context.SpareParts.Find(phdto.itemId);
+                        if (spareParts == null) return (false, " قطع الصيانة غير موجودة");
+                        oldQuantity = spareParts.Quantity;
+                        itemName = spareParts.Name;
+
+                        quantityChanged = (spareParts.Quantity != phdto.newQuantity);
+                        spareParts.Quantity = phdto.newQuantity;
+
+                        quantityBridge.SparePartsId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
 
                         break;
@@ -677,8 +712,32 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.QuantityBridges.Add(quantityBridge);
                 _context.SaveChanges();
 
+                //string message = $"تم تعديل كمية {itemName} من {oldQuantity} إلى {phdto.newQuantity}";
+                //if (phdto.itemType == "Ink")
+                //{
+                //    message += $" وعدد السحبات من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
+                //}
+                string message = $"تم تعديل {itemName}: ";
 
-                return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {phdto.newQuantity}");
+                if (quantityChanged)
+                {
+                    message += $"السحبات من {oldQuantity} إلى {phdto.newQuantity}";
+                }
+
+                if (phdto.itemType == "Ink" && unitsChanged)
+                {
+                    if (quantityChanged) message += " و ";
+                    message += $"الكمية من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
+                }
+
+                if (!quantityChanged && !unitsChanged)
+                {
+                    message = "لم يتم إجراء أي تعديلات على القيم";
+                }
+
+                return (true, message);
+
+                //return (true, $"تم تعديل كمية {itemName} من {oldQuantity} إلى {phdto.newQuantity}");
             }
             catch (ArgumentException ex)
             {

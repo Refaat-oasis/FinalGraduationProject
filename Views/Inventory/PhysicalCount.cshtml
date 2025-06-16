@@ -42,7 +42,7 @@
     }
 </div>
 
-<div class="container">
+@* <div class="container">
 
 
 
@@ -222,6 +222,208 @@
                 } else {
                     $('#currentQuantity').val('0');
                 }
+            });
+        });
+    </script>
+} *@
+
+ <div class="container">
+    <h1>تعديل المخزون</h1>
+    <div class="card-body">
+        @if (TempData["Success"] != null) {
+            <div class="success-message">
+                <i class="bx bx-check-circle"></i> @TempData["Success"]
+            </div>
+        }
+        @if (TempData["Error"] != null) {
+            <div class="error-message">
+                <i class="bx bx-error-circle"></i> @TempData["Error"]
+            </div>
+        }
+
+        <form method="post" asp-action="physicalCount" id="inventoryForm">
+            <!-- Item Selection Section -->
+            <div class="rowCont">
+                <div class="colCont">
+                    <label class="form-label">العنصر</label>
+                    <select id="itemId" name="itemId" class="form-select" required disabled>
+                        <option value="">-- اختر العنصر --</option>
+                    </select>
+                    <span class="error-message" id="itemIdError" style="color: red; display: none;">يرجى اختيار العنصر</span>
+                </div>
+                <div class="colCont">
+                    <label class="form-label">نوع العنصر</label>
+                    <select id="inventoryType" name="itemType" class="form-select">
+                        <option value="">-- اختر نوع العنصر --</option>
+                        <option value="Paper">ورق</option>
+                        <option value="Ink">حبر</option>
+                        <option value="Supply">مستلزمات</option>
+                        <option value="Spare Parts">قطع صيانة</option>
+                    </select>
+                    <span class="error-message" id="inventoryTypeError" style="color: red; display: none;">يرجى اختيار نوع العنصر</span>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div class="rowCont">
+                <div class="colCont">
+                    <label class="form-label">السحبات الحالية</label>
+                    <input type="text" id="currentQuantity" class="form-control" readonly value="0" />
+                </div>
+                <div class="colCont">
+                    <label class="form-label"> السحبات الجديدة</label>
+                    <input type="number" name="newQuantity" id="newQuantity" class="form-control" min="0" placeholder="فى حالة عدم تعديله اتركه فارغًا للحفاظ على القيمة الحالية " />
+                    <span class="error-message" id="newQuantityError" style="color: red; display: none;">يرجى إدخال عدد سحبات صحيح</span>
+                </div>
+            </div>
+
+            <!-- Draws Section (For Ink Only) -->
+            <div class="rowCont" id="unitsFields" style="display: none;">
+                <div class="colCont">
+                    <label class="form-label">الكمية الحالية</label>
+                    <input type="text" id="currentNumberOfUnits" class="form-control" readonly value="0" />
+                </div>
+                <div class="colCont">
+                    <label class="form-label">الكمية الجديدة</label>
+                    <input type="number" name="newNumberOfUnits" id="newNumberOfUnits" class="form-control" min="0" placeholder=" فى حالة عدم تعديله اتركه فارغًا للحفاظ على القيمة الحالية" />
+                    <span class="error-message" id="newNumberOfUnitsError" style="color: red; display: none;"> يرجى إدخال الكميات الصحيحة </span>
+                </div>
+            </div>
+
+            <!-- Date and Notes Section -->
+            <div class="rowCont">
+                <div class="colCont">
+                    <label class="form-label">تاريخ الجرد</label>
+                    <input type="date" name="physicalCountDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled />
+                </div>
+            </div>
+
+            <div class="notes">
+                <label class="form-label">ملاحظات الجرد</label>
+                <textarea name="notes" class="form-control" rows="4" cols="80" placeholder="أدخل أي ملاحظات هنا..."></textarea>
+            </div>
+
+            <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+
+            <button type="submit" class="btn">حفظ التعديل</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("inventoryForm");
+            const inventoryType = document.getElementById("inventoryType");
+            const itemId = document.getElementById("itemId");
+            const newQuantity = document.getElementById("newQuantity");
+            const unitsFields = document.getElementById("unitsFields");
+            const newNumberOfUnits = document.getElementById("newNumberOfUnits");
+
+            // Handle form submission
+            form.addEventListener("submit", function(e) {
+                // Preserve current values if fields are empty
+                if (newQuantity.value === '') {
+                    newQuantity.value = document.getElementById("currentQuantity").value;
+                }
+                
+                // For ink items, preserve current units if empty
+                if (inventoryType.value === "Ink" && newNumberOfUnits.value === '') {
+                    newNumberOfUnits.value = document.getElementById("currentNumberOfUnits").value;
+                }
+
+                // Basic validation
+                let isValid = true;
+
+                if (!inventoryType.value) {
+                    document.getElementById("inventoryTypeError").style.display = "block";
+                    isValid = false;
+                } else {
+                    document.getElementById("inventoryTypeError").style.display = "none";
+                }
+
+                if (!itemId.value) {
+                    document.getElementById("itemIdError").style.display = "block";
+                    isValid = false;
+                } else {
+                    document.getElementById("itemIdError").style.display = "none";
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            });
+
+            // Inventory type change handler
+            inventoryType.addEventListener("change", function() {
+                if (this.value === "Ink") {
+                    unitsFields.style.display = "flex";
+                } else {
+                    unitsFields.style.display = "none";
+                }
+            });
+
+            // AJAX code for loading items and current values
+            $(document).ready(function () {
+                $('#inventoryType').change(function () {
+                    var selectedType = $(this).val();
+                    var itemSelect = $('#itemId');
+
+                    itemSelect.empty().prop('disabled', !selectedType);
+                    $('#currentQuantity').val('0');
+                    $('#currentNumberOfUnits').val('0');
+                    $('#newQuantity').val('');
+                    $('#newNumberOfUnits').val('');
+
+                    if (!selectedType) {
+                        itemSelect.append('<option value="">-- اختر نوع العنصر أولا --</option>');
+                        return;
+                    }
+
+                    itemSelect.append('<option value="">-- اختر --</option>');
+                    var items = {
+                        Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                        Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                        Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList)),
+                        "Spare Parts": @Html.Raw(Json.Serialize(ViewBag.SparePartsList))
+                    };
+
+                    items[selectedType].forEach(function(item) {
+                        var id = item.paperId || item.inkId || item.suppliesId || item.sparePartsId;
+                        var name = item.name;
+                        itemSelect.append($('<option></option>').val(id).text(name));
+                    });
+                });
+
+                $('#itemId').change(function () {
+                    var itemId = $(this).val();
+                    var itemType = $('#inventoryType').val();
+
+                    if (itemId && itemType) {
+                        $.ajax({
+                            url: '/Inventory/GetCurrentQuantity',
+                            type: 'GET',
+                            data: { itemType: itemType, itemId: itemId },
+                            success: function (data) {
+                                $('#currentQuantity').val(data.currentQuantity);
+                                
+                                if (itemType === "Ink") {
+                                    $.ajax({
+                                        url: '/Inventory/GetCurrentNumberOfUnits',
+                                        type: 'GET',
+                                        data: { itemType: itemType, itemId: itemId },
+                                        success: function (unitsData) {
+                                            $('#currentNumberOfUnits').val(unitsData.currentNumberOfUnits);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        $('#currentQuantity').val('0');
+                        $('#currentNumberOfUnits').val('0');
+                    }
+                });
             });
         });
     </script>

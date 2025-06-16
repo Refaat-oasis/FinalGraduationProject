@@ -91,13 +91,14 @@
         <label asp-for="@Model.Size" class="textlabel"></label>
         <select asp-for="@Model.Size" class="place">
             @{
-                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
-                {
-                    if (item.Type == 1)
-                    {
-                        // <option value="@item.Size" @(item.Size == Model.Size ? "selected" : "")>@item.Size</option>
-                    }
-                }
+              foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+              {
+                  if (item.Type == 2)
+                  {
+                <option value="@item.Size">@item.Size</option>
+                  }
+              }
+            }}
             }
         </select>
         <span asp-validation-for="@Model.Size" class="error"></span>
@@ -107,13 +108,13 @@
         <label asp-for="@Model.Weight" class="textlabel"></label>
         <select asp-for="@Model.Weight" class="place">
             @{
-                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
-                {
-                    if (item.Type == 2)
-                    {
-                        // <option value="@item.Weight" @(item.Weight == Model.Weight ? "selected" : "")>@item.Weight</option>
-                    }
-                }
+          foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+          {
+              if (item.Type == 1)
+              {
+                <option value="@item.Weight">@item.Weight</option>
+              }
+          }
             }
         </select>
         <span asp-validation-for="@Model.Weight" class="error"></span>
@@ -123,13 +124,13 @@
         <label asp-for="@Model.Colored" class="textlabel"></label>
         <select asp-for="@Model.Colored" class="place">
             @{
-                foreach (ColorWeightSize item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
-                {
-                    if (item.Type == 3)
-                    {
-                        // <option value="@item.Colored" @(item.Colored == Model.Colored ? "selected" : "")>@item.Colored</option>
-                    }
-                }
+             foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+             {
+                 if (item.Type == 0)
+                 {
+                <option value="@item.Colored">@item.Colored</option>
+                 }
+             }
             }
         </select>
         <span asp-validation-for="@Model.Colored" class="error"></span>

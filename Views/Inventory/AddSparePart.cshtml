@@ -1,0 +1,173 @@
+﻿@model SparePart;
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = null;
+
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
+}
+
+
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Home.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    @* <link rel="icon" type="image/x-icon" href="@Url.Content("~/photos/eye.jpg")" /> *@
+    <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Inventory/AddSparePart.css" rel="stylesheet" />
+    <title>ThoTh</title>
+</head>
+
+
+<div class="container">
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+          
+
+        }
+    </div>
+
+
+    <form asp-action="AddSparePart" asp-controller="Inventory" id="myform" enctype="multipart/form-data" method="post">
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+                <div class="progress-bar error"></div>
+            </div>
+        }
+
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
+        <div class="text">
+            <h1>إضافة قطع غيار</h1>
+        </div>
+
+        <div class="inputBox">
+            <label for="paperName">الرقم التعريفي لقطعه الغيار</label>
+            <input type="number" asp-for="@Model.SparePartsId" id="SpareId" />
+            <span class="error" asp-validation-for="@Model.SparePartsId"></span>
+        </div>
+
+        <div class="inputBox">
+            <label for="paperName">اسم لقطعه الغيار</label>
+            <input type="text" asp-for="@Model.Name" id="Name" />
+            <span class="error" asp-validation-for="@Model.Name"></span>
+        </div>
+
+
+        <div class="inputBox">
+            <label for="Quantity">كميه قطع الغيار</label>
+            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <p asp-validation-for="@Model.Quantity" class="error"></p>
+        </div>
+
+        <div class="inputBox">
+            <label for="Quantity">سعر قطعه الغيار</label>
+            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <p asp-validation-for="@Model.Price" class="error"></p>
+        </div>
+
+         <div class="inputBox">
+            <label for="TotalBalance">القيمة المتاحه</label>
+            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
+            <span asp-validation-for="@Model.TotalBalance" class="error"></span>
+        </div> 
+
+        <div class="inputBox">
+            <label for="ReorderPoint">نقطة إعادة الطلب</label>
+            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+        </div>
+
+        <div class="input-control">
+            <label asp-for="@Model.Activated" class="textlabel"> </label>
+            @{
+                var isActivated = Model?.Activated ?? false; 
+            }
+            <select asp-for="@Model.Activated" id="options" class="place">
+                <option value="true" selected="@(isActivated ? "selected" : null)">مفعل</option>
+                <option value="false" selected="@(isActivated ? null : "selected")">غير مفعل</option>
+            </select>
+        </div>
+
+
+        @*   <div class="input-control">
+            <label asp-for="@Model.Activated" class="textlabel"> </label>
+            <select asp-for="@Model.Activated" id="options" class="place">
+                @{
+                    if (Model.Activated)
+                    {
+                        <option value="true" selected>مفعل</option>
+                        <option value="false">غير مفعل</option>
+                    }
+                    else
+                    {
+                        <option value="false" selected>غير مفعل</option>
+                        <option value="true">مفعل</option>
+                    }
+                }
+            </select>
+        </div> *@
+
+
+        <div class="buttons">
+            <div class="Add">
+                <input type="submit" value="تأكيد الإضافة " class="Add" />
+            </div>
+
+            <div class="reset">
+                <input type="reset" value="إعادة إدخال" class="btnReset" />
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="~/js/Inventory/AddSparePart"></script>

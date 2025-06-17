@@ -112,7 +112,7 @@ footer {
     .registeration .inputBox {
         background: transparent !important;
         position: relative;
-        text-align: left;
+        text-align: right;
         width: 100%;
         height: 45px;
         margin: 10px;
@@ -129,6 +129,7 @@ footer {
 .inputBox input {
     background-color: transparent !important;
     color: white;
+    text-align: right;
 }
 
     .inputBox input:-webkit-autofill,
@@ -139,25 +140,27 @@ footer {
         -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
         -webkit-text-fill-color: white !important;
         transition: background-color 5000s ease-in-out 0s !important;
+        text-align:right;
     }
 
     .inputBox input::placeholder {
         color: #ffffff;
-        text-align: left;
+        text-align: right;
     }
 
 .inputBox i {
     position: absolute;
     color: #fff;
-    right: 40px;
+    left: 10px; 
     top: 35%;
     transform: translateY(-50%);
     font-size: 20px;
 }
 
 .inputBox .bxs-lock-alt {
-    top: 30%
+    top: 30%;
 }
+
 
 
 /* .rememberMe { */

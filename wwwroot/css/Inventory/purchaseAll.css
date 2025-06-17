@@ -172,33 +172,38 @@ h1 {
     text-align: right;
 }
 
+
 .tableContainer1 {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
+    margin: 20px;
     overflow: auto;
-    width: 90%;
+    margin: 0 auto;
 }
 
-table.mainTable {
+table {
     width: 100%;
-    direction: rtl; /* للكتابة من اليمين */
+    margin: 20px;
     border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    border: 2px solid black;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    border-radius: 15px;
+    border: solid black 2px;
+    border-spacing: 0;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+td {
+    font-size: 20px;
+    text-align: center;
 }
 
 th, td {
-    padding: 10px 15px;
-    text-align: center;
-    font-size: 20px;
+    padding: 10px;
 }
 
 th {
-    font-size: 24px;
+    font-size: 30px;
     background-color: #FDF5E6;
 }
 
@@ -209,6 +214,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #FDF5E6;
 }
+
 
 .tableRow {
     padding-left: 20px; /* تقريب الصف من اليسار */

@@ -21623,7 +21623,6 @@ C:\Users\ECC\OneDrive\Desktop\اخر نسخه للشغل\FinalGraduationProject\
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\3ury7qm6zt-lsyoyezr5g.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\lbvduvoh9i-kne38xj8n8.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\zn1uteo1kw-9jan9bblr7.gz
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-cemmb7y2gw.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-p2m89nhm79.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\dj3xgco56r-jlr1dpixw3.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\x0ojrboe79-pvgzkdw3wr.gz
@@ -22077,3 +22076,4 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\11n3uy0hvv-dfc0t1txij.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\kqnbfrbgtp-6b7detdgxa.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-r6c03odxee.gz

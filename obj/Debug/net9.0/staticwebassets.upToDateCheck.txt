@@ -6,7 +6,6 @@ wwwroot\css\Admin\viewAllEmployee.css
 wwwroot\css\CostClerk\CostClerkHome.css
 wwwroot\css\Cost\AddLabour.css
 wwwroot\css\Cost\AddMachine.css
-wwwroot\css\Cost\addMachineAndLabourExpense.css
 wwwroot\css\Cost\CostManagerHome.css
 wwwroot\css\Cost\EditLabour.css
 wwwroot\css\Cost\EditMachine.css
@@ -35,7 +34,6 @@ wwwroot\css\Inventory\newPaper.css
 wwwroot\css\Inventory\newSupply.css
 wwwroot\css\Inventory\PerpetualRequisite.css
 wwwroot\css\Inventory\PhysicalCount.css
-wwwroot\css\Inventory\purchaseAll.css
 wwwroot\css\Inventory\ReturnOrder.css
 wwwroot\css\Inventory\ViewAllInk.css
 wwwroot\css\Inventory\ViewAllPaper.css
@@ -163,9 +161,16 @@ wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\microsoft-signalr\signalr.js
 wwwroot\lib\microsoft-signalr\signalr.min.js
+wwwroot\css\Cost\addMachineAndLabourExpense.css
+wwwroot\css\Inventory\purchaseAll.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Accounting\PaymentReceipt.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\CostClerk\CostClerkHome.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\AddLabour.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\AddMachine.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\addMachineAndLabourExpense.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\CostManagerHome.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\EditLabour.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\EditMachine.css
@@ -194,8 +199,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\PerpetualRequisite.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\PhysicalCount.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\purchaseAll.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\ReturnOrder.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\ViewAllInk.css
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPaper.css
@@ -310,11 +313,8 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\CostClerk\CostClerkHome.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Accounting\PaymentReceipt.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Cost\addMachineAndLabourExpense.css
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\wwwroot\css\Inventory\purchaseAll.css

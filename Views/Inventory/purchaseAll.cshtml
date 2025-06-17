@@ -1,4 +1,4 @@
-﻿﻿@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
 @model ThothSystemVersion1.DataTransfereObject.purchaseOrderDTO
@@ -26,6 +26,30 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/css/Inventory/purchaseAll.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+
+        .tableContainer1 table {
+            width: 100%;
+            border-collapse: collapse; /* removes double‑borders */
+        }
+
+        .tableContainer1 th,
+        .tableContainer1 td {
+            text-align: center; /* centers content horizontally */
+            vertical-align: middle; /* centers content vertically */
+            padding: 0.5rem 0.75rem; /* adjust for breathing room */
+            border: 1px solid #ddd; /* optional: light border for clarity */
+        }
+
+        .tableContainer1 thead th {
+            background-color: #f8f9fa; /* optional: light grey header background */
+            font-weight: 600;
+        }
+
+
+    </style>
+
 </head>
 <body>
     <div class="arrow">
@@ -120,10 +144,17 @@
                 </div>
             </div>
 
-            <div class="tableContainer">
-                <table class="table">
+            <div class="tableContainer1">
+                <table >
                     <thead>
-                        <tr><th>العنصر</th><th>الكمية</th><th>عدد الوحدات</th><th>السعر</th><th>الإجراءات</th></tr>
+                        <tr>
+                            <th>الإجراءات</th>
+                           
+                            <th>عدد الوحدات</th>
+                            <th>السعر</th>
+                            <th>الكمية</th>
+                            <th>العنصر</th>
+                        </tr>
                     </thead>
                     <tbody id="itemsTableBody"></tbody>
                 </table>
@@ -169,14 +200,15 @@
                 items.forEach(function(it,idx) {
                     $('#itemsTableBody').append(`
                     <tr data-index="${idx}">
-                      <td>${it.itemName}</td>
-                      <td>${it.quantity}</td>
+                       <td>
+                        <button type="button" class="btn editItem">تعديل</button>
+                        <button type="button" class="btn deleteItem">حذف</button>
+                      </td>
+                     
                       <td>${it.numberOfUnits}</td>
                       <td>${it.price.toFixed(2)}</td>
-                      <td>
-                        <button type="button" class="btn editItem"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn deleteItem"><i class="fa fa-trash"></i></button>
-                      </td>
+                      <td>${it.quantity}</td>
+                      <td>${it.itemName}</td>
                     </tr>`);
 
                     var hidden = [];
@@ -194,29 +226,58 @@
             }
 
             $('#addItem').click(function() {
-                var type=$('#itemType').val(), id=$('#itemId').val(), name=$('#itemId option:selected').text(),
-                    qty=parseInt($('#itemQuantity').val(),10), units=parseInt($('#NumberOfUnits').val(),10)||0,
-                    price=parseFloat($('#itemPrice').val());
+                var type = $('#itemType').val(),
+                    id   = $('#itemId').val(),
+                    name = $('#itemId option:selected').text(),
+                    // force quantity = 0 when adding Ink
+                    qty  = (type === 'Ink' ? 0 : parseInt($('#itemQuantity').val(), 10)),
+                    units = parseInt($('#NumberOfUnits').val(), 10) || 0,
+                    price = parseFloat($('#itemPrice').val());
 
-                if(!type||!id||(type!=='Ink'&&(isNaN(qty)||qty<0))||isNaN(price)||price<0) {
+                if (!type || !id || (type !== 'Ink' && (isNaN(qty) || qty < 0)) || isNaN(price) || price < 0) {
                     return alert('يرجى تعبئة جميع الحقول بشكل صحيح');
                 }
-                var obj={itemType:type,itemId:id,itemName:name,quantity:qty,numberOfUnits:units,price:price};
-                if(editIndex<0) items.push(obj); else { items[editIndex]=obj; editIndex=-1;$('#addItem').text('أضف العنصر'); }
+                var obj = { itemType: type, itemId: id, itemName: name, quantity: qty, numberOfUnits: units, price: price };
+                if (editIndex < 0) {
+                    items.push(obj);
+                } else {
+                    items[editIndex] = obj;
+                    editIndex = -1;
+                    $('#addItem').text('أضف العنصر');
+                }
                 $('#itemType,#itemQuantity,#NumberOfUnits,#itemPrice').val('');
-                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled',true);
+                $('#itemId').empty().append('<option value="">-- اختر العنصر --</option>').prop('disabled', true);
                 renderItems();
             });
 
-            $('#itemsTableBody').on('click','.editItem',function(){
-                editIndex=$(this).closest('tr').data('index'); var it=items[editIndex];
-                $('#itemType').val(it.itemType).trigger('change'); setTimeout(()=>$('#itemId').val(it.itemId),0);
-                $('#itemQuantity').val(it.quantity); $('#NumberOfUnits').val(it.numberOfUnits); $('#itemPrice').val(it.price);
+            $('#itemsTableBody').on('click', '.editItem', function() {
+                editIndex = $(this).closest('tr').data('index');
+                var it = items[editIndex];
+                $('#itemType').val(it.itemType).trigger('change');
+                setTimeout(() => $('#itemId').val(it.itemId), 0);
+                $('#itemQuantity').val(it.quantity);
+                $('#NumberOfUnits').val(it.numberOfUnits);
+                $('#itemPrice').val(it.price);
                 $('#addItem').text('تحديث العنصر');
             });
-            $('#itemsTableBody').on('click','.deleteItem',function(){ items.splice($(this).closest('tr').data('index'),1); renderItems(); });
-            $('form').submit(function(e){ if(!items.length){ alert('يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.'); e.preventDefault(); }});
+
+            $('#itemsTableBody').on('click', '.deleteItem', function() {
+                items.splice($(this).closest('tr').data('index'), 1);
+                renderItems();
+            });
+
+            $('form').submit(function(e) {
+                if (!items.length) {
+                    alert('يجب إضافة عنصر واحد على الأقل قبل إرسال الطلب.');
+                    e.preventDefault();
+                }
+            });
         });
     </script>
+
+
+
 </body>
 </html>
+
+

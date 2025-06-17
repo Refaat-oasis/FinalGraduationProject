@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -1922,5 +1923,101 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return null;
             }
         }
+
+        public MachineStore getMachineByID( int machineID)
+        {
+
+            try
+            {
+
+                MachineStore machine = _context.MachineStores.FirstOrDefault(machine => machine.MachineStoreId == machineID);
+                return machine;
+
+            }
+            catch(Exception ex) {
+
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+
+        
+        }
+
+
+        public bool editMachineStore(int machineID, MachineStore newmachine) {
+
+            try
+            {
+
+                MachineStore oldmachine = _context.MachineStores.FirstOrDefault(mac => mac.MachineStoreId == machineID);
+                if (oldmachine != null)
+                {
+
+                    oldmachine.Name = newmachine.Name;
+                    oldmachine.Activated = newmachine.Activated;
+
+                    _context.MachineStores.Update(oldmachine);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            }
+            catch (Exception exc) {
+                WriteException.WriteExceptionToFile(exc);
+                return false;
+            
+            }
+        
+        }
+
+        public SparePart getSparePartByID(int sparePartsID)
+        {
+
+            try {
+
+                SparePart sparepart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == sparePartsID);
+                return sparepart;
+            
+            } catch (Exception ex) {
+
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+        
+        
+        }
+        public bool editSpareParts(int sparePartID, SparePart newSparePart) {
+
+            try {
+
+               SparePart oldSparePart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == sparePartID);
+
+                if (oldSparePart == null) {
+                    return false;
+                } else {
+
+                    oldSparePart.Name = newSparePart.Name;
+                    oldSparePart.ReorderPoint = newSparePart.ReorderPoint;
+                    oldSparePart.Activated = newSparePart.Activated;
+
+                    _context.SpareParts.Update(oldSparePart);
+                    _context.SaveChanges();
+                    return true;
+                
+                }
+
+
+            } catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return false;
+             }
+        
+        
+        }
+
     }
 }

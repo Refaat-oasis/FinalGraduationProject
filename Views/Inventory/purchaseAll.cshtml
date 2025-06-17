@@ -205,7 +205,7 @@
                     hidden.push(
                         '<input type="hidden" name="BridgeList[' + idx + '].Quantity" value="' + it.quantity + '" />',
                         '<input type="hidden" name="BridgeList[' + idx + '].NumberOfUnits" value="' + (it.numberOfUnits || '') + '" />',
-                        '<input type="hidden" name="BridgeList[' + idx + '].Price" value="' + it.price + '" />'
+                        '<input type="hidden" name="BridgeList[' + idx + '].UnitP" value="' + it.uni+ '" />'
                     );
 
                     $('#hiddenItemsContainer').append(hidden.join(''));

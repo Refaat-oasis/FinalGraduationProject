@@ -588,8 +588,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>cemmb7y2gw</Fingerprint>
-      <Integrity>5CGRwEbSAZkYBGlrqT8ow5Z53rkdIIOZYObf8K3zOKk=</Integrity>
+      <Fingerprint>r6c03odxee</Fingerprint>
+      <Integrity>TW9jaM35gCaRinpru8fO6ojFT/M0OK+/iLaTmeFn5X8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Inventory\purchaseAll.css'))</OriginalItemSpec>

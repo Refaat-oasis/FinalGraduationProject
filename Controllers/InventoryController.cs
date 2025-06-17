@@ -984,6 +984,8 @@ namespace ThothSystemVersion1.Controllers
                     ViewBag.PaperList = _businessLogicL.getAllActivePaper();
                     ViewBag.InkList = _businessLogicL.getAllActiveInk();
                     ViewBag.SupplyList = _businessLogicL.getAllActiveSupply();
+                    ViewBag.SparePartList = _businessLogicL.getActiveSpareParts();
+
 
                     return View(new ReturnOrderDTO());
                     //}

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OfficeOpenXml;
+using System.Diagnostics;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
@@ -395,9 +396,162 @@ namespace ThothSystemVersion1.Controllers
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Inventory/ViewAllVendorColorWeightSize.cshtml");
+                return RedirectToAction("ViewAllColorWeightSize");
             }
 
+        }
+
+
+
+        [HttpGet]
+        public IActionResult editMachineStore(int machineStoreID) {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    MachineStore machine = _businessLogicL.getMachineByID(machineStoreID);
+                    if (machine == null) {
+
+                        TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                        return View(new MachineStore());
+                    }
+                    else { 
+                        return View("~/Views/Inventory/editMachineStore.cshtml");
+                    }
+                }
+                else {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+
+            }
+            catch (Exception ex) { 
+            
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/editMachineStore.cshtml" , new MachineStore());
+            }
+
+          
+        }
+
+
+        [HttpPost]
+        public IActionResult editMachineStore(int machineID, MachineStore NewMachine) {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    bool success = _businessLogicL.editMachineStore(machineID, NewMachine);
+
+                    if (success)
+                    {
+                        TempData["Success"] = "تم تعديل البيانات بنجاح";
+                        return View("~/Views/Inventory/editMachineStore.cshtml" , NewMachine);
+
+                    }
+                    else
+                    {
+                        TempData["Error"] = "حدث خطأ اثناء تعديل البيانات";
+                        return View("~/Views/Inventory/editMachineStore.cshtml", NewMachine);
+
+                    }
+
+                }
+                else {
+
+                    return View("~/Views/Inventory/editMachineStore.cshtml", NewMachine);
+
+                }
+
+
+            }
+            catch (Exception ex) { 
+            
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/editMachineStore.cshtml", NewMachine);
+   
+            }
+
+
+        }
+
+        [HttpGet]
+        public IActionResult editSpareParts(int SparePartsID) {
+
+            try {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+                    SparePart part = _businessLogicL.getSparePartByID(SparePartsID);
+                    if (part != null)
+                    {
+                        return View("~/Views/Inventory/editSpareParts.cshtml", part);
+
+                    }
+                    else {
+                        TempData["Error"] = "حدث خطأ يرجي المحاولة مرة اخري";
+                        return View("~/Views/Inventory/editSpareParts.cshtml", new SparePart());
+                    }
+
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+
+            } catch (Exception e) {
+
+                WriteException.WriteExceptionToFile(e);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View(new SparePart());
+            
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult editSpareParts(int sparepartsID, SparePart newSpare)
+        {
+            try 
+            {
+                if (ModelState.IsValid)
+                {
+
+                    bool success = _businessLogicL.editSpareParts(sparepartsID, newSpare);
+                    if (success)
+                    {
+                        TempData["Success"] = "تم تعديل البيانات بنجاح";
+                        return View("~/Views/Inventory/editSpareParts.cshtml", newSpare);
+
+                    }
+                    else
+                    {
+                        TempData["Error"] = "حدث خطأ اثناء تعديل البيانات";
+                        return View("~/Views/Inventory/editSpareParts.cshtml", newSpare);
+
+                    }
+
+                }
+                else {
+
+                    return View("~/Views/Inventory/editSpareParts.cshtml", newSpare);
+                
+                }
+
+
+            }
+            catch (Exception ex) 
+            {
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/editSpareParts.cshtml", new SparePart());
+            }
+        
+        
+        
         }
 
 
@@ -534,19 +688,10 @@ namespace ThothSystemVersion1.Controllers
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
                 if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
-                    //try
-                    //{
+                  
                     VendorAddDTO empty = new VendorAddDTO();
                     return View("~/Views/Inventory/AddVendor.cshtml", empty);
-                    //}
-                    //catch (ApplicationException ex)
-                    //{
-                    //    return StatusCode(500, ex.Message); // Internal server error
-                    //}
-                    //catch (ArgumentException ex)
-                    //{
-                    //    return NotFound(ex.Message);
-                    //}
+                  
                 }
                 else
                 {

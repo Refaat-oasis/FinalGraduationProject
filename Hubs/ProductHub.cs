@@ -51,5 +51,19 @@ namespace ThothSystemVersion1.Hubs
                 }
             }
         }
+
+        // method to check reorder point for spareParts
+        public async Task CheckSparePartsReorderPoint()
+        {
+            var spareParts = _context.SpareParts.ToList();
+            foreach (var spare in spareParts)
+            {
+                if (spare.Quantity < spare.ReorderPoint)
+                {
+                    await Clients.All.SendAsync("ReceiveReorderMessageSupply", $"تم الوصول للحد الادني من : {spare.Name} ,\n بكمية : {spare.Quantity}");
+                }
+            }
+        }
+
     }
 }

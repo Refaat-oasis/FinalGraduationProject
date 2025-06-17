@@ -110,6 +110,7 @@ h2 {
     margin: 20px;
     font-weight: 600;
     font-size: 40px;
+    text-align:center;
 }
 
 .row-style {
@@ -387,6 +388,7 @@ tr:nth-child(even) {
     width: 85%;
     margin: 0 auto;
 }
+
 
 /* Notification styles */
 .notification {

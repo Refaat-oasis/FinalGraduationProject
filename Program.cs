@@ -51,7 +51,7 @@ namespace ThothSystemVersion1
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=employee}/{action=Loginpage}/{id?}")
+                pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

@@ -1,8 +1,7 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO
+﻿@* @model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO 
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
-
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
@@ -18,13 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>ThoTh</title>
-    <link href="~/css/Technical/CreateRequisite.css" rel="stylesheet" />
+    <link href="~/css/Technical/PerpetualRequisite" rel="stylesheet" />
 
 </head>
-
-
-
-
 
 <div class="container py-3" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start;">
     <div class="arrow mb-3">
@@ -36,177 +31,136 @@
                     <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
                 </a>
 
-            } // Technical manager
-            else if (jobRole == 3)
+            } // inventory manager
+            else if (jobRole == 1)
             {
-                <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
                     <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
                 </a>
             }
-
-            //  Technical Clerk
-            else if (jobRole == 4)
-            {
-                <a asp-controller="employee" asp-action="technicalClerk" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
         }
     </div>
 
-
     <div class="card shadow" style="max-width: 600px; margin: 0 auto; border: none;">
         <div class="card-header text-center py-3" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
-            <h1 class="mb-0">إنشاء أمر صرف جديد</h1>
+            <h1 class="mb-0">إنشاء أمر صرف مخزن دائم</h1>
         </div>
 
-  
-
         <div class="card-body px-4 py-3">
-        <form asp-action="CreateRequisite" asp-controller="Technical" id="requisiteForm" method="post">
+            <form asp-action="CreatePerpetual" asp-controller="Inventory" id="requisiteForm" method="post">
 
-                @* Success and Error Messages *@
-            @if (TempData["Success"] != null)
-            {
-                <div class="notification success">
-                    <div class="notification-content">
-                        <i class='bx bx-check-circle'></i> @TempData["Success"]
+                @if (TempData["Success"] != null)
+                {
+                    <div class="notification success">
+                        <div class="notification-content">
+                            <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                        </div>
+                        <input type="hidden" id="tempDataSuccess" value="true" />
+                        <div class="progress-bar success"></div>
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="notification error">
+                        <div class="notification-content">
+                            <i class='bx bx-error-circle'></i>
+                            <span>@TempData["Error"]</span>
+                        </div>
+                        <input type="hidden" id="tempDataSuccess" value="false" />
+
+                        <div class="progress-bar error"></div>
 
                     </div>
-                    <input type="hidden" id="tempDataSuccess" value="true" />
-                    <div class="progress-bar success"></div>
-                </div>
-            }
+                }
+                <input type="hidden" id="hdnJobRole" value="@jobRole" />
+                <div asp-validation-summary="ModelOnly" class="error"></div>
 
-            @if (TempData["Error"] != null)
-            {
-                <div class="notification error">
-                    <div class="notification-content">
-                        <i class='bx bx-error-circle'></i>
-                        <span>@TempData["Error"]</span>
-                    </div>
-                    <input type="hidden" id="tempDataSuccess" value="false" />
-
-                    <div class="progress-bar error"></div>
-
-                </div>
-            }
-            <input type="hidden" id="hdnJobRole" value="@jobRole" />
-            <div asp-validation-summary="ModelOnly" class="error"></div>
-
-            <!-- قسم اختيار الطلبية -->
-            <div class="mb-4">
-                <label asp-for="JobOrderId" class="textlabel fw-bold">اختر الطلبيّة</label>
-                <select asp-for="JobOrderId" class="form-select" required>
-                    <option value="">اختر الطلبيّة</option>
-                    @foreach (var job in ViewBag.JobOrderList)
-                    {
-                        <option value="@job.JobOrderId">
-                            @job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")
-                        </option>
-                    }
-                </select>
-                <span asp-validation-for="JobOrderId" class="text-danger small"></span>
-            </div>
-
-            <!-- قسم الملاحظات -->
-            <div class="mb-4">
-                <label asp-for="RequisiteNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
-                <textarea asp-for="RequisiteNotes" class="form-control" rows="3"></textarea>
-            </div>
-
-            <!-- قسم إضافة الأصناف -->
-            <div class="mb-4">
-                <h2 class="fw-bold mb-3">إضافة صنف</h2>
-
-                <div class="row g-3">
-    <div class="col-md-6">
-        <label class="textlabel">الصنف</label>
-        <select id="itemId" class="form-select" disabled>
-            <option value="">اختر الصنف</option>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label class="textlabel">نوع الصنف</label>
-        <select id="itemType" class="form-select">
-            <option value="">اختر النوع</option>
-            <option value="Paper">ورق</option>
-            <option value="Ink">حبر</option>
-            <option value="Supply">مستلزمات</option>
-        </select>
-    </div>
-
-               @*  <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="textlabel">نوع الصنف</label>
-                        <select id="itemType" class="form-select">
-                            <option value="">اختر النوع</option>
-                            <option value="Paper">ورق</option>
-                            <option value="Ink">حبر</option>
-                            <option value="Supply">مستلزمات</option>
+                <div class="mb-4">
+                    <label asp-for="MachineId" class="textlabel fw-bold">اختر الماكينه</label>
+                    <select asp-for="MachineId" class="form-select" required>
+                        <option value="">اختر الماكينه</option>
+                         @foreach (var job in ViewBag.MachineList)
+                        {
+                            <option value="@job.MachineList">
+                                @job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")
+                            </option>
+                        }
                         </select>
-                    </div>
+                        <span asp-validation-for="JobOrderId" class="text-danger small"></span> 
+                </div>
 
-                    <div class="col-md-6">
-                        <label class="textlabel">الصنف</label>
-                        <select id="itemId" class="form-select" disabled>
-                            <option value="">اختر الصنف</option>
-                        </select>
-                    </div> *@
+                <div class="mb-4">
+                    <label asp-for="PerpetualNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
+                    <textarea asp-for="PerpetualNotes" class="form-control" rows="3"></textarea>
+                </div>
 
-                    <div class="col-md-6">
-                        <label class="textlabel">الكمية الحالية</label>
-                        <input type="number" id="currentQuantity" class="form-control" readonly />
-                    </div>
+                <div class="mb-4">
+                    <h2 class="fw-bold mb-3">إضافة صنف</h2>
 
-                    <div class="col-md-6">
-                        <label class="textlabel">الكمية المطلوبة</label>
-                        <input type="number" id="itemQuantity" class="form-control" min="1" />
-                        <div id="quantityError" class="text-danger small" style="display:none;">
-                            الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="textlabel">الصنف</label>
+                            <select id="itemId" class="form-select" disabled>
+                                <option value="">اختر الصنف</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="textlabel">نوع الصنف</label>
+                            <select id="itemType" class="form-select">
+                                <option value="">اختر النوع</option>
+                                <option value="SparePart">قطع غيار</option>
+                                <option value="Ink">حبر</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label id="currentQuantityLabel" class="textlabel">الكمية الحالية</label>
+                            <input type="number" id="currentQuantity" class="form-control" readonly />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label id="itemQuantityLabel" class="textlabel">الكمية المطلوبة</label>
+                            <input type="number" id="itemQuantity" class="form-control" min="1" />
+                            <div id="quantityError" class="text-danger small" style="display:none;">
+                                الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
+                            </div>
                         </div>
                     </div>
 
-
+                    <div class="text-end mt-3">
+                        <button type="button" id="addItemBtn" class="btn btn-primary px-4">إضافة</button>
+                    </div>
                 </div>
 
-                <div class="text-end mt-3">
-                    <button type="button" id="addItemBtn" class="btn btn-primary px-4">إضافة</button>
+                <div class="mb-4">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead style="background-color: transparent;">
+                                <tr>
+                                    <th>نوع الصنف</th>
+                                    <th>اسم الصنف</th>
+                                    <th id="tableHeaderCurrentQty">الكمية الحالية</th> 
+                                    <th id="tableHeaderRequiredQty">الكمية المطلوبة</th> 
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsTableBody">
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <!-- جدول الأصناف المضافة -->
-            <div class="mb-4">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead style="background-color: transparent;">
-                            <tr>
-                                <th>نوع الصنف</th>
-                                <th>اسم الصنف</th>
-                                <th>الكمية الحالية</th>
-                                <th>الكمية المطلوبة</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="itemsTableBody">
-                            <!-- سيتم إضافة الصفوف هنا ديناميكيًا -->
+                <div id="hiddenItemsContainer"></div>
 
-                        </tbody>
-                    </table>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-4 py-2 me-2">حفظ الطلب</button>
+                     <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button> 
                 </div>
-            </div>
-
-            <div id="hiddenItemsContainer"></div>
-
-            <!-- زر الحفظ -->
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary px-4 py-2 me-2">حفظ الطلب</button>
-                @* <button type="reset" class="btn btn-primary px-4 py-2">إعادة إدخال</button> *@
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -219,9 +173,8 @@
 
             // Data sources from ViewBag
             const dataSources = {
-                Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
+                SparePart: @Html.Raw(Json.Serialize(ViewBag.SparePartList)),
                 Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
-                Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
             };
 
             // When item type changes
@@ -235,6 +188,16 @@
                 $('#itemQuantity').val('');
                 $('#quantityError').hide();
 
+                // Update quantity labels based on item type
+                if (selectedType === 'Ink') {
+                    $('#currentQuantityLabel').text('عدد الوحدات الحالية');
+                    $('#itemQuantityLabel').text('عدد الوحدات المطلوبة');
+                } else {
+                    $('#currentQuantityLabel').text('الكمية الحالية');
+                    $('#itemQuantityLabel').text('الكمية المطلوبة');
+                }
+
+
                 if (!selectedType) {
                     $itemSelect.append('<option value="">-- اختر الصنف --</option>');
                     return;
@@ -245,14 +208,16 @@
 
                 if (dataSources[selectedType] && dataSources[selectedType].length > 0) {
                     $.each(dataSources[selectedType], function(index, item) {
-                        var id = item.paperId || item.inkId || item.suppliesId;
+                        var id = item.sparePartId || item.inkId ; // Make sure your actual property names are used (e.g., SparePartId, InkId)
                         var name = item.name;
-                        var quantity = item.quantity || 0;
+                        var quantity = item.quantity || 0; // Assuming 'quantity' is the field for both
+                        var units = item.units || 0; // Assuming 'units' is the field for Ink units
 
                         $itemSelect.append($('<option>', {
                             value: id,
                             text: name,
-                            'data-quantity': quantity
+                            'data-quantity': quantity,
+                            'data-units': units // Store units for ink
                         }));
                     });
                 }
@@ -261,9 +226,17 @@
             // When item selection changes
             $('#itemId').change(function () {
                 var selectedOption = $(this).find('option:selected');
-                var currentQty = selectedOption.data('quantity') || 0;
-                $('#currentQuantity').val(currentQty);
-                $('#itemQuantity').attr('max', currentQty);
+                var selectedType = $('#itemType').val();
+                let currentQtyOrUnits = 0;
+
+                if (selectedType === 'Ink') {
+                    currentQtyOrUnits = selectedOption.data('units') || 0;
+                } else {
+                    currentQtyOrUnits = selectedOption.data('quantity') || 0;
+                }
+
+                $('#currentQuantity').val(currentQtyOrUnits);
+                $('#itemQuantity').attr('max', currentQtyOrUnits);
             });
 
             // Quantity validation
@@ -286,7 +259,7 @@
                 var itemId = $('#itemId').val();
                 var itemName = $('#itemId option:selected').text();
                 var quantity = parseInt($('#itemQuantity').val()) || 0;
-                var currentQuantity = parseInt($('#currentQuantity').val()) || 0;
+                var currentQuantity = parseInt($('#currentQuantity').val()) || 0; // This will be qty or units based on type
 
                 // Validation
                 if (!itemType || !itemId) {
@@ -304,20 +277,13 @@
                     return;
                 }
 
-                // Check if item already exists
-                // var existingItemIndex = items.findIndex(item => item.itemId == itemId);
-                // if (existingItemIndex >= 0 && editIndex === -1) {
-                //     alert('هذا الصنف مضاف بالفعل');
-                //     return;
-                // }
-
                 // Create new item
                 var newItem = {
                     itemType: itemType,
                     itemId: itemId,
                     itemName: itemName,
                     quantity: quantity,
-                    currentQuantity: currentQuantity
+                    currentQuantity: currentQuantity // Store the displayed current quantity/units
                 };
 
                 // Add or update item
@@ -342,19 +308,32 @@
                 $tableBody.empty();
                 $hiddenContainer.empty();
 
+                // Update table headers based on the presence of Ink items
+                updateTableHeaders();
+
                 if (items.length === 0) {
                     $tableBody.append('<tr><td colspan="5" class="text-center">لا توجد أصناف مضافة</td></tr>');
                     return;
                 }
 
                 items.forEach((item, index) => {
+                    // Determine the text for current and required quantity columns based on item type
+                    let currentQtyDisplay = item.currentQuantity;
+                    let requiredQtyDisplay = item.quantity;
+
+                    if (item.itemType === 'Ink') {
+                        // We could append "وحدة" here if desired for clarity within the cell,
+                        // but the request was to change headers for all.
+                        // For now, just display the number as units.
+                    }
+
                     // Add row to table
                     $tableBody.append(`
                         <tr data-index="${index}">
                             <td>${getArabicType(item.itemType)}</td>
                             <td>${item.itemName}</td>
-                            <td>${item.currentQuantity}</td>
-                            <td>${item.quantity}</td>
+                            <td>${currentQtyDisplay}</td>
+                            <td>${requiredQtyDisplay}</td>
                             <td>
                                 <div class="btn-container">
                                     <button type="button" class="btn btn-secondary btn-sm editItem">
@@ -367,11 +346,24 @@
                             </td>
                         </tr>
                     `);
-
                     // Add hidden fields for form submission
                     addHiddenFields(item, index);
                 });
             }
+
+            // New function to update table headers
+            function updateTableHeaders() {
+                const hasInkItem = items.some(item => item.itemType === 'Ink');
+
+                if (hasInkItem) {
+                    $('#tableHeaderCurrentQty').text('عدد الوحدات الحالية');
+                    $('#tableHeaderRequiredQty').text('عدد الوحدات المطلوبة');
+                } else {
+                    $('#tableHeaderCurrentQty').text('الكمية الحالية');
+                    $('#tableHeaderRequiredQty').text('الكمية المطلوبة');
+                }
+            }
+
 
             // Reset item form
             function resetItemForm() {
@@ -380,6 +372,7 @@
                 $('#currentQuantity').val('');
                 $('#itemQuantity').val('');
                 $('#quantityError').hide();
+                $('#addItemBtn').text('إضافة'); // Ensure button text is reset
             }
 
             // Edit item
@@ -409,7 +402,6 @@
                     if (editIndex === index) {
                         resetItemForm();
                         editIndex = -1;
-                        $('#addItemBtn').text('إضافة');
                     } else if (editIndex > index) {
                         editIndex--;
                     }
@@ -419,9 +411,8 @@
             // Helper function to get Arabic type
             function getArabicType(type) {
                 const types = {
-                    'Paper': 'ورق',
-                    'Ink': 'حبر',
-                    'Supply': 'مستلزمات'
+                    'SparePart': 'قطع غيار',
+                    'Ink': 'حبر'
                 };
                 return types[type] || type;
             }
@@ -429,24 +420,19 @@
             // Add hidden fields for form submission
             function addHiddenFields(item, index) {
                 var $hiddenContainer = $('#hiddenItemsContainer');
-                var prefix = `BridgeList[${index}]`;
+                var prefix = `BridgeList[${index}]`; // Corrected prefix
 
                 var hiddenFields = `
                     <input type="hidden" name="${prefix}.Type" value="${item.itemType}" />
                     <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" />
                 `;
-
                 // Add the correct ID field based on item type
-                if (item.itemType === 'Paper') {
-                    hiddenFields += `<input type="hidden" name="${prefix}.PaperId" value="${item.itemId}" />`;
-                }
-                else if (item.itemType === 'Ink') {
+                if (item.itemType === 'SparePart') {
+                    hiddenFields += `<input type="hidden" name="${prefix}.SparePartId" value="${item.itemId}" />`;
+                } else if (item.itemType === 'Ink') { // Use else if for clarity
                     hiddenFields += `<input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />`;
                 }
-                else if (item.itemType === 'Supply') {
-                    hiddenFields += `<input type="hidden" name="${prefix}.SuppliesId" value="${item.itemId}" />`;
-                }
-
+                
                 $hiddenContainer.append(hiddenFields);
             }
 
@@ -483,4 +469,4 @@
             }
         });
     </script>
-} 
+} *@

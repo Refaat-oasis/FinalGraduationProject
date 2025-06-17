@@ -991,7 +991,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridgeList[i].TotalBalance = quantityBridgeList[i].UnitPrice * quantityBridgeList[i].NumberOfUnits;
                         decimal totalValue = (decimal)quantityBridgeList[i].TotalBalance + (decimal)ink.TotalBalance;
-
+                        decimal purchaseValue =(decimal) quantityBridgeList[i].NumberOfUnits * (decimal)quantityBridgeList[i].UnitPrice;
+                        purchaseOrderRemainingBalance += purchaseValue;
                         decimal averageUnitPrice = totalValue / (ink.NumberOfUnits + quantityBridgeList[i].NumberOfUnits);
                         decimal averagequantityPrice = totalValue / (ink.Quantity + (quantityBridgeList[i].NumberOfUnits*ink.AverageQuantity));
 
@@ -1105,11 +1106,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         _context.SaveChanges();
 
                     }
-                    PurchaseOrder purch = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseOrderNumber);
-                    purch.RemainingAmount = purchaseOrderRemainingBalance;
-                    _context.PurchaseOrders.Update(purch);
-                    _context.SaveChanges();
+                   
                 }
+                PurchaseOrder purch = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseOrderNumber);
+                purch.RemainingAmount = purchaseOrderRemainingBalance;
+                _context.PurchaseOrders.Update(purch);
+                _context.SaveChanges();
                 return (true, "تمت عملية الشراء بنجاح");
             }
             catch (ArgumentException ex)

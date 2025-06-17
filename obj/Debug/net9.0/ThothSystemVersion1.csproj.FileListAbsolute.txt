@@ -19391,7 +19391,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.dll
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\refint\ThothSystemVersion1.dll
@@ -21621,7 +21620,6 @@ C:\Users\ECC\OneDrive\Desktop\اخر نسخه للشغل\FinalGraduationProject\
 C:\Users\ECC\OneDrive\Desktop\اخر نسخه للشغل\FinalGraduationProject\obj\Debug\net9.0\compressed\x0ojrboe79-pvgzkdw3wr.gz
 C:\Users\ECC\OneDrive\Desktop\اخر نسخه للشغل\FinalGraduationProject\obj\Debug\net9.0\compressed\bpm5wt4pp8-v8madaii6w.gz
 C:\Users\ECC\OneDrive\Desktop\اخر نسخه للشغل\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-p2m89nhm79.gz
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-7sdotv8cmn.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\3ury7qm6zt-lsyoyezr5g.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\lbvduvoh9i-kne38xj8n8.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\zn1uteo1kw-9jan9bblr7.gz
@@ -22075,3 +22073,7 @@ C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\obj\Debug\net9.0\
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-tbpwc20gmv.gz
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\obj\Debug\net9.0\compressed\11n3uy0hvv-dfc0t1txij.gz
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\obj\Debug\net9.0\compressed\kqnbfrbgtp-6b7detdgxa.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-tbpwc20gmv.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\11n3uy0hvv-dfc0t1txij.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\kqnbfrbgtp-6b7detdgxa.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

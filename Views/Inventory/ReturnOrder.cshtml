@@ -1,4 +1,4 @@
-﻿﻿@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
 
@@ -6,10 +6,6 @@
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
-}
-
-@{
-    ViewData["Title"] = "Thoth";
 }
 
 @model ThothSystemVersion1.DataTransfereObject.ReturnOrderDTO
@@ -39,7 +35,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    
+
 
 </head>
 
@@ -72,145 +68,135 @@
 
 <div class="container">
     <h1>المرتجعات</h1>
-@* Success and Error Messages *@
-@if (TempData["Success"] != null)
-{
-    <div class="notification success">
-        <div class="notification-content">
-            <i class='bx bx-check-circle'></i> @TempData["Success"]
+    @* Success and Error Messages *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="notification success">
+            <div class="notification-content">
+                <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+            </div>
+            <input type="hidden" id="tempDataSuccess" value="true" />
+            <div class="progress-bar success"></div>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="notification error">
+            <div class="notification-content">
+                <i class='bx bx-error-circle'></i>
+                <span>@TempData["Error"]</span>
+            </div>
+            <input type="hidden" id="tempDataSuccess" value="false" />
+
+            <div class="progress-bar error"></div>
 
         </div>
-        <input type="hidden" id="tempDataSuccess" value="true" />
-        <div class="progress-bar success"></div>
-    </div>
-}
-
-@if (TempData["Error"] != null)
-{
-    <div class="notification error">
-        <div class="notification-content">
-            <i class='bx bx-error-circle'></i>
-            <span>@TempData["Error"]</span>
-        </div>
-        <input type="hidden" id="tempDataSuccess" value="false" />
-
-        <div class="progress-bar error"></div>
-
-    </div>
-}
-<input type="hidden" id="hdnJobRole" value="@jobRole" />
+    }
+    <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
 
-<form asp-action="ReturnOrder" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
+    <form asp-action="ReturnOrder" asp-controller="Inventory" id="returnOrderForm" class="form-container" method="post">
 
         <div class="rowCont">
             <div class="colCont">
                 <label class="form-label">نوع الإرجاع</label>
-            <select id="returnType" class="form-select" >
-                <option value="">-- اختر نوع الإرجاع --</option>
-                <option value="job">إرجاع من أمر تشغيل</option>
-                <option value="purchase">إرجاع إلى المورد</option>
-            </select>
-        </div>
+                <select id="returnType" class="form-select">
+                    <option value="">-- اختر نوع الإرجاع --</option>
+                    <option value="job">إرجاع من أمر تشغيل</option>
+                    <option value="purchase">إرجاع إلى المورد</option>
+                </select>
+            </div>
             <div class="colCont">
                 <div class="form-label">
-                <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
-                <label class="form-check-label" for="returnInOut">
-                    إضافة للمخزون
-                </label>
+                    <input class="form-check-input" type="checkbox" asp-for="ReturnInOut" id="returnInOut">
+                    <label class="form-check-label" for="returnInOut">
+                        إضافة للمخزون
+                    </label>
+                </div>
             </div>
         </div>
-    </div>
 
         <div class="rowCont" id="jobOrderSection" style="display:none;">
             <div class="colCont">
                 <label asp-for="JobOrderId" class="form-label">اختر أمر التشغيل</label>
-            <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
-                <option value="">-- اختر أمر التشغيل --</option>
-                @if (ViewBag.JobOrderList != null)
-                {
-                    foreach (var job in ViewBag.JobOrderList)
+                <select asp-for="JobOrderId" id="jobOrderSelect" class="form-select">
+                    <option value="">-- اختر أمر التشغيل --</option>
+                    @if (ViewBag.JobOrderList != null)
                     {
-                        <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                        foreach (var job in ViewBag.JobOrderList)
+                        {
+                            <option value="@job.JobOrderId">@job.JobOrderId - @(job.Customer?.CustomerName ?? "بدون عميل")</option>
+                        }
                     }
-                }
-            </select>
-            <span asp-validation-for="JobOrderId" class="text-danger"></span>
+                </select>
+                <span asp-validation-for="JobOrderId" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
         <div class="rowCont" id="purchaseOrderSection" style="display:none;">
             <div class="colCont">
                 <label asp-for="purchaseID" class="form-label">اختر أمر الشراء</label>
-            <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
-                <option value="">-- اختر أمر الشراء --</option>
-                @if (ViewBag.PurchaseOrderList != null)
-                {
-                    foreach (var purchase in ViewBag.PurchaseOrderList)
+                <select asp-for="purchaseID" id="purchaseOrderSelect" class="form-select">
+                    <option value="">-- اختر أمر الشراء --</option>
+                    @if (ViewBag.PurchaseOrderList != null)
                     {
-                        <option value="@purchase.PurchaseId">@purchase.PurchaseId - @(purchase.Vendor?.VendorName ?? "بدون مورد")</option>
+                        foreach (var purchase in ViewBag.PurchaseOrderList)
+                        {
+                            <option value="@purchase.PurchaseId">@purchase.PurchaseId - @(purchase.Vendor?.VendorName ?? "بدون مورد")</option>
+                        }
                     }
-                }
-            </select>
-            <span asp-validation-for="purchaseID" class="text-danger"></span>
+                </select>
+                <span asp-validation-for="purchaseID" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
         <div class="rowCont">
             <div class="colCont">
                 <label asp-for="ReturnsNotes" class="form-label">ملاحظات الإرجاع</label>
-            <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
-        </div>
-    </div>
-
-    <!-- Manual item addition section -->
-    
-        
-            <h5 class="mb-0">اضافه العنصر</h5>
-       
-        
-                <div class="rowCont">
-                    <div class="colCont">
-                        <label class="form-label">نوع الصنف</label>
-                    <select id="itemType" class="form-select">
-                        <option value="">-- اختر النوع --</option>
-                        <option value="Paper">ورق</option>
-                        <option value="Ink">حبر</option>
-                        <option value="Supply">مستلزمات</option>
-                    </select>
-                </div>
-
-                    <div class="colCont">
-                        <label class="form-label">الصنف</label>
-                    <select id="itemId" class="form-select" disabled>
-                        <option value="">-- اختر الصنف --</option>
-                    </select>
-                </div>
-
-                    <div class="colCont">
-                        <label class="form-label">كمية الإرجاع</label>
-                    <input type="number" id="itemQuantity" class="form-control" min="1" />
-                    <small id="originalQuantityInfo" class="text-muted" style="display:none;">
-                        الكمية الأصلية: <span id="originalQuantityValue">0</span>
-                    </small>
-                </div>
-
-                    <div class="colCont">
-                        <button type="button" id="addItem" class="btn1">إضافة</button>
-                </div>
+                <textarea asp-for="ReturnsNotes" class="form-control" rows="2"></textarea>
             </div>
-        
-   
+        </div>
+        <h5 class="mb-0">اضافه العنصر</h5>
+        <div class="rowCont">
+            <div class="colCont">
+                <label class="form-label">نوع الصنف</label>
+                <select id="itemType" class="form-select">
+                    <option value="">-- اختر النوع --</option>
+                    <option value="Paper">ورق</option>
+                    <option value="Ink">حبر</option>
+                    <option value="Supply">مستلزمات</option>
+                    <option value="SparePart">قطع غيار</option>
 
-    <!-- Selected items for return -->
-   
-       
-          <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
-        
+                </select>
+            </div>
+
+            <div class="colCont">
+                <label class="form-label">الصنف</label>
+                <select id="itemId" class="form-select" disabled>
+                    <option value="">-- اختر الصنف --</option>
+                </select>
+            </div>
+
+            <div class="colCont">
+                <label class="form-label">كمية الإرجاع</label>
+                <input type="number" id="itemQuantity" class="form-control" min="1" />
+                <small id="originalQuantityInfo" class="text-muted" style="display:none;">
+                    الكمية الأصلية: <span id="originalQuantityValue">0</span>
+                </small>
+            </div>
+
+            <div class="colCont">
+                <button type="button" id="addItem" class="btn1">إضافة</button>
+            </div>
+        </div>
+        <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
+
         <div class="card-body">
-                <div class="tableContainer">
+            <div class="tableContainer">
                 <table>
-                    <thead >
+                    <thead>
                         <tr>
                             <th>نوع الصنف</th>
                             <th>الصنف</th>
@@ -226,15 +212,16 @@
                 لم يتم تحديد أي أصناف للإرجاع بعد
             </div>
         </div>
-   
 
-    <div id="hiddenItemsContainer"></div>
+
+        <div id="hiddenItemsContainer"></div>
 
         <div class="colCont1">
             <button type="submit" id="submitBtn" class="btn1">حفظ أمر الإرجاع</button>
-    </div>
-</form>
+        </div>
+    </form>
 </div>
+
 
 
 
@@ -242,7 +229,7 @@
     <script>
         $(document).ready(function () {
             console.log("Document is ready1");
-            // Toggle between job order and purchase order sections
+
             $('#returnType').change(function () {
                 const selectedType = $(this).val();
                 $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
@@ -263,7 +250,6 @@
             let editIndex = -1;
             let orderItems = [];
 
-            // Load items for a job order
             $('#jobOrderSelect').change(function () {
                 const jobOrderId = $(this).val();
                 if (!jobOrderId) {
@@ -278,7 +264,6 @@
                 }).fail(xhr => alert('حدث خطأ اثناء تحميل بيانات الطلبية : ' + xhr.responseText));
             });
 
-            // Load items for a purchase order
             $('#purchaseOrderSelect').change(function () {
                 const purchaseId = $(this).val();
                 if (!purchaseId) {
@@ -302,7 +287,6 @@
                 });
             }
 
-            // When a type is chosen, fill the item dropdown
             $('#itemType').change(function () {
                 const selectedType = $(this).val();
                 const $itemSelect = $('#itemId');
@@ -313,16 +297,15 @@
                 orderItems
                     .filter(i => i.itemType === selectedType)
                     .forEach(item => {
-                        const id = item.itemId || item.paperId || item.inkId || item.suppliesId;
+                        const id = item.itemId || item.paperId || item.inkId || item.suppliesId || item.sparepartsId;
                         const name = item.name;
                         const qty  = item.quantity || 0;
-                             $itemSelect.append(
-            `<option value="${id}" data-quantity="${qty}">${name} - الكمية: ${qty}</option>`
-        );
+                        $itemSelect.append(
+                            `<option value="${id}" data-quantity="${qty}">${name} - الكمية: ${qty}</option>`
+                        );
                     });
             });
 
-            // Show original quantity when an item is selected
             $('#itemId').change(function () {
                 const qty = parseInt($(this).find(':selected').data('quantity')) || 0;
                 $('#originalQuantityValue').text(qty);
@@ -330,7 +313,6 @@
                 $('#itemQuantity').attr('max', qty).val('');
             });
 
-            // Add or edit an item in the list
             $('#addItem').click(function () {
                 const type = $('#itemType').val();
                 const id   = $('#itemId').val();
@@ -341,11 +323,11 @@
                 if (!type || !id || !qty ) {
                     return alert('الرجاء ملئ جميع البيانات بشكل صحيح');
                 }
-                if(qty<=0) {
+                if(qty <= 0) {
                       return alert('يجب ادخال قيمة اكبر من الصفر');
                 }
                 if (qty > orig) {
-                    return alert(`كمية المرتجع (${qty}) اكبر من كمية الاصلية (${orig})`);
+                    return alert(`كمية المرتجع (${qty}) اكبر من الكمية الأصلية (${orig})`);
                 }
 
                 const newItem = { itemType: type, itemId: id, itemName: name, originalQuantity: orig, quantity: qty };
@@ -358,42 +340,56 @@
                     items[editIndex] = newItem;
                     editIndex = -1;
                 }
-                console.log(newItem);
-                console.log(items);
 
                 renderItems();
                 resetItemForm();
             });
+        function renderItems() {
+            const $tb = $('#itemsTableBody'), $hc = $('#hiddenItemsContainer');
+            const returnType = $('#returnType').val(); // <-- FIX: get return type dynamically
+            $tb.empty(); $hc.empty();
 
-            function renderItems() {
-                const $tb = $('#itemsTableBody'), $hc = $('#hiddenItemsContainer');
-                $tb.empty(); $hc.empty();
-                items.forEach((it, i) => {
-                    $tb.append(`
-                        <tr data-index="${i}">
-                            <td>${it.itemType}</td>
-                            <td>${it.itemName}</td>
-                            <td>${it.originalQuantity}</td>
-                            <td>${it.quantity}</td>
-                            <td>
-                                <button type="button" class="btn">تعديل</button>
-                                <button type="button" class="btn">حذف</button>
-                            </td>
-                        </tr>
-                    `);
-                    let inputs = '';
-                    if (it.itemType === 'Paper' || it.itemType === 'الورق')
+            items.forEach((it, i) => {
+                $tb.append(`
+                    <tr data-index="${i}">
+                        <td>${it.itemType}</td>
+                        <td>${it.itemName}</td>
+                        <td>${it.originalQuantity}</td>
+                        <td>${it.quantity}</td>
+                        <td>
+                            <button type="button" class="btn editItem">تعديل</button>
+                            <button type="button" class="btn deleteItem">حذف</button>
+                        </td>
+                    </tr>
+                `);
+
+                let inputs = '';
+                const isInk = it.itemType === 'Ink' || it.itemType === 'الحبر';
+
+                if (isInk) {
+                    inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
+                    if (returnType === 'purchase') {
+                        inputs += `<input type="hidden" name="BridgeList[${i}].NumberOfUnits" value="${it.quantity}" />`;
+                    } else {
+                        inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
+                    }
+                } else {
+                    if (it.itemType === 'Paper' || it.itemType === 'الورق') {
                         inputs += `<input type="hidden" name="BridgeList[${i}].PaperId" value="${it.itemId}" />`;
-                    else if (it.itemType === 'Ink' || it.itemType === 'الحبر')
-                        inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
-                    else if (it.itemType === 'Supply' || it.itemType === 'المستلزمات')
+                    } else if (it.itemType === 'Supply' || it.itemType === 'المستلزمات') {
                         inputs += `<input type="hidden" name="BridgeList[${i}].SuppliesId" value="${it.itemId}" />`;
+                    } else if (it.itemType === 'SparePart' || it.itemType === 'قطع غيار') {
+                        inputs += `<input type="hidden" name="BridgeList[${i}].SparePartsId" value="${it.itemId}" />`;
+                    }
                     inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
-                    $hc.append(inputs);
-                    console.log(inputs)
-                });
-                $('#noSelectedItemsMessage').toggle(items.length === 0);
-            }
+                }
+
+                $hc.append(inputs);
+            });
+
+            $('#noSelectedItemsMessage').toggle(items.length === 0);
+        }
+
 
             function resetItemForm() {
                 $('#itemType').val('');
@@ -404,7 +400,6 @@
                 editIndex = -1;
             }
 
-            // Edit & Delete handlers
             $('#itemsTableBody')
                 .on('click', '.deleteItem', function (e) {
                     e.preventDefault();
@@ -414,7 +409,7 @@
                 .on('click', '.editItem', function (e) {
                     e.preventDefault();
                     editIndex = $(this).closest('tr').data('index');
-                    var item = items[editIndex];
+                    const item = items[editIndex];
 
                     $('#itemType').val(item.itemType).trigger('change');
 
@@ -435,7 +430,6 @@
                     }, 100);
                 });
 
-            // Form validation
             $('#returnOrderForm').submit(function (e) {
                 if (!items.length) {
                     e.preventDefault(); alert('من فضلك اضف عنصر واحد علي الاقل');
@@ -452,19 +446,12 @@
             });
         });
 
-        console.log("Document is ready");
 
         const tempDataElement = document.getElementById('tempDataSuccess');
         const jobRoleElement = document.getElementById('hdnJobRole');
-
-        // Get values with proper fallbacks
         const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
         const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-        console.log("Success message exists:", hasSuccessMessage);
-        console.log("Job role:", jobRole);
-
-        // Mapping of job roles to their respective URLs
         const jobRoleRoutes = {
             0: "/employee/AdminHome",
             1: "/employee/inventoryManager",
@@ -483,3 +470,4 @@
         }
     </script>
 }
+

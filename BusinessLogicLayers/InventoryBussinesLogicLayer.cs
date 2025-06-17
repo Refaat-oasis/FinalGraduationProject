@@ -1257,6 +1257,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
         public List<Employee> GetActiveEmployees() => _context.Employees.Where(e => e.Activated).ToList();
+
         public List<object> GetJobOrderItems(int jobOrderId)
         {
             try
@@ -1340,7 +1341,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             itemType = "الحبر",
                             itemId = ink.InkId,
                             name = ink.Name,
-                            quantity = qb.Quantity
+                            quantity = qb.NumberOfUnits
                         })
                     .ToList();
 
@@ -1355,11 +1356,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                             quantity = qb.Quantity
                         })
                     .ToList();
+                var sparepartItems = _context.QuantityBridges
+                .Where(qb => qb.PurchaseId == purchaseId && qb.SparePartsId != null)
+                .Join(_context.SpareParts, qb => qb.SparePartsId, SparePart => SparePart.SparePartsId,
+                    (qb, SparePart) => new
+                    {
+                        itemType = "قطع غيار",
+                        itemId = SparePart.SparePartsId,
+                        name = SparePart.Name,
+                        quantity = qb.Quantity
+                    })
+                .ToList();
 
                 var allItems = new List<object>();
                 allItems.AddRange(paperItems);
                 allItems.AddRange(inkItems);
                 allItems.AddRange(supplyItems);
+                allItems.AddRange(sparepartItems);
 
                 return allItems;
             }
@@ -1480,24 +1493,23 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 if (ink != null)
                                 {
                                     decimal itemPrice = qb.Price;
-                                    decimal itemReturnValue = itemPrice * quantityBridgeList[i].Quantity;
+                                    decimal itemReturnValue = itemPrice * quantityBridgeList[i].NumberOfUnits;
                                     totalReturnValue += itemReturnValue;
 
                                     var avgPrice = _context.QuantityBridges
                                         .Where(x => x.InkId == ink.InkId && x.PurchaseId != null)
-                                        .Average(x => x.Price);
+                                        .Average(x => x.UnitPrice);
 
 
                                     quantityBridgeList[i].OldPrice = ink.Price;
-                                    quantityBridgeList[i].OldQuantity = ink.Quantity;
                                     quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
-                                    quantityBridgeList[i].Price = avgPrice;
+                                    quantityBridgeList[i].UnitPrice = avgPrice;
 
 
-                                    ink.Quantity -= quantityBridgeList[i].Quantity;
+                                    ink.NumberOfUnits -= quantityBridgeList[i].NumberOfUnits;
 
-                                    quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * avgPrice;
+                                    quantityBridgeList[i].TotalBalance = quantityBridgeList[i].NumberOfUnits * avgPrice;
 
                                     _context.Inks.Update(ink);
                                     _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -1563,6 +1575,35 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                     _context.QuantityBridges.Add(quantityBridgeList[i]);
                                 }
                             }
+                            else if (quantityBridgeList[i].SparePartsId != null && qb.SparePartsId == quantityBridgeList[i].SparePartsId)
+                            {
+                                var sparePart = _context.SpareParts.FirstOrDefault(s => s.SparePartsId == quantityBridgeList[i].SparePartsId);
+                                if (sparePart != null)
+                                {
+                                    decimal itemPrice = qb.Price;
+                                    decimal itemReturnValue = itemPrice * quantityBridgeList[i].Quantity;
+                                    totalReturnValue += itemReturnValue;
+
+                                    var avgPrice = _context.QuantityBridges
+                                 .Where(x => x.SparePartsId == sparePart.SparePartsId && x.PurchaseId != null)
+                                  .Average(x => x.Price);
+
+
+                                    quantityBridgeList[i].OldPrice = sparePart.Price;
+                                    quantityBridgeList[i].OldQuantity = sparePart.Quantity;
+                                    quantityBridgeList[i].OldTotalBalance = sparePart.TotalBalance;
+
+                                    quantityBridgeList[i].Price = avgPrice;
+
+
+                                    sparePart.Quantity -= quantityBridgeList[i].Quantity;
+                                    quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * avgPrice;
+
+
+                                    _context.SpareParts.Update(sparePart);
+                                    _context.QuantityBridges.Add(quantityBridgeList[i]);
+                                }
+                            }
 
                         }
                     }
@@ -1596,7 +1637,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
-
         public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
         {
             try

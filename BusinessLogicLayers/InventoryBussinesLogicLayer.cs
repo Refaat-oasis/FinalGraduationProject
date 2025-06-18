@@ -2060,6 +2060,66 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         
         
         }
+        public bool AddMachine(MachineStore machine)
+        {
+            try
+            {
+                if (machine == null)
+                {
+                    throw new ArgumentNullException(nameof(machine));
+                }
 
+                MachineStore addedMachine = new MachineStore();
+
+                addedMachine.Name = machine.Name;
+                addedMachine.Activated = true;
+                _context.MachineStores.Add(addedMachine);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public bool AddSparePart(SparePart spareparts)
+        {
+            try
+            {
+                if (spareparts == null)
+                {
+                    throw new ArgumentNullException(nameof(spareparts));
+                }
+
+                SparePart addedSparePart = new SparePart();
+
+                addedSparePart.Name = spareparts.Name;
+                addedSparePart.Price = spareparts.Price;
+                addedSparePart.Quantity = spareparts.Quantity;
+                addedSparePart.TotalBalance = spareparts.Price * spareparts.Quantity;
+                addedSparePart.ReorderPoint = spareparts.ReorderPoint;
+                addedSparePart.Activated = true;
+                _context.SpareParts.Add(addedSparePart);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (ArgumentException ex)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return false;
+            }
+        }
     }
 }

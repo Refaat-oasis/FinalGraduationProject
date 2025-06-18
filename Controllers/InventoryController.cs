@@ -1141,8 +1141,106 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult AddMachine()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    MachineStore empty = new MachineStore();
+                    return View("~/Views/Inventory/AddMachine.cshtml", empty);
+
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/AddMachine.cshtml", new MachineStore());
+            }
+        }
 
 
+        [HttpPost]
+        public IActionResult AddMachine(MachineStore machine)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/AddMachine.cshtml", machine);
+                }
+
+                bool isMachineadded = _businessLogicL.AddMachine(machine);
+                TempData["Success"] = "تم اضافة بيانات قطعة الاله";
+                return RedirectToAction("AddMachine", "inventory");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء اضافة بيانات الاله";
+                return View("~/Views/Inventory/AddMachine.cshtml", machine);
+            }
+
+        }
+        [HttpGet]
+        public IActionResult AddSparePart()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    SparePart empty = new SparePart();
+                    return View("~/Views/Inventory/AddSparePart.cshtml", empty);
+
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/AddSparePart.cshtml", new SparePart());
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult AddSparePart(SparePart sparepart)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("~/Views/Inventory/AddSparePart.cshtml", sparepart);
+                }
+
+                bool isMachineadded = _businessLogicL.AddSparePart(sparepart);
+                TempData["Success"] = "تم اضافة بيانات قطعة الغيار";
+                return RedirectToAction("AddSparePart", "inventory");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء اضافة بيانات قطعة الغيار";
+                return View("~/Views/Inventory/AddSparePart.cshtml", sparepart);
+            }
+
+        }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sandra section

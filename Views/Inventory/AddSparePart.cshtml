@@ -1,12 +1,10 @@
 ﻿@model SparePart;
 @using Microsoft.AspNetCore.Http
-
-@inject IHttpContextAccessor HttpContextAccessor
 @{
     Layout = null;
-
-    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 }
+
+@inject IHttpContextAccessor HttpContextAccessor
 
 
 @{
@@ -89,13 +87,6 @@
         <div class="text">
             <h1>إضافة قطع غيار</h1>
         </div>
-
-        <div class="inputBox">
-            <label for="paperName">الرقم التعريفي لقطعه الغيار</label>
-            <input type="number" asp-for="@Model.SparePartsId" id="SpareId" />
-            <span class="error" asp-validation-for="@Model.SparePartsId"></span>
-        </div>
-
         <div class="inputBox">
             <label for="paperName">اسم لقطعه الغيار</label>
             <input type="text" asp-for="@Model.Name" id="Name" />
@@ -114,50 +105,11 @@
             <input type="number" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
         </div>
-
-         <div class="inputBox">
-            <label for="TotalBalance">القيمة المتاحه</label>
-            <input type="number" step="any" asp-for="@Model.TotalBalance" id="TotalBalance" />
-            <span asp-validation-for="@Model.TotalBalance" class="error"></span>
-        </div> 
-
         <div class="inputBox">
             <label for="ReorderPoint">نقطة إعادة الطلب</label>
             <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
             <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
         </div>
-
-        <div class="input-control">
-            <label asp-for="@Model.Activated" class="textlabel"> </label>
-            @{
-                var isActivated = Model?.Activated ?? false; 
-            }
-            <select asp-for="@Model.Activated" id="options" class="place">
-                <option value="true" selected="@(isActivated ? "selected" : null)">مفعل</option>
-                <option value="false" selected="@(isActivated ? null : "selected")">غير مفعل</option>
-            </select>
-        </div>
-
-
-        @*   <div class="input-control">
-            <label asp-for="@Model.Activated" class="textlabel"> </label>
-            <select asp-for="@Model.Activated" id="options" class="place">
-                @{
-                    if (Model.Activated)
-                    {
-                        <option value="true" selected>مفعل</option>
-                        <option value="false">غير مفعل</option>
-                    }
-                    else
-                    {
-                        <option value="false" selected>غير مفعل</option>
-                        <option value="true">مفعل</option>
-                    }
-                }
-            </select>
-        </div> *@
-
-
         <div class="buttons">
             <div class="Add">
                 <input type="submit" value="تأكيد الإضافة " class="Add" />
@@ -170,4 +122,4 @@
     </form>
 
 </div>
-<script src="~/js/Inventory/AddSparePart"></script>
+<script src="~/js/Inventory/AddSparePart.js"></script>

@@ -1492,18 +1492,18 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                 var ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
                                 if (ink != null)
                                 {
-                                    decimal itemPrice = qb.Price;
-                                    decimal itemReturnValue = itemPrice * quantityBridgeList[i].NumberOfUnits;
-                                    totalReturnValue += itemReturnValue;
+                                    decimal? itemPrice = qb.UnitPrice;
+                                    decimal? itemReturnValue = itemPrice * quantityBridgeList[i].NumberOfUnits;
+                                    totalReturnValue += (decimal)itemReturnValue;
 
                                     var avgPrice = _context.QuantityBridges
                                         .Where(x => x.InkId == ink.InkId && x.PurchaseId != null)
                                         .Average(x => x.UnitPrice);
 
 
-                                    quantityBridgeList[i].OldPrice = ink.Price;
+                                    quantityBridgeList[i].OldPrice = ink.UnitPrice;
+                                    quantityBridgeList[i].OldNumberOfUnits = ink.NumberOfUnits;
                                     quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
-
                                     quantityBridgeList[i].UnitPrice = avgPrice;
 
 

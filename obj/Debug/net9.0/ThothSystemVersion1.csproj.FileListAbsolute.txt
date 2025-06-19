@@ -21617,8 +21617,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\zn1uteo1kw-9jan9bblr7.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-p2m89nhm79.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\dj3xgco56r-jlr1dpixw3.gz
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\x0ojrboe79-pvgzkdw3wr.gz
-C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\bpm5wt4pp8-v8madaii6w.gz
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\bin\Debug\net9.0\appsettings.json
 C:\Users\Mira\Desktop\Gradution Project\FinalGraduationProject\bin\Debug\net9.0\libman.json
@@ -22532,3 +22530,5 @@ C:\Users\Compu Market\Desktop\GP51\FinalGraduationProject\obj\Debug\net9.0\refin
 C:\Users\Compu Market\Desktop\GP51\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.pdb
 C:\Users\Compu Market\Desktop\GP51\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\Compu Market\Desktop\GP51\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\x0ojrboe79-93tdsmcj9j.gz
+C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\bpm5wt4pp8-lq4ui8fi5t.gz

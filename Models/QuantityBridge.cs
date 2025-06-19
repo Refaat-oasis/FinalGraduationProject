@@ -27,6 +27,9 @@ public partial class QuantityBridge
 
     public decimal? UnitPrice { get; set; }
 
+
+    public int? OldNumberOfUnits { get; set; }
+
     [Display(Name = "القيمة")]
     public decimal? TotalBalance { get; set; }
 
@@ -62,8 +65,6 @@ public partial class QuantityBridge
 
 
     public virtual Ink? Ink { get; set; }
-
-    public virtual MachineStore? MachineStore { get; set; }
 
     public virtual Paper? Paper { get; set; }
 

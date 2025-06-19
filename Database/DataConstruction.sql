@@ -284,7 +284,9 @@ CREATE TABLE PerpetualRequisiteOrder (
     perpetualRequisiteDate DATE DEFAULT GETDATE(),
     employeeID NVARCHAR(30) NOT NULL,
     requisiteNotes NVARCHAR(2500) NULL DEFAULT '',
+    machineStoreID INT NOT NULL,
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID),
+    FOREIGN KEY (machineStoreID) REFERENCES MachineStore(machineStoreID),
 
 );
 GO
@@ -298,6 +300,7 @@ CREATE TABLE QuantityBridge (
     purchaseID INT NULL,
     quantity INT NULL DEFAULT 0 CHECK (quantity >= 0),
     numberOfUnits INT NULL DEFAULT 0,
+    oldNumberOfUnits INT NULL DEFAULT 0,
     unitPrice DECIMAL(10,2) NULL DEFAULT 0 ,
     totalBalance DECIMAL(10,2) NULL DEFAULT 0,
     oldQuantity INT NULL DEFAULT 1 ,
@@ -309,10 +312,8 @@ CREATE TABLE QuantityBridge (
     suppliesID INT NULL,
     physicalCountID INT NULL,
     perpetualRequisiteID INT NULL,
-    machineStoreID INT NULL,
     sparePartsID INT NULL,
     FOREIGN KEY (sparePartsID) REFERENCES SpareParts(sparePartsID),
-    FOREIGN KEY (machineStoreID) REFERENCES MachineStore (machineStoreID),
     FOREIGN KEY (perpetualRequisiteID) REFERENCES PerpetualRequisiteOrder(perpetualRequisiteID),
     FOREIGN KEY (returnID) REFERENCES ReturnsOrder(returnID),
     FOREIGN KEY (purchaseID) REFERENCES PurchaseOrder(purchaseID),

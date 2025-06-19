@@ -11,5 +11,5 @@ public partial class MachineStore
 
     public bool? Activated { get; set; }
 
-    public virtual ICollection<QuantityBridge> QuantityBridges { get; set; } = new List<QuantityBridge>();
+    public virtual ICollection<PerpetualRequisiteOrder> PerpetualRequisiteOrders { get; set; } = new List<PerpetualRequisiteOrder>();
 }

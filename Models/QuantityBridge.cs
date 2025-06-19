@@ -59,7 +59,6 @@ public partial class QuantityBridge
 
     public int? PerpetualRequisiteId { get; set; }
 
-    public int? MachineStoreId { get; set; }
 
     public int? SparePartsId { get; set; }
 

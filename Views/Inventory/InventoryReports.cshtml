@@ -78,6 +78,7 @@
                             <option value="Paper">ورق</option>
                             <option value="Ink">حبر</option>
                             <option value="Supply">مستلزمات</option>
+                            <option value="Spare">قطع غيار</option>
                         </select>
                     </div>
                 </div>
@@ -255,7 +256,7 @@
                 }
 
                 <!-- Physical Count Orders Section -->
-                @if (Model.physicalCountlist != null && Model.physicalCountlist.Any())
+                @if (Model.physicalCountList != null && Model.physicalCountList.Any())
                 {
                     <div class="section-box">
                         <h2>أوامر الجرد</h2>
@@ -270,7 +271,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.physicalCountlist)
+                                @foreach (var order in Model.physicalCountList)
                                 {
                                     var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
                                     <tr>
@@ -350,6 +351,55 @@
 
                                         <td>@(order.ReturnInOut == true ? "مرتجع داخلي" : "مرتجع خارجي")</td>
 
+
+                                        <td>
+                                            @{
+                                                for (int i = 0; i <= employeeList.Count; i++)
+                                                {
+
+                                                    if (order.EmployeeId == employeeList[i].EmployeeId)
+                                                    {
+                                                        <span>@employeeList[i].EmployeeName</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                <!-- Perpetual Orders Section-->
+                @if (Model.returnOrderList != null && Model.returnOrderList.Any())
+                {
+                    <div class="section-box">
+                        <h2>أوامر الصرف المخزم الدائم</h2>
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>التفاصيل</th>
+                                    <th>التاريخ</th>
+                                    <th>الموظف القائم بالامر</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.perpetualOrderList)
+                                {
+                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.PerpetualRequisiteId == order.PerpetualRequisiteId).ToList();
+                                    <tr>
+                                        @if (bridgeItems.Any())
+                                        {
+                                            @foreach (var item in bridgeItems)
+                                            {
+                                                  <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
+                                            }
+                                        }
+                                        <td>@order.PerpetualRequisiteDate</td>
 
                                         <td>
                                             @{
@@ -456,11 +506,12 @@
                 var items = {
                     Paper: @Html.Raw(Json.Serialize(ViewBag.PaperList)),
                     Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
-                    Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList))
+                    Supply: @Html.Raw(Json.Serialize(ViewBag.SupplyList)),
+                    Spare : @Html.Raw(Json.Serialize(ViewBag.SpareList))
                 };
 
                 items[selectedType].forEach(function(item) {
-                           var id = item.paperId || item.inkId || item.suppliesId;
+                           var id = item.paperId || item.inkId || item.suppliesId || item.SparePartsId;
                            var name = item.name;
 
                     itemSelect.append($('<option></option>').val(id).text(name));

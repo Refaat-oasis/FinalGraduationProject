@@ -259,7 +259,6 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
-
         [HttpGet]
         public IActionResult inventoryReports()
         {
@@ -271,6 +270,7 @@ namespace ThothSystemVersion1.Controllers
                     ViewBag.PaperList = _businessLogicL.GetActivePapers();
                     ViewBag.InkList = _businessLogicL.GetActiveInks();
                     ViewBag.SupplyList = _businessLogicL.GetActiveSupplies();
+                    ViewBag.SpareList = _businessLogicL.getActiveSpareParts();
 
                     return View();
 
@@ -401,8 +401,6 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
-
-
         [HttpGet]
         public IActionResult editMachineStore(int machineStoreID) {
             try
@@ -434,7 +432,6 @@ namespace ThothSystemVersion1.Controllers
 
           
         }
-
 
         [HttpPost]
         public IActionResult editMachineStore(int machineID, MachineStore NewMachine) {
@@ -592,6 +589,7 @@ namespace ThothSystemVersion1.Controllers
                 return View("~/Views/Inventory/InventoryReports.cshtml", new InventoryReportViewModel());
             }
         }
+       
         [HttpGet]
         public IActionResult EditVendor(int vendorID)
         {
@@ -707,7 +705,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
         [HttpPost]
         public IActionResult AddVendor(VendorAddDTO vendor)
         {
@@ -806,9 +803,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
-        //edit paper
-        
         [HttpGet]
         public IActionResult EditPaper(int paperId)
         {
@@ -867,8 +861,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
-        //edit paper
         [HttpGet]
         public IActionResult EditSupply(int SuppliesId)
         {
@@ -934,8 +926,7 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
-        //return
-
+       
         [HttpGet]
         public IActionResult GetJobOrderItems(int jobOrderId)
         {
@@ -1081,8 +1072,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
-
         [HttpPost]
         public IActionResult AddCharacteristic(ColorWeightSize newChar)
         {
@@ -1168,7 +1157,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
         [HttpPost]
         public IActionResult AddMachine(MachineStore machine)
         {
@@ -1191,6 +1179,7 @@ namespace ThothSystemVersion1.Controllers
             }
 
         }
+       
         [HttpGet]
         public IActionResult AddSparePart()
         {
@@ -1218,7 +1207,6 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
-
         [HttpPost]
         public IActionResult AddSparePart(SparePart sparepart)
         {
@@ -1244,6 +1232,7 @@ namespace ThothSystemVersion1.Controllers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Sandra section
+       
         [HttpGet]
         public IActionResult ViewAllVendor()
         {
@@ -1410,6 +1399,7 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+     
         public JsonResult GetCurrentQuantity(string itemType, int itemId)
         {
             try
@@ -1423,6 +1413,7 @@ namespace ThothSystemVersion1.Controllers
                 return Json(new { currentQuantity = 0 });
             }
         }
+        
         public JsonResult GetCurrentNumberOfUnits(string itemType, int itemId)
         {
             try
@@ -1560,60 +1551,65 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewAllMachineStore()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    List<MachineStore> machineStoreList = _businessLogicL.ViewAllMachineStore();
+                    return View(machineStoreList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض مخزون الالات";
+                return View("~/Views/Inventory/ViewAllMachineStore.cshtml", new List<MachineStore>());
+
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewAllSpareParts()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1)
+                {
+
+                    List<SparePart> sparePartsList = _businessLogicL.ViewAllSpareParts();
+                    return View(sparePartsList);
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ أثناء عرض مخزون قطع غيار الالات";
+                return View("~/Views/Inventory/ViewAllSpareParts.cshtml", new List<SparePart>());
+
+            }
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///
+
+
         //Views_Inventory_InventoryPrinting section 
 
-        //public IActionResult ExportToExcelItems(InventoryReportViewModel viewModel)
-        //{
-        //    try {
-
-        //        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-        //        using (var package = new ExcelPackage())
-        //        {
-        //            var worksheet = package.Workbook.Worksheets.Add($"تقارير العناصر");
-
-        //            // Add Headers
-        //            worksheet.Cells[1, 1].Value = "اسم المورد";
-        //            worksheet.Cells[1, 2].Value = "اسم الموظف";
-        //            worksheet.Cells[1, 3].Value = "المبلغ المتبقي";
-        //            worksheet.Cells[1, 4].Value = "المبلغ المدفوع";
-        //            worksheet.Cells[1, 5].Value = "الحساب";
-        //            worksheet.Cells[1, 6].Value = "السعر";
-        //            worksheet.Cells[1, 7].Value = "تاريخ الشراء";
-        //            worksheet.Cells[1, 8].Value = "تفاصيل الشراء";
-
-
-        //            // Add Data
-        //            for (int i = 0; i < viewModel.modifiedPurchaseOrderList.Count; i++)
-        //            {
-        //                worksheet.Cells[i + 2, 1].Value = viewModel.modifiedPurchaseOrderList[i].Vendorname;
-        //                worksheet.Cells[i + 2, 2].Value = viewModel.modifiedPurchaseOrderList[i].EmployeeName;
-        //                worksheet.Cells[i + 2, 3].Value = viewModel.modifiedPurchaseOrderList[i].RemainingAmount;
-        //                worksheet.Cells[i + 2, 4].Value = viewModel.modifiedPurchaseOrderList[i].PaidAmount;
-        //                worksheet.Cells[i + 2, 5].Value = viewModel.modifiedPurchaseOrderList[i].balance;
-        //                worksheet.Cells[i + 2, 6].Value = viewModel.modifiedPurchaseOrderList[i].price;
-        //                worksheet.Cells[i + 2, 7].Value = viewModel.modifiedPurchaseOrderList[i].PurchaseDate;
-        //                worksheet.Cells[i + 2, 8].Value = viewModel.modifiedPurchaseOrderList[i].PurchaseNotes;
-
-        //            }
-
-        //            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
-
-        //            var stream = new MemoryStream(package.GetAsByteArray());
-        //            return File(stream,
-        //                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        //                "Export.xlsx");
-        //        }
-
-        //    } catch (Exception ex)
-        //    {
-        //        WriteException.WriteExceptionToFile(ex);
-        //        return null;
-        //    }
-        //}
         public IActionResult ExportToExcelItems(InventoryReportViewModel viewModel)
         {
             try
@@ -1689,59 +1685,6 @@ namespace ThothSystemVersion1.Controllers
                 // Log your exception as needed...
                 WriteException.WriteExceptionToFile(ex);
                 return StatusCode(500, "An error occurred while generating the report.");
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> ViewAllMachineStore()
-        {
-            try
-            {
-                int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1)
-                {
-
-                    List<MachineStore> machineStoreList = _businessLogicL.ViewAllMachineStore();
-                    return View(machineStoreList);
-                }
-                else
-                {
-
-                    return RedirectToAction("UnauthorizedAccess", "employee");
-                }
-            }
-            catch (Exception ex)
-            {
-                WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ أثناء عرض مخزون الالات";
-                return View("~/Views/Inventory/ViewAllMachineStore.cshtml", new List<MachineStore>());
-
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> ViewAllSpareParts()
-        {
-            try
-            {
-                int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1)
-                {
-
-                    List<SparePart> sparePartsList = _businessLogicL.ViewAllSpareParts();
-                    return View(sparePartsList);
-                }
-                else
-                {
-
-                    return RedirectToAction("UnauthorizedAccess", "employee");
-                }
-            }
-            catch (Exception ex)
-            {
-                WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ أثناء عرض مخزون قطع غيار الالات";
-                return View("~/Views/Inventory/ViewAllSpareParts.cshtml", new List<SparePart>());
-
             }
         }
     }

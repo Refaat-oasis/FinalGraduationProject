@@ -1,0 +1,4 @@
+Date: 21-Jun-25 3:25:47 PM
+Exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at ThothSystemVersion1.Controllers.InventoryController.ExportToExcelItems(InventoryReportViewModel viewModel) in C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\Controllers\InventoryController.cs:line 1643
+

@@ -156,7 +156,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-
         public Ink GetInkByID(int inkID)
         {
             try
@@ -599,6 +598,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // الحصول على الكمية الحالية
+        
         public int GetCurrentQuantity(string itemType, int itemId)
         {
 
@@ -611,6 +611,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _ => 0 // Default case
             };
         }
+       
         public int GetCurrentNumberOfUnits(string itemType, int itemId)
         {
             if (itemType == "Ink")
@@ -760,6 +761,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 List<RequisiteOrder> requisiteOrderList = new List<RequisiteOrder>();
                 List<ReturnsOrder> returnOrderList = new List<ReturnsOrder>();
                 List<PhysicalCountOrder> physicalCountList = new List<PhysicalCountOrder>();
+                List<PerpetualRequisiteOrder> perpetualOrderList = new List<PerpetualRequisiteOrder>();
                 switch (itemType)
                 {
                     case "Paper":
@@ -828,12 +830,17 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                        && ret.ReturnDate >= beginingDate
                                         && ret.ReturnDate <= endingDate
                                        ).ToList();
-
+                            List<PerpetualRequisiteOrder> perpOrders = _context.PerpetualRequisiteOrders.Where(
+                                perp => perp.PerpetualRequisiteId == qb.PerpetualRequisiteId
+                                && perp.PerpetualRequisiteDate >= beginingDate
+                                && perp.PerpetualRequisiteDate <= endingDate
+                                ).ToList();
 
                             purchaseOrderList.AddRange(purorders);
                             physicalCountList.AddRange(phyOrders);
                             returnOrderList.AddRange(retOrders);
                             requisiteOrderList.AddRange(reqOrders);
+                            perpetualOrderList.AddRange(perpOrders);
                         }
                         break;
 
@@ -877,6 +884,52 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         break;
 
+                    case "Spare":
+
+                        quantityBridgeList = _context.QuantityBridges.Where(qb => qb.SparePartsId == itemId).ToList();
+
+                        foreach (QuantityBridge qb in quantityBridgeList)
+                        {
+                            List<PurchaseOrder> purorders = _context.PurchaseOrders.Where(p =>
+                                        p.PurchaseId == qb.PurchaseId
+                                        && p.PurchaseDate >= beginingDate
+                                        && p.PurchaseDate <= endingDate
+                                        )
+                            .ToList();
+
+                            List<PhysicalCountOrder> phyOrders = _context.PhysicalCountOrders.Where(p =>
+                                       p.PhysicalCountId == qb.PhysicalCountId
+                                       && p.PhysicalCountDate >= beginingDate
+                                        && p.PhysicalCountDate <= endingDate
+                                        ).ToList();
+
+                            List<RequisiteOrder> reqOrders = _context.RequisiteOrders.Where(req =>
+                                       req.RequisiteId == qb.RequisiteId
+                                       && req.RequisiteDate >= beginingDate
+                                        && req.RequisiteDate <= endingDate
+                                       ).ToList();
+
+                            List<ReturnsOrder> retOrders = _context.ReturnsOrders.Where(ret =>
+                                       ret.ReturnId == qb.ReturnId
+                                       && ret.ReturnDate >= beginingDate
+                                        && ret.ReturnDate <= endingDate
+                                       ).ToList();
+
+                            List<PerpetualRequisiteOrder> perpOrders = _context.PerpetualRequisiteOrders.Where(
+                                perp => perp.PerpetualRequisiteId == qb.PerpetualRequisiteId
+                                && perp.PerpetualRequisiteDate >= beginingDate
+                                && perp.PerpetualRequisiteDate <= endingDate
+                                ).ToList();
+
+                            purchaseOrderList.AddRange(purorders);
+                            physicalCountList.AddRange(phyOrders);
+                            returnOrderList.AddRange(retOrders);
+                            requisiteOrderList.AddRange(reqOrders);
+                            perpetualOrderList.AddRange(perpOrders);
+                        }
+
+                        break;
+
 
                     default:
                         break;
@@ -887,7 +940,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 invViewModel.requisiteOrderList = requisiteOrderList;
                 invViewModel.quantityBridgeList = quantityBridgeList;
                 invViewModel.returnOrderList = returnOrderList;
-                invViewModel.physicalCountlist = physicalCountList;
+                invViewModel.physicalCountList = physicalCountList;
+                invViewModel.perpetualOrderList = perpetualOrderList;
+
 
                 return (invViewModel);
             }
@@ -1216,6 +1271,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
+
         public List<JobOrder> GetRecentJobOrdersWithCustomers()
         {
             try
@@ -1637,6 +1693,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
+       
         public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
         {
             try
@@ -1795,32 +1852,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-
-
-        //public bool editCharacteristic(int CharId, ColorWeightSize CWS)
-        //    {
-        //        try
-        //        {
-        //            ColorWeightSize foundCWS = _context.ColorWeightSizes.FirstOrDefault(p => p.ColorWeightSizeId == CharId);
-        //            if (foundCWS == null)
-        //            {
-
-        //                throw new ArgumentException("Characteristic not found.");
-        //            }
-        //            foundCWS.Size = CWS.Size;
-        //            foundCWS.Weight = CWS.Weight;
-        //            foundCWS.Colored = CWS.Colored;
-        //            _context.ColorWeightSizes.Update(foundCWS);
-        //            _context.SaveChanges(); // Don't forget to save changes!
-
-        //            return true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw new ApplicationException("An error occurred while updating the Characterisitics.", ex);
-        //        }
-        //    }
-
         public bool editCharacteristic(int CharId, ColorWeightSize CWS)
         {
             try
@@ -1860,6 +1891,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
+        
         public ColorWeightSize GetCharacteristicByID(int CharId)
         {
             try
@@ -1917,6 +1949,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
+    
         public List<ColorWeightSize> ViewAllColorWeightSize()
         {
             try
@@ -1930,6 +1963,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return new List<ColorWeightSize>();
             }
         }
+        
         public List<MachineStore> ViewAllMachineStore()
         {
             try
@@ -1985,7 +2019,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         
         }
 
-
         public bool editMachineStore(int machineID, MachineStore newmachine) {
 
             try
@@ -2031,6 +2064,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         
         
         }
+       
         public bool editSpareParts(int sparePartID, SparePart newSparePart) {
 
             try {
@@ -2060,6 +2094,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         
         
         }
+        
         public bool AddMachine(MachineStore machine)
         {
             try

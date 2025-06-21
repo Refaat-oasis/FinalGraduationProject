@@ -13,7 +13,9 @@ namespace ThothSystemVersion1.ViewModels
 
         public List<ReturnsOrder> returnOrderList { get; set; }
 
-        public List<PhysicalCountOrder> physicalCountlist { get; set; }
+        public List<PhysicalCountOrder> physicalCountList { get; set; }
+
+        public List<PerpetualRequisiteOrder> perpetualOrderList { get; set; }
 
         // list of the items in the quantity bridge table
 

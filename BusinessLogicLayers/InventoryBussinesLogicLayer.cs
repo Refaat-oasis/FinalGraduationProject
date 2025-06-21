@@ -2156,5 +2156,106 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
+
+        public List<MachineStore> GetActiveMachines()
+        {
+            try
+            {
+                return _context.MachineStores
+                     .Where(ms => (bool)ms.Activated)
+                     .ToList();
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new List<MachineStore>();
+            }
+        }
+
+        public (bool success, string message) PerpetualRequisite(PerpetualRequisiteDTO perpetualDTO)
+        {
+
+            try
+            {
+
+                List<QuantityBridge> quantityBridgeList = perpetualDTO.BridgeList;
+
+                PerpetualRequisiteOrder perpetualRequisite = new PerpetualRequisiteOrder();
+                perpetualRequisite.EmployeeId = perpetualDTO.EmployeeId;
+                perpetualRequisite.MachineStoreId = perpetualDTO.MachineStoreId;
+                perpetualRequisite.RequisiteNotes = perpetualDTO.RequisiteNotes;
+                _context.PerpetualRequisiteOrders.Add(perpetualRequisite);
+                _context.SaveChanges();
+
+                int perpetualRequisiteOrderNumber = _context.PerpetualRequisiteOrders
+                          .OrderByDescending(pr => pr.PerpetualRequisiteId)
+                          .Select(pr => pr.PerpetualRequisiteId)
+                          .FirstOrDefault();
+
+                for (int i = 0; i < quantityBridgeList.Count; i++)
+                {
+                    quantityBridgeList[i].PerpetualRequisiteId = perpetualRequisiteOrderNumber;
+                    quantityBridgeList[i].QuantityBridgeId = null;
+
+                    if (quantityBridgeList[i].InkId != null)
+                    {
+
+                        Ink ink = _context.Inks.FirstOrDefault(p => p.InkId == quantityBridgeList[i].InkId);
+
+                        // Calculate new quantity and average price
+                        double newNumberOfUnits = ink.NumberOfUnits - quantityBridgeList[i].NumberOfUnits;
+                        decimal totalValue = (decimal)newNumberOfUnits * ink.UnitPrice;
+
+                        quantityBridgeList[i].UnitPrice = ink.UnitPrice;
+                        quantityBridgeList[i].OldNumberOfUnits = ink.NumberOfUnits;
+                        quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].NumberOfUnits * ink.UnitPrice;
+
+                        // Update paper properties
+                        ink.NumberOfUnits = (int)newNumberOfUnits;
+                        //ink.Price = averagePrice;
+                        ink.TotalBalance = totalValue;
+
+                        _context.Inks.Update(ink);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+                    else if (quantityBridgeList[i].SparePartsId != null)
+                    {
+                        SparePart sparePart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == quantityBridgeList[i].SparePartsId);
+
+                        // Calculate new quantity and average price
+                        double newQuantity = sparePart.Quantity - quantityBridgeList[i].Quantity;
+                        decimal totalValue = (decimal)newQuantity * sparePart.Price;
+
+                        quantityBridgeList[i].OldPrice = sparePart.Price;
+                        quantityBridgeList[i].OldQuantity = sparePart.Quantity;
+                        quantityBridgeList[i].OldTotalBalance = sparePart.TotalBalance;
+                        quantityBridgeList[i].Price = sparePart.Price;
+                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * sparePart.Price;
+
+                        // Update paper properties
+                        sparePart.Quantity = (int)newQuantity;
+                        //paper.Price = averagePrice;
+                        sparePart.TotalBalance = totalValue;
+                        _context.SpareParts.Update(sparePart);
+                        _context.QuantityBridges.Add(quantityBridgeList[i]);
+                        _context.SaveChanges();
+
+                    }
+
+
+                }
+                return (true, "تمت انشاء اذن الصرف بنجاح");
+            }
+
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return (false, $"حدث خطأ: {ex.ToString()}");
+            }
+        }
+
     }
 }

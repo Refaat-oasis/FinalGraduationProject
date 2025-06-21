@@ -1605,6 +1605,86 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult PerpetualRequisite()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    ViewBag.MachineStoreList = _businessLogicL.GetActiveMachines();
+                    ViewBag.InkList = _businessLogicL.GetActiveInks();
+                    ViewBag.SparePartsList = _businessLogicL.getActiveSpareParts();
+                    return View();
+                }
+                else
+                {
+
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/PerpetualRequisite.cshtml", new PerpetualRequisiteDTO());
+            }
+        }
+
+        public JsonResult GetCurrentQuantityPR(string itemType, int itemId)
+        {
+            try
+            {
+                int quantity = _businessLogicL.GetCurrentQuantity(itemType, itemId);
+                return Json(new { currentQuantity = quantity });
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return Json(new { currentQuantity = 0 });
+            }
+        }
+        public JsonResult GetCurrentNumberOfUnitsPR(string itemType, int itemId)
+        {
+            try
+            {
+                int numberOfUnits = _businessLogicL.GetCurrentNumberOfUnits(itemType, itemId);
+                return Json(new { currentNumberOfUnits = numberOfUnits });
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return Json(new { currentNumberOfUnits = 0 });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult PerpetualRequisite(PerpetualRequisiteDTO perpetual)
+        {
+            try
+            {
+                string employeeId = HttpContext.Session.GetString("EmployeeID");
+                perpetual.EmployeeId = employeeId;
+
+                var result = _businessLogicL.PerpetualRequisite(perpetual);
+                if (result.success)
+                {
+                    TempData["Success"] = result.message;
+                    return RedirectToAction("PerpetualRequisite");
+                }
+                TempData["Error"] = result.message;
+                //}
+                return RedirectToAction("PerpetualRequisite");
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = $"حدث خطأ أثناء معالجة أمر الجرد: {ex.Message}";
+                return View(new PerpetualRequisiteDTO());
+            }
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

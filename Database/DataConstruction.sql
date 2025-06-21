@@ -303,7 +303,7 @@ CREATE TABLE QuantityBridge (
     oldNumberOfUnits INT NULL DEFAULT 0,
     unitPrice DECIMAL(10,2) NULL DEFAULT 0 ,
     totalBalance DECIMAL(10,2) NULL DEFAULT 0,
-    oldQuantity INT NULL DEFAULT 1 ,
+    oldQuantity INT NULL DEFAULT 0 ,
     oldPrice DECIMAL(10,2) NULL DEFAULT 0,
     oldTotalBalance DECIMAL(10,2) NULL DEFAULT 0,
     requisiteID INT NULL,

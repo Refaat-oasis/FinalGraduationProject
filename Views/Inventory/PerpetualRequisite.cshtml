@@ -1,4 +1,527 @@
-﻿@* @model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO 
+﻿@model ThothSystemVersion1.DataTransfereObject.PerpetualRequisiteDTO
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThoTh - أمر صرف مخزن دائم</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        .notification {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: white;
+        }
+
+            .notification.success {
+                background-color: #28a745;
+            }
+
+            .notification.error {
+                background-color: #dc3545;
+            }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background-color: rgba(255,255,255,0.3);
+        }
+
+            .progress-bar.success {
+                background-color: rgba(255,255,255,0.7);
+                animation: progress 3s linear forwards;
+            }
+
+            .progress-bar.error {
+                background-color: rgba(255,255,255,0.7);
+                animation: progress 3s linear forwards;
+            }
+
+
+        #itemQuantity {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container py-3 mx-auto" style="min-height: 100vh;">
+        <div class="mb-3">
+            @if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="text-white">
+                    <i class='bx bx-left-arrow-circle text-4xl'></i>
+                </a>
+            }
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="text-white">
+                    <i class='bx bx-left-arrow-circle text-4xl'></i>
+                </a>
+            }
+        </div>
+
+        <div class="card shadow-lg bg-white rounded-lg" style="max-width: 800px; margin: 0 auto;">
+            <div class="card-header bg-blue-600 text-white text-center py-3 rounded-t-lg">
+                <h1 class="text-xl font-bold">إنشاء أمر صرف مخزن دائم</h1>
+            </div>
+
+            <div class="card-body px-6 py-4">
+                <form asp-action="PerpetualRequisite" asp-controller="Inventory" id="requisiteForm" method="post">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="notification success mb-4">
+                            <div class="flex items-center">
+                                <i class='bx bx-check-circle mr-2'></i>
+                                <span>@TempData["Success"]</span>
+                            </div>
+                            <input type="hidden" id="tempDataSuccess" value="true" />
+                            <div class="progress-bar success"></div>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="notification error mb-4">
+                            <div class="flex items-center">
+                                <i class='bx bx-error-circle mr-2'></i>
+                                <span>@TempData["Error"]</span>
+                            </div>
+                            <input type="hidden" id="tempDataSuccess" value="false" />
+                            <div class="progress-bar error"></div>
+                        </div>
+                    }
+
+                    <input type="hidden" id="hdnJobRole" value="@jobRole" />
+                    <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+
+                    <div class="mb-4">
+                        <label asp-for="MachineStoreId" class="block text-gray-700 font-bold mb-2">اختر الماكينة</label>
+                        <select asp-for="MachineStoreId" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">اختر الماكينة</option>
+                            @foreach (var machine in ViewBag.MachineStoreList)
+                            {
+                                <option value="@machine.MachineStoreId">@machine.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="MachineStoreId" class="text-red-500 text-xs"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="RequisiteNotes" class="block text-gray-700 font-bold mb-2">إضافة ملاحظات</label>
+                        <textarea asp-for="RequisiteNotes" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-6 bg-gray-50 p-4 rounded-lg">
+                        <h2 class="text-lg font-bold mb-3 text-gray-800">إضافة صنف</h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">نوع الصنف</label>
+                                <select id="itemType" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">اختر النوع</option>
+                                    <option value="SparePart">قطع غيار</option>
+                                    <option value="Ink">حبر</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">الصنف</label>
+                                <select id="itemId" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                                    <option value="">اختر الصنف</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label id="currentQuantityLabel" class="block text-gray-700 mb-2">الكمية الحالية</label>
+                                <input type="number" id="currentQuantity" class="w-full px-3 py-2 border rounded-lg bg-gray-100 focus:outline-none" readonly />
+                            </div>
+                            <div>
+                                <label id="itemQuantityLabel" class="block text-gray-700 mb-2">الكمية المطلوبة</label>
+                                <input type="number" id="itemQuantity" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" min="1" />
+                                <div id="quantityError" class="text-red-500 text-xs mt-1" style="display:none;">
+                                    الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-left mt-4">
+                            <button type="button" id="addItemBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                إضافة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="px-4 py-2 text-right border">نوع الصنف</th>
+                                        <th class="px-4 py-2 text-right border">اسم الصنف</th>
+                                        <th class="px-4 py-2 text-right border" id="tableHeaderCurrentQty">الكمية الحالية</th>
+                                        <th class="px-4 py-2 text-right border" id="tableHeaderRequiredQty">الكمية المطلوبة</th>
+                                        <th class="px-4 py-2 text-right border">الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody" class="bg-white">
+                                    <!-- Items will be added here dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="hiddenItemsContainer"></div>
+
+                    <div class="flex justify-center gap-4 mt-6">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            حفظ الطلب
+                        </button>
+                        <button type="reset" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            إعادة إدخال
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var items = [];
+                var editIndex = -1;
+
+                // Data sources from ViewBag
+                const dataSources = {
+                    SparePart: @Html.Raw(Json.Serialize(ViewBag.SparePartsList)),
+                    Ink: @Html.Raw(Json.Serialize(ViewBag.InkList)),
+                };
+
+                console.log("Data Sources:", dataSources);
+
+                // When item type changes
+                $('#itemType').change(function () {
+                    var selectedType = $(this).val();
+                    var $itemSelect = $('#itemId');
+
+                    // Reset fields
+                    $itemSelect.empty().prop('disabled', !selectedType);
+                    $('#currentQuantity').val('');
+                    $('#itemQuantity').val('');
+                    $('#quantityError').hide();
+
+                    // Update labels based on item type
+                    updateQuantityLabels(selectedType);
+
+                    if (!selectedType) {
+                        $itemSelect.append('<option value="">اختر الصنف</option>');
+                        return;
+                    }
+
+                    // Populate items dropdown
+                    $itemSelect.append('<option value="">اختر الصنف</option>');
+
+                    if (dataSources[selectedType] && dataSources[selectedType].length > 0) {
+                        $.each(dataSources[selectedType], function(index, item) {
+                            var id = item.sparePartsId || item.inkId;
+                            var name = item.name || item.inkName;
+                            var quantity = item.quantity || 0;
+                            var units = item.numberOfUnits || 0;
+
+                            $itemSelect.append($('<option>', {
+                                value: id,
+                                text: name,
+                                'data-quantity': quantity,
+                                'data-units': units
+                            }));
+                        });
+                    }
+                });
+
+                // When item selection changes
+                $('#itemId').change(function () {
+                    var selectedOption = $(this).find('option:selected');
+                    var selectedType = $('#itemType').val();
+
+                    if (selectedType === 'Ink') {
+                        $('#currentQuantity').val(selectedOption.data('units') || 0);
+                    } else {
+                        $('#currentQuantity').val(selectedOption.data('quantity') || 0);
+                    }
+
+                    // Reset quantity input
+                    $('#itemQuantity').val('').focus();
+                });
+
+                // Quantity input handling
+                $('#itemQuantity').on('input', function(e) {
+                    // Allow only numbers
+                    this.value = this.value.replace(/[^0-9]/g, '');
+
+                    var requiredQty = parseInt(this.value) || 0;
+                    var currentQty = parseInt($('#currentQuantity').val()) || 0;
+
+                    if (requiredQty > currentQty) {
+                        $('#quantityError').show();
+                        $(this).addClass('border-red-500');
+                    } else {
+                        $('#quantityError').hide();
+                        $(this).removeClass('border-red-500');
+                    }
+                });
+
+                // Add item button
+                $('#addItemBtn').click(function () {
+                    var itemType = $('#itemType').val();
+                    var itemId = $('#itemId').val();
+                    var itemName = $('#itemId option:selected').text();
+                    var quantity = parseInt($('#itemQuantity').val()) || 0;
+                    var currentQuantity = parseInt($('#currentQuantity').val()) || 0;
+
+                    // Validation
+                    if (!itemType || !itemId) {
+                        alert('يجب اختيار نوع الصنف والصنف أولاً');
+                        return;
+                    }
+
+                    if (quantity <= 0) {
+                        alert('يجب إدخال كمية صحيحة أكبر من الصفر');
+                        return;
+                    }
+
+                    if (quantity > currentQuantity) {
+                        alert('الكمية المطلوبة أكبر من الكمية المتاحة');
+                        return;
+                    }
+
+                    // Create new item
+                    var newItem = {
+                        itemType: itemType,
+                        itemId: itemId,
+                        itemName: itemName,
+                        quantity: quantity,
+                        currentQuantity: currentQuantity,
+                        isInk: (itemType === 'Ink') // Add flag to identify ink items
+                    };
+
+                    // Add or update item
+                    if (editIndex === -1) {
+                        items.push(newItem);
+                    } else {
+                        items[editIndex] = newItem;
+                        editIndex = -1;
+                        $('#addItemBtn').text('إضافة');
+                    }
+
+                    // Update UI
+                    renderItemsTable();
+                    resetItemForm();
+                });
+
+                // Render items table
+                function renderItemsTable() {
+                    var $tableBody = $('#itemsTableBody');
+                    var $hiddenContainer = $('#hiddenItemsContainer');
+
+                    $tableBody.empty();
+                    $hiddenContainer.empty();
+
+                    updateTableHeaders();
+
+                    if (items.length === 0) {
+                        $tableBody.append('<tr><td colspan="5" class="text-center py-4">لا توجد أصناف مضافة</td></tr>');
+                        return;
+                    }
+
+                    items.forEach((item, index) => {
+                        // Add row to table
+                        $tableBody.append(`
+                            <tr data-index="${index}" class="hover:bg-gray-50">
+                                <td class="px-4 py-2 border">${getArabicType(item.itemType)}</td>
+                                <td class="px-4 py-2 border">${item.itemName}</td>
+                                <td class="px-4 py-2 border">${item.currentQuantity}</td>
+                                <td class="px-4 py-2 border">${item.quantity}</td>
+                                <td class="px-4 py-2 border">
+                                    <div class="flex gap-2">
+                                        <button type="button" class="editItem bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
+                                            <i class="bx bx-edit"></i> تعديل
+                                        </button>
+                                        <button type="button" class="deleteItem bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
+                                            <i class="bx bx-trash"></i> حذف
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `);
+
+                        // Add hidden fields for form submission
+                        addHiddenFields(item, index);
+                    });
+                }
+
+                function updateTableHeaders() {
+                    const hasInkItem = items.some(item => item.itemType === 'Ink');
+
+                    if (hasInkItem) {
+                        $('#tableHeaderCurrentQty').text('عدد الوحدات الحالية');
+                        $('#tableHeaderRequiredQty').text('عدد الوحدات المطلوبة');
+                    } else {
+                        $('#tableHeaderCurrentQty').text('الكمية الحالية');
+                        $('#tableHeaderRequiredQty').text('الكمية المطلوبة');
+                    }
+                }
+
+                function updateQuantityLabels(selectedType) {
+                    if (selectedType === 'Ink') {
+                        $('#currentQuantityLabel').text('عدد الوحدات الحالية');
+                        $('#itemQuantityLabel').text('عدد الوحدات المطلوبة');
+                    } else {
+                        $('#currentQuantityLabel').text('الكمية الحالية');
+                        $('#itemQuantityLabel').text('الكمية المطلوبة');
+                    }
+                }
+
+                // Reset item form
+                function resetItemForm() {
+                    $('#itemType').val('').trigger('change');
+                    $('#itemId').empty().append('<option value="">اختر الصنف</option>').prop('disabled', true);
+                    $('#currentQuantity').val('');
+                    $('#itemQuantity').val('');
+                    $('#quantityError').hide();
+                    editIndex = -1;
+                    $('#addItemBtn').text('إضافة');
+                }
+
+                // Edit item
+                $('#itemsTableBody').on('click', '.editItem', function() {
+                    editIndex = $(this).closest('tr').data('index');
+                    var item = items[editIndex];
+
+                    $('#itemType').val(item.itemType).trigger('change');
+
+                    // Small delay to ensure dropdown is populated
+                    setTimeout(() => {
+                        $('#itemId').val(item.itemId);
+                        $('#currentQuantity').val(item.currentQuantity);
+                        $('#itemQuantity').val(item.quantity);
+                        $('#addItemBtn').text('تحديث');
+                    }, 100);
+                });
+
+                // Delete item
+                $('#itemsTableBody').on('click', '.deleteItem', function() {
+                    if (confirm('هل أنت متأكد من حذف هذا الصنف؟')) {
+                        var index = $(this).closest('tr').data('index');
+                        items.splice(index, 1);
+                        renderItemsTable();
+
+                        if (editIndex === index) {
+                            resetItemForm();
+                        } else if (editIndex > index) {
+                            editIndex--;
+                        }
+                    }
+                });
+
+                // Helper function to get Arabic type
+                function getArabicType(type) {
+                    const types = {
+                        'SparePart': 'قطع غيار',
+                        'Ink': 'حبر'
+                    };
+                    return types[type] || type;
+                }
+
+                // Add hidden fields for form submission
+                function addHiddenFields(item, index) {
+                    var $hiddenContainer = $('#hiddenItemsContainer');
+                    var prefix = `BridgeList[${index}]`;
+
+                    var hiddenFields = `
+                        <input type="hidden" name="${prefix}.Type" value="${item.itemType}" />
+                    `;
+
+                    if (item.itemType === 'SparePart') {
+                        hiddenFields += `
+                            <input type="hidden" name="${prefix}.SparePartsId" value="${item.itemId}" />
+                            <input type="hidden" name="${prefix}.Quantity" value="${item.quantity}" />
+                        `;
+                    } else if (item.itemType === 'Ink') {
+                        hiddenFields += `
+                            <input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />
+                            <input type="hidden" name="${prefix}.NumberOfUnits" value="${item.quantity}" />
+                        `;
+                    }
+
+                    $hiddenContainer.append(hiddenFields);
+                }
+
+                // Form submission
+                $('#requisiteForm').submit(function(e) {
+                    // Validate machine selection
+                    var machineStoreId = $('#MachineStoreId').val();
+                    if (!machineStoreId) {
+                        alert('يجب اختيار الماكينة أولاً');
+                        e.preventDefault();
+                        return;
+                    }
+
+                    if (items.length === 0) {
+                        if (!confirm('لم تقم بإضافة أي أصناف. هل تريد المتابعة؟')) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+
+                // Handle notification and redirect
+                const tempDataElement = document.getElementById('tempDataSuccess');
+                const jobRoleElement = document.getElementById('hdnJobRole');
+
+                if (tempDataElement && tempDataElement.value === 'true') {
+                    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+                    const jobRoleRoutes = {
+                        0: "/employee/AdminHome",
+                        1: "/employee/inventoryManager",
+                        2: "/employee/inventoryClerk",
+                        3: "/employee/TechnicalManager",
+                        4: "/employee/technicalClerk",
+                        5: "/employee/CostManager",
+                        6: "/employee/costClerk"
+                    };
+
+                    setTimeout(function() {
+                        const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                        window.location.href = redirectUrl;
+                    }, 3000);
+                }
+            });
+        </script>
+    }
+</body>
+</html>
+
+@* @model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO 
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{

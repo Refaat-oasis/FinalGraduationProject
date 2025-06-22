@@ -984,8 +984,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>x6k3fixni0</Fingerprint>
-      <Integrity>B7AySXeqKrz37VW9Ws4N3BN0yxCJSaFO7fDOlr5SeDw=</Integrity>
+      <Fingerprint>meo5tw35xe</Fingerprint>
+      <Integrity>MsjST4HnRSDgHWtcG5BSRBisfnrKJVnL3ieTM6Ivi2E=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Technical\viewAllJobOrder.css'))</OriginalItemSpec>

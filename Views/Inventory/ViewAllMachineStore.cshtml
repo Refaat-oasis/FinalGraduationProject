@@ -1,5 +1,158 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿ @model IEnumerable<ThothSystemVersion1.Models.MachineStore>
+
 @{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+
+    ViewData["Title"] = "Thoth";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/ViewAllPaper.css" rel="stylesheet" />
+}
+<div class="container">
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
+    </div>
+
+    <h1>مخزون الآلات</h1>
+
+    <div id="reorderMessages" class="reorderMsg" style="display:none;">
+        <button class="close-btn" onclick="closeReorderMessages()">×</button>
+
+    </div>
+
+    <p>
+        <a asp-controller="inventory" asp-action="AddMachine" class="editBtn">اضافة</a>
+    </p>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchMachine()" placeholder="...ابحث عن آلة">
+    </div>
+    <div class="tableContainer">
+
+        <table id="machineTable">
+            <thead>
+                <tr>
+                    <th>الإجراءات</th>
+                    <th>التفعيل</th>
+                    <th>الاسم</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Inventory" asp-action="editMachineStore" asp-route-MachineStoreId="@item.MachineStoreId" class="editBtn">تعديل</a>
+                        </td>
+                        <td>@(item.Activated == true ? "مفعّل" : "غير مفعّل")</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function closeReorderMessages() {
+                 var messageDiv = document.getElementById("reorderMessages");
+                 messageDiv.style.display = "none";
+             }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+            integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script>
+
+
+                function searchMachine() {
+             var input, filter, table, tr, td, i, j, txtValue;
+             input = document.getElementById("searchInput");
+             filter = input.value.toUpperCase();
+             table = document.getElementById("machineTable");
+             tr = table.getElementsByTagName("tr");
+
+             // Loop through all table rows (skip the header row)
+             for (i = 1; i < tr.length; i++) {
+                 tr[i].style.display = "none"; // Hide the row by default
+                 td = tr[i].getElementsByTagName("td");
+
+                 // Loop through all columns in the current row
+                 for (j = 0; j < td.length; j++) {
+                     if (td[j]) {
+                         txtValue = td[j].textContent || td[j].innerText;
+                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                             tr[i].style.display = ""; // Show the row if a match is found
+                             break; // Exit the inner loop if a match is found
+                         }
+                     }
+                 }
+             }
+         }
+
+        // Create the connection to the SignalR hub
+         var hub = new signalR.HubConnectionBuilder()
+             .withUrl("/InventoryReorderPoint")
+             .build();
+
+        hub.start()
+             .then(function () {
+                 console.log("SignalR connection established.");
+
+                 // Invoke the server-side method to check paper reorder points.
+                 hub.invoke("CheckPaperReorderPoint")
+                    .catch(function (err) {
+                        console.error("Error invoking CheckPaperReorderPoint: ", err.toString());
+                     });
+             })
+            .catch(function (err) {
+                 console.error("SignalR connection error: ", err.toString());
+             });
+
+         // Listen for reorder messages from the hub.
+         hub.on("ReceiveReorderMessagePaper", function (message) {
+             console.log("Received reorder message: ", message);
+             var messageDiv = document.getElementById("reorderMessages");
+             // Make sure the message div is visible
+            messageDiv.style.display = "block";
+             // Append the new message rather than replacing previous ones
+             messageDiv.innerHTML += "<div>" + message + "</div>";
+         });
+    </script>
+}
+

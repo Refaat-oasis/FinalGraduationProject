@@ -14,7 +14,7 @@ public partial class Machine
     [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الورق يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string MachineProcessName { get; set; } = null!;
 
-    [Display(Name = "سعر")]
+    [Display(Name = "سعر الساعة")]
     [Required(ErrorMessage = "يجب ادخال سعر الماكينة")]
     [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal Price { get; set; }

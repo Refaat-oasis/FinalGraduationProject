@@ -42,12 +42,12 @@
                 <i class='bx bx-left-arrow-circle' style="font-size:40px;color:white"></i>
             </a>
         }
-      </div>
+    </div>
     <div class="form-container">
-    
-        
-            <h2>تعديل بيانات الاله : @Model.Name </h2>
-        
+
+
+        <h2>تعديل بيانات الاله : @Model.Name </h2>
+
         <div class="card-body">
             @* Success/Error Notifications *@
             @if (TempData["Success"] != null)
@@ -70,7 +70,7 @@
 
 
             <form asp-controller="Inventory" asp-action="editMachineStore" method="post" class="needs-validation" novalidate>
-                <input type="hidden" asp-for="MachineStoreId" />
+                <input type="hidden" asp-for="MachineStoreId" name="machineID" />
 
                 <div class="input-control">
                     <label asp-for="@Model.Name" class="textlabel">اسم الاله</label>
@@ -80,7 +80,7 @@
 
 
                 <div class="input-control">
-                    <label asp-for="@Model.Activated" class="textlabel">التفيل </label>
+                    <label asp-for="@Model.Activated" class="textlabel">التفعيل </label>
                     <select asp-for="@Model.Activated" id="options" class="place">
                         @{
                             if (Model.Activated ?? true)
@@ -95,7 +95,7 @@
                             }
                         }
                     </select>
-                    </div>
+                </div>
                 <div class="button-container">
                     <input type="submit" value="تعديل" class="btn btn-primary" />
                 </div>
@@ -116,20 +116,20 @@
             let isValid = true;
             clearErrors();
 
-            
+
             if (!nameInput.value.trim()) {
                 showError(nameInput, "اسم الاله مطلوب.");
                 isValid = false;
             }
 
-            
+
             if (!activatedSelect.value) {
                 showError(activatedSelect, "يجب اختيار حالة التفعيل.");
                 isValid = false;
             }
 
             if (!isValid) {
-                event.preventDefault(); 
+                event.preventDefault();
             }
         });
 
@@ -148,19 +148,19 @@
             const invalidInputs = document.querySelectorAll(".is-invalid");
             invalidInputs.forEach(input => input.classList.remove("is-invalid"));
         }
-   
+
 
         const tempDataElement = document.getElementById('tempDataSuccess');
         const jobRoleElement = document.getElementById('hdnJobRole');
 
-        
+
         const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
         const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
         console.log("Success message exists:", hasSuccessMessage);
         console.log("Job role:", jobRole);
 
-        
+
         const jobRoleRoutes = {
             0: "/employee/AdminHome",
             1: "/employee/inventoryManager",

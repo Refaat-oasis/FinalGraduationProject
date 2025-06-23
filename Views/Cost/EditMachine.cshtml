@@ -99,18 +99,9 @@
                 <label asp-for="Price" class="textlabel">سعر التشغيل</label>
                 <div class="input-group">
                     <input asp-for="Price" class="place" type="number" step="0.01" />
-                    <div class="input-group-append">
-                        <span class="input-group-text">ج.م</span>
-                    </div>
                 </div>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-
-            @* <div class="form-group form-check"> *@
-            @*     <input asp-for="Activated" class="form-check-input" /> *@
-            @*     <label asp-for="Activated" class="form-check-label">الحالة (مفعل/غير مفعل)</label> *@
-            @*     <span asp-validation-for="Activated" class="text-danger"></span> *@
-            @* </div> *@
 
             <div class="input-control">
                 <label asp-for="@Model.Activated" class="textlabel"> </label>

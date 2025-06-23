@@ -415,7 +415,7 @@ namespace ThothSystemVersion1.Controllers
                         return View(new MachineStore());
                     }
                     else { 
-                        return View("~/Views/Inventory/editMachineStore.cshtml");
+                        return View("~/Views/Inventory/editMachineStore.cshtml", machine);
                     }
                 }
                 else {

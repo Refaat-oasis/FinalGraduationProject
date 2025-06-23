@@ -6,15 +6,15 @@ namespace ThothSystemVersion1.Models;
 
 public partial class Labour
 {
-    [Display(Name = "الرقم التعرفي للعملية العمالية")]
+    [Display(Name = "الرقم التعرفي للعملية ")]
     public int LabourId { get; set; }
 
-    [Display(Name = "اسم العملية العمالية")]
-    [Required(ErrorMessage = "يجب ادخال اسم العملية العمالية")]
-    [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم الورق يجب أن يحتوي على حروف عربية ومسافات فقط")]
+    [Display(Name = "اسم العملية ")]
+    [Required(ErrorMessage = "يجب ادخال اسم العملية ")]
+    [RegularExpression("^[\\u0600-\\u06FF ]+$", ErrorMessage = "اسم العملية يجب أن يحتوي على حروف عربية ومسافات فقط")]
     public string LabourProcessName { get; set; } = null!;
 
-    [Display(Name = "السعر")]
+    [Display(Name = "اجر الساعة")]
     [Required(ErrorMessage = "يجب ادخال السعر")]
     [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
     public decimal Price { get; set; }

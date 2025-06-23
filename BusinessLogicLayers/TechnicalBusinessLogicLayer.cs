@@ -97,7 +97,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return _context.Papers.Where(p => p.Activated).ToList();
             }
-    
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -111,7 +111,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 return _context.Inks.Where(i => i.Activated).ToList();
             }
- 
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -170,12 +170,12 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
                         quantityBridgeList[i].Price = ink.Price;
-                        quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * ink.Price;
+                        //quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * ink.Price;
 
                         // Update paper properties
                         ink.Quantity = (int)newQuantity;
                         //ink.Price = averagePrice;
-                        ink.TotalBalance = totalValue;
+                        //ink.TotalBalance = totalValue;
 
                         _context.Inks.Update(ink);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -412,7 +412,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                return null; 
+                return null;
             }
         }
 
@@ -425,7 +425,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 List<Employee> employeelist = _context.Employees.Where(e => e.Activated).ToList();
                 return employeelist;
             }
-    
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -509,7 +509,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return (true, "تمت تعديل امر العمل بنجاح");
             }
-    
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -527,7 +527,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return existingJobOrder ?? throw new ArgumentException("امر العمل غير موجود");
             }
-   
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -535,7 +535,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
 
         }
-        public JobOrderCustEmpVM getJobOrderVM(int jobOrderID) {
+        public JobOrderCustEmpVM getJobOrderVM(int jobOrderID)
+        {
             try
             {
 
@@ -566,7 +567,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return jobSpecific;
             }
-   
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -603,7 +604,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 return true;
             }
-         
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -666,7 +667,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _context.SaveChanges();
                 return true;
             }
-  
+
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);

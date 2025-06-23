@@ -134,21 +134,6 @@
                     <span asp-validation-for="CustomerId" class="text-danger"></span>
                 </div>
 
-                <!-- Employee Section -->
-                @* <div class="colCont"> *@
-                @*     <label asp-for="EmployeeId" class="form-label">المسؤول</label> *@
-                @*     <select asp-for="EmployeeId" class="form-select" required> *@
-                @*         <option value="">-- اختر الموظف --</option> *@
-                @*         @if (ViewBag.employeeList != null) *@
-                @*         { *@
-                @*             @foreach (var employee in ViewBag.employeeList as List<Employee>) *@
-                @*             { *@
-                @*                 <option value="@employee.EmployeeId">@employee.EmployeeName</option> *@
-                @*             } *@
-                @*         } *@
-                @*     </select> *@
-                @*     <span asp-validation-for="EmployeeId" class="text-danger"></span> *@
-                @* </div> *@
             </div>
 
             <div class="rowCont">
@@ -156,9 +141,6 @@
                 <div class="colCont">
                     <label class="form-label">تاريخ البدأ في التشغيلة</label>
                     <div class="input-group">
-                        <span class="input-group-text bg-light">
-                            <i class="fas fa-calendar-day"></i>
-                        </span>
                         <input type="date"
                                class="form-control bg-light"
                                value="@startDate.ToString("yyyy-MM-dd")"

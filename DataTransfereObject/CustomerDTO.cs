@@ -20,8 +20,8 @@ namespace ThothSystemVersion1.DataTransfereObject
         public string? CustomerAddress { get; set; }
 
         [Display(Name = "الايميل الخاص بالعميل")]
-        [Required(ErrorMessage = "يجب عليك إدخال البريد الإلكتروني الخاص بالعميل")]
-        [EmailAddress(ErrorMessage = "صيغة البريد الإلكتروني غير صحيحة")]
+        //[Required(ErrorMessage = "يجب عليك إدخال البريد الإلكتروني الخاص بالعميل")]
+        //[EmailAddress(ErrorMessage = "صيغة البريد الإلكتروني غير صحيحة")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "صيغة البريد الإلكتروني غير صحيحة")]
         public string? CustomerEmail { get; set; }
 

@@ -527,20 +527,20 @@ namespace ThothSystemVersion1.BusinessLogicLayers
         }
 
 
-        public List<RequisiteOrder> getLast15RequisiteORder() => _context.RequisiteOrders
-            .OrderByDescending(r => r.RequisiteDate)
-            .Take(15)
-            .ToList();
+        //public List<RequisiteOrder> getLast15RequisiteORder() => _context.RequisiteOrders
+        //    .OrderByDescending(r => r.RequisiteDate)
+        //    .Take(15)
+        //    .ToList();
 
-        public List<PurchaseOrder> getLast15PurchaseOrder() => _context.PurchaseOrders
-            .OrderByDescending(p => p.PurchaseDate)
-            .Take(15)
-            .ToList();
+        //public List<PurchaseOrder> getLast15PurchaseOrder() => _context.PurchaseOrders
+        //    .OrderByDescending(p => p.PurchaseDate)
+        //    .Take(15)
+        //    .ToList();
 
-        public List<JobOrder> getLast15JObOrder() => _context.JobOrders
-            .OrderByDescending(p => p.StartDate)
-            .Take(15)
-            .ToList();
+        //public List<JobOrder> getLast15JObOrder() => _context.JobOrders
+        //    .OrderByDescending(p => p.StartDate)
+        //    .Take(15)
+        //    .ToList();
 
         public List<Paper> getAllActivePaper()
         {
@@ -598,7 +598,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // الحصول على الكمية الحالية
-        
+
         public int GetCurrentQuantity(string itemType, int itemId)
         {
 
@@ -611,7 +611,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 _ => 0 // Default case
             };
         }
-       
+
         public int GetCurrentNumberOfUnits(string itemType, int itemId)
         {
             if (itemType == "Ink")
@@ -645,6 +645,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridge.PaperId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
+
+                        paper.TotalBalance = phdto.newQuantity * paper.Price;
                         break;
 
                     case "Ink":
@@ -662,6 +664,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridge.InkId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
                         quantityBridge.NumberOfUnits = phdto.newNumberOfUnits;
+                        if (phdto.newNumberOfUnits != null)
+                            ink.TotalBalance = phdto.newNumberOfUnits * ink.UnitPrice;
                         break;
 
                     case "Supply":
@@ -676,6 +680,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridge.SuppliesId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
 
+                        supply.TotalBalance = phdto.newQuantity * supply.Price;
                         break;
 
                     case "Spare Parts":
@@ -690,6 +695,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridge.SparePartsId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
 
+                        spareParts.TotalBalance = phdto.newQuantity * spareParts.Price;
                         break;
 
                     default:
@@ -723,7 +729,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 if (quantityChanged)
                 {
-                    message += $"السحبات من {oldQuantity} إلى {phdto.newQuantity}";
+                    message += $"الكمية من {oldQuantity} إلى {phdto.newQuantity}";
                 }
 
                 if (phdto.itemType == "Ink" && unitsChanged)
@@ -1046,10 +1052,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridgeList[i].TotalBalance = quantityBridgeList[i].UnitPrice * quantityBridgeList[i].NumberOfUnits;
                         decimal totalValue = (decimal)quantityBridgeList[i].TotalBalance + (decimal)ink.TotalBalance;
-                        decimal purchaseValue =(decimal) quantityBridgeList[i].NumberOfUnits * (decimal)quantityBridgeList[i].UnitPrice;
+                        decimal purchaseValue = (decimal)quantityBridgeList[i].NumberOfUnits * (decimal)quantityBridgeList[i].UnitPrice;
                         purchaseOrderRemainingBalance += purchaseValue;
                         decimal averageUnitPrice = totalValue / (ink.NumberOfUnits + quantityBridgeList[i].NumberOfUnits);
-                        decimal averagequantityPrice = totalValue / (ink.Quantity + (quantityBridgeList[i].NumberOfUnits*ink.AverageQuantity));
+                        decimal averagequantityPrice = totalValue / (ink.Quantity + (quantityBridgeList[i].NumberOfUnits * ink.AverageQuantity));
 
                         int totalNumberOfUnits = quantityBridgeList[i].NumberOfUnits + ink.NumberOfUnits;
 
@@ -1061,7 +1067,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
 
                         // Update paper properties
-                        ink.Quantity +=newInkQuantity ;
+                        ink.Quantity += newInkQuantity;
                         ink.Price = averagequantityPrice;
                         ink.UnitPrice = averageUnitPrice;
                         ink.NumberOfUnits = totalNumberOfUnits;
@@ -1161,7 +1167,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         _context.SaveChanges();
 
                     }
-                   
+
                 }
                 PurchaseOrder purch = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseOrderNumber);
                 purch.RemainingAmount = purchaseOrderRemainingBalance;
@@ -1486,6 +1492,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                                ink.TotalBalance = ink.Quantity * ink.Price;
+
+
                                 _context.Inks.Update(ink);
                                 _context.QuantityBridges.Add(quantityBridgeList[i]);
                             }
@@ -1506,6 +1515,10 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                                paper.TotalBalance = quantityBridgeList[i].TotalBalance;
+                                paper.TotalBalance = paper.Quantity * paper.Price;
+
+
 
                                 _context.Papers.Update(paper);
                                 _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -1525,6 +1538,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                 quantityBridgeList[i].Price = (decimal)quantityBridgeList[i].OldPrice;
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
+                                supply.TotalBalance = supply.Quantity * supply.Price;
 
 
                                 _context.Supplies.Update(supply);
@@ -1566,6 +1580,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                     ink.NumberOfUnits -= quantityBridgeList[i].NumberOfUnits;
 
                                     quantityBridgeList[i].TotalBalance = quantityBridgeList[i].NumberOfUnits * avgPrice;
+                                    ink.TotalBalance = ink.NumberOfUnits * ink.UnitPrice;
+
 
                                     _context.Inks.Update(ink);
                                     _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -1596,6 +1612,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                                     paper.Quantity -= quantityBridgeList[i].Quantity;
 
                                     quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * avgPrice;
+                                    paper.TotalBalance = paper.Quantity * paper.Price;
+
 
                                     _context.Papers.Update(paper);
                                     _context.QuantityBridges.Add(quantityBridgeList[i]);
@@ -1625,6 +1643,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                     supply.Quantity -= quantityBridgeList[i].Quantity;
                                     quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * avgPrice;
+                                    supply.TotalBalance = supply.Quantity * supply.Price;
 
 
                                     _context.Supplies.Update(supply);
@@ -1654,6 +1673,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                                     sparePart.Quantity -= quantityBridgeList[i].Quantity;
                                     quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * avgPrice;
+                                    sparePart.TotalBalance = sparePart.Quantity * sparePart.Price;
+
 
 
                                     _context.SpareParts.Update(sparePart);
@@ -1693,7 +1714,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return (false, $"حدث خطأ: {ex.ToString()}");
             }
         }
-       
         public (bool success, string message) ReturnOrder2(ReturnOrderDTO returnDTO)
         {
             try
@@ -1891,7 +1911,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
-        
+
         public ColorWeightSize GetCharacteristicByID(int CharId)
         {
             try
@@ -1949,7 +1969,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return false;
             }
         }
-    
+
         public List<ColorWeightSize> ViewAllColorWeightSize()
         {
             try
@@ -1963,7 +1983,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return new List<ColorWeightSize>();
             }
         }
-        
+
         public List<MachineStore> ViewAllMachineStore()
         {
             try
@@ -2000,7 +2020,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             }
         }
 
-        public MachineStore getMachineByID( int machineID)
+        public MachineStore getMachineByID(int machineID)
         {
 
             try
@@ -2010,16 +2030,18 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return machine;
 
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
 
                 WriteException.WriteExceptionToFile(ex);
                 return null;
             }
 
-        
+
         }
 
-        public bool editMachineStore(int machineID, MachineStore newmachine) {
+        public bool editMachineStore(int machineID, MachineStore newmachine)
+        {
 
             try
             {
@@ -2035,45 +2057,55 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     _context.SaveChanges();
                     return true;
                 }
-                else {
+                else
+                {
                     return false;
                 }
 
             }
-            catch (Exception exc) {
+            catch (Exception exc)
+            {
                 WriteException.WriteExceptionToFile(exc);
                 return false;
-            
+
             }
-        
+
         }
 
         public SparePart getSparePartByID(int sparePartsID)
         {
 
-            try {
+            try
+            {
 
                 SparePart sparepart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == sparePartsID);
                 return sparepart;
-            
-            } catch (Exception ex) {
+
+            }
+            catch (Exception ex)
+            {
 
                 WriteException.WriteExceptionToFile(ex);
                 return null;
             }
-        
-        
+
+
         }
-       
-        public bool editSpareParts(int sparePartID, SparePart newSparePart) {
 
-            try {
+        public bool editSpareParts(int sparePartID, SparePart newSparePart)
+        {
 
-               SparePart oldSparePart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == sparePartID);
+            try
+            {
 
-                if (oldSparePart == null) {
+                SparePart oldSparePart = _context.SpareParts.FirstOrDefault(sp => sp.SparePartsId == sparePartID);
+
+                if (oldSparePart == null)
+                {
                     return false;
-                } else {
+                }
+                else
+                {
 
                     oldSparePart.Name = newSparePart.Name;
                     oldSparePart.ReorderPoint = newSparePart.ReorderPoint;
@@ -2082,19 +2114,20 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     _context.SpareParts.Update(oldSparePart);
                     _context.SaveChanges();
                     return true;
-                
+
                 }
 
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 return false;
-             }
-        
-        
+            }
+
+
         }
-        
+
         public bool AddMachine(MachineStore machine)
         {
             try

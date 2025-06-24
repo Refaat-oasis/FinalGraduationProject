@@ -22,6 +22,8 @@ namespace ThothSystemVersion1.ViewModels
 
         [Display(Name = "مدي التقدم في التشغيلة")]
         public string? OrderProgress { get; set; }
+        [Display(Name = "مصدر امر الطلبية")]
+        public string? JobOrderSource { get; set; }
 
         [Display(Name = "الرقم المميز للعميل")]
         public int? CustomerId { get; set; }

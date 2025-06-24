@@ -93,9 +93,12 @@
             <div class="row-style">
                 <dd>@Model.OrderProgress</dd>
                 <dt>@Html.DisplayNameFor(m => m.OrderProgress)</dt>
-
             </div>
 
+            <div class="row-style">
+                <dd>@Model.JobOrderSource</dd>
+                <dt>@Html.DisplayNameFor(m => m.JobOrderSource)</dt>
+            </div>
             <!-- You can add additional fields as needed -->
         </dl>
     </div>
@@ -133,140 +136,8 @@
         </table>
     </div>
 
-    <!-- Labours Table -->
-    @* <div class="mainBox"> *@
-    @*     <h2>العمليات</h2> *@
-    @*     <table> *@
-    @*         <thead> *@
-    @*             <tr> *@
-    @*                 <th>اسم العمليه</th> *@
-    @*             </tr> *@
-    @*         </thead> *@
-    @*         <tbody> *@
-    @*             @if (Model.Labours != null && Model.Labours.Any()) *@
-    @*             { *@
-    @*                 foreach (var labour in Model.Labours) *@
-    @*                 { *@
-    @*                     <tr> *@
-    @*                         <td>@labour.LabourProcessName</td> *@
-    @*                     </tr> *@
-    @*                 } *@
-    @*             } *@
-    @*             else *@
-    @*             { *@
-    @*                 <tr> *@
-    @*                     <td>لا توجد بيانات</td> *@
-    @*                 </tr> *@
-    @*             } *@
-    @*         </tbody> *@
-    @*     </table> *@
-    @* </div> *@
-
-    @* <!-- Machines Table --> *@
-    @* <div class="mainBox"> *@
-    @*     <h2>الآلات</h2> *@
-    @*     <table class="table table-bordered"> *@
-    @*         <thead> *@
-    @*             <tr> *@
-    @*                 <th>اسم الآلة</th> *@
-    @*             </tr> *@
-    @*         </thead> *@
-    @*         <tbody> *@
-    @*             @if (Model.Machines != null && Model.Machines.Any()) *@
-    @*             { *@
-    @*                 foreach (var machine in Model.Machines) *@
-    @*                 { *@
-    @*                     <tr> *@
-    @*                         <td>@machine.MachineProcessName</td> *@
-    @*                     </tr> *@
-    @*                 } *@
-    @*             } *@
-    @*             else *@
-    @*             { *@
-    @*                 <tr> *@
-    @*                     <td>لا توجد بيانات</td> *@
-    @*                 </tr> *@
-    @*             } *@
-    @*         </tbody> *@
-    @*     </table> *@
-    @* </div> *@
-    @if (Model.QuantityBridges?.Any() == true && Model.RequisiteId != null)
+    @if (Model.QuantityBridges?.Any(q => q.RequisiteId != null) == true)
     {
-        @* <h2>الكميات المسحوبة</h2> *@
-        @* <table> *@
-        @*     <thead> *@
-        @*         <tr> *@
-        @*             <th>الصنف </th> *@
-        @*             <th>الكمية</th> *@
-        @*             <th>السعر</th> *@
-        @*             <!-- إضافة أعمدة أخرى حسب الحاجة --> *@
-        @*         </tr> *@
-        @*     </thead> *@
-        @*     <tbody> *@
-
-        @*         @foreach (QuantityBridge paper in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Papers.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (paper.PaperId == Model.Papers[i].PaperId) *@
-        @*                         { *@
-        @*                             <td>@Model.Papers[i].Name</td> *@
-        @*                             <td>@paper.Quantity</td> *@
-        @*                             <td>@paper.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-        @*         @foreach (QuantityBridge ink in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Inks.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (ink.InkId == Model.Inks[i].InkId) *@
-        @*                         { *@
-        @*                             <td>@Model.Inks[i].Name</td> *@
-        @*                             <td>@ink.Quantity</td> *@
-        @*                             <td>@ink.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-
-        @*         @foreach (QuantityBridge s in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Supplies.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (s.SuppliesId == Model.Supplies[i].SuppliesId) *@
-        @*                         { *@
-        @*                             <td>@Model.Supplies[i].Name</td> *@
-        @*                             <td>@s.Quantity</td> *@
-        @*                             <td>@s.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-        @*     </tbody> *@
-        @* </table> *@
         <h2>الكميات المسحوبة</h2>
 
         <table>
@@ -279,8 +150,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var bridge in Model.QuantityBridges)
+                @foreach (var bridge in Model.QuantityBridges.Where(q => q.RequisiteId != null))
                 {
+
                     string name = null;
                     int? quantity = null;
                     decimal? price = null;
@@ -339,153 +211,42 @@
     }
 
 
-    @if (Model.QuantityBridges?.Any() == true && Model.ReturnId != null)
+    @if (Model.QuantityBridges?.Any(q => q.ReturnId != null) == true)
     {
-        @* <h2>الكميات المرتجعة</h2> *@
-        @* <table> *@
-        @*     <thead> *@
-        @*         <tr> *@
-        @*             <th> الصنف</th> *@
-        @*             <th>الكمية</th> *@
-        @*             <th>السعر</th> *@
-        @*             <!-- إضافة أعمدة أخرى حسب الحاجة --> *@
-        @*         </tr> *@
-        @*     </thead> *@
-        @*     <tbody> *@
-        @*         @foreach (QuantityBridge paper in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Papers.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (paper.PaperId == Model.Papers[i].PaperId) *@
-        @*                         { *@
-        @*                             <td>@Model.Papers[i].Name</td> *@
-
-        @*                             <td>@paper.Quantity</td> *@
-        @*                             <td>@paper.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-        @*         @foreach (QuantityBridge ink in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Inks.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (ink.InkId == Model.Inks[i].InkId) *@
-        @*                         { *@
-        @*                             <td>@Model.Inks[i].Name</td> *@
-        @*                             <td>@ink.Quantity</td> *@
-        @*                             <td>@ink.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-
-        @*         @foreach (QuantityBridge s in Model.QuantityBridges) *@
-        @*         { *@
-        @*             <tr> *@
-
-
-        @*                 @{ *@
-        @*                     for (int i = 0; i < Model.Supplies.Count; i++) *@
-
-        @*                     { *@
-        @*                         if (s.SuppliesId == Model.Supplies[i].SuppliesId) *@
-        @*                         { *@
-        @*                             <td>@Model.Supplies[i].Name</td> *@
-        @*                             <td>@s.Quantity</td> *@
-        @*                             <td>@s.Price</td> *@
-        @*                         } *@
-        @*                     } *@
-        @*                 } *@
-
-        @*             </tr> *@
-        @*         } *@
-        @*     </tbody> *@
-        @* </table> *@
         <h2>الكميات المرتجعة</h2>
-
         <table>
             <thead>
                 <tr>
                     <th>الكمية</th>
                     <th>السعر</th>
                     <th>الصنف</th>
-
                 </tr>
             </thead>
             <tbody>
-                @foreach (var bridge in Model.QuantityBridges)
+                @foreach (var bridge in Model.QuantityBridges.Where(q => q.ReturnId != null))
                 {
                     string name = null;
-                    int? quantity = null;
-                    decimal? price = null;
 
-                    foreach (var paper in Model.Papers)
-                    {
-                        if (bridge.PaperId == paper.PaperId)
-                        {
-                            name = paper.Name;
-                            quantity = bridge.Quantity;
-                            price = bridge.Price;
-                            break;
-                        }
-                    }
+                    if (bridge.PaperId != null)
+                        name = Model.Papers.FirstOrDefault(p => p.PaperId == bridge.PaperId)?.Name;
+                    else if (bridge.InkId != null)
+                        name = Model.Inks.FirstOrDefault(i => i.InkId == bridge.InkId)?.Name;
+                    else if (bridge.SuppliesId != null)
+                        name = Model.Supplies.FirstOrDefault(s => s.SuppliesId == bridge.SuppliesId)?.Name;
 
-                    if (name == null)
-                    {
-                        foreach (var ink in Model.Inks)
-                        {
-                            if (bridge.InkId == ink.InkId)
-                            {
-                                name = ink.Name;
-                                quantity = bridge.Quantity;
-                                price = bridge.Price;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (name == null)
-                    {
-                        foreach (var s in Model.Supplies)
-                        {
-                            if (bridge.SuppliesId == s.SuppliesId)
-                            {
-                                name = s.Name;
-                                quantity = bridge.Quantity;
-                                price = bridge.Price;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (name != null)
+                    if (!string.IsNullOrEmpty(name))
                     {
                         <tr>
-                            <td>@quantity</td>
-                            <td>@price</td>
+                            <td>@bridge.Quantity</td>
+                            <td>@bridge.Price</td>
                             <td>@name</td>
-
                         </tr>
                     }
                 }
             </tbody>
         </table>
     }
+
 
     @if (Model.ProcessBridges?.Any() == true)
     {
@@ -507,7 +268,6 @@
                         <td>@pb.TotalMachineValue</td>
                         <td>@pb.TotalLabourValue</td>
                         <td>@pb.NumberOfHours</td>
-
                         <td>
                             @if (Model.Machines != null && Model.Machines.Any())
                             {

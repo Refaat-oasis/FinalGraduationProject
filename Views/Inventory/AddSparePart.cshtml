@@ -33,7 +33,7 @@
 </head>
 
 
-<div class="container">
+
     <div class="arrow">
         @{
             // admin
@@ -55,7 +55,7 @@
         }
     </div>
 
-
+    <div class="form-container">
     <form asp-action="AddSparePart" asp-controller="Inventory" id="myform" enctype="multipart/form-data" method="post">
 
         @if (TempData["Success"] != null)
@@ -88,37 +88,32 @@
             <h1>إضافة قطع غيار</h1>
         </div>
         <div class="inputBox">
-            <label for="paperName">اسم لقطعه الغيار</label>
-            <input type="text" asp-for="@Model.Name" id="Name" />
+            <label for="paperName" class="textlabel">اسم لقطعه الغيار</label>
+            <input type="text"class="place" asp-for="@Model.Name" id="Name" />
             <span class="error" asp-validation-for="@Model.Name"></span>
         </div>
 
 
         <div class="inputBox">
-            <label for="Quantity">كميه قطع الغيار</label>
-            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <label for="Quantity" class="textlabel">كميه قطع الغيار</label>
+            <input type="number"class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="Quantity">سعر قطعه الغيار</label>
-            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <label for="Quantity" class="textlabel">سعر قطعه الغيار</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
         </div>
         <div class="inputBox">
-            <label for="ReorderPoint">نقطة إعادة الطلب</label>
-            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
+            <input type="number"class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
             <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
         </div>
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="تأكيد الإضافة " class="Add" />
+        <div class="button-container">
+            <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
             </div>
 
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
-        </div>
     </form>
 
 </div>

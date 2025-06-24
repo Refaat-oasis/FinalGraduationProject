@@ -31,7 +31,7 @@
 </head>
 
 
-<div class="container">
+
     <div class="arrow">
         @{
             // admin
@@ -53,7 +53,7 @@
         }
     </div>
 
-
+    <div class="form-container">
     <form asp-action="AddMachine" asp-controller="Inventory" id="myform" enctype="multipart/form-data" method="post">
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
@@ -88,19 +88,13 @@
             <h1>إضافة اله جديدة</h1>
         </div>
         <div class="inputBox">
-            <label for="Name">اسم الاله</label>
-            <input type="text" step="any" asp-for="@Model.Name" id="Name" />
+            <label for="Name" class="textlabel">اسم الاله</label>
+            <input type="text" class="place" step="any" asp-for="@Model.Name" id="Name" />
             <span asp-validation-for="@Model.Name" class="error"></span>
         </div>
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="تأكيد الإضافة " class="Add" />
+        <div class="button-container">
+            <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
             </div>
-
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
-        </div>
 
     </form>
 </div>

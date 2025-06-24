@@ -35,7 +35,7 @@
 </head>
 
 
-<div class="container">
+
     <div class="arrow">
         @{
             // admin
@@ -63,7 +63,7 @@
         }
     </div>
 
-
+    <div class="form-container">
     <form asp-action="NewPaper" id="myform" enctype="multipart/form-data" method="post">
 
         @if (TempData["Success"] != null)
@@ -97,14 +97,14 @@
         </div>
 
         <div class="inputBox">
-            <label for="paperName">اسم خام الورق</label>
-            <input type="text" asp-for="@Model.Name" id="paperName" />
+            <label for="paperName" class="textlabel">اسم خام الورق</label>
+            <input type="text" class="place" asp-for="@Model.Name" id="paperName" />
             <span class="error" asp-validation-for="@Model.Name"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Size">مقاس الورق</label>
-            <select asp-for="@Model.Size" class="input">
+            <label for="Size" class="textlabel">مقاس الورق</label>
+            <select asp-for="@Model.Size" class="place">
                 <option value="none" selected disabled>اختار المقاس</option>
                 @{
                     foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
@@ -120,8 +120,8 @@
         </div>
 
         <div class="inputBox">
-            <label for="Weight">وزن الورق</label>
-            <select asp-for="@Model.Weight" class="input">
+            <label for="Weight" class="textlabel">وزن الورق</label>
+            <select asp-for="@Model.Weight" class="place">
                 <option value="none" selected disabled>اختار الوزن</option>
                 @{
                     foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
@@ -137,14 +137,14 @@
         </div>
 
         <div class="inputBox">
-            <label for="Quantity">كميه الورق</label>
-            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <label for="Quantity" class="textlabel">كميه الورق</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.Colored"></label>
-            <select asp-for="@Model.Colored" class="input">
+            <label asp-for="@Model.Colored" class="textlabel"></label>
+            <select asp-for="@Model.Colored" class="place">
                 <option value="none" selected disabled>اختار اللون</option>
                 @{
                     foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
@@ -166,26 +166,22 @@
         </div> *@
 
         <div class="inputBox">
-            <label for="ReorderPoint">نقطة إعادة الطلب</label>
-            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
+            <input type="number" class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
             <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Price">سعر الورق</label>
-            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <label for="Price" class="textlabel">سعر الورق</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
             <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
 
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="تأكيد الإضافة " class="Add" />
+        <div class="button-container">
+            <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
             </div>
 
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
-        </div>
+         
     </form>
 
 </div>

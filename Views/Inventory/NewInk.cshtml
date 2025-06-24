@@ -30,7 +30,6 @@
 </head>
 
 
-<div class="container">
     <div class="arrow">
         @{
             // admin
@@ -60,6 +59,7 @@
         }
     </div>
 
+    <div class="form-container">
     <form asp-controller="Inventory" asp-action="NewInk" id="myform" enctype="multipart/form-data" method="post">
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
@@ -93,14 +93,14 @@
         </div>
 
         <div class="inputBox">
-            <label for="InkName">اسم الحبر</label>
-            <input type="text" asp-for="@Model.Name" id="InkName" />
+            <label for="InkName" class="textlabel">اسم الحبر</label>
+            <input type="text" class="place" asp-for="@Model.Name" id="InkName" />
             <p asp-validation-for="@Model.Name" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label asp-for="@Model.Colored"></label>
-            <select asp-for="@Model.Colored" id="Colored" class="input">
+            <label asp-for="@Model.Colored" class="textlabel"></label>
+            <select asp-for="@Model.Colored" id="Colored" class="place">
                 <option value="none" selected disabled>اختر اللون</option>
                 @{
                     foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
@@ -116,43 +116,39 @@
         </div>
 
         <div class="inputBox">
-            <label for="Quantity">عدد سحبات الحبر</label>
-            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <label for="Quantity" class="textlabel">عدد سحبات الحبر</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="Price">سعر الحبر</label>
-            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <label for="Price" class="textlabel">سعر الحبر</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="AverageQuantity">متوسط السحبات</label>
-            <input type="number" step="any" asp-for="@Model.AverageQuantity" id="AverageQuantity" />
+            <label for="AverageQuantity" class="textlabel">متوسط السحبات</label>
+            <input type="number" class="place" step="any" asp-for="@Model.AverageQuantity" id="AverageQuantity" />
             <p asp-validation-for="@Model.AverageQuantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="NumberOfUnits">عدد العبوات</label>
-            <input type="number" step="any" asp-for="@Model.NumberOfUnits" id="NumberOfUnits" />
+            <label for="NumberOfUnits" class="textlabel">عدد العبوات</label>
+            <input type="number" class="place" step="any" asp-for="@Model.NumberOfUnits" id="NumberOfUnits" />
             <p asp-validation-for="@Model.NumberOfUnits" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="ReorderPoint">نقطة إعادة الطلب</label>
-            <input type="number" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
+            <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
+            <input type="number" class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
             <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
         </div>
 
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="تأكيد الإضافة " class="Add" />
+        <div class="button-container">
+                <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
             </div>
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
-        </div>
+            
     </form>
 
 </div>

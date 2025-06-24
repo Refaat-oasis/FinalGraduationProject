@@ -32,7 +32,6 @@
 </head>
 
 
-<div class="container">
     <div class="arrow">
         @{
             // admin
@@ -60,7 +59,11 @@
         }
     </div>
 
-    <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+
+
+    <div class="form-container">
+        <h1>إضافة عميل جديد</h1>
+
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
@@ -88,57 +91,55 @@
             </div>
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
-        <div asp-validation-summary="ModelOnly" class="error"></div>
 
-        <div class="text">
-            <h1>إضافة عميل جديد</h1>
-        </div>
+        <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="error"></div>
 
-        <div class="inputBox">
-            <label for="CustomerName">اسم العميل</label>
-            <input type="text" asp-for="@Model.CustomerName" id="CustomerName" />
-            <span asp-validation-for="@Model.CustomerName" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="CustomerName" class="textlabel">اسم العميل</label>
+                <input type="text" class="place" asp-for="@Model.CustomerName" id="CustomerName" />
+                <span asp-validation-for="@Model.CustomerName" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label for="Address">عنوان العميل</label>
-            <input type="text" asp-for="@Model.CustomerAddress" id="Address" />
-            <span asp-validation-for="@Model.CustomerAddress" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="Address" class="textlabel">عنوان العميل</label>
+                <input type="text"class="place" asp-for="@Model.CustomerAddress" id="Address" />
+                <span asp-validation-for="@Model.CustomerAddress" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label for="Email">الإيميل الإلكتروني</label>
-            <input type="text" asp-for="@Model.CustomerEmail" id="Email" />
-            <span asp-validation-for="@Model.CustomerEmail" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="Email" class="textlabel">الإيميل الإلكتروني</label>
+                <input type="text" class="place" asp-for="@Model.CustomerEmail" id="Email" />
+                <span asp-validation-for="@Model.CustomerEmail" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label for="Phone">رقم الهاتف</label>
-            <input type="text" asp-for="@Model.CustomerPhone" id="Phone" />
-            <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="Phone" class="textlabel">رقم الهاتف</label>
+                <input type="text" class="place" asp-for="@Model.CustomerPhone" id="Phone" />
+                <span asp-validation-for="@Model.CustomerPhone" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label for="CustomerSource">مصدر العميل </label>
-            <select asp-for="@Model.CustomerSource" id="PhoneType" class="input">
-                <option value="داخلي">داخلي</option>
-                <option value="خارجي">خارجي</option>
-                <option value="الجامعة">الجامعة</option>
-            </select>
-            <span asp-validation-for="@Model.CustomerSource" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="CustomerSource" class="textlabel">مصدر العميل </label>
+                <select asp-for="@Model.CustomerSource" id="PhoneType" class="place">
+                    <option value="داخلي">داخلي</option>
+                    <option value="خارجي">خارجي</option>
+                    <option value="الجامعة">الجامعة</option>
+                </select>
+                <span asp-validation-for="@Model.CustomerSource" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label for="Notes">ملاحظات عن العميل</label>
-            <input type="text" asp-for="@Model.CustomerNotes" id="Notes" />
-            <span asp-validation-for="@Model.CustomerNotes" class="error"></span>
-        </div>
+            <div class="inputBox">
+                <label for="Notes" class="textlabel">ملاحظات عن العميل</label>
+                <input type="text" class="place" asp-for="@Model.CustomerNotes" id="Notes" />
+                <span asp-validation-for="@Model.CustomerNotes" class="error"></span>
+            </div>
 
-        <div class="button-container">
-            <input type="submit" value="إضافه" class="btn btn-secondary" />
+            <div class="button-container">
+                <input type="submit" value="إضافه" class="btn btn-secondary" />
 
-        </div>
+            </div>
 
-    </form>
-</div>
-<script src="~/js/Technical/AddCustomer.js"></script>
+        </form>
+    </div>
+    <script src="~/js/Technical/AddCustomer.js"></script>

@@ -64,6 +64,7 @@ h1, h2 {
     margin-bottom: 5px;
     color: #090909;
     text-align: right;
+    direction:rtl;
 }
 
 .place {

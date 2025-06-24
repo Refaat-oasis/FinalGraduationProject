@@ -34,6 +34,14 @@
     border-color: #dc3545;
 }
 
+#itemQuantity {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+    pointer-events: auto !important;
+}
+
 .error-message {
     color: red;
     font-size: 0.875rem;
@@ -64,6 +72,7 @@ h1, h2 {
     margin-bottom: 5px;
     color: #090909;
     text-align: right;
+    direction: rtl;
 }
 
 .place {
@@ -125,7 +134,7 @@ h1, h2 {
 
 .arrow {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     margin: 20px;
 }
 

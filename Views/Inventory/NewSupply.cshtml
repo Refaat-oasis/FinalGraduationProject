@@ -32,7 +32,7 @@
 </head>
 
 
-<div class="container">
+
     <div class="arrow">
         @{
             // admin
@@ -63,7 +63,7 @@
     </div>
 
 
-
+    <div class="form-container">
     <form asp-controller="Inventory" asp-action="NewSupply" id="myform" enctype="multipart/form-data" method="post">
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
@@ -99,20 +99,20 @@
         </div>
 
         <div class="inputBox">
-            <label for="supplyName">اسم المستلزم</label>
-            <input type="text" asp-for="@Model.Name" id="supplyName" />
+            <label for="supplyName" class="textlabel">اسم المستلزم</label>
+            <input type="text" class="place" asp-for="@Model.Name" id="supplyName" />
             <p asp-validation-for="@Model.Name" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="Quantity">كميه المستلزم</label>
-            <input type="number" step="any" asp-for="@Model.Quantity" id="Quantity" />
+            <label for="Quantity" class="textlabel">كميه المستلزم</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
             <p asp-validation-for="@Model.Quantity" class="error"></p>
         </div>
 
         <div class="inputBox">
-            <label for="Price">سعر المستلزم</label>
-            <input type="number" step="any" asp-for="@Model.Price" id="Price" />
+            <label for="Price" class="textlabel">سعر المستلزم</label>
+            <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
             <p asp-validation-for="@Model.Price" class="error"></p>
         </div>
 
@@ -130,15 +130,9 @@
             <span class="error"></span>
         </div>
 
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="تأكيد الإضافة " class="Add" />
+        <div class="button-container">
+                <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
             </div>
-
-            <div class="reset">
-                <input type="reset" value="إعادة إدخال" class="btnReset" />
-            </div>
-        </div>
 
     </form>
 </div>

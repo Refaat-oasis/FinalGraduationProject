@@ -1,27 +1,28 @@
-﻿.container {
-    min-height: 100vh;
-    padding-top: 80px;
+﻿
+.form-container {
+    position: relative;
     width: 100%;
     max-width: 800px;
-    font-family: Calibri;
+    margin: 50px auto;
     padding: 20px;
     border-radius: 8px;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     background-size: cover;
     background-position: center;
-    display: flex;
+    display: block;
+    overflow: auto;
 }
 
-    .container::before {
+
+    .form-container::before {
         content: "";
+        position: absolute;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        background-size: contain;
+        background-size: cover;
         background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
         opacity: 0.75;
         z-index: -1;
@@ -29,27 +30,31 @@
         background-position: center;
     }
 
-.text {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: black;
-    margin-top: 30px;
-}
+
+
 
 h1 {
-    text-align: center;
-    font-size: 30px;
-    color: #050505;
-    margin-bottom: 20px;
-    font-weight: 600;
+    color: black !important;
+    margin: 20px !important;
+    font-weight: 900 !important;
+    font-size: 50px !important;
+    text-align: center !important; /* Added right alignment */
 }
+
+.inputBox {
+    margin-left: 25%;
+    position: center;
+    width: 50%;
+}
+
+
 
 .textlabel {
     display: block;
-    font-size: 30px;
+    font-weight: 15px;
     margin-bottom: 5px;
-    color: #FDF5E6;
+    color: #090909;
+    font-size: 35px;
     text-align: right;
 }
 
@@ -64,58 +69,6 @@ h1 {
 }
 
 
-.inputBox {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-bottom: 15px;
-    margin-left: 5%;
-    position: center;
-    width: 350px;
-}
-
-    .inputBox label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #090909;
-        font-size: 25px;
-        align-items: flex-end;
-        text-align: right;
-        direction: rtl;
-    }
-
-    .inputBox input {
-        border: 2px solid #4F3217;
-        border-radius: 5px;
-        background-color: #FDF5E6;
-        font-size: 16px;
-        width: 100%;
-        padding: 10px;
-        text-align: right;
-        direction: rtl;
-    }
-
-    .inputBox select {
-        border: 2px solid #4F3217;
-        border-radius: 5px;
-        background-color: #FDF5E6;
-        font-size: 16px;
-        width: 100%;
-        padding: 10px;
-        text-align: right;
-        direction: rtl;
-     
-    }
-
-        .inputBox select:focus {
-            border-color: #4F3217;
-            outline: none;
-        }
-
-.inputBox {
-    position: relative;
-}
 
 .button-container {
     display: flex;
@@ -135,14 +88,14 @@ h1 {
 }
 
 
-/*.btn-primary {
+.btn-primary {
     background-color: #000000;
     color: white;
 }
 
     .btn-primary:hover {
         background-color: #000000;
-    }*/
+    }
 
 .btn-secondary {
     background-color: #000000;
@@ -151,25 +104,6 @@ h1 {
 
 .btn:hover {
     background-color: #545b62;
-}
-
-.inputBox.error {
-    color: red;
-    font-size: 15px;
-    font-weight: bolder;
-    text-align: right;
-    display: flex;
-    margin-right: 8px;
-    margin-top: 10px;
-}
-
-
-
-.arrow {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
 }
 
 .arrow {
@@ -195,45 +129,15 @@ h1 {
     text-decoration: none;
 }
 
-.success-message {
-    font-size: 28px;
-    font-weight: bold;
-    color: #28a745; /* لون أخضر يدل على النجاح */
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #eafaf1;
-    border: 2px solid #28a745;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+
+.error {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    direction: rtl;
 }
-
-    .success-message i {
-        font-size: 40px;
-    }
-
-.error-message {
-    font-size: 28px;
-    font-weight: bold;
-    color: #dc3545; /* لون أحمر يدل على الخطأ */
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fdecea;
-    border: 2px solid #dc3545;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-    .error-message i {
-        font-size: 40px;
-    }
 
 /* Notification styles */
 .notification {
@@ -262,25 +166,15 @@ h1 {
 }
 
 .success {
-/*    background-color: #f0fdf4;
+    background-color: #f0fdf4;
     border-left: 4px solid #10b981;
-    color: #10b981;*/
+    color: #10b981;
 }
 
 .error {
-    font-size: 18px;
-    font-weight: bold;
-    color: #dc3545; /* لون أحمر يدل على الخطأ */
-    text-align: center;
-    margin-bottom: 5px;
-    padding: 10px;
-    /*    background-color: #fdecea;
-    border: 2px solid #dc3545;*/
-    /*    border-radius: 10px;*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #ef4444;
 }
 
 .progress-bar {

@@ -277,6 +277,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 joborderSpecifics.EndDate = jobOrder.EndDate;
                 joborderSpecifics.EmployeeId = jobOrder.EmployeeId;
                 joborderSpecifics.CustomerId = jobOrder.CustomerId;
+                joborderSpecifics.JobOrderSource = jobOrder.JobOrderSource;
 
                 // Safe handling of related entities
                 MiscellaneousExpense miscellaneousExpense = _context.MiscellaneousExpenses.FirstOrDefault(m => m.JobOrderId == jobOrderId);

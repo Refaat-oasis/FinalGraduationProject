@@ -35,7 +35,9 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (newInk != null)
                 {
                     newInk.Activated = true;
-                    newInk.TotalBalance = newInk.Price * newInk.NumberOfUnits;
+                    newInk.TotalBalance = newInk.UnitPrice * newInk.NumberOfUnits;
+                    newInk.Quantity = newInk.NumberOfUnits * newInk.AverageQuantity;
+                    newInk.Price = (decimal)newInk.TotalBalance / newInk.Quantity;
                     _context.Add(newInk);
                     _context.SaveChanges();
                     return true;

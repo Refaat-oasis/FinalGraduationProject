@@ -115,16 +115,11 @@
             <span asp-validation-for="@Model.Colored" class="error"></span>
         </div>
 
-        <div class="inputBox">
-            <label for="Quantity" class="textlabel">عدد سحبات الحبر</label>
-            <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
-            <p asp-validation-for="@Model.Quantity" class="error"></p>
-        </div>
 
         <div class="inputBox">
-            <label for="Price" class="textlabel">سعر الحبر</label>
-            <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+            <label for="UnitPrice" class="textlabel">سعر العبوة</label>
+            <input type="number" class="place" step="any" asp-for="@Model.UnitPrice" id="Price" />
+            <p asp-validation-for="@Model.UnitPrice" class="error"></p>
         </div>
 
         <div class="inputBox">

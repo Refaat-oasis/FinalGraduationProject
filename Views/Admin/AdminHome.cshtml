@@ -4,6 +4,7 @@
 
 
 @{
+    Layout = null;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     string employeeName = HttpContextAccessor.HttpContext.Session.GetString("EmployeeName") ?? "Unknown";
@@ -26,9 +27,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+    <title>ThoTh</title>
 
-    <link href="@Url.Content("~/css/Admin/adminHome.css")" rel="stylesheet" />
-
+    <link href="~/css/Admin/adminHome.css" rel="stylesheet" />
     <link rel="icon"
           type="image/jpeg"
           href="~/image/eye.jpg"
@@ -39,8 +40,6 @@
         /*     position: fixed; */
         /*     top: 10%; */
         /*     left: 0; */
-        /*     /* background-color: #ffcc00;  */ */
-        /*     /* background-color: rgba(0, 0, 0, 0.7); */ */
         /*     color: white; */
         /*     padding: 10px; */
         /*     width: 250px; */
@@ -52,7 +51,6 @@
         /*     display: none; */
         /* } */
 
-        /*     /* Close button style */ */
         /*     #reorderMessages .close-btn { */
         /*         position: absolute; */
         /*         top: 5px; */
@@ -67,13 +65,6 @@
         /*         #reorderMessages .close-btn:hover { */
         /*             color: red; */
         /*         } */
-
-        /* .reorder-item { */
-        /*     margin-bottom: 0.75rem; */
-        /*     padding: 0.5rem; */
-        /*     border-bottom: 1px solid rgba(0,0,0,0.1); */
-        /* } */
-
         .reorderMsg {
             position: fixed;
             top: 20px;
@@ -98,7 +89,262 @@
                 transform: translateY(0);
             }
 
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            position: relative;
+            width: 100%;
+           
+            padding: 20px;
+            border-radius: 8px;
+            background-size: cover;
+            display: block;
+            overflow: hidden;
+        }
+
+      
+
+        body::before {
+                content: "";
+                position: absolute;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: contain;
+                background-size: cover;
+                background: url("/image/brown-bokeh-textured-plain-product-background.jpg");
+                opacity: 0.75;
+                z-index: -1;
+                background-size: cover;
+                background-position: center;
+        }
+
+        .dashboard-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 40px;
+            margin-top: 5%;
+            margin-bottom: 50px;
+            margin-right: 15px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            
+        }
+
+        .icon-box {
+            width: 200px;
+            background-color: #FDF5E6;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 20px 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            overflow: visible;
+        }
+
+            .icon-box p {
+                font-weight: 900 !important;
+                font-size: 20px !important;
+            }
+
+            .icon-box.active {
+                background-color: #2c2c2c;
+            }
+
+                .icon-box.active p {
+                    color: white !important;
+                }
+
+                .icon-box.active .icon-img {
+                    filter: brightness(0) invert(1);
+                }
+
+            .icon-box:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+                border: 3px solid #ffff;
+            }
+
+
+
+        .icon-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .icon-img1{
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+
+        .icon-list {
+            list-style: none;
+            width: 100%;
+            text-align: right;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #FDF5E6;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 100px;
+            opacity: 0;
+            overflow-y: auto;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .icon-box.active .icon-list {
+            max-height: 250px;
+            opacity: 1;
+        }
+
+        .icon-list li {
+            padding: 8px 15px;
+            text-align: right;
+            border-top: 1px solid #f0f0f0;
+        }
+
+            .icon-list li a {
+                text-decoration: none;
+                color: #333;
+                display: block;
+                transition: all 0.2s;
+                font-weight: 900 !important;
+                font-size: 17px !important;
+            }
+
+                .icon-list li a:hover {
+                    color: white;
+                    background-color: #444;
+                }
+
+        .container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+            .container h1 {
+                margin-bottom: 10px;
+            }
+
+            .container p {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .hello {
+            color:white;
+            font-size: 25px;
+            font-weight: 600;
+            text-align:center;
+
+        }
+       
+        .sub-list {
+            display: none;
+            padding: 5px 0;
+            list-style: none;
+            margin: 0;
+            background-color: #FDF5E6;
+            border-right: 3px solid #ccc;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+            direction: rtl;
+        }
+
+       
+        .has-sublist.open .sub-list {
+            display: block;
+        }
+
+        
+        .main-item {
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background-color: #FDF5E6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-bottom: 1px solid #ddd;
+            direction: rtl;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 6px;
+        }
+
+            
+            .main-item:hover {
+                background-color: #333;
+                color: white;
+            }
+
+       
+        
+        .sub-list li {
+            padding: 0;
+            direction: rtl;
+        }
+
+            
+            .sub-list li a {
+                display: block;
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 14px;
+                color: #333;
+                text-decoration: none;
+                border-bottom: 1px solid #eee;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+                
+                .sub-list li a:hover {
+                    background-color: #444;
+                    color: white;
+    
+               }
+
+        .sublist2:hover{
+            border-radius:6px;
+
+        }
+
+
     </style>
+
 
 </head>
 <body>
@@ -106,186 +352,333 @@
         @* <button class="close-btn" onclick="closeReorderMessages()">×</button> *@
         <!-- The reorder messages will be dynamically added here -->
     </div>
-
-    <div class="sidebar">
-        <ul class="dropdown">
-            <li>  @Html.ActionLink("عرض الملف الشخصي", "EmployeeProfile", "Employee", new { employeeId }) </li>
-            <li onclick="toggleDropdown(this)">
-                إدارة المطبعة
-                <ul>
-                    <li>@Html.ActionLink("عرض جميع الموظفين", "ViewAllEmployee", "Admin")</li>
-                    <li>@Html.ActionLink("إضافة موظف جديد", "AddEmployee", "Admin")</li>
-                </ul>
-            </li>
-
-            <li onclick="toggleDropdown(this)">
-                المخازن
-                <ul>
-                    <li>@Html.ActionLink("إضافة صنف ورق جديد", "NewPaper", "Inventory")</li>
-                    <li>@Html.ActionLink("إضافة حبر جديد", "NewInk", "Inventory")</li>
-                    <li>@Html.ActionLink("إضافة مستلزمات جديده", "NewSupply", "Inventory")</li>
-
-                    <li>@Html.ActionLink("عرض مخزون الورق", "viewallpaper", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض مخزون الحبر", "ViewAllInk", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
-
-                    <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
-
-                    <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
-                    <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
-
-                    <li>@Html.ActionLink("إضافة اله جديده", "AddMachine", "Inventory")</li>
-                    <li>@Html.ActionLink("إضافة قطع غيار جديده", "AddSparePart", "Inventory")</li>
-
-
-
-                    <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
-                    <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
-                    <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
-                    <li>@Html.ActionLink("صرف مخزن دائم", "PerpetualRequisite", "Inventory")</li>
-
-                    <li>@Html.ActionLink("إضافة المواصفات", "AddCharacteristic", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض جميع المواصفات", "ViewAllColorWeightSize", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض الآلات", "ViewAllMachineStore", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض قطع غيار الالات", "ViewAllSpareParts", "Inventory")</li>
-
-                </ul>
-            </li>
-
-            <li onclick="toggleDropdown(this)">
-                الفني
-                <ul>
-                    <li>@Html.ActionLink("اذونات الصرف", "CreateRequisite", "Technical")</li>
-                    <li>@Html.ActionLink("إضافة عميل", "AddCustomer", "Technical")</li>
-                    <li>@Html.ActionLink("عرض جميع العملاء", "ViewAllCustomer", "Technical")</li>
-                    <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
-                    <li>@Html.ActionLink("إضافة طلبية جديدة", "CreateNewJobOrder", "Technical")</li>
-
-                </ul>
-            </li>
-
-            <li onclick="toggleDropdown(this)">
-                التكاليف
-                <ul>
-                    <li>@Html.ActionLink("إضافه عامل جديد", "AddLabour", "Cost")</li>
-                    <li>@Html.ActionLink("عرض جميع العمال", "ViewAllLabour", "Cost")</li>
-                    <li>@Html.ActionLink("إضافه اله جديدة", "AddMachine", "Cost")</li>
-                    <li>@Html.ActionLink("عرض جميع الالات", "ViewAllMachines", "Cost")</li>
-                    <li>@Html.ActionLink(" عرض اوامر التصنيع للمقايسة", "ViewAllJobOrder", "Cost")</li>
-
-                </ul>
-            </li>
-
-            <li onclick="toggleDropdown(this)">
-                الحسابات
-                <ul>
-                    <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "accounting")</li>
-                    <li>@Html.ActionLink("طلب دفع اموال", "viewPurchaseOrderdsWithRemainingAmount", "Accounting")</li>
-                    <li>@Html.ActionLink("تعديل حسابات الطلبية", "viewJobOrderWithCost", "Accounting")</li>
-
-                </ul>
-            </li>
-        </ul>
-
-        <div class="button">
-            @Html.ActionLink("تسجيل الخروج", "Logout", "Employee", null, new { @class = "btnBack" })
-        </div>
-    </div>
-
-    <div class="container">
+    <div class="hello">
         <h1>تحوت يتمني لك يوم سعيد</h1>
         <h1>
             مرحبا يا : @{
                 @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("EmployeeName"))
             }
         </h1>
-        <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p>
-        <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p>
     </div>
+    <div class="dashboard-icons">
+
+        <div class="row">
+
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/icons8-accounting-50.png" alt="الحسابات" class="icon-img" />
+                <p>الحسابات</p>
+                <ul class="icon-list">
+                    <li>@Html.ActionLink("طلب استلام اموال", "viewJobOrderWithRemainingAmount", "Accounting")</li>
+                    <li>@Html.ActionLink("طلب دفع اموال", "viewPurchaseOrderdsWithRemainingAmount", "Accounting")</li>
+                    <li>@Html.ActionLink("تعديل حسابات الطلبية", "viewJobOrderWithCost", "Accounting")</li>
+                </ul>
+            </div>
+
+
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/reduction.png" alt="التكاليف" class="icon-img" />
+                <p>التكاليف</p>
+                <ul class="icon-list">
+                    <li class="has-sublist">
+                        <span class="main-item" onclick="toggleSublist(this)"> العمال</span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("إضافة عامل جديد", "AddLabour", "Cost")</li>
+                            <li>@Html.ActionLink("عرض جميع العمال", "ViewAllLabour", "Cost")</li>
+                        </ul>
+                    </li>
+                    <li class="has-sublist">
+                        <span class="main-item" onclick="toggleSublist(this)"> آلات </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("إضافة آلة جديدة", "AddMachine", "Cost")</li>
+                            <li>@Html.ActionLink("عرض جميع الآلات", "ViewAllMachines", "Cost")</li>
+                        </ul>
+                    </li>
+                    
+                    <li class="sublist2">@Html.ActionLink("عرض أوامر التصنيع للمقايسة", "ViewAllJobOrder", "Cost")</li>
+                    
+                </ul>
+            </div>
+
+
+
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/repair.png" alt="الفني" class="icon-img" />
+                <p>الفني</p>
+                <ul class="icon-list">
+                    <li class="has-sublist">
+                        <span class="main-item">العملاء</span>
+                        <ul class="sub-list">
+                    <li>@Html.ActionLink("إضافة عميل", "AddCustomer", "Technical")</li>
+                    <li>@Html.ActionLink("عرض جميع العملاء", "ViewAllCustomer", "Technical")</li>
+                    </ul>
+                    </li>
+                    <li class="has-sublist">
+                        <span class="main-item">الطلبيات</span>
+                        <ul class="sub-list">
+                    <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
+                    <li>@Html.ActionLink("إضافة طلبية جديدة", "CreateNewJobOrder", "Technical")</li>
+                    </ul>
+                    </li>
+                    <li>@Html.ActionLink("إذن الصرف لطلبية", "CreateRequisite", "Technical")</li>
+                </ul>
+            </div>
+
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/warehouse.png" alt="المخازن" class="icon-img" />
+                <p>المخازن</p>
+                <ul class="icon-list">
+                    <li class="has-sublist">
+                        <span class="main-item">إضافة الأصناف</span>
+                        <ul class="sub-list">
+                    <li>@Html.ActionLink(" صنف ورق جديد", "NewPaper", "Inventory")</li>
+                    <li>@Html.ActionLink(" حبر جديد", "NewInk", "Inventory")</li>
+                    <li>@Html.ActionLink(" مستلزمات جديده", "NewSupply", "Inventory")</li>
+                    <li>@Html.ActionLink(" قطع غيار جديده", "AddSparePart", "Inventory")</li>
+                    <li>@Html.ActionLink(" اله جديده", "AddMachine", "Inventory")</li>
+                    </ul>
+                    </li>
+                    <li class="has-sublist">
+                        <span class="main-item"> عرض اصناف المخزون </span>
+                        <ul class="sub-list">
+                    <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
+                    <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
+                    <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
+                    <li>@Html.ActionLink(" قطع الغيار", "ViewAllSparePart", "Inventory")</li>
+                    <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
+                    </ul>
+                    </li>
+
+                    <li class="has-sublist">
+                        <span class="main-item"> الموردين </span>
+                        <ul class="sub-list">
+                           <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
+                           <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
+                    </ul>
+                    </li>
+
+                    <li class="has-sublist">
+                        <span class="main-item"> الموصفات </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("إضافة المواصفات", "AddCharacteristic", "Inventory")</li>
+                            <li>@Html.ActionLink("عرض جميع المواصفات", "ViewAllColorWeightSize", "Inventory")</li>
+                            </ul>
+                            </li>
+
+                    <li class="has-sublist">
+                        <span class="main-item"> عمليات المخزن </span>
+                        <ul class="sub-list">
+                           <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
+                            <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
+                            <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
+                            <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
+                            <li>@Html.ActionLink("صرف مخزن دائم", "PerpetualRequisite", "Inventory")</li>
+                   
+                    </ul>
+                    </li>
+                   
+                </ul>
+            </div>
+
+
+
+
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/team-management.png" alt="إدارة المطبعة" class="icon-img" />
+                <p>إدارة المطبعة</p>
+                <ul class="icon-list">
+                    <li>@Html.ActionLink("عرض جميع الموظفين", "ViewAllEmployee", "Admin")</li>
+                    <li>@Html.ActionLink("إضافة موظف جديد", "AddEmployee", "Admin")</li>
+                </ul>
+            </div>
+@* 
+            <div class="icon-box" >
+                <img src="~/image/user.png" alt="الملف الشخصي" class="icon-img" />
+              
+                @Html.ActionLink(" الملف الشخصي", "EmployeeProfile", "Employee", new { employeeId })
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+            <div class="icon-box" >
+                <img src="~/image/door.png" alt="تسجيل الخروج" class="icon-img" />
+                <p>@Html.ActionLink("تسجيل الخروج", "Logout", "Employee")</p>
+            </div> *@
+
+            <div class="icon-box">
+                
+                <a href="@Url.Action("EmployeeProfile", "Employee", new { employeeId })" class="icon-box-link">
+                        <img src="~/image/user.png" alt="الملف الشخصي" class="icon-img1" />
+                        <p>الملف الشخصي</p>
+                </a>
+            </div>
+
+            <div class="icon-box">
+                <a href="@Url.Action("Logout", "Employee")" class="icon-box-link">
+                        <img src="~/image/door.png" alt="تسجيل الخروج" class="icon-img1" />
+                        <p>تسجيل الخروج</p>
+                </a>
+            </div>
+
+
+            @* <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p> *@
+            @* <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p> *@
+        </div>
+    </div>
+
+
+
+
 
     <script src="@Url.Content("~/js/Admin/adminHome.js")"></script>
 
 </body>
 </html>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
         integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-</script>
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
-    (function setupInventoryHub() {
-      console.log("[InventoryHub] ↗ Building connection…");
+    // Close the reorder messages div
+    // function closeReorderMessages() {
+    //     var messageDiv = document.getElementById("reorderMessages");
+    //     messageDiv.style.display = "none";
+    // }
 
-      const hub = new signalR.HubConnectionBuilder()
-        .withUrl("/InventoryReorderPoint")
-        .configureLogging(signalR.LogLevel.Information)
-        .build();
+    // Generic search function for any table
+    function searchInventory(tableId) {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById(tableId);
+        tr = table.getElementsByTagName("tr");
 
-      hub.onclose(err => {
-        if (err) {
-          console.error("[InventoryHub] Connection closed with error:", err.toString());
-        } else {
-          console.warn("[InventoryHub] Connection closed gracefully.");
-        }
-      });
+        // Loop through all table rows (skip the header row)
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none"; // Hide the row by default
+            td = tr[i].getElementsByTagName("td");
 
-      // Handler for incoming messages — appends each one
-      hub.on("recieveInventoryBalances", payload => {
-        console.log("[InventoryHub] 📥 Message received:", payload);
 
-        const container = document.getElementById("reorderMessages");
-        container.style.display = "block";
-
-        const msgDiv = document.createElement("div");
-        msgDiv.className = "reorder-item";
-        msgDiv.textContent = payload;
-        container.appendChild(msgDiv);
-      });
-      console.log("[InventoryHub] ✅ Handler for 'recieveInventoryBalances' registered.");
-
-      function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-
-      async function startAndInvokeAll() {
-        try {
-          console.log("[InventoryHub] ▶ Starting connection…");
-          await hub.start();
-          console.log("[InventoryHub] ✅ Connection established. ID:", hub.connectionId);
-
-          const methods = [
-            "checkInventoryBalancePaper",
-            "checkInventoryBalanceInk",
-            "checkInventoryBalanceSupply",
-            "checkInventoryBalanceSpareParts"
-          ];
-
-          for (let i = 0; i < methods.length; i++) {
-            const method = methods[i];
-            console.log(`[InventoryHub] 🔔 Invoking '${method}'…`);
-            await hub.invoke(method);
-            console.log(`[InventoryHub] ✅ '${method}' invoked.`);
-            if (i < methods.length - 1) {
-              console.log(`[InventoryHub] ⏱ Waiting 3s before next invoke…`);
-              await sleep(3000);
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
             }
-          }
-
-          console.log("[InventoryHub] 🎉 All checks invoked.");
-
-          // After all invokes, wait 3s then hide the container
-          setTimeout(() => {
-            const container = document.getElementById("reorderMessages");
-            container.style.display = "none";
-            console.log("[InventoryHub] 🚫 reorderMessages container hidden.");
-          }, 3000);
-
-        } catch (err) {
-          console.error("[InventoryHub] ❌ Error in start/invoke sequence:", err.toString());
         }
-      }
+    }
 
-      startAndInvokeAll();
-    })();
+                function toggleList(el) {
+        const isActive = el.classList.contains("active");
+
+
+        document.querySelectorAll(".icon-box").forEach(function (box) {
+            box.classList.remove("active");
+        });
+
+
+        if (!isActive) {
+            el.classList.add("active");
+        }
+    }
+
+
+   
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const sublistToggles = document.querySelectorAll(".main-item");
+
+        sublistToggles.forEach(function (toggle) {
+            toggle.addEventListener("click", function (event) {
+                event.stopPropagation(); // يمنع تنفيذ أي كود في العناصر الأب
+                const parentLi = toggle.closest(".has-sublist");
+                parentLi.classList.toggle("open");
+            });
+        });
+    });
+    
+    function showReorderNotification(Name) {
+        const messageDiv = document.getElementById("reorderMessages");
+        messageDiv.innerText = `الصنف "${Name}" قد وصل إلى الحد الأدنى`;
+        messageDiv.style.display = "block";
+        messageDiv.style.opacity = "1";
+
+        setTimeout(() => {
+            messageDiv.style.opacity = "0";
+            setTimeout(() => {
+                messageDiv.style.display = "none";
+            }, 500); // fadeout delay
+        }, 5000);
+    }
+
+    function setupSignalR(inventoryType, methodName, messageEventName) {
+        const hub = new signalR.HubConnectionBuilder()
+            .withUrl("/InventoryReorderPoint")
+            .build();
+
+        hub.start()
+            .then(() => {
+                console.log(`${inventoryType} SignalR connection established.`);
+                hub.invoke(methodName)
+                    .catch(err => console.error(`Error invoking ${methodName}:`, err.toString()));
+            })
+            .catch(err => console.error("SignalR connection error:", err.toString()));
+
+        hub.on(messageEventName, function (itemName) {
+            console.log(`Received reorder message for ${inventoryType}:`, itemName);
+            showReorderNotification(itemName);
+        });
+    }
+
+    // فعلي الاتصال هنا
+    setupSignalR("ورق", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
+    setupSignalR("حبر", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
+    setupSignalR("مستلزمات", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
+    setupSignalR("قطع غيار", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
+
+
+
+
+    // function setupSignalR(inventoryType, methodName, messageEventName) {
+
+    //     var hub = new signalR.HubConnectionBuilder()
+    //         .withUrl("/InventoryReorderPoint")
+    //         .build();
+
+    //     hub.start()
+    //         .then(function () {
+    //             console.log(`${inventoryType} SignalR connection established.`);
+
+    //             Invoke the server-side method to check reorder points.
+    //             hub.invoke(methodName)
+    //                 .catch(function (err) {
+    //                     console.error(`Error invoking ${methodName}: `, err.toString());
+    //                 });
+    //         })
+    //         .catch(function (err) {
+    //             console.error(`SignalR connection error: `, err.toString());
+    //         });
+
+    //     Listen for reorder messages from the hub.
+    //     hub.on(messageEventName, function (message) {
+    //         console.log(`Received reorder message for ${inventoryType}: `, message);
+    //         var messageDiv = document.getElementById("reorderMessages");
+    //         Make sure the message div is visible
+    //         messageDiv.style.display = "block";
+    //         Append the new message rather than replacing previous ones
+    //         messageDiv.innerHTML += "<div>" + message + "</div>";
+    //     });
+    // }
+
+    // Setup SignalR for Paper, Ink, and Supply
+    // setupSignalR("Paper", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
+    // setupSignalR("Ink", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
+    // setupSignalR("Supply", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
+    // setupSignalR("spapre", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
 </script>

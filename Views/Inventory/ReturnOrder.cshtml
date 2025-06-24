@@ -179,60 +179,72 @@
                 </select>
             </div>
 
-            <div class="colCont">
-                <label class="form-label">كمية الإرجاع</label>
-                <input type="number" id="itemQuantity" class="form-control" min="1" />
-                <small id="originalQuantityInfo" class="text-muted" style="display:none;">
-                    الكمية الأصلية: <span id="originalQuantityValue">0</span>
-                </small>
+            
+                <div class="colCont">
+                    <label id="quantityLabel" class="form-label">كمية الإرجاع</label>
+                    <input type="number" id="itemQuantity" class="form-control" min="1" />
+                    <small id="originalQuantityInfo" class="text-muted" style="display:none;">
+                        الكمية الأصلية: <span id="originalQuantityValue">0</span>
+                    </small>
+                </div>
+
+                <div class="colCont">
+                    <button type="button" id="addItem" class="btn1">إضافة</button>
+                </div>
+                </div>
+            
+            <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
+
+
+                <div class ="tableContainer1">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>نوع الصنف</th>
+                                <th>الصنف</th>
+                                <th>الكمية الأصلية</th>
+                                <th>كمية الإرجاع</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody"></tbody>
+                    </table>
+                </div>
+                <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
+                    لم يتم تحديد أي أصناف للإرجاع بعد
+                </div>
+           
+
+
+            <div id="hiddenItemsContainer"></div>
+
+            <div class="colCont1">
+                <button type="submit" id="submitBtn" class="btn1">حفظ أمر الإرجاع</button>
             </div>
-
-            <div class="colCont">
-                <button type="button" id="addItem" class="btn1">إضافة</button>
-            </div>
-        </div>
-        <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
-
-        <div class="card-body">
-            <div class="tableContainer">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>نوع الصنف</th>
-                            <th>الصنف</th>
-                            <th>الكمية الأصلية</th>
-                            <th>كمية الإرجاع</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="itemsTableBody"></tbody>
-                </table>
-            </div>
-            <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
-                لم يتم تحديد أي أصناف للإرجاع بعد
-            </div>
-        </div>
-
-
-        <div id="hiddenItemsContainer"></div>
-
-        <div class="colCont1">
-            <button type="submit" id="submitBtn" class="btn1">حفظ أمر الإرجاع</button>
-        </div>
     </form>
 </div>
-
-
-
-
 @section Scripts {
     <script>
         $(document).ready(function () {
-            console.log("Document is ready1");
+            let items = [];
+            let editIndex = -1;
+            let orderItems = [];
+
+            function isInkPurchaseReturn() {
+                return $('#returnType').val() === 'purchase' &&
+                       $('#itemType').val() === 'الحبر';
+            }
+
+            function updateLabels() {
+                const isInkPurchase = isInkPurchaseReturn();
+                $('#quantityLabel').text(isInkPurchase ? 'عدد الوحدات المرتجعة' : 'كمية الإرجاع');
+                $('th:nth-child(3)').text(isInkPurchase ? 'عدد الوحدات الأصلية' : 'الكمية الأصلية');
+                $('th:nth-child(4)').text(isInkPurchase ? 'عدد الوحدات المرتجعة' : 'كمية الإرجاع');
+            }
 
             $('#returnType').change(function () {
                 const selectedType = $(this).val();
-                $('#jobOrderSection, #purchaseOrderSection, #manualAdditionSection').hide();
+                $('#jobOrderSection, #purchaseOrderSection').hide();
                 $('#jobOrderSelect, #purchaseOrderSelect').val('');
                 items = [];
                 renderItems();
@@ -244,45 +256,43 @@
                     $('#purchaseOrderSection').show();
                     $('#returnInOut').prop('checked', false);
                 }
-            });
 
-            let items = [];
-            let editIndex = -1;
-            let orderItems = [];
+                updateLabels();
+            });
 
             $('#jobOrderSelect').change(function () {
                 const jobOrderId = $(this).val();
                 if (!jobOrderId) {
-                    $('#manualAdditionSection').hide();
                     orderItems = [];
                     return;
                 }
+
                 $.get('/Inventory/GetJobOrderItems', { jobOrderId }, function (data) {
                     orderItems = data;
-                    $('#manualAdditionSection').show();
-                    populateItemTypes();
-                }).fail(xhr => alert('حدث خطأ اثناء تحميل بيانات الطلبية : ' + xhr.responseText));
+                    updateItemTypeDropdown();
+                    updateLabels();
+                }).fail(xhr => alert('حدث خطأ أثناء تحميل بيانات الطلبية: ' + xhr.responseText));
             });
 
             $('#purchaseOrderSelect').change(function () {
                 const purchaseId = $(this).val();
                 if (!purchaseId) {
-                    $('#manualAdditionSection').hide();
                     orderItems = [];
                     return;
                 }
+
                 $.get('/Inventory/GetPurchaseOrderItems', { purchaseId }, function (data) {
                     orderItems = data;
-                    $('#manualAdditionSection').show();
-                    populateItemTypes();
-                }).fail(xhr => alert('حدث خطأ اثناء تحميل بيانات امر الشراء: ' + xhr.responseText));
+                    updateItemTypeDropdown();
+                    updateLabels();
+                }).fail(xhr => alert('حدث خطأ أثناء تحميل بيانات أمر الشراء: ' + xhr.responseText));
             });
 
-            function populateItemTypes() {
+            function updateItemTypeDropdown() {
                 const $itemType = $('#itemType');
                 $itemType.empty().append('<option value="">-- اختر النوع --</option>');
-                const unique = [...new Set(orderItems.map(i => i.itemType))];
-                unique.forEach(type => {
+                const uniqueTypes = [...new Set(orderItems.map(item => item.itemType))];
+                uniqueTypes.forEach(type => {
                     $itemType.append(`<option value="${type}">${type}</option>`);
                 });
             }
@@ -290,52 +300,77 @@
             $('#itemType').change(function () {
                 const selectedType = $(this).val();
                 const $itemSelect = $('#itemId');
-                $itemSelect.empty().prop('disabled', !selectedType)
-                           .append('<option value="">-- اختر الصنف --</option>');
-                if (!selectedType) return;
+                $itemSelect.empty().append('<option value="">-- اختر الصنف --</option>');
+
+                if (!selectedType) {
+                    $itemSelect.prop('disabled', true);
+                    return;
+                }
+
+                $itemSelect.prop('disabled', false);
 
                 orderItems
-                    .filter(i => i.itemType === selectedType)
+                    .filter(item => item.itemType === selectedType)
                     .forEach(item => {
-                        const id = item.itemId || item.paperId || item.inkId || item.suppliesId || item.sparepartsId;
-                        const name = item.name;
-                        const qty  = item.quantity || 0;
-                        $itemSelect.append(
-                            `<option value="${id}" data-quantity="${qty}">${name} - الكمية: ${qty}</option>`
-                        );
+                        $itemSelect.append(`<option value="${item.itemId}" data-quantity="${item.quantity}">${item.name}</option>`);
                     });
+
+                updateLabels();
             });
 
             $('#itemId').change(function () {
-                const qty = parseInt($(this).find(':selected').data('quantity')) || 0;
+                const selectedOption = $(this).find('option:selected');
+                const qty = parseInt(selectedOption.data('quantity')) || 0;
+                const isInkPurchase = isInkPurchaseReturn();
+
                 $('#originalQuantityValue').text(qty);
-                $('#originalQuantityInfo').show();
-                $('#itemQuantity').attr('max', qty).val('');
+                $('#originalQuantityInfo').html(
+                    isInkPurchase
+                        ? 'عدد الوحدات الأصلية: <span id="originalQuantityValue">' + qty + '</span>'
+                        : 'الكمية الأصلية: <span id="originalQuantityValue">' + qty + '</span>'
+                ).show();
+
+                $('#itemQuantity').attr('max', qty).val('').attr('min', 1);
             });
 
             $('#addItem').click(function () {
                 const type = $('#itemType').val();
-                const id   = $('#itemId').val();
-                const name = $('#itemId option:selected').text().split(' (ID:')[0].trim();
-                const orig = parseInt($('#originalQuantityValue').text());
-                const qty  = parseInt($('#itemQuantity').val());
+                const id = $('#itemId').val();
+                const name = $('#itemId option:selected').text();
+                const origQty = parseInt($('#originalQuantityValue').text());
+                const returnQty = parseInt($('#itemQuantity').val());
+                const isInkPurchase = isInkPurchaseReturn();
 
-                if (!type || !id || !qty ) {
-                    return alert('الرجاء ملئ جميع البيانات بشكل صحيح');
+                if (!type || !id || isNaN(returnQty)) {
+                    return alert('الرجاء ملء جميع البيانات بشكل صحيح');
                 }
-                if(qty <= 0) {
-                      return alert('يجب ادخال قيمة اكبر من الصفر');
+                if (returnQty <= 0) {
+                    return alert('يجب إدخال قيمة أكبر من الصفر');
                 }
-                if (qty > orig) {
-                    return alert(`كمية المرتجع (${qty}) اكبر من الكمية الأصلية (${orig})`);
+                if (returnQty > origQty) {
+                    return alert(
+                        isInkPurchase
+                            ? `عدد الوحدات المرتجعة (${returnQty}) أكبر من عدد الوحدات الأصلية (${origQty})`
+                            : `كمية الإرجاع (${returnQty}) أكبر من الكمية الأصلية (${origQty})`
+                    );
                 }
 
-                const newItem = { itemType: type, itemId: id, itemName: name, originalQuantity: orig, quantity: qty };
+                const newItem = {
+                    itemType: type,
+                    itemId: id,
+                    itemName: name,
+                    originalQuantity: origQty,
+                    quantity: returnQty,
+                    isInkPurchase: isInkPurchase
+                };
 
                 if (editIndex === -1) {
-                    const idx = items.findIndex(i => i.itemType === type && i.itemId == id);
-                    if (idx !== -1) items[idx].quantity += qty;
-                    else items.push(newItem);
+                    const existingItem = items.find(i => i.itemType === type && i.itemId == id);
+                    if (existingItem) {
+                        existingItem.quantity += returnQty;
+                    } else {
+                        items.push(newItem);
+                    }
                 } else {
                     items[editIndex] = newItem;
                     editIndex = -1;
@@ -344,56 +379,57 @@
                 renderItems();
                 resetItemForm();
             });
-        function renderItems() {
-            const $tb = $('#itemsTableBody'), $hc = $('#hiddenItemsContainer');
-            const returnType = $('#returnType').val(); // <-- FIX: get return type dynamically
-            $tb.empty(); $hc.empty();
 
-            items.forEach((it, i) => {
-                $tb.append(`
-                    <tr data-index="${i}">
-                        <td>${it.itemType}</td>
-                        <td>${it.itemName}</td>
-                        <td>${it.originalQuantity}</td>
-                        <td>${it.quantity}</td>
-                        <td>
-                            <button type="button" class="btn editItem">تعديل</button>
-                            <button type="button" class="btn deleteItem">حذف</button>
-                        </td>
-                    </tr>
-                `);
+            function renderItems() {
+                const $tb = $('#itemsTableBody');
+                const $hc = $('#hiddenItemsContainer');
 
-                let inputs = '';
-                const isInk = it.itemType === 'Ink' || it.itemType === 'الحبر';
+                $tb.empty();
+                $hc.empty();
 
-                if (isInk) {
-                    inputs += `<input type="hidden" name="BridgeList[${i}].InkId" value="${it.itemId}" />`;
-                    if (returnType === 'purchase') {
-                        inputs += `<input type="hidden" name="BridgeList[${i}].NumberOfUnits" value="${it.quantity}" />`;
-                    } else {
-                        inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
+                items.forEach((item, index) => {
+                    $tb.append(`
+                        <tr data-index="${index}">
+                            <td>${item.itemType}</td>
+                            <td>${item.itemName}</td>
+                            <td>${item.originalQuantity}</td>
+                            <td>${item.quantity}</td>
+                            <td>
+                                <button type="button" class="btn">تعديل</button>
+                                <button type="button" class="btn">حذف</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    const fieldPrefix = `BridgeList[${index}]`;
+                    let inputs = '';
+
+                    if (item.itemType === 'الورق') {
+                        inputs += `<input type="hidden" name="${fieldPrefix}.PaperId" value="${item.itemId}" />`;
                     }
-                } else {
-                    if (it.itemType === 'Paper' || it.itemType === 'الورق') {
-                        inputs += `<input type="hidden" name="BridgeList[${i}].PaperId" value="${it.itemId}" />`;
-                    } else if (it.itemType === 'Supply' || it.itemType === 'المستلزمات') {
-                        inputs += `<input type="hidden" name="BridgeList[${i}].SuppliesId" value="${it.itemId}" />`;
-                    } else if (it.itemType === 'SparePart' || it.itemType === 'قطع غيار') {
-                        inputs += `<input type="hidden" name="BridgeList[${i}].SparePartsId" value="${it.itemId}" />`;
+                    else if (item.itemType === 'الحبر') {
+                        inputs += `<input type="hidden" name="${fieldPrefix}.InkId" value="${item.itemId}" />`;
                     }
-                    inputs += `<input type="hidden" name="BridgeList[${i}].Quantity" value="${it.quantity}" />`;
-                }
+                    else if (item.itemType === 'المستلزمات') {
+                        inputs += `<input type="hidden" name="${fieldPrefix}.SuppliesId" value="${item.itemId}" />`;
+                    }
+                    else if (item.itemType === 'قطع غيار') {
+                        inputs += `<input type="hidden" name="${fieldPrefix}.SparePartsId" value="${item.itemId}" />`;
+                    }
 
-                $hc.append(inputs);
-            });
+                    const qtyField = item.isInkPurchase ? 'NumberOfUnits' : 'Quantity';
+                    inputs += `<input type="hidden" name="${fieldPrefix}.${qtyField}" value="${item.quantity}" />`;
 
-            $('#noSelectedItemsMessage').toggle(items.length === 0);
-        }
+                    $hc.append(inputs);
+                });
 
+                $('#noSelectedItemsMessage').toggle(items.length === 0);
+                updateLabels();
+            }
 
             function resetItemForm() {
                 $('#itemType').val('');
-                $('#itemId').empty().prop('disabled', true);
+                $('#itemId').empty().prop('disabled', true).append('<option value="">-- اختر الصنف --</option>');
                 $('#itemQuantity').val('');
                 $('#originalQuantityInfo').hide();
                 $('#addItem').text('إضافة');
@@ -413,61 +449,38 @@
 
                     $('#itemType').val(item.itemType).trigger('change');
 
-                    const checkItemExists = setInterval(() => {
-                        const $itemId = $('#itemId');
-                        if ($itemId.find('option').length > 1) {
-                            clearInterval(checkItemExists);
-                            $itemId.val(item.itemId);
-                            $('#itemQuantity').val(item.quantity);
-                            $('#originalQuantityValue').text(item.originalQuantity);
-                            $('#originalQuantityInfo').show();
-                            $('#addItem').text('تحديث العنصر');
-
-                            $('html, body').animate({
-                                scrollTop: $('#manualAdditionSection').offset().top
-                            }, 500);
-                        }
+                    setTimeout(() => {
+                        $('#itemId').val(item.itemId);
+                        $('#itemQuantity').val(item.quantity);
+                        $('#originalQuantityValue').text(item.originalQuantity);
+                        $('#originalQuantityInfo').html(
+                            item.isInkPurchase
+                                ? 'عدد الوحدات الأصلية: <span id="originalQuantityValue">' + item.originalQuantity + '</span>'
+                                : 'الكمية الأصلية: <span id="originalQuantityValue">' + item.originalQuantity + '</span>'
+                        ).show();
+                        $('#addItem').text('تحديث العنصر');
                     }, 100);
                 });
 
             $('#returnOrderForm').submit(function (e) {
                 if (!items.length) {
-                    e.preventDefault(); alert('من فضلك اضف عنصر واحد علي الاقل');
+                    e.preventDefault();
+                    alert('من فضلك أضف عنصر واحد على الأقل');
                     return false;
                 }
                 const t = $('#returnType').val();
                 if (t === 'job' && !$('#jobOrderSelect').val()) {
-                    e.preventDefault(); alert('اختر طلبية'); return false;
+                    e.preventDefault();
+                    alert('اختر طلبية');
+                    return false;
                 }
                 if (t === 'purchase' && !$('#purchaseOrderSelect').val()) {
-                    e.preventDefault(); alert('اختر امر الشراء '); return false;
+                    e.preventDefault();
+                    alert('اختر أمر الشراء');
+                    return false;
                 }
                 return true;
             });
         });
-
-
-        const tempDataElement = document.getElementById('tempDataSuccess');
-        const jobRoleElement = document.getElementById('hdnJobRole');
-        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
-
-        const jobRoleRoutes = {
-            0: "/employee/AdminHome",
-            1: "/employee/inventoryManager",
-            2: "/employee/inventoryClerk",
-            3: "/employee/TechnicalManager",
-            4: "/employee/technicalClerk",
-            5: "/employee/CostManager",
-            6: "/employee/costClerk"
-        };
-
-        if (hasSuccessMessage) {
-            setTimeout(function () {
-                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-                window.location.href = redirectUrl;
-            }, 3000);
-        }
     </script>
 }
-

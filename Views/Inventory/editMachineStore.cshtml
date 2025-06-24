@@ -75,7 +75,7 @@
                 <div class="input-control">
                     <label asp-for="@Model.Name" class="textlabel">اسم الاله</label>
                     <input asp-for="@Model.Name" class="place" />
-                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    <span asp-validation-for="@Model.Name" class="error"></span>
                 </div>
 
 
@@ -135,14 +135,14 @@
 
         function showError(inputElement, message) {
             const errorSpan = document.createElement("span");
-            errorSpan.classList.add("text-danger");
+            errorSpan.classList.add("error");
             errorSpan.innerText = message;
             inputElement.classList.add("is-invalid");
             inputElement.parentNode.appendChild(errorSpan);
         }
 
         function clearErrors() {
-            const errorSpans = document.querySelectorAll(".text-danger");
+            const errorSpans = document.querySelectorAll(".error");
             errorSpans.forEach(span => span.remove());
 
             const invalidInputs = document.querySelectorAll(".is-invalid");

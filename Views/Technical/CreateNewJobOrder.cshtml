@@ -131,7 +131,7 @@
                             }
                         }
                     </select>
-                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    <span asp-validation-for="CustomerId" class="error" ></span>
                 </div>
 
             </div>
@@ -156,7 +156,7 @@
                            class="form-control"
                            min="@minEndDate"
                            required />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                    <span asp-validation-for="EndDate" class="error"></span>
                 </div>
             </div>
 
@@ -199,14 +199,14 @@
                     <option value="قيد التشغيل">قيد التشغيل</option>
                     <option value="تم الاستلام">تم الاستلام</option>
                 </select>
-                <span asp-validation-for="OrderProgress" class="text-danger"></span>
+                <span asp-validation-for="OrderProgress" class="error" ></span>
             </div>
 
             <!-- Notes - Not required -->
             <div class="row">
                 <label asp-for="JobOrdernotes" class="form-label">ملاحظات</label>
                 <textarea asp-for="JobOrdernotes" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="JobOrdernotes" class="text-danger"></span>
+                <span asp-validation-for="JobOrdernotes" class="error"></span>
             </div>
 
             <div class="d-grid">
@@ -217,162 +217,121 @@
     </div>
 
 </body>
-
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form.needs-validation');
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector('form.needs-validation');
 
-    if (form) {
-        // Function to show error messages
-        function showError(field, message) {
-            field.classList.add('is-invalid');
+        if (form) {
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
 
-            let errorElement = field.nextElementSibling;
-            if (!errorElement || !errorElement.classList.contains('invalid-feedback')) {
-                errorElement = document.createElement('div');
-                errorElement.className = 'invalid-feedback';
-                field.parentNode.insertBefore(errorElement, field.nextSibling);
-            }
+                // Get form elements
+                const customerSelect = document.querySelector('select[name="CustomerId"]');
+                const endDateInput = document.querySelector('input[name="EndDate"]');
+                const progressSelect = document.querySelector('select[name="OrderProgress"]');
 
-            errorElement.textContent = message;
-        }
+                // Get error elements
+                const customerError = document.querySelectorAll('.error')[0];
+                const endDateError = document.querySelectorAll('.error')[1];
+                const progressError = document.querySelectorAll('.error')[2];
 
-        // Function to remove error messages
-        function removeError(field) {
-            field.classList.remove('is-invalid');
-            const errorElement = field.nextElementSibling;
-            if (errorElement && errorElement.classList.contains('invalid-feedback')) {
-                errorElement.textContent = '';
-            }
-        }
+                // Clear previous errors
+                customerError.innerText = "";
+                endDateError.innerText = "";
+                progressError.innerText = "";
 
-        // Function to validate a field
-        function validateField(field) {
-            // Remove any previous errors
-            removeError(field);
-
-            // Skip validation if field is not required and empty
-            if (!field.required && !field.value.trim()) {
-                return true;
-            }
-
-            // Validate required fields
-            if (field.required && !field.value.trim()) {
-                showError(field, 'هذا الحقل مطلوب');
-                return false;
-            }
-
-            // Validate number fields
-            if (field.type === 'number' && field.value.trim()) {
-                const value = parseFloat(field.value);
-                if (isNaN(value) || value < 0) {
-                    showError(field, 'يجب إدخال قيمة رقمية صحيحة موجبة');
-                    return false;
-                }
-            }
-
-            // Validate date fields
-            if (field.name === 'EndDate' && field.value) {
-                const startDate = new Date('@startDate.ToString("yyyy-MM-dd")');
-                const endDate = new Date(field.value);
-
-                if (endDate <= startDate) {
-                    showError(field, 'تاريخ الانتهاء يجب أن يكون بعد تاريخ البدأ');
-                    return false;
-                }
-            }
-
-            // Validate select fields
-            if (field.tagName === 'SELECT' && field.required && !field.value) {
-                showError(field, 'هذا الحقل مطلوب');
-                return false;
-            }
-
-            return true;
-        }
-
-        // Add validation on field change (real-time validation)
-        form.querySelectorAll('input, select, textarea').forEach(field => {
-            // Validate on blur (when field loses focus)
-            field.addEventListener('blur', function() {
-                validateField(this);
-            });
-
-            // Real-time validation for input fields
-            if (field.type === 'text' || field.type === 'number' || field.type === 'date') {
-                field.addEventListener('input', function() {
-                    // Only validate if field has value
-                    if (this.value.trim()) {
-                        validateField(this);
-                    } else {
-                        removeError(this);
-                    }
-                });
-            }
-
-            // Real-time validation for select fields
-            if (field.tagName === 'SELECT') {
-                field.addEventListener('change', function() {
-                    validateField(this);
-                });
-            }
-        });
-
-        // Form submission validation
-        form.addEventListener('submit', function(e) {
-            let isValid = true;
-            const fieldsToValidate = form.querySelectorAll('input, select, textarea');
-
-            fieldsToValidate.forEach(field => {
-                if (!validateField(field)) {
+                // Customer validation
+                if (customerSelect.value === "") {
+                    customerError.innerText = "يجب اختيار عميل";
                     isValid = false;
                 }
+
+                // End Date validation
+                if (endDateInput.value === "") {
+                    endDateError.innerText = "رجاء إدخال تاريخ الانتهاء";
+                    isValid = false;
+                } else {
+                    const startDateValue = new Date(document.querySelector('input[name="StartDate"]').value);
+                    const endDateValue = new Date(endDateInput.value);
+
+                    if (endDateValue <= startDateValue) {
+                        endDateError.innerText = "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدأ";
+                        isValid = false;
+                    }
+                }
+
+                // Order Progress validation
+                if (progressSelect.value === "") {
+                    progressError.innerText = "يجب اختيار حالة الأمر";
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+
+                    // Scroll to first error
+                    const firstErrorElement = document.querySelector('.is-invalid') ||
+                                              document.querySelector('.error:not(:empty)').previousElementSibling;
+                    if (firstErrorElement) {
+                        firstErrorElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }
             });
 
-            if (!isValid) {
-                e.preventDefault();
-                e.stopPropagation();
+            // Add real-time validation
+            const customerSelect = document.querySelector('select[name="CustomerId"]');
+            const endDateInput = document.querySelector('input[name="EndDate"]');
+            const progressSelect = document.querySelector('select[name="OrderProgress"]');
 
-                // Scroll to first invalid field
-                const firstInvalid = form.querySelector('.is-invalid');
-                if (firstInvalid) {
-                    firstInvalid.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
+            customerSelect.addEventListener('change', function() {
+                if (this.value) {
+                    document.querySelectorAll('.error')[0].innerText = "";
+                    this.classList.remove('is-invalid');
                 }
-            }
+            });
 
-            form.classList.add('was-validated');
-        });
-    }
+            endDateInput.addEventListener('input', function() {
+                if (this.value) {
+                    document.querySelectorAll('.error')[1].innerText = "";
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            progressSelect.addEventListener('change', function() {
+                if (this.value) {
+                    document.querySelectorAll('.error')[2].innerText = "";
+                    this.classList.remove('is-invalid');
+                }
+            });
+        }
+
+        // Handle success message redirect
         const tempDataElement = document.getElementById('tempDataSuccess');
-    const jobRoleElement = document.getElementById('hdnJobRole');
+        const jobRoleElement = document.getElementById('hdnJobRole');
 
-    // Get values with proper fallbacks
-    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-    console.log("Success message exists:", hasSuccessMessage);
-    console.log("Job role:", jobRole);
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
 
-    // Mapping of job roles to their respective URLs
-    const jobRoleRoutes = {
-        0: "/employee/AdminHome",
-        1: "/employee/inventoryManager",
-        2: "/employee/inventoryClerk",
-        3: "/employee/TechnicalManager",
-        4: "/employee/technicalClerk",
-        5: "/employee/CostManager",
-        6: "/employee/costClerk"
-    };
-
-    if (hasSuccessMessage) {
-        setTimeout(function () {
-            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-            window.location.href = redirectUrl;
-        }, 3000);
-    }
+        if (hasSuccessMessage) {
+            setTimeout(function() {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
     });
 </script>

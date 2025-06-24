@@ -261,9 +261,12 @@ h1 {
 }
 
 .error {
-    background-color: #fef2f2;
-    border-left: 4px solid #ef4444;
-    color: #ef4444;
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    direction: rtl;
 }
 
 .progress-bar {

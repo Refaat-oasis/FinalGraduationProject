@@ -44,18 +44,18 @@
         }
 
         // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (VendorEmail.value.trim() === "") {
-            VendorEmailError.innerText = "يجب عليك إدخال البريد الإلكتروني الخاص بالمورد ";
-            isValid = false;
-        } else if (!emailRegex.test(VendorEmail.value)) {
-            VendorEmailError.innerText = "رجاء إدخال إيميل صحيح (يجب أن يحتوي على @ و .)";
-            isValid = false;
-        }
+        //const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        //if (VendorEmail.value.trim() === "") {
+        //    VendorEmailError.innerText = "يجب عليك إدخال البريد الإلكتروني الخاص بالمورد ";
+        //    isValid = false;
+        //} else if (!emailRegex.test(VendorEmail.value)) {
+        //    VendorEmailError.innerText = "رجاء إدخال إيميل صحيح (يجب أن يحتوي على @ و .)";
+        //    isValid = false;
+        //}
 
-        if (!isValid) {
-            event.preventDefault();
-        }
+        //if (!isValid) {
+        //    event.preventDefault();
+        //}
     });
 
     const tempDataElement = document.getElementById('tempDataSuccess');

@@ -9,6 +9,7 @@
     background-position: center;
     display: block;
     overflow: auto;
+    text-align:center;
 }
 
 
@@ -230,20 +231,21 @@ h1 {
         background-color: #ef4444;
     }
 
-@keyframes slideIn {
+@@keyframes slideIn {
     to {
         transform: translateX(0);
     }
 }
 
-@keyframes fadeOut {
+@@keyframes fadeOut {
     to {
         opacity: 0;
         transform: translateX(0) scale(0.9);
     }
 }
 
-@keyframes progress {
+
+@@keyframes progress {
     from {
         width: 100%;
     }

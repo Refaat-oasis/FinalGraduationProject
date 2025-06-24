@@ -75,18 +75,18 @@
                 <div class="input-control">
                     <label asp-for="@Model.Name" class="textlabel">اسم قطع الغيار</label>
                     <input asp-for="@Model.Name" class="place" />
-                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    <span asp-validation-for="@Model.Name" class="error"></span>
                 </div>
 
                 <div class="input-control">
                     <label asp-for="@Model.ReorderPoint" class="textlabel">نقطه اعاده الطلب</label>
                     <input asp-for="@Model.ReorderPoint" class="place" />
-                    <span asp-validation-for="@Model.ReorderPoint" class="text-danger"></span>
+                    <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
                 </div>
 
 
                 <div class="input-control">
-                    <label asp-for="@Model.Activated" class="textlabel">التفيل </label>
+                    <label asp-for="@Model.Activated" class="textlabel">التفعيل </label>
                     <select asp-for="@Model.Activated" id="options" class="place">
                         @{
                             if (Model.Activated ?? true)
@@ -144,7 +144,7 @@
         });
 
         function showError(inputElement, message) {
-            const errorSpan = inputElement.parentElement.querySelector(".text-danger");
+            const errorSpan = inputElement.parentElement.querySelector(".error");
             if (errorSpan) {
                 errorSpan.textContent = message;
             }
@@ -152,7 +152,7 @@
         }
 
         function clearErrors() {
-            const errorSpans = document.querySelectorAll(".text-danger");
+            const errorSpans = document.querySelectorAll(".error");
             errorSpans.forEach(span => span.textContent = "");
             const invalidInputs = document.querySelectorAll(".is-invalid");
             invalidInputs.forEach(input => input.classList.remove("is-invalid"));

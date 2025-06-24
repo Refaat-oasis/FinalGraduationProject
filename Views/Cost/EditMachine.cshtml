@@ -1,10 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
-@{
-
-    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
-    Console.WriteLine("JobRole: " + jobRole);
-}
 
 
 @model Machine
@@ -31,119 +26,145 @@
 
 </head>
 <body>
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
 
-            } // inventory manager
-            else if (jobRole == 1)
-            {
-                <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-            else if (jobRole == 2)
-            {
-                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
-
-        }
-    </div>
-    <div class="form-container">
-
-        <h1> تعديل بيانات الآلة  : @Model.MachineProcessName  </h1>
-
-        @if (TempData["Success"] != null)
-        {
-            <div class="notification success">
-                <div class="notification-content">
-                    <i class='bx bx-check-circle'></i> @TempData["Success"]
-
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="true" />
-                <div class="progress-bar success"></div>
-            </div>
-        }
-
-        @if (TempData["Error"] != null)
-        {
-            <div class="notification error">
-                <div class="notification-content">
-                    <i class='bx bx-error-circle'></i>
-                    <span>@TempData["Error"]</span>
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="false" />
-
-                <div class="progress-bar error"></div>
-
-            </div>
-        }
-        <form asp-action="EditMachine" method="post">
-            <input type="hidden" asp-for="MachineId" />
-
-            <div class="input-control">
-                <label asp-for="MachineProcessName" class="textlabel">اسم عملية الآلة</label>
-                <input asp-for="MachineProcessName" class="place" />
-                <span asp-validation-for="MachineProcessName" class="text-danger"></span>
-            </div>
-
-            <div class="input-control">
-                <label asp-for="Price" class="textlabel">سعر التشغيل</label>
-                <div class="input-group">
-                    <input asp-for="Price" class="place" type="number" step="0.01" />
-                </div>
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-
-            <div class="input-control">
-                <label asp-for="@Model.Activated" class="textlabel"> </label>
-                <select asp-for="@Model.Activated" id="options" class="place">
-                    @{
-                        if (Model.Activated)
-                        {
-                            <option value="true" selected>مفعل</option>
-                            <option value="false">غير مفعل</option>
-                        }
-                        else
-                        {
-                            <option value="false" selected>غير مفعل</option>
-                            <option value="true">مفعل</option>
-                        }
-                    }
-                </select>
-            </div>
-
-            <div class="button-container">
-                <button type="submit" class="btn">حفظ التعديل </button>
-
-            </div>
-        </form>
-
-    </div>
-</body>
-
-@section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+        Console.WriteLine("JobRole: " + jobRole);
+        ViewData["Title"] = "Thoth";
+        Layout = null;
     }
 
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"]</title>
+
+        <!-- Bootstrap CSS RTL -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="/image/eye.jpg" />
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link href="~/css/Cost/EditMachine.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="arrow">
+            @{
+                // admin
+                if (jobRole == 0)
+                {
+                    <a href="@Url.Action("adminhome", "employee")" class="back">
+                        <i class="bx bx-left-arrow-circle" style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
+                // inventory manager
+                else if (jobRole == 1)
+                {
+                    <a href="@Url.Action("inventoryManager", "employee")" class="back">
+                        <i class="bx bx-left-arrow-circle" style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
+                // inventory clerk
+                else if (jobRole == 2)
+                {
+                    <a href="@Url.Action("inventoryClerk", "employee")" class="back">
+                        <i class="bx bx-left-arrow-circle" style="font-size: 40px; color: white;"></i>
+                    </a>
+                }
+            }
+        </div>
+
+        <div class="form-container">
+            <h1> تعديل بيانات الآلة  : @Model.MachineProcessName  </h1>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="notification success">
+                    <div class="notification-content">
+                        <i class="bx bx-check-circle"></i> @TempData["Success"]
+                    </div>
+                    <input type="hidden" id="tempDataSuccess" value="true" />
+                    <div class="progress-bar success"></div>
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="notification error">
+                    <div class="notification-content">
+                        <i class="bx bx-error-circle"></i>
+                        <span>@TempData["Error"]</span>
+                    </div>
+                    <input type="hidden" id="tempDataSuccess" value="false" />
+                    <div class="progress-bar error"></div>
+                </div>
+            }
+
+            @using (Html.BeginForm("EditMachine", null /* current controller */, FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.MachineId)
+
+                <div class="input-control">
+                    @Html.LabelFor(m => m.MachineProcessName, "اسم الماكينة", htmlAttributes: new { @class = "textlabel" })
+                    @Html.TextBoxFor(m => m.MachineProcessName, new { @class = "place" })
+                    @Html.ValidationMessageFor(m => m.MachineProcessName, "", new { @class = "error" })
+                </div>
+
+                <div class="input-control">
+                    @Html.LabelFor(m => m.Price, "سعر الساعة", htmlAttributes: new { @class = "textlabel" })
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Price, new { @class = "place", type = "text", step = "0.01" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "error" })
+                </div>
+
+                <div class="input-control">
+                    @* No visible label text here *@
+                    @Html.LabelFor(m => m.Activated, "", htmlAttributes: new { @class = "textlabel" })
+                    @Html.DropDownListFor(
+                             m => m.Activated,
+                             new List<SelectListItem>
+                {
+                new SelectListItem { Text = "مفعل",    Value = "true",  Selected = Model.Activated },
+                new SelectListItem { Text = "غير مفعل", Value = "false", Selected = !Model.Activated }
+                },
+                             new { @id = "options", @class = "place" }
+                             )
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="btn">حفظ التعديل</button>
+                </div>
+            }
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJ+YRF7hZo0v0JD6T36P2G2aoFQ9MmTNf2DzI="
+                crossorigin="anonymous"></script>
+        <!-- Your existing <script>…</script> goes here -->
+    </body>
+
+
     <script>
-        $(document).ready(function() {
+          $(document).ready(function() {
+            // Set back button URL based on job role
+            const jobRole = $('#hdnJobRole').val();
+            let backUrl = '/';
 
-            setTimeout(function() {
-                $('.alert').fadeOut('slow');
-            }, 5000);
+            if (jobRole == 0) {
+                backUrl = '/employee/adminhome';
+            } else if (jobRole == 1) {
+                backUrl = '/employee/inventoryManager';
+            } else if (jobRole == 2) {
+                backUrl = '/employee/inventoryClerk';
+            }
 
+            $('#backButton').attr('href', backUrl);
 
-            $('#Price').on('blur', function() {
+            // Format price on blur
+            $('#priceInput').on('blur', function() {
                 let value = $(this).val().trim();
                 if (value !== '') {
                     let numValue = parseFloat(value);
@@ -154,98 +175,108 @@
                 validatePrice();
             });
 
-
+            // Validation functions
             function validateMachineName() {
-                const machineName = $('#MachineProcessName').val().trim();
+                const machineName = $('#machineName').val().trim();
                 let isValid = true;
 
                 if (machineName === '') {
-                    $('#MachineProcessName').next('.text-danger').text('اسم عملية الآلة مطلوب');
-                    $('#MachineProcessName').addClass('is-invalid');
+                    $('#machineNameError').text('اسم عملية الآلة مطلوب');
+                    $('#machineName').addClass('is-invalid');
                     isValid = false;
                 } else if (machineName.length < 3) {
-                    $('#MachineProcessName').next('.text-danger').text('يجب أن يكون الاسم على الأقل 3 أحرف');
-                    $('#MachineProcessName').addClass('is-invalid');
+                    $('#machineNameError').text('يجب أن يكون الاسم على الأقل 3 أحرف');
+                    $('#machineName').addClass('is-invalid');
                     isValid = false;
                 } else {
-                    $('#MachineProcessName').next('.text-danger').text('');
-                    $('#MachineProcessName').removeClass('is-invalid');
+                    $('#machineNameError').text('');
+                    $('#machineName').removeClass('is-invalid');
                 }
 
                 return isValid;
             }
 
-
             function validatePrice() {
-                const price = $('#Price').val().trim();
+                const price = $('#priceInput').val().trim();
                 let isValid = true;
 
                 if (price === '') {
-                    $('#Price').next('.text-danger').text('سعر التشغيل مطلوب');
-                    $('#Price').addClass('is-invalid');
+                    $('#priceError').text('سعر التشغيل مطلوب');
+                    $('#priceInput').addClass('is-invalid');
                     isValid = false;
                 } else if (isNaN(parseFloat(price))) {
-                    $('#Price').next('.text-danger').text('يجب إدخال قيمة رقمية');
-                    $('#Price').addClass('is-invalid');
+                    $('#priceError').text('يجب إدخال قيمة رقمية');
+                    $('#priceInput').addClass('is-invalid');
                     isValid = false;
                 } else if (parseFloat(price) <= 0) {
-                    $('#Price').next('.text-danger').text('يجب أن يكون السعر أكبر من الصفر');
-                    $('#Price').addClass('is-invalid');
+                    $('#priceError').text('يجب أن يكون السعر أكبر من الصفر');
+                    $('#priceInput').addClass('is-invalid');
                     isValid = false;
                 } else {
-                    $('#Price').next('.text-danger').text('');
-                    $('#Price').removeClass('is-invalid');
+                    $('#priceError').text('');
+                    $('#priceInput').removeClass('is-invalid');
                 }
 
                 return isValid;
             }
 
+            // Bind validation to input events
+            $('#machineName').on('input', validateMachineName);
+            $('#priceInput').on('input', validatePrice);
 
-            $('#MachineProcessName').on('input', validateMachineName);
-            $('#Price').on('input', validatePrice);
-
-
-            $('form').submit(function(e) {
+            // Form submission handler
+            $('#editMachineForm').submit(function(e) {
                 let isMachineNameValid = validateMachineName();
                 let isPriceValid = validatePrice();
 
                 if (!isMachineNameValid || !isPriceValid) {
                     e.preventDefault();
-
-
                     $('html, body').animate({
                         scrollTop: $('.is-invalid').first().offset().top - 100
                     }, 500);
                 }
             });
 
-        const tempDataElement = document.getElementById('tempDataSuccess');
-        const jobRoleElement = document.getElementById('hdnJobRole');
+            // Auto-hide notifications after 5 seconds
+            setTimeout(function() {
+                $('.notification').fadeOut('slow');
+            }, 5000);
 
-        // Get values with proper fallbacks
-        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
-
-        console.log("Success message exists:", hasSuccessMessage);
-        console.log("Job role:", jobRole);
-
-        // Mapping of job roles to their respective URLs
-        const jobRoleRoutes = {
-            0: "/employee/AdminHome",
-            1: "/employee/inventoryManager",
-            2: "/employee/inventoryClerk",
-            3: "/employee/TechnicalManager",
-            4: "/employee/technicalClerk",
-            5: "/employee/CostManager",
-            6: "/employee/costClerk"
-        };
-
-        if (hasSuccessMessage) {
-            setTimeout(function () {
-                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-                window.location.href = redirectUrl;
-            }, 3000);
-        }
+            // Redirect after success if needed
+            const successNotification = $('.notification.success');
+            if (successNotification.length > 0) {
+                setTimeout(function() {
+                    window.location.href = backUrl;
+                }, 3000);
+            }
         });
+
+            const tempDataElement = document.getElementById('tempDataSuccess');
+            const jobRoleElement = document.getElementById('hdnJobRole');
+
+            // Get values with proper fallbacks
+            const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+            const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+
+            console.log("Success message exists:", hasSuccessMessage);
+            console.log("Job role:", jobRole);
+
+            // Mapping of job roles to their respective URLs
+            const jobRoleRoutes = {
+                0: "/employee/AdminHome",
+                1: "/employee/inventoryManager",
+                2: "/employee/inventoryClerk",
+                3: "/employee/TechnicalManager",
+                4: "/employee/technicalClerk",
+                5: "/employee/CostManager",
+                6: "/employee/costClerk"
+            };
+
+            if (hasSuccessMessage) {
+                setTimeout(function () {
+                    const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                    window.location.href = redirectUrl;
+                }, 3000);
+            }
+            });
     </script>
-}

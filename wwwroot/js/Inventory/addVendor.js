@@ -46,19 +46,20 @@
             isValid = false;
         }
 
-        // Email validation
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (VendorEmail.value.trim() === "") {
-            VendorEmailError.innerText = "رجاء إدخال البريد الإلكتروني";
-            isValid = false;
-        } else if (!emailRegex.test(VendorEmail.value)) {
-            VendorEmailError.innerText = "البريد الإلكتروني غير صحيح (يجب أن يحتوي على @ ونطاق صحيح)";
-            isValid = false;
-        }
+        
+        //const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        //if (VendorEmail.value.trim() === "") {
+        //    VendorEmailError.innerText = "رجاء إدخال البريد الإلكتروني";
+        //    isValid = false;
+        //} else if (!emailRegex.test(VendorEmail.value)) {
+        //    VendorEmailError.innerText = "البريد الإلكتروني غير صحيح (يجب أن يحتوي على @ ونطاق صحيح)";
+        //    isValid = false;
+        //}
 
-        if (!isValid) {
-            event.preventDefault();
-        }
+        //if (!isValid) {
+        //    event.preventDefault();
+        //}
+
     });
 
     const tempDataElement = document.getElementById('tempDataSuccess');

@@ -98,7 +98,7 @@
             <!-- قسم اختيار الطلبية -->
             <div class="mb-4">
                 <label asp-for="JobOrderId" class="textlabel fw-bold">اختر الطلبيّة</label>
-                <select asp-for="JobOrderId" class="form-select" required>
+                <select asp-for="JobOrderId" class="place" required>
                     <option value="">اختر الطلبيّة</option>
                     @foreach (var job in ViewBag.JobOrderList)
                     {
@@ -123,13 +123,13 @@
                 <div class="row g-3">
     <div class="col-md-6">
         <label class="textlabel">الصنف</label>
-        <select id="itemId" class="form-select" disabled>
+        <select id="itemId" class="place" disabled>
             <option value="">اختر الصنف</option>
         </select>
     </div>
     <div class="col-md-6">
         <label class="textlabel">نوع الصنف</label>
-        <select id="itemType" class="form-select">
+        <select id="itemType" class="place">
             <option value="">اختر النوع</option>
             <option value="Paper">ورق</option>
             <option value="Ink">حبر</option>
@@ -182,11 +182,11 @@
                     <table class="table table-bordered">
                         <thead style="background-color: transparent;">
                             <tr>
-                                <th>نوع الصنف</th>
-                                <th>اسم الصنف</th>
-                                <th>الكمية الحالية</th>
-                                <th>الكمية المطلوبة</th>
                                 <th>الإجراءات</th>
+                                <th>الكمية المطلوبة</th>
+                                <th>الكمية الحالية</th>
+                                <th>اسم الصنف</th>
+                                <th>نوع الصنف</th>
                             </tr>
                         </thead>
                         <tbody id="itemsTableBody">

@@ -2293,9 +2293,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].Price = sparePart.Price;
                         quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * sparePart.Price;
 
-                        // Update paper properties
                         sparePart.Quantity = (int)newQuantity;
-                        //paper.Price = averagePrice;
                         sparePart.TotalBalance = totalValue;
                         _context.SpareParts.Update(sparePart);
                         _context.QuantityBridges.Add(quantityBridgeList[i]);

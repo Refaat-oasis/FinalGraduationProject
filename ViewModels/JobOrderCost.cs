@@ -9,6 +9,8 @@ namespace ThothSystemVersion1.ViewModels
 
         [Display(Name = "الرقم التعريفي للتشغيلة")]
         public int JobOrderId { get; set; }
+        [Display(Name = "مصدر امر الطلبية")]
+        public string? JobOrderSource { get; set; }
         [Display(Name = "المبلغ المتبقي")]
         public decimal? RemainingAmount { get; set; }
         [Display(Name = "المبلغ المدفوع مقدما")]

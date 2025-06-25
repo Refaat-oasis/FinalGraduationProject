@@ -56,7 +56,8 @@ namespace ThothSystemVersion1.Controllers
                 machLabDto.EmployeeId = jobOrder.EmployeeId;
                 machLabDto.EmployeeName = jobOrder.EmployeeName;
                 machLabDto.OrderProgress = jobOrder.OrderProgress;
-                machLabDto.paperBalance = null;
+                machLabDto.JobOrderSource = jobOrder.JobOrderSource;
+                //machLabDto.paperBalance = null;
                 machLabDto.StartDate = jobOrder.StartDate;
                 machLabDto.EndDate = jobOrder.EndDate;
                 machLabDto.JobOrdernotes = jobOrder.JobOrdernotes;
@@ -66,6 +67,7 @@ namespace ThothSystemVersion1.Controllers
                 machLabDto.paperBalance = jobOrder.paperBalance;
                 machLabDto.inkBalance = jobOrder.inkBalance;
                 machLabDto.supplyBalance = jobOrder.supplyBalance;
+                machLabDto.modifiedQuantityBridgeList = jobOrder.modifiedQuantityBridgeList;
                 //machLabDto
 
 

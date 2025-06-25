@@ -135,11 +135,11 @@
             <dt>عملاء</dt>
 
         </div>
-        @* <div class="row-style"> *@
-        @*     <dd>@Model.</dd> *@
-        @*     <dt>المصدر</dt> *@
 
-        @* </div> *@
+         <div class="row-style"> 
+             <dd>@Model.JobOrderSource</dd> 
+             <dt>المصدر</dt> 
+         </div> 
 
         <!-- Notes (full width) -->
 
@@ -191,6 +191,11 @@
                 {
                     <tr>
                         @* اختر اسم العنصر المناسب، مع استخدام null-coalescing operator لتبسيط الكود *@
+                        <td>@item.TotalBalance</td>
+                             <td>@item.Price</td>
+                     
+                        <td>@item.Quantity</td>
+                   
                         <td>
                             @{
                                 var name = item.PaperName
@@ -200,9 +205,6 @@
                             }
                             @name
                         </td>
-                        <td>@item.Quantity</td>
-                        <td>@item.Price</td>
-                        <td>@item.TotalBalance</td>
                     </tr>
                 }
             }

@@ -8,6 +8,8 @@ namespace ThothSystemVersion1.DataTransfereObject
     {
         [Display(Name = "رقم امر التصنيع")]
         public int JobOrderId { get; set; }
+        [Display(Name = "مصدر امر الطلبية")]
+        public string? JobOrderSource { get; set; }
 
         [Display(Name = "المبلغ المتبقي")]
         public decimal? RemainingAmount { get; set; }

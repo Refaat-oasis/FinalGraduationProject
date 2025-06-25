@@ -33,7 +33,7 @@ public partial class Ink
     public int AverageQuantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
-    //[Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
+    [Range(0, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من او يساوي الصفر")]
     public decimal? ReorderPoint { get; set; }
 
 

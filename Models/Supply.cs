@@ -23,7 +23,7 @@ public partial class Supply
     public int Quantity { get; set; }
 
     [Display(Name = "نقطة اعادة الطلب")]
-    [Range(0.00001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
+    [Range(0, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من او يساوي الصفر")]
     //[Required(ErrorMessage = "يجب ادخال نقطة اعادة الطلب")]
     public decimal? ReorderPoint { get; set; }
 

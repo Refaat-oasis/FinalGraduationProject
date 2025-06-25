@@ -170,8 +170,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridgeList[i].OldQuantity = ink.Quantity;
                         quantityBridgeList[i].OldTotalBalance = ink.TotalBalance;
                         quantityBridgeList[i].Price = ink.Price;
-                        //quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * ink.Price;
-
+                        quantityBridgeList[i].TotalBalance = totalValue;
+                        ink.TotalBalance = totalValue;
                         // Update paper properties
                         ink.Quantity = (int)newQuantity;
                         //ink.Price = averagePrice;

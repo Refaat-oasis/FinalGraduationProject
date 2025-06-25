@@ -70,7 +70,7 @@
 
 
             <form asp-controller="Inventory" asp-action="editSpareParts" method="post" class="needs-validation" novalidate>
-                <input type="hidden" asp-for="SparePartsId" />
+                <input type="hidden" name="SparePartsID" asp-for="SparePartsId" />
 
                 <div class="input-control">
                     <label asp-for="@Model.Name" class="textlabel">اسم قطع الغيار</label>

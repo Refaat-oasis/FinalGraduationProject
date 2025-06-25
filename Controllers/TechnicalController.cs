@@ -377,7 +377,7 @@ namespace ThothSystemVersion1.Controllers
 
                 if (!isCustomerAdded)
                 {
-                    ModelState.AddModelError("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
+                    TempData["Error"]=("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
 
                     return View("~/Views/Technical/AddCustomer.cshtml", customer);
                 }
@@ -467,9 +467,7 @@ namespace ThothSystemVersion1.Controllers
                 if (!isEditSuccess)
                 {
 
-                    //ModelState.AddModelError("CustomerEmail", "هذا البريد الإلكتروني مستخدم من قبل عميل آخر");
-                    //ModelState.AddModelError("CustomerPhone", "رقم الهاتف مستخدم من قبل عميل آخر");
-                    ModelState.AddModelError("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
+                    TempData["Error"] = ("", "البريد الالكتروني او رقم هاتف تم استخدامه من قبل");
                     return View("~/Views/Technical/EditCustomer.cshtml", updatedCustomer);
                 }
 

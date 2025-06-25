@@ -341,17 +341,40 @@
             border-radius:6px;
 
         }
-
+        /* container positioning + hidden by default */
+        #reorderMessages {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            display: none;
+            z-index: 9999;
+        }
+            /* each message style */
+            #reorderMessages .msg {
+                background: rgba(255,255,255,0.9);
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin-bottom: 8px;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
 
     </style>
 
 
 </head>
 <body>
-    <div id="reorderMessages" class="reorderMsg">
-        @* <button class="close-btn" onclick="closeReorderMessages()">×</button> *@
+    @*
+        <div id="reorderMessages" class="reorderMsg">
+        @* <button class="close-btn" onclick="closeReorderMessages()">×</button>
         <!-- The reorder messages will be dynamically added here -->
-    </div>
+    </div> 
+    *@
+
+    <div id="reorderMessages"></div>
+
+
     <div class="hello">
         <h1>تحوت يتمني لك يوم سعيد</h1>
         <h1>
@@ -443,7 +466,7 @@
                     <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
                     <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
                     <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
-                    <li>@Html.ActionLink(" قطع الغيار", "ViewAllSparePart", "Inventory")</li>
+                    <li>@Html.ActionLink(" قطع الغيار", "ViewAllSpareParts", "Inventory")</li>
                     <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
                     </ul>
                     </li>
@@ -490,22 +513,7 @@
                     <li>@Html.ActionLink("إضافة موظف جديد", "AddEmployee", "Admin")</li>
                 </ul>
             </div>
-@* 
-            <div class="icon-box" >
-                <img src="~/image/user.png" alt="الملف الشخصي" class="icon-img" />
-              
-                @Html.ActionLink(" الملف الشخصي", "EmployeeProfile", "Employee", new { employeeId })
-            </div>
 
-        </div>
-
-
-
-        <div class="row">
-            <div class="icon-box" >
-                <img src="~/image/door.png" alt="تسجيل الخروج" class="icon-img" />
-                <p>@Html.ActionLink("تسجيل الخروج", "Logout", "Employee")</p>
-            </div> *@
 
             <div class="icon-box">
                 
@@ -522,9 +530,6 @@
                 </a>
             </div>
 
-
-            @* <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p> *@
-            @* <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p> *@
         </div>
     </div>
 
@@ -539,16 +544,12 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
         integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 
 <script>
-    // Close the reorder messages div
-    // function closeReorderMessages() {
-    //     var messageDiv = document.getElementById("reorderMessages");
-    //     messageDiv.style.display = "none";
-    // }
 
-    // Generic search function for any table
+       // Generic search function for any table
     function searchInventory(tableId) {
         var input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("searchInput");
@@ -589,8 +590,8 @@
     }
 
 
-   
-    
+
+
     document.addEventListener("DOMContentLoaded", function () {
         const sublistToggles = document.querySelectorAll(".main-item");
 
@@ -602,83 +603,81 @@
             });
         });
     });
-    
+</script>
+
+<script>
     function showReorderNotification(Name) {
-        const messageDiv = document.getElementById("reorderMessages");
-        messageDiv.innerText = `الصنف "${Name}" قد وصل إلى الحد الأدنى`;
-        messageDiv.style.display = "block";
-        messageDiv.style.opacity = "1";
+      const container = document.getElementById("reorderMessages");
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("msg");
+      msgDiv.innerText = `${Name}`;
+      msgDiv.style.opacity = "1";
+      msgDiv.style.transition = "opacity 0.5s ease";
 
+      container.appendChild(msgDiv);
+      container.style.display = "block";
+
+      setTimeout(() => {
+        msgDiv.style.opacity = "0";
         setTimeout(() => {
-            messageDiv.style.opacity = "0";
-            setTimeout(() => {
-                messageDiv.style.display = "none";
-            }, 500); // fadeout delay
-        }, 5000);
+          container.removeChild(msgDiv);
+          if (!container.hasChildNodes()) {
+            container.style.display = "none";
+          }
+        }, 500);
+      }, 5000);
     }
 
-    function setupSignalR(inventoryType, methodName, messageEventName) {
-        const hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint")
-            .build();
+    (async function() {
+      const hub = new signalR.HubConnectionBuilder()
+        .withUrl("/InventoryReorderPoint")
+        .withAutomaticReconnect()   // optional, but if you keep this, the guard below will prevent re-invocation
+        .build();
 
-        hub.start()
-            .then(() => {
-                console.log(`${inventoryType} SignalR connection established.`);
-                hub.invoke(methodName)
-                    .catch(err => console.error(`Error invoking ${methodName}:`, err.toString()));
-            })
-            .catch(err => console.error("SignalR connection error:", err.toString()));
+      let didInvokeChecks = false;
 
-        hub.on(messageEventName, function (itemName) {
-            console.log(`Received reorder message for ${inventoryType}:`, itemName);
-            showReorderNotification(itemName);
-        });
-    }
+      hub.onreconnecting(error => {
+        console.warn("Reconnecting, will not re-run checks");
+      });
 
-    // فعلي الاتصال هنا
-    setupSignalR("ورق", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
-    setupSignalR("حبر", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
-    setupSignalR("مستلزمات", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
-    setupSignalR("قطع غيار", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
+      hub.onreconnected(connectionId => {
+        console.log("Reconnected, skipping initial checks");
+      });
 
+      // All low-stock messages come through this one handler:
+      hub.on("recieveInventoryBalances", message => {
+        console.log("Low-stock message:", message);
+        showReorderNotification(message);
+      });
 
+            // All low-stock messages come through this one handler:
+      hub.on("recieveLate", message => {
+        console.log("Late message:", message);
+        showReorderNotification(message);
+      });
 
+      try {
+        await hub.start();
+        console.log("SignalR connected");
 
-    // function setupSignalR(inventoryType, methodName, messageEventName) {
+        if (!didInvokeChecks) {
+          didInvokeChecks = true;
 
-    //     var hub = new signalR.HubConnectionBuilder()
-    //         .withUrl("/InventoryReorderPoint")
-    //         .build();
+          // Fire each check exactly once on first connect
+          await Promise.all([
+            hub.invoke("checkInventoryBalancePaper"),
+            hub.invoke("checkInventoryBalanceInk"),
+            hub.invoke("checkInventoryBalanceSupply"),
+            hub.invoke("checkInventoryBalanceSpareParts"),
+            hub.invoke("checkLateJobOrder"),
+            hub.invoke("checkLatePayment"),
+            hub.invoke("checkLateReceipt"),
 
-    //     hub.start()
-    //         .then(function () {
-    //             console.log(`${inventoryType} SignalR connection established.`);
-
-    //             Invoke the server-side method to check reorder points.
-    //             hub.invoke(methodName)
-    //                 .catch(function (err) {
-    //                     console.error(`Error invoking ${methodName}: `, err.toString());
-    //                 });
-    //         })
-    //         .catch(function (err) {
-    //             console.error(`SignalR connection error: `, err.toString());
-    //         });
-
-    //     Listen for reorder messages from the hub.
-    //     hub.on(messageEventName, function (message) {
-    //         console.log(`Received reorder message for ${inventoryType}: `, message);
-    //         var messageDiv = document.getElementById("reorderMessages");
-    //         Make sure the message div is visible
-    //         messageDiv.style.display = "block";
-    //         Append the new message rather than replacing previous ones
-    //         messageDiv.innerHTML += "<div>" + message + "</div>";
-    //     });
-    // }
-
-    // Setup SignalR for Paper, Ink, and Supply
-    // setupSignalR("Paper", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
-    // setupSignalR("Ink", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
-    // setupSignalR("Supply", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
-    // setupSignalR("spapre", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
+          ]);
+        }
+      }
+      catch (err) {
+        console.error("SignalR setup error:", err);
+      }
+    })();
 </script>

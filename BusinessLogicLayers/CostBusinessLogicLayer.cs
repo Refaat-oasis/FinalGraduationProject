@@ -490,6 +490,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 joborder.JobOrderId = existingJobOrder.JobOrderId;
                 joborder.OrderProgress = existingJobOrder.OrderProgress;
                 joborder.RemainingAmount = existingJobOrder.RemainingAmount;
+                joborder.JobOrderSource = existingJobOrder.JobOrderSource;
                 joborder.EarnedRevenue = existingJobOrder.EarnedRevenue;
                 joborder.UnearnedRevenue = existingJobOrder.UnearnedRevenue;
                 joborder.StartDate = existingJobOrder.StartDate;
@@ -578,7 +579,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 joborder.supplyBalance = supplyBalance;
                 joborder.modifiedQuantityBridgeList = modifiedQuantityBridgeList;
                 return joborder ?? throw new ArgumentException("امر العمل غير موجود");
-            }
+            }   
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);

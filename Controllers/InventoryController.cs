@@ -719,16 +719,16 @@ namespace ThothSystemVersion1.Controllers
 
                 if (!isVendorAdded)
                 {
-                    ModelState.AddModelError("", "الايميل او رقم الهاتف تم استخدامه من قبل");
+                    TempData["Error"]=("", "الايميل او رقم الهاتف تم استخدامه من قبل");
                     return View(vendor);
                 }
-                TempData["Success"] = "تم اضافة بيانات العميل";
+                TempData["Success"] = "تم اضافة بيانات المورد";
                 return RedirectToAction("AddVendor", "inventory");
             }
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ أثناء اضافة بيانات العميل";
+                TempData["Error"] = "حدث خطأ أثناء اضافة بيانات المورد";
                 return View("~/Views/Inventory/AddVendor.cshtml", vendor);
             }
 

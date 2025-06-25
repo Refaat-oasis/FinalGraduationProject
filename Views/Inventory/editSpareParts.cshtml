@@ -3,6 +3,8 @@
 
 @model ThothSystemVersion1.Models.SparePart
 
+
+
 @{
     Layout = null;
     ViewBag.Title = "تعديل قطع الغيار";
@@ -73,20 +75,20 @@
                 <input type="hidden" name="SparePartsID" asp-for="SparePartsId" />
 
                 <div class="input-control">
-                    <label asp-for="@Model.Name" class="textlabel">اسم قطع الغيار</label>
+                    <label asp-for="@Model.Name" class="textlabel"></label>
                     <input asp-for="@Model.Name" class="place" />
                     <span asp-validation-for="@Model.Name" class="error"></span>
                 </div>
 
                 <div class="input-control">
-                    <label asp-for="@Model.ReorderPoint" class="textlabel">نقطه اعاده الطلب</label>
+                    <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
                     <input asp-for="@Model.ReorderPoint" class="place" />
                     <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
                 </div>
 
 
                 <div class="input-control">
-                    <label asp-for="@Model.Activated" class="textlabel">التفعيل </label>
+                    <label asp-for="@Model.Activated" class="textlabel"></label>
                     <select asp-for="@Model.Activated" id="options" class="place">
                         @{
                             if (Model.Activated ?? true)
@@ -159,18 +161,17 @@
         }
    
 
-
         const tempDataElement = document.getElementById('tempDataSuccess');
         const jobRoleElement = document.getElementById('hdnJobRole');
 
-
+        // Get values with proper fallbacks
         const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
         const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
         console.log("Success message exists:", hasSuccessMessage);
         console.log("Job role:", jobRole);
 
-
+        // Mapping of job roles to their respective URLs
         const jobRoleRoutes = {
             0: "/employee/AdminHome",
             1: "/employee/inventoryManager",

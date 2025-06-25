@@ -82,7 +82,7 @@ h1 {
     font-weight: 900 !important;
     font-size: 50px !important;
     text-align: center !important; /* Added right alignment */
-    margin-left: 40%;
+    margin-left: 40% !important;
 }
 
 .input-control {
@@ -122,7 +122,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 60px;
-    margin-left: 40%; 
+    margin-left: 30%; 
 }
 
 .btn {
@@ -238,13 +238,13 @@ h1 {
         background-color: #ef4444;
     }
 
-@@keyframes slideIn {
+@keyframes slideIn {
     to {
         transform: translateX(0);
     }
 }
 
-@@keyframes fadeOut {
+@keyframes fadeOut {
     to {
         opacity: 0;
         transform: translateX(0) scale(0.9);
@@ -252,7 +252,7 @@ h1 {
 }
 
 
-@@keyframes progress {
+@keyframes progress {
     from {
         width: 100%;
     }

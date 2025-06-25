@@ -647,6 +647,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridge.PaperId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
+                        quantityBridge.Price = paper.Price;
+                        quantityBridge.TotalBalance = phdto.newQuantity * paper.Price;
+                        quantityBridge.OldQuantity = oldQuantity;
+                        quantityBridge.OldPrice = paper.Price;
+                        quantityBridge.OldTotalBalance = oldQuantity * paper.Price;
 
                         paper.TotalBalance = phdto.newQuantity * paper.Price;
                         break;
@@ -666,6 +671,14 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                         quantityBridge.InkId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
                         quantityBridge.NumberOfUnits = phdto.newNumberOfUnits;
+                        quantityBridge.UnitPrice = ink.UnitPrice;
+                        quantityBridge.Price = ink.Price;
+                        quantityBridge.TotalBalance = phdto.newNumberOfUnits * ink.UnitPrice;
+                        quantityBridge.OldQuantity = oldQuantity;
+                        quantityBridge.OldNumberOfUnits = oldNumberOfUnits;
+                        quantityBridge.OldPrice = ink.Price;
+                        quantityBridge.OldTotalBalance = oldNumberOfUnits * ink.UnitPrice;
+
                         if (phdto.newNumberOfUnits != null)
                             ink.TotalBalance = phdto.newNumberOfUnits * ink.UnitPrice;
                         break;
@@ -681,6 +694,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridge.SuppliesId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
+                        quantityBridge.Price = supply.Price;
+                        quantityBridge.TotalBalance = phdto.newQuantity * supply.Price;
+                        quantityBridge.OldQuantity = oldQuantity;
+                        quantityBridge.OldPrice = supply.Price;
+                        quantityBridge.OldTotalBalance = oldQuantity * supply.Price;
 
                         supply.TotalBalance = phdto.newQuantity * supply.Price;
                         break;
@@ -696,6 +714,11 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                         quantityBridge.SparePartsId = phdto.itemId;
                         quantityBridge.Quantity = phdto.newQuantity;
+                        quantityBridge.Price = spareParts.Price;
+                        quantityBridge.TotalBalance = phdto.newQuantity * spareParts.Price;
+                        quantityBridge.OldQuantity = oldQuantity;
+                        quantityBridge.OldPrice = spareParts.Price;
+                        quantityBridge.OldTotalBalance = oldQuantity * spareParts.Price;
 
                         spareParts.TotalBalance = phdto.newQuantity * spareParts.Price;
                         break;
@@ -737,7 +760,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (phdto.itemType == "Ink" && unitsChanged)
                 {
                     if (quantityChanged) message += " و ";
-                    message += $"الكمية من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
+                    message += $"عدد الوحات من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
                 }
 
                 if (!quantityChanged && !unitsChanged)

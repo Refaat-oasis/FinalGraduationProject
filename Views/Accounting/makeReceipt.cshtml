@@ -36,12 +36,13 @@
                 </a>
             }
         </div>
-
+        <div class="redirect">
+            <input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        </div>
         <h1>طلب استلام اموال</h1>
 
         <!-- Hidden fields for JavaScript access -->
-        <input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
-        <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
         <h2>تفاصيل الطلبية</h2>
         <div class="mainBox">
@@ -216,7 +217,7 @@
                 setTimeout(() => {
                     notice.remove();
                     window.location.href = routes[role] || '@Url.Action("LoginPage", "Employee")';
-                }, 3000);
+                }, 4000);
             }
         });
     </script>

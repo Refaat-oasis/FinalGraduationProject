@@ -7,6 +7,8 @@
 @{
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    var role = @jobRole;
+
     Console.WriteLine("JobRole: " + jobRole);
 }
 @section HeadContent {
@@ -258,7 +260,7 @@
                         <option value="Paper">ورق</option>
                         <option value="Ink">حبر</option>
                         <option value="Supply">مستلزمات</option>
-                        <option value="Spare Parts">قطع صيانة</option>
+                        <option value="Spare Parts">قطع غيار</option>
                     </select>
                     <span class="error-message" id="inventoryTypeError" style="color: red; display: none;">يرجى اختيار نوع العنصر</span>
                 </div>
@@ -425,6 +427,36 @@
                     }
                 });
             });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const successMessage = document.querySelector(".success-message");
+            const errorMessage = document.querySelector(".error-message");
+
+            // نتأكد إن في رسالة نجاح فعلًا بمحتوى مش فاضي
+            if (successMessage && successMessage.textContent.trim() !== "") {
+                // ندي المستخدم فرصة يشوف الرسالة لمدة 5 ثواني
+                setTimeout(function () {
+                    successMessage.style.display = "none";
+
+                    // إعادة التوجيه حسب الدور
+                    const role = parseInt('@jobRole');
+                    let redirectUrl = "/employee/adminhome";
+                    if (role === 1) {
+                        redirectUrl = "/employee/inventoryManager";
+                    } else if (role === 2) {
+                        redirectUrl = "/employee/inventoryClerk";
+                    }
+
+                    window.location.href = redirectUrl;
+                }, 5000);
+            }
+
+            // لو فيه رسالة خطأ برضو نخفيها بعد 5 ثواني بس من غير توجيه
+            if (errorMessage && errorMessage.textContent.trim() !== "") {
+                setTimeout(function () {
+                    errorMessage.style.display = "none";
+                }, 4000);
+            }
         });
     </script>
 }

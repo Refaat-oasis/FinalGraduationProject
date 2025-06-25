@@ -38,13 +38,13 @@
                 </a>
             }
         </div>
-
+        <div class="redirect">
+            <input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        </div>
         <h1>طلب دفع اموال</h1>
 
 
-        <!-- Hidden fields for JavaScript access -->
-        <input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
-        <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
         <h2>تفاصيل شراء طلب</h2>
         <div class="mainBox">

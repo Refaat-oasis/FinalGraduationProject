@@ -21,6 +21,14 @@ body {
     background-size: cover;
 }
 
+.redirect {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+}
+
+
 .card {
     background: rgba(255, 255, 255, 0.9) !important;
     border: none !important;
@@ -241,23 +249,24 @@ label {
     gap: 10px;
     position: fixed;
     top: 20px;
-    left: 50%; 
-    transform: translateX(-50%); 
-
+    /*    left: 50%; 
+    transform: translateX(-50%); */
+    right: 20px;
     z-index: 9999;
     min-width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 #amountError {
     font-size: 18px;
     font-weight: bold;
-    color: #dc3545; 
-    text-align: center;
+    /*    color: #dc3545; */
+    text-align: right;
     margin-bottom: 20px;
     padding: 10px;
-  
-    display: flex;
+    display: block;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #ef4444;
 }

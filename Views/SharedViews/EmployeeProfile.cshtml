@@ -197,15 +197,13 @@
 
         // Mapping of job roles to their respective URLs
         const jobRoleRoutes = {
-            0: "/Employee/loginpage" 
-            1: "/Employee/loginpage" 
-            2: "/Employee/loginpage" 
-            3: "/Employee/loginpage" 
-            4: "/Employee/loginpage" 
-            5: "/Employee/loginpage" 
-            6: "/Employee/loginpage" 
-            7: "/Employee/loginpage"
-            8: "/Employee/loginpage"
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
         };
 
         if (hasSuccessMessage) {
@@ -214,7 +212,6 @@
                 window.location.href = redirectUrl;
             }, 3000);
         }
-
 
 </script>
 }

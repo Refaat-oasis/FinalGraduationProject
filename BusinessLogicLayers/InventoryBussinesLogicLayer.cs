@@ -760,7 +760,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 if (phdto.itemType == "Ink" && unitsChanged)
                 {
                     if (quantityChanged) message += " و ";
-                    message += $"عدد الوحات من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
+                    message += $"عدد الوحدات من {oldNumberOfUnits} إلى {phdto.newNumberOfUnits}";
                 }
 
                 if (!quantityChanged && !unitsChanged)

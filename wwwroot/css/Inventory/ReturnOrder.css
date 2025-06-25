@@ -210,6 +210,23 @@ h5 {
     text-align: right; /* Added right alignment */
 }
 
+.tableContainer1 table {
+    width: 100%;
+    border-collapse: collapse; /* removes double‑borders */
+}
+
+.tableContainer1 th,
+.tableContainer1 td {
+    text-align: center; /* centers content horizontally */
+    vertical-align: middle; /* centers content vertically */
+    padding: 0.5rem 0.75rem; /* adjust for breathing room */
+    border: 1px solid #ddd; /* optional: light border for clarity */
+}
+
+.tableContainer1 thead th {
+    background-color: #f8f9fa; /* optional: light grey header background */
+    font-weight: 600;
+}
 
 .tableContainer1 {
     display: flex;
@@ -241,7 +258,7 @@ th, td {
 }
 
 th {
-    font-size: 25px;
+    font-size: 20px;
     background-color: #FDF5E6;
 }
 

@@ -21,12 +21,12 @@ public partial class SparePart
     public decimal? TotalBalance { get; set; }
 
     [Display(Name = "الكمية")]
-    [Range(0, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من او يساوي الصفر")]
+    //[Range(0, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من او يساوي الصفر")]
 
     public int Quantity { get; set; }
 
     [Display(Name = "السعر")]
-    [Range(0.000001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
+    //[Range(0.000001, double.MaxValue, ErrorMessage = "يجب إدخال رقم أكبر من الصفر")]
 
     public decimal Price { get; set; }
 

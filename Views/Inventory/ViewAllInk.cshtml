@@ -47,7 +47,7 @@
     <h1>قائمة الحبر</h1>
 
     <div id="reorderMessages" class="reorderMsg" style="display:none;">
-        <button class="close-btn" onclick="closeReorderMessages()">×</button>
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
 
     </div>
 
@@ -91,6 +91,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InkId)
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -127,6 +130,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InkId)
                         </td>
                     </tr>
                 }

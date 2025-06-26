@@ -80,6 +80,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.CustomerName)
                     </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerId)
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -107,6 +110,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
                         </td>
                     </tr>
                 }

@@ -16,159 +16,150 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="~/css/Inventory/PerpetualRequisite.css" rel="stylesheet" />
 </head>
-
-    <div class="container py-3" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start;">
-    <div class="arrow mb-3">
+<body>
+    <div class="arrow ">
         @{
-                // admin
-                if (jobRole == 0)
-                {
-                    <a asp-controller="employee" asp-action="adminhome" class="back">
-                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                    </a>
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
 
-                } // inventory manager
-                else if (jobRole == 1)
-                {
-                    <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                    </a>
-                }
-                else if (jobRole == 2)
-                {
-                    <a asp-controller="employee" asp-action="inventoryClerk" class="back">
-                        <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                    </a>
-                }
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
 
         }
     </div>
+    <div class="container">
 
-        <div class="card shadow-lg bg-white rounded-lg" style="max-width: 800px; margin: 0 auto;">
-            <div class="card-header bg-blue-600 text-white text-center py-3 rounded-t-lg">
-                <h1 class="text-xl font-bold">إنشاء أمر صرف مخزن دائم</h1>
-            </div>
-
-            <div class="card-body px-6 py-4">
-                <form asp-action="PerpetualRequisite" asp-controller="Inventory" id="requisiteForm" method="post">
-                    @if (TempData["Success"] != null)
-                    {
-                        <div class="notification success mb-4">
-                            <div class="flex items-center">
-                                <i class='bx bx-check-circle mr-2'></i>
-                                <span>@TempData["Success"]</span>
-                            </div>
-                            <input type="hidden" id="tempDataSuccess" value="true" />
-                            <div class="progress-bar success"></div>
-                        </div>
-                    }
-
-                    @if (TempData["Error"] != null)
-                    {
-                        <div class="notification error mb-4">
-                            <div class="flex items-center">
-                                <i class='bx bx-error-circle mr-2'></i>
-                                <span>@TempData["Error"]</span>
-                            </div>
-                            <input type="hidden" id="tempDataSuccess" value="false" />
-                            <div class="progress-bar error"></div>
-                        </div>
-                    }
-
-                    <input type="hidden" id="hdnJobRole" value="@jobRole" />
-                    <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
-
-                    <div class="mb-4">
-                        <label asp-for="MachineStoreId" class="textlabel fw-bold">اختر الماكينة</label>
-                        <select asp-for="MachineStoreId" class="place" required>
-                            <option value="">اختر الماكينة</option>
-                            @foreach (var machine in ViewBag.MachineStoreList)
-                            {
-                                <option value="@machine.MachineStoreId">@machine.Name</option>
-                            }
-                        </select>
-                        <span asp-validation-for="MachineStoreId" class="text-red-500 text-xs"></span>
-                    </div>
-
-                    <div class="mb-4">
-                        <label asp-for="RequisiteNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
-                        <textarea asp-for="RequisiteNotes" class="form-control" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-4">
-                        <h2 class="fw-bold mb-3">إضافة صنف</h2>
-
-                            <div class="col-md-6">
-                                <label class="textlabel">نوع الصنف</label>
-                                <select id="itemType" class="place">
-                                    <option value="">اختر النوع</option>
-                                    <option value="SparePart">قطع غيار</option>
-                                    <option value="Ink">حبر</option>
-                                </select>
-                            </div>
-                            <div>
-                                <div class="col-md-6">
-                                <label class="textlabel">الصنف</label>
-                                <select id="itemId" class="place" disabled>
-                                    <option value="">اختر الصنف</option>
-                                </select>
-                            </div>
-                            <div>
-                                <div class="col-md-6">
-                                <label id="currentQuantityLabel" class="textlabel">الكمية الحالية</label>
-                                <input type="number" id="currentQuantity" class="place" readonly />
-                            </div>
-                            <div>
-                                    <div class="col-md-6">
-                                <label id="itemQuantityLabel" class="textlabel">الكمية المطلوبة</label>
-                                <input type="number" id="itemQuantity" class="place" min="1" />
-                                <div id="quantityError" class="text-danger small" style="display:none;">
-                                    الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                                <div class="text-end mt-3">
-                                    <button type="button" id="addItemBtn" class="btn btn-primary px-4">إضافة</button>
-                                </div>
-                    </div>
-                    </div>
-
-
-                            <div class="mb-4">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead style="background-color: transparent;">
-                                    <tr>
-                                        <th class="px-4 py-2 text-right border">نوع الصنف</th>
-                                        <th class="px-4 py-2 text-right border">اسم الصنف</th>
-                                        <th class="px-4 py-2 text-right border" id="tableHeaderCurrentQty">الكمية الحالية</th>
-                                        <th class="px-4 py-2 text-right border" id="tableHeaderRequiredQty">الكمية المطلوبة</th>
-                                        <th class="px-4 py-2 text-right border">الإجراءات</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="itemsTableBody" class="bg-white">
-                                    <!-- Items will be added here dynamically -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div id="hiddenItemsContainer"></div>
-
-                    <div class="button-container">
-                        <button type="submit" class="btn btn-primary">
-                            حفظ الطلب
-                        </button>
-                                <button type="reset" class="btn btn-primary">
-                            إعادة إدخال
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div>
+            <h1>إنشاء أمر صرف مخزن دائم</h1>
         </div>
-    </div>
 
+        <form asp-action="PerpetualRequisite" asp-controller="Inventory" id="requisiteForm" method="post">
+            @if (TempData["Success"] != null)
+            {
+                <div class="notification success mb-4">
+                    <div class="flex items-center">
+                        <i class='bx bx-check-circle mr-2'></i>
+                        <span>@TempData["Success"]</span>
+                    </div>
+                    <input type="hidden" id="tempDataSuccess" value="true" />
+                    <div class="progress-bar success"></div>
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="notification error mb-4">
+                    <div class="flex items-center">
+                        <i class='bx bx-error-circle mr-2'></i>
+                        <span>@TempData["Error"]</span>
+                    </div>
+                    <input type="hidden" id="tempDataSuccess" value="false" />
+                    <div class="progress-bar error"></div>
+                </div>
+            }
+
+            <input type="hidden" id="hdnJobRole" value="@jobRole" />
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+            <div class="rowCont">
+                <div class="colCont">
+                    <label asp-for="MachineStoreId" class="textlabel fw-bold">اختر الماكينة</label>
+                    <select asp-for="MachineStoreId" class="place" required>
+                        <option value="">اختر الماكينة</option>
+                        @foreach (var machine in ViewBag.MachineStoreList)
+                        {
+                            <option value="@machine.MachineStoreId">@machine.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MachineStoreId" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div class="colCont">
+                    <label asp-for="RequisiteNotes" class="textlabel fw-bold">إضافة ملاحظات</label>
+                    <textarea asp-for="RequisiteNotes" class="form-control" rows="1"></textarea>
+                </div>
+            </div>
+            <h1>إضافة صنف</h1>
+            <div class="rowCont">
+                <div class="colCont">
+                    <label class="textlabel">نوع الصنف</label>
+                    <select id="itemType" class="place">
+                        <option value="">اختر النوع</option>
+                        <option value="SparePart">قطع غيار</option>
+                        <option value="Ink">حبر</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="colCont">
+                        <label class="textlabel">الصنف</label>
+                        <select id="itemId" class="place" disabled>
+                            <option value="">اختر الصنف</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="rowCont">
+                <div class="colCont">
+                    <label id="currentQuantityLabel" class="textlabel">الكمية الحالية</label>
+                    <input type="number" id="currentQuantity" class="place" readonly />
+                </div>
+                <div>
+                    <div class="colCont">
+                        <label id="itemQuantityLabel" class="textlabel">الكمية المطلوبة</label>
+                        <input type="number" id="itemQuantity" class="place" min="1" />
+                        <div id="quantityError" class="text-danger small" style="display:none;">
+                            الكمية المطلوبة يجب أن تكون أقل من الكمية الحالية
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-end mt-3">
+                <button type="button" id="addItemBtn" class="editBtn">إضافة</button>
+            </div>
+
+
+
+            <div class="tableContainer1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 text-right border">نوع الصنف</th>
+                            <th class="px-4 py-2 text-right border">اسم الصنف</th>
+                            <th class="px-4 py-2 text-right border" id="tableHeaderCurrentQty">الكمية الحالية</th>
+                            <th class="px-4 py-2 text-right border" id="tableHeaderRequiredQty">الكمية المطلوبة</th>
+                            <th class="px-4 py-2 text-right border">الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsTableBody" class="bg-white">
+                        <!-- Items will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="hiddenItemsContainer"></div>
+
+            <div class="button-container">
+                <button type="submit" class="editBtn">
+                    حفظ الطلب
+                </button>
+
+            </div>
+        </form>
+    </div>
     @section Scripts {
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -320,24 +311,21 @@
 
                     items.forEach((item, index) => {
                         // Add row to table
-                        $tableBody.append(`
-                            <tr data-index="${index}" class="hover:bg-gray-50">
-                                <td class="px-4 py-2 border">${getArabicType(item.itemType)}</td>
-                                <td class="px-4 py-2 border">${item.itemName}</td>
-                                <td class="px-4 py-2 border">${item.currentQuantity}</td>
-                                <td class="px-4 py-2 border">${item.quantity}</td>
-                                <td class="px-4 py-2 border">
-                                    <div class="flex gap-2">
-                                        <button type="button" class="editItem bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
-                                            <i class="bx bx-edit"></i> تعديل
-                                        </button>
-                                        <button type="button" class="deleteItem bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
-                                            <i class="bx bx-trash"></i> حذف
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        `);
+                                              $tableBody.append(`
+                <tr data-index="${index}" class="hover:bg-gray-50">
+                    <td class="px-4 py-2 border">${getArabicType(item.itemType)}</td>
+                    <td class="px-4 py-2 border">${item.itemName}</td>
+                    <td class="px-4 py-2 border">${item.currentQuantity}</td>
+                    <td class="px-4 py-2 border">${item.quantity}</td>
+                    <td class="px-4 py-2 border">
+                        <div class="button-group">
+                            <button type="button" class="btn editItem">تعديل</button>
+                            <button type="button" class="btn deleteItem">حذف</button>
+                        </div>
+                    </td>
+                </tr>
+            `);
+
 
                         // Add hidden fields for form submission
                         addHiddenFields(item, index);
@@ -483,6 +471,7 @@
             });
         </script>
     }
+</body>
 </html>
 
 @* @model ThothSystemVersion1.DataTransfereObject.RequisiteOrderDTO 
@@ -919,7 +908,7 @@
                 } else if (item.itemType === 'Ink') { // Use else if for clarity
                     hiddenFields += `<input type="hidden" name="${prefix}.InkId" value="${item.itemId}" />`;
                 }
-                
+
                 $hiddenContainer.append(hiddenFields);
             }
 

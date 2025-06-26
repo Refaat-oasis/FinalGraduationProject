@@ -48,7 +48,7 @@
     <h1> الآلات المستخدمة</h1>
 
     <div id="reorderMessages" class="reorderMsg" style="display:none;">
-        <button class="close-btn" onclick="closeReorderMessages()">×</button>
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
 
     </div>
 
@@ -67,6 +67,7 @@
                     <th>الإجراءات</th>
                     <th>التفعيل</th>
                     <th>الاسم</th>
+                    <th>الرقم التعريفي للاله المستخدمة</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,8 @@
                         <td>@(item.Activated == true ? "مفعّل" : "غير مفعّل")</td>
 
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MachineStoreId)</td>
+
                     </tr>
                 }
             </tbody>

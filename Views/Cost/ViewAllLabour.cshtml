@@ -54,6 +54,7 @@
                     <th>@Html.DisplayNameFor(model => model.First().Activated)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Price)</th>
                     <th>@Html.DisplayNameFor(model => model.First().LabourProcessName)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().LabourId)</th>
 
                 </tr>
             </thead>
@@ -68,7 +69,7 @@
                         <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
                         <td>@item.Price.ToString("C")</td>
                         <td>@item.LabourProcessName</td>
-
+                        <td>@item.LabourId</td>
                     </tr>
                 }
             </tbody>

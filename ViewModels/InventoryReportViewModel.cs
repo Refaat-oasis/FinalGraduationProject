@@ -26,6 +26,7 @@ namespace ThothSystemVersion1.ViewModels
         public List<ModifiedQuantityBridge> modifiedQuantityBridges { get; set; }
         public List<ModifiedRequisiteOrder> modifiedRequisiteOrderList { get; set; }
         public List<ModifiedReturnsOrder> modifiedReturnsOrderList { get; set; }
+        public List<ModifiedPerpetualRequisiteOrder> modifiedPerpetualRequisiteOrdersList { get; set; }
 
         public List<(Vendor Vendor, int PurchaseCount, decimal TotalOldBalance)> VendorReport { get; set; }
 

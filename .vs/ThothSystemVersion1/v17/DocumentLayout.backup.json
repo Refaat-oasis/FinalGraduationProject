@@ -1,42 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\",
+  "WorkspaceRootPath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\models\\sparepart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:models\\sparepart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\views\\cost\\addmachineandlabourexpense.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\cost\\addmachineandlabourexpense.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\costbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\costbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\views\\inventory\\editmachinestore.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\inventory\\editmachinestore.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\businesslogiclayers\\inventorybussineslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\inventorybussineslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\datatransfereobject\\sparepartsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:datatransfereobject\\sparepartsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\views\\inventory\\editspareparts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\inventory\\editspareparts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\views\\inventory\\editvendor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\inventory\\editvendor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\views\\inventory\\purchaseall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\inventory\\purchaseall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\mira\\desktop\\gpp\\finalgraduationproject\\wwwroot\\css\\inventory\\purchaseall.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:wwwroot\\css\\inventory\\purchaseall.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\modifiedmodels\\modifiedquantitybridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:modifiedmodels\\modifiedquantitybridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,138 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SparepartsDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\DataTransfereObject\\SparepartsDTO.cs",
-              "RelativeDocumentMoniker": "DataTransfereObject\\SparepartsDTO.cs",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\DataTransfereObject\\SparepartsDTO.cs",
-              "RelativeToolTip": "DataTransfereObject\\SparepartsDTO.cs",
-              "ViewState": "AgIAAAQAAACAZmZmZmYGwAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T22:18:09.333Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SparePart.cs",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Models\\SparePart.cs",
-              "RelativeDocumentMoniker": "Models\\SparePart.cs",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Models\\SparePart.cs*",
-              "RelativeToolTip": "Models\\SparePart.cs*",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCEAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T22:16:10.948Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InventoryController.cs",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Controllers\\InventoryController.cs",
-              "RelativeDocumentMoniker": "Controllers\\InventoryController.cs",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Controllers\\InventoryController.cs*",
-              "RelativeToolTip": "Controllers\\InventoryController.cs*",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T22:12:59.049Z",
+              "Title": "addMachineAndLabourExpense.cshtml",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Cost\\addMachineAndLabourExpense.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cost\\addMachineAndLabourExpense.cshtml",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Cost\\addMachineAndLabourExpense.cshtml",
+              "RelativeToolTip": "Views\\Cost\\addMachineAndLabourExpense.cshtml",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAwMgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T13:48:43.545Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "editMachineStore.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\editMachineStore.cshtml",
-              "RelativeDocumentMoniker": "Views\\Inventory\\editMachineStore.cshtml",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\editMachineStore.cshtml",
-              "RelativeToolTip": "Views\\Inventory\\editMachineStore.cshtml",
-              "ViewState": "AgIAAD0AAAAAMjMzMzMLwE4AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T22:09:28.742Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InventoryBussinesLogicLayer.cs",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
-              "RelativeDocumentMoniker": "BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
-              "RelativeToolTip": "BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
-              "ViewState": "AgIAAEUIAAAAAAAAAAAnwEcIAABBAAAAAAAAAA==",
+              "Title": "ModifiedQuantityBridge.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\ModifiedModels\\ModifiedQuantityBridge.cs",
+              "RelativeDocumentMoniker": "ModifiedModels\\ModifiedQuantityBridge.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\ModifiedModels\\ModifiedQuantityBridge.cs*",
+              "RelativeToolTip": "ModifiedModels\\ModifiedQuantityBridge.cs*",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAuwCUAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T21:48:54.961Z",
+              "WhenOpened": "2025-06-26T13:47:33.666Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EditVendor.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\EditVendor.cshtml",
-              "RelativeDocumentMoniker": "Views\\Inventory\\EditVendor.cshtml",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\EditVendor.cshtml",
-              "RelativeToolTip": "Views\\Inventory\\EditVendor.cshtml",
-              "ViewState": "AgIAAFwAAAAAMjMzMzMbwGIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T21:43:25.618Z",
+              "DocumentIndex": 1,
+              "Title": "CostBusinessLogicLayer.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\CostBusinessLogicLayer.cs",
+              "RelativeDocumentMoniker": "BusinessLogicLayers\\CostBusinessLogicLayer.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\CostBusinessLogicLayer.cs",
+              "RelativeToolTip": "BusinessLogicLayers\\CostBusinessLogicLayer.cs",
+              "ViewState": "AgIAAAkCAAAAAAAAAAAAABkCAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T13:46:49.846Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "editSpareParts.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\editSpareParts.cshtml",
-              "RelativeDocumentMoniker": "Views\\Inventory\\editSpareParts.cshtml",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\editSpareParts.cshtml",
-              "RelativeToolTip": "Views\\Inventory\\editSpareParts.cshtml",
-              "ViewState": "AgIAADwAAAAAZmZmZmYawFoAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T21:41:23.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "purchaseAll.css",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\wwwroot\\css\\Inventory\\purchaseAll.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\Inventory\\purchaseAll.css",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\wwwroot\\css\\Inventory\\purchaseAll.css",
-              "RelativeToolTip": "wwwroot\\css\\Inventory\\purchaseAll.css",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBsAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-25T21:27:43.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "purchaseAll.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\purchaseAll.cshtml",
-              "RelativeDocumentMoniker": "Views\\Inventory\\purchaseAll.cshtml",
-              "ToolTip": "C:\\Users\\Mira\\Desktop\\GPP\\FinalGraduationProject\\Views\\Inventory\\purchaseAll.cshtml",
-              "RelativeToolTip": "Views\\Inventory\\purchaseAll.cshtml",
-              "ViewState": "AgIAAIIAAAAANDMzMzMrwGIAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T21:28:36.783Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 42,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

@@ -24,10 +24,10 @@ public partial class QuantityBridge
     [Display(Name ="الوحدات")]
     public int NumberOfUnits { get; set; }
 
-
+    [Display(Name ="سعر الوحدة")]
     public decimal? UnitPrice { get; set; }
 
-
+    [Display(Name ="عدد الوحدات القديمة")]
     public int? OldNumberOfUnits { get; set; }
 
     [Display(Name = "القيمة")]
@@ -57,9 +57,10 @@ public partial class QuantityBridge
     [Display(Name = "رقم امر الجرد")]
     public int? PhysicalCountId { get; set; }
 
+    [Display(Name ="رقم امر الصرف الدائم")]
     public int? PerpetualRequisiteId { get; set; }
 
-
+    [Display(Name ="الرقم التعريفي الخاص بقطع الغيار")]
     public int? SparePartsId { get; set; }
 
 

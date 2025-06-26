@@ -20,6 +20,12 @@ namespace ThothSystemVersion1.ModifiedModels
         [Display(Name = "ملاحظات")]
         public string? PhysicalCountNotes { get; set; }
 
+        [Display(Name = "كمية العنصر")]
+        public int balance { get; set; }
+
+        [Display(Name = "السعر")]
+        public decimal price { get; set; }
+
 
     }
 }

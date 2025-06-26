@@ -34,11 +34,11 @@ namespace ThothSystemVersion1.ModifiedModels
         [Display(Name = "ملاحظات")]
         public string? PurchaseNotes { get; set; }
 
-        [Display(Name ="اسم العنصر")]
-        public string balance { get; set; } = null!;
+        [Display(Name ="كمية العنصر")]
+        public int balance { get; set; }
 
         [Display(Name ="السعر")]
-        public string price { get; set; } = null!;
+        public decimal price { get; set; } 
 
 
     }

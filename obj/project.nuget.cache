@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GN9Dbh+Z2is=",
+  "dgSpecHash": "Mkh8ewc86ks=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\final2\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+  "projectFilePath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\ThothSystemVersion1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ahta6\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\ahta6\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

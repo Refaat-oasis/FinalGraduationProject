@@ -987,7 +987,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
                 invViewModel.modifiedPurchaseOrderList = modifiedPurchaseList;
                 invViewModel.modifiedRequisiteOrderList = modifiedRequisiteList;
-                invViewModel.modifiedPerpetualRequisiteOrderList = modifiedPerpetualList;
+                invViewModel.modifiedPerpetualRequisiteOrdersList = modifiedPerpetualList;
                 invViewModel.modifiedReturnsOrderList = modifiedReturnList;
                 invViewModel.modifiedPhysicalCountOrderList = modifiedPhysicalList;
 

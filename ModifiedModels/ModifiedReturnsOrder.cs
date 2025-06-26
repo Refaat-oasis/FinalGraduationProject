@@ -30,5 +30,12 @@ namespace ThothSystemVersion1.ModifiedModels
         public string? ReturnsNotes { get; set; }
 
 
+        [Display(Name = "كمية العنصر")]
+        public int balance { get; set; }
+
+        [Display(Name = "السعر")]
+        public decimal price { get; set; }
+
+
     }
 }

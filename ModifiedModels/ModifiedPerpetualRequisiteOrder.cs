@@ -25,5 +25,11 @@ namespace ThothSystemVersion1.ModifiedModels
         [Display(Name = "اسم الماكينة")]
         public string Name { get; set; } = null!;
 
+        [Display(Name = "كمية العنصر")]
+        public int balance { get; set; }
+
+        [Display(Name = "السعر")]
+        public decimal price { get; set; }
+
     }
 }

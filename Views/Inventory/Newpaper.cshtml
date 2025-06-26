@@ -1,30 +1,25 @@
-@model Paper;
 @using Microsoft.AspNetCore.Http
-
 @inject IHttpContextAccessor HttpContextAccessor
+
 @{
     Layout = null;
-
-    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 }
 
+@model Paper;
 
 @{
+    List<ColorWeightSize> cwsList = ViewBag.ColorWeightSizeList;
 
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
-
-
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Home.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    @* <link rel="icon" type="image/x-icon" href="@Url.Content("~/photos/eye.jpg")" /> *@
     <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet" />
@@ -35,37 +30,38 @@
 </head>
 
 
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
 
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-
-            } // inventory manager
-            else if (jobRole == 1)
-            {
-                <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-            else if (jobRole == 2)
-            {
-                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
-
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
         }
-    </div>
 
-    <div class="form-container">
-    <form asp-action="NewPaper" id="myform" enctype="multipart/form-data" method="post">
+        // Inventory clerk
+        else if (jobRole == 2)
+        {
+            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
 
+
+    }
+</div>
+
+<div class="form-container">
+    <form asp-controller="Inventory" asp-action="NewPaper" id="myform" enctype="multipart/form-data" method="post">
+        @* Success and Error Messages *@
         @if (TempData["Success"] != null)
         {
             <div class="notification success">
@@ -179,10 +175,30 @@
 
         <div class="button-container">
             <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
-            </div>
+        </div>
 
-         
+
     </form>
 
 </div>
 <script src="~/js/Inventory/newPaper.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

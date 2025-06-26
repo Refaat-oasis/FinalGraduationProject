@@ -7,24 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const elements = {
         paperName: document.getElementById("paperName"),
-        Size: document.getElementById("Size"),
-        Weight: document.getElementById("Weight"),
+        Size: document.querySelector("[name='Size']"), 
+        Weight: document.querySelector("[name='Weight']"),
         Quantity: document.getElementById("Quantity"),
-        Colored: document.getElementById("Colored"),
-        TotalBalance: document.getElementById("TotalBalance"),
+        Colored: document.querySelector("[name='Colored']"),
         ReorderPoint: document.getElementById("ReorderPoint"),
         Price: document.getElementById("Price")
     };
 
-    for (const [key, element] of Object.entries(elements)) {
-        if (!element) {
-            console.error(`Element with ID '${key}' not found!`);
-            return;
-        }
-    }
-
     const setError = (input, errorMsg) => {
-        const inputBox = input.parentElement;
+        const inputBox = input.closest('.inputBox');
         const errorElement = inputBox.querySelector(".error");
         if (errorElement) {
             errorElement.innerText = errorMsg;
@@ -33,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const setSuccess = (input) => {
-        const inputBox = input.parentElement;
+        const inputBox = input.closest('.inputBox');
         const errorElement = inputBox.querySelector(".error");
         if (errorElement) {
             errorElement.innerText = "";
@@ -68,26 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(elements.Weight);
         }
 
-        //if (!elements.Quantity.value || isNaN(elements.Quantity.value) || parseFloat(elements.Quantity.value) <= 0) {
-        //    setError(elements.Quantity, "يجب إدخال كمية صحيحة أكبر من الصفر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(elements.Quantity);
-        //}
-
         if (elements.Colored.value === "none") {
             setError(elements.Colored, "مطلوب اختيار لون الورق");
             valid = false;
         } else {
             setSuccess(elements.Colored);
         }
-
-        //if (!elements.TotalBalance.value || isNaN(elements.TotalBalance.value) || parseFloat(elements.TotalBalance.value) <= 0) {
-        //    setError(elements.TotalBalance, "يجب إدخال قيمة صحيحة أكبر من الصفر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(elements.TotalBalance);
-        //}
 
         if (!elements.ReorderPoint.value || isNaN(elements.ReorderPoint.value) || parseFloat(elements.ReorderPoint.value) <= 0) {
             setError(elements.ReorderPoint, "يجب إدخال قيمة صحيحة أكبر من الصفر");
@@ -96,68 +74,45 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(elements.ReorderPoint);
         }
 
-        //if (!elements.Price.value || isNaN(elements.Price.value) || parseFloat(elements.Price.value) <= 0) {
-        //    setError(elements.Price, "يجب إدخال سعر صحيح أكبر من الصفر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(elements.Price);
-        //}
-
         return valid;
     }
 
     myform.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (validate()) {
-            this.submit();
+        if (!validate()) {
+            e.preventDefault();
         }
     });
 
     Object.values(elements).forEach(element => {
-        element.addEventListener("input", function () {
-            if (this.value.trim() !== "") {
-                setSuccess(this);
-            }
-        });
+        if (element) {
+            element.addEventListener("input", function () {
+                if (this.value.trim() !== "") {
+                    setSuccess(this);
+                }
+            });
+        }
     });
 
     const tempDataElement = document.getElementById('tempDataSuccess');
     const jobRoleElement = document.getElementById('hdnJobRole');
 
-    const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-    const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+    if (tempDataElement && tempDataElement.value === 'true') {
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-    console.log("Success message exists:", hasSuccessMessage);
-    console.log("Job role:", jobRole);
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
 
-    const jobRoleRoutes = {
-        0: "/employee/AdminHome",
-        1: "/employee/inventoryManager",
-        2: "/employee/inventoryClerk",
-        3: "/employee/TechnicalManager",
-        4: "/employee/technicalClerk",
-        5: "/employee/CostManager",
-        6: "/employee/costClerk"
-    };
+        console.log("Redirecting to:", jobRoleRoutes[jobRole] || "/Employee/LoginPage");
 
-    if (hasSuccessMessage) {
-        setTimeout(function () {
-            const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-            window.location.href = redirectUrl;
+        setTimeout(() => {
+            window.location.href = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
         }, 3000);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

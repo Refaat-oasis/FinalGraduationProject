@@ -2,6 +2,9 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 
+@{
+    Layout = null;
+}
 
 
 @model ThothSystemVersion1.Models.Ink
@@ -28,116 +31,116 @@
     ViewData["Title"] = "تعديل بيانات الحبر";
 }
 
-<div class="form-container">
 
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
 
-            } // inventory manager
-            else if (jobRole == 1)
-            {
-                <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
         }
-    </div>
+
+    }
+</div>
+<div class="form-container">
 
     <h1> تعديل بيانات الحبر  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform">
 
-    @if (TempData["Success"] != null)
-    {
-        <div class="notification success">
-            <div class="notification-content">
-                <i class='bx bx-check-circle'></i> @TempData["Success"]
-            </div>
-            <input type="hidden" id="tempDataSuccess" value="true" />
-            <div class="progress-bar success"></div>
-        </div>
-    }
-
-    @if (TempData["Error"] != null)
-    {
-        <div class="notification error">
-            <div class="notification-content">
-                <i class='bx bx-error-circle'></i>
-                <span>@TempData["Error"]</span>
-            </div>
-            <input type="hidden" id="tempDataSuccess" value="false" />
-            <div class="progress-bar error"></div>
-        </div>
-    }
-
-    <input type="hidden" id="hdnJobRole" value="@jobRole" />
-    <div asp-validation-summary="ModelOnly" class="error"></div>
-
-    <input type="hidden" asp-for="InkId" />
-
-    <div class="inputBox">
-        <label asp-for="Name" class="textlabel"></label>
-        <input asp-for="Name" class="place" id="Name" />
-        <span asp-validation-for="Name" class="error"></span>
-    </div>
-
-    <div class="inputBox">
-        <label asp-for="Colored" class="textlabel"></label>
-        <select asp-for="Colored" class="place">
-            @{
-        foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+        @if (TempData["Success"] != null)
         {
-            if (item.Type == 0)
-            {
-                <option value="@item.Colored">@item.Colored</option>
-            }
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
         }
-            }
-        </select>
-        <span asp-validation-for="Colored" class="error"></span>
-    </div>
 
-    <div class="inputBox">
-        <label asp-for="Quantity" class="textlabel"></label>
-        <input asp-for="Quantity" class="place" readonly disabled />
-    </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+                <div class="progress-bar error"></div>
+            </div>
+        }
 
-    <div class="inputBox">
-        <label asp-for="Price" class="textlabel"></label>
-        <input asp-for="Price" class="place" readonly disabled />
-    </div>
+        <input type="hidden" id="hdnJobRole" value="@jobRole" />
+        <div asp-validation-summary="ModelOnly" class="error"></div>
 
-    <div class="inputBox">
-        <label asp-for="TotalBalance" class="textlabel"></label>
-        <input asp-for="TotalBalance" class="place" readonly disabled />
-    </div>
+        <input type="hidden" asp-for="InkId" />
 
         <div class="inputBox">
-        <label asp-for="NumberOfUnits" class="textlabel"></label>
-        <input asp-for="NumberOfUnits" class="place" readonly disabled />
-    </div>
+            <label asp-for="Name" class="textlabel"></label>
+            <input asp-for="Name" class="place" id="Name" />
+            <span asp-validation-for="Name" class="error"></span>
+        </div>
 
         <div class="inputBox">
-        <label asp-for="AverageQuantity" class="textlabel"></label>
-        <input asp-for="AverageQuantity" class="place"   />
-                <span asp-validation-for="AverageQuantity" class="error"></span>
-    </div>
+            <label asp-for="Colored" class="textlabel"></label>
+            <select asp-for="Colored" class="place">
+                @{
+                    foreach (var item in (List<ColorWeightSize>)ViewBag.ColorWeightSizeList)
+                    {
+                        if (item.Type == 0)
+                        {
+                            <option value="@item.Colored">@item.Colored</option>
+                        }
+                    }
+                }
+            </select>
+            <span asp-validation-for="Colored" class="error"></span>
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="Quantity" class="textlabel"></label>
+            <input asp-for="Quantity" class="place" readonly disabled />
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="Price" class="textlabel"></label>
+            <input asp-for="Price" class="place" readonly disabled />
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="TotalBalance" class="textlabel"></label>
+            <input asp-for="TotalBalance" class="place" readonly disabled />
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="NumberOfUnits" class="textlabel"></label>
+            <input asp-for="NumberOfUnits" class="place" readonly disabled />
+        </div>
+
+        <div class="inputBox">
+            <label asp-for="AverageQuantity" class="textlabel"></label>
+            <input asp-for="AverageQuantity" id="AverageQuantity" min="0" type="number" step="1" class="place" />
+            <span asp-validation-for="AverageQuantity" class="error"></span>
+        </div>
 
 
 
 
-    <div class="inputBox">
-        <label asp-for="ReorderPoint" class="textlabel"></label>
-        <input asp-for="ReorderPoint" type="number" step="any" class="place" id="ReorderPoint" />
-        <span asp-validation-for="ReorderPoint" class="error"></span>
-    </div>
+        <div class="inputBox">
+            <label asp-for="ReorderPoint" class="textlabel"></label>
+            <input asp-for="ReorderPoint" type="number" step="any" class="place" id="ReorderPoint" />
+            <span asp-validation-for="ReorderPoint" class="error"></span>
+        </div>
 
         <div class="inputBox">
             <label asp-for="Activated" class="textlabel"> </label>
@@ -155,126 +158,12 @@
             </select>
         </div>
 
-    <div class="button-container">
-        <input type="submit" value="تعديل" class="btn btn-primary" />
-    </div>
+        <div class="button-container">
+            <input type="submit" value="تعديل" class="btn btn-primary" />
+        </div>
 
-</form>
-
-
-    @* <form asp-controller="Inventory" asp-action="EditInk" method="post" id="myform"> *@
-
-    @*     @if (TempData["Success"] != null) *@
-    @*     { *@
-    @*         <div class="notification success"> *@
-    @*             <div class="notification-content"> *@
-    @*                 <i class='bx bx-check-circle'></i> @TempData["Success"] *@
-
-    @*             </div> *@
-    @*             <input type="hidden" id="tempDataSuccess" value="true" /> *@
-    @*             <div class="progress-bar success"></div> *@
-    @*         </div> *@
-    @*     } *@
-
-    @*     @if (TempData["Error"] != null) *@
-    @*     { *@
-    @*         <div class="notification error"> *@
-    @*             <div class="notification-content"> *@
-    @*                 <i class='bx bx-error-circle'></i> *@
-    @*                 <span>@TempData["Error"]</span> *@
-    @*             </div> *@
-    @*             <input type="hidden" id="tempDataSuccess" value="false" /> *@
-
-    @*             <div class="progress-bar error"></div> *@
-
-    @*         </div> *@
-    @*     } *@
-    @*     <input type="hidden" id="hdnJobRole" value="@jobRole" /> *@
-    @*     <div asp-validation-summary="ModelOnly" class="error"></div> *@
-       
-    @*      <input type="hidden" asp-for="InkId" />  *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="@Model.Name" class="textlabel"></label> *@
-    @*         <input asp-for="@Model.Name" id="Name" class="place" /> *@
-    @*         <span asp-validation-for="@Model.Name" class="error"></span> *@
-    @*         <span class="error"></span> *@
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="@Model.Colored" class="textlabel"></label> *@
-    @*         <select asp-for="@Model.Colored" class="place"> *@
-
-    @*             @{ *@
-
-    @*                 foreach (ColorWeightSize item in cwsList) *@
-    @*                 { *@
-    @*                     if (item.Type == 0 && item.Colored == Model.Colored) *@
-    @*                     { *@
-    @*                         <option value="@item.Colored" selected>@item.Colored</option> *@
-    @*                     } *@
-    @*                     else if (item.Type == 0) *@
-    @*                     { *@
-    @*                         <option value="@item.Colored">@item.Colored</option> *@
-    @*                     } *@
-    @*                 } *@
-    @*             } *@
-    @*         </select> *@
-    @*         <span asp-validation-for="@Model.Colored" class="error"></span> *@
-
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="TotalBalance" class="textlabel"></label> *@
-    @*         <input asp-for="TotalBalance" id="TotalBalance" class="place" readonly disabled /> *@
-    @*         <span class="error"></span> *@
-
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="Quantity" class="textlabel"></label> *@
-    @*         <input asp-for="Quantity" id="Quantity" class="place" readonly disabled /> *@
-    @*         <span class="error"></span> *@
-
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="Price" class="textlabel"></label> *@
-    @*         <input asp-for="Price" id="Price" class="place" readonly disabled /> *@
-    @*         <span class="error"></span> *@
-
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="@Model.ReorderPoint" class="textlabel"></label> *@
-    @*         <input asp-for="@Model.ReorderPoint" step="any" type="number" step="any" id="ReorderPoint" class="place" /> *@
-    @*         <span asp-validation-for="@Model.ReorderPoint" class="error"></span> *@
-    @*         <span class="error"></span> *@
-    @*     </div> *@
-
-    @*     <div class="inputBox"> *@
-    @*         <label asp-for="@Model.Activated" class="textlabel"> </label> *@
-    @*         <select asp-for="@Model.Activated" id="options" class="place"> *@
-    @*             @{ *@
-    @*                 if (Model.Activated) *@
-    @*                 { *@
-    @*                     <option value="true" selected>مفعل</option> *@
-    @*                     <option value="false">غير مفعل</option> *@
-    @*                 } *@
-    @*                 else *@
-    @*                 { *@
-    @*                     <option value="false" selected>غير مفعل</option> *@
-    @*                     <option value="true">مفعل</option> *@
-    @*                 } *@
-    @*             } *@
-    @*         </select> *@
-    @*     </div> *@
-
-    @*     <div class="button-container"> *@
-    @*         <input type="submit" value="تعديل" class="btn btn-primary" /> *@
-    @*     </div> *@
-    @* </form> *@
+    </form>
 </div>
 
- <script src="~/js/Inventory/EditInk.js"></script> 
+<script src="~/js/Inventory/EditInk.js"></script>
 

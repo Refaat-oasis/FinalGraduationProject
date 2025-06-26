@@ -40,19 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        //if (Quantity.value.trim() === "" || isNaN(Quantity.value) || parseInt(Quantity.value) <= 0) {
-        //    setError(Quantity, "برجاء إدخال كمية الحبر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(Quantity);
-        //}
-
-        //if (Price.value.trim() === "" || isNaN(Price.value) || parseFloat(Price.value) <= 0) {
-        //    setError(Price, "برجاء إدخال سعر الحبر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(Price);
-        //}
 
         if (Colored.value.trim() === "") {
             setError(Colored, "برجاء إدخال لون الحبر");
@@ -61,19 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(Colored);
         }
 
-        //if (TotalBalance.value.trim() === "" || isNaN(TotalBalance.value) || parseFloat(TotalBalance.value) <= 0) {
-        //    setError(TotalBalance, "برجاء إدخال القيمة المتاحه للحبر");
-        //    valid = false;
-        //} else {
-        //    setSuccess(TotalBalance);
-        //}
-
-        if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
-            setError(ReorderPoint, "برجاء إدخال نقطة إعادة الطلب");
+       
+        if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) < 0) {
+            setError(ReorderPoint, "برجاء عدم إدخال قيم سالبه");
             valid = false;
         } else {
             setSuccess(ReorderPoint);
         }
+
 
         return valid;
     }
@@ -81,13 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     myform.addEventListener("submit", function (e) {
-        e.preventDefault(); // Always prevent default first
+        e.preventDefault(); 
 
         if (!validate()) {
-            // Validation failed
             return false;
         } else {
-            // Validation successful - submit the form programmatically
             myform.submit();
         }
     });
@@ -95,14 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const tempDataElement = document.getElementById('tempDataSuccess');
     const jobRoleElement = document.getElementById('hdnJobRole');
 
-    // Get values with proper fallbacks
     const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
     const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
     console.log("Success message exists:", hasSuccessMessage);
     console.log("Job role:", jobRole);
 
-    // Mapping of job roles to their respective URLs
     const jobRoleRoutes = {
         0: "/employee/AdminHome",
         1: "/employee/inventoryManager",

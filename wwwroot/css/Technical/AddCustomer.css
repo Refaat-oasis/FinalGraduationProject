@@ -41,7 +41,7 @@ h1 {
     text-align: center !important; /* Added right alignment */
 }
 
-.inputBox {
+.input-control {
     margin-left: 25%;
     position: center;
     width: 50%;

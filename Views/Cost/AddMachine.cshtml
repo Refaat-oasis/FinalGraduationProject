@@ -32,28 +32,28 @@
 
 
 
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
 
-            } // Cost manager
-            else if (jobRole == 5)
-            {
-                <a asp-controller="employee" asp-action="CostManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
-
+        } // Cost manager
+        else if (jobRole == 5)
+        {
+            <a asp-controller="employee" asp-action="CostManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
         }
-    </div>
 
-    <div class="form-container">
+
+    }
+</div>
+
+<div class="form-container">
     <form asp-action="AddMachine" id="myform" enctype="multipart/form-data" method="post">
         @* Success and Error Messages *@
         @if (TempData["Success"] != null)
@@ -89,20 +89,20 @@
         </div>
 
         <div class="inputBox">
-            <label for="Name" class="textlabel">اسم الاله</label>
+            <label for="Name" class="textlabel">اسم الماكينه</label>
             <input type="text" class="place" asp-for="@Model.MachineProcessName" id="Name" />
             <span asp-validation-for="@Model.MachineProcessName" class="error"></span>
         </div>
 
         <div class="inputBox">
-            <label for="Price" class="textlabel">سعر الاله</label>
+            <label for="Price" class="textlabel">سعر الساعه</label>
             <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
             <span asp-validation-for="@Model.Price" class="error"></span>
         </div>
 
         <div class="button-container">
             <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />
-            </div>
+        </div>
     </form>
 </div>
 <script src="~/js/Cost/AddMachine.js"></script>

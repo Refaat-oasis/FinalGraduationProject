@@ -5,7 +5,7 @@ namespace ThothSystemVersion1.Models;
 
 public partial class Paper
 {
-    [Display(Name = "رقم الورق")]
+    [Display(Name = "الرقم التعريفي للورق")]
     public int PaperId { get; set; }
 
     [Display(Name = "اسم الورق")]

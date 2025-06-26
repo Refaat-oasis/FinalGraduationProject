@@ -196,6 +196,7 @@
                 <th>حالة الطلب</th>
                 <th>تاريخ الانتهاء</th>
                 <th>تاريخ البدء</th>
+                <th>الرقم التعريفي للطلبية </th>
             </tr>
             @{
                 foreach (JobOrderCustEmpVM job in Model)
@@ -214,6 +215,7 @@
                         <td>@job.OrderProgress</td>
                         <td>@job.EndDate</td>
                         <td>@job.StartDate</td>
+                        <td>@job.JobOrderId</td>
                     </tr>
                 }
             }

@@ -7,7 +7,7 @@ namespace ThothSystemVersion1.Models;
 public partial class SparePart
 {
 
-    [Display(Name = "رقم قطعة الغيار")]
+    [Display(Name = "الرقم التعريفي لقطعة الغيار")]
 
     public int SparePartsId { get; set; }
 

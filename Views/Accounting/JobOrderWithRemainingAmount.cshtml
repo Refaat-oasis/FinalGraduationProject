@@ -19,7 +19,10 @@
     <link href="~/css/Technical/viewAllJobOrder.css" rel="stylesheet" />
 </head>
 <div class="container">
-   
+    <div id="reorderMessages" class="reorderMsg" style="display:none;">
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
+
+    </div>
     <h1>الطلبيات</h1>
 
     <div class="arrow mb-4">
@@ -55,21 +58,24 @@
                 <th>حالة الطلب</th>
                 <th>تاريخ الانتهاء</th>
                 <th>تاريخ البدء</th>
+                <th>الرقم التعريفي للطلبية</th>
             </tr>
             @{
                 foreach (JobOrderCustEmpVM job in Model.OrderByDescending(j => j.StartDate))
                 {
                     <tr>
                         <td>
-                            <a asp-controller="Accounting" asp-action="makeReceipt" asp-route-JobOrderId="@job.JobOrderId" class="editBtn">طلب استلام اموال</a>
+                            <a asp-controller="Accounting" asp-action="makeReceipt" asp-route-JobOrderId="@job.JobOrderId" class="editBtn1">طلب استلام اموال</a>
                         </td>
                         <td>
-                            <a asp-controller="technical" asp-action="ShowJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId" class="editBtn">اظهار التفاصيل</a>
+                            <a asp-controller="technical" asp-action="ShowJobOrderSpecifications" asp-route-jobOrderId="@job.JobOrderId" class="editBtn1">اظهار التفاصيل</a>
                         </td>
                         <td>@job.CustomerName</td>
                         <td>@job.OrderProgress</td>
                         <td>@job.EndDate</td>
                         <td>@job.StartDate</td>
+                        <td>@job.JobOrderId</td>
+
                     </tr>
                 }
             }
@@ -113,4 +119,32 @@
           // Append the new message rather than replacing previous ones
           messageDiv.innerHTML += "<div>" + message + "</div>";
       });
+       function searchJobOrder() {
+             var input, filter, table, tr, td, i, j, txtValue;
+             input = document.getElementById("searchInput");
+             filter = input.value.toUpperCase();
+             table = document.getElementById("jobOrderTable");
+             tr = table.getElementsByTagName("tr");
+
+             // Loop through all table rows (skip the header row)
+             for (i = 1; i < tr.length; i++) {
+                 tr[i].style.display = "none"; // Hide the row by default
+                 td = tr[i].getElementsByTagName("td");
+
+                 // Loop through all columns in the current row
+                 for (j = 0; j < td.length; j++) {
+                     if (td[j]) {
+                         txtValue = td[j].textContent || td[j].innerText;
+                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                             tr[i].style.display = ""; // Show the row if a match is found
+                             break; // Exit the inner loop if a match is found
+                         }
+                     }
+                 }
+             }
+         }
+          function closeReorderMessages() {
+                 var messageDiv = document.getElementById("reorderMessages");
+                 messageDiv.style.display = "none";
+             }
 </script>

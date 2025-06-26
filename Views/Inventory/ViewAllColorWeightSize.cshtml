@@ -75,6 +75,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Type)
                     </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ColorWeightSizeId)
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +100,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ColorWeightSizeId)
                         </td>
                     </tr>
                 }

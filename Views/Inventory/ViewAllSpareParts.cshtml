@@ -48,7 +48,7 @@
     <h1>مخزون قطع غيار الالات</h1>
 
     <div id="reorderMessages" class="reorderMsg" style="display:none;">
-        <button class="close-btn" onclick="closeReorderMessages()">×</button>
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
 
     </div>
 
@@ -71,6 +71,7 @@
                     <th>الكمية</th>
                     <th>القيمة المتاحة</th>
                     <th>الاسم</th>
+                    <th>الرقم التعريفي لقطعة الغيار</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,6 +91,8 @@
                         <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
 
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SparePartsId)</td>
+
                     </tr>
                 }
             </tbody>

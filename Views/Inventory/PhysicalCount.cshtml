@@ -232,6 +232,7 @@
  <div class="container">
     <h1>تعديل المخزون</h1>
     <div class="card-body">
+        <div class="redirect">
         @if (TempData["Success"] != null) {
             <div class="success-message">
                 <i class="bx bx-check-circle"></i> @TempData["Success"]
@@ -242,7 +243,7 @@
                 <i class="bx bx-error-circle"></i> @TempData["Error"]
             </div>
         }
-
+        </div>
         <form method="post" asp-action="physicalCount" id="inventoryForm">
             <!-- Item Selection Section -->
             <div class="rowCont">

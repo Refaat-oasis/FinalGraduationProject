@@ -47,6 +47,10 @@
 
         }
     </div>
+    <div id="reorderMessages" class="reorderMsg" style="display:none;">
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
+
+    </div>
     <h1>الطلبيات</h1>
     <div class="btn">
         <a asp-action="CreateNewJobOrder" asp-controller="Technical" class="editBtn">اضافة</a>
@@ -63,6 +67,8 @@
                 <th>حالة الطلب</th>
                 <th>تاريخ الانتهاء</th>
                 <th>تاريخ البدء</th>
+                <th>الرقم التعريفي</th>
+
             </tr>
             @{
                 foreach (JobOrderCustEmpVM job in Model)
@@ -81,6 +87,8 @@
                         <td>@job.OrderProgress</td>
                         <td>@job.EndDate</td>
                         <td>@job.StartDate</td>
+                        <td>@job.JobOrderId</td>
+
                     </tr>
                 }
             }
@@ -123,4 +131,8 @@
           // Append the new message rather than replacing previous ones
           messageDiv.innerHTML += "<div>" + message + "</div>";
       });
+      function closeReorderMessages() {
+                 var messageDiv = document.getElementById("reorderMessages");
+                 messageDiv.style.display = "none";
+             }
 </script>

@@ -15,11 +15,11 @@
     <link rel="icon" type="image/jpeg" href="~/image/eye.jpg" asp-append-version="true" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link href="~/css/Inventory/AddCharacteristic.css" rel="stylesheet" />
+    <link href="~/css/Inventory/EditCharacteristics.css" rel="stylesheet" />
     <title>ThoTh</title>
 </head>
 
-<div class="container">
+
     <div class="arrow">
         @{
             if (jobRole == 0)
@@ -42,7 +42,7 @@
             }
         }
     </div>
-
+<div class="form-container">
     <form asp-controller="Inventory" asp-action="EditCharacteristics" id="myform" method="post">
         <input type="hidden" asp-for="ColorWeightSizeId" />
         <input type="hidden" id="hdnJobRole" value="@jobRole" />

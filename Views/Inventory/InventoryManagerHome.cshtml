@@ -30,29 +30,7 @@
     <link href="@Url.Content("~/css/Inventory/InventoryHome.css")" rel="stylesheet" />
 
     <style>
-        .reorderMsg {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            background-color: #ffebee; /* أحمر للتنبيه */
-            border: 2px solid red;
-            color: black;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            display: none;
-            font-size: 18px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            transform: translateY(-20px);
-        }
 
-            .reorderMsg.show {
-                display: block;
-                opacity: 1;
-                transform: translateY(0);
-            }
 
 
 
@@ -95,7 +73,7 @@
         .dashboard-icons {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; 
+            align-items: flex-start;
             gap: 10px;
             margin-top: 100px;
             margin-bottom: 0;
@@ -110,7 +88,7 @@
             flex-direction: row;
             gap: 40px;
             flex-wrap: wrap;
-            justify-content: flex-start; 
+            justify-content: flex-start;
         }
 
         .icon-box {
@@ -231,7 +209,7 @@
 
         .hello {
             position: absolute;
-            top: 50px; 
+            top: 50px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -315,14 +293,45 @@
             border-radius: 6px;
         }
 
+
+        /* container positioning + hidden by default */
+        #reorderMessages {
+            position: fixed;
+            bottom: 2px;
+            left: 20px;
+            width: 300px;
+            display: none;
+            z-index: 9999;
+        }
+            /* each message style */
+            #reorderMessages .msg {
+            }
+
+            #reorderMessages .show {
+                display: block;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .msg-line {
+            /* background-color: #ffebee; /* أحمر للتنبيه */
+            background-color: #FDF5E6;
+            border: 4px solid #F8E1C4;
+            color: black;
+            padding: 15px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 18px;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(-20px);
+            direction: rtl;
+        }
     </style>
 
 </head>
 <body>
-    <div id="reorderMessages" class="reorderMsg">
-        @* <button class="close-btn" onclick="closeReorderMessages()">×</button> *@
-        <!-- The reorder messages will be dynamically added here -->
-    </div>
+
 
     <div class="hello">
         <h1>تحوت يتمني لك يوم سعيد</h1>
@@ -347,59 +356,59 @@
 
 
 
-    <div class="icon-box" onclick="toggleList(this)">
-        <img src="~/image/warehouse.png" alt="المخازن" class="icon-img" />
-        <p>المخازن</p>
-        <ul class="icon-list">
-            <li class="has-sublist">
-                <span class="main-item">إضافة الأصناف</span>
-                <ul class="sub-list">
-                    <li>@Html.ActionLink(" صنف ورق جديد", "NewPaper", "Inventory")</li>
-                    <li>@Html.ActionLink(" حبر جديد", "NewInk", "Inventory")</li>
-                    <li>@Html.ActionLink(" مستلزمات جديده", "NewSupply", "Inventory")</li>
-                    <li>@Html.ActionLink(" قطع غيار جديده", "AddSparePart", "Inventory")</li>
-                    <li>@Html.ActionLink(" اله جديده", "AddMachine", "Inventory")</li>
-                </ul>
-            </li>
-            <li class="has-sublist">
-                <span class="main-item"> عرض اصناف المخزون </span>
-                <ul class="sub-list">
-                    <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
-                    <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
-                    <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
-                    <li>@Html.ActionLink(" قطع الغيار", "ViewAllSparePart", "Inventory")</li>
-                    <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
-                </ul>
-            </li>
+            <div class="icon-box" onclick="toggleList(this)">
+                <img src="~/image/warehouse.png" alt="المخازن" class="icon-img" />
+                <p>المخازن</p>
+                <ul class="icon-list">
+                    <li class="has-sublist">
+                        <span class="main-item">إضافة الأصناف</span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink(" صنف ورق جديد", "NewPaper", "Inventory")</li>
+                            <li>@Html.ActionLink(" حبر جديد", "NewInk", "Inventory")</li>
+                            <li>@Html.ActionLink(" مستلزمات جديده", "NewSupply", "Inventory")</li>
+                            <li>@Html.ActionLink(" قطع غيار جديده", "AddSparePart", "Inventory")</li>
+                            <li>@Html.ActionLink(" اله جديده", "AddMachine", "Inventory")</li>
+                        </ul>
+                    </li>
+                    <li class="has-sublist">
+                        <span class="main-item"> عرض اصناف المخزون </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
+                            <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
+                            <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
+                            <li>@Html.ActionLink(" قطع الغيار", "ViewAllSparePart", "Inventory")</li>
+                            <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
+                        </ul>
+                    </li>
 
-            <li class="has-sublist">
-                <span class="main-item"> الموردين </span>
-                <ul class="sub-list">
-                    <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
-                </ul>
-            </li>
+                    <li class="has-sublist">
+                        <span class="main-item"> الموردين </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
+                            <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
+                        </ul>
+                    </li>
 
-            <li class="has-sublist">
-                <span class="main-item"> الموصفات </span>
-                <ul class="sub-list">
-                    <li>@Html.ActionLink("إضافة المواصفات", "AddCharacteristic", "Inventory")</li>
-                    <li>@Html.ActionLink("عرض جميع المواصفات", "ViewAllColorWeightSize", "Inventory")</li>
-                </ul>
-            </li>
+                    <li class="has-sublist">
+                        <span class="main-item"> الموصفات </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("إضافة المواصفات", "AddCharacteristic", "Inventory")</li>
+                            <li>@Html.ActionLink("عرض جميع المواصفات", "ViewAllColorWeightSize", "Inventory")</li>
+                        </ul>
+                    </li>
 
-            <li class="has-sublist">
-                <span class="main-item"> عمليات المخزن </span>
-                <ul class="sub-list">
-                    <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
-                    <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
-                    <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
-                    <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
-                    <li>@Html.ActionLink("صرف مخزن دائم", "PerpetualRequisite", "Inventory")</li>
+                    <li class="has-sublist">
+                        <span class="main-item"> عمليات المخزن </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
+                            <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
+                            <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
+                            <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
+                            <li>@Html.ActionLink("صرف مخزن دائم", "PerpetualRequisite", "Inventory")</li>
 
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            </ul>
             </div>
 
 
@@ -409,9 +418,11 @@
                     <p>الملف الشخصي</p>
                 </a>
             </div>
-            
-            </div>
-            </div>
+
+        </div>
+        <div id="reorderMessages"></div>
+
+    </div>
 
 
 
@@ -570,4 +581,84 @@
     // setupSignalR("Ink", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
     // setupSignalR("Supply", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
     // setupSignalR("spapre", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
+
+    <script>
+            function showReorderNotification(name) {
+          const container = document.getElementById("reorderMessages");
+
+          // create a single line for this notification
+          const line = document.createElement("div");
+          line.classList.add("msg-line");
+          line.innerText = name;
+
+          // ensure the container is visible and append the line
+          container.style.display = "block";
+          container.appendChild(line);
+
+          // after 5s, fade out & remove this line
+          setTimeout(() => {
+            line.style.opacity = "0";
+            setTimeout(() => {
+              container.removeChild(line);
+              if (!container.hasChildNodes()) {
+                container.style.display = "none";
+              }
+            }, 500);
+          }, 5000);
+        }
+
+        (async function() {
+          const hub = new signalR.HubConnectionBuilder()
+            .withUrl("/InventoryReorderPoint")
+            .withAutomaticReconnect()   // optional, but if you keep this, the guard below will prevent re-invocation
+            .build();
+
+          let didInvokeChecks = false;
+
+          hub.onreconnecting(error => {
+            console.warn("Reconnecting, will not re-run checks");
+          });
+
+          hub.onreconnected(connectionId => {
+            console.log("Reconnected, skipping initial checks");
+          });
+
+          // All low-stock messages come through this one handler:
+          hub.on("recieveInventoryBalances", message => {
+            console.log("Low-stock message:", message);
+            showReorderNotification(message);
+          });
+
+                // All low-stock messages come through this one handler:
+          hub.on("recieveLate", message => {
+            console.log("Late message:", message);
+            showReorderNotification(message);
+          });
+
+          try {
+            await hub.start();
+            console.log("SignalR connected");
+
+            if (!didInvokeChecks) {
+              didInvokeChecks = true;
+
+              // Fire each check exactly once on first connect
+              await Promise.all([
+                hub.invoke("checkInventoryBalancePaper"),
+                hub.invoke("checkInventoryBalanceInk"),
+                hub.invoke("checkInventoryBalanceSupply"),
+                hub.invoke("checkInventoryBalanceSpareParts"),
+                hub.invoke("checkLateJobOrder"),// technical
+                hub.invoke("checkLatePayment"),// acc
+                hub.invoke("checkLateReceipt"),//acc
+
+              ]);
+            }
+          }
+          catch (err) {
+            console.error("SignalR setup error:", err);
+          }
+        })();
+</script>
+
 </script>

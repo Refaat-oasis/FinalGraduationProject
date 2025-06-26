@@ -41,19 +41,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return valid;
     }
 
-    function setError(input, errorMsg) {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        errorParagraph.innerText = errorMsg;
-        inputBox.classList.add("error");
+    // عند وجود خطأ في التحقق
+    function setError(input, message) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.add('invalid');
+        errorDisplay.innerText = message;
+        errorDisplay.style.display = "block"; // إظهار
     }
 
     function setSuccess(input) {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        errorParagraph.innerText = "";
-        inputBox.classList.remove("error");
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.remove('invalid');
+        errorDisplay.innerText = "";
+        errorDisplay.style.display = "none"; // إخفاء
     }
+
 
     myform.addEventListener("submit", function (e) {
         e.preventDefault(); 

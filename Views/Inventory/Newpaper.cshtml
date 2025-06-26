@@ -95,7 +95,7 @@
         <div class="inputBox">
             <label for="paperName" class="textlabel">اسم خام الورق</label>
             <input type="text" class="place" asp-for="@Model.Name" id="paperName" />
-            <span class="error" asp-validation-for="@Model.Name"></span>
+            <span class="error style=" display: none;" asp-validation-for="@Model.Name"></span>
         </div>
 
         <div class="inputBox">
@@ -112,7 +112,7 @@
                     }
                 }
             </select>
-            <span class="error" asp-validation-for="@Model.Size"></span>
+            <span class="error style=" display: none;" asp-validation-for="@Model.Size"></span>
         </div>
 
         <div class="inputBox">
@@ -129,13 +129,13 @@
                     }
                 }
             </select>
-            <span class="error" asp-validation-for="@Model.Weight"></span>
+            <span class="error style=" display: none;" asp-validation-for="@Model.Weight"></span>
         </div>
 
         <div class="inputBox">
             <label for="Quantity" class="textlabel">كميه الورق</label>
             <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
-            <p asp-validation-for="@Model.Quantity" class="error"></p>
+            <p asp-validation-for="@Model.Quantity" class="error style=" display: none""></p>
         </div>
 
         <div class="inputBox">
@@ -152,7 +152,7 @@
                     }
                 }
             </select>
-            <span asp-validation-for="@Model.Colored" class="error"></span>
+            <span asp-validation-for="@Model.Colored" class="error style=" display: none;"></span>
         </div>
 
         @* <div class="inputBox">
@@ -164,13 +164,13 @@
         <div class="inputBox">
             <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
             <input type="number" class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
-            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+            <span asp-validation-for="@Model.ReorderPoint" class="error style=" display: none;"></span>
         </div>
 
         <div class="inputBox">
             <label for="Price" class="textlabel">سعر الورق</label>
             <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
-            <span asp-validation-for="@Model.Price" class="error"></span>
+            <span asp-validation-for="@Model.Price" class="error style="display: none;"></span>
         </div>
 
         <div class="button-container">

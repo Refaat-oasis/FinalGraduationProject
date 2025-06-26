@@ -88,7 +88,7 @@
         <div class="inputBox">
             <label asp-for="Name" class="textlabel"></label>
             <input asp-for="Name" class="place" id="Name" />
-            <span asp-validation-for="Name" class="error"></span>
+            <span asp-validation-for="Name" class="error style=" display: none;"></span>
         </div>
 
         <div class="inputBox">
@@ -104,7 +104,7 @@
                     }
                 }
             </select>
-            <span asp-validation-for="Colored" class="error"></span>
+            <span asp-validation-for="Colored" class="error style=" display: none;"></span>
         </div>
 
         <div class="inputBox">
@@ -130,7 +130,7 @@
         <div class="inputBox">
             <label asp-for="AverageQuantity" class="textlabel"></label>
             <input asp-for="AverageQuantity" id="AverageQuantity" min="0" type="number" step="1" class="place" />
-            <span asp-validation-for="AverageQuantity" class="error"></span>
+            <span asp-validation-for="AverageQuantity" class="error style=" display: none;"></span>
         </div>
 
 
@@ -139,7 +139,7 @@
         <div class="inputBox">
             <label asp-for="ReorderPoint" class="textlabel"></label>
             <input asp-for="ReorderPoint" type="number" step="any" class="place" id="ReorderPoint" />
-            <span asp-validation-for="ReorderPoint" class="error"></span>
+            <span asp-validation-for="ReorderPoint" class="error style=" display: none;"></span>
         </div>
 
         <div class="inputBox">

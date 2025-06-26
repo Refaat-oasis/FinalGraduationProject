@@ -91,13 +91,13 @@
         <div class="inputBox">
             <label for="Name" class="textlabel">اسم الماكينه</label>
             <input type="text" class="place" asp-for="@Model.MachineProcessName" id="Name" />
-            <span asp-validation-for="@Model.MachineProcessName" class="error"></span>
+            <span asp-validation-for="@Model.MachineProcessName" class="error style="display: none;"></span>
         </div>
 
         <div class="inputBox">
             <label for="Price" class="textlabel">سعر الساعه</label>
             <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
-            <span asp-validation-for="@Model.Price" class="error"></span>
+            <span asp-validation-for="@Model.Price" class="error style="display: none;"></span>
         </div>
 
         <div class="button-container">

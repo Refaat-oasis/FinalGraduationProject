@@ -91,7 +91,7 @@
         <div class="inputBox">
             <label asp-for="@Model.Name" class="textlabel"></label>
             <input asp-for="@Model.Name" id="Name" class="place" />
-            <span asp-validation-for="@Model.Name" class="error"></span>
+            <span asp-validation-for="@Model.Name" class="error style=" display: none;"></span>
             <span class="error"></span>
         </div>
 
@@ -117,7 +117,7 @@
         <div class="inputBox">
             <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
             <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" />
-            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+            <span asp-validation-for="@Model.ReorderPoint" class="error style=" display: none;"></span>
 
             <span class="error"></span>
         </div>
@@ -136,7 +136,7 @@
                     <option value="true">مفعل</option>
                 }
             </select>
-            <span asp-validation-for="@Model.Activated" class="error"></span>
+            <span asp-validation-for="@Model.Activated" class="error style=" display: none;"></span>
         </div>
 
         <div class="button-container">

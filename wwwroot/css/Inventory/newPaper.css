@@ -131,14 +131,26 @@ h1 {
 
 
 .error {
-    color: red;
     font-size: 20px;
-    margin-top: 5px;
-    display: block;
     text-align: right;
     direction: rtl;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border-left: 3px solid #dc3545;
+    margin-right: 5px;
+    background-color: #dc3545;
+    color: #dc3545;
+    display: none;
 }
 
+
+.inputBox.invalid .place {
+    border-color: #dc3545;
+}
+
+.inputBox.invalid .error {
+    display: block;
+}
 /* Notification styles */
 .notification {
     position: fixed;

@@ -5,21 +5,23 @@
     const TotalBalance = document.getElementById("TotalBalance");
 
 
-    const setError = (input, errorMsg) => {
-        const parent = input.parentElement;
-        const errorSpan = parent.querySelector(".error");
-        errorSpan.innerText = errorMsg;
-        errorSpan.style.color = "red";
-        input.classList.add("error");
-    };
+    // عند وجود خطأ في التحقق
+    function setError(input, message) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.add('invalid');
+        errorDisplay.innerText = message;
+        errorDisplay.style.display = "block"; // إظهار
+    }
 
-    const setSuccess = (input) => {
-        const parent = input.parentElement;
-        const errorSpan = parent.querySelector(".error");
-        errorSpan.innerText = "";
-        input.classList.remove("error");
-        input.classList.add("success");
-    };
+    function setSuccess(input) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.remove('invalid');
+        errorDisplay.innerText = "";
+        errorDisplay.style.display = "none"; // إخفاء
+    }
+
 
     function validate() {
         let valid = true;

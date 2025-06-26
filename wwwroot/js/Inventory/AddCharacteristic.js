@@ -19,26 +19,22 @@
     type.addEventListener("change", toggleFields);
     toggleFields(); // عند التحميل الأولي
 
-    const setError = (input, msg) => {
-        const parent = input.closest(".inputBox");
-        const errorSpan = parent ? parent.querySelector(".error") : null;
-        if (errorSpan) {
-            errorSpan.innerText = msg;
-            errorSpan.style.color = "red";
-        }
-        input.classList.add("error");
-        input.classList.remove("success");
-    };
+    // عند وجود خطأ في التحقق
+    function setError(input, message) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.add('invalid');
+        errorDisplay.innerText = message;
+        errorDisplay.style.display = "block"; // إظهار
+    }
 
-    const setSuccess = (input) => {
-        const parent = input.closest(".inputBox");
-        const errorSpan = parent ? parent.querySelector(".error") : null;
-        if (errorSpan) {
-            errorSpan.innerText = "";
-        }
-        input.classList.remove("error");
-        input.classList.add("success");
-    };
+    function setSuccess(input) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.remove('invalid');
+        errorDisplay.innerText = "";
+        errorDisplay.style.display = "none"; // إخفاء
+    }
 
     function validate() {
         let valid = true;

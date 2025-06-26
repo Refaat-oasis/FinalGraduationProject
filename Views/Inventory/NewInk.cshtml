@@ -95,7 +95,7 @@
         <div class="inputBox">
             <label for="InkName" class="textlabel">اسم الحبر</label>
             <input type="text" class="place" asp-for="@Model.Name" id="InkName" />
-            <p asp-validation-for="@Model.Name" class="error"></p>
+            <p asp-validation-for="@Model.Name" class="error style=" display: none;"></p>
         </div>
 
         <div class="inputBox">
@@ -112,32 +112,32 @@
                     }
                 }
             </select>
-            <span asp-validation-for="@Model.Colored" class="error"></span>
+            <span asp-validation-for="@Model.Colored" class="error style=" display: none;"></span>
         </div>
 
 
         <div class="inputBox">
             <label for="UnitPrice" class="textlabel">سعر العبوة</label>
             <input type="number" class="place" step="any" asp-for="@Model.UnitPrice" id="Price" />
-            <p asp-validation-for="@Model.UnitPrice" class="error"></p>
+            <p asp-validation-for="@Model.UnitPrice" class="error style=" display: none;"></p>
         </div>
 
         <div class="inputBox">
             <label for="AverageQuantity" class="textlabel">متوسط السحبات</label>
             <input type="number" class="place" step="any" asp-for="@Model.AverageQuantity" id="AverageQuantity" />
-            <p asp-validation-for="@Model.AverageQuantity" class="error"></p>
+            <p asp-validation-for="@Model.AverageQuantity" class="error style=" display: none;"></p>
         </div>
 
         <div class="inputBox">
             <label for="NumberOfUnits" class="textlabel">عدد العبوات</label>
             <input type="number" class="place" step="any" asp-for="@Model.NumberOfUnits" id="NumberOfUnits" />
-            <p asp-validation-for="@Model.NumberOfUnits" class="error"></p>
+            <p asp-validation-for="@Model.NumberOfUnits" class="error style=" display: none;"></p>
         </div>
 
         <div class="inputBox">
             <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
             <input type="number" class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
-            <p asp-validation-for="@Model.ReorderPoint" class="error"></p>
+            <p asp-validation-for="@Model.ReorderPoint" class="error style=" display: none;"></p>
         </div>
 
         <div class="button-container">

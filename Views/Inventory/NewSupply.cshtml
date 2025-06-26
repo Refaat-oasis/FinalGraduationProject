@@ -101,19 +101,19 @@
         <div class="inputBox">
             <label for="supplyName" class="textlabel">اسم المستلزم</label>
             <input type="text" class="place" asp-for="@Model.Name" id="supplyName" />
-            <p asp-validation-for="@Model.Name" class="error"></p>
+            <p asp-validation-for="@Model.Name" class="error style="display: none;"></p>
         </div>
 
         <div class="inputBox">
             <label for="Quantity" class="textlabel">كميه المستلزم</label>
             <input type="number" class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
-            <p asp-validation-for="@Model.Quantity" class="error"></p>
+            <p asp-validation-for="@Model.Quantity" class="error style="display: none;"></p>
         </div>
 
         <div class="inputBox">
             <label for="Price" class="textlabel">سعر المستلزم</label>
             <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+            <p asp-validation-for="@Model.Price" class="error style="display: none;"></p>
         </div>
 
         @* <div class="inputBox">
@@ -125,7 +125,7 @@
         <div class="inputBox">
             <label asp-for="@Model.ReorderPoint" class="textlabel"></label>
             <input asp-for="@Model.ReorderPoint" type="number" step="any" class="place" />
-            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+            <span asp-validation-for="@Model.ReorderPoint" class="error style="display: none;"></span>
 
             <span class="error"></span>
         </div>

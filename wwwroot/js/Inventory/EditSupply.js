@@ -32,8 +32,8 @@
             setSuccess(Name);
         }
 
-        if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) <= 0) {
-            setError(ReorderPoint, "برجاء إدخال قيمة أكبر من الصفر");
+        if (ReorderPoint.value.trim() === "" || isNaN(ReorderPoint.value) || parseFloat(ReorderPoint.value) < 0) {
+            setError(ReorderPoint, "برجاء عدم إدخال قيم سالبه");
             valid = false;
         } else {
             setSuccess(ReorderPoint);
@@ -50,27 +50,23 @@
     }
 
     myform.addEventListener("submit", function (e) {
-        e.preventDefault(); // Always prevent default first
+        e.preventDefault(); 
 
         if (!validate()) {
-            // Validation failed
             return false;
         } else {
-            // Validation successful - submit the form programmatically
             this.submit();
         }
     });
     const tempDataElement = document.getElementById('tempDataSuccess');
     const jobRoleElement = document.getElementById('hdnJobRole');
 
-    // Get values with proper fallbacks
     const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
     const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
     console.log("Success message exists:", hasSuccessMessage);
     console.log("Job role:", jobRole);
 
-    // Mapping of job roles to their respective URLs
     const jobRoleRoutes = {
         0: "/employee/AdminHome",
         1: "/employee/inventoryManager",

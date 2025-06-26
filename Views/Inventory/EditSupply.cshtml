@@ -2,6 +2,9 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 
+@{
+    Layout = null;
+}
 
 
 @model ThothSystemVersion1.Models.Supply
@@ -27,27 +30,28 @@
 }
 
 
+
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
+        {
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+
+        } // inventory manager
+        else if (jobRole == 1)
+        {
+            <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        }
+
+    }
+</div>
 <div class="form-container">
 
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-
-            } // inventory manager
-            else if (jobRole == 1)
-            {
-                <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
-        }
-    </div>
     <h1> تعديل بيانات المستلزم  : @Model.Name </h1>
 
     <form asp-controller="Inventory" asp-action="EditSupply" method="post" id="myform">
@@ -79,7 +83,7 @@
         }
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
         <div asp-validation-summary="ModelOnly" class="error"></div>
-       
+
 
         <input type="hidden" asp-for="SuppliesId" />
         @* <input type="hidden" id="tempDataSuccess" value="@TempData["success"]" /> *@

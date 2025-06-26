@@ -51,15 +51,15 @@
             setSuccess(CustomerAddress);
         }
 
-        if (Email.value.trim() === "") {
-            setError(Email, "برجاء إدخال الإيميل الإلكتروني الخاص بالعميل");
-            valid = false;
-        } else if (!Email.value.includes("@") || !Email.value.includes(".")) {
-            setError(Email, "برجاء إدخال إيميل إلكتروني صحيح");
-            valid = false;
-        } else {
-            setSuccess(Email);
-        }
+        //if (Email.value.trim() === "") {
+        //    setError(Email, "برجاء إدخال الإيميل الإلكتروني الخاص بالعميل");
+        //    valid = false;
+        //} else if (!Email.value.includes("@") || !Email.value.includes(".")) {
+        //    setError(Email, "برجاء إدخال إيميل إلكتروني صحيح");
+        //    valid = false;
+        //} else {
+        //    setSuccess(Email);
+        //}
 
         if (Phone.value.trim() === "") {
             setError(Phone, "برجاء إدخال رقم الهاتف الخاص بالعميل");

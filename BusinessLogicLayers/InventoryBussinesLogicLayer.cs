@@ -8,6 +8,7 @@ using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.InterfaceServices;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ModifiedModels;
 using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 using static System.Net.Mime.MediaTypeNames;
@@ -788,11 +789,20 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             try
             {
                 List<QuantityBridge> quantityBridgeList = new List<QuantityBridge>();
+
                 List<PurchaseOrder> purchaseOrderList = new List<PurchaseOrder>();
                 List<RequisiteOrder> requisiteOrderList = new List<RequisiteOrder>();
                 List<ReturnsOrder> returnOrderList = new List<ReturnsOrder>();
                 List<PhysicalCountOrder> physicalCountList = new List<PhysicalCountOrder>();
                 List<PerpetualRequisiteOrder> perpetualOrderList = new List<PerpetualRequisiteOrder>();
+
+                List<ModifiedPurchaseOrder> modifiedPurchaseList = new List<ModifiedPurchaseOrder>();
+                List<ModifiedRequisiteOrder> modifiedRequisiteList = new List<ModifiedRequisiteOrder>();
+                List<ModifiedReturnsOrder> modifiedReturnList = new List<ModifiedReturnsOrder>();
+                List<ModifiedPhysicalCountOrder> modifiedPhysicalList = new List<ModifiedPhysicalCountOrder>();
+                List<ModifiedPerpetualRequisiteOrder> modifiedPerpetualList = new List<ModifiedPerpetualRequisiteOrder>();
+
+
                 switch (itemType)
                 {
                     case "Paper":
@@ -969,10 +979,75 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 InventoryReportViewModel invViewModel = new InventoryReportViewModel();
                 invViewModel.purchaseOrderList = purchaseOrderList;
                 invViewModel.requisiteOrderList = requisiteOrderList;
-                invViewModel.quantityBridgeList = quantityBridgeList;
                 invViewModel.returnOrderList = returnOrderList;
                 invViewModel.physicalCountList = physicalCountList;
                 invViewModel.perpetualOrderList = perpetualOrderList;
+
+                invViewModel.quantityBridgeList = quantityBridgeList;
+
+                invViewModel.modifiedPurchaseOrderList = modifiedPurchaseList;
+                invViewModel.modifiedRequisiteOrderList = modifiedRequisiteList;
+                invViewModel.modifiedPerpetualRequisiteOrderList = modifiedPerpetualList;
+                invViewModel.modifiedReturnsOrderList = modifiedReturnList;
+                invViewModel.modifiedPhysicalCountOrderList = modifiedPhysicalList;
+
+
+                foreach (PurchaseOrder po in purchaseOrderList)
+                {
+
+                    ModifiedPurchaseOrder modifiedPurchase = new ModifiedPurchaseOrder();
+                    modifiedPurchase.PurchaseId = po.PurchaseId;
+                    modifiedPurchase.PurchaseDate = po.PurchaseDate;
+                    modifiedPurchase.RemainingAmount = po.RemainingAmount;
+                    modifiedPurchase.PurchaseNotes = po.PurchaseNotes;
+                    modifiedPurchase.PaidAmount = po.PaidAmount;
+                    modifiedPurchase.VendorId = po.VendorId;
+                    modifiedPurchase.Vendorname = _context.Vendors.FirstOrDefault(v => v.VendorId == po.VendorId).VendorName;
+                    modifiedPurchase.EmployeeId = po.EmployeeId;
+                    modifiedPurchase.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == po.EmployeeId).EmployeeName;
+                    modifiedPurchaseList.Add(modifiedPurchase);
+                }
+                foreach (RequisiteOrder ro in requisiteOrderList)
+                {
+
+                    ModifiedRequisiteOrder modifiedRequisite = new ModifiedRequisiteOrder();
+                    modifiedRequisite.RequisiteId = ro.RequisiteId;
+                    modifiedRequisite.RequisiteDate = ro.RequisiteDate;
+                    modifiedRequisite.EmployeeId = ro.EmployeeId;
+                    modifiedRequisite.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                    modifiedRequisiteList.Add(modifiedRequisite);
+                }
+                foreach (ReturnsOrder ro in returnOrderList)
+                {
+
+                    ModifiedReturnsOrder modifiedReturn = new ModifiedReturnsOrder();
+                    modifiedReturn.ReturnId = ro.ReturnId;
+                    modifiedReturn.ReturnDate = ro.ReturnDate;
+                    modifiedReturn.EmployeeId = ro.EmployeeId;
+                    modifiedReturn.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                    modifiedReturnList.Add(modifiedReturn);
+                }
+                foreach (PhysicalCountOrder ph in physicalCountList)
+                {
+
+                    ModifiedPhysicalCountOrder modifiedPhysical = new ModifiedPhysicalCountOrder();
+                    modifiedPhysical.PhysicalCountId = ph.PhysicalCountId;
+                    modifiedPhysical.PhysicalCountDate = ph.PhysicalCountDate;
+                    modifiedPhysical.EmployeeId = ph.EmployeeId;
+                    modifiedPhysical.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ph.EmployeeId).EmployeeName;
+                    modifiedPhysicalList.Add(modifiedPhysical);
+                }
+                foreach (PerpetualRequisiteOrder pr in perpetualOrderList)
+                {
+
+                    ModifiedPerpetualRequisiteOrder modifiedPerpetual = new ModifiedPerpetualRequisiteOrder();
+                    modifiedPerpetual.PerpetualRequisiteId = pr.PerpetualRequisiteId;
+                    modifiedPerpetual.PerpetualRequisiteDate = pr.PerpetualRequisiteDate;
+                    modifiedPerpetual.EmployeeId = pr.EmployeeId;
+                    modifiedPerpetual.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == pr.EmployeeId).EmployeeName;
+                    modifiedPerpetualList.Add(modifiedPerpetual);
+                }
+
 
 
                 return (invViewModel);
@@ -987,6 +1062,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return new InventoryReportViewModel();
             }
         }
+
 
         public InventoryReportViewModel VendorReportRanking(DateOnly beginningDate, DateOnly endDate)
         {

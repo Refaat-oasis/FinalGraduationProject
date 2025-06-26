@@ -1709,23 +1709,19 @@ namespace ThothSystemVersion1.Controllers
                 ws.Cells[1, 2].Value = "اسم الموظف";
                 ws.Cells[1, 3].Value = "المبلغ المتبقي";
                 ws.Cells[1, 4].Value = "المبلغ المدفوع";
-                ws.Cells[1, 5].Value = "الحساب";
-                ws.Cells[1, 6].Value = "السعر";
-                ws.Cells[1, 7].Value = "تاريخ الشراء";
-                ws.Cells[1, 8].Value = "تفاصيل الشراء";
+                ws.Cells[1, 5].Value = "تاريخ الشراء";
+                ws.Cells[1, 6].Value = "تفاصيل الشراء";
 
                 // Populate rows
                 for (int i = 0; i < viewModel.modifiedPurchaseOrderList.Count; i++)
                 {
                     var item = viewModel.modifiedPurchaseOrderList[i];
-                    ws.Cells[i + 1, 1].Value = item.Vendorname;
-                    ws.Cells[i + 1, 2].Value = item.EmployeeName;
-                    ws.Cells[i + 1, 3].Value = item.RemainingAmount;
-                    ws.Cells[i + 1, 4].Value = item.PaidAmount;
-                    ws.Cells[i + 1, 5].Value = item.balance;
-                    ws.Cells[i + 1, 6].Value = item.price;
-                    ws.Cells[i + 1, 7].Value = item.PurchaseDate;
-                    ws.Cells[i + 1, 8].Value = item.PurchaseNotes;
+                    ws.Cells[i + 2, 1].Value = item.Vendorname;
+                    ws.Cells[i + 2, 2].Value = item.EmployeeName;
+                    ws.Cells[i + 2, 3].Value = item.RemainingAmount;
+                    ws.Cells[i + 2, 4].Value = item.PaidAmount;
+                    ws.Cells[i + 2, 5].Value = item.PurchaseDate;
+                    ws.Cells[i + 2, 6].Value = item.PurchaseNotes;
                 }
 
                 ws.Cells[ws.Dimension.Address].AutoFitColumns();
@@ -1736,16 +1732,12 @@ namespace ThothSystemVersion1.Controllers
                 string fileName = $"تقرير الصنف_{DateTime.Now:yyyy-MM-dd}.xlsx";
 
 
-                // Get the base application directory
-                string basePath = AppDomain.CurrentDomain.BaseDirectory;
-
-                // Create Exceptions directory if it doesn't exist
-                string exceptionsRoot = Path.Combine(basePath, "exports");
-                Directory.CreateDirectory(exceptionsRoot);
+                //// Get the base application directory
+                //string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
 
                 // 4) Save a server-side copy under wwwroot/exports
-                string exportsFolder = Path.Combine(basePath, "exports");
+                string exportsFolder = Path.Combine("exports");
                 if (!Directory.Exists(exportsFolder))
                     Directory.CreateDirectory(exportsFolder);
 

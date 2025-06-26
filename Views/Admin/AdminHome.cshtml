@@ -101,7 +101,6 @@
         body {
             position: relative;
             width: 100%;
-           
             padding: 20px;
             border-radius: 8px;
             background-size: cover;
@@ -109,9 +108,9 @@
             overflow: hidden;
         }
 
-      
 
-        body::before {
+
+            body::before {
                 content: "";
                 position: absolute;
                 position: fixed;
@@ -126,7 +125,7 @@
                 z-index: -1;
                 background-size: cover;
                 background-position: center;
-        }
+            }
 
         .dashboard-icons {
             display: flex;
@@ -145,7 +144,6 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
             align-items: flex-start;
-            
         }
 
         .icon-box {
@@ -197,7 +195,7 @@
             margin-bottom: 10px;
         }
 
-        .icon-img1{
+        .icon-img1 {
             width: 80px;
             height: 80px;
             object-fit: cover;
@@ -264,13 +262,12 @@
             }
 
         .hello {
-            color:white;
+            color: white;
             font-size: 25px;
             font-weight: 600;
-            text-align:center;
-
+            text-align: center;
         }
-       
+
         .sub-list {
             display: none;
             padding: 5px 0;
@@ -283,12 +280,12 @@
             direction: rtl;
         }
 
-       
+
         .has-sublist.open .sub-list {
             display: block;
         }
 
-        
+
         .main-item {
             cursor: pointer;
             font-weight: bold;
@@ -305,20 +302,20 @@
             border-radius: 6px;
         }
 
-            
+
             .main-item:hover {
                 background-color: #333;
                 color: white;
             }
 
-       
-        
+
+
         .sub-list li {
             padding: 0;
             direction: rtl;
         }
 
-            
+
             .sub-list li a {
                 display: block;
                 width: 100%;
@@ -330,36 +327,49 @@
                 transition: background-color 0.3s ease, color 0.3s ease;
             }
 
-                
+
                 .sub-list li a:hover {
                     background-color: #444;
                     color: white;
-    
-               }
+                }
 
-        .sublist2:hover{
-            border-radius:6px;
-
+        .sublist2:hover {
+            border-radius: 6px;
         }
+
         /* container positioning + hidden by default */
         #reorderMessages {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            bottom: 2px;
+            left: 20px;
             width: 300px;
             display: none;
             z-index: 9999;
         }
             /* each message style */
             #reorderMessages .msg {
-                background: rgba(255,255,255,0.9);
-                border: 1px solid #ccc;
-                padding: 10px;
-                margin-bottom: 8px;
-                border-radius: 4px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
 
+            #reorderMessages .show {
+                display: block;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .msg-line {
+            /* background-color: #ffebee; /* أحمر للتنبيه */
+            background-color: #FDF5E6;
+            border: 4px solid #F8E1C4;
+            color: black;
+            padding: 15px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 18px;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(-20px);
+            direction: rtl;
+        }
     </style>
 
 
@@ -372,7 +382,6 @@
     </div> 
     *@
 
-    <div id="reorderMessages"></div>
 
 
     <div class="hello">
@@ -416,9 +425,9 @@
                             <li>@Html.ActionLink("عرض جميع الآلات", "ViewAllMachines", "Cost")</li>
                         </ul>
                     </li>
-                    
+
                     <li class="sublist2">@Html.ActionLink("عرض أوامر التصنيع للمقايسة", "ViewAllJobOrder", "Cost")</li>
-                    
+
                 </ul>
             </div>
 
@@ -431,16 +440,16 @@
                     <li class="has-sublist">
                         <span class="main-item">العملاء</span>
                         <ul class="sub-list">
-                    <li>@Html.ActionLink("إضافة عميل", "AddCustomer", "Technical")</li>
-                    <li>@Html.ActionLink("عرض جميع العملاء", "ViewAllCustomer", "Technical")</li>
-                    </ul>
+                            <li>@Html.ActionLink("إضافة عميل", "AddCustomer", "Technical")</li>
+                            <li>@Html.ActionLink("عرض جميع العملاء", "ViewAllCustomer", "Technical")</li>
+                        </ul>
                     </li>
                     <li class="has-sublist">
                         <span class="main-item">الطلبيات</span>
                         <ul class="sub-list">
-                    <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
-                    <li>@Html.ActionLink("إضافة طلبية جديدة", "CreateNewJobOrder", "Technical")</li>
-                    </ul>
+                            <li>@Html.ActionLink("عرض جميع الطلبيات", "ViewAllJobOrder", "Technical")</li>
+                            <li>@Html.ActionLink("إضافة طلبية جديدة", "CreateNewJobOrder", "Technical")</li>
+                        </ul>
                     </li>
                     <li>@Html.ActionLink("إذن الصرف لطلبية", "CreateRequisite", "Technical")</li>
                 </ul>
@@ -453,30 +462,37 @@
                     <li class="has-sublist">
                         <span class="main-item">إضافة الأصناف</span>
                         <ul class="sub-list">
-                    <li>@Html.ActionLink(" صنف ورق جديد", "NewPaper", "Inventory")</li>
-                    <li>@Html.ActionLink(" حبر جديد", "NewInk", "Inventory")</li>
-                    <li>@Html.ActionLink(" مستلزمات جديده", "NewSupply", "Inventory")</li>
-                    <li>@Html.ActionLink(" قطع غيار جديده", "AddSparePart", "Inventory")</li>
-                    <li>@Html.ActionLink(" اله جديده", "AddMachine", "Inventory")</li>
-                    </ul>
+                            <li>@Html.ActionLink(" صنف ورق جديد", "NewPaper", "Inventory")</li>
+                            <li>@Html.ActionLink(" حبر جديد", "NewInk", "Inventory")</li>
+                            <li>@Html.ActionLink(" مستلزمات جديده", "NewSupply", "Inventory")</li>
+                            <li>@Html.ActionLink(" قطع غيار جديده", "AddSparePart", "Inventory")</li>
+                        </ul>
                     </li>
+
                     <li class="has-sublist">
                         <span class="main-item"> عرض اصناف المخزون </span>
                         <ul class="sub-list">
-                    <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
-                    <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
-                    <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
-                    <li>@Html.ActionLink(" قطع الغيار", "ViewAllSpareParts", "Inventory")</li>
-                    <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
-                    </ul>
+                            <li>@Html.ActionLink(" مخزون الورق", "viewallpaper", "Inventory")</li>
+                            <li>@Html.ActionLink(" مخزون الحبر", "ViewAllInk", "Inventory")</li>
+                            <li>@Html.ActionLink(" مخزون المستلزمات", "ViewAllsupply", "Inventory")</li>
+                            <li>@Html.ActionLink(" قطع الغيار", "ViewAllSpareParts", "Inventory")</li>
+                        </ul>
+                    </li>
+
+                    <li class="has-sublist">
+                        <span class="main-item"> الآلات </span>
+                        <ul class="sub-list">
+                            <li>@Html.ActionLink(" اله جديده", "AddMachine", "Inventory")</li>
+                            <li>@Html.ActionLink(" الآلات", "ViewAllMachineStore", "Inventory")</li>
+                        </ul>
                     </li>
 
                     <li class="has-sublist">
                         <span class="main-item"> الموردين </span>
                         <ul class="sub-list">
-                           <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
-                           <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
-                    </ul>
+                            <li>@Html.ActionLink("إضافة مورد جديد", "AddVendor", "Inventory")</li>
+                            <li>@Html.ActionLink("عرض جميع الموردين", "ViewAllVendor", "Inventory")</li>
+                        </ul>
                     </li>
 
                     <li class="has-sublist">
@@ -484,21 +500,21 @@
                         <ul class="sub-list">
                             <li>@Html.ActionLink("إضافة المواصفات", "AddCharacteristic", "Inventory")</li>
                             <li>@Html.ActionLink("عرض جميع المواصفات", "ViewAllColorWeightSize", "Inventory")</li>
-                            </ul>
-                            </li>
+                        </ul>
+                    </li>
 
                     <li class="has-sublist">
                         <span class="main-item"> عمليات المخزن </span>
                         <ul class="sub-list">
-                           <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
+                            <li>@Html.ActionLink("جرد المخزون", "physicalCount", "Inventory")</li>
                             <li>@Html.ActionLink("المرتجعات", "ReturnOrder", "Inventory")</li>
                             <li>@Html.ActionLink("المشتريات", "purchaseAll", "Inventory")</li>
                             <li>@Html.ActionLink("تقارير المخازن", "inventoryReports", "Inventory")</li>
                             <li>@Html.ActionLink("صرف مخزن دائم", "PerpetualRequisite", "Inventory")</li>
-                   
-                    </ul>
+
+                        </ul>
                     </li>
-                   
+
                 </ul>
             </div>
 
@@ -516,21 +532,23 @@
 
 
             <div class="icon-box">
-                
+
                 <a href="@Url.Action("EmployeeProfile", "Employee", new { employeeId })" class="icon-box-link">
-                        <img src="~/image/user.png" alt="الملف الشخصي" class="icon-img1" />
-                        <p>الملف الشخصي</p>
+                    <img src="~/image/user.png" alt="الملف الشخصي" class="icon-img1" />
+                    <p>الملف الشخصي</p>
                 </a>
             </div>
 
             <div class="icon-box">
                 <a href="@Url.Action("Logout", "Employee")" class="icon-box-link">
-                        <img src="~/image/door.png" alt="تسجيل الخروج" class="icon-img1" />
-                        <p>تسجيل الخروج</p>
+                    <img src="~/image/door.png" alt="تسجيل الخروج" class="icon-img1" />
+                    <p>تسجيل الخروج</p>
                 </a>
             </div>
 
         </div>
+        <div id="reorderMessages"></div>
+
     </div>
 
 
@@ -545,7 +563,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
         integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
+</script>
 
 <script>
 
@@ -606,21 +624,23 @@
 </script>
 
 <script>
-    function showReorderNotification(Name) {
+        function showReorderNotification(name) {
       const container = document.getElementById("reorderMessages");
-      const msgDiv = document.createElement("div");
-      msgDiv.classList.add("msg");
-      msgDiv.innerText = `${Name}`;
-      msgDiv.style.opacity = "1";
-      msgDiv.style.transition = "opacity 0.5s ease";
 
-      container.appendChild(msgDiv);
+      // create a single line for this notification
+      const line = document.createElement("div");
+      line.classList.add("msg-line");
+      line.innerText = name;
+
+      // ensure the container is visible and append the line
       container.style.display = "block";
+      container.appendChild(line);
 
+      // after 5s, fade out & remove this line
       setTimeout(() => {
-        msgDiv.style.opacity = "0";
+        line.style.opacity = "0";
         setTimeout(() => {
-          container.removeChild(msgDiv);
+          container.removeChild(line);
           if (!container.hasChildNodes()) {
             container.style.display = "none";
           }
@@ -669,9 +689,9 @@
             hub.invoke("checkInventoryBalanceInk"),
             hub.invoke("checkInventoryBalanceSupply"),
             hub.invoke("checkInventoryBalanceSpareParts"),
-            hub.invoke("checkLateJobOrder"),
-            hub.invoke("checkLatePayment"),
-            hub.invoke("checkLateReceipt"),
+            hub.invoke("checkLateJobOrder"),// technical
+            hub.invoke("checkLatePayment"),// acc
+            hub.invoke("checkLateReceipt"),//acc
 
           ]);
         }

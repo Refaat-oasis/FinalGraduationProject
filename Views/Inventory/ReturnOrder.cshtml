@@ -179,48 +179,48 @@
                 </select>
             </div>
 
-            
-                <div class="colCont">
-                    <label id="quantityLabel" class="form-label">كمية الإرجاع</label>
-                    <input type="number" id="itemQuantity" class="form-control" min="1" />
-                    <small id="originalQuantityInfo" class="text-muted" style="display:none;">
-                        الكمية الأصلية: <span id="originalQuantityValue">0</span>
-                    </small>
-                </div>
 
-                <div class="colCont">
-                    <button type="button" id="addItem" class="btn1">إضافة</button>
-                </div>
-                </div>
-            
-            <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
-
-
-                <div class ="tableContainer1">
-                    <table >
-                        <thead>
-                            <tr>
-                                <th>نوع الصنف</th>
-                                <th>الصنف</th>
-                                <th>الكمية الأصلية</th>
-                                <th>كمية الإرجاع</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="itemsTableBody"></tbody>
-                    </table>
-                </div>
-                <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
-                    لم يتم تحديد أي أصناف للإرجاع بعد
-                </div>
-           
-
-
-            <div id="hiddenItemsContainer"></div>
-
-            <div class="colCont1">
-                <button type="submit" id="submitBtn" class="btn1">حفظ أمر الإرجاع</button>
+            <div class="colCont">
+                <label id="quantityLabel" class="form-label">كمية الإرجاع</label>
+                <input type="number" id="itemQuantity" class="form-control" min="1" />
+                <small id="originalQuantityInfo" class="text-muted" style="display:none;">
+                    الكمية الأصلية: <span id="originalQuantityValue">0</span>
+                </small>
             </div>
+
+            <div class="colCont">
+                <button type="button" id="addItem" class="btn1">إضافة</button>
+            </div>
+        </div>
+
+        <h5 class="mb-0">الأصناف المحددة للإرجاع</h5>
+
+
+        <div class="tableContainer1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>نوع الصنف</th>
+                        <th>الصنف</th>
+                        <th>الكمية الأصلية</th>
+                        <th>كمية الإرجاع</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsTableBody"></tbody>
+            </table>
+        </div>
+        <div id="noSelectedItemsMessage" class="alert alert-warning" style="display:none;">
+            لم يتم تحديد أي أصناف للإرجاع بعد
+        </div>
+
+
+
+        <div id="hiddenItemsContainer"></div>
+
+        <div class="colCont1">
+            <button type="submit" id="submitBtn" class="btn1">حفظ أمر الإرجاع</button>
+        </div>
     </form>
 </div>
 @section Scripts {
@@ -395,8 +395,10 @@
                             <td>${item.originalQuantity}</td>
                             <td>${item.quantity}</td>
                             <td>
+                             <div class="button-group">
                                 <button type="button" class="btn">تعديل</button>
                                 <button type="button" class="btn">حذف</button>
+                                </div>
                             </td>
                         </tr>
                     `);

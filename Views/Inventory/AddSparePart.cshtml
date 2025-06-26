@@ -90,25 +90,25 @@
         <div class="inputBox">
             <label for="paperName" class="textlabel">اسم لقطعه الغيار</label>
             <input type="text"class="place" asp-for="@Model.Name" id="Name" />
-            <span class="error" asp-validation-for="@Model.Name"></span>
+            <span class="error style=" display: none;" asp-validation-for="@Model.Name"></span>
         </div>
 
 
         <div class="inputBox">
             <label for="Quantity" class="textlabel">كميه قطع الغيار</label>
             <input type="number"class="place" step="any" asp-for="@Model.Quantity" id="Quantity" />
-            <p asp-validation-for="@Model.Quantity" class="error"></p>
+            <span asp-validation-for="@Model.Quantity" class="error style=" display: none;"></span>
         </div>
 
         <div class="inputBox">
             <label for="Quantity" class="textlabel">سعر قطعه الغيار</label>
             <input type="number" class="place" step="any" asp-for="@Model.Price" id="Price" />
-            <p asp-validation-for="@Model.Price" class="error"></p>
+            <span asp-validation-for="@Model.Price" class="error style=" display: none;"></span>
         </div>
         <div class="inputBox">
             <label for="ReorderPoint" class="textlabel">نقطة إعادة الطلب</label>
             <input type="number"class="place" step="any" asp-for="@Model.ReorderPoint" id="ReorderPoint" />
-            <span asp-validation-for="@Model.ReorderPoint" class="error"></span>
+            <span asp-validation-for="@Model.ReorderPoint" class="error style=" display: none;"></span>
         </div>
         <div class="button-container">
             <input type="submit" value="تأكيد الإضافة " class="btn btn-secondary" />

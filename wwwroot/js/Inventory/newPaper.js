@@ -15,23 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
         Price: document.getElementById("Price")
     };
 
-    const setError = (input, errorMsg) => {
+    // عند وجود خطأ في التحقق
+    function setError(input, message) {
         const inputBox = input.closest('.inputBox');
-        const errorElement = inputBox.querySelector(".error");
-        if (errorElement) {
-            errorElement.innerText = errorMsg;
-            inputBox.classList.add("error");
-        }
-    };
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.add('invalid');
+        errorDisplay.innerText = message;
+        errorDisplay.style.display = "block"; // إظهار
+    }
 
-    const setSuccess = (input) => {
+    function setSuccess(input) {
         const inputBox = input.closest('.inputBox');
-        const errorElement = inputBox.querySelector(".error");
-        if (errorElement) {
-            errorElement.innerText = "";
-            inputBox.classList.remove("error");
-        }
-    };
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.remove('invalid');
+        errorDisplay.innerText = "";
+        errorDisplay.style.display = "none"; // إخفاء
+    }
+
 
     function validate() {
         let valid = true;

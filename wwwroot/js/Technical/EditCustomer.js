@@ -5,25 +5,23 @@
     const Email = document.getElementById("Email");
     const Phone = document.getElementById("Phone");
 
-    const setError = (input, errorMsg) => {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        if (errorParagraph) {
-            errorParagraph.innerText = errorMsg;
-        }
-        inputBox.classList.remove("success");
-        inputBox.classList.add("error");
-    };
+    // عند وجود خطأ في التحقق
+    function setError(input, message) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.add('invalid');
+        errorDisplay.innerText = message;
+        errorDisplay.style.display = "block"; // إظهار
+    }
 
-    const setSuccess = (input) => {
-        const inputBox = input.parentElement;
-        const errorParagraph = inputBox.querySelector(".error");
-        if (errorParagraph) {
-            errorParagraph.innerText = "";
-        }
-        inputBox.classList.remove("error");
-        inputBox.classList.add("success");
-    };
+    function setSuccess(input) {
+        const inputBox = input.closest('.inputBox');
+        const errorDisplay = inputBox.querySelector('.error');
+        inputBox.classList.remove('invalid');
+        errorDisplay.innerText = "";
+        errorDisplay.style.display = "none"; // إخفاء
+    }
+
 
     function validate() {
         let valid = true;

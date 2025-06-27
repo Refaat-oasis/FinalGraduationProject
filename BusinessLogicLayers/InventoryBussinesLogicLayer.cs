@@ -803,6 +803,8 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 List<ModifiedPerpetualRequisiteOrder> modifiedPerpetualList = new List<ModifiedPerpetualRequisiteOrder>();
 
 
+
+
                 switch (itemType)
                 {
                     case "Paper":
@@ -983,6 +985,43 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 invViewModel.physicalCountList = physicalCountList;
                 invViewModel.perpetualOrderList = perpetualOrderList;
 
+                switch (itemType)
+                {
+                    case "Spare":
+                        SparePart spare = _context.SpareParts.FirstOrDefault(s => s.SparePartsId == itemId);
+                        invViewModel.itemName = spare.Name;
+                        invViewModel.itemType = "قطع غيار";
+                        invViewModel.itemQuantity = spare.Quantity;
+                        invViewModel.itemPrice = spare.Price;
+                        invViewModel.itemTotalBalance = spare.TotalBalance ?? 0;
+                        break;
+                    case "Supply":
+                        Supply supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == itemId);
+                        invViewModel.itemName = supply.Name;
+                        invViewModel.itemType = "مسلتزمات";
+                        invViewModel.itemQuantity = supply.Quantity;
+                        invViewModel.itemPrice = supply.Price;
+                        invViewModel.itemTotalBalance = supply.TotalBalance ?? 0;
+                        break;
+                    case "Ink":
+                        Ink ink = _context.Inks.FirstOrDefault(s => s.InkId == itemId);
+                        invViewModel.itemName = ink.Name;
+                        invViewModel.itemType = "حبر";
+                        invViewModel.itemQuantity = ink.Quantity;
+                        invViewModel.itemPrice = ink.Price;
+                        invViewModel.itemTotalBalance = ink.TotalBalance ?? 0;
+                        break;
+                    case "Paper":
+                        Paper paper = _context.Papers.FirstOrDefault(s => s.PaperId == itemId);
+                        invViewModel.itemName = paper.Name;
+                        invViewModel.itemType = "ورق";
+                        invViewModel.itemQuantity = paper.Quantity;
+                        invViewModel.itemPrice = paper.Price;
+                        invViewModel.itemTotalBalance = paper.TotalBalance ?? 0;
+                        break;
+
+                }
+
                 invViewModel.quantityBridgeList = quantityBridgeList;
 
                 invViewModel.modifiedPurchaseOrderList = modifiedPurchaseList;
@@ -992,63 +1031,165 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 invViewModel.modifiedPhysicalCountOrderList = modifiedPhysicalList;
 
 
-                foreach (PurchaseOrder po in purchaseOrderList)
+                switch (itemType)
                 {
+                    case "Ink":
+                        foreach (PurchaseOrder po in purchaseOrderList)
+                        {
 
-                    ModifiedPurchaseOrder modifiedPurchase = new ModifiedPurchaseOrder();
-                    modifiedPurchase.PurchaseId = po.PurchaseId;
-                    modifiedPurchase.PurchaseDate = po.PurchaseDate;
-                    modifiedPurchase.RemainingAmount = po.RemainingAmount;
-                    modifiedPurchase.PurchaseNotes = po.PurchaseNotes;
-                    modifiedPurchase.PaidAmount = po.PaidAmount;
-                    modifiedPurchase.VendorId = po.VendorId;
-                    modifiedPurchase.Vendorname = _context.Vendors.FirstOrDefault(v => v.VendorId == po.VendorId).VendorName;
-                    modifiedPurchase.EmployeeId = po.EmployeeId;
-                    modifiedPurchase.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == po.EmployeeId).EmployeeName;
-                    modifiedPurchaseList.Add(modifiedPurchase);
+                            ModifiedPurchaseOrder modifiedPurchase = new ModifiedPurchaseOrder();
+                            modifiedPurchase.PurchaseId = po.PurchaseId;
+                            modifiedPurchase.PurchaseDate = po.PurchaseDate;
+                            modifiedPurchase.RemainingAmount = po.RemainingAmount;
+                            modifiedPurchase.PurchaseNotes = po.PurchaseNotes;
+                            modifiedPurchase.PaidAmount = po.PaidAmount;
+                            modifiedPurchase.VendorId = po.VendorId;
+                            modifiedPurchase.Vendorname = _context.Vendors.FirstOrDefault(v => v.VendorId == po.VendorId).VendorName;
+                            modifiedPurchase.EmployeeId = po.EmployeeId;
+                            modifiedPurchase.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == po.EmployeeId).EmployeeName;
+                            modifiedPurchase.balance = quantityBridgeList.FirstOrDefault(qb => qb.PurchaseId == po.PurchaseId).NumberOfUnits;
+                            modifiedPurchase.price = quantityBridgeList.FirstOrDefault(qb => qb.PurchaseId == po.PurchaseId).UnitPrice ?? 0;
+                            modifiedPurchaseList.Add(modifiedPurchase);
+                        }
+                        foreach (RequisiteOrder ro in requisiteOrderList)
+                        {
+
+                            ModifiedRequisiteOrder modifiedRequisite = new ModifiedRequisiteOrder();
+                            modifiedRequisite.RequisiteId = ro.RequisiteId;
+                            modifiedRequisite.RequisiteDate = ro.RequisiteDate;
+                            modifiedRequisite.EmployeeId = ro.EmployeeId;
+                            modifiedRequisite.JobOrderId = ro.JobOrderId;
+                            modifiedRequisite.RequisiteNotes = ro.RequisiteNotes;
+                            modifiedRequisite.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                            modifiedRequisite.balance = quantityBridgeList.FirstOrDefault(qb => qb.RequisiteId == ro.RequisiteId).Quantity;
+                            modifiedRequisite.price = quantityBridgeList.FirstOrDefault(qb => qb.RequisiteId == ro.RequisiteId).Price;
+
+                            modifiedRequisiteList.Add(modifiedRequisite);
+                        }
+                        foreach (ReturnsOrder ro in returnOrderList)
+                        {
+
+                            ModifiedReturnsOrder modifiedReturn = new ModifiedReturnsOrder();
+                            modifiedReturn.ReturnId = ro.ReturnId;
+                            modifiedReturn.ReturnDate = ro.ReturnDate;
+                            modifiedReturn.EmployeeId = ro.EmployeeId;
+                            modifiedReturn.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                            modifiedReturn.ReturnInOut = ro.ReturnInOut;
+                            modifiedReturn.ReturnsNotes = ro.ReturnsNotes;
+                            if (modifiedReturn.ReturnInOut == true)
+                            {
+                                modifiedReturn.balance = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).Quantity;
+                                modifiedReturn.price = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).Price;
+                            }
+                            else
+                            {
+                                modifiedReturn.balance = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).NumberOfUnits;
+                                modifiedReturn.price = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).UnitPrice ?? 0;
+
+                            }
+                            modifiedReturnList.Add(modifiedReturn);
+                        }
+                        foreach (PhysicalCountOrder ph in physicalCountList)
+                        {
+                            ModifiedPhysicalCountOrder modifiedPhysical = new ModifiedPhysicalCountOrder();
+                            modifiedPhysical.PhysicalCountId = ph.PhysicalCountId;
+                            modifiedPhysical.PhysicalCountDate = ph.PhysicalCountDate;
+                            modifiedPhysical.EmployeeId = ph.EmployeeId;
+                            modifiedPhysical.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ph.EmployeeId).EmployeeName;
+                            modifiedPhysical.oldBalance = quantityBridgeList.FirstOrDefault(qb => qb.PhysicalCountId == ph.PhysicalCountId).OldNumberOfUnits ?? 0;
+                            modifiedPhysical.balance = quantityBridgeList.FirstOrDefault(qb => qb.PhysicalCountId == ph.PhysicalCountId).NumberOfUnits;
+
+                            modifiedPhysicalList.Add(modifiedPhysical);
+                        }
+                        foreach (PerpetualRequisiteOrder pr in perpetualOrderList)
+                        {
+
+                            ModifiedPerpetualRequisiteOrder modifiedPerpetual = new ModifiedPerpetualRequisiteOrder();
+                            modifiedPerpetual.PerpetualRequisiteId = pr.PerpetualRequisiteId;
+                            modifiedPerpetual.PerpetualRequisiteDate = pr.PerpetualRequisiteDate;
+                            modifiedPerpetual.EmployeeId = pr.EmployeeId;
+                            modifiedPerpetual.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == pr.EmployeeId).EmployeeName;
+                            modifiedPerpetual.price = quantityBridgeList.FirstOrDefault(qb => qb.PerpetualRequisiteId == pr.PerpetualRequisiteId).UnitPrice ?? 0;
+                            modifiedPerpetual.balance = quantityBridgeList.FirstOrDefault(qb => qb.PerpetualRequisiteId == pr.PerpetualRequisiteId).NumberOfUnits;
+
+                            modifiedPerpetualList.Add(modifiedPerpetual);
+                        }
+                        break;
+                    default:
+                        foreach (PurchaseOrder po in purchaseOrderList)
+                        {
+
+                            ModifiedPurchaseOrder modifiedPurchase = new ModifiedPurchaseOrder();
+                            modifiedPurchase.PurchaseId = po.PurchaseId;
+                            modifiedPurchase.PurchaseDate = po.PurchaseDate;
+                            modifiedPurchase.RemainingAmount = po.RemainingAmount;
+                            modifiedPurchase.PurchaseNotes = po.PurchaseNotes;
+                            modifiedPurchase.PaidAmount = po.PaidAmount;
+                            modifiedPurchase.VendorId = po.VendorId;
+                            modifiedPurchase.Vendorname = _context.Vendors.FirstOrDefault(v => v.VendorId == po.VendorId).VendorName;
+                            modifiedPurchase.EmployeeId = po.EmployeeId;
+                            modifiedPurchase.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == po.EmployeeId).EmployeeName;
+                            modifiedPurchase.balance = quantityBridgeList.FirstOrDefault(qb => qb.PurchaseId == po.PurchaseId).Quantity;
+                            modifiedPurchase.price = quantityBridgeList.FirstOrDefault(qb => qb.PurchaseId == po.PurchaseId).Price;
+                            modifiedPurchaseList.Add(modifiedPurchase);
+                        }
+                        foreach (RequisiteOrder ro in requisiteOrderList)
+                        {
+
+                            ModifiedRequisiteOrder modifiedRequisite = new ModifiedRequisiteOrder();
+                            modifiedRequisite.RequisiteId = ro.RequisiteId;
+                            modifiedRequisite.RequisiteDate = ro.RequisiteDate;
+                            modifiedRequisite.EmployeeId = ro.EmployeeId;
+                            modifiedRequisite.JobOrderId = ro.JobOrderId;
+                            modifiedRequisite.RequisiteNotes = ro.RequisiteNotes;
+                            modifiedRequisite.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                            modifiedRequisite.balance = quantityBridgeList.FirstOrDefault(qb => qb.RequisiteId == ro.RequisiteId).Quantity;
+                            modifiedRequisite.price = quantityBridgeList.FirstOrDefault(qb => qb.RequisiteId == ro.RequisiteId).Price;
+
+                            modifiedRequisiteList.Add(modifiedRequisite);
+                        }
+                        foreach (ReturnsOrder ro in returnOrderList)
+                        {
+
+                            ModifiedReturnsOrder modifiedReturn = new ModifiedReturnsOrder();
+                            modifiedReturn.ReturnId = ro.ReturnId;
+                            modifiedReturn.ReturnDate = ro.ReturnDate;
+                            modifiedReturn.EmployeeId = ro.EmployeeId;
+                            modifiedReturn.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
+                            modifiedReturn.ReturnInOut = ro.ReturnInOut;
+                            modifiedReturn.ReturnsNotes = ro.ReturnsNotes;
+                            modifiedReturn.balance = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).Quantity;
+                            modifiedReturn.price = quantityBridgeList.FirstOrDefault(qb => qb.ReturnId == ro.ReturnId).Price;
+                            modifiedReturnList.Add(modifiedReturn);
+                        }
+                        foreach (PhysicalCountOrder ph in physicalCountList)
+                        {
+
+                            ModifiedPhysicalCountOrder modifiedPhysical = new ModifiedPhysicalCountOrder();
+                            modifiedPhysical.PhysicalCountId = ph.PhysicalCountId;
+                            modifiedPhysical.PhysicalCountDate = ph.PhysicalCountDate;
+                            modifiedPhysical.EmployeeId = ph.EmployeeId;
+                            modifiedPhysical.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ph.EmployeeId).EmployeeName;
+                            modifiedPhysical.oldBalance = quantityBridgeList.FirstOrDefault(qb => qb.PhysicalCountId == ph.PhysicalCountId).OldQuantity ?? 0;
+                            modifiedPhysical.balance = quantityBridgeList.FirstOrDefault(qb => qb.PhysicalCountId == ph.PhysicalCountId).Quantity;
+
+                            modifiedPhysicalList.Add(modifiedPhysical);
+                        }
+                        foreach (PerpetualRequisiteOrder pr in perpetualOrderList)
+                        {
+
+                            ModifiedPerpetualRequisiteOrder modifiedPerpetual = new ModifiedPerpetualRequisiteOrder();
+                            modifiedPerpetual.PerpetualRequisiteId = pr.PerpetualRequisiteId;
+                            modifiedPerpetual.PerpetualRequisiteDate = pr.PerpetualRequisiteDate;
+                            modifiedPerpetual.EmployeeId = pr.EmployeeId;
+                            modifiedPerpetual.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == pr.EmployeeId).EmployeeName;
+                            modifiedPerpetual.price = quantityBridgeList.FirstOrDefault(qb => qb.PerpetualRequisiteId == pr.PerpetualRequisiteId).Price;
+                            modifiedPerpetual.balance = quantityBridgeList.FirstOrDefault(qb => qb.PerpetualRequisiteId == pr.PerpetualRequisiteId).Quantity;
+
+                            modifiedPerpetualList.Add(modifiedPerpetual);
+                        }
+                        break;
                 }
-                foreach (RequisiteOrder ro in requisiteOrderList)
-                {
-
-                    ModifiedRequisiteOrder modifiedRequisite = new ModifiedRequisiteOrder();
-                    modifiedRequisite.RequisiteId = ro.RequisiteId;
-                    modifiedRequisite.RequisiteDate = ro.RequisiteDate;
-                    modifiedRequisite.EmployeeId = ro.EmployeeId;
-                    modifiedRequisite.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
-                    modifiedRequisiteList.Add(modifiedRequisite);
-                }
-                foreach (ReturnsOrder ro in returnOrderList)
-                {
-
-                    ModifiedReturnsOrder modifiedReturn = new ModifiedReturnsOrder();
-                    modifiedReturn.ReturnId = ro.ReturnId;
-                    modifiedReturn.ReturnDate = ro.ReturnDate;
-                    modifiedReturn.EmployeeId = ro.EmployeeId;
-                    modifiedReturn.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ro.EmployeeId).EmployeeName;
-                    modifiedReturnList.Add(modifiedReturn);
-                }
-                foreach (PhysicalCountOrder ph in physicalCountList)
-                {
-
-                    ModifiedPhysicalCountOrder modifiedPhysical = new ModifiedPhysicalCountOrder();
-                    modifiedPhysical.PhysicalCountId = ph.PhysicalCountId;
-                    modifiedPhysical.PhysicalCountDate = ph.PhysicalCountDate;
-                    modifiedPhysical.EmployeeId = ph.EmployeeId;
-                    modifiedPhysical.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == ph.EmployeeId).EmployeeName;
-                    modifiedPhysicalList.Add(modifiedPhysical);
-                }
-                foreach (PerpetualRequisiteOrder pr in perpetualOrderList)
-                {
-
-                    ModifiedPerpetualRequisiteOrder modifiedPerpetual = new ModifiedPerpetualRequisiteOrder();
-                    modifiedPerpetual.PerpetualRequisiteId = pr.PerpetualRequisiteId;
-                    modifiedPerpetual.PerpetualRequisiteDate = pr.PerpetualRequisiteDate;
-                    modifiedPerpetual.EmployeeId = pr.EmployeeId;
-                    modifiedPerpetual.EmployeeName = _context.Employees.FirstOrDefault(e => e.EmployeeId == pr.EmployeeId).EmployeeName;
-                    modifiedPerpetualList.Add(modifiedPerpetual);
-                }
-
-
 
                 return (invViewModel);
             }

@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System.Diagnostics;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Hubs;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.ModifiedModels;
 using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 namespace ThothSystemVersion1.Controllers
@@ -562,7 +564,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 InventoryReportViewModel invViewModel = _businessLogicL.GetCustomerRanking(beginingDate, endingDate);
-
+                ExportToExcelItemsCustomer(invViewModel);
                 return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
             }
             catch (Exception ex)
@@ -579,7 +581,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 InventoryReportViewModel invViewModel = _businessLogicL.VendorReportRanking(beginingDate, endingDate);
-
+                ExportToExcelItemsVendor(invViewModel);
                 return View("~/Views/Inventory/InventoryReports.cshtml", invViewModel);
             }
             catch (Exception ex)
@@ -1690,6 +1692,7 @@ namespace ThothSystemVersion1.Controllers
 
         //Views_Inventory_InventoryPrinting section 
 
+
         public IActionResult ExportToExcelItems(InventoryReportViewModel viewModel)
         {
             try
@@ -1704,32 +1707,197 @@ namespace ThothSystemVersion1.Controllers
                 using var package = new ExcelPackage();
                 var ws = package.Workbook.Worksheets.Add("تقارير العناصر");
 
-                // Add headers
-                ws.Cells[1, 1].Value = "اسم المورد";
-                ws.Cells[1, 2].Value = "اسم الموظف";
-                ws.Cells[1, 3].Value = "المبلغ المتبقي";
-                ws.Cells[1, 4].Value = "المبلغ المدفوع";
-                ws.Cells[1, 5].Value = "تاريخ الشراء";
-                ws.Cells[1, 6].Value = "تفاصيل الشراء";
+                int numberOfRow = 3;
 
-                // Populate rows
+
+                ws.Cells[1, 1].Value = "اوامر الشراء";
+                ws.Cells[1, 1, 1, 8].Merge = true;
+                ws.Cells[1, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 1].Style.Font.Bold = true;
+                ws.Cells[1, 1].Style.Font.Size = 14;
+                ws.Cells[2, 1].Value = "اسم المورد";
+                ws.Cells[2, 2].Value = "اسم الموظف";
+                ws.Cells[2, 3].Value = "المبلغ المتبقي";
+                ws.Cells[2, 4].Value = "المبلغ المدفوع";
+                ws.Cells[2, 5].Value = "تاريخ الشراء";
+                ws.Cells[2, 6].Value = "تفاصيل الشراء";
+                ws.Cells[2, 7].Value = "الكمية";
+                ws.Cells[2, 8].Value = "السعر";
+
                 for (int i = 0; i < viewModel.modifiedPurchaseOrderList.Count; i++)
                 {
-                    var item = viewModel.modifiedPurchaseOrderList[i];
-                    ws.Cells[i + 2, 1].Value = item.Vendorname;
-                    ws.Cells[i + 2, 2].Value = item.EmployeeName;
-                    ws.Cells[i + 2, 3].Value = item.RemainingAmount;
-                    ws.Cells[i + 2, 4].Value = item.PaidAmount;
-                    ws.Cells[i + 2, 5].Value = item.PurchaseDate;
-                    ws.Cells[i + 2, 6].Value = item.PurchaseNotes;
+                    ModifiedPurchaseOrder item = viewModel.modifiedPurchaseOrderList[i];
+                    ws.Cells[i + numberOfRow, 1].Value = item.Vendorname;
+                    ws.Cells[i + numberOfRow, 2].Value = item.EmployeeName;
+                    ws.Cells[i + numberOfRow, 3].Value = item.RemainingAmount;
+                    ws.Cells[i + numberOfRow, 4].Value = item.PaidAmount;
+                    ws.Cells[i + numberOfRow, 5].Value = item.PurchaseDate.Value.ToDateTime(TimeOnly.MinValue);
+                    ws.Cells[i + numberOfRow, 5].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ws.Cells[i + numberOfRow, 6].Value = item.PurchaseNotes;
+                    ws.Cells[i + numberOfRow, 7].Value = item.balance;
+                    ws.Cells[i + numberOfRow, 8].Value = item.price;
+
+                    numberOfRow++;
                 }
+                numberOfRow = 3;
+                // requisite
+                ws.Cells[1, 10].Value = "اوامر الصرف";
+                ws.Cells[1, 10, 1, 15].Merge = true;
+                ws.Cells[1, 10].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 10].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 10].Style.Font.Bold = true;
+                ws.Cells[1, 10].Style.Font.Size = 14;
+                ws.Cells[2, 10].Value = "الكمية";
+                ws.Cells[2, 11].Value = "السعر";
+                ws.Cells[2, 12].Value = "اسم الموظف";
+                ws.Cells[2, 13].Value = "رقم الامر";
+                ws.Cells[2, 14].Value = "تاريخ الصرف";
+                ws.Cells[2, 15].Value = "تفاصيل الصرف";
+
+                for (int i = 0; i < viewModel.modifiedRequisiteOrderList.Count; i++)
+                {
+                    ModifiedRequisiteOrder item = viewModel.modifiedRequisiteOrderList[i];
+                    ws.Cells[i + numberOfRow, 10].Value = item.balance;
+                    ws.Cells[i + numberOfRow, 11].Value = item.price;
+                    ws.Cells[i + numberOfRow, 12].Value = item.EmployeeName;
+                    ws.Cells[i + numberOfRow, 13].Value = item.RequisiteId;
+                    ws.Cells[i + numberOfRow, 14].Value = item.RequisiteDate.Value.ToDateTime(TimeOnly.MinValue);
+                    ws.Cells[i + numberOfRow, 14].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ws.Cells[i + numberOfRow, 15].Value = item.RequisiteNotes;
+
+                    numberOfRow++;
+                }
+                numberOfRow = 3;
+
+                //physicalCount
+
+                ws.Cells[1, 17].Value = "اوامر الجرد";
+                ws.Cells[1, 17, 1, 22].Merge = true;
+                ws.Cells[1, 17].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 17].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 17].Style.Font.Bold = true;
+                ws.Cells[1, 17].Style.Font.Size = 14;
+                ws.Cells[2, 17].Value = "الكمية القديمة";
+                ws.Cells[2, 18].Value = "الكمية الحالية";
+                ws.Cells[2, 19].Value = "اسم الموظف";
+                ws.Cells[2, 20].Value = "رقم الامر";
+                ws.Cells[2, 21].Value = "تاريخ الجرد";
+                ws.Cells[2, 22].Value = "تفاصيل الجرد";
+
+                for (int i = 0; i < viewModel.modifiedPhysicalCountOrderList.Count; i++)
+                {
+                    ModifiedPhysicalCountOrder item = viewModel.modifiedPhysicalCountOrderList[i];
+                    ws.Cells[i + numberOfRow, 17].Value = item.oldBalance;
+                    ws.Cells[i + numberOfRow, 18].Value = item.balance;
+                    ws.Cells[i + numberOfRow, 19].Value = item.EmployeeName;
+                    ws.Cells[i + numberOfRow, 20].Value = item.PhysicalCountId;
+                    ws.Cells[i + numberOfRow, 21].Value = item.PhysicalCountDate.Value.ToDateTime(TimeOnly.MinValue);
+                    ws.Cells[i + numberOfRow, 21].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ws.Cells[i + numberOfRow, 22].Value = item.PhysicalCountNotes;
+
+                    numberOfRow++;
+                }
+                numberOfRow = 3;
+
+                //returns
+
+                ws.Cells[1, 24].Value = "المرتجعات";
+                ws.Cells[1, 24, 1, 29].Merge = true;
+                ws.Cells[1, 24].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 24].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 24].Style.Font.Bold = true;
+                ws.Cells[1, 24].Style.Font.Size = 14;
+                ws.Cells[2, 24].Value = "الكمية المرتجعة";
+                ws.Cells[2, 25].Value = "اسم الموظف";
+                ws.Cells[2, 26].Value = "رقم الامر";
+                ws.Cells[2, 27].Value = "تاريخ المرتجع";
+                ws.Cells[2, 28].Value = "تفاصيل المرتجع";
+                ws.Cells[2, 29].Value = "امر داخلي ام خارجي";
+
+                for (int i = 0; i < viewModel.modifiedReturnsOrderList.Count; i++)
+                {
+                    ModifiedReturnsOrder item = viewModel.modifiedReturnsOrderList[i];
+                    ws.Cells[i + numberOfRow, 24].Value = item.balance;
+                    ws.Cells[i + numberOfRow, 25].Value = item.EmployeeName;
+                    ws.Cells[i + numberOfRow, 26].Value = item.ReturnId;
+                    ws.Cells[i + numberOfRow, 27].Value = item.ReturnDate.Value.ToDateTime(TimeOnly.MinValue);
+                    ws.Cells[i + numberOfRow, 27].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ws.Cells[i + numberOfRow, 28].Value = item.ReturnsNotes;
+                    ws.Cells[i + numberOfRow, 29].Value = item.ReturnInOut ? "داخلي" : "خارجي";
+
+                    numberOfRow++;
+                }
+                numberOfRow = 3;
+
+                //perpetualrequisite
+
+                ws.Cells[1, 33].Value = "اوامر صرف المخزن الدائم";
+                ws.Cells[1, 33, 1, 38].Merge = true;
+                ws.Cells[1, 33].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 33].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 33].Style.Font.Bold = true;
+                ws.Cells[1, 33].Style.Font.Size = 14;
+                ws.Cells[2, 33].Value = "الكمية";
+                ws.Cells[2, 34].Value = "السعر";
+                ws.Cells[2, 35].Value = "اسم الموظف";
+                ws.Cells[2, 36].Value = "رقم الامر";
+                ws.Cells[2, 37].Value = "تاريخ الصرف";
+                ws.Cells[2, 38].Value = "تفاصيل الصرف";
+
+                for (int i = 0; i < viewModel.modifiedPerpetualRequisiteOrdersList.Count; i++)
+                {
+                    ModifiedPerpetualRequisiteOrder item = viewModel.modifiedPerpetualRequisiteOrdersList[i];
+                    ws.Cells[i + numberOfRow, 33].Value = item.balance;
+                    ws.Cells[i + numberOfRow, 34].Value = item.price;
+                    ws.Cells[i + numberOfRow, 35].Value = item.EmployeeName;
+                    ws.Cells[i + numberOfRow, 36].Value = item.PerpetualRequisiteId;
+                    ws.Cells[i + numberOfRow, 37].Value = item.PerpetualRequisiteDate.Value.ToDateTime(TimeOnly.MinValue);
+                    ws.Cells[i + numberOfRow, 37].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ws.Cells[i + numberOfRow, 38].Value = item.RequisiteNotes;
+
+                    numberOfRow++;
+                }
+
+                //itemData
+                ws.Cells[1, 40].Value = "بيانات الصنف";
+                ws.Cells[1, 40, 1, 44].Merge = true;
+                ws.Cells[1, 40].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[1, 40].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                ws.Cells[1, 40].Style.Font.Bold = true;
+                ws.Cells[1, 40].Style.Font.Size = 14;
+                ws.Cells[2, 40].Value = "الكمية";
+                ws.Cells[2, 41].Value = "السعر";
+                ws.Cells[2, 42].Value = "الكمية المتاحة";
+                ws.Cells[2, 43].Value = "اسم الصنف";
+                ws.Cells[2, 44].Value = "نوع الصنف";
+                ws.Cells[3, 40].Value = viewModel.itemQuantity;
+                ws.Cells[3, 41].Value = viewModel.itemPrice;
+                ws.Cells[3, 42].Value = viewModel.itemTotalBalance;
+                ws.Cells[3, 43].Value = viewModel.itemName;
+                ws.Cells[3, 44].Value = viewModel.itemType;
 
                 ws.Cells[ws.Dimension.Address].AutoFitColumns();
 
 
                 // 3) Prepare file contents and name
                 byte[] fileContents = package.GetAsByteArray();
-                string fileName = $"تقرير الصنف_{DateTime.Now:yyyy-MM-dd}.xlsx";
+                //string fileName = $"تقرير الصنف_{DateTime.Now:yyyy-MM-dd}.xlsx";
+
+                // Arabic prefix
+                string arabicTitle = $"تقرير {viewModel.itemType} {viewModel.itemName}";
+
+                // Get current date in yyyy-MM-dd format
+                string datePart = DateTime.Now.ToString("yyyy-MM-dd");
+
+                // Get current time in HH-mm format (24-hour time)
+                string timePart = DateTime.Now.ToString("HH-mm");
+
+                // File extension
+                string extension = ".xlsx";
+
+                // Combine all parts into the final filename
+                string fileName = $"{arabicTitle}_التاريخ_{datePart}_الوقت_{timePart}{extension}";
 
 
                 //// Get the base application directory
@@ -1759,5 +1927,143 @@ namespace ThothSystemVersion1.Controllers
                 return StatusCode(500, "An error occurred while generating the report.");
             }
         }
+
+        [HttpGet]
+
+        public IActionResult ExportToExcelItemsVendor(InventoryReportViewModel viewModel)
+        {
+            try
+            {
+
+                ExcelPackage.License.SetNonCommercialPersonal("Your Name");
+
+                using var package = new ExcelPackage();
+                var ws = package.Workbook.Worksheets.Add("تقارير الموردين");
+
+                // Add headers
+                ws.Cells[1, 1].Value = "اسم المورد";
+                ws.Cells[1, 2].Value = "عدد المشتريات";
+                ws.Cells[1, 3].Value = "صافي المشتريات";
+
+
+                // Populate rows
+                for (int i = 0; i < viewModel.VendorReport.Count; i++)
+                {
+                    var item = viewModel.VendorReport[i];
+                    ws.Cells[i + 2, 1].Value = item.Vendor.VendorName;
+                    ws.Cells[i + 2, 2].Value = item.PurchaseCount;
+                    ws.Cells[i + 2, 3].Value = item.TotalOldBalance;
+
+                }
+
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+
+                // 3) Prepare file contents and name
+                byte[] fileContents = package.GetAsByteArray();
+                string fileName = $"تقرير الموردين{DateTime.Now:yyyy-MM-dd}.xlsx";
+
+
+                //// Get the base application directory
+                //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+
+                // 4) Save a server-side copy under wwwroot/exports
+                string exportsFolder = Path.Combine("exports");
+                if (!Directory.Exists(exportsFolder))
+                    Directory.CreateDirectory(exportsFolder);
+
+                string fullPath = Path.Combine(exportsFolder, fileName);
+                System.IO.File.WriteAllBytes(fullPath, fileContents);
+                // fullPath is now the physical path on disk
+
+                // 5) Return the Excel file to the browser
+                return File(
+                    fileContents,
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    fileName
+                );
+            }
+            catch (Exception ex)
+            {
+                // Log your exception as needed...
+                WriteException.WriteExceptionToFile(ex);
+                return StatusCode(500, "An error occurred while generating the report.");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ExportToExcelItemsCustomer(InventoryReportViewModel viewModel)
+        {
+            try
+            {
+
+                ExcelPackage.License.SetNonCommercialPersonal("Your Name");
+
+                using var package = new ExcelPackage();
+                var ws = package.Workbook.Worksheets.Add("تقارير العملاء");
+
+                // Add headers
+                ws.Cells[1, 1].Value = "اسم العميل";
+                ws.Cells[1, 2].Value = "عدد الطلبات";
+                ws.Cells[1, 3].Value = "الرصيد المستحق";
+                ws.Cells[1, 4].Value = "الرصيد غير مستحق";
+                ws.Cells[1, 5].Value = "الرصيد المتبقي";
+
+
+
+                // Populate rows
+                for (int i = 0; i < viewModel.CustomerReport.Count; i++)
+                {
+                    var item = viewModel.CustomerReport[i];
+                    ws.Cells[i + 2, 1].Value = item.Customer.CustomerName;
+                    ws.Cells[i + 2, 2].Value = item.OrderCount;
+                    ws.Cells[i + 2, 3].Value = item.TotalBalance;
+                    ws.Cells[i + 2, 4].Value = item.unearnedBalance;
+                    ws.Cells[i + 2, 5].Value = item.RemainingBalance;
+
+
+                }
+
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+
+                // 3) Prepare file contents and name
+                byte[] fileContents = package.GetAsByteArray();
+                string fileName = $"تقرير العملاء{DateTime.Now:yyyy-MM-dd}.xlsx";
+
+
+                //// Get the base application directory
+                //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+
+                // 4) Save a server-side copy under wwwroot/exports
+                string exportsFolder = Path.Combine("exports");
+                if (!Directory.Exists(exportsFolder))
+                    Directory.CreateDirectory(exportsFolder);
+
+                string fullPath = Path.Combine(exportsFolder, fileName);
+                System.IO.File.WriteAllBytes(fullPath, fileContents);
+                // fullPath is now the physical path on disk
+
+                // 5) Return the Excel file to the browser
+                return File(
+                    fileContents,
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    fileName
+                );
+            }
+            catch (Exception ex)
+            {
+                // Log your exception as needed...
+                WriteException.WriteExceptionToFile(ex);
+                return StatusCode(500, "An error occurred while generating the report.");
+            }
+        }
+
+
+
+
+
     }
 }

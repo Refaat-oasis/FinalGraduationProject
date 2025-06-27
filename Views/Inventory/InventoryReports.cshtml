@@ -96,7 +96,6 @@
             <form asp-controller="Inventory" asp-action="VendorReport" method="post">
                 <div class="rowCont">
 
-
                     <div class="colCont">
                         <label class="input-label">إلى تاريخ</label>
                         <input type="date" name="endingDate" class="text-input" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
@@ -164,16 +163,22 @@
                             </thead>
                             <tbody>
 
-                                @foreach (var order in Model.purchaseOrderList)
+                                @foreach (PurchaseOrder order in Model.purchaseOrderList)
                                 {
-                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
+                                    List<QuantityBridge> bridgeItems = Model.quantityBridgeList.Where(q => q.PurchaseId == order.PurchaseId).ToList();
                                     <tr>
                                         @if (bridgeItems.Any())
                                         {
-
-                                            @foreach (var item in bridgeItems)
+                                            @foreach (QuantityBridge item in bridgeItems)
                                             {
-                                                <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
+                                                if (item.InkId == null)
+                                                {
+                                                    <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>الكمية: @item.NumberOfUnits - السعر: @item.UnitPrice -</td>
+                                                }
                                             }
                                         }
                                         <td>@bridgeItems.Sum(q => q.TotalBalance)</td>
@@ -209,18 +214,16 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    @* <th>الطلبية المخصوصة</th> *@
                                     <th>التفاصيل</th>
-                                    @* <th>الكمية</th> *@
                                     <th>التاريخ</th>
                                     <th>الموظف القائم بالامر</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.requisiteOrderList)
+                                @foreach (RequisiteOrder order in Model.requisiteOrderList)
                                 {
-                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.RequisiteId == order.RequisiteId).ToList();
+                                    List<QuantityBridge> bridgeItems = Model.quantityBridgeList.Where(q => q.RequisiteId == order.RequisiteId).ToList();
 
 
                                     <tr>
@@ -271,9 +274,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.physicalCountList)
+                                @foreach (PhysicalCountOrder order in Model.physicalCountList)
                                 {
-                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
+                                    List<QuantityBridge> bridgeItems = Model.quantityBridgeList.Where(q => q.PhysicalCountId == order.PhysicalCountId).ToList();
                                     <tr>
 
                                         @if (bridgeItems.Any())
@@ -281,7 +284,15 @@
 
                                             @foreach (QuantityBridge item in bridgeItems)
                                             {
-                                                <td> @item.Quantity</td>
+                                                if (item.InkId == null)
+                                                {
+                                                    <td> @item.Quantity</td>
+                                                }
+
+                                                else
+                                                {
+                                                    <td> @item.Quantity السحبات: , @item.NumberOfUnits الوحدات: </td>
+                                                }
                                             }
 
                                         }
@@ -291,7 +302,15 @@
 
                                             @foreach (QuantityBridge item in bridgeItems)
                                             {
-                                                <td> @item.OldQuantity</td>
+                                                if (item.InkId == null)
+                                                {
+                                                    <td> @item.Quantity</td>
+                                                }
+
+                                                else
+                                                {
+                                                    <td> @item.OldQuantity السحبات: , @item.OldNumberOfUnits الوحدات: </td>
+                                                }
                                             }
 
                                         }
@@ -336,15 +355,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.returnOrderList)
+                                @foreach (ReturnsOrder order in Model.returnOrderList)
                                 {
-                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList();
+                                    List<QuantityBridge> bridgeItems = Model.quantityBridgeList.Where(q => q.ReturnId == order.ReturnId).ToList();
                                     <tr>
                                         @if (bridgeItems.Any())
                                         {
-                                            @foreach (var item in bridgeItems)
+                                            if (order.ReturnInOut == true)
                                             {
-                                                <td> @item.Quantity</td>
+                                                @foreach (QuantityBridge item in bridgeItems)
+                                                {
+                                                    <td> @item.Quantity</td>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @foreach (QuantityBridge item in bridgeItems)
+                                                {
+                                                    if (item.InkId == null)
+                                                    {
+                                                        <td> @item.Quantity</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td> @item.NumberOfUnits</td>
+                                                    }
+                                                }
                                             }
                                         }
                                         <td>@order.ReturnDate</td>
@@ -388,15 +424,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.perpetualOrderList)
+                                @foreach (PerpetualRequisiteOrder order in Model.perpetualOrderList)
                                 {
-                                    var bridgeItems = Model.quantityBridgeList.Where(q => q.PerpetualRequisiteId == order.PerpetualRequisiteId).ToList();
+                                    List<QuantityBridge> bridgeItems = Model.quantityBridgeList.Where(q => q.PerpetualRequisiteId == order.PerpetualRequisiteId).ToList();
                                     <tr>
                                         @if (bridgeItems.Any())
                                         {
-                                            @foreach (var item in bridgeItems)
+                                            @foreach (QuantityBridge item in bridgeItems)
                                             {
-                                                  <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
+                                                if (item.SparePartsId != null)
+                                                {
+                                                    <td>الكمية: @item.Quantity - السعر: @item.Price -</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>الكمية: @item.NumberOfUnits - السعر: @item.UnitPrice -</td>
+                                                }
                                             }
                                         }
                                         <td>@order.PerpetualRequisiteDate</td>
@@ -430,7 +473,7 @@
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    <th>الرصيد القديم الإجمالي</th>
+                                    <th>الرصيد الإجمالي</th>
                                     <th>عدد المشتريات</th>
                                     <th>اسم المورد</th>
 

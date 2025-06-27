@@ -111,7 +111,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                     }
 
                     joborder.RemainingAmount -= recDTO.Amount;
-                    joborder.EarnedRevenue += recDTO.Amount;
+                    joborder.UnearnedRevenue += recDTO.Amount;
 
                     _context.JobOrders.Update(joborder);
                     RecieptsOrder reciept = new RecieptsOrder();

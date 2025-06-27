@@ -28,6 +28,16 @@ namespace ThothSystemVersion1.ViewModels
         public List<ModifiedReturnsOrder> modifiedReturnsOrderList { get; set; }
         public List<ModifiedPerpetualRequisiteOrder> modifiedPerpetualRequisiteOrdersList { get; set; }
 
+
+        // item data for inventory item 
+
+        public string itemName { get; set; }
+        public string itemType { get; set; }
+        public int itemQuantity { get; set; }
+        public decimal itemPrice { get; set; }
+        public decimal itemTotalBalance { get; set; }
+
+
         public List<(Vendor Vendor, int PurchaseCount, decimal TotalOldBalance)> VendorReport { get; set; }
 
         public List<(Customer Customer, int OrderCount, decimal TotalBalance, decimal unearnedBalance, decimal RemainingBalance)> CustomerReport { get; set; } = new();

@@ -26,6 +26,10 @@ namespace ThothSystemVersion1.ModifiedModels
         [Display(Name = "السعر")]
         public decimal price { get; set; }
 
+        [Display(Name = "كمية قديمة للعنصر")]
+        public int oldBalance { get; set; }
+
+
 
     }
 }

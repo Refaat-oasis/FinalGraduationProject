@@ -120,6 +120,14 @@ h2 {
     font-size: 40px;
 }
 
+.font {
+    color: black;
+    margin: 20px;
+    font-weight: 600;
+    font-size: 40px;
+    margin-left: 40%;
+}
+
 .row-style {
     display: flex;
     padding: 10px;
@@ -214,25 +222,39 @@ label {
     }
 
 .editBtn {
-    padding: 5px 20px;
-    font-size: 25px;
+    padding: 2px;
+    font-size: 35px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     background-color: black;
     color: white;
-    margin-left: 20px;
+    margin-left: 45%;
     text-decoration: none;
+    width: 100px;
 }
 
 
-    .editBtn:hover {
+    .editBtn:hover, .editBtn:hover {
         background-color: #545b62;
         color: #fff;
         transform: scale(1.05);
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
     }
+
+.editBtn1 {
+    padding: 2px;
+    font-size: 35px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    margin-right: 60%;
+    text-decoration: none;
+    width: 100px;
+}
 
 .redirect-notice {
     font-size: 28px;

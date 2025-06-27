@@ -38,12 +38,33 @@
                 </a>
             }
         </div>
-        <div class="redirect">
-            <input type="hidden" id="tempDataSuccess" value="@(TempData["Success"] != null ? "true" : "false")" />
-            <input type="hidden" id="hdnJobRole" value="@jobRole" />
-        </div>
-        <h1>طلب دفع اموال</h1>
 
+        <h1>طلب دفع اموال</h1>
+        @if (TempData["Success"] != null)
+        {
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i>
+                    <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
+                <div class="progress-bar error"></div>
+
+            </div>
+        }
 
 
         <h2>تفاصيل شراء طلب</h2>
@@ -142,8 +163,7 @@
                         <span asp-validation-for=@Model.PaymentNotes class="text"></span>
                     </div>
                 </div>
-
-                <div class="text-right">
+                <div class="buttons1">
                     <button type="submit" class="editBtn">حفظ</button>
                 </div>
             </form>
@@ -169,7 +189,7 @@
                     } else if (val <= 0) {
                         msg = 'الرجاء ادخال رقم اكبر من صفر';
                     } else if (val > remaining) {
-                        msg = `لا يمكن ان يزيد المبلغ عن (${remaining})`;
+                        msg = لا يمكن ان يزيد المبلغ عن (${remaining});
                     }
 
                     if (msg) {
@@ -182,29 +202,32 @@
             }
 
             // Redirect logic
-            const successElement = document.getElementById('tempDataSuccess');
-            const jobRoleElement = document.getElementById('hdnJobRole');
+             const tempDataElement = document.getElementById('tempDataSuccess');
+        const jobRoleElement = document.getElementById('hdnJobRole');
 
-            if (successElement && successElement.value === 'true') {
-                // Show redirect notification
-                const notice = document.createElement('div');
-                notice.className = 'redirect-notice';
-                notice.innerHTML = 'تم الدفع بنجاح ';
-                document.body.appendChild(notice);
+        // Get values with proper fallbacks
+        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-                const role = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+        console.log("Success message exists:", hasSuccessMessage);
+        console.log("Job role:", jobRole);
 
-                const routes = {
-                    0: '@Url.Action("AdminHome", "Employee")',
-                    6: '@Url.Action("AccountingManager", "Employee")',
-                    7: '@Url.Action("AccountingClerk", "Employee")'
-                };
+        // Mapping of job roles to their respective URLs
+        const jobRoleRoutes = {
+            0: "/employee/AdminHome",
+            1: "/employee/inventoryManager",
+            2: "/employee/inventoryClerk",
+            3: "/employee/TechnicalManager",
+            4: "/employee/technicalClerk",
+            5: "/employee/CostManager",
+            6: "/employee/costClerk"
+        };
 
-                setTimeout(() => {
-                    notice.remove();
-                    window.location.href = routes[role] || '@Url.Action("LoginPage", "Employee")';
-                }, 3000);
-            }
-        });
+        if (hasSuccessMessage) {
+            setTimeout(function () {
+                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
     </script>
 }

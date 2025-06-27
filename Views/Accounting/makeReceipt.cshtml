@@ -90,7 +90,7 @@
 
         <!-- Hidden fields for JavaScript access -->
 
-        <h2>تفاصيل الطلبية</h2>
+        <h2 class="font">تفاصيل الطلبية</h2>
         <div class="mainBox">
             <dl class="colCont1">
 
@@ -175,7 +175,7 @@
         @* } *@
 
         <div class="mainBox">
-            <h2>اضافة امر استلام</h2>
+            <h2 class="font">اضافة امر استلام</h2>
             <div class="mainBox">
                 <form method="post" asp-action="makereceipt" asp-controller="accounting" id="receiptForm" novalidate>
                     <input type="hidden" asp-for="JobOrderId" />
@@ -202,8 +202,9 @@
                             <span asp-validation-for="ReceiptNotes"></span>
                         </div>
                     </div>
-
-                    <button type="submit" class="editBtn">حفظ</button>
+                    <div class="buttons">
+                        <button type="submit" class="editBtn1">حفظ</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -229,7 +230,7 @@
                     } else if (val <= 0) {
                         msg = 'الرجاء ادخال رقم اكبر من صفر';
                     } else if (val > remaining) {
-                        msg = `لا يمكن ان يزيد المبلغ عن (${remaining})`;
+                        msg = لا يمكن ان يزيد المبلغ عن (${remaining});
                     }
 
                     if (msg) {
@@ -273,4 +274,3 @@
         });
     </script>
 }
-

@@ -19,30 +19,30 @@
     <title>ThoTh</title>
 </head>
 
+<div class="form-container">
 
     <div class="arrow">
         @{
             if (jobRole == 0)
             {
-            <a asp-controller="employee" asp-action="adminhome" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
             }
             else if (jobRole == 1)
             {
-            <a asp-controller="employee" asp-action="inventoryManager" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
             }
             else if (jobRole == 2)
             {
-            <a asp-controller="employee" asp-action="inventoryClerk" class="back">
-                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-            </a>
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
             }
         }
     </div>
-<div class="form-container">
     <form asp-controller="Inventory" asp-action="EditCharacteristics" id="myform" method="post">
         <input type="hidden" asp-for="ColorWeightSizeId" />
         <input type="hidden" id="hdnJobRole" value="@jobRole" />
@@ -51,60 +51,60 @@
 
         @if (TempData["Success"] != null)
         {
-        <div class="notification success">
-            <div class="notification-content">
-                <i class='bx bx-check-circle'></i> @TempData["Success"]
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
             </div>
-            <input type="hidden" id="tempDataSuccess" value="true" />
-            <div class="progress-bar success"></div>
-        </div>
         }
 
         @if (TempData["Error"] != null)
         {
-        <div class="notification error">
-            <div class="notification-content">
-                <i class='bx bx-error-circle'></i> <span>@TempData["Error"]</span>
+            <div class="notification error">
+                <div class="notification-content">
+                    <i class='bx bx-error-circle'></i> <span>@TempData["Error"]</span>
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+                <div class="progress-bar error"></div>
             </div>
-            <input type="hidden" id="tempDataSuccess" value="false" />
-            <div class="progress-bar error"></div>
-        </div>
         }
+        <div class="box">
+            <div class="inputBox">
+                <label class="form-label">أختر نوع المواصفة</label><br />
+                <select asp-for="Type" id="Type" class="form-select">
+                    <option value="" disabled selected>اختر النوع</option>
+                    <option value="0">اللون</option>
+                    <option value="1">الوزن</option>
+                    <option value="2">القياس</option>
+                </select>
+                <span asp-validation-for="Type" class="error"></span>
+            </div>
 
-        <div class="inputBox">
-            <label>أختر نوع المواصفة</label>
-            <select asp-for="Type" id="Type">
-                <option value="" disabled selected>اختر النوع</option>
-                <option value="0">اللون</option>
-                <option value="1">الوزن</option>
-                <option value="2">القياس</option>
-            </select>
-            <span asp-validation-for="Type" class="error"></span>
-        </div>
+            <div class="inputBox" id="sizeInput" style="display: none;">
+                <label class="form-label">اللون</label><br />
+                <input asp-for="Colored" id="Colored" class="form-control" />
+                <span asp-validation-for="Colored" class="error"></span>
+            </div>
 
-        <div class="inputBox" id="sizeInput" style="display: none;">
-            <label>اللون</label>
-            <input asp-for="Colored" id="Colored" />
-            <span asp-validation-for="Colored" class="error"></span>
-        </div>
+            <div class="inputBox" id="weightInput" style="display: none;">
+                <label class="form-label">الوزن</label><br />
+                <input asp-for="Weight" id="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="error"></span>
+            </div>
 
-        <div class="inputBox" id="weightInput" style="display: none;">
-            <label>الوزن</label>
-            <input asp-for="Weight" id="Weight" />
-            <span asp-validation-for="Weight" class="error"></span>
-        </div>
+            <div class="inputBox" id="colorInput" style="display: none;">
+                <label class="form-label">القياس</label><br />
+                <input asp-for="Size" id="Size" class="form-control" />
+                <span asp-validation-for="Size" class="error"></span>
+            </div>
 
-        <div class="inputBox" id="colorInput" style="display: none;">
-            <label>القياس</label>
-            <input asp-for="Size" id="Size" />
-            <span asp-validation-for="Size" class="error"></span>
-        </div>
-
-        <div class="buttons">
-            <div class="Add">
-                <input type="submit" value="حفظ التعديلات" class="Add" />
+            <div class="buttons">
+                <input type="submit" value="حفظ التعديلات" class="editBtn" />
             </div>
         </div>
+
     </form>
 </div>
 
@@ -162,23 +162,23 @@
                 setSuccess(type);
             }
 
-            if (selectedType === 0) { // قياس
+            if (selectedType === 0) { 
                 if (!colorInput.value.trim()) {
-                    setError(colorInput, "برجاء إدخال القياس");
+                    setError(colorInput, "برجاء إدخال اللون");
                     valid = false;
                 } else {
                     setSuccess(colorInput);
                 }
-            } else if (selectedType === 1) { // وزن
+            } else if (selectedType === 1) { 
                 if (!weightInput.value.trim() || isNaN(weightInput.value)) {
                     setError(weightInput, "برجاء إدخال وزن رقمي");
                     valid = false;
                 } else {
                     setSuccess(weightInput);
                 }
-            } else if (selectedType === 2) { // لون
+            } else if (selectedType === 2) { 
                 if (!sizeInput.value.trim()) {
-                    setError(sizeInput, "برجاء إدخال اللون");
+                    setError(sizeInput, "برجاء إدخال القياس");
                     valid = false;
                 } else {
                     setSuccess(sizeInput);

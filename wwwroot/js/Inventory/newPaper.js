@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
             setSuccess(elements.Colored);
         }
 
-        if (!elements.ReorderPoint.value || isNaN(elements.ReorderPoint.value) || parseFloat(elements.ReorderPoint.value) <= 0) {
-            setError(elements.ReorderPoint, "يجب إدخال قيمة صحيحة أكبر من الصفر");
+        if (!elements.ReorderPoint.value || isNaN(elements.ReorderPoint.value) || parseFloat(elements.ReorderPoint.value) < 0) {
+            setError(elements.ReorderPoint, "يجب إدخال قيمة صحيحة أكبر من او تساوي الصفر");
             valid = false;
         } else {
             setSuccess(elements.ReorderPoint);

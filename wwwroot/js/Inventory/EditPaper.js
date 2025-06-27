@@ -66,8 +66,8 @@
 
         if (!elements.ReorderPoint.value.trim() ||
             isNaN(elements.ReorderPoint.value) ||
-            parseFloat(elements.ReorderPoint.value) <= 0) {
-            setError(elements.ReorderPoint, "برجاء إدخال قيمة صحيحة أكبر من الصفر");
+            parseFloat(elements.ReorderPoint.value) < 0) {
+            setError(elements.ReorderPoint, "برجاء إدخال قيمة صحيحة أكبر من او تساوي الصفر");
             valid = false;
         } else {
             setSuccess(elements.ReorderPoint);

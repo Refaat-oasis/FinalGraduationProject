@@ -67,8 +67,8 @@
         if (!elements.ReorderPoint.value) {
             setError(elements.ReorderPoint, "برجاء إدخال نقطه إعاده الشراء");
             valid = false;
-        } else if (!elements.ReorderPoint.value || isNaN(elements.ReorderPoint.value) || parseFloat(elements.ReorderPoint.value) <= 0) {
-            setError(elements.ReorderPoint, "يجب إدخال قيمة صحيحة أكبر من الصفر");
+        } else if (!elements.ReorderPoint.value || isNaN(elements.ReorderPoint.value) || parseFloat(elements.ReorderPoint.value) < 0) {
+            setError(elements.ReorderPoint, "يجب إدخال قيمة صحيحة أكبر من او تساوي الصفر");
             valid = false;
         } else {
             setSuccess(elements.ReorderPoint);

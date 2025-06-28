@@ -253,6 +253,48 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+        public AccountingReportViewModel accountReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+            try
+            {
+
+                AccountingReportViewModel viewModel = new AccountingReportViewModel();
+
+                List<JobOrder> jobOrderList = _context.JobOrders.Where(jo => jo.StartDate >= beginingDate
+                && jo.EndDate <= endingDate).ToList();
+                viewModel.jobOrdersCount = jobOrderList.Count();
+
+                foreach (JobOrder job in jobOrderList)
+                {
+                    viewModel.jobOrderUnearnedRevenue += job.UnearnedRevenue ?? 0;
+                    viewModel.jobOrderEarnedRevenue += job.EarnedRevenue ?? 0;
+                    viewModel.jobOrderRemainingAmount += job.RemainingAmount ?? 0;
+                }
+                viewModel.lateJobOrders = jobOrderList.Where(jo => jo.OrderProgress != "تم التسليم"
+                && jo.EndDate < DateOnly.FromDateTime(DateTime.Now)).Count();
+
+                List<PurchaseOrder> purchaseOrderList = _context.PurchaseOrders.Where(jo => jo.PurchaseDate >= beginingDate
+                && jo.PurchaseDate <= endingDate).ToList();
+                viewModel.purchaseOrdersCount = purchaseOrderList.Count();
+                foreach (PurchaseOrder purchase in purchaseOrderList) 
+                {
+                    viewModel.purchasePaidAmount += purchase.PaidAmount ?? 0;
+                    viewModel.purchaseRemainingAmount += purchase.RemainingAmount ?? 0;
+                }
+                viewModel.latepurchaseOrders = _context.PurchaseOrders.Where(po => po.RemainingAmount > 0
+             && po.PurchaseDate <= DateOnly.FromDateTime(DateTime.Now).AddDays(30)).Count();
+
+                return viewModel;
+
+            }
+            catch (Exception ex) { 
+            
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+
+        }
+
     }
     
     }

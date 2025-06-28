@@ -237,10 +237,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 paymentVm.EmployeeId = payment.EmployeeId;
                 paymentVm.EmployeeName = emp.EmployeeName;
 
-
-
                 return paymentVm;
-
 
             }
             catch (Exception ex) {  
@@ -249,7 +246,6 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return new PaymentPurchaseOrderVM();
 
             }
-
 
         }
 
@@ -290,7 +286,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             catch (Exception ex) { 
             
                 WriteException.WriteExceptionToFile(ex);
-                return null;
+                return new AccountingReportViewModel();
             }
 
         }

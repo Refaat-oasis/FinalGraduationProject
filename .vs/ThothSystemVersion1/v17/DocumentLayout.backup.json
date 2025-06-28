@@ -3,12 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\controllers\\accountingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\accountingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\datatransfereobject\\employeeeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:datatransfereobject\\employeeeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\datatransfereobject\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:datatransfereobject\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\interfaceservices\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:interfaceservices\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\adminbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\adminbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\inventorybussineslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\inventorybussineslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\database\\thothcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:database\\thothcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\views\\accounting\\accountingreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -22,32 +62,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccountingBusinessLogicLayer.cs",
-              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "RelativeDocumentMoniker": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "RelativeToolTip": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAqwBwBAABcAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "EmployeeEditDTo.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\DataTransfereObject\\EmployeeEditDTo.cs",
+              "RelativeDocumentMoniker": "DataTransfereObject\\EmployeeEditDTo.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\DataTransfereObject\\EmployeeEditDTo.cs",
+              "RelativeToolTip": "DataTransfereObject\\EmployeeEditDTo.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAIwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T01:05:10.573Z",
+              "WhenOpened": "2025-06-28T15:01:07.015Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "accountingReport.cshtml",
-              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
-              "RelativeDocumentMoniker": "Views\\Accounting\\accountingReport.cshtml",
-              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
-              "RelativeToolTip": "Views\\Accounting\\accountingReport.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-28T00:34:45.03Z",
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InventoryController.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "Controllers\\InventoryController.cs",
+              "ViewState": "AgIAAGkCAAAAAAAAAAAAAHECAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T13:20:31.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\AdminController.cs*",
+              "RelativeToolTip": "Controllers\\AdminController.cs*",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAgwJwAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T13:16:36.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\InterfaceServices\\AdminService.cs",
+              "RelativeDocumentMoniker": "InterfaceServices\\AdminService.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\InterfaceServices\\AdminService.cs",
+              "RelativeToolTip": "InterfaceServices\\AdminService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T13:14:47.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\DataTransfereObject\\EmployeeDTO.cs",
+              "RelativeDocumentMoniker": "DataTransfereObject\\EmployeeDTO.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\DataTransfereObject\\EmployeeDTO.cs",
+              "RelativeToolTip": "DataTransfereObject\\EmployeeDTO.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAowC0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T12:17:13.83Z",
               "EditorCaption": ""
             },
             {
@@ -58,10 +137,100 @@
               "RelativeDocumentMoniker": "Controllers\\AccountingController.cs",
               "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\AccountingController.cs",
               "RelativeToolTip": "Controllers\\AccountingController.cs",
-              "ViewState": "AgIAACsBAAAAZmZmZmYkwDMBAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAGoAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-28T00:19:25.097Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminBusinessLogicLayer.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AdminBusinessLogicLayer.cs",
+              "RelativeDocumentMoniker": "BusinessLogicLayers\\AdminBusinessLogicLayer.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AdminBusinessLogicLayer.cs",
+              "RelativeToolTip": "BusinessLogicLayers\\AdminBusinessLogicLayer.cs",
+              "ViewState": "AgIAAGEAAABgZmZmZmYwwIoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T12:42:24.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAgwKwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T12:17:32.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InventoryBussinesLogicLayer.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
+              "RelativeDocumentMoniker": "BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
+              "RelativeToolTip": "BusinessLogicLayers\\InventoryBussinesLogicLayer.cs",
+              "ViewState": "AgIAAFUBAABgZmZmZmYwwHkBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T12:51:32.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ThothContext.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Database\\ThothContext.cs",
+              "RelativeDocumentMoniker": "Database\\ThothContext.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Database\\ThothContext.cs",
+              "RelativeToolTip": "Database\\ThothContext.cs",
+              "ViewState": "AgIAADIAAAAAZmZmZmYowD8AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:59:08.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-28T11:58:51.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AccountingBusinessLogicLayer.cs",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
+              "RelativeDocumentMoniker": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
+              "RelativeToolTip": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAYwBsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T01:05:10.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "accountingReport.cshtml",
+              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accounting\\accountingReport.cshtml",
+              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
+              "RelativeToolTip": "Views\\Accounting\\accountingReport.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T00:34:45.03Z"
             }
           ]
         }

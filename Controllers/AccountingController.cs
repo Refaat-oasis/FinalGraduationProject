@@ -100,6 +100,7 @@ namespace ThothSystemVersion1.Controllers
                 receiptDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
 
 
+                
                 ModelState.Clear();
                 TryValidateModel(receiptDTO);
                 if (ModelState.IsValid)

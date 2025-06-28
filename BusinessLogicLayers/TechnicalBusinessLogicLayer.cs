@@ -677,6 +677,39 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
         }
 
+        public TechnicalReportViewModel TechnicalReport(DateOnly beginningDate , DateOnly endingDate)
+        {
+            try
+            {
+                TechnicalReportViewModel technicalReportViewModel = new TechnicalReportViewModel();
+
+                List<JobOrder> jobOrders = _context.JobOrders
+                    .Where(j => j.StartDate >= beginningDate && j.EndDate <= endingDate).ToList();
+                technicalReportViewModel.jobOrdersCount = jobOrders.Count;
+
+                technicalReportViewModel.onTimeJobOrders = jobOrders.Where(j=> j
+                .OrderProgress == "تم التسليم" || j.OrderProgress == "Completed" 
+                && j.EndDate < DateOnly.FromDateTime(DateTime.Now)).Count();
+                technicalReportViewModel.pendingJobOrders = jobOrders.Where(j => j.OrderProgress == "قيد الانتظار" ||
+                j.OrderProgress == "Pending").Count();
+                technicalReportViewModel.inProgressJobOrders = jobOrders.Where(j => j.OrderProgress == "قيد التشغيل" ||
+                j.OrderProgress == "In Progress").Count();
+                technicalReportViewModel.lateJobOrders = jobOrders
+     .Where(j =>
+         (j.OrderProgress != "تم التسليم" && j.OrderProgress != "Completed") &&
+         j.EndDate < DateOnly.FromDateTime(DateTime.Now)
+     ).Count();
+
+                return technicalReportViewModel;
+
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new TechnicalReportViewModel();
+            }
+        }
+
 
 
     }

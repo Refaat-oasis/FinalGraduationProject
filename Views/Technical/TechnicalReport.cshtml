@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model ThothSystemVersion1.ViewModels.TechnicalReportViewModel
+
+@{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+    ViewData["Title"] = "Thoth";
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+}
+
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/css/Inventory/inventoryReports.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <!-- Back button based on role -->
+    @if (jobRole == 0)
+    {
+        <a asp-controller="employee" asp-action="adminhome" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size:40px; color:white;"></i>
+        </a>
+    }
+    else if (jobRole == 3)
+    {
+        <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+            <i class='bx bx-left-arrow-circle' style="font-size:40px; color:white;"></i>
+        </a>
+    }
+
+    <div class="mainBox">
+        <h1>تقرير الطلبيات</h1>
+        <div class="toggle-btn" onclick="toggleForm()">
+            <span>تفاصيل الطلبيات<i class='bx bx-chevrons-down'></i></span>
+        </div>
+
+        <div id="formSection" class="hiddenBox">
+            <form asp-action="TechnicalReport" asp-controller="Technical" method="post">
+                <div class="rowCont">
+                    <div class="colCont">
+                        <label name="endingDate" class="input-label">إلى تاريخ</label>
+                        <input name="endingDate" type="date" class="text-input" value="@DateTime.Now:yyyy-MM-dd" required />
+                    </div>
+                    <div class="colCont">
+                        <label name="beginingDate" class="input-label">من تاريخ</label>
+                        <input name="beginingDate" type="date" class="text-input" value="@DateTime.Now:yyyy-MM-dd" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn">عرض تقرير الفني</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="report-results">
+      
+            <div class="card-container" style="display:flex; gap:1rem; margin-top:2rem;">
+                <div class="report-card" style="flex:1; padding:1rem; border:1px solid #ccc; border-radius:8px;">
+                    @if (Model.jobOrdersCount > 0)
+                    {
+                        <p><strong>@Html.DisplayNameFor(m => m.jobOrdersCount):</strong> @Model.jobOrdersCount</p>
+                        <p><strong>@Html.DisplayNameFor(m => m.onTimeJobOrders):</strong> @Model.onTimeJobOrders</p>
+                        <p><strong>@Html.DisplayNameFor(m => m.pendingJobOrders):</strong> @Model.pendingJobOrders</p>
+                        <p><strong>@Html.DisplayNameFor(m => m.inProgressJobOrders):</strong> @Model.inProgressJobOrders</p>
+                        <p><strong>@Html.DisplayNameFor(m => m.lateJobOrders):</strong> @Model.lateJobOrders</p>
+                    }
+                  
+                </div>
+
+
+            </div>
+        
+      
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleForm() {
+            var section = document.getElementById('formSection');
+            section.classList.toggle('hiddenBox');
+        }
+    </script>
+}

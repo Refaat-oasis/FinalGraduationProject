@@ -487,6 +487,60 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+
+        [HttpGet]
+        public IActionResult TechnicalReport()
+        {
+
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 3)
+            {
+
+                try
+                {
+                    return View(new TechnicalReportViewModel());
+                }
+                catch (Exception e)
+                {
+                    WriteException.WriteExceptionToFile(e);
+                    return View(new TechnicalReportViewModel());
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult TechnicalReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+            try
+            {
+
+                TechnicalReportViewModel technicalReportViewModel = _technicalBusinessLogicLayer.TechnicalReport(beginingDate, endingDate);
+                if (technicalReportViewModel == null)
+                {
+                    return View(new TechnicalReportViewModel());
+                }
+                else
+                {
+                    return View(technicalReportViewModel);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return View(new TechnicalReportViewModel());
+            }
+
+
+
+        }
+
+
     }
     //[HttpPost]
     //public IActionResult Create(RequisiteOrderDTO dto)

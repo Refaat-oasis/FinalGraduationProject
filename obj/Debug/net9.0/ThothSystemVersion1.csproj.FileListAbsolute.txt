@@ -24232,7 +24232,6 @@ D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\fzius0n1xk-5ipweew5fc.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\70k96f6nvm-tbpwc20gmv.gz
-D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\er0elg6w4w-ceh62gejhf.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\11n3uy0hvv-wl5452h7rf.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\kqnbfrbgtp-cbm62f63pw.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\q0t8rm8ipr-p2m89nhm79.gz
@@ -27378,7 +27377,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final 2\FinalG
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final 2\FinalGraduationProject\obj\Debug\net9.0\ThothSys.FFA15F00.Up2Date
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final 2\FinalGraduationProject\obj\Debug\net9.0\ThothSystemVersion1.genruntimeconfig.cache
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\final 2\FinalGraduationProject\obj\Debug\net9.0\ref\ThothSystemVersion1.dll
-D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\4q3jwkanni-zdfwwkyej7.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\wuyea7w9l7-3azfs2hlv1.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\urp3u2rv2e-3azfs2hlv1.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\t4rwhzwlm0-6u3i4ah4po.gz
@@ -27394,7 +27392,6 @@ D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\b96qb1uoig-3azfs
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\f936oko1g0-picup1pokq.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\carg97rk1o-3azfs2hlv1.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\zn1uteo1kw-q6mx9vamjr.gz
-D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-su4gugoi2c.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\3gyijekqk9-4q2dwnlmku.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\vqoalrmg43-j2xbsfycwr.gz
 D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\5yjja4bb7t-gzymifizmn.gz
@@ -27479,3 +27476,6 @@ C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduatio
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\tokv62z93q-b7sb48av9x.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\2ynxzqyove-ml4ei4aiae.gz
 C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\obj\Debug\net9.0\compressed\netemxqdd9-t1h1m0ckyh.gz
+D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\4q3jwkanni-uuu1w89iin.gz
+D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\er0elg6w4w-6ixxc9gyg3.gz
+D:\GRAD PROJ\FinalGraduationProject\obj\Debug\net9.0\compressed\h874icfllh-qolifga961.gz

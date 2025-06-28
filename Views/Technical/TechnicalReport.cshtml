@@ -12,7 +12,7 @@
 @section HeadContent {
     <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="~/css/Inventory/inventoryReports.css" rel="stylesheet" />
+    <link href="~/css/Technical/technicalReport.css" rel="stylesheet" />
 }
 
 <div class="container">
@@ -57,18 +57,35 @@
       
             <div class="card-container" style="display:flex; gap:1rem; margin-top:2rem;">
                 <div class="report-card" style="flex:1; padding:1rem; border:1px solid #ccc; border-radius:8px;">
+                <div class="mainBox">
+                    <dl class="colCont1">
                     @if (Model.jobOrdersCount > 0)
                     {
-                        <p><strong>@Html.DisplayNameFor(m => m.jobOrdersCount):</strong> @Model.jobOrdersCount</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.onTimeJobOrders):</strong> @Model.onTimeJobOrders</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.pendingJobOrders):</strong> @Model.pendingJobOrders</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.inProgressJobOrders):</strong> @Model.inProgressJobOrders</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.lateJobOrders):</strong> @Model.lateJobOrders</p>
+                             <div class="row-style">
+                                <dd> @Model.jobOrdersCount </dd> <dt> : @Html.DisplayNameFor(m => m.jobOrdersCount)</dt>
+                            </div>
+                            <div class="row-style">
+                                <dd> @Model.onTimeJobOrders </dd> <dt> :@Html.DisplayNameFor(m => m.onTimeJobOrders)</dt>
+                            </div>
+                            <div class="row-style">
+
+                                <dd>@Model.pendingJobOrders</dd> <dt> :@Html.DisplayNameFor(m => m.pendingJobOrders)</dt>
+                            </div>
+                            <div class="row-style">
+
+                                <dd>@Model.inProgressJobOrders  </dd> <dt>:@Html.DisplayNameFor(m => m.inProgressJobOrders)</dt>
+                            </div>
+
+                          
+                             <div class="row-style">
+
+                                <dd>@Model.lateJobOrders</dd> <dt> :@Html.DisplayNameFor(m => m.lateJobOrders)</dt>
+                            </div>
                     }
-                  
+                  </dl>
                 </div>
 
-
+                </div>
             </div>
         
       

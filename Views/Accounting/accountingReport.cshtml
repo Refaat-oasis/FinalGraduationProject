@@ -12,7 +12,7 @@
 @section HeadContent {
     <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="~/css/Inventory/inventoryReports.css" rel="stylesheet" />
+    <link href="~/css/Accounting/accountingReport.css" rel="stylesheet" />
 }
 
 <div class="container">
@@ -61,44 +61,71 @@
                 <!-- Job Orders Card -->
                 <div class="report-card" style="flex:1; padding:1rem; border:1px solid #ccc; border-radius:8px;">
                     <h2>حركة طلبيات الوظائف</h2>
+                    <div class="mainBox">
+                        <dl class="colCont1">
+
                     @if (Model.jobOrdersCount > 0)
                     {
-                        <p><strong>@Html.DisplayNameFor(m => m.jobOrdersCount):</strong> @Model.jobOrdersCount</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.jobOrderRemainingAmount):</strong> @Model.jobOrderRemainingAmount.ToString("N2")</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.jobOrderUnearnedRevenue):</strong> @Model.jobOrderUnearnedRevenue.ToString("N2")</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.jobOrderEarnedRevenue):</strong> @Model.jobOrderEarnedRevenue.ToString("N2")</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.lateJobOrders):</strong> @Model.lateJobOrders</p>
+                                <div class="row-style">
+                                    <dd> @Model.jobOrdersCount</dd> <dt> :@Html.DisplayNameFor(m => m.jobOrdersCount)</dt>
+                            </div>
+                               <div class="row-style">
+                                    <dd> @Model.jobOrderRemainingAmount.ToString("N2")</dd>   <dt>: @Html.DisplayNameFor(m => m.jobOrderRemainingAmount)</dt>
+                            </div>
+                                <div class="row-style">
+                                    <dd> @Model.jobOrderUnearnedRevenue.ToString("N2")</dd> <dt>: @Html.DisplayNameFor(m => m.jobOrderUnearnedRevenue)</dt>
+                            </div>
+                               <div class="row-style">
+                                    <dd> @Model.jobOrderEarnedRevenue.ToString("N2")</dd> <dt>: @Html.DisplayNameFor(m => m.jobOrderEarnedRevenue)</dt>
+                            </div>
+                               <div class="row-style">
+                                    <dd>@Model.lateJobOrders</dd>  <dt>: @Html.DisplayNameFor(m => m.lateJobOrders)</dt>
+                            </div>
                     }
                     else
                     {
                         <p>لا توجد بيانات</p>
                     }
+                    </dl>
                 </div>
-
+                </div>
                 <!-- Purchase Orders Card -->
                 <div class="report-card" style="flex:1; padding:1rem; border:1px solid #ccc; border-radius:8px;">
                     <h2>حركة طلبيات الشراء</h2>
+                    <div class="mainBox">
+                        <dl class="colCont1">
+
                     @if (Model.purchaseOrdersCount > 0)
                     {
-                        <p><strong>@Html.DisplayNameFor(m => m.purchaseOrdersCount):</strong> @Model.purchaseOrdersCount</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.purchaseRemainingAmount):</strong> @Model.purchaseRemainingAmount.ToString("N2")</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.purchasePaidAmount):</strong> @Model.purchasePaidAmount.ToString("N2")</p>
-                        <p><strong>@Html.DisplayNameFor(m => m.latepurchaseOrders):</strong> @Model.latepurchaseOrders</p>
+                               <div class="row-style">
+                                    <dd> @Model.purchaseOrdersCount</dd>  <dt>: @Html.DisplayNameFor(m => m.purchaseOrdersCount)</dt>
+                                 </div>
+                                <div class="row-style">
+                                    <dd>@Model.purchaseRemainingAmount.ToString("N2")</dd> <dt>  :@Html.DisplayNameFor(m => m.purchaseRemainingAmount)</dt>
+                                </div>
+                                  <div class="row-style">
+                                    <dd> @Model.purchasePaidAmount.ToString("N2")</dd> <dt>: @Html.DisplayNameFor(m => m.purchasePaidAmount)</dt>
+                                   </div>
+                                   <div class="row-style">
+                                    <dd>@Model.latepurchaseOrders</dd> <dt>: @Html.DisplayNameFor(m => m.latepurchaseOrders) </dt>
+                                   </div>
+
                     }
+                      
                     else
                     {
                         <p>لا توجد بيانات</p>
                     }
+                        </dl>
                 </div>
-            </div>
-        }
-        else
-        {
-            <p style="margin-top:2rem;">لا توجد بيانات</p>
-        }
-    </div>
+        
+                
+                
+                </div>
+                
 </div>
-
+}
+</div>
 @section Scripts {
     <script>
         function toggleForm() {

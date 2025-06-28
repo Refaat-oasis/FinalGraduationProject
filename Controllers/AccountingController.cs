@@ -28,15 +28,24 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult viewJobOrderWithRemainingAmount()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            try
             {
-                List<JobOrderCustEmpVM> jobOrders = _businessLogicL.getJObOrderWithRemainingAmount();
-                return View("~/Views/Accounting/JobOrderWithRemainingAmount.cshtml", jobOrders);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+                {
+                    List<JobOrderCustEmpVM> jobOrders = _businessLogicL.getJObOrderWithRemainingAmount();
+                    return View("~/Views/Accounting/JobOrderWithRemainingAmount.cshtml", jobOrders);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
-            {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+            catch (Exception e) { 
+            
+                WriteException.WriteExceptionToFile(e);
+                return View("~/Views/Accounting/JobOrderWithRemainingAmount.cshtml", new List<JobOrderCustEmpVM>());
+
             }
         }
 
@@ -44,28 +53,37 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult makeReceipt(int JobOrderId)
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            try
             {
-                JobOrderCustEmpVM jO = _techBusinessLogicL.getJobOrderVM(JobOrderId);
-            ReceiptJobOrderVM RJO = new ReceiptJobOrderVM();
-            RJO.JobOrderId = jO.JobOrderId;
-            RJO.CustomerId = jO.CustomerId;
-            RJO.StartDate = jO.StartDate;
-            RJO.EndDate = jO.EndDate;
-            RJO.JobOrdernotes = jO.JobOrdernotes;
-            RJO.RemainingAmount = jO.RemainingAmount;
-            RJO.UnearnedRevenue = jO.UnearnedRevenue;
-            RJO.EarnedRevenue = jO.EarnedRevenue;
-            RJO.EmployeeId = jO.EmployeeId;
-            RJO.EmployeeName = jO.EmployeeName;
-            RJO.CustomerName = jO.CustomerName;
 
-            return View(RJO);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+                {
+                    JobOrderCustEmpVM jO = _techBusinessLogicL.getJobOrderVM(JobOrderId);
+                    ReceiptJobOrderVM RJO = new ReceiptJobOrderVM();
+                    RJO.JobOrderId = jO.JobOrderId;
+                    RJO.CustomerId = jO.CustomerId;
+                    RJO.StartDate = jO.StartDate;
+                    RJO.EndDate = jO.EndDate;
+                    RJO.JobOrdernotes = jO.JobOrdernotes;
+                    RJO.RemainingAmount = jO.RemainingAmount;
+                    RJO.UnearnedRevenue = jO.UnearnedRevenue;
+                    RJO.EarnedRevenue = jO.EarnedRevenue;
+                    RJO.EmployeeId = jO.EmployeeId;
+                    RJO.EmployeeName = jO.EmployeeName;
+                    RJO.CustomerName = jO.CustomerName;
+
+                    return View(RJO);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+                WriteException.WriteExceptionToFile(ex);
+                return View(new ReceiptJobOrderVM());
             }
         }
 
@@ -108,6 +126,7 @@ namespace ThothSystemVersion1.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = "حدث خطأ أثناء استلام الاموال";
+                WriteException.WriteExceptionToFile(ex);
                 return View(receiptVM);
 
             }
@@ -119,37 +138,50 @@ namespace ThothSystemVersion1.Controllers
         [HttpGet]
         public IActionResult viewPurchaseOrderdsWithRemainingAmount()
         {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            try
             {
-                List<PaymentPurchaseOrderVM> purchaseOrders = _businessLogicL.getPurchaseOrdersWithRemainingAmount();
-                return View("~/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml", purchaseOrders);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+                {
+                    List<PaymentPurchaseOrderVM> purchaseOrders = _businessLogicL.getPurchaseOrdersWithRemainingAmount();
+                    return View("~/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml", purchaseOrders);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
-            {
-                return RedirectToAction("UnauthorizedAccess", "employee"); 
+            catch (Exception ex) { 
+            
+                WriteException.WriteExceptionToFile(ex);
+                return View("~/Views/Accounting/PurchaseOrderWithRemainingAmount.cshtml", new List<PaymentPurchaseOrderVM>());
             }
         }
         [HttpGet]
         public IActionResult makePayment(int purchaseID) {
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            try
             {
-                PaymentPurchaseOrderVM payment = _businessLogicL.gitPurchaseOrderVM(purchaseID);
-            return View(payment);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+                {
+                    PaymentPurchaseOrderVM payment = _businessLogicL.gitPurchaseOrderVM(purchaseID);
+                    return View(payment);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
-            {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+            catch (Exception ex) { 
+            
+                WriteException.WriteExceptionToFile(ex);
+                return View(new PaymentPurchaseOrderVM());
             }
 
         }
         [HttpPost]
         public IActionResult makePayment(PaymentPurchaseOrderVM paymentVM)
         {
-
-
-
             try
             {
                 PaymentOrderDTO paymentDTO = new PaymentOrderDTO();
@@ -157,7 +189,6 @@ namespace ThothSystemVersion1.Controllers
                 paymentDTO.PaymentNotes = paymentVM.PaymentNotes;
                 paymentDTO.Amount = paymentVM.Amount;
                 paymentDTO.EmployeeId = HttpContext.Session.GetString("EmployeeID");
-
 
                 ModelState.Clear();
                 TryValidateModel(paymentDTO);
@@ -167,7 +198,6 @@ namespace ThothSystemVersion1.Controllers
                     bool result = _businessLogicL.makePayment(paymentDTO);
                     if (result)
                     {
-                        // Redirect to a success page or show a success message
                         string message = "تم دفع الاموال";
                         TempData["Success"] = message;
                         return View(paymentVM);
@@ -176,7 +206,6 @@ namespace ThothSystemVersion1.Controllers
                     {
                         string message = "حدث خطأ في العملية";
                         TempData["Error"] = message;
-                        // Handle the error case
                         return View(paymentVM);
                     }
                 }
@@ -184,6 +213,7 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء دفع الاموال";
                 return View(paymentVM);
 
@@ -194,20 +224,23 @@ namespace ThothSystemVersion1.Controllers
 
         [HttpGet]
         public IActionResult viewJobOrderWithCost() {
-
-
-            int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+            try
             {
-                List<JobOrderCustEmpVM> jobOrders = _costBusinessLogicL.GetJobOrdersWithProcessBridge();
-                return View("~/Views/Accounting/JobOrderWithCost.cshtml", jobOrders);
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 7 || jobRole == 8)
+                {
+                    List<JobOrderCustEmpVM> jobOrders = _costBusinessLogicL.GetJobOrdersWithProcessBridge();
+                    return View("~/Views/Accounting/JobOrderWithCost.cshtml", jobOrders);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
-            else
-            {
-                return RedirectToAction("UnauthorizedAccess", "employee");
+            catch (Exception ex) { 
+            WriteException.WriteExceptionToFile (ex);
+                return View("~/Views/Accounting/JobOrderWithCost.cshtml", new List<JobOrderCustEmpVM>());
             }
-
-
         }
 
         [HttpGet]
@@ -234,6 +267,7 @@ namespace ThothSystemVersion1.Controllers
                 catch (Exception ex)
                 {
                     TempData["Error"] = ex.Message;
+                    WriteException.WriteExceptionToFile(ex);
                     return RedirectToAction("viewJobOrderWithCost"); // Redirect to list with error
                 }
             }
@@ -275,6 +309,7 @@ namespace ThothSystemVersion1.Controllers
             }
             catch (Exception ex)
             {
+                WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
                 return View("EditJobOrder", jobOrder);
             }

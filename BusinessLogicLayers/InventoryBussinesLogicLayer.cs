@@ -1734,7 +1734,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
                                 quantityBridgeList[i].TotalBalance = quantityBridgeList[i].Quantity * quantityBridgeList[i].Price;
-                                ink.TotalBalance = ink.Quantity * ink.Price;
+                                //ink.TotalBalance = ink.Quantity * ink.Price;
 
 
                                 _context.Inks.Update(ink);

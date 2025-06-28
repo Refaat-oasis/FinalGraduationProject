@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Routing.Constraints;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.DataTransfereObject;
 using ThothSystemVersion1.Models;
+using ThothSystemVersion1.Utilities;
 using ThothSystemVersion1.ViewModels;
 
 namespace ThothSystemVersion1.Controllers
@@ -213,7 +214,7 @@ namespace ThothSystemVersion1.Controllers
         public IActionResult EditJobOrder(int jobOrderid)
         {
             int? jobRole = HttpContext.Session.GetInt32("JobRole");
-            if (jobRole == 0 || jobRole == 5)
+            if (jobRole == 0 || jobRole == 7 || jobRole ==8)
             {
                 try
                 {
@@ -262,24 +263,14 @@ namespace ThothSystemVersion1.Controllers
                 ModelState.Clear();
                 TryValidateModel(jODto);
 
-                //if (!ModelState.IsValid)
-                //{
-
-                //    return View("~/Views/Technical/EditJobOrder.cshtml", jobOrder);
-                //}
-
                 var result = _businessLogicL.editJobOrder(jobOrderid, jODto);
 
                 if (result.success)
                 {
                     TempData["Success"] = result.message;
-                    //return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
-                    //return View("~/Views/accounting/editJobOrderAccounting.cshtml", jobOrder);
                     return RedirectToAction("EditJobOrder", jobOrder);
                 }
                 TempData["Error"] = result.message;
-                //return RedirectToAction("EditJobOrder", "accounting", new { jobOrderid });
-                //return View("~/Views/accounting/editJobOrderAccounting.cshtml", jobOrder);
                 return RedirectToAction("EditJobOrder", jobOrder);
             }
             catch (Exception ex)
@@ -287,6 +278,51 @@ namespace ThothSystemVersion1.Controllers
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات امر العمل";
                 return View("EditJobOrder", jobOrder);
             }
+        }
+
+        [HttpGet]
+        public IActionResult accountingReport() {
+
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 7) {
+
+                try {
+                    return View(new AccountingReportViewModel());
+                } catch (Exception e) {
+                    WriteException.WriteExceptionToFile(e);
+                    return View(new AccountingReportViewModel());
+                }
+
+            } else {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult accountingReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+            try 
+            { 
+            
+                AccountingReportViewModel viewModel = _businessLogicL.accountReport(beginingDate, endingDate);
+                if (viewModel == null)
+                {
+                    return View(new AccountingReportViewModel());
+                }
+                else { 
+                    return View(viewModel);
+                }
+
+            } 
+            catch (Exception ex) 
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return View(new AccountingReportViewModel());
+            }
+        
+        
+        
         }
 
     }

@@ -32,114 +32,110 @@
 </head>
 
 
-    <div class="arrow">
-        @{
-            // admin
-            if (jobRole == 0)
-            {
-                <a asp-controller="employee" asp-action="adminhome" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-
-            } // Technical manager
-            else if (jobRole == 3)
-            {
-                <a asp-controller="employee" asp-action="TechnicalManager" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            } // Technical Clerk
-            else if (jobRole == 4)
-            {
-                <a asp-controller="employee" asp-action="TechnicalClerk" class="back">
-                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
-                </a>
-            }
-
-
-        }
-    </div>
-
-
-
-    <div class="form-container">
-        <h1>إضافة عميل جديد</h1>
-
-        @* Success and Error Messages *@
-        @if (TempData["Success"] != null)
+<div class="arrow">
+    @{
+        // admin
+        if (jobRole == 0)
         {
-            <div class="notification success">
-                <div class="notification-content">
-                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+            <a asp-controller="employee" asp-action="adminhome" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
 
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="true" />
-                <div class="progress-bar success"></div>
-            </div>
-        }
-
-        @if (TempData["Error"] != null)
+        } // Technical manager
+        else if (jobRole == 3)
         {
-            <div class="notification error">
-                <div class="notification-content">
-                    <i class='bx bx-error-circle'></i>
-                    <span>@TempData["Error"]</span>
-                </div>
-                <input type="hidden" id="tempDataSuccess" value="false" />
-
-                <div class="progress-bar error"></div>
-
-            </div>
+            <a asp-controller="employee" asp-action="TechnicalManager" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
+        } // Technical Clerk
+        else if (jobRole == 4)
+        {
+            <a asp-controller="employee" asp-action="TechnicalClerk" class="back">
+                <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+            </a>
         }
-        <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
-        <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
-            <div asp-validation-summary="ModelOnly" class="error"></div>
 
-            <div class="inputBox">
-                <label for="CustomerName" class="textlabel">اسم العميل</label>
-                <input type="text" class="place" asp-for="@Model.CustomerName" id="CustomerName" />
-                <span asp-validation-for="@Model.CustomerName" class="error style="display: none;"></span>
+    }
+</div>
+
+<div class="form-container">
+    <h1>إضافة عميل جديد</h1>
+
+    @* Success and Error Messages *@
+    @if (TempData["Error"] != null)
+    {
+        <div class="notification error" id="serverErrorNotification">
+            <div class="notification-content">
+                <i class='bx bx-error-circle'></i>
+                <span>@TempData["Error"]</span>
             </div>
+            <div class="progress-bar error"></div>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="notification success" id="serverSuccessNotification">
+            <div class="notification-content">
+                <i class='bx bx-check-circle'></i>
+                <span>@TempData["Success"]</span>
+            </div>
+            <div class="progress-bar success"></div>
+        </div>
+    }
 
-            <div class="inputBox">
-                <label for="Address" class="textlabel">عنوان العميل</label>
-                <input type="text"class="place" asp-for="@Model.CustomerAddress" id="Address" />
+
+
+    <input type="hidden" id="hdnJobRole" value="@jobRole" />
+
+    <form asp-action="AddCustomer" id="myform" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
+        <div class="inputBox">
+            <label for="CustomerName" class="textlabel">اسم العميل</label>
+            <input type="text" class="place" asp-for="@Model.CustomerName" id="CustomerName" />
+            <span asp-validation-for="@Model.CustomerName" class="error style="display: none;"></span>
+        </div>
+
+        <div class="inputBox">
+            <label for="Address" class="textlabel">عنوان العميل</label>
+            <input type="text" class="place" asp-for="@Model.CustomerAddress" id="Address" />
             <span asp-validation-for="@Model.CustomerAddress" class="error style=" display: none;"></span>
-            </div>
+        </div>
 
-            <div class="inputBox">
-                <label for="Email" class="textlabel">الإيميل الإلكتروني</label>
-                <input type="text" class="place" asp-for="@Model.CustomerEmail" id="Email" />
+        <div class="inputBox">
+            <label for="Email" class="textlabel">الإيميل الإلكتروني</label>
+            <input type="text" class="place" asp-for="@Model.CustomerEmail" id="Email" />
             <span asp-validation-for="@Model.CustomerEmail" class="error style=" display: none;"></span>
-            </div>
+        </div>
 
-            <div class="inputBox">
-                <label for="Phone" class="textlabel">رقم الهاتف</label>
-                <input type="text" class="place" asp-for="@Model.CustomerPhone" id="Phone" />
+        <div class="inputBox">
+            <label for="Phone" class="textlabel">رقم الهاتف</label>
+            <input type="text" class="place" asp-for="@Model.CustomerPhone" id="Phone" />
             <span asp-validation-for="@Model.CustomerPhone" class="error style=" display: none;"></span>
-            </div>
+        </div>
 
-            <div class="inputBox">
-                <label for="CustomerSource" class="textlabel">مصدر العميل </label>
-                <select asp-for="@Model.CustomerSource" id="PhoneType" class="place">
-                    <option value="داخلي">داخلي</option>
-                    <option value="خارجي">خارجي</option>
-                    <option value="الجامعة">الجامعة</option>
-                </select>
+        <div class="inputBox">
+            <label for="CustomerSource" class="textlabel">مصدر العميل </label>
+            <select asp-for="@Model.CustomerSource" id="PhoneType" class="place">
+                <option value="داخلي">داخلي</option>
+                <option value="خارجي">خارجي</option>
+                <option value="الجامعة">الجامعة</option>
+            </select>
             <span asp-validation-for="@Model.CustomerSource" class="error style=" display: none;"></span>
-            </div>
+        </div>
 
-            <div class="inputBox">
-                <label for="Notes" class="textlabel">ملاحظات عن العميل</label>
-                <input type="text" class="place" asp-for="@Model.CustomerNotes" id="Notes" />
+        <div class="inputBox">
+            <label for="Notes" class="textlabel">ملاحظات عن العميل</label>
+            <input type="text" class="place" asp-for="@Model.CustomerNotes" id="Notes" />
             <span asp-validation-for="@Model.CustomerNotes" class="error style=" display: none;"></span>
-            </div>
+        </div>
 
-            <div class="button-container">
-                <input type="submit" value="إضافه" class="btn btn-secondary" />
+        <div class="button-container">
+            <input type="submit" value="إضافه" class="btn btn-secondary" />
 
-            </div>
+        </div>
 
-        </form>
-    </div>
-    <script src="~/js/Technical/AddCustomer.js"></script>
+    </form>
+</div>
+<script src="~/js/Technical/AddCustomer.js"></script>

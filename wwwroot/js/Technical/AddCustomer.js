@@ -5,14 +5,12 @@
     const Email = document.getElementById("Email");
     const Phone = document.getElementById("Phone");
 
-
-    // عند وجود خطأ في التحقق
     function setError(input, message) {
         const inputBox = input.closest('.inputBox');
         const errorDisplay = inputBox.querySelector('.error');
         inputBox.classList.add('invalid');
         errorDisplay.innerText = message;
-        errorDisplay.style.display = "block"; // إظهار
+        errorDisplay.style.display = "block";
     }
 
     function setSuccess(input) {
@@ -20,7 +18,7 @@
         const errorDisplay = inputBox.querySelector('.error');
         inputBox.classList.remove('invalid');
         errorDisplay.innerText = "";
-        errorDisplay.style.display = "none"; // إخفاء
+        errorDisplay.style.display = "none";
     }
 
     function validate() {
@@ -49,16 +47,6 @@
             setSuccess(Address);
         }
 
-        //if (Email.value.trim() === "") {
-        //    setError(Email, "برجاء إدخال الإيميل الإلكتروني الخاص بالعميل");
-        //    valid = false;
-        //} else if (!Email.value.includes("@")) {
-        //    setError(Email, "برجاء إدخال إيميل إلكتروني صحيح ");
-        //    valid = false;
-        //} else {
-        //    setSuccess(Email);
-        //}
-
         if (Phone.value.trim() === "") {
             setError(Phone, "برجاء إدخال رقم الهاتف الخاص بالعميل");
             valid = false;
@@ -69,32 +57,24 @@
             setSuccess(Phone);
         }
 
-
         return valid;
     }
 
     myform.addEventListener("submit", function (e) {
-        e.preventDefault(); // Always prevent default first
-
+        e.preventDefault();
         if (!validate()) {
-            // Validation failed
             return false;
         } else {
-            // Validation successful - submit the form programmatically
             this.submit();
         }
     });
+
     const tempDataElement = document.getElementById('tempDataSuccess');
     const jobRoleElement = document.getElementById('hdnJobRole');
 
-    // Get values with proper fallbacks
     const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
     const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-    console.log("Success message exists:", hasSuccessMessage);
-    console.log("Job role:", jobRole);
-
-    // Mapping of job roles to their respective URLs
     const jobRoleRoutes = {
         0: "/employee/AdminHome",
         1: "/employee/inventoryManager",
@@ -111,4 +91,22 @@
             window.location.href = redirectUrl;
         }, 3000);
     }
+
+    const errorNotification = document.getElementById('serverErrorNotification');
+    if (errorNotification) {
+        errorNotification.style.display = 'block';
+        setTimeout(() => {
+            errorNotification.style.display = 'none';
+        }, 3000);
+    }
+
+    const successNotification = document.getElementById('serverSuccessNotification');
+    if (successNotification) {
+        successNotification.style.display = 'block';
+        setTimeout(() => {
+            successNotification.style.display = 'none';
+        }, 3000);
+    }
+
 });
+   

@@ -124,11 +124,16 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+                if (jobRole == 0 || jobRole == 5)
                 {
 
                     List<Labour> labourList = _costbusinessLogicL.ViewAllLabour();
                     return View("~/Views/Cost/ViewAllLabour.cshtml", labourList);
+                }
+                else if (jobRole == 6)
+                {
+                    List<Labour> labourList = _costbusinessLogicL.ViewAllLabour();
+                    return View("~/Views/Costclerk/ViewAllLabour.cshtml", labourList);
                 }
                 else
                 {
@@ -151,11 +156,16 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 5 || jobRole == 6)
+                if (jobRole == 0 || jobRole == 5)
                 {
 
                     List<Machine> machineList = _costbusinessLogicL.ViewAllMachines();
                     return View("~/Views/Cost/ViewAllMachines.cshtml", machineList);
+                }
+                else if (jobRole == 6) {
+
+                    List<Machine> machineList = _costbusinessLogicL.ViewAllMachines();
+                    return View("~/Views/Costclerk/ViewAllMachines.cshtml", machineList);
                 }
                 else
                 {

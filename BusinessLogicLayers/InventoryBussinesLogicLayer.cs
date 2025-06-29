@@ -2588,81 +2588,123 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 PurchaseOrder purchaseOrder = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseId);
                 if (purchaseOrder == null) return null;
 
-                PurchaseOrderSpecificationsViewModel purchaseorderSpecifics = new PurchaseOrderSpecificationsViewModel
+                PurchaseOrderSpecificationsViewModel vm = new PurchaseOrderSpecificationsViewModel
                 {
                     PurchaseId = purchaseOrder.PurchaseId,
                     RemainingAmount = purchaseOrder.RemainingAmount,
                     PaidAmount = purchaseOrder.PaidAmount,
                     PurchaseNotes = purchaseOrder.PurchaseNotes,
                     EmployeeId = purchaseOrder.EmployeeId,
-                    VendorId = purchaseOrder.VendorId,
+                    VendorId = purchaseOrder.VendorId
                 };
 
-                Vendor vend = _context.Vendors.FirstOrDefault(v => v.VendorId == purchaseOrder.VendorId);
-                purchaseorderSpecifics.VendorName = vend?.VendorName ?? "غير معروف";
+                Vendor vend = vm.VendorId.HasValue
+                    ? _context.Vendors.FirstOrDefault(v => v.VendorId == vm.VendorId)
+                    : null;
+                vm.VendorName = vend?.VendorName;
 
-                // Employees
                 List<Employee> employees = new List<Employee>();
                 if (purchaseOrder.EmployeeId != null)
-                {
-                    var emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == purchaseOrder.EmployeeId);
-                    if (emp != null) employees.Add(emp);
-                }
-                purchaseorderSpecifics.Employees = employees;
+                    employees.Add(_context.Employees.FirstOrDefault(e => e.EmployeeId == purchaseOrder.EmployeeId));
+                vm.Employees = employees.Where(e => e != null).ToList();
 
-                // Quantity Bridges
-                List<QuantityBridge> quantityBridges = _context.QuantityBridges
-                    .Where(q => q.PurchaseId == purchaseOrder.PurchaseId)
+                List<ReturnsOrder> returnOrders = _context.ReturnsOrders
+                    .Where(r => r.PurchaseId == purchaseId)
+                    .ToList();
+                vm.ReturnOrders = returnOrders;
+
+                List<int> returnIds = returnOrders.Select(r => r.ReturnId).ToList();
+
+                var allBridges = _context.QuantityBridges
+                    .Where(q => q.PurchaseId == purchaseId || (q.ReturnId != null && returnIds.Contains(q.ReturnId.Value)))
                     .ToList();
 
-                // Materials
+                var purchased = allBridges.Where(q => q.PurchaseId != null).ToList();
+                var returned = allBridges.Where(q => q.ReturnId != null).ToList();
+
+                List<QuantityBridge> combined = new List<QuantityBridge>();
+
+                foreach (var group in purchased.GroupBy(q =>
+                    q.InkId != null ? $"Ink-{q.InkId}" :
+                    q.PaperId != null ? $"Paper-{q.PaperId}" :
+                    q.SuppliesId != null ? $"Supply-{q.SuppliesId}" :
+                    q.SparePartsId != null ? $"Spare-{q.SparePartsId}" : "Other"))
+                {
+                    var first = group.First();
+                    var newBridge = new QuantityBridge
+                    {
+                        PurchaseId = first.PurchaseId,
+                        InkId = first.InkId,
+                        PaperId = first.PaperId,
+                        SuppliesId = first.SuppliesId,
+                        SparePartsId = first.SparePartsId,
+                        Quantity = first.InkId != null ? 0 : group.Sum(x => x.Quantity),
+                        NumberOfUnits = first.InkId != null ? group.Sum(x => x.NumberOfUnits) : 0,
+                        Price = first.InkId != null ? 0 : first.Price,
+                        UnitPrice = first.InkId != null ? first.UnitPrice : 0
+                    };
+                    combined.Add(newBridge);
+                }
+
+                foreach (var group in returned.GroupBy(q =>
+                    q.InkId != null ? $"Ink-{q.InkId}" :
+                    q.PaperId != null ? $"Paper-{q.PaperId}" :
+                    q.SuppliesId != null ? $"Supply-{q.SuppliesId}" :
+                    q.SparePartsId != null ? $"Spare-{q.SparePartsId}" : "Other"))
+                {
+                    var first = group.First();
+                    var newBridge = new QuantityBridge
+                    {
+                        ReturnId = first.ReturnId,
+                        InkId = first.InkId,
+                        PaperId = first.PaperId,
+                        SuppliesId = first.SuppliesId,
+                        SparePartsId = first.SparePartsId,
+                        Quantity = first.InkId != null ? 0 : group.Sum(x => x.Quantity),
+                        NumberOfUnits = first.InkId != null ? group.Sum(x => x.NumberOfUnits) : 0,
+                        Price = first.InkId != null ? 0 : first.Price,
+                        UnitPrice = first.InkId != null ? first.UnitPrice : 0
+                    };
+                    combined.Add(newBridge);
+                }
+
+                vm.QuantityBridge = combined;
+
                 List<Paper> papers = new List<Paper>();
                 List<Ink> inks = new List<Ink>();
                 List<Supply> supplies = new List<Supply>();
-                List<SparePart> spareparts = new List<SparePart>();
+                List<SparePart> spareParts = new List<SparePart>();
 
-                foreach (var QB in quantityBridges)
+                foreach (var qb in combined)
                 {
-                    if (QB.InkId != null)
+                    if (qb.InkId != null)
                     {
-                        var ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
+                        var ink = _context.Inks.FirstOrDefault(i => i.InkId == qb.InkId);
                         if (ink != null) inks.Add(ink);
                     }
-                    else if (QB.PaperId != null)
+                    else if (qb.PaperId != null)
                     {
-                        var paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
+                        var paper = _context.Papers.FirstOrDefault(p => p.PaperId == qb.PaperId);
                         if (paper != null) papers.Add(paper);
                     }
-                    else if (QB.SuppliesId != null)
+                    else if (qb.SuppliesId != null)
                     {
-                        var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
+                        var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == qb.SuppliesId);
                         if (supply != null) supplies.Add(supply);
                     }
-                    else if (QB.SparePartsId != null)
+                    else if (qb.SparePartsId != null)
                     {
-                        var sparepart = _context.SpareParts.FirstOrDefault(s => s.SparePartsId == QB.SparePartsId);
-                        if (sparepart != null) spareparts.Add(sparepart);
+                        var spare = _context.SpareParts.FirstOrDefault(s => s.SparePartsId == qb.SparePartsId);
+                        if (spare != null) spareParts.Add(spare);
                     }
                 }
 
-                purchaseorderSpecifics.Papers = papers;
-                purchaseorderSpecifics.Inks = inks;
-                purchaseorderSpecifics.Supplies = supplies;
-                purchaseorderSpecifics.SpareParts = spareparts;
+                vm.Papers = papers;
+                vm.Inks = inks;
+                vm.Supplies = supplies;
+                vm.SpareParts = spareParts;
 
-                purchaseorderSpecifics.QuantityBridge = quantityBridges
-                    .Select(q => new QuantityBridge
-                    {
-                        InkId = q.InkId,
-                        PaperId = q.PaperId,
-                        SuppliesId = q.SuppliesId,
-                        SparePartsId = q.SparePartsId,
-                        Quantity = q.Quantity,
-                        Price = q.Price,
-                        PurchaseId = q.PurchaseId
-                    }).ToList();
-
-                return purchaseorderSpecifics;
+                return vm;
             }
             catch (Exception ex)
             {
@@ -2670,6 +2712,7 @@ namespace ThothSystemVersion1.BusinessLogicLayers
                 return null;
             }
         }
+
 
     }
 }

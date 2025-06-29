@@ -31,7 +31,7 @@ CREATE TABLE Customer (
     customerID INT IDENTITY(1,1) PRIMARY KEY,
     customerName NVARCHAR(255) NOT NULL DEFAULT '',
     customerAddress NVARCHAR(500) NULL DEFAULT '',
-    customerEmail NVARCHAR(250) NULL UNIQUE DEFAULT '',
+    customerEmail NVARCHAR(250) NULL DEFAULT '',
     customerNotes NVARCHAR(2500) NULL DEFAULT '',
     customerPhone NVARCHAR(15) NOT NULL UNIQUE DEFAULT '',
     customerSource NVARCHAR(100) NULL DEFAULT '',
@@ -45,7 +45,7 @@ CREATE TABLE Vendor (
     vendorID INT IDENTITY(1,1) PRIMARY KEY,
     vendorName NVARCHAR(255) NOT NULL DEFAULT '',
     vendorAddress NVARCHAR(500) NULL DEFAULT '',
-    vendorEmail NVARCHAR(250) NULL UNIQUE DEFAULT '',
+    vendorEmail NVARCHAR(250) NULL DEFAULT '',
     vendorNotes NVARCHAR(2500) NULL DEFAULT '',
     vendorPhone NVARCHAR(15) NOT NULL UNIQUE DEFAULT '',
 	Activated BIT DEFAULT 1
@@ -369,4 +369,3 @@ CREATE TABLE ColorWeightSize (
 );
 
 GO
-

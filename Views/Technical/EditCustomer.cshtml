@@ -3,7 +3,7 @@
 
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
 }
 
 
@@ -68,25 +68,31 @@
     <form asp-controller="Technical" asp-action="EditCustomer" method="post" id="myform">
         <input type="hidden" asp-for="CustomerId" />
 
+
         @* Success and Error Messages *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="notification success">
+                <div class="notification-content">
+                    <i class='bx bx-check-circle'></i> @TempData["Success"]
+
+                </div>
+                <input type="hidden" id="tempDataSuccess" value="true" />
+                <div class="progress-bar success"></div>
+            </div>
+        }
+
         @if (TempData["Error"] != null)
         {
-            <div class="notification error" id="serverErrorNotification">
+            <div class="notification error">
                 <div class="notification-content">
                     <i class='bx bx-error-circle'></i>
                     <span>@TempData["Error"]</span>
                 </div>
+                <input type="hidden" id="tempDataSuccess" value="false" />
+
                 <div class="progress-bar error"></div>
-            </div>
-        }
-        @if (TempData["Success"] != null)
-        {
-            <div class="notification success" id="serverSuccessNotification">
-                <div class="notification-content">
-                    <i class='bx bx-check-circle'></i>
-                    <span>@TempData["Success"]</span>
-                </div>
-                <div class="progress-bar success"></div>
+
             </div>
         }
 
@@ -175,6 +181,7 @@
 
 
 <script src="~/js/Technical/EditCustomer.js"></script>
+<script src="~/js/Redirect.js"></script>
 
 
 

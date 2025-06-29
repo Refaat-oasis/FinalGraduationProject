@@ -432,11 +432,6 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "Employee");
                 }
             }
-            //catch (ArgumentException ex)
-            //{
-            //    TempData["Error"] = "حدث خطأ في المعاملات المدخلة.";
-            //    return View("~/Views/Technical/EditCustomer.cshtml");
-            //}
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);

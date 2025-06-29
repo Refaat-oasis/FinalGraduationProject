@@ -475,84 +475,6 @@
         });
     });
 
-    function showReorderNotification(Name) {
-        const messageDiv = document.getElementById("reorderMessages");
-        messageDiv.innerText = `الصنف "${Name}" قد وصل إلى الحد الأدنى`;
-        messageDiv.style.display = "block";
-        messageDiv.style.opacity = "1";
-
-        setTimeout(() => {
-            messageDiv.style.opacity = "0";
-            setTimeout(() => {
-                messageDiv.style.display = "none";
-            }, 500); // fadeout delay
-        }, 5000);
-    }
-
-    function setupSignalR(inventoryType, methodName, messageEventName) {
-        const hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint")
-            .build();
-
-        hub.start()
-            .then(() => {
-                console.log(`${inventoryType} SignalR connection established.`);
-                hub.invoke(methodName)
-                    .catch(err => console.error(`Error invoking ${methodName}:`, err.toString()));
-            })
-            .catch(err => console.error("SignalR connection error:", err.toString()));
-
-        hub.on(messageEventName, function (itemName) {
-            console.log(`Received reorder message for ${inventoryType}:`, itemName);
-            showReorderNotification(itemName);
-        });
-    }
-
-    // فعلي الاتصال هنا
-    setupSignalR("ورق", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
-    setupSignalR("حبر", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
-    setupSignalR("مستلزمات", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
-    setupSignalR("قطع غيار", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
-
-
-
-
-    // function setupSignalR(inventoryType, methodName, messageEventName) {
-
-    //     var hub = new signalR.HubConnectionBuilder()
-    //         .withUrl("/InventoryReorderPoint")
-    //         .build();
-
-    //     hub.start()
-    //         .then(function () {
-    //             console.log(`${inventoryType} SignalR connection established.`);
-
-    //             Invoke the server-side method to check reorder points.
-    //             hub.invoke(methodName)
-    //                 .catch(function (err) {
-    //                     console.error(`Error invoking ${methodName}: `, err.toString());
-    //                 });
-    //         })
-    //         .catch(function (err) {
-    //             console.error(`SignalR connection error: `, err.toString());
-    //         });
-
-    //     Listen for reorder messages from the hub.
-    //     hub.on(messageEventName, function (message) {
-    //         console.log(`Received reorder message for ${inventoryType}: `, message);
-    //         var messageDiv = document.getElementById("reorderMessages");
-    //         Make sure the message div is visible
-    //         messageDiv.style.display = "block";
-    //         Append the new message rather than replacing previous ones
-    //         messageDiv.innerHTML += "<div>" + message + "</div>";
-    //     });
-    // }
-
-    // Setup SignalR for Paper, Ink, and Supply
-    // setupSignalR("Paper", "CheckPaperReorderPoint", "ReceiveReorderMessagePaper");
-    // setupSignalR("Ink", "CheckInkReorderPoint", "ReceiveReorderMessageInk");
-    // setupSignalR("Supply", "CheckSupplyReorderPoint", "ReceiveReorderMessageSupply");
-    // setupSignalR("spapre", "CheckSparePartsReorderPoint", "ReceiveReorderMessageSpare");
 </script>
 
 
@@ -597,12 +519,6 @@
         console.log("Reconnected, skipping initial checks");
       });
 
-      // All low-stock messages come through this one handler:
-      hub.on("recieveInventoryBalances", message => {
-        console.log("Low-stock message:", message);
-        showReorderNotification(message);
-      });
-
             // All low-stock messages come through this one handler:
       hub.on("recieveLate", message => {
         console.log("Late message:", message);
@@ -618,11 +534,6 @@
 
           // Fire each check exactly once on first connect
           await Promise.all([
-            hub.invoke("checkInventoryBalancePaper"),
-            hub.invoke("checkInventoryBalanceInk"),
-            hub.invoke("checkInventoryBalanceSupply"),
-            hub.invoke("checkInventoryBalanceSpareParts"),
-            hub.invoke("checkLateJobOrder"),// technical
             hub.invoke("checkLatePayment"),// acc
             hub.invoke("checkLateReceipt"),//acc
 

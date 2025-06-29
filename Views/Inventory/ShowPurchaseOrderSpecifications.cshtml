@@ -1,4 +1,4 @@
-﻿                                                                                                                                            @model ThothSystemVersion1.ViewModels.PurchaseOrderSpecificationsViewModel
+﻿@model ThothSystemVersion1.ViewModels.PurchaseOrderSpecificationsViewModel
 @using Microsoft.AspNetCore.Http
 @using ThothSystemVersion1.Utilities
 @inject IHttpContextAccessor HttpContextAccessor
@@ -115,9 +115,9 @@
         </table>
     </div>
 
-@if (Model.QuantityBridge?.Any(p => p.PurchaseId != null) == true)
-{
-        <h2>كميات المشتريات</h2>
+    @if (Model.QuantityBridge?.Any(q => q.PurchaseId != null) == true)
+    {
+        <h2>الكميات المشتريات</h2>
 
         <table>
             <thead>
@@ -129,13 +129,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var bridge in Model.QuantityBridge.Where(p => p.PurchaseId != null))
+                @foreach (var bridge in Model.QuantityBridge.Where(q => q.PurchaseId != null))
                 {
 
                     string name = null;
                     int? quantity = null;
-                    int? numberofunits = null;
-
                     decimal? price = null;
 
                     foreach (var paper in Model.Papers)
@@ -156,8 +154,8 @@
                             if (bridge.InkId == ink.InkId)
                             {
                                 name = ink.Name;
-                                numberofunits = bridge.NumberOfUnits;
-                                price = bridge.Price;
+                                quantity = bridge.NumberOfUnits;
+                                price = bridge.UnitPrice;
                                 break;
                             }
                         }
@@ -178,11 +176,11 @@
                     }
                     if (name == null)
                     {
-                        foreach (var sp in Model.SpareParts)
+                        foreach (var s in Model.SpareParts)
                         {
-                            if (bridge.SparePartsId == sp.SparePartsId)
+                            if (bridge.SparePartsId == s.SparePartsId)
                             {
-                                name = sp.Name;
+                                name = s.Name;
                                 quantity = bridge.Quantity;
                                 price = bridge.Price;
                                 break;
@@ -201,4 +199,91 @@
                 }
             </tbody>
         </table>
-}
+    }
+
+
+    @if (Model.QuantityBridge?.Any(q => q.ReturnId != null) == true)
+    {
+        <h2>الكميات المرتجعة</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>الكمية</th>
+                    <th>السعر</th>
+                    <th>الصنف</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bridge in Model.QuantityBridge.Where(q => q.ReturnId != null))
+                {
+
+                    string name = null;
+                    int? quantity = null;
+                    decimal? price = null;
+
+                    foreach (var paper in Model.Papers)
+                    {
+                        if (bridge.PaperId == paper.PaperId)
+                        {
+                            name = paper.Name;
+                            quantity = bridge.Quantity;
+                            price = bridge.Price;
+                            break;
+                        }
+                    }
+
+                    if (name == null)
+                    {
+                        foreach (var ink in Model.Inks)
+                        {
+                            if (bridge.InkId == ink.InkId)
+                            {
+                                name = ink.Name;
+                                quantity = bridge.NumberOfUnits;
+                                price = bridge.UnitPrice;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (name == null)
+                    {
+                        foreach (var s in Model.Supplies)
+                        {
+                            if (bridge.SuppliesId == s.SuppliesId)
+                            {
+                                name = s.Name;
+                                quantity = bridge.Quantity;
+                                price = bridge.Price;
+                                break;
+                            }
+                        }
+                    }
+                    if (name == null)
+                    {
+                        foreach (var s in Model.SpareParts)
+                        {
+                            if (bridge.SparePartsId == s.SparePartsId)
+                            {
+                                name = s.Name;
+                                quantity = bridge.Quantity;
+                                price = bridge.Price;
+                                break;
+                            }
+                        }
+                    }
+                    if (name != null)
+                    {
+                        <tr>
+                            <td>@quantity</td>
+                            <td>@price</td>
+                            <td>@name</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

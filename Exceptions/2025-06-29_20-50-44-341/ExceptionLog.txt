@@ -1,0 +1,7 @@
+Date: 29-Jun-25 8:50:44 PM
+Exception: System.ArgumentException: Source array was not long enough. Check the source index, length, and the array's lower bounds. (Parameter 'sourceArray')
+   at System.Array.CopyImpl(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+   at Hashing.VerifyPassword(String enteredPassword, String storedHash) in C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\Utilities\Hashing.cs:line 42
+   at ThothSystemVersion1.Controllers.EmployeeController.EmployeeLogin(String EmployeeUserName, String EmployeePassword) in C:\Users\ahta6\OneDrive\Desktop\FInalGraduationProjectThothSystem\FinalGraduationProject\Controllers\EmployeeController.cs:line 58
+

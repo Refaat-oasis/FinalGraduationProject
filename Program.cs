@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using ThothSystemVersion1.BusinessLogicLayers;
 using ThothSystemVersion1.Hubs;
+using ThothSystemVersion1.Utilities;
 
 namespace ThothSystemVersion1
 {
@@ -24,6 +25,7 @@ namespace ThothSystemVersion1
             builder.Services.AddDbContext<ThothContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
          
+
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(10); 
@@ -35,6 +37,12 @@ namespace ThothSystemVersion1
             builder.Services.AddSignalR();
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ThothContext>();
+                DataBaseAdminAddition.Initialize(context);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

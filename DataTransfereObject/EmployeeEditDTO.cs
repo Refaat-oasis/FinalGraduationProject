@@ -23,6 +23,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         public bool Activated { get; set; }
 
         [Display(Name = "كلمة المرور")]
-        public string EmployeePassword { get; set; } = null!;
+        public string? EmployeePassword { get; set; } = null!;
     }
 }

@@ -340,6 +340,43 @@ namespace ThothSystemVersion1.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult CostReport()
+        {
+            int? jobRole = HttpContext.Session.GetInt32("JobRole");
+            if (jobRole == 0 || jobRole == 5)
+            {
+                try
+                {
+                    return View(new CostReportVM());
+                }
+                catch (Exception e)
+                {
+                    WriteException.WriteExceptionToFile(e);
+                    return View(new CostReportVM());
+                }
+            }
+            else
+            {
+                return RedirectToAction("UnauthorizedAccess", "employee");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CostReport(DateOnly beginingDate, DateOnly endingDate)
+        {
+            try
+            {
+                CostReportVM costVM = _costbusinessLogicL.CostReport(beginingDate, endingDate);
+
+                return View(costVM);
+            }
+            catch (Exception e)
+            {
+                WriteException.WriteExceptionToFile(e);
+                return View(new CostReportVM());
+            }
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // sherwet section

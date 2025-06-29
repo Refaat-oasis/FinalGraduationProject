@@ -157,9 +157,9 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                //if (ModelState.IsValid)
-                //{
-                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                if (ModelState.IsValid)
+                {
+                    dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
                 var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
                 if (result.success)
                 {
@@ -167,7 +167,7 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("CreateRequisite");
                 }
                 TempData["Error"] = result.message;
-                //}
+                }
                 return RedirectToAction("CreateRequisite");
             }
 

@@ -2061,7 +2061,57 @@ namespace ThothSystemVersion1.Controllers
             }
         }
 
+    [HttpGet]
+  public IActionResult ViewAllPurchaseOrder()
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    List<PurchaseOrderVM> purchaseOrderViewModelsList = _businessLogicL.ViewAllPurchaseOrder();
+                    return View("~/Views/Inventory/ViewAllPurchaseOrder.cshtml", purchaseOrderViewModelsList);
+                }
+                else if (jobRole == 2)
+                {
+                    List<PurchaseOrderVM> purchaseOrderViewModelsList = _businessLogicL.ViewAllPurchaseOrder();
+                    return View("~/Views/InventoryClerk/ViewAllPurchaseOrder.cshtml", purchaseOrderViewModelsList);
 
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/ViewAllPurchaseOrder.cshtml", new List<PurchaseOrderVM>());
+            }
+        }
+        public IActionResult ShowPurchaseOrderSpecifications(int purchaseOrderId)
+        {
+            try
+            {
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                {
+                    PurchaseOrderSpecificationsViewModel PurchaseOrderSpecificationsViewModelList = _businessLogicL.ShowPurchaseOrderSpecifications(purchaseOrderId);
+                    return View("~/Views/Inventory/ShowPurchaseOrderSpecifications.cshtml", PurchaseOrderSpecificationsViewModelList);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                return View("~/Views/Inventory/ShowPurchaseOrderSpecifications.cshtml", new List<PurchaseOrderSpecificationsViewModel>());
+            }
+        }
 
 
 

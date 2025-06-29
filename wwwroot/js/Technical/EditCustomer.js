@@ -5,13 +5,12 @@
     const Email = document.getElementById("Email");
     const Phone = document.getElementById("Phone");
 
-    // عند وجود خطأ في التحقق
     function setError(input, message) {
         const inputBox = input.closest('.inputBox');
         const errorDisplay = inputBox.querySelector('.error');
         inputBox.classList.add('invalid');
         errorDisplay.innerText = message;
-        errorDisplay.style.display = "block"; // إظهار
+        errorDisplay.style.display = "block";
     }
 
     function setSuccess(input) {
@@ -19,9 +18,8 @@
         const errorDisplay = inputBox.querySelector('.error');
         inputBox.classList.remove('invalid');
         errorDisplay.innerText = "";
-        errorDisplay.style.display = "none"; // إخفاء
+        errorDisplay.style.display = "none";
     }
-
 
     function validate() {
         let valid = true;
@@ -49,15 +47,6 @@
             setSuccess(CustomerAddress);
         }
 
-        //if (Email.value.trim() === "") {
-        //    setError(Email, "برجاء إدخال الإيميل الإلكتروني الخاص بالعميل");
-        //    valid = false;
-        //} else if (!Email.value.includes("@") || !Email.value.includes(".")) {
-        //    setError(Email, "برجاء إدخال إيميل إلكتروني صحيح");
-        //    valid = false;
-        //} else {
-        //    setSuccess(Email);
-        //}
 
         if (Phone.value.trim() === "") {
             setError(Phone, "برجاء إدخال رقم الهاتف الخاص بالعميل");
@@ -74,7 +63,6 @@
 
     myform.addEventListener("submit", function (e) {
         e.preventDefault();
-
         if (validate()) {
             this.submit();
         }
@@ -102,18 +90,21 @@
             window.location.href = redirectUrl;
         }, 3000);
     }
+
+    const errorNotification = document.getElementById('serverErrorNotification');
+    if (errorNotification) {
+        errorNotification.style.display = 'block';
+        setTimeout(() => {
+            errorNotification.style.display = 'none';
+        }, 3000);
+    }
+
+    const successNotification = document.getElementById('serverSuccessNotification');
+    if (successNotification) {
+        successNotification.style.display = 'block';
+        setTimeout(() => {
+            successNotification.style.display = 'none';
+        }, 3000);
+    }
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

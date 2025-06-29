@@ -8212,23 +8212,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ahta6\\.nuget\\packages\\": {},
+    "C:\\Users\\sandra\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "projectUniqueName": "D:\\final modification\\FinalGraduationProject\\ThothSystemVersion1.csproj",
       "projectName": "ThothSystemVersion1",
-      "projectPath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\ThothSystemVersion1.csproj",
-      "packagesPath": "C:\\Users\\ahta6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\obj\\",
+      "projectPath": "D:\\final modification\\FinalGraduationProject\\ThothSystemVersion1.csproj",
+      "packagesPath": "C:\\Users\\sandra\\.nuget\\packages\\",
+      "outputPath": "D:\\final modification\\FinalGraduationProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ahta6\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -1671,7 +1671,9 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                string employeeId = HttpContext.Session.GetString("EmployeeID");
+                if (ModelState.IsValid)
+                {
+                    string employeeId = HttpContext.Session.GetString("EmployeeID");
                 perpetual.EmployeeId = employeeId;
 
                 var result = _businessLogicL.PerpetualRequisite(perpetual);
@@ -1681,7 +1683,7 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("PerpetualRequisite");
                 }
                 TempData["Error"] = result.message;
-                //}
+                }
                 return RedirectToAction("PerpetualRequisite");
             }
             catch (Exception ex)

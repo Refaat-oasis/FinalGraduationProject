@@ -17,6 +17,6 @@ namespace ThothSystemVersion1.DataTransfereObject
         public string? RequisiteNotes { get; set; }
 
         [Required(ErrorMessage = "يجب إضافة أصناف للطلب")]
-        public List<QuantityBridge>? BridgeList { get; set; }
+        public List<QuantityBridge> BridgeList { get; set; }
     }
 }

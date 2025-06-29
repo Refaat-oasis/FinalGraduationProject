@@ -589,6 +589,71 @@ namespace ThothSystemVersion1.BusinessLogicLayers
 
 
         }
+
+        public CostReportVM CostReport(DateOnly beginningDate, DateOnly endingDate)
+        {
+            try
+            {
+                var costReportVM = new CostReportVM();
+                var jobOrders = _context.JobOrders
+                                        .Where(j => j.StartDate >= beginningDate &&
+                                                    j.EndDate <= endingDate)
+                                        .ToList();
+
+                costReportVM.JobOrdersCount = jobOrders.Count;
+                costReportVM.JobOrderUnearnedRevenue = jobOrders.Sum(j => j.UnearnedRevenue ?? 0);
+                costReportVM.JobOrderEarnedRevenue = jobOrders.Sum(j => j.EarnedRevenue ?? 0);
+                costReportVM.JobOrderRemainingAmount = jobOrders.Sum(j => j.RemainingAmount ?? 0);
+
+                var jobIds = jobOrders.Select(j => j.JobOrderId).ToList();
+
+                var requisites = _context.RequisiteOrders
+                                         .Where(r => jobIds.Contains(r.JobOrderId))
+                                         .ToList();
+
+                var returns = _context.ReturnsOrders
+                                      .Where(rn => jobIds.Contains(rn.JobOrderId ?? 0))
+                                      .ToList();
+
+                var reqIds = requisites.Select(r => r.RequisiteId).ToList();
+                var retIds = returns.Select(r => r.ReturnId).ToList();
+
+                var quantityBridges = _context.QuantityBridges
+                                              .Where(q => (q.RequisiteId != null && reqIds.Contains(q.RequisiteId.Value)) ||
+                                                          (q.ReturnId != null && retIds.Contains(q.ReturnId.Value)))
+                                              .ToList();
+
+                var misc = _context.MiscellaneousExpenses
+                                   .Where(m => jobIds.Contains(m.JobOrderId ?? 0))
+                                   .AsNoTracking()
+                                   .ToList();
+
+                decimal totalBalance = quantityBridges.Sum(q =>
+                                    q.RequisiteId != null ? (q.TotalBalance ?? 0)
+                                                          : -(q.TotalBalance ?? 0));
+
+                costReportVM.TotalCost = totalBalance;
+
+                decimal miscAdded = misc.Sum(m => m.TotalAfterPercentage);
+                decimal miscUnrecovered = misc.Sum(m => m.FinalTotal - m.TotalAfterPercentage);
+
+                costReportVM.TotalRevenue = costReportVM.JobOrderUnearnedRevenue
+                                          + costReportVM.JobOrderEarnedRevenue
+                                          + costReportVM.JobOrderRemainingAmount
+                                          + miscAdded;
+
+                costReportVM.NetProfit = costReportVM.TotalRevenue
+                                       - costReportVM.TotalCost
+                                       - miscUnrecovered;
+
+                return costReportVM;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return new CostReportVM();
+            }
+        }
     }
 }
 

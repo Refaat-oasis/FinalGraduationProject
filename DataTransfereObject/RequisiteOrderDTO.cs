@@ -15,7 +15,7 @@ namespace ThothSystemVersion1.DataTransfereObject
         [Display(Name = "ملاحظات عن اذن الصرف")]
         public string? RequisiteNotes { get; set; }
 
-        public List<QuantityBridge>? BridgeList { get; set; }
+        public List<QuantityBridge> BridgeList { get; set; }
 
     }
 }

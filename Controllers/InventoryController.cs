@@ -1138,7 +1138,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1)
+                if (jobRole == 0 || jobRole == 1 || jobRole ==2)
                 {
 
                     MachineStore empty = new MachineStore();
@@ -1188,7 +1188,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1)
+                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
                 {
 
                     SparePart empty = new SparePart();
@@ -1586,11 +1586,16 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1)
+                if (jobRole == 0 || jobRole == 1 )
                 {
 
                     List<SparePart> sparePartsList = _businessLogicL.ViewAllSpareParts();
                     return View(sparePartsList);
+                }else if (jobRole == 2)
+                {
+
+                    List<SparePart> sparePartsList = _businessLogicL.ViewAllSpareParts();
+                    return View("~/Views/InventoryClerk/ViewAllSpareParts.cshtml",sparePartsList);
                 }
                 else
                 {

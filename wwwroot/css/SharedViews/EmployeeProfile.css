@@ -170,11 +170,23 @@ h2 {
     color: #10b981;
 }
 
-.error {
+.text-danger {
     background-color: #fef2f2;
     border-left: 4px solid #ef4444;
     color: #ef4444;
+    direction:ltr;
 }
+
+
+.text-danger {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    direction: rtl;
+}
+
 
 .progress-bar {
     height: 4px;

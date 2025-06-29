@@ -121,15 +121,10 @@ namespace ThothSystemVersion1.Controllers
             {
 
                 Employee emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-                EmployeeDTO employeeDTO = new EmployeeDTO();
+
                 if (emp != null)
                 {
-                    employeeDTO.EmployeeId = emp.EmployeeId;
-                    employeeDTO.EmployeeName = emp.EmployeeName;
-                    employeeDTO.EmployeeUserName = emp.EmployeeUserName;
-                    employeeDTO.JobRole = emp.JobRole;
-                    employeeDTO.Activated = emp.Activated;
-                    employeeDTO.EmployeePassword = emp.EmployeePassword;
+                    return View("~/Views/SharedViews/EmployeeProfile.cshtml", emp);
                 }
                 else
                 {
@@ -138,7 +133,6 @@ namespace ThothSystemVersion1.Controllers
                 }
 
 
-                return View("~/Views/SharedViews/EmployeeProfile.cshtml", employeeDTO);
             }
             catch (Exception ex)
             {
@@ -150,7 +144,7 @@ namespace ThothSystemVersion1.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditEmployee(string EmployeeId, EmployeeDTO updatedEmployee)
+        public IActionResult EditEmployee(string EmployeeId, Employee updatedEmployee)
         {
             try
             {
@@ -165,20 +159,29 @@ namespace ThothSystemVersion1.Controllers
                 }
                 else {
 
-                    if (updatedEmployee.EmployeePassword != null ) {
-
+                    if (updatedEmployee.EmployeePassword != null ) 
+                    {
                         string password = updatedEmployee.EmployeePassword;
                         string newPassword = Hashing.HashPassword(password);
                         existingEmployee.EmployeePassword = newPassword;
 
                     }
 
-                    existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
-                    existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
-                    _context.Employees.Update(existingEmployee);
-                    _context.SaveChanges();
-                    TempData["Success"] = "تم تعديل بيانات الموظف بنجاح";
-                    return RedirectToAction("EmployeeProfile", "Employee", new { EmployeeId });
+                    if (ModelState.IsValid)
+                    {
+                        existingEmployee.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                        existingEmployee.EmployeeName = updatedEmployee.EmployeeName;
+                        _context.Employees.Update(existingEmployee);
+                        _context.SaveChanges();
+                        TempData["Success"] = "تم تعديل بيانات الموظف بنجاح";
+                        return RedirectToAction("EmployeeProfile", "Employee", new { EmployeeId });
+
+                    }
+                    else {
+                        return RedirectToAction("EmployeeProfile", "Employee", new { EmployeeId });
+                    }
+
+                    
 
                 }        
                 
@@ -187,8 +190,7 @@ namespace ThothSystemVersion1.Controllers
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";
-                // Log the exception (ex) here
-                // In both redirects within EditEmployee:
+                
                 return RedirectToAction("EmployeeProfile", "Employee", new { employeeId = EmployeeId });
             }
 

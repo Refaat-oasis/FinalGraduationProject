@@ -132,6 +132,7 @@ namespace ThothSystemVersion1.Controllers
                 emp.EmployeeId = updatedEmployee.EmployeeId;
                 emp.EmployeeName = updatedEmployee.EmployeeName;
                 emp.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                emp.EmployeePassword = updatedEmployee.EmployeePassword;
                 emp.Activated = updatedEmployee.Activated;
 
                 ModelState.Clear();

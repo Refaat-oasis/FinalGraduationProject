@@ -54,6 +54,7 @@
     justify-content: center;
     font-size: 25px;
     border: none;
+    position:fixed;
     border-radius: 50%;
     cursor: pointer;
     background-color: black;

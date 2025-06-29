@@ -1,0 +1,100 @@
+﻿View All Purchase Order cshtml                                                                                                                                                             @{
+Layout = null;
+}
+@using ThothSystemVersion1.ViewModels
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+@model List<PurchaseOrderVM>
+
+
+<head>
+    <title>Thoth</title>
+
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Inventory/ViewAllPurchaseOrder.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+
+        }
+    </div>
+    <div id="reorderMessages" class="reorderMsg" style="display:none;">
+        <button class="close-btn" onclick="closeReorderMessages()">X</button>
+
+    </div>
+    <h1>طلبات الشراء</h1>
+    <div class="btn">
+        <a asp-action="purchaseAll" asp-controller="Inventory" class="editBtn">اضافة</a>
+    </div>
+    <div class="search-container">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="searchInput" onkeyup="searchJobOrder()" placeholder="ابحث عن طلب...">
+    </div>
+    <div class="tableContainer">
+        <table id="purchaseOrderTable">
+            <tr>
+                <th>الإجراءات</th>
+                <th>المورد</th>
+                <th>المبلغ المدفوع</th>
+                <th>المبلغ المتبقي</th>
+                <th>تاريخ الشراء</th>
+                <th>الرقم التعريفي</th>
+
+            </tr>
+            @{
+                foreach (PurchaseOrderVM purchase in Model)
+                {
+                    <tr>
+
+
+                        <td>
+                            <a class="editBtn" href="@Url.Action("ShowPurchaseOrderSpecifications", "Inventory", new { purchaseOrderId = purchase.PurchaseId })">اظهار التفاصيل</a>
+                        </td>
+                        <td>@purchase.VendorName</td>
+                        <td>@purchase.PaidAmount</td>
+                        <td>@purchase.RemainingAmount</td>
+                        <td>@purchase.PurchaseDate</td>
+                        <td>@purchase.PurchaseId</td>
+
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<script src="~/js/Inventory/viewAllPurchaseOrder.js">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+        integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>

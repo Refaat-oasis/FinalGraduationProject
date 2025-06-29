@@ -1,10 +1,10 @@
-﻿@model ThothSystemVersion1.DataTransfereObject.EmployeeDTO
+﻿@model Employee
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
     int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
     Console.WriteLine("JobRole: " + jobRole);
 }
@@ -147,7 +147,7 @@
         <!-- Password -->
         <div class="input-control">
             <label asp-for="EmployeePassword" class="textlabel"></label>
-            <input asp-for="EmployeePassword" class="place" type="password" />
+            <input asp-for="EmployeePassword" class="place" type="password" value="" />
             <span asp-validation-for="EmployeePassword" class="text-danger"></span>
         </div>
 
@@ -180,6 +180,44 @@
 </div>
 
 @section Scripts {
+
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const form = document.querySelector("form[asp-action='EditEmployee']");
+          const userNameInput = document.querySelector("input[name='EmployeeUserName']");
+          const employeeNameInput = document.querySelector("input[name='EmployeeName']");
+          const userNameError = document.querySelector("span[data-valmsg-for='EmployeeUserName']");
+          const employeeNameError = document.querySelector("span[data-valmsg-for='EmployeeName']");
+
+          form.addEventListener("submit", function (e) {
+            let valid = true;
+            // clear old errors
+            userNameError.textContent = "";
+            employeeNameError.textContent = "";
+
+            if (!userNameInput.value.trim()) {
+              valid = false;
+              userNameError.textContent = "اسم المستخدم مطلوب";
+            }
+            if (!employeeNameInput.value.trim()) {
+              valid = false;
+              employeeNameError.textContent = "اسم الموظف مطلوب";
+            }
+
+            if (!valid) e.preventDefault();
+          });
+
+          // optional: clear an error as soon as the user types
+          userNameInput.addEventListener("input", () => {
+            if (userNameInput.value.trim()) userNameError.textContent = "";
+          });
+          employeeNameInput.addEventListener("input", () => {
+            if (employeeNameInput.value.trim()) employeeNameError.textContent = "";
+          });
+        });
+    </script> 
+
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
@@ -203,7 +241,10 @@
             3: "/employee/TechnicalManager",
             4: "/employee/technicalClerk",
             5: "/employee/CostManager",
-            6: "/employee/costClerk"
+            6: "/employee/costClerk",
+            7: "employee/AccountingManger",
+            8: "employee/AccountingClerk"
+
         };
 
         if (hasSuccessMessage) {

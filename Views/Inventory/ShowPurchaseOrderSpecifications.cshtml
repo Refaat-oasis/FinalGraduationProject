@@ -1,0 +1,204 @@
+﻿                                                                                                                                            @model ThothSystemVersion1.ViewModels.PurchaseOrderSpecificationsViewModel
+@using Microsoft.AspNetCore.Http
+@using ThothSystemVersion1.Utilities
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    int jobRole = HttpContextAccessor.HttpContext.Session.GetInt32("JobRole") ?? 0;
+    Console.WriteLine("JobRole: " + jobRole);
+}
+
+@{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+
+    ViewData["Title"] = "Thoth";
+}
+@section HeadContent {
+    <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/Technical/showJobOrder.css" rel="stylesheet" />
+}
+<div class="container">
+    <div class="arrow">
+        @{
+            // admin
+            if (jobRole == 0)
+            {
+                <a asp-controller="employee" asp-action="adminhome" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+
+            } // inventory manager
+            else if (jobRole == 1)
+            {
+                <a asp-controller="employee" asp-action="inventoryManager" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+            else if (jobRole == 2)
+            {
+                <a asp-controller="employee" asp-action="inventoryClerk" class="back">
+                    <i class='bx bx-left-arrow-circle' style="font-size: 40px; color: white;"></i>
+                </a>
+            }
+
+        }
+    </div>
+    <h1>تفاصيل طلب الشراء</h1>
+
+    <!-- Job Order Details -->
+    <div class="mainBox">
+        <h2>بيانات الشراء</h2>
+        <dl class="colCont1">
+            <div class="row-style">
+                <dd>@Model.PurchaseId</dd>
+                <dt>@Html.DisplayNameFor(m => m.PurchaseId)</dt>
+
+            </div>
+            <div class="row-style">
+                <dd>@Model.VendorName</dd>
+                <dt>@Html.DisplayNameFor(m => m.VendorName)</dt>
+
+            </div>
+
+            <div class="row-style">
+                <dd>@Model.PaidAmount</dd>
+                <dt>@Html.DisplayNameFor(m => m.PaidAmount)</dt>
+
+            </div>
+
+            <div class="row-style">
+                <dd>@Model.PurchaseNotes</dd>
+                <dt>@Html.DisplayNameFor(m => m.PurchaseNotes)</dt>
+
+            </div>
+
+            <div class="row-style">
+                <dd>@Model.RemainingAmount</dd>
+                <dt>@Html.DisplayNameFor(m => m.RemainingAmount)</dt>
+
+            </div>
+            <!-- You can add additional fields as needed -->
+        </dl>
+    </div>
+
+    <!-- Employees Table -->
+    <div class="mainBox">
+        <h2>الموظفون</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>الدور الوظيفي</th>
+                    <th>اسم الموظف</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Employees != null && Model.Employees.Any())
+                {
+                    foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+
+                            <td>@employee.JobRole.GetDisplayName()</td>
+                            <td>@employee.EmployeeName</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">لا توجد بيانات</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+@if (Model.QuantityBridge?.Any(p => p.PurchaseId != null) == true)
+{
+        <h2>كميات المشتريات</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>الكمية</th>
+                    <th>السعر</th>
+                    <th>الصنف</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bridge in Model.QuantityBridge.Where(p => p.PurchaseId != null))
+                {
+
+                    string name = null;
+                    int? quantity = null;
+                    int? numberofunits = null;
+
+                    decimal? price = null;
+
+                    foreach (var paper in Model.Papers)
+                    {
+                        if (bridge.PaperId == paper.PaperId)
+                        {
+                            name = paper.Name;
+                            quantity = bridge.Quantity;
+                            price = bridge.Price;
+                            break;
+                        }
+                    }
+
+                    if (name == null)
+                    {
+                        foreach (var ink in Model.Inks)
+                        {
+                            if (bridge.InkId == ink.InkId)
+                            {
+                                name = ink.Name;
+                                numberofunits = bridge.NumberOfUnits;
+                                price = bridge.Price;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (name == null)
+                    {
+                        foreach (var s in Model.Supplies)
+                        {
+                            if (bridge.SuppliesId == s.SuppliesId)
+                            {
+                                name = s.Name;
+                                quantity = bridge.Quantity;
+                                price = bridge.Price;
+                                break;
+                            }
+                        }
+                    }
+                    if (name == null)
+                    {
+                        foreach (var sp in Model.SpareParts)
+                        {
+                            if (bridge.SparePartsId == sp.SparePartsId)
+                            {
+                                name = sp.Name;
+                                quantity = bridge.Quantity;
+                                price = bridge.Price;
+                                break;
+                            }
+                        }
+                    }
+                    if (name != null)
+                    {
+                        <tr>
+                            <td>@quantity</td>
+                            <td>@price</td>
+                            <td>@name</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+}

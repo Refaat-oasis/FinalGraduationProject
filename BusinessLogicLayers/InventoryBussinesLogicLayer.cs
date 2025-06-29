@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -2527,6 +2528,146 @@ namespace ThothSystemVersion1.BusinessLogicLayers
             {
                 WriteException.WriteExceptionToFile(ex);
                 return (false, $"حدث خطأ: {ex.ToString()}");
+            }
+        }
+
+        public List<PurchaseOrderVM> ViewAllPurchaseOrder()                                              
+ {
+            try
+            {
+                List<PurchaseOrder> purchaseordersList = _context.PurchaseOrders.OrderByDescending(p => p.PurchaseDate).ToList();
+                List<Employee> employeesList = _context.Employees.ToList();
+                List<Vendor> vendorsList = _context.Vendors.ToList();
+                List<PurchaseOrderVM> purchaseOrderVMsList = new List<PurchaseOrderVM>();
+
+                foreach (PurchaseOrder purchaseOrder in purchaseordersList)
+                {
+                    Vendor vendor = vendorsList.FirstOrDefault(v => v.VendorId == purchaseOrder.VendorId);
+                    Employee employee = employeesList.FirstOrDefault(e => e.EmployeeId == purchaseOrder.EmployeeId);
+
+                    if (vendor != null && employee != null)
+                    {
+                        PurchaseOrderVM purchasetoView = new PurchaseOrderVM();
+
+
+                        purchasetoView.VendorId = vendor.VendorId;
+                        purchasetoView.VendorName = vendor.VendorName;
+                        purchasetoView.VendorEmail = vendor.VendorEmail;
+                        purchasetoView.VendorAddress = vendor.VendorAddress;
+                        purchasetoView.VendorNotes = vendor.VendorNotes;
+
+
+                        purchasetoView.PurchaseId = purchaseOrder.PurchaseId;
+                        purchasetoView.PurchaseDate = purchaseOrder.PurchaseDate;
+                        purchasetoView.RemainingAmount = purchaseOrder.RemainingAmount;
+                        purchasetoView.PaidAmount = purchaseOrder.PaidAmount;
+                        purchasetoView.PurchaseNotes = purchaseOrder.PurchaseNotes;
+
+                        purchasetoView.VendorId = vendor.VendorId;
+
+                        // third add the employee data
+                        purchasetoView.EmployeeId = purchasetoView.EmployeeId;
+                        purchasetoView.EmployeeName = purchasetoView.EmployeeName;
+
+                        purchaseOrderVMsList.Add(purchasetoView);
+                    }
+                }
+                return purchaseOrderVMsList;
+            }
+
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
+            }
+        }
+        public PurchaseOrderSpecificationsViewModel ShowPurchaseOrderSpecifications(int purchaseId)
+        {
+            try
+            {
+                PurchaseOrder purchaseOrder = _context.PurchaseOrders.FirstOrDefault(p => p.PurchaseId == purchaseId);
+                if (purchaseOrder == null) return null;
+
+                PurchaseOrderSpecificationsViewModel purchaseorderSpecifics = new PurchaseOrderSpecificationsViewModel
+                {
+                    PurchaseId = purchaseOrder.PurchaseId,
+                    RemainingAmount = purchaseOrder.RemainingAmount,
+                    PaidAmount = purchaseOrder.PaidAmount,
+                    PurchaseNotes = purchaseOrder.PurchaseNotes,
+                    EmployeeId = purchaseOrder.EmployeeId,
+                    VendorId = purchaseOrder.VendorId,
+                };
+
+                Vendor vend = _context.Vendors.FirstOrDefault(v => v.VendorId == purchaseOrder.VendorId);
+                purchaseorderSpecifics.VendorName = vend?.VendorName ?? "غير معروف";
+
+                // Employees
+                List<Employee> employees = new List<Employee>();
+                if (purchaseOrder.EmployeeId != null)
+                {
+                    var emp = _context.Employees.FirstOrDefault(e => e.EmployeeId == purchaseOrder.EmployeeId);
+                    if (emp != null) employees.Add(emp);
+                }
+                purchaseorderSpecifics.Employees = employees;
+
+                // Quantity Bridges
+                List<QuantityBridge> quantityBridges = _context.QuantityBridges
+                    .Where(q => q.PurchaseId == purchaseOrder.PurchaseId)
+                    .ToList();
+
+                // Materials
+                List<Paper> papers = new List<Paper>();
+                List<Ink> inks = new List<Ink>();
+                List<Supply> supplies = new List<Supply>();
+                List<SparePart> spareparts = new List<SparePart>();
+
+                foreach (var QB in quantityBridges)
+                {
+                    if (QB.InkId != null)
+                    {
+                        var ink = _context.Inks.FirstOrDefault(i => i.InkId == QB.InkId);
+                        if (ink != null) inks.Add(ink);
+                    }
+                    else if (QB.PaperId != null)
+                    {
+                        var paper = _context.Papers.FirstOrDefault(p => p.PaperId == QB.PaperId);
+                        if (paper != null) papers.Add(paper);
+                    }
+                    else if (QB.SuppliesId != null)
+                    {
+                        var supply = _context.Supplies.FirstOrDefault(s => s.SuppliesId == QB.SuppliesId);
+                        if (supply != null) supplies.Add(supply);
+                    }
+                    else if (QB.SparePartsId != null)
+                    {
+                        var sparepart = _context.SpareParts.FirstOrDefault(s => s.SparePartsId == QB.SparePartsId);
+                        if (sparepart != null) spareparts.Add(sparepart);
+                    }
+                }
+
+                purchaseorderSpecifics.Papers = papers;
+                purchaseorderSpecifics.Inks = inks;
+                purchaseorderSpecifics.Supplies = supplies;
+                purchaseorderSpecifics.SpareParts = spareparts;
+
+                purchaseorderSpecifics.QuantityBridge = quantityBridges
+                    .Select(q => new QuantityBridge
+                    {
+                        InkId = q.InkId,
+                        PaperId = q.PaperId,
+                        SuppliesId = q.SuppliesId,
+                        SparePartsId = q.SparePartsId,
+                        Quantity = q.Quantity,
+                        Price = q.Price,
+                        PurchaseId = q.PurchaseId
+                    }).ToList();
+
+                return purchaseorderSpecifics;
+            }
+            catch (Exception ex)
+            {
+                WriteException.WriteExceptionToFile(ex);
+                return null;
             }
         }
 

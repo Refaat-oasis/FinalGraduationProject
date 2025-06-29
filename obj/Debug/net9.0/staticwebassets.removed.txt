@@ -1,158 +1,160 @@
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllInk.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Admin\adminHome.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\SharedViews\EmployeeProfile.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\editMachineStore.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPaper.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\TechnicalClerk\CreateRequisite.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\CostClerk\CostClerkHome.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Cost\AddLabour.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Technical\AddCustomer.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\ViewAllInk.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\purchaseAll.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\newInk.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\InventoryClrek\InventoryCerkHome.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\AddMachine.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Accounting\PaymentReceipt.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\ViewAllInk.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\AddCustomer.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\addMachineAndLabourExpense.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\signalRpaper.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\inventoryReports.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\EditInk.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\ViewAllSupply.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\EditLabour.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\editVendor.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\newInk.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\ViewAllVendor.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\AddSparePart.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllSupply.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Accounting\accountingReport.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Cost\CostManagerHome.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\newsupply.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\SharedViews\ForgetPassword.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\AddCharacteristic.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\addVendor.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\ViewAllVendor.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\EditCharacteristics.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\newPaper.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Admin\editEmployee.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\EditJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\PhysicalCount.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\CostClerk\CostClerkHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\EditInk.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\InventoryHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\InventoryHome.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\editSpareParts.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Technical\viewAllJobOrder.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\EditSupply.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\AddSparePart.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\site.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllPaper.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\EditCustomer.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\paperReorderPoint.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\EditSupply.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\EditPaper.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\viewAllLabour.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Technical\EditCustomer.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\favicon.ico
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\ViewAllPaper.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\addVendor.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Technical\Create.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\newPaper.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\SharedViews\login.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Admin\addEmployee.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\editVendor.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\SharedViews\loginEmployee.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\TechnicalClerk\EditJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\viewAllMachines.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\showJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\viewAllJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\viewAllCustomer.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\TechnicalClerk\TechnicalClerkHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\TechnicalClerk\ViewAllJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\ViewAllSupply.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Admin\viewAllEmployee.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\EditMachine.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\AddCharacteristic.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Redirect.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\TechnicalManagerHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\AddMachine.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\TechnicalClerk\ViewAllJobOrder.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\ReturnOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\CreateRequisite.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\AddLabour.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Inventory\AddMachine.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\InventoryClerk\InventoryClerkHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Cost\CostManagerHome.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\js\Cost\AddMachine.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\InventoryClerk\ReturnOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\EditPaper.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\createNewJobOrder.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Technical\technicalReport.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.js
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\css\Inventory\PerpetualRequisite.css
-C:\Users\ECC\OneDrive\Desktop\closing\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Accounting\accountingReport.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Accounting\PaymentReceipt.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Admin\addEmployee.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Admin\adminHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Admin\editEmployee.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Admin\viewAllEmployee.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\CostClerk\CostClerkHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\AddLabour.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\AddMachine.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\addMachineAndLabourExpense.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\CostManagerHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\EditLabour.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\EditMachine.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\viewAllLabour.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Cost\viewAllMachines.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\InventoryClerk\InventoryClerkHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\InventoryClerk\ReturnOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllInk.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllPaper.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\InventoryClerk\ViewAllSupply.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\AddCharacteristic.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\AddMachine.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\AddSparePart.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\addVendor.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\EditCharacteristics.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\EditInk.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\editMachineStore.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\EditPaper.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\editSpareParts.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\EditSupply.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\editVendor.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\InventoryHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\inventoryReports.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\newInk.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\newPaper.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\newSupply.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\PerpetualRequisite.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\PhysicalCount.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\purchaseAll.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ReturnOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ViewAllInk.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPaper.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ViewAllPurchaseOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ViewAllSupply.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Inventory\ViewAllVendor.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\SharedViews\EmployeeProfile.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\SharedViews\ForgetPassword.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\SharedViews\login.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\TechnicalClerk\CreateRequisite.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\TechnicalClerk\EditJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\TechnicalClerk\TechnicalClerkHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\TechnicalClerk\ViewAllJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\AddCustomer.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\createNewJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\CreateRequisite.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\EditCustomer.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\EditJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\showJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\TechnicalManagerHome.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\technicalReport.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\viewAllCustomer.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\css\Technical\viewAllJobOrder.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\favicon.ico
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Admin\addEmployee.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Admin\adminHome.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Admin\editEmployee.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Admin\viewAllEmployee.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\CostClerk\CostClerkHome.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Cost\AddLabour.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Cost\AddMachine.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Cost\CostManagerHome.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\InventoryClrek\InventoryCerkHome.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\AddCharacteristic.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\AddMachine.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\AddSparePart.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\addVendor.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\EditInk.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\EditPaper.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\EditSupply.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\editVendor.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\InventoryHome.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\newInk.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\newPaper.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\newsupply.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\paperReorderPoint.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\signalRpaper.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\ViewAllInk.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\ViewAllPaper.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\ViewAllSupply.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\ViewAllVendor.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Redirect.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\SharedViews\loginEmployee.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\site.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\TechnicalClerk\ViewAllJobOrder.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Technical\AddCustomer.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Technical\Create.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Technical\EditCustomer.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Technical\viewAllJobOrder.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery-validation\LICENSE.md
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.min.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\dist\jquery.slim.min.map
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\jquery\LICENSE.txt
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\lib\microsoft-signalr\signalr.min.js
+D:\GRAD PROJ\FinalGraduationProject\wwwroot\js\Inventory\ViewAllPurchase.js

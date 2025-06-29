@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:businesslogiclayers\\accountingbusinesslogiclayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\controllers\\accountingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:controllers\\accountingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|c:\\users\\ahta6\\onedrive\\desktop\\finalgraduationprojectthothsystem\\finalgraduationproject\\views\\accounting\\accountingreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DAD1D6C1-EBCA-4485-9F89-EF68F95845BB}|ThothSystemVersion1.csproj|solutionrelative:views\\accounting\\accountingreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,46 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccountingBusinessLogicLayer.cs",
-              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "RelativeDocumentMoniker": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "RelativeToolTip": "BusinessLogicLayers\\AccountingBusinessLogicLayer.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAqwBwBAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T01:05:10.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "accountingReport.cshtml",
-              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
-              "RelativeDocumentMoniker": "Views\\Accounting\\accountingReport.cshtml",
-              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Views\\Accounting\\accountingReport.cshtml",
-              "RelativeToolTip": "Views\\Accounting\\accountingReport.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-28T00:34:45.03Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AccountingController.cs",
-              "DocumentMoniker": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\AccountingController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountingController.cs",
-              "ToolTip": "C:\\Users\\ahta6\\OneDrive\\Desktop\\FInalGraduationProjectThothSystem\\FinalGraduationProject\\Controllers\\AccountingController.cs",
-              "RelativeToolTip": "Controllers\\AccountingController.cs",
-              "ViewState": "AgIAACsBAAAAZmZmZmYkwDMBAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T00:19:25.097Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

@@ -120,30 +120,47 @@ namespace ThothSystemVersion1.Controllers
         [HttpPost]
         public IActionResult EditEmployee(string id, EmployeeDTO updatedEmployee)
         {
-            if (updatedEmployee == null)
-            {
-                return BadRequest("بيانات الموظف غير صالحة.");
-            }
 
             try
             {
-                var result = _businessLogicL.EditEmployee(id, updatedEmployee); // Update the employee
-                if (result.Success)
+                if (updatedEmployee == null)
                 {
-                    TempData["Success"] = result.Message;
+                    return BadRequest("بيانات الموظف غير صالحة.");
+                }
+
+                EmployeeEditDTO emp = new EmployeeEditDTO();
+                emp.EmployeeId = updatedEmployee.EmployeeId;
+                emp.EmployeeName = updatedEmployee.EmployeeName;
+                emp.EmployeeUserName = updatedEmployee.EmployeeUserName;
+                emp.Activated = updatedEmployee.Activated;
+
+                ModelState.Clear();
+                TryValidateModel(emp);
+                if (ModelState.IsValid)
+                {
+                    var result = _businessLogicL.EditEmployee(id, updatedEmployee);
+                    // Update the employee
+                    if (result.Success)
+                    {
+                        TempData["Success"] = result.Message;
+                        return RedirectToAction("EditEmployee", "admin", id);
+                    }
+                    else
+                    {
+                        TempData["Error"] = result.Message;
+                        return RedirectToAction("EditEmployee", "admin", id);
+                    }
+                }
+                else if (!ModelState.IsValid)
+                {
+                    TempData["Error"] = "يرجي ادخال بيانات صحيحة";
                     return RedirectToAction("EditEmployee", "admin", id);
                 }
                 else
                 {
-                    
-                    TempData["Error"] = result.Message;
                     return RedirectToAction("EditEmployee", "admin", id);
                 }
-
-                
-
             }
-
             catch (Exception ex)
             {
                 TempData["Error"] = "حدث خطأ أثناء تعديل بيانات الموظف";

@@ -157,9 +157,9 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                dto.EmployeeId = HttpContext.Session.GetString("EmployeeID");
+                
+                   
                 var result = _technicalBusinessLogicLayer.CreateRequisite(dto);
                 if (result.success)
                 {
@@ -167,11 +167,8 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("CreateRequisite");
                 }
                 TempData["Error"] = result.message;
-                }
                 return RedirectToAction("CreateRequisite");
-            }
-
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
@@ -266,11 +263,7 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("UnauthorizedAccess", "employee");
                 }
             }
-            //catch (ArgumentException ex)
-            //{
-            //    TempData["Error"] = ex.Message;
-            //    return RedirectToAction("ViewAllJobOrder"); // Redirect to list with error
-            //}
+           
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -537,34 +530,6 @@ namespace ThothSystemVersion1.Controllers
 
 
     }
-    //[HttpPost]
-    //public IActionResult Create(RequisiteOrderDTO dto)
-    //{
-    //    if (!ModelState.IsValid)
-    //    {
-    //        var vm = new RequisitionCreateVM
-    //        {
-    //            JobOrders = _businessLogicLayer.GetLast10JobOrders(),
-    //            AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-    //            AvailableInks = _businessLogicLayer.GetAvailableInks(),
-    //            AvailableSupplies = _businessLogicLayer.GetAvailableSupplies(),
-    //            RequisiteOrderDTO = dto
-    //        };
-    //        return View(vm);
-    //    }
-
-    //    var result = _businessLogicLayer.CreateRequisition(dto);
-
-    //    if (result.Success)
-    //    {
-    //        TempData["SuccessMessage"] = result.Message;
-    //        return RedirectToAction("Details", new { id = result.RequisiteId });
-    //    }
-
-    //    TempData["ErrorMessage"] = result.Message;
-    //    return RedirectToAction("Create");
-    //}
-
 
 }
 
@@ -574,63 +539,3 @@ namespace ThothSystemVersion1.Controllers
 
 
 
-//    public class TechnicalController : Controller
-//    {
-
-//        private readonly TechnicalBusinessLogicLayer _businessLogicLayer;
-
-//        public TechnicalController(TechnicalBusinessLogicLayer _technicalBussinessLogicLayer) {
-
-//            _businessLogicLayer = _technicalBussinessLogicLayer; 
-
-//        }
-
-//        [HttpGet]
-//        public IActionResult ViewAllJobOrder()
-//        {
-//            List<JobOrderCustEmpVM> jobOrderCustomerViewModelsList = _businessLogicLayer.ViewAllJobOrder();
-//            return View("~/Views/technical/ViewAlljobOrder.cshtml", jobOrderCustomerViewModelsList);
-
-//        }
-//        [HttpGet]
-//        public IActionResult Create()
-//        {
-//            var vm = new RequisitionCreateVM
-//            {
-//                JobOrders = _businessLogicLayer.GetLast10JobOrders(),
-//                AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-//                AvailableInks = _businessLogicLayer.GetAvailableInks(),
-//                AvailableSupplies = _businessLogicLayer.GetAvailableSupplies(),
-//            };
-
-//            return View("~/Views/Technical/AddRequisiteOrder.cshtml", vm);
-//        }
-
-//        [HttpPost]
-//        public IActionResult Create(RequisiteOrderDTO dto)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                var result = _businessLogicLayer.CreateRequisition(dto);
-//                if (result.Success)
-//                {
-//                    TempData["SuccessMessage"] = result.Message;
-//                    return RedirectToAction("Details", new { id = result.RequisiteId });
-//                }
-//                TempData["ErrorMessage"] = result.Message;
-//            }
-
-//            // إعادة تحميل البيانات في حالة وجود خطأ
-//            var vm = new RequisitionCreateVM
-//            {
-//                JobOrders = _businessLogicLayer.GetLast10JobOrders(),
-//                AvailablePapers = _businessLogicLayer.GetAvailablePapers(),
-//                AvailableInks = _businessLogicLayer.GetAvailableInks(),
-//                AvailableSupplies = _businessLogicLayer.GetAvailableSupplies(),
-//                RequisiteOrderDTO = dto
-//            };
-
-//            return View(vm);
-//        }
-//    }
-//}

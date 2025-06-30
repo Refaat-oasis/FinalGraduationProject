@@ -6,7 +6,6 @@ namespace ThothSystemVersion1.DataTransfereObject
     public class PerpetualRequisiteDTO
     {
         [Display(Name = "الرقم القومي للموظف")]
-        [Required(ErrorMessage = "رقم الموظف مطلوب")]
         public string EmployeeId { get; set; } = null!;
 
         [Display(Name = "الرقم التعريفي للألة")]

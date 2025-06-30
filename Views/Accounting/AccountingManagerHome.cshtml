@@ -404,22 +404,14 @@
         <div id="reorderMessages"></div>
     </div>
 
-    @* <div class="container"> *@
-    @*     <h1>تحوت يتمني لك يوم سعيد</h1> *@
-    @*     <h1> *@
-    @*         مرحبا يا : @{ *@
-    @*             @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("EmployeeName")) *@
-    @*         } *@
-    @*     </h1> *@
-    @*     <p>يهدف نظام تحوت إلى تحسين كفاءة العمل في المطبعة من خلال توفير الوقت والجهد للموظفين</p> *@
-    @*     <p>مما يضمن إنتاجًا عالي الجودة بأعلى مستويات الدقة والكفاءة</p> *@
-    @* </div> *@
-
-    @* <script src="@Url.Content("~/js/Admin/adminHome.js")"></script> *@
 </body>
 
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
+        integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
 <script>
     function searchInventory(tableId) {
         var input, filter, table, tr, td, i, j, txtValue;

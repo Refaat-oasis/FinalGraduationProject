@@ -504,12 +504,6 @@
         console.log("Reconnected, skipping initial checks");
       });
 
-      // All low-stock messages come through this one handler:
-      hub.on("recieveInventoryBalances", message => {
-        console.log("Low-stock message:", message);
-        showReorderNotification(message);
-      });
-
             // All low-stock messages come through this one handler:
       hub.on("recieveLate", message => {
         console.log("Late message:", message);
@@ -525,13 +519,7 @@
 
           // Fire each check exactly once on first connect
           await Promise.all([
-            hub.invoke("checkInventoryBalancePaper"),
-            hub.invoke("checkInventoryBalanceInk"),
-            hub.invoke("checkInventoryBalanceSupply"),
-            hub.invoke("checkInventoryBalanceSpareParts"),
             hub.invoke("checkLateJobOrder"),// technical
-            hub.invoke("checkLatePayment"),// acc
-            hub.invoke("checkLateReceipt"),//acc
 
           ]);
         }

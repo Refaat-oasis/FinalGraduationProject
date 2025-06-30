@@ -439,6 +439,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+
+       // Generic search function for any table
     function searchInventory(tableId) {
         var input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("searchInput");
@@ -492,75 +494,75 @@
             });
         });
     });
-
-    <script>
-            function showReorderNotification(name) {
-          const container = document.getElementById("reorderMessages");
-
-          // create a single line for this notification
-          const line = document.createElement("div");
-          line.classList.add("msg-line");
-          line.innerText = name;
-
-          // ensure the container is visible and append the line
-          container.style.display = "block";
-          container.appendChild(line);
-
-          // after 5s, fade out & remove this line
-          setTimeout(() => {
-            line.style.opacity = "0";
-            setTimeout(() => {
-              container.removeChild(line);
-              if (!container.hasChildNodes()) {
-                container.style.display = "none";
-              }
-            }, 500);
-          }, 5000);
-        }
-
-        (async function() {
-          const hub = new signalR.HubConnectionBuilder()
-            .withUrl("/InventoryReorderPoint")
-            .withAutomaticReconnect()   // optional, but if you keep this, the guard below will prevent re-invocation
-            .build();
-
-          let didInvokeChecks = false;
-
-          hub.onreconnecting(error => {
-            console.warn("Reconnecting, will not re-run checks");
-          });
-
-          hub.onreconnected(connectionId => {
-            console.log("Reconnected, skipping initial checks");
-          });
-
-          // All low-stock messages come through this one handler:
-          hub.on("recieveInventoryBalances", message => {
-            console.log("Low-stock message:", message);
-            showReorderNotification(message);
-          });
-
-          try {
-            await hub.start();
-            console.log("SignalR connected");
-
-            if (!didInvokeChecks) {
-              didInvokeChecks = true;
-
-              // Fire each check exactly once on first connect
-              await Promise.all([
-                hub.invoke("checkInventoryBalancePaper"),
-                hub.invoke("checkInventoryBalanceInk"),
-                hub.invoke("checkInventoryBalanceSupply"),
-                hub.invoke("checkInventoryBalanceSpareParts"),
-
-              ]);
-            }
-          }
-          catch (err) {
-            console.error("SignalR setup error:", err);
-          }
-        })();
 </script>
 
+
+<script>
+        function showReorderNotification(name) {
+      const container = document.getElementById("reorderMessages");
+
+      // create a single line for this notification
+      const line = document.createElement("div");
+      line.classList.add("msg-line");
+      line.innerText = name;
+
+      // ensure the container is visible and append the line
+      container.style.display = "block";
+      container.appendChild(line);
+
+      // after 5s, fade out & remove this line
+      setTimeout(() => {
+        line.style.opacity = "0";
+        setTimeout(() => {
+          container.removeChild(line);
+          if (!container.hasChildNodes()) {
+            container.style.display = "none";
+          }
+        }, 500);
+      }, 5000);
+    }
+
+    (async function() {
+      const hub = new signalR.HubConnectionBuilder()
+        .withUrl("/InventoryReorderPoint")
+        .withAutomaticReconnect()   // optional, but if you keep this, the guard below will prevent re-invocation
+        .build();
+
+      let didInvokeChecks = false;
+
+      hub.onreconnecting(error => {
+        console.warn("Reconnecting, will not re-run checks");
+      });
+
+      hub.onreconnected(connectionId => {
+        console.log("Reconnected, skipping initial checks");
+      });
+
+      // All low-stock messages come through this one handler:
+      hub.on("recieveInventoryBalances", message => {
+        console.log("Low-stock message:", message);
+        showReorderNotification(message);
+      });
+
+      try {
+        await hub.start();
+        console.log("SignalR connected");
+
+        if (!didInvokeChecks) {
+          didInvokeChecks = true;
+
+          // Fire each check exactly once on first connect
+          await Promise.all([
+            hub.invoke("checkInventoryBalancePaper"),
+            hub.invoke("checkInventoryBalanceInk"),
+            hub.invoke("checkInventoryBalanceSupply"),
+            hub.invoke("checkInventoryBalanceSpareParts"),
+
+          ]);
+        }
+      }
+      catch (err) {
+        console.error("SignalR setup error:", err);
+      }
+    })();
 </script>

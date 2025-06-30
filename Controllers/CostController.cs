@@ -29,16 +29,30 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
+                int? jobRole = HttpContext.Session.GetInt32("JobRole");
+                if (jobRole == 0 || jobRole == 5)
+                {
+                    List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
 
-                return View("~/views/Cost/viewAlljobOrder.cshtml", jobOrderList);
+                    return View("~/views/Cost/viewAlljobOrder.cshtml", jobOrderList);
+                }
+                else if(jobRole == 6)
+                {
+                    List<JobOrderCustEmpVM> jobOrderList = _costbusinessLogicL.GetJobOrdersWithoutProcessBridge();
+
+                    return View("~/views/CostClerk/viewAlljobOrder.cshtml", jobOrderList);
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedAccess", "employee");
+                }
             }
             catch (Exception ex)
-            {
-                WriteException.WriteExceptionToFile(ex);
-                TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
-                return View("~/Views/Cost/viewAlljobOrder.cshtml", new List<JobOrderCustEmpVM>());
-            }
+                {
+                    WriteException.WriteExceptionToFile(ex);
+                    TempData["Error"] = "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا.";
+                    return View("~/Views/Cost/viewAlljobOrder.cshtml", new List<JobOrderCustEmpVM>());
+                }
         }
         [HttpGet]
         public IActionResult addMachineAndLabourExpense(int JobOrderId)

@@ -655,7 +655,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                if (jobRole == 0 || jobRole == 1)
                 {
 
                     List<ColorWeightSize> characteristicsList = _businessLogicL.ViewAllColorWeightSize();
@@ -672,7 +672,7 @@ namespace ThothSystemVersion1.Controllers
             {
                 WriteException.WriteExceptionToFile(ex);
                 TempData["Error"] = "حدث خطأ أثناء عرض الخصائص";
-                return View("~/Views/Admin/ViewAllEmployee.cshtml", new List<ColorWeightSize>());
+                return View("~/Views/Inventory/ViewAllColorWeightSize.cshtml", new List<ColorWeightSize>());
 
             }
         }
@@ -1565,6 +1565,12 @@ namespace ThothSystemVersion1.Controllers
                     List<MachineStore> machineStoreList = _businessLogicL.ViewAllMachineStore();
                     return View(machineStoreList);
                 }
+
+                else if (jobRole == 2)
+                {
+                    List<MachineStore> machineStoreList = _businessLogicL.ViewAllMachineStore();
+                    return View("~/Views/InventoryClerk/ViewAllMachineStore.cshtml", machineStoreList);
+                }
                 else
                 {
 
@@ -1671,11 +1677,9 @@ namespace ThothSystemVersion1.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    string employeeId = HttpContext.Session.GetString("EmployeeID");
+                string employeeId = HttpContext.Session.GetString("EmployeeID");
                 perpetual.EmployeeId = employeeId;
-
+               
                 var result = _businessLogicL.PerpetualRequisite(perpetual);
                 if (result.success)
                 {
@@ -1683,9 +1687,9 @@ namespace ThothSystemVersion1.Controllers
                     return RedirectToAction("PerpetualRequisite");
                 }
                 TempData["Error"] = result.message;
-                }
                 return RedirectToAction("PerpetualRequisite");
             }
+            
             catch (Exception ex)
             {
                 WriteException.WriteExceptionToFile(ex);
@@ -2074,7 +2078,7 @@ namespace ThothSystemVersion1.Controllers
             try
             {
                 int? jobRole = HttpContext.Session.GetInt32("JobRole");
-                if (jobRole == 0 || jobRole == 1 || jobRole == 2)
+                if (jobRole == 0 || jobRole == 1)
                 {
                     List<PurchaseOrderVM> purchaseOrderViewModelsList = _businessLogicL.ViewAllPurchaseOrder();
                     return View("~/Views/Inventory/ViewAllPurchaseOrder.cshtml", purchaseOrderViewModelsList);

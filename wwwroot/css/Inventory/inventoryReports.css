@@ -65,7 +65,6 @@ span {
     background-color: transparent;
     padding: 20px;
     border: none;
-   
 }
 
 .rowCont {
@@ -161,6 +160,7 @@ span {
     color: white;
     margin: 10px 0;
     text-decoration: none;
+    position: fixed;
 }
 
 h1 {

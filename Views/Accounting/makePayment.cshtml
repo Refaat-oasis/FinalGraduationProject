@@ -141,6 +141,7 @@
             <form method="post" asp-action="makepayment" asp-controller="accounting" id="receiptForm" novalidate>
                 <input type="hidden" asp-for="PurchaseId" />
                 <input type="hidden" id="hdnRemainingAmount" value="@remainingAmount" />
+                <input type="hidden" id="hdnJobRole" value="@jobRole" />
 
                 <div class="colCont">
                     <label asp-for="Amount"></label>
@@ -172,7 +173,7 @@
 </body>
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Form validation logic
             const form = document.getElementById('receiptForm');
             const amountInput = document.getElementById('txtAmount');
@@ -180,7 +181,7 @@
             const remaining = parseFloat(document.getElementById('hdnRemainingAmount').value);
 
             if (form) {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', function (e) {
                     const val = parseFloat(amountInput.value);
                     let msg = '';
 
@@ -189,7 +190,7 @@
                     } else if (val <= 0) {
                         msg = 'الرجاء ادخال رقم اكبر من صفر';
                     } else if (val > remaining) {
-                        msg = لا يمكن ان يزيد المبلغ عن (${remaining});
+                        msg = ` لا يمكن ان يزيد المبلغ عن (${remaining})`;
                     }
 
                     if (msg) {
@@ -202,32 +203,32 @@
             }
 
             // Redirect logic
-             const tempDataElement = document.getElementById('tempDataSuccess');
-        const jobRoleElement = document.getElementById('hdnJobRole');
+            const tempDataElement = document.getElementById('tempDataSuccess');
+            const jobRoleElement = document.getElementById('hdnJobRole');
 
-        // Get values with proper fallbacks
-        const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
-        const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
+            const hasSuccessMessage = tempDataElement ? tempDataElement.value === 'true' : false;
+            const jobRole = jobRoleElement ? parseInt(jobRoleElement.value) : 0;
 
-        console.log("Success message exists:", hasSuccessMessage);
-        console.log("Job role:", jobRole);
+            console.log("Success message exists:", hasSuccessMessage);
+            console.log("Job role:", jobRole);
 
-        // Mapping of job roles to their respective URLs
-        const jobRoleRoutes = {
-            0: "/employee/AdminHome",
-            1: "/employee/inventoryManager",
-            2: "/employee/inventoryClerk",
-            3: "/employee/TechnicalManager",
-            4: "/employee/technicalClerk",
-            5: "/employee/CostManager",
-            6: "/employee/costClerk"
-        };
+            const jobRoleRoutes = {
+                0: "/employee/AdminHome",
+                1: "/employee/inventoryManager",
+                2: "/employee/inventoryClerk",
+                3: "/employee/TechnicalManager",
+                4: "/employee/technicalClerk",
+                5: "/employee/CostManager",
+                6: "/employee/costClerk"
+            };
 
-        if (hasSuccessMessage) {
-            setTimeout(function () {
-                const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
-                window.location.href = redirectUrl;
-            }, 3000);
-        }
+            if (hasSuccessMessage) {
+                setTimeout(function () {
+                    const redirectUrl = jobRoleRoutes[jobRole] || "/Employee/LoginPage";
+                    window.location.href = redirectUrl;
+                }, 3000);
+            }
+
+        });
     </script>
 }

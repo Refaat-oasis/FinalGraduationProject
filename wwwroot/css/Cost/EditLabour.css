@@ -143,7 +143,7 @@ h1 {
     color: white;
 }
 
-.error {
+.text-danger {
     color: red;
     font-size: 20px;
     margin-top: 5px;
@@ -237,7 +237,7 @@ h1 {
     color: #10b981;
 }
 
-.error {
+.text-danger {
     background-color: #fef2f2;
     border-left: 4px solid #ef4444;
     color: #ef4444;

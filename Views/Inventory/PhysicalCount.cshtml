@@ -77,10 +77,10 @@
             <div class="rowCont">
                 <div class="colCont">
                     <label class="form-label">العنصر</label>
-                    <select id="itemId" name="itemId" class="form-select" required disabled>
+                    <select id="itemId" name="itemId" class="form-select"  disabled>
                         <option value="">-- اختر العنصر --</option>
                     </select>
-                    <span class="error-message" id="itemIdError" style="color: red; display: none;">يرجى اختيار العنصر</span>
+                    <span class="error" id="itemIdError">يرجى اختيار العنصر</span>
                 </div>
                 <div class="colCont">
                     <label class="form-label">نوع العنصر</label>
@@ -91,22 +91,24 @@
                         <option value="Supply">مستلزمات</option>
                         <option value="Spare Parts">قطع غيار</option>
                     </select>
-                    <span class="error-message" id="inventoryTypeError" style="color: red; display: none;">يرجى اختيار نوع العنصر</span>
+                    <span class="error" id="inventoryTypeError">يرجى اختيار نوع العنصر</span>
                 </div>
             </div>
 
             <!-- Quantity Section -->
+            <!-- Quantity Section -->
             <div class="rowCont">
                 <div class="colCont">
-                    <label class="form-label">السحبات الحالية</label>
+                    <label id="quantityLabel1" class="form-label">السحبات الحالية</label>
                     <input type="text" id="currentQuantity" class="form-control" readonly value="0" />
                 </div>
                 <div class="colCont">
-                    <label class="form-label"> السحبات الجديدة</label>
+                    <label id="quantityLabel2" class="form-label">السحبات الجديدة</label>
                     <input type="number" name="newQuantity" id="newQuantity" class="form-control" min="0" placeholder="فى حالة عدم تعديله اتركه فارغًا للحفاظ على القيمة الحالية " />
-                    <span class="error-message" id="newQuantityError" style="color: red; display: none;">يرجى إدخال عدد سحبات صحيح</span>
+                    <span class="error" id="newQuantityError">يرجى إدخال عدد سحبات صحيح</span>
                 </div>
             </div>
+
 
             <!-- Draws Section (For Ink Only) -->
             <div class="rowCont" id="unitsFields" style="display: none;">
@@ -115,9 +117,9 @@
                     <input type="text" id="currentNumberOfUnits" class="form-control" readonly value="0" />
                 </div>
                 <div class="colCont">
-                    <label class="form-label">اعدد الوحدات الجديدة</label>
+                    <label class="form-label">عدد الوحدات الجديدة</label>
                     <input type="number" name="newNumberOfUnits" id="newNumberOfUnits" class="form-control" min="0" placeholder=" فى حالة عدم تعديله اتركه فارغًا للحفاظ على القيمة الحالية" />
-                    <span class="error-message" id="newNumberOfUnitsError" style="color: red; display: none;"> يرجى إدخال الكميات الصحيحة </span>
+                    <span class="error" id="newNumberOfUnitsError"> يرجى إدخال الكميات الصحيحة </span>
                 </div>
             </div>
 
@@ -186,13 +188,26 @@
             });
 
             // Inventory type change handler
-            inventoryType.addEventListener("change", function() {
-                if (this.value === "Ink") {
-                    unitsFields.style.display = "flex";
-                } else {
-                    unitsFields.style.display = "none";
-                }
-            });
+                    inventoryType.addEventListener("change", function() {
+            if (this.value === "Ink") {
+                unitsFields.style.display = "flex";
+            } else {
+                unitsFields.style.display = "none";
+            }
+
+            // تغيير التسمية حسب نوع العنصر
+            const label1 = document.getElementById("quantityLabel1");
+            const label2 = document.getElementById("quantityLabel2");
+
+            if (this.value === "Ink") {
+                label1.textContent = "السحبات الحالية";
+                label2.textContent = "السحبات الجديدة";
+            } else {
+                label1.textContent = "الكمية الحالية";
+                label2.textContent = "الكمية الجديدة";
+            }
+        });
+
 
             // AJAX code for loading items and current values
             $(document).ready(function () {

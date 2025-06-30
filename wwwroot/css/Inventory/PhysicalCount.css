@@ -292,3 +292,13 @@ h1 {
         width: 0%;
     }
 }
+
+.error {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    direction: rtl;
+    display: none;
+}

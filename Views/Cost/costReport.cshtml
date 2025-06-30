@@ -1,7 +1,7 @@
-﻿</div>@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
-@model ThothSystemVersion1.ViewModels.CostReportVM;
+@model ThothSystemVersion1.ViewModels.CostReportVM
 
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
@@ -12,26 +12,26 @@
 @section HeadContent {
     <link rel="icon" type="image/x-icon" href="~/image/eye.jpg" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="~/css/Inventory/inventoryReports.css" rel="stylesheet" />
+    <link href="~/css/Accounting/accountingReport.css" rel="stylesheet" />
 }
 
 <div class="container">
     <!-- Back button based on role -->
-@if (jobRole == 0)
-{
+    @if (jobRole == 0)
+    {
         <a asp-controller="employee" asp-action="adminhome" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size:40px; color:white;"></i>
         </a>
-}
-else if (jobRole == 5)
-{
+    }
+    else if (jobRole == 5)
+    {
         <a asp-controller="employee" asp-action="costManager" class="back">
             <i class='bx bx-left-arrow-circle' style="font-size:40px; color:white;"></i>
         </a>
-}
+    }
 
     <div class="mainBox">
-        <h1>تقارير التكاليف</h1>
+        <h1>تقرير الربح و التكاليف</h1>
         <div class="toggle-btn" onclick="toggleForm()">
             <span> حركة الطلبات و التكاليف <i class='bx bx-chevrons-down'></i></span>
         </div>
@@ -53,56 +53,67 @@ else if (jobRole == 5)
         </div>
     </div>
 
-
     <!-- Results Section -->
     <div class="report-results">
-@if (Model != null)
-{
+        @if (Model != null)
+        {
             <div class="card-container" style="display:flex; gap:1rem; margin-top:2rem;">
                 <div class="report-card" style="flex:1; padding:1.5rem; border:1px solid #ccc; border-radius:8px;">
                     <h2>تقرير التكلفة</h2>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.JobOrdersCount):</strong>
-                        @Model.JobOrdersCount
-                    </p>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.JobOrderRemainingAmount):</strong>
-                        @Model.JobOrderRemainingAmount.ToString("N2")
-                    </p>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.JobOrderUnearnedRevenue):</strong>
-                        @Model.JobOrderUnearnedRevenue.ToString("N2")
-                    </p>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.JobOrderEarnedRevenue):</strong>
-                        @Model.JobOrderEarnedRevenue.ToString("N2")
-                    </p>
-                    <hr />
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.TotalRevenue):</strong>
-                        @Model.TotalRevenue.ToString("N2")
-                    </p>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.TotalCost):</strong>
-                        @Model.TotalCost.ToString("N2")
-                    </p>
-                    <p>
-                        <strong>@Html.DisplayNameFor(m => m.NetProfit):</strong>
-                        @Model.NetProfit.ToString("N2")
-                    </p>
+                    <div class="mainBox">
+                        <dl class="colCont1">
+                            <div class="row-style">
+                                <dd>@Model.JobOrdersCount</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.JobOrdersCount)</dt>
+                                
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.JobOrderRemainingAmount.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.JobOrderRemainingAmount)</dt>
+                                
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.JobOrderUnearnedRevenue.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.JobOrderUnearnedRevenue)</dt>
+                               
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.JobOrderEarnedRevenue.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.JobOrderEarnedRevenue)</dt>
+                                
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.TotalRevenue.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.TotalRevenue)</dt>
+                               
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.TotalCost.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.TotalCost)</dt>
+                                
+                            </div>
+                            <div class="row-style">
+                                <dd>@Model.NetProfit.ToString("N2")</dd>
+                                <dt>:@Html.DisplayNameFor(m => m.NetProfit)</dt>
+                               
+                            </div>
+                        </dl>
+                    </div>
                 </div>
             </div>
-}
-else
-{
+        }
+        else
+        {
             <p style="margin-top:2rem;">لا توجد بيانات</p>
-}
+        }
+    </div>
+</div>
 
 @section Scripts {
-            <script>
-                function toggleForm() {
-                    var section = document.getElementById('formSection');
-                    section.classList.toggle('hiddenBox');
-                }
-            </script>
+    <script>
+        function toggleForm() {
+            var section = document.getElementById('formSection');
+            section.classList.toggle('hiddenBox');
+        }
+    </script>
 }

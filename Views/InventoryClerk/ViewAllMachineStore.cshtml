@@ -1,4 +1,4 @@
-﻿ @model IEnumerable<ThothSystemVersion1.Models.Paper>
+﻿ @model IEnumerable<ThothSystemVersion1.Models.MachineStore>
 
 @{
     Layout = "~/Views/Shared/MinimalLayout.cshtml";
@@ -45,80 +45,61 @@
         }
     </div>
 
-    <h1>قائمة الورق</h1>
+    <h1> الآلات المستخدمة</h1>
+
     <div id="reorderMessages" class="reorderMsg" style="display:none;">
         <button class="close-btn" onclick="closeReorderMessages()">X</button>
 
     </div>
 
-    @* <p> *@
-    @*     <a asp-controller="inventory" asp-action="NewPaper" class="editBtn">اضافة</a> *@
-    @* </p> *@
+    <p>
+        <a asp-controller="inventory" asp-action="AddMachine" class="editBtn">اضافة</a>
+    </p>
     <div class="search-container">
         <i class='bx bx-search search-icon'></i>
-        <input type="text" id="searchInput" onkeyup="searchPaper()" placeholder="...ابحث عن ورق">
+        <input type="text" id="searchInput" onkeyup="searchMachine()" placeholder="...ابحث عن آلة">
     </div>
     <div class="tableContainer">
 
-        <table id="paperTable">
+        <table id="machineTable">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.ReorderPoint)</th>
-                    <th>@Html.DisplayNameFor(model => model.Price)</th>
-                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-                    <th>@Html.DisplayNameFor(model => model.Colored)</th>
-                    <th>@Html.DisplayNameFor(model => model.Activated)</th>
-                    <th>@Html.DisplayNameFor(model => model.TotalBalance)</th>
-                    <th>@Html.DisplayNameFor(model => model.Weight)</th>
-                    <th>@Html.DisplayNameFor(model => model.Size)</th>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <th>@Html.DisplayNameFor(model => model.PaperId)</th>
-
-
+                    <th>التفعيل</th>
+                    <th>الاسم</th>
+                    <th>الرقم التعريفي للاله المستخدمة</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
+                        
+                        <td>@(item.Activated == true ? "مفعّل" : "غير مفعّل")</td>
 
-                        <td>@Html.DisplayFor(modelItem => item.ReorderPoint)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Colored)</td>
-                        <td>@(item.Activated ? "مفعل" : "غير مفعل")</td>
-                        <td>@Html.DisplayFor(modelItem => item.TotalBalance)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Weight)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Size)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PaperId)</td>
-
+                        <td>@Html.DisplayFor(modelItem => item.MachineStoreId)</td>
 
                     </tr>
                 }
             </tbody>
         </table>
+
     </div>
 </div>
 @section Scripts {
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"
             integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"></script>
     <script>
-        function closeReorderMessages() {
-                 var messageDiv = document.getElementById("reorderMessages");
-                 messageDiv.style.display = "none";
-             }
-    </script>
-    <script>
 
 
-                function searchPaper() {
+                function searchMachine() {
              var input, filter, table, tr, td, i, j, txtValue;
              input = document.getElementById("searchInput");
              filter = input.value.toUpperCase();
-             table = document.getElementById("paperTable");
+             table = document.getElementById("machineTable");
              tr = table.getElementsByTagName("tr");
 
              // Loop through all table rows (skip the header row)
@@ -140,33 +121,8 @@
          }
 
         // Create the connection to the SignalR hub
-         var hub = new signalR.HubConnectionBuilder()
-             .withUrl("/InventoryReorderPoint")
-             .build();
 
-        hub.start()
-             .then(function () {
-                 console.log("SignalR connection established.");
 
-                 // Invoke the server-side method to check paper reorder points.
-                 hub.invoke("CheckPaperReorderPoint")
-                    .catch(function (err) {
-                        console.error("Error invoking CheckPaperReorderPoint: ", err.toString());
-                     });
-             })
-            .catch(function (err) {
-                 console.error("SignalR connection error: ", err.toString());
-             });
-
-         // Listen for reorder messages from the hub.
-         hub.on("ReceiveReorderMessagePaper", function (message) {
-             console.log("Received reorder message: ", message);
-             var messageDiv = document.getElementById("reorderMessages");
-             // Make sure the message div is visible
-            messageDiv.style.display = "block";
-             // Append the new message rather than replacing previous ones
-             messageDiv.innerHTML += "<div>" + message + "</div>";
-         });
     </script>
 }
 

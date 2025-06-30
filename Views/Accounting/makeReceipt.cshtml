@@ -180,6 +180,8 @@
                 <form method="post" asp-action="makereceipt" asp-controller="accounting" id="receiptForm" novalidate>
                     <input type="hidden" asp-for="JobOrderId" />
                     <input type="hidden" id="hdnRemainingAmount" value="@remainingAmount" />
+                    <input type="hidden" id="hdnJobRole" value="@jobRole" />
+
 
                     <div class="colCont">
                         <label asp-for="Amount"></label>
@@ -230,8 +232,8 @@
                     } else if (val <= 0) {
                         msg = 'الرجاء ادخال رقم اكبر من صفر';
                     } else if (val > remaining) {
-                        msg = لا يمكن ان يزيد المبلغ عن (${remaining});
-                    }
+        msg = `لا يمكن ان يزيد المبلغ عن (${remaining})`;
+                            }
 
                     if (msg) {
                         e.preventDefault();
